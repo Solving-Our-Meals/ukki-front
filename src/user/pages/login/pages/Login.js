@@ -32,7 +32,6 @@ function Login() {
         });
 
         const result = await response.json();
-        console.log(result.isValid)
         if (result.isValid) {
             setStep(2);
             setError('');
