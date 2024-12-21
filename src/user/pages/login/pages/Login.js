@@ -54,13 +54,14 @@ function Login() {
                 userId: formData.userId,
                 userPass: formData.userPass,
             }),
+            credentials: 'include' // 쿠키 포함시키기 -> api fetch 사용할 때 필수 (인증된 곳 갈땐 다 담아야함)
         });
 
         const result = await response.json();
 
+        console.log(result.success)
         if (result.success) {
             setError('');
-            // 로그인 성공 후 리디렉션 처리
             window.location.href = '/main';
         } else {
             setError(result.message || '비밀번호가 잘못되었습니다.');
@@ -70,6 +71,19 @@ function Login() {
     const togglePasswordVisibility = () => {
         setShowPassword(prevState => !prevState);
     };
+
+    // 토큰 확인용 // 지울것
+    const getAuthToken = () => {
+        const cookie = document.cookie.split('; ').find(row => row.startsWith('authToken='));
+        return cookie ? cookie.split('=')[1] : null;  // authToken이 있으면 그 값을 반환, 없으면 null 반환
+    };
+    // 토큰 확인용 // 지울것
+    const token = getAuthToken();
+    if (token) {
+        console.log('JWT Token:', token);  // 토큰 확인
+    } else {
+        console.log('토큰이 없습니다.');
+    }
 
     return (
         <div className="signupBasic">
