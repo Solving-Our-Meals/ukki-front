@@ -14,6 +14,7 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
     const [isReport, setIsReport] = useState(false);
     const [isInquiry, setIsInquiry] = useState(false);
     const [inquiryNo, setInquiryNo] = useState(0);
+    const [loading, setLoading] = useState(true);
     const itemsPerPage = 4;
     
         async function fetchList(){
@@ -30,6 +31,8 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
              }
             }catch(error){
                 console.log("오류발생", error)
+            }finally{
+                setLoading(false);
             }
         }
 
@@ -62,7 +65,7 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
 
     useEffect(()=>{
         fetchList()
-    },[])
+    },[fetchList])
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -104,16 +107,20 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
                     <span className='inquiryTitle header'>문의 제목</span>
                 </div>
                 <div id='listArea'>
-                {currentItem.map((item, index)=>{ 
-                    return  <div key={index} className={item.division} value={item.no} onClick={()=>handlerInquiryInfo(item.division, item.no)}>
-                                <div id='inquiryListBody'>
-                                <span className='inquiryState'>{item.state}</span>
-                                <span className='inquiryDate'>{item.inquiryDate}</span>
-                                <div className='inquiryTitle'><p className='inquiryTitleText'>{item.inquiryTitle}</p></div>
+                    {loading ? (
+                        <div>Loading...</div>
+                    ) : (
+                        currentItem.map((item, index)=>{ 
+                        return  <div key={index} className={item.division} value={item.no} onClick={()=>handlerInquiryInfo(item.division, item.no)}>
+                                    <div id='inquiryListBody'>
+                                    <span className='inquiryState'>{item.state}</span>
+                                    <span className='inquiryDate'>{item.inquiryDate}</span>
+                                    <div className='inquiryTitle'><p className='inquiryTitleText'>{item.inquiryTitle}</p></div>
+                                    </div>
                                 </div>
-                            </div>
-
-                    })}
+                        })
+                        )}
+                
                     </div>
                     <div className='pageNation'>
                     <button onClick={()=>paginate(currentPage-1)} disabled={currentPage === 1}>◀</button>
@@ -127,7 +134,7 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
             </div>
             </div>
             {isReport && <StoreReportInfo inquiryNo={inquiryNo} setIsReport={setIsReport}/>}
-            {isInquiry && <StoreInquiryInfo inquiryNo={inquiryNo} setIsInquiry={setIsInquiry}/>}
+            {isInquiry && <StoreInquiryInfo inquiryNo={inquiryNo} setIsInquiry={setIsInquiry} fetchList={fetchList}/>}
         </>
     )
 }

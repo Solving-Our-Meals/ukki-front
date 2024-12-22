@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef } from 'react'
 import '../css/reset.css';
 import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
@@ -14,6 +14,7 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
     const [inquiryContent, setInquiryContent] = useState("");
     const [inquiryFile, setInquiryFile] = useState(null);
     const [isWrite, setIsWrite] = useState([false, false, false]);
+    const fileInputRef = useRef(null);
 
 
     function handleTitleChange(e){
@@ -55,6 +56,12 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
       setIsLittleInquiryModal(true)
     }
 
+    
+    function handleFileButtonClick() {
+      fileInputRef.current.click();
+  }
+
+
     async function fetchCategory(){
          const categories = await inquiryCategory(); if (categories && categories.length > 0)
         { setCategory(categories.slice(4, categories.lastIndex))}; // 4번째 ~ 마지막(7번째)
@@ -73,28 +80,17 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
       const blob = new Blob([json], {type: 'application/json'});
       formData.append("data", blob)
       formData.append("file", inquiryFile)
-      // for (const x of formData.entries()) {
-      //   console.log(x);
-      //  };
-      let isPass = false
-      for(var i = 0; i<3; i++){
-        if(isWrite[i]===true){
-          isPass = true
-        }else{
-          isPass = false
-          break;
-        }
-      }
+      let isPass = isWrite.every(Boolean);
       if(isPass){
       fetch(`/inquiries/stores`, {
         method: "POST",
-        headers: {
-          // "Content-Type": "multipart/form-data",
-        },
+        headers: {},
         body: formData
       }).then(res => {
         if(res.ok) {
           alert(res.message)
+          setStoreDoInquiry(false);
+          setIsLittleInquiryModal(true);
         }
       })
     }else{
@@ -121,11 +117,16 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
                     ))}
                 </select>
                 <textarea id='inputDoContent'  value={inquiryContent} onChange={handleContentChange} required/>
-                
-                <label id='inquiryDoFileBtn' htmlFor='inquiryDoFile' onChange={handleFileChange}>
-                  첨부파일
-                <input type='file' id='inquiryDoFile'/>
-                </label>
+                <input
+                        type="file"
+                        id="inquiryFile"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                    />
+                    <button type="button" id="inquiryDoFileBtn" onClick={handleFileButtonClick}>
+                        첨부파일
+                    </button>
                 <button type='button' id='inquiryDoCancleBtn' onClick={handleCancle}>취소</button>
                 <button id='doInquiryBtn' onClick={submit}>확인</button>
             </form>
