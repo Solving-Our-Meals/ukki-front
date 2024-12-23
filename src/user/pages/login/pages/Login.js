@@ -153,7 +153,7 @@ function Login() {
                             </div>
                         </fieldset>
                         <div className="searchWrapper" style={searchError}>
-                        <p className="search">비밀번호 찾기</p>
+                        <p className="search"><Link to="/find">비밀번호 찾기</Link></p>
                         </div>
                         {error && <p className="error">{error}</p>}
                         <button
