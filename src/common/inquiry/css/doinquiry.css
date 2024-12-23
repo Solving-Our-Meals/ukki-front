@@ -220,6 +220,32 @@ border: none;
 cursor: pointer;
 }
 
+#inquiryDateAtUpdate{
+        
+  position: absolute;
+  height: 36px;
+  left: 1187px;
+  top: 124px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  
+
+  color: #232323;
+}
+#inquiryDateAtUpdate p{
+      display: inline-block;
+
+      font-family: 'Pretendard Variable';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 25px;
+      align-content: center;
+
+}
+
 /* 반응형 */
 @media (max-width: 768px) {
 
@@ -438,6 +464,31 @@ cursor: pointer;
     border: none;
   }
 
+  #inquiryDateAtUpdate{
+    
+    position: absolute;
+    height: 36px;
+    left: 180px;
+    top: 28px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+    
+    
+    color: #232323;
+    }
+    #inquiryDateAtUpdate p{
+        display: inline-block;
+    
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 7px;
+        align-content: center;
+    
+    }
 }
 
 /* 반응형 */
@@ -654,4 +705,29 @@ cursor: pointer;
     border: none;
     
     }
+    #inquiryDateAtUpdate{
+    
+      position: absolute;
+      height: 36px;
+      left: 707px;
+      top: 73px;
+      
+      font-family: 'Pretendard Variable';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      
+      
+      color: #232323;
+      }
+      #inquiryDateAtUpdate p{
+          display: inline-block;
+      
+          font-family: 'Pretendard Variable';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 15px;
+          align-content: center;
+      
+      }
 }

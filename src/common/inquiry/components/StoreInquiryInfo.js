@@ -7,6 +7,7 @@ import StoreUpdateInquiry from './StoreUpdateInquiry';
 import AgreementModal from './AgreementModal';
 import { getInquiryDTO } from '../api/inquiryInfoAPI';
 import waitAnswer from '../img/waitAnswer.png';
+import ResultSmallModal from './ResultSmallModal';
 
 function StoreInquiryInfo({ inquiryNo, setIsInquiry, fetchList }) {
     const [inquiryDTO, setInquiryDTO] = useState({});
@@ -95,6 +96,7 @@ function StoreInquiryInfo({ inquiryNo, setIsInquiry, fetchList }) {
                             method: 'DELETE',
                         }).then((res) => {
                             if (res.ok) {
+                                <ResultSmallModal message="삭제되었습니다."/>
                                 alert('삭제되었습니다.');
                                 setIsInquiry(false);
                             } else {

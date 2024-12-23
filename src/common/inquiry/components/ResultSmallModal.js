@@ -1,44 +1,15 @@
-import {useEffect, useState} from 'react'
 import '../css/reset.css';
 import '../css/AgreementModal.css'
-import StoreDoInquiry from './StoreDoInquiry';
-import StoreInquiryList from './StoreInquiryList';
 
-function InquiryEnter(message){
-    const [inquiryList, setInquiryList] = useState(false);
-    const [storeDoInquiry, setStoreDoInquiry] = useState(false);
-    const [isLittleInquiryModal, setIsLittleInquiryModal] = useState(true);
-
-    useEffect(()=>{},[])
-
-    function handlerEnterDoInquiry(){
-        setStoreDoInquiry(true);
-        setIsLittleInquiryModal(false)
-    }
-
-    function handlerCancleInquiryEnter(){
-        setIsLittleInquiryModal(false)
-    }
-
-    function handlerEnterInquiryList(){
-        setInquiryList(true);
-        setIsLittleInquiryModal(false)
-    }
-
-    return(
+function ResultSmallModal(message){
+    return (
         <>
-            {isLittleInquiryModal &&
-            <div id='littleInquiryModal'>
-                <div id='inquiryEnterText'>문의</div>
-                <button id='cancleEnterInquiryBtn' onClick={handlerCancleInquiryEnter}>확인</button>
-                <button id='enterInquiryListBtn' onClick={handlerEnterInquiryList}>문의내역</button>
-                <button id='enterDoInquiryBtn' onClick={handlerEnterDoInquiry}>문의하기</button>
+            <div id='agreementModal'>
+                <div id='agreementMessage'>{message}</div>
+                <button id='agreementOkBtn' onClick={onConfirm}>확인</button>
             </div>
-            }
-            {storeDoInquiry && <StoreDoInquiry setStoreDoInquiry={setStoreDoInquiry} setIsLittleInquiryModal={setIsLittleInquiryModal}/>}
-            {inquiryList && <StoreInquiryList setInquiryList={setInquiryList} setIsLittleInquiryModal={setIsLittleInquiryModal}/>}
         </>
-    )
+    );
 }
 
-export default InquiryEnter;
+export default ResultSmallModal;

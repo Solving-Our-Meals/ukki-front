@@ -83,6 +83,7 @@ function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
             <div id='doInquiryModal'>
                 <div id='doInquiryText'>문의수정</div>
                 <div id='doInquiryTitleText'>문의 제목: </div>
+                <div id='inquiryDateAtUpdate'>문의 일자 : <p>{inquiryDTO.inquiryDate}</p></div>
                 <form>
                     <input id='inputDoTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} required />
                     <textarea id='inputDoContent' value={inquiryContent} onChange={handleContentChange} required />
