@@ -326,3 +326,29 @@ input[type="checkbox"] {
     border: 3px solid #FF5D18;
 }
 
+.search {
+    position: absolute;
+    height: 30px;
+    left: 37.5%;
+    top: 51.1%;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #232323;
+    animation: hello 0.5s ease;
+}
+/* 똑같은거 있는데 혹시 수정할 수 있어서 나눔 */
+@keyframes hello {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

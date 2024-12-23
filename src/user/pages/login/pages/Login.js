@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../css/Login.css';
 import '../css/reset.css';
+import { Link } from 'react-router-dom'
 
 function Login() {
     const [step, setStep] = useState(1);
@@ -84,6 +85,13 @@ function Login() {
         console.log('토큰이 없습니다.');
     }
 
+    const searchError = {
+        display: 'flex',
+        cursor: 'pointer',
+        transform: error ? 'translateY(255px)' : 'translateY(230px)',
+        width: '1000px',
+    }
+
     return (
         <div className="signupBasic">
             <div className="signup">
@@ -106,11 +114,19 @@ function Login() {
                                 <label htmlFor="userId">아이디 입력</label>
                             </div>
                         </fieldset>
-                        {error && <p className="error">{error}</p>}
-                        <button className="loginButton">로그인</button>
-                        <button className="nextButton">다음</button>
+                        <div className="searchWrapper" style={searchError}>
+                            <p className="search"><Link to="/find">아이디 찾기</Link></p>
+                        </div>
+                            {error && <p className="error">{error}</p>}
+                            <button
+                                className="loginButton"
+                                type="button"
+                                onClick={() => window.location.href = '/auth/signup'}
+                            >회원가입
+                            </button>
+                                <button className="nextButton">다음</button>
                     </form>
-                )}
+                    )}
 
                 {/* 비밀번호 입력받는 스탭 */}
                 {step === 2 && (
@@ -136,7 +152,16 @@ function Login() {
                                 </div>
                             </div>
                         </fieldset>
+                        <div className="searchWrapper" style={searchError}>
+                        <p className="search">비밀번호 찾기</p>
+                        </div>
                         {error && <p className="error">{error}</p>}
+                        <button
+                            className="loginButton"
+                            type="button"
+                            onClick={() => window.location.href = '/auth/signup'}
+                        >회원가입
+                        </button>
                         <button className="nextButton">로그인</button>
                     </form>
                 )}
