@@ -178,7 +178,6 @@ a:active {
 }
 .storeDetail #storeName {
   position: absolute;
-  width: -moz-max-content;
   width: max-content;
   height: 55px;
   left: 112px;
@@ -190,7 +189,6 @@ a:active {
 }
 .storeDetail #storeDes {
   position: absolute;
-  width: -moz-max-content;
   width: max-content;
   height: 30px;
   left: 112px;
@@ -211,7 +209,6 @@ a:active {
   position: absolute;
   left: 235px;
   top: 780px;
-  width: -moz-max-content;
   width: max-content;
   height: 41px;
   font-family: "Pretendard Variable";
@@ -222,12 +219,12 @@ a:active {
   position: absolute;
   left: 235px;
   top: 824px;
-  width: -moz-max-content;
   width: max-content;
   height: 41px;
   font-family: "Pretendard Variable";
   font-size: 25px;
   color: #232323;
+  cursor: pointer;
 }
 .storeDetail #triangle {
   position: absolute;
@@ -271,6 +268,7 @@ a:active {
   margin-left: 20px;
   font-weight: 700;
 }
+
 .storeDetail #menu {
   position: absolute;
   left: 235px;
@@ -282,6 +280,7 @@ a:active {
   color: #999999;
   cursor: pointer;
 }
+
 .storeDetail .keywordArea div {
   position: absolute;
   top: 990px;
@@ -322,4 +321,4 @@ a:active {
   top: 1106px;
   width: 1738px;
   background: #D9D9D9;
-}/*# sourceMappingURL=storedetail.module.css.map */
+}

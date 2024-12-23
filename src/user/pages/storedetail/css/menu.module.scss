@@ -1,0 +1,31 @@
+@import "../../../../common/reset/reset.scss";
+
+#menu{
+    position : absolute;
+    left : 235px;
+    top : 864px;
+    width : max-content;
+    font-family : 'Pretendard Variable';
+    font-size : 20px;
+    color: $textCaption;
+    cursor: pointer;
+}
+
+#xBtn{
+    position: absolute;
+    z-index: 10000;
+    width : 30px;
+    height : 30px;
+    left : 640px;
+    top : 398px;
+    cursor: pointer;
+}
+
+#menuImg{
+    position: absolute;
+    z-index: 9999;
+    width : 350px;
+    height : 500px;
+    left : 335px;
+    bottom : -6px;
+}
