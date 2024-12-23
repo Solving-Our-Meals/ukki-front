@@ -1,6 +1,7 @@
 
 .footerStyle{
     position : relative;
+    display: fixed;
     left : 0%;
     right : 0%;
     bottom : 0%;
@@ -11,6 +12,7 @@
     height : 226px;
     background-color: #FFF3A7;
     cursor : default;
+    border-radius: 0;
 
     #honbab_ukki{
         position : absolute;
@@ -62,6 +64,7 @@
         justify-content: center;
         align-items: center;
         cursor : default;
+        border-radius: 0;
 
         P{
             position : absolute;

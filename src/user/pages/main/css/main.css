@@ -182,6 +182,7 @@ div .slidewrap {
   top: 5vw;
   left: 3.5vw;
   list-style: none;
+  border-radius: 0;
 }
 div .slidewrap .slides {
   display: flex;
@@ -195,6 +196,7 @@ div .slidewrap .slides .slide {
   height: 80vh;
   overflow: hidden;
   position: relative;
+  border-radius: 0;
 }
 div .slidewrap .slides .slide .section1,
 div .slidewrap .slides .slide .section2,
@@ -378,7 +380,7 @@ div .category span {
   top: 87.5vw;
   font-family: "Pretendard Variable";
   font-weight: 500;
-  font-size: 20px;
+  font-size: 1vw;
   color: #232323;
   background-color: #FFF3A7;
   padding: 0.5vw 1vw;
@@ -405,6 +407,8 @@ div .location {
   top: 100vw;
   background: #FFF3A7;
   left: 0;
+  border-radius: 0;
+  border: none;
 }
 div .location h3 {
   position: absolute;
@@ -414,7 +418,7 @@ div .location h3 {
   font-size: 2vw;
   color: #232323;
 }
-div .location img:nth-of-type(1) {
+div .location > img:nth-of-type(1) {
   position: absolute;
   left: 55vw;
   width: 9vw;
@@ -525,4 +529,147 @@ div .location img:nth-of-type(2) {
   left: 46vw;
   top: 12vw;
   z-index: 10;
+}
+div .talk img:nth-of-type(1) {
+  position: absolute;
+  width: 80vw;
+  top: 148vw;
+  left: 10vw;
+}
+div .talk img:nth-of-type(2) {
+  position: absolute;
+  width: 75vw;
+  top: 140vw;
+  left: 10vw;
+}
+div .talk img:nth-of-type(3) {
+  position: absolute;
+  width: 50vw;
+  top: 142vw;
+  left: 25vw;
+}
+div .random h3 {
+  position: absolute;
+  left: 15vw;
+  top: 175vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-weight: 400;
+  font-size: 3vw;
+  line-height: 128.63%;
+  color: #232323;
+}
+div .random h3 span {
+  color: #FF8AA3;
+}
+div .random p:nth-of-type(1) {
+  position: absolute;
+  left: 15vw;
+  top: 184vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5vw;
+  color: #232323;
+}
+div .random p:nth-of-type(2) {
+  position: absolute;
+  left: 15vw;
+  top: 187vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.8vw;
+  line-height: 150%;
+  color: #FF5D18;
+}
+div .random > span {
+  position: absolute;
+  left: 15vw;
+  top: 193vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1vw;
+  line-height: 150%;
+  color: #232323;
+}
+div .random button {
+  position: absolute;
+  width: 9vw;
+  height: 2vw;
+  left: 19vw;
+  top: 201vw;
+  background: #FEDA00;
+  border-radius: 30px;
+  color: #232323;
+  border: none;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1vw;
+}
+div .random img:nth-of-type(1) {
+  position: absolute;
+  width: 4vw;
+  left: 14.5vw;
+  top: 200vw;
+  opacity: 0.6;
+}
+div .random img:nth-of-type(2) {
+  position: absolute;
+  width: 4vw;
+  left: 28.5vw;
+  top: 200vw;
+  opacity: 0.6;
+}
+div .roulette {
+  position: relative;
+  width: 30vw;
+  height: 30vw;
+}
+div .roulette .rouletter-bg {
+  position: absolute;
+  top: 113vw;
+  left: 65vw;
+  transform: translate(-50%, -50%);
+  width: 28vw;
+  height: 28vw;
+  border-radius: 350px;
+  overflow: hidden;
+  border: 8px solid #FF8AA3;
+}
+div .roulette .rouletter-bg .rouletter-wacu img {
+  width: 100%;
+  height: 100%;
+  background: #FF8AA3;
+  background-size: 100%;
+  transform-origin: center;
+  transition-timing-function: ease-in-out;
+  transition: 2s;
+}
+div .roulette .rouletter-arrow {
+  position: absolute;
+  top: 98vw;
+  left: 64vw;
+  z-index: 9;
+}
+div .roulette .rouletter-arrow img {
+  width: 2vw;
+}
+div .roulette .rouletter-btn {
+  position: absolute;
+  width: 4vw;
+  height: 4vw;
+  top: 111vw;
+  left: 63vw;
+  border-radius: 50%;
+  border: none;
+  background-color: #FF8AA3;
+  color: #fff;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1vw;
+}
+div .hidden-input {
+  display: none;
 }/*# sourceMappingURL=main.css.map */
