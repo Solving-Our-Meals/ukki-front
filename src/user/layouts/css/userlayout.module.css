@@ -1,24 +1,19 @@
-@charset "UTF-8";
 /* userlayout.module.css */
-.layoutStyle {
+.wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
-.header {
-  flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
+.contentWrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
-.main {
-  flex: 1; /* 메인 콘텐츠 영역이 남은 공간을 차지하도록 */
-  padding: 20px;
-}
-
-.footer {
-  flex-shrink: 0; /* 푸터가 줄어들지 않도록 */
-  background-color: #f8f9fa;
-  padding: 20px;
-  text-align: center;
-  width: 100%;
+.contentWrapper:after {
+  content: "";
+  display: block;
+  clear: both;
 }
