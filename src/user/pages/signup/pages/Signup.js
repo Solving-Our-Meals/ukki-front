@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import '../css/Signup.css';
 import '../css/reset.css';
 
@@ -17,6 +17,8 @@ function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false); // 이메일 다음 버튼 때문에
     const [emailPending, setEmailPending] = useState(false);  // 이메일 대기
+    const termsContentRef = useRef(null);
+    const [isTermsRead, setIsTermsRead] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
