@@ -211,8 +211,7 @@ function Signup() {
         });
         response.then(res => res.json()).then(result => {
             if (result.success) {
-                alert('ⓘ 회원가입이 완료되었습니다!');
-                setStep(7); // 회원가입 완료 단계로 이동
+                setStep(7);
             } else {
                 setError('ⓘ 회원가입에 실패했습니다.');
             }
@@ -253,8 +252,12 @@ function Signup() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
-                        <button className="loginButton">로그인</button>
-                        <button className="nextButton">다음</button>
+                        <button
+                            className="loginButton"
+                            type="button"
+                            onClick={() => window.location.href = '/auth/login'}
+                        >로그인</button>
+                        <button type="submit" className="nextButton">다음</button>
                     </form>
                 )}
 
@@ -283,6 +286,12 @@ function Signup() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
+                        <button
+                            className="loginButton"
+                            type="button"
+                            onClick={() => window.location.href = '/auth/login'}
+                        >로그인
+                        </button>
                         <button className="nextButton">다음</button>
                     </form>
                 )}
@@ -290,7 +299,7 @@ function Signup() {
                 {/* 이메일 입력받는 스탭 */}
                 {step === 3 && (
                     <form onSubmit={handleEmailSubmit}>
-                    <fieldset className="fieldEmail">
+                        <fieldset className="fieldEmail">
                             <div className="inputWrapper">
                                 <input
                                     className={`signupEmail ${error ? 'errorInput' : ''}`}
@@ -305,6 +314,12 @@ function Signup() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
+                        <button
+                            className="loginButton"
+                            type="button"
+                            onClick={() => window.location.href = '/auth/login'}
+                        >로그인
+                        </button>
                         <button className="nextButton"
                                 disabled={loading || emailPending} // 이메일 전송 중이거나 로딩 중이면 버튼 비활성화
                         >{loading || emailPending ? '처리중' : '다음'}</button>
@@ -328,6 +343,12 @@ function Signup() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
+                        <button
+                            className="loginButton"
+                            type="button"
+                            onClick={() => window.location.href = '/auth/login'}
+                        >로그인
+                        </button>
                         <button className="nextButton">다음
                         </button>
                     </form>
@@ -350,6 +371,12 @@ function Signup() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
+                        <button
+                            className="loginButton"
+                            type="button"
+                            onClick={() => window.location.href = '/auth/login'}
+                        >로그인
+                        </button>
                         <button className="nextButton">다음</button>
                     </form>
                 )}
@@ -383,9 +410,28 @@ function Signup() {
                             />
                         </div>
                         {error && <p className="errorTerms">{error}</p>}
-                            <button className="signupButton">완료</button>
+                        <button className="signupButton">완료</button>
                     </form>
-                    )}
+                )}
+
+                {step === 7 && (
+                    <form>
+                        <p className="mainConfirm">회원가입이 완료되었습니다.</p>
+                        <p className="subConfirm">우끼 가입을 환영합니다.</p>
+                        <button
+                            className="mainButton"
+                            type="button"
+                            onClick={() => window.location.href = '/main'}
+                        >메인
+                        </button>
+                        <button
+                            className="loginButtonConfirm"
+                            type="button"
+                            onClick={() => window.location.href = '/auth/login'}
+                        >로그인
+                        </button>
+                    </form>
+                )}
             </div>
         </div>
     )
