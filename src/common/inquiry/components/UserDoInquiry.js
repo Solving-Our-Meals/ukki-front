@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef } from 'react'
 import '../css/reset.css';
 import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
@@ -14,6 +14,7 @@ function UserDoInquiry(){
     const [inquiryContent, setInquiryContent] = useState("");
     const [inquiryFile, setInquiryFile] = useState(null);
     const [isWrite, setIsWrite] = useState([false, false, false]);
+    const fileInputRef = useRef(null);
 
 
     function handleTitleChange(e){
@@ -73,21 +74,11 @@ function UserDoInquiry(){
       for (const x of formData.entries()) {
         console.log(x);
        };
-      let isPass = false
-      for(var i = 0; i<3; i++){
-        if(isWrite[i]===true){
-          isPass = true
-        }else{
-          isPass = false
-          break;
-        }
-      }
+       let isPass = isWrite.every(Boolean);
       if(isPass){
       fetch(`/inquiries/users`, {
         method: "POST",
-        headers: {
-          // "Content-Type": "multipart/form-data",
-        },
+        headers: {},
         body: formData
       }).then(res => {
         if(res.ok) {
@@ -106,6 +97,11 @@ function UserDoInquiry(){
 
     function handleCancle(){document.getElementById('doInquiryModal').style.display = 'none';}
 
+    function handleFileButtonClick() {
+      fileInputRef.current.click();
+  }
+
+
     return(
         <>
         <div id='doInquiryModal'>
@@ -120,11 +116,16 @@ function UserDoInquiry(){
                     ))}
                 </select>
                 <textarea id='inputDoContent'  value={inquiryContent} onChange={handleContentChange} required/>
-                
-                <label id='inquiryDoFileBtn' htmlFor='inquiryDoFile' onChange={handleFileChange}>
-                  첨부파일
-                <input type='file' id='inquiryDoFile'/>
-                </label>
+                <input
+                        type="file"
+                        id="inquiryFile"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                    />
+                    <button type="button" id="inquiryDoFileBtn" onClick={handleFileButtonClick}>
+                        첨부파일
+                    </button>
                 <button type='button' id='inquiryDoCancleBtn' onClick={handleCancle}>취소</button>
                 <button id='doInquiryBtn' onClick={submit}>확인</button>
             </form>

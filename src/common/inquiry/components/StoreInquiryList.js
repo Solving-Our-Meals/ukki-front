@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useMemo, useCallback } from 'react'
 import '../css/reset.css';
 import '../css/StoreInquiryList.css'
 import { inquiryList } from '../api/inquiryListAPI';
@@ -14,9 +14,10 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
     const [isReport, setIsReport] = useState(false);
     const [isInquiry, setIsInquiry] = useState(false);
     const [inquiryNo, setInquiryNo] = useState(0);
+    const [loading, setLoading] = useState(true);
     const itemsPerPage = 4;
     
-        async function fetchList(){
+        const fetchList = useCallback(async () => {
             try{
              const inquiries = await inquiryList();
              const reports = await reportList();
@@ -30,15 +31,17 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
              }
             }catch(error){
                 console.log("오류발생", error)
+            }finally{
+                setLoading(false);
             }
-        }
+        }, [])
 
-        function sortDate(list) {
+        const sortDate = useCallback( (list) => {
             const sorted_list = list.sort(function(a, b) {
                 return new Date(a.inquiryDate).getTime() - new Date(b.inquiryDate).getTime();
             });
             return sorted_list;
-        }
+        },[])
 
         function handleCancle(){
             setInquiryList(false);
@@ -62,15 +65,15 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
 
     useEffect(()=>{
         fetchList()
-    },[])
+    },[fetchList])
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItem = listInfo.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItem = useMemo(()=> {return listInfo.slice(indexOfFirstItem, indexOfLastItem)},[listInfo, indexOfFirstItem, indexOfLastItem]);
 
-    const totalPages = Math.ceil(listInfo.length/itemsPerPage);
+    const totalPages = useMemo(()=>Math.ceil(listInfo.length/itemsPerPage),[listInfo.length, itemsPerPage]);
 
-    const visiblePageNum=()=>{
+    const visiblePageNum = useCallback(()=>{
         let startPage = Math.max(currentPage-1, 1);
         let endPage = Math.min(currentPage+1, totalPages);
 
@@ -87,9 +90,9 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
         }
 
         return pageNumbers;
-    }
+    },[currentPage, totalPages])
 
-    const paginate = (no) => {if(0<no && no<=totalPages){setCurrentPage(no)}};
+    const paginate = useCallback( (no) => {if(0<no && no<=totalPages){setCurrentPage(no)}},[totalPages]);
 
 
 
@@ -104,16 +107,19 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
                     <span className='inquiryTitle header'>문의 제목</span>
                 </div>
                 <div id='listArea'>
-                {currentItem.map((item, index)=>{ 
-                    return  <div key={index} className={item.division} value={item.no} onClick={()=>handlerInquiryInfo(item.division, item.no)}>
-                                <div id='inquiryListBody'>
-                                <span className='inquiryState'>{item.state}</span>
-                                <span className='inquiryDate'>{item.inquiryDate}</span>
-                                <div className='inquiryTitle'><p className='inquiryTitleText'>{item.inquiryTitle}</p></div>
+                    {loading ? (
+                        <div>Loading...</div>
+                     ) : (
+                        currentItem.map((item, index)=>{ 
+                        return  <div key={index} className={item.division} value={item.no} onClick={()=>handlerInquiryInfo(item.division, item.no)}>
+                                    <div id='inquiryListBody'>
+                                    <span className='inquiryState'>{item.state}</span>
+                                    <span className='inquiryDate'>{item.inquiryDate}</span>
+                                    <div className='inquiryTitle'><p className='inquiryTitleText'>{item.inquiryTitle}</p></div>
+                                    </div>
                                 </div>
-                            </div>
-
-                    })}
+                        })
+                     )}
                     </div>
                     <div className='pageNation'>
                     <button onClick={()=>paginate(currentPage-1)} disabled={currentPage === 1}>◀</button>
@@ -127,7 +133,7 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
             </div>
             </div>
             {isReport && <StoreReportInfo inquiryNo={inquiryNo} setIsReport={setIsReport}/>}
-            {isInquiry && <StoreInquiryInfo inquiryNo={inquiryNo} setIsInquiry={setIsInquiry}/>}
+            {isInquiry && <StoreInquiryInfo inquiryNo={inquiryNo} setIsInquiry={setIsInquiry} fetchList={fetchList}/>}
         </>
     )
 }

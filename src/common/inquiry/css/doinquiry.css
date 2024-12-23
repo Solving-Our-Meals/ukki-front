@@ -13,7 +13,7 @@
 
   border: 3px solid #FF8AA3;
   border-radius: 50px;
-  z-index: 1000005;
+  z-index: 100000000001;
 }
 
 #doInquiryText{
@@ -152,11 +152,12 @@ position: absolute;
 width: 255px;
 height: 44px;
 left: 57px;
-top: 570px;
+top: 550px;
 
 background: #FEDA00;
 border-radius: 50px;
 
+z-index: 2000000000000000000;
 /* 첨부파일 */
 
 font-family: 'Pretendard Variable';
@@ -219,6 +220,32 @@ border: none;
 cursor: pointer;
 }
 
+#inquiryDateAtUpdate{
+        
+  position: absolute;
+  height: 36px;
+  left: 1187px;
+  top: 124px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  
+
+  color: #232323;
+}
+#inquiryDateAtUpdate p{
+      display: inline-block;
+
+      font-family: 'Pretendard Variable';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 25px;
+      align-content: center;
+
+}
+
 /* 반응형 */
 @media (max-width: 768px) {
 
@@ -228,7 +255,7 @@ cursor: pointer;
     width: 278px;
     height: 320px;
     left: 46px;
-    top: 14px;
+    top: 20px;
 
     background: #FFFFFF;
 
@@ -376,7 +403,7 @@ cursor: pointer;
     width: 100px;
     height: 19px;
     left: 14px;
-    top: 290px;
+    top: 280px;
 
     background: #FEDA00;
     border-radius: 50px;
@@ -437,6 +464,31 @@ cursor: pointer;
     border: none;
   }
 
+  #inquiryDateAtUpdate{
+    
+    position: absolute;
+    height: 36px;
+    left: 180px;
+    top: 28px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+    
+    
+    color: #232323;
+    }
+    #inquiryDateAtUpdate p{
+        display: inline-block;
+    
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 7px;
+        align-content: center;
+    
+    }
 }
 
 /* 반응형 */
@@ -588,7 +640,7 @@ cursor: pointer;
     width: 154px;
     height: 27px;
     left: 38px;
-    top: 330px;
+    top: 332px;
 
     background: #FEDA00;
     border-radius: 50px;
@@ -653,4 +705,29 @@ cursor: pointer;
     border: none;
     
     }
+    #inquiryDateAtUpdate{
+    
+      position: absolute;
+      height: 36px;
+      left: 707px;
+      top: 73px;
+      
+      font-family: 'Pretendard Variable';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      
+      
+      color: #232323;
+      }
+      #inquiryDateAtUpdate p{
+          display: inline-block;
+      
+          font-family: 'Pretendard Variable';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 15px;
+          align-content: center;
+      
+      }
 }
