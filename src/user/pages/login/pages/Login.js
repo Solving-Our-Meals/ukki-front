@@ -114,10 +114,10 @@ function Login() {
                                 <label htmlFor="userId">아이디 입력</label>
                             </div>
                         </fieldset>
+                        {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
                             <p className="search"><Link to="/find">아이디 찾기</Link></p>
                         </div>
-                            {error && <p className="error">{error}</p>}
                             <button
                                 className="loginButton"
                                 type="button"
@@ -152,10 +152,10 @@ function Login() {
                                 </div>
                             </div>
                         </fieldset>
+                        {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
                         <p className="search"><Link to="/find">비밀번호 찾기</Link></p>
                         </div>
-                        {error && <p className="error">{error}</p>}
                         <button
                             className="loginButton"
                             type="button"
