@@ -211,8 +211,7 @@ function Signup() {
         });
         response.then(res => res.json()).then(result => {
             if (result.success) {
-                alert('ⓘ 회원가입이 완료되었습니다!');
-                setStep(7); // 회원가입 완료 단계로 이동
+                setStep(7);
             } else {
                 setError('ⓘ 회원가입에 실패했습니다.');
             }
@@ -258,7 +257,7 @@ function Signup() {
                             type="button"
                             onClick={() => window.location.href = '/auth/login'}
                         >로그인</button>
-                        <button className="nextButton">다음</button>
+                        <button type="submit" className="nextButton">다음</button>
                     </form>
                 )}
 
@@ -411,13 +410,26 @@ function Signup() {
                             />
                         </div>
                         {error && <p className="errorTerms">{error}</p>}
+                        <button className="signupButton">완료</button>
+                    </form>
+                )}
+
+                {step === 7 && (
+                    <form>
+                        <p className="mainConfirm">회원가입이 완료되었습니다.</p>
+                        <p className="subConfirm">우끼 가입을 환영합니다.</p>
                         <button
-                            className="loginButton"
+                            className="mainButton"
+                            type="button"
+                            onClick={() => window.location.href = '/main'}
+                        >메인
+                        </button>
+                        <button
+                            className="loginButtonConfirm"
                             type="button"
                             onClick={() => window.location.href = '/auth/login'}
                         >로그인
                         </button>
-                        <button className="signupButton">완료</button>
                     </form>
                 )}
             </div>

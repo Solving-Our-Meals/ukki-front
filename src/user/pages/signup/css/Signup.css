@@ -103,7 +103,6 @@ font-style: normal;
 font-weight: 700;
 font-size: 25px;
 line-height: 30px;
-/* identical to box height */
 
 color: #000000;
 }
@@ -147,6 +146,84 @@ color: #000000;
     margin-bottom: 20px;
     position: relative;
     transition: all 0.3s ease;
+}
+
+ .mainConfirm {
+     position: absolute;
+     width: 500px;
+     left: 40.5%;
+     right: 37.92%;
+     top: 30%;
+     bottom: 56.24%;
+
+     font-family: 'BobaesumJindoTTF';
+     font-style: normal;
+     font-weight: 400;
+     font-size: 40px;
+     line-height: 44px;
+     text-align: center;
+
+     color: #232323;
+ }
+
+ .subConfirm {
+
+     position: absolute;
+     width: 300px;
+     left: 51.2%;
+     right: 42.66%;
+     top: 47.7%;
+     bottom: 49%;
+
+     font-family: 'Pretendard-Regular';
+     font-style: normal;
+     font-weight: 500;
+     font-size: 30px;
+     line-height: 36px;
+
+     color: #232323;
+ }
+
+ .mainButton {
+     position: absolute;
+     width: 170px;
+     height: 38px;
+     left: 430px;
+     top: 290px;
+     border: none;
+
+     background: #FEDA00;
+     border-radius: 25px;
+
+     font-family: 'Pretendard-Regular';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 25px;
+     line-height: 30px;
+ }
+
+ .loginButtonConfirm {
+     background: #FF8AA3;
+     border-radius: 25px;
+
+     position: absolute;
+     width: 170px;
+     height: 40px;
+     left: 675px;
+     top: 290px;
+     border: none;
+
+     font-family: 'Pretendard-Regular';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 25px;
+     line-height: 30px;
+ }
+
+.mainButton:active, .loginButtonConfirm:active {
+    margin-left: 2px;
+    margin-top: 1px;
+    box-shadow: 1px 0px 1px 1px black;
 }
 
  /* 까지가 공통적이라고 할 수 있음 */
