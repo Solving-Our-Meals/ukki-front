@@ -18,6 +18,8 @@ function StoreInquiryInfo({ inquiryNo, setIsInquiry, fetchList }) {
     const [isAnswerContentExpanded, setIsAnswerContentExpanded] = useState(false);
     const [enterUpdate, setEnterUpdate] = useState(false);
     const [showAgreementModal, setShowAgreementModal] = useState(false);
+    const [showResultModal, setShowResultModal] = useState(false);
+    const [resultMessage , setResultMessage] = useState('');
 
     async function fetchInfo(inquiryNo) {
         const inquiryInfo = await getInquiryDTO(inquiryNo);
@@ -54,6 +56,11 @@ function StoreInquiryInfo({ inquiryNo, setIsInquiry, fetchList }) {
         fetchInfo(inquiryNo);
     }, [inquiryNo]);
 
+    function resultMessageHandler(message){
+        setResultMessage(message);
+    }
+
+
     if (enterUpdate) {
         return <StoreUpdateInquiry setEnterUpdate={setEnterUpdate} inquiryDTO={inquiryDTO} />;
     }
@@ -83,29 +90,36 @@ function StoreInquiryInfo({ inquiryNo, setIsInquiry, fetchList }) {
 
                 {!isAnswer && <div id='answerAreaNoAnswer'>
                     <img id='noAnswerImg' src={waitAnswer} alt='로고' />
-                    <div id="noAnswerContent">문의를 접수하는중 입니다! &nbsp; 관리자의 답변을 기다려 주세요</div>
+                    <div id="noAnswerContent">문의를 접수하는중 입니다! &nbsp; &nbsp; 관리자의 답변을 기다려 주세요</div>
                     <button id='noAnswerUpdateBtn' onClick={() => { setEnterUpdate(!enterUpdate); }}>수정</button>
                 </div>}
             </div>
             {showAgreementModal && (
                 <AgreementModal
-                    message="이 문의를 삭제하시겠습니까?"
+                    message="해당 문의를 삭제하시겠습니까?"
                     onConfirm={() => {
                         // DELETE 요청 로직
                         fetch(`/inquiries/list/${inquiryNo}`, {
                             method: 'DELETE',
                         }).then((res) => {
                             if (res.ok) {
-                                <ResultSmallModal message="삭제되었습니다."/>
-                                alert('삭제되었습니다.');
-                                setIsInquiry(false);
+                                resultMessageHandler('문의가 성공적으로 삭제되었습니다.')
+                                setShowResultModal(true);
                             } else {
-                                alert('삭제에 실패했습니다.');
+                                resultMessageHandler('문의 삭제에 실패했습니다.')
+                                setShowResultModal(true);
                             }
                         });
                     }}
                     onCancel={() => setShowAgreementModal(false)}
                 />
+            )}
+            {showResultModal && (
+                <ResultSmallModal message={resultMessage} close={()=>{
+                    setShowResultModal(false)
+                    setIsInquiry(false);
+                    fetchList();
+                }}/>
             )}
         </>
     );

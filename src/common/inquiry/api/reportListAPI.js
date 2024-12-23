@@ -1,5 +1,5 @@
 export async function reportList() {
-    const res = await fetch("/report/list")
+    const res = await fetch("/reports/list")
     const data = await res.json();
 
     for (var i = 0; i < data.length; i++) {

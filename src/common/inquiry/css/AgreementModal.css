@@ -3,9 +3,9 @@
     display: flex;
 
     position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 520px;
+    top: 328px;
+    /* transform: translate(-50%, -50%); */
     
     width: 879px;
     height: 316px;
@@ -20,8 +20,8 @@
 #agreementMessage{
 
     position: absolute;
-    left: 83px;
-    top: 50px;
+    width: 879px;
+    top: 70px;
 
     font-family: 'Bobaesum Jindo TTF';
     font-style: normal;
@@ -39,19 +39,19 @@
 
 
     position: absolute;
-    width: 322px;
-    height: 73px;
-    left: 70px;
-    top: 162px;
+    width: 171px;
+    height: 44px;
+    left: 209px;
+    top: 202px;
 
 
-    background: #FFF3A7;
+    background: #FEDA00;
     border-radius: 50px;
 
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 30px;
     /* identical to box height */
     text-align: center;
 
@@ -62,19 +62,41 @@
 }
 #agreementOkBtn{
     position: absolute;
-    width: 322px;
-    height: 73px;
-    left: 472px;
-    top: 162px;
+    width: 171px;
+    height: 44px;
+    left: 500px;
+    top: 202px;
 
-
-    background: #FEDA00;
+    background: #FF8AA3;
     border-radius: 50px;
 
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 30px;
+    /* identical to box height */
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+
+    border: none;
+}
+
+#resultOkBtn{
+    position: absolute;
+    width: 171px;
+    height: 44px;
+    left: 345px;
+    top: 202px;
+
+    background: #FF8AA3;
+    border-radius: 50px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
     /* identical to box height */
     text-align: center;
 
@@ -90,9 +112,8 @@
         /* Rectangle 117 */
     
         position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        left: 45px;
+        top: 100px;
         
         width: 278px;
         height: 156px;
@@ -106,13 +127,13 @@
     #agreementMessage{
     
         position: absolute;
-        left: 30px;
+        width: 278px;
         top: 20px;
     
         font-family: 'Bobaesum Jindo TTF';
         font-style: normal;
         font-weight: 400;
-        font-size: 25px;
+        font-size: 15px;
         line-height: 44px;
         text-align: center;
     
@@ -125,30 +146,10 @@
     
     
         position: absolute;
-        width: 110px;
-        height: 33px;
-        left: 15px;
-        top: 86px;
-    
-    
-        background: #FFF3A7;
-        border-radius: 20px;
-    
-        font-family: 'Pretendard Variable';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        
-        color: #232323;
-    
-        border: none;
-    }
-    #agreementOkBtn{
-        position: absolute;
-        width: 110px;
-        height: 33px;
-        left: 142px;
-        top: 86px;
+        width: 60px;
+        height: 24px;
+        left: 70px;
+        top: 102px;
     
     
         background: #FEDA00;
@@ -157,8 +158,151 @@
         font-family: 'Pretendard Variable';
         font-style: normal;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 15px;
         
+        color: #232323;
+    
+        border: none;
+    }
+    #agreementOkBtn{
+        position: absolute;
+        width: 60px;
+        height: 24px;
+        left: 150px;
+        top: 102px;
+    
+        background: #FF8AA3;
+        border-radius: 20px;
+    
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        
+    
+        border: none;
+    }
+
+    #resultOkBtn{
+        position: absolute;
+        width: 60px;
+        height: 24px;
+        left: 105px;
+        top: 102px;
+    
+        background: #FF8AA3;
+        border-radius: 15px;
+    
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        /* identical to box height */
+        text-align: center;
+    
+        /* text/strong */
+        color: #232323;
+    
+        border: none;
+    }
+    
+}
+/* 반응형 */
+@media (max-width: 1440px) and (min-width: 769px) {
+    #agreementModal{
+        /* Rectangle 117 */
+    
+        position: fixed;
+        left: 280px;
+        top: 250px;
+        width: 479px;
+        height: 176px;
+    
+        background: #FFFFFF;
+    
+        border: 5px solid #FF8AA3;
+        border-radius: 20px;
+    
+    }
+    #agreementMessage{
+    
+        position: absolute;
+        width: 479px;
+        top: 20px;
+    
+        font-family: 'Bobaesum Jindo TTF';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 44px;
+        text-align: center;
+    
+        color: #232323;
+    
+    
+    }
+
+    #agreementCancleBtn{
+    
+    
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        left: 120px;
+        top: 112px;
+    
+    
+        background: #FEDA00;
+        border-radius: 20px;
+    
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        
+        color: #232323;
+    
+        border: none;
+    }
+    #agreementOkBtn{
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        left: 250px;
+        top: 112px;
+    
+        background: #FF8AA3;
+        border-radius: 20px;
+    
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        
+    
+        border: none;
+    }
+
+    #resultOkBtn{
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        left: 182px;
+        top: 112px;
+    
+    
+        background: #FF8AA3;
+        border-radius: 15px;
+    
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        /* identical to box height */
+        text-align: center;
+    
+        /* text/strong */
+        color: #232323;
     
         border: none;
     }

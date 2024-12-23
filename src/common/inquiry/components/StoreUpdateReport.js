@@ -1,22 +1,20 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import '../css/reset.css';
 import '../css/doinquiry.css';
 import AgreementModal from './AgreementModal';
 import ResultSmallModal from './ResultSmallModal';
 
-function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
-    const [inquiryTitle, setInquiryTitle] = useState(inquiryDTO.inquiryTitle);
-    const [inquiryContent, setInquiryContent] = useState(inquiryDTO.inquiryContent);
-    const [inquiryFile, setInquiryFile] = useState(null);
+function StoreUpdateReport({ setEnterUpdate, reportDTO }) {
+    const [reportTitle, setReportTitle] = useState(reportDTO.reportTitle);
+    const [reportContent, setReportContent] = useState(reportDTO.reportContent);
     const [isWrite, setIsWrite] = useState([false, false]);
     const [showAgreementModal, setShowAgreementModal] = useState(false);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultMessage, setResultMessage] = useState("");
     const [checkContent, setCheckContent] = useState(false);
-    const fileInputRef = useRef(null);
 
     function handleTitleChange(e) {
-        setInquiryTitle(e.target.value);
+        setReportTitle(e.target.value);
         setCheckContent(false);
         if (e.target.value === '' || e.target.value === null || e.target.value.length < 1) {
             isWrite[0] = false;
@@ -27,7 +25,7 @@ function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
     }
 
     function handleContentChange(e) {
-        setInquiryContent(e.target.value);
+        setReportContent(e.target.value);
         setCheckContent(false);
 
         if (e.target.value === '' || e.target.value === null || e.target.value.length < 1) {
@@ -38,45 +36,33 @@ function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
         setIsWrite([...isWrite]);
     }
 
-    function handleFileChange(e) {
-        setInquiryFile(e.target.files[0]);
-    }
-
-    function handleFileButtonClick() {
-        fileInputRef.current.click();
-    }
-
     function handleCancle() {
         setEnterUpdate(false);
     }
 
     function submit(e) {
         e.preventDefault();
-        inquiryDTO.inquiryTitle = inquiryTitle;
-        inquiryDTO.inquiryContent = inquiryContent;
+        reportDTO.reportTitle = reportTitle;
+        reportDTO.reportContent = reportContent;
 
         const formData = new FormData();
-        const json = JSON.stringify(inquiryDTO);
+        const json = JSON.stringify(reportDTO);
         const blob = new Blob([json], { type: 'application/json' });
         formData.append("data", blob);
-        if (inquiryFile) {
-            formData.append("file", inquiryFile);
-        }
-
         let isPass = isWrite.some(Boolean);
         if (isPass) {
             setCheckContent(false)
-            let url = '/inquiries/list/' + inquiryDTO.inquiryNo;
+            let url = '/inquiries/list/' + reportDTO.reportNo;
             fetch(url, {
                 method: "PUT",
                 headers: {},
                 body: formData
             }).then(res => {
                 if (res.ok) {
-                    setResultMessage('문의가 수정되었습니다.')
+                    setResultMessage('신고가 수정되었습니다.')
                     setShowResultModal(true)
                 }else{
-                    setResultMessage('문의 수정에 실패했습니다.')
+                    setResultMessage('신고 수정에 실패했습니다.')
                     setShowResultModal(true)
                 }
             });
@@ -92,22 +78,12 @@ function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
     return (
         <>
             <div id='doInquiryModal'>
-                <div id='doInquiryText'>문의수정</div>
-                <div id='doInquiryTitleText'>문의 제목: </div>
-                <div id='inquiryDateAtUpdate'>문의 일자 : <p>{inquiryDTO.inquiryDate}</p></div>
+                <div id='doInquiryText'>신고수정</div>
+                <div id='doInquiryTitleText'>신고 제목: </div>
+                <div id='inquiryDateAtUpdate'>신고 일자 : <p>{reportDTO.reportDate}</p></div>
                 <form>
-                    <input id='inputDoTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} className={checkContent && !isWrite[0] ? 'error' : ''}  required />
-                    <textarea id='inputDoContent' value={inquiryContent} onChange={handleContentChange} className={checkContent && !isWrite[1] ? 'error' : ''} required />
-                    <input
-                        type="file"
-                        id="inquiryFile"
-                        ref={fileInputRef}
-                        onChange={handleFileChange}
-                        style={{ display: 'none' }}
-                    />
-                    <button type="button" id="inquiryDoFileBtn" onClick={handleFileButtonClick}>
-                        첨부파일
-                    </button>
+                    <input id='inputDoTitle' type='text' value={reportTitle} onChange={handleTitleChange} className={checkContent && !isWrite[0] ? 'error' : ''}  required />
+                    <textarea id='inputDoContent' value={reportContent} onChange={handleContentChange} className={checkContent && !isWrite[1] ? 'error' : ''} required />
                     <button type="button" id='inquiryDoCancleBtn' onClick={handleCancle}>취소</button>
                     <button id='doInquiryBtn' type='button' onClick={()=>setShowAgreementModal(true)}>확인</button>
                 </form>
@@ -116,7 +92,7 @@ function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
             </div>
             {showAgreementModal && (
                 <AgreementModal 
-                    message='해당 문의를 수정하시겠습니까?'
+                    message='해당 신고를 수정하시겠습니까?'
                     onConfirm={(e) => {
                         submit(e);
                         setShowAgreementModal(false);
@@ -136,4 +112,4 @@ function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
     );
 }
 
-export default StoreUpdateInquiry;
+export default StoreUpdateReport;

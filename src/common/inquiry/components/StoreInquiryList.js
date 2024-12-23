@@ -132,7 +132,7 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
                     <button onClick={()=>paginate(currentPage+1)}>▶</button>
             </div>
             </div>
-            {isReport && <StoreReportInfo inquiryNo={inquiryNo} setIsReport={setIsReport}/>}
+            {isReport && <StoreReportInfo reportNo={inquiryNo} setIsReport={setIsReport} fetchList={fetchList}/>}
             {isInquiry && <StoreInquiryInfo inquiryNo={inquiryNo} setIsInquiry={setIsInquiry} fetchList={fetchList}/>}
         </>
     )
