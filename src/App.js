@@ -3,10 +3,10 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Signup from '../src/user/pages/signup/pages/Signup';
 import Info from './user/pages/info/Info';
 import UserLayout from './user/layouts/UserLayout';
-import StoreDetail from './user/pages/storedetail/pages/StoreDetail';
 import UserDoInquiry from './common/inquiry/components/UserDoInquiry';
 import Main from './user/pages/main/Main';
 import InquiryEnter from './common/inquiry/components/StoreInquiryEnter';
+import UserStorePage from './user/pages/storedetail/pages/UserStorePage';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
       <Route index element={<Main/>}/>
       <Route path="info" element={<Info/>}/>
       <Route path="main" element={<Main/>}/>
-      <Route path="store" element={<StoreDetail/>}/>
+      <Route path="store" element={<UserStorePage/>}/>
       <Route path="inquiries" element={<UserDoInquiry/>}/>
       <Route path="sinquiries" element={<InquiryEnter/>}/>
       </Route>

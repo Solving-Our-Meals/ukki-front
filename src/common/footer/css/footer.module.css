@@ -24,7 +24,6 @@
   top: 40px;
   bottom: 38.94%;
   color: #232323;
-  width: -moz-max-content;
   width: max-content;
   font-family: "Pretendard Variable";
   font-weight: 400;
@@ -183,4 +182,4 @@
     font-size: 5px;
     color: #FFFFFF;
   }
-}/*# sourceMappingURL=footer.module.css.map */
+}

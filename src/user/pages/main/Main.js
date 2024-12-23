@@ -184,7 +184,6 @@ const Main = () => {
                         <span>흠..별로?</span>
                 </div>
                 <div className='location'>
-             
 
                     <h3>내 주변 한식 혼밥 리스트</h3>
                     <p>가게 이름 : </p> <span>우끼링 백반</span>
@@ -196,7 +195,8 @@ const Main = () => {
                     <input placeholder='눌러서 현재 위치 변경 가능'></input>
                     <p>가게 위치 : </p>
                     <input  placeholder='하남시 덕풍동로 90 802호'></input>
-                    <button>예약 하기</button>
+                <button>예약하기</button>
+
                     <button>길안내</button>
                 </div>
 

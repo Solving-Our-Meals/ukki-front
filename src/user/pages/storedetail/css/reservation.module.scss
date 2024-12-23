@@ -1,0 +1,63 @@
+@import "../../../../common/reset/reset.scss";
+
+.reservationStyle{
+
+    cursor: default;
+
+    div:nth-of-type(1){
+        position : absolute;
+        left: 112px;
+        top : 1186px;
+        width : 92px;
+        height: 55px;
+        font-family: 'Bobaesum Jindo TTF';
+        font-size: 50px;
+        color: $textStrong;
+    }
+
+    div:nth-of-type(2){
+        position : absolute;
+        left: 112px;
+        top : 1253px;
+        width : max-content;
+        height: 36px;
+        font-family: 'Pretendard Variable';
+        font-size: 30px;
+        color: $textStrong;
+    }
+
+    div:nth-of-type(3){
+        position : absolute;
+        left : 112px;
+        top : 1326px;
+        width : 788px;
+        height : 74px;
+        background-color: $primary;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        color: #FFFFFF;
+        font-family: 'Pretendart Variable';
+        font-size: 35px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            position: absolute;
+            width : 25px;
+            height : 30px;
+        }
+    
+        img:nth-of-type(1){
+            left : 230px;
+            transform: scaleX(-1);
+        }
+    
+        img:nth-of-type(2){
+            left : 530px;
+        }
+    }
+
+    
+}

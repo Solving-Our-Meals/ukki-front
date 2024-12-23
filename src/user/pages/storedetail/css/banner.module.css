@@ -7,16 +7,10 @@
   height: 381px;
 }
 .bannerStyle .slider {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-transition: -webkit-transform 0.5s ease-in-out;
-  transition: -webkit-transform 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out;
-  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 }
 .bannerStyle .slider .slide {
   min-width: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}/*# sourceMappingURL=banner.module.css.map */
+  box-sizing: border-box;
+}
