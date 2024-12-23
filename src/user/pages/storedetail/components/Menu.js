@@ -8,10 +8,10 @@ function Menu(){
     const [none, setIsNone] = useState(true);
 
     useEffect(() => {
-        fetch('/storeMenu/5')
+        fetch('/store/storeMenu/5')
         .then(res => res.text())
         .then(data => {
-            const menuUrl = `/api/menu?menuName=${data}`
+            const menuUrl = `/store/api/menu?menuName=${data}`
             setMenu(menuUrl);
         })
     }, [])
