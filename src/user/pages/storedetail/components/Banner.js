@@ -47,10 +47,10 @@ function Banner() {
     const sliderRef = useRef(null);
 
     useEffect(() => {
-        fetch("/storebanner/5")
+        fetch("/store/storebanner/5")
             .then(res => res.json())
             .then(data => {
-                const imageUrls = data.map(filename => `/api/files?filename=${filename}`);
+                const imageUrls = data.map(filename => `/store/api/files?filename=${filename}`);
                 setImages(imageUrls);
             });
     }, []);

@@ -190,7 +190,7 @@ a:active {
   width: 30px;
   height: 30px;
   left: 640px;
-  top: 398px;
+  top: 405px;
   cursor: pointer;
 }
 
@@ -200,5 +200,5 @@ a:active {
   width: 350px;
   height: 500px;
   left: 335px;
-  bottom: -6px;
+  top: 390px;
 }

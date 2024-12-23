@@ -7,6 +7,7 @@
 //     // 1. new Date()를 통해 현재 날짜 useState에 담기
 //     const [currentDate] = useState(new Date());
 
+//     const dayList = ["일", "월", "화", "수", "목", "금", "토"];
 //     const year = currentDate.getFullYear(); // Date.getFullYear() : 년도 반환
 //     const month = currentDate.getMonth();  // Date.getMonth() : 현재 월을 반환 -> 0 : 1월, 11 : 12월
 
@@ -37,7 +38,7 @@
 //         while(currentDate <= endDay){
 //             currentWeek.push(new Date(currentDate)); // 현재 날짜 현재 주에 추가
 //             // 현재 주가 7일을 모두 채웠거나 현재 날짜(요일)가 토요일인 경우
-//             if(currentWeek.length === 7 || currentDate.getDay === 6){
+//             if(currentWeek.length === 7 || currentDate.getDay() === 6){
 //                 weeks.push(currentWeek); // 완성된 주를 weeks 배열에 추가
 //                 currentWeek = []; // 새로운 주를 시작하기 위해 currentWeek 재초기화
 //             }
@@ -56,20 +57,25 @@
 
 //     const dates = groupDatesByWeek(startDay, endDay);
 
-//     return(
+//     return (
 //         <>
-//             <img src={prevBtn} alt='전 월로 가기'/>
-//             {year}년 &ensp;
-//             {month}월
-//             <img src={nextBtn} alt='다음 월로 가기'/>
 //             <div>
-//                 {dates.map((week, weekIndex) => {
-//                     <ul key={weekIndex}>
-//                         {week.map((date, dateIndex) => {
-//                             <li key={dateIndex}>{date.toDateString()}</li>
-//                         })}
-//                     </ul>
+//                 <img src={prevBtn} alt='전 월로 가기' />
+//                 <p>{year}년 &ensp;</p>
+//                 <p>{month + 1}월</p>
+//                 <img src={nextBtn} alt='다음 월로 가기' />
+//             </div>
+//             <div>
+//                 {dayList.map((val) => {
+//                     return <span key={val}>{val}</span>
 //                 })}
+//                 {dates.map((week, weekIndex) => (
+//                     <ul key={weekIndex}>
+//                         {week.map((date, dateIndex) => (
+//                             <li key={dateIndex}>{date.getDate()}</li>
+//                         ))}
+//                     </ul>
+//                 ))}
 //             </div>
 //         </>
 //     );
@@ -77,62 +83,80 @@
 
 // export default Calendar;
 
-import { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
+import styles from '../css/reservation.module.css';
 import prevBtn from '../images/prev-or-next-icon.png';
 import nextBtn from '../images/prev-or-next-icon.png';
 
+// 현재 월, 이전 월, 다음 월 날짜를 계산하는 함수
+const getCalendarDates = (year, month) => {
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+    const startDay = new Date(firstDayOfMonth);
+    startDay.setDate(1 - firstDayOfMonth.getDay());
+
+    const endDay = new Date(lastDayOfMonth);
+    endDay.setDate(lastDayOfMonth.getDate() + (6 - lastDayOfMonth.getDay()));
+
+    const dates = [];
+    let currentDate = new Date(startDay);
+
+    while (currentDate <= endDay) {
+        dates.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    return dates;  // 날짜 배열을 반환
+};
+
 function Calendar() {
-    const [currentDate] = useState(new Date());
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const dayList = ["일", "월", "화", "수", "목", "금", "토"];
+    const today = new Date();
 
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
 
-    const firstDayOfMonth = new Date(year, month, 1);
-    const startDay = new Date(firstDayOfMonth);
-    startDay.setDate(1 - firstDayOfMonth.getDay());
+    const calendarDates = getCalendarDates(year, month);
 
-    const lastDayOfMonth = new Date(year, month + 1, 0);
-    const endDay = new Date(lastDayOfMonth);
-    endDay.setDate(lastDayOfMonth.getDate() + (6 - lastDayOfMonth.getDay()));
-
-    const groupDatesByWeek = (startDay, endDay) => {
-        const weeks = [];
-        let currentWeek = [];
-        let currentDate = new Date(startDay);
-
-        while (currentDate <= endDay) {
-            currentWeek.push(new Date(currentDate));
-            if (currentWeek.length === 7 || currentDate.getDay() === 6) {
-                weeks.push(currentWeek);
-                currentWeek = [];
-            }
-            currentDate.setDate(currentDate.getDate() + 1);
-        }
-
-        if (currentWeek.length > 0) {
-            weeks.push(currentWeek);
-        }
-
-        return weeks;
+    const handlePrevMonth = () => {
+        setCurrentDate(new Date(year, month - 1, 1));
     };
 
-    const dates = groupDatesByWeek(startDay, endDay);
+    const handleNextMonth = () => {
+        setCurrentDate(new Date(year, month + 1, 1));
+    };
 
     return (
         <>
-            <img src={prevBtn} alt='전 월로 가기' />
-            {year}년 &ensp;
-            {month + 1}월
-            <img src={nextBtn} alt='다음 월로 가기' />
-            <div>
-                달력
-                {dates.map((week, weekIndex) => (
-                    <ul key={weekIndex}>
-                        {week.map((date, dateIndex) => (
-                            <span key={dateIndex}>{date.getDate()}</span>
-                        ))}
-                    </ul>
-                ))}
+            <div className={styles.calendarHeader}>
+                <img src={prevBtn} alt='전 월로 가기' onClick={handlePrevMonth} />
+                <p>{year}년 &ensp;</p>
+                <p>{month + 1}월</p>
+                <img src={nextBtn} alt='다음 월로 가기' onClick={handleNextMonth} />
+            </div>
+            <div className={styles.calendarBody}>
+                <div className={styles.dayList}>
+                    {dayList.map((day, index) => (
+                        <span key={index} className={styles.day}>{day}</span>
+                    ))}
+                </div>
+                <div className={styles.calendarGrid}>
+                    {calendarDates.map((date, index) => {
+                        const isToday = date.toDateString() === today.toDateString();
+                        return(
+                        <div
+                            key={index}
+                            className={`${styles.dateCell} ${
+                                date.getMonth() === month ? styles.currentMonth : styles.otherMonth
+                            } ${isToday ? styles.today : ''}`}
+                        >
+                            {date.getDate()}
+                        </div>
+                        );
+                    })}
+                </div>
             </div>
         </>
     );
