@@ -1,0 +1,328 @@
+@charset "UTF-8";
+
+.signupBasic {
+    background-color: #FFF3A7;
+    width: 200vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+.signup {
+box-sizing: border-box;
+
+position: absolute;
+width: 976px;
+height: 455px;
+left: 461px;
+top: 250px;
+
+background: #FFFFFF;
+border: 5px solid #FF8AA3;
+border-radius: 50px;
+}
+
+.signupLogo {
+
+position: absolute;
+width: 220px;
+height: 169.51px;
+left: 100px;
+top: 170px;
+}
+
+.loginText {
+position: absolute;
+width: 241px;
+height: 63px;
+left: 120px;
+top: 110px;
+
+font-family: 'Mungyeong-Gamhong-Apple';
+font-style: normal;
+font-weight: 400;
+font-size: 50px;
+line-height: 62px;
+
+color: #FF8AA3;
+}
+
+input {
+position: absolute;
+width: 499.5px;
+height: 52.5px;
+left: 370px;
+top: 170px;
+
+border: 3px solid #000000;
+
+font-family: 'Pretendard-Regular';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 30px;
+padding-left: 10px;
+}
+
+.error {
+position:absolute;
+width: 500px;
+height: 52.5px;
+left: 375px;
+top: 230px;
+color : #FF5D18;
+line-height: 21px;
+}
+
+input.errorInput {
+    border: 3px solid #FF5D18;
+}
+
+input.errorInput:focus {
+    border: 3px solid black;  /* 포커스 시에도 빨간색 테두리 유지 */
+}
+
+.signupId::placeholder {
+  color : #AAAAAA
+}
+
+.loginButton {
+background: #FFF3A7;
+border-radius: 25px;
+
+position: absolute;
+width: 117px;
+height: 40px;
+left: 653px;
+top: 300px;
+border: none;
+
+font-family: 'Pretendard-Regular';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 30px;
+/* identical to box height */
+
+color: #000000;
+}
+
+.nextButton {
+position: absolute;
+width: 83px;
+height: 38px;
+left: 803px;
+top: 300px;
+border: none;
+
+background: #FF8AA3;
+border-radius: 25px;
+
+font-family: 'Pretendard-Regular';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 30px;
+
+color: #000000;
+}
+
+.loginButton:active {
+ margin-left: 2px;
+ margin-top: 1px;
+ box-shadow: 1px 0px 1px 1px black;
+}
+
+.nextButton:active {
+  margin-left: 2px;
+  margin-top: 1px;
+  box-shadow: 1px 0px 1px 1px black;
+ }
+
+ .inputFieldset {
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+ /* 까지가 공통적이라고 할 수 있음 */
+
+/* @media (max-width: 1024px) and (min-width:769px) */
+
+/* @media (max-width: 768px) */
+
+/* 레전드용 */
+label {
+  position: absolute;
+  top: 196px;
+  left: 390px;
+  transform: translateY(-50%);
+  font-family: 'Pretendard-Regular';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  color: #aaa;
+  transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
+  pointer-events: none;
+}
+
+input:focus + label, input:not(:placeholder-shown) + label {
+  top: 170px;
+  left: 380px;
+  font-size: 12px;
+  background-color: white;
+  width: 90px;
+  padding-left:10px;
+  color: #007bff;
+}
+
+input:focus + label, input:not(:placeholder-shown) + label {
+    top: 170px;
+    left: 380px;
+    font-size: 12px;
+    background-color: white;
+    width: 90px;
+    padding-left:10px;
+    color: #007bff;
+}
+
+input::placeholder {
+  visibility: hidden;
+}
+
+/* 비밀번호 바나나 */
+.passwordToggleBtn img {
+    position: absolute;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    left: 815px;
+    top: 171px;
+}
+
+button:disabled {
+    background-color: #d3d3d3;
+    color: #a1a1a1;
+    cursor: not-allowed;
+}
+
+/* 넘어갈 때 애니메이션 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.inputWrapper {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s forwards;
+}
+
+.inputWrapper.hidden {
+    animation: fadeOut 0.5s forwards;
+}
+
+/* 약관 */
+
+.fieldTerms {
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    left: 400px;
+    top: 100px;
+    position: absolute;
+    width: 485px;
+    padding: 10px;
+    border: 5px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+}
+
+.signupButton {
+    position: absolute;
+    width: 83px;
+    height: 38px;
+    left: 803px;
+    top: 370px;
+    border: none;
+
+    background: #FF8AA3;
+    border-radius: 25px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #000000;
+}
+.signupButton:active {
+    margin-left: 2px;
+    margin-top: 1px;
+    box-shadow: 1px 0px 1px 1px black;
+}
+
+/* 체크박스 */
+.checkboxWrapper {
+    display: flex;
+    cursor: pointer;
+    transform: translate(40px, 170px);
+    width:1000px;
+}
+
+input[type="checkbox"] {
+    top:167px;
+    left:120px;
+    border-radius: 4px;
+    transform: scale(0.5);
+}
+
+.termsLabel {
+    color: black;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Pretendard-Regular';
+    left: 400px;
+}
+
+.errorTerms {
+    position:absolute;
+    width: 500px;
+    left: 405px;
+    top: 355px;
+    color : #FF5D18;
+    line-height: 21px;
+}
+
+.fieldTerms.errorInput {
+    border: 3px solid #FF5D18;
+}
+

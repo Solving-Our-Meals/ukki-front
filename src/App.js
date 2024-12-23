@@ -1,6 +1,7 @@
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Signup from '../src/user/pages/signup/pages/Signup';
+import Login from '../src/user/pages/login/pages/Login'
 import Info from './user/pages/info/Info';
 import UserLayout from './user/layouts/UserLayout';
 import UserDoInquiry from './common/inquiry/components/UserDoInquiry';
@@ -13,7 +14,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="auth/signup" element={<Signup/>}/>
-      <Route></Route>
+      <Route path="auth/login" element={<Login/>}/>
       <Route path="/" element={<UserLayout/>}>
       <Route index element={<Main/>}/>
       <Route path="info" element={<Info/>}/>
