@@ -1,0 +1,57 @@
+.qrBackground{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 가로축 중앙 정렬 */
+    align-items: center; /* 세로축 중앙 정렬 */
+    width: 100%;
+    height: 100vh; /* 뷰포트 높이 */
+    background-color: #FFFBDE;
+    margin: -0.1vh;
+}
+.qrResultMessage{
+    font-size: 4.5vh; /* 뷰포트 높이에 따른 폰트 크기 */
+
+    margin: 1vh;
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+
+    color: #232323;
+    max-width: 90%;
+    max-height: 90%;
+    cursor: default;
+}
+.qrResultImg{
+    margin-left: -2vh;
+
+    width: 20vw; /* 뷰포트 너비의 30% */
+    height: 30vw; /* 너비에 따라 높이 자동 조정 */
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+    max-width: 90%;
+    max-height: 90%;
+}
+.fromQrToMain{
+    margin-top: 4vh;
+    width: 15vh; 
+    height: 5vh; 
+
+    background: #FFA8B8;
+    border-radius: 3vh;
+
+    border: none;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.5vh;
+
+    text-align: center;
+
+    color: #232323;
+
+    max-width: 90%;
+    max-height: 90%;
+
+    cursor: pointer;
+}
