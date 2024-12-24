@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
  v2.0 | 20110126
  License: none (public domain)
@@ -180,6 +181,7 @@ div .slidewrap {
   overflow: hidden;
   top: 5vw;
   left: 3.5vw;
+  list-style: none;
 }
 div .slidewrap .slides {
   display: flex;
@@ -192,6 +194,19 @@ div .slidewrap .slides .slide {
   width: 90vw;
   height: 80vh;
   overflow: hidden;
+  position: relative;
+}
+div .slidewrap .slides .slide .section1,
+div .slidewrap .slides .slide .section2,
+div .slidewrap .slides .slide .section3,
+div .slidewrap .slides .slide .section4,
+div .slidewrap .slides .slide .section5 {
+  flex-shrink: 0;
+  /* 슬라이드가 줄어들지 않도록 */
+  width: 100vw;
+  /* 각 슬라이드의 너비를 화면 너비에 맞추기 */
+  height: 75vw;
+  /* 높이도 비슷하게 맞추기 */
 }
 div .slidewrap .slides .slide div h3 {
   position: absolute;
@@ -204,9 +219,9 @@ div .slidewrap .slides .slide div h3 {
 }
 div .slidewrap .slides .slide div img {
   position: absolute;
-  width: 20vw;
-  left: 5vw;
-  top: 18vw;
+  width: 19vw;
+  left: 6vw;
+  top: 18.5vw;
 }
 div .slidewrap .slides .slide div p {
   position: absolute;
@@ -229,6 +244,25 @@ div .slidewrap .slides .slide div span {
   line-height: 126%;
   color: #232323;
 }
+div .pagination ul {
+  position: relative;
+  gap: 5vw;
+  left: 33vw;
+  top: -9vw;
+}
+div .pagination ul li {
+  display: inline-block !important;
+  margin-left: 3vw !important;
+  width: 1vw !important;
+  height: 1vw !important;
+  background-color: #FEBA00 !important;
+  border-radius: 50px !important;
+  opacity: 0.5 !important;
+  cursor: pointer !important;
+}
+div .pagination ul li.act {
+  opacity: 1 !important;
+}
 div .search input {
   position: absolute;
   width: 60vw;
@@ -248,4 +282,119 @@ div .search img {
   width: 3.5vw;
   left: 75vw;
   top: 55.7vw;
-}/*# sourceMappingURL=main.css.map */
+}
+div .btn {
+  position: relative;
+  font-size: 5vw;
+  top: -22vw;
+  left: 2vw;
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+div .rightbtn {
+  left: 85vw;
+  top: -27vw;
+}
+div .category h3 {
+  position: absolute;
+  left: calc(50% - 200.5px - 0.5px);
+  top: 68vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 2.5vw;
+  color: #232323;
+}
+div .category p {
+  position: absolute;
+  left: 40vw;
+  top: 71.5vw;
+  font-family: "Pretendard Variable";
+  font-size: 1.2vw;
+  text-align: center;
+  color: #232323;
+}
+div .category div {
+  position: absolute;
+  width: 5vw;
+  height: 2vw;
+  left: 15vw;
+  top: 80vw;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+div .category div:nth-of-type(2) {
+  left: 30.5vw;
+  top: 82vw;
+}
+div .category div:nth-of-type(3) {
+  left: 46vw;
+}
+div .category div:nth-of-type(4) {
+  left: 61.5vw;
+  top: 82vw;
+}
+div .category div:nth-of-type(5) {
+  left: 77vw;
+}
+div .category div p {
+  color: #232323;
+  position: absolute;
+  left: 1.5vw;
+  top: 0.5vw;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.2vw;
+  z-index: 5;
+}
+div .category img {
+  width: 10vw;
+  border-radius: 10%;
+  position: absolute;
+  left: 12.5vw;
+  z-index: -1;
+  opacity: 0.8;
+  top: 76vw;
+}
+div .category img:nth-of-type(2) {
+  left: 28vw;
+  top: 78vw;
+}
+div .category img:nth-of-type(3) {
+  left: 43.5vw;
+}
+div .category img:nth-of-type(4) {
+  left: 59vw;
+  top: 78vw;
+}
+div .category img:nth-of-type(5) {
+  left: 74.5vw;
+}
+div .category img:hover {
+  opacity: 1;
+}
+div .category span {
+  position: absolute;
+  left: 14.5vw;
+  top: 87.5vw;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 20px;
+  color: #232323;
+  background-color: #FFF3A7;
+  padding: 0.5vw 1vw;
+  border-radius: 50px;
+}
+div .category span:nth-of-type(2) {
+  left: 30vw;
+  top: 89.5vw;
+}
+div .category span:nth-of-type(3) {
+  left: 45.5vw;
+}
+div .category span:nth-of-type(4) {
+  left: 61vw;
+  top: 89.5vw;
+}
+div .category span:nth-of-type(5) {
+  left: 77vw;
+}

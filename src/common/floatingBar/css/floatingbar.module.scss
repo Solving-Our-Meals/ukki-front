@@ -1,7 +1,172 @@
+// .floatingBarStyle{
+//     .floatingMenu{
+//         position : fixed;
+//         left : 93%;
+//         display : flex;
+//         justify-content: center;
+//         align-items: center;
+//         box-sizing : border-box;
+//         width : 71px;
+//         height : 71px;
+//         border-radius: 100px;
+//         background-color: #B3E7FF;
+//         border: 1.5px solid #FF8AA3;
+//         z-index : 9999999;
+//         cursor : pointer;
+
+//     }
+
+//     #first {
+//         bottom : 32%;
+
+//         #floating_home{
+//             width : 60px;
+//             height : 48px;
+//         }
+//     }
+
+//     #second{
+//         bottom : 23%;
+
+//         #floating_top{
+//             width : 42px;
+//             height : 48px;
+//         }
+//     }
+
+//     #third{
+//         bottom : 14%;
+        
+//         #floating_inquiry{
+//             width : 23px;
+//             height : 46px;
+//         }
+//     }
+
+//     #fourth{
+//         bottom : 5%;
+        
+//         #floatingBar_logo{
+//             width : 44px;
+//             height : 42px;
+//         }
+//     }
+
+//     // 반응형
+//     @media(max-width : 1024px){
+
+//         .floatingMenu{
+//             position : fixed;
+//             left : 90%;
+//             display : flex;
+//             justify-content: center;
+//             align-items: center;
+//             box-sizing : border-box;
+//             width : 65px;
+//             height : 65px;
+//             border-radius: 100px;
+//             background-color: #B3E7FF;
+//             border: 1.5px solid #FF8AA3;
+//             cursor : pointer;
+    
+//         }
+    
+//         #first {
+//             bottom : 29%;
+    
+//             #floating_home{
+//                 width : 54px;
+//                 height : 46px;
+//             }
+//         }
+    
+//         #second{
+//             bottom : 21%;
+    
+//             #floating_top{
+//                 width : 42px;
+//                 height : 46px;
+//             }
+//         }
+    
+//         #third{
+//             bottom : 13%;
+            
+//             #floating_inquiry{
+//                 width : 30px;
+//                 height : 45px;
+//             }
+//         }
+    
+//         #fourth{
+//             bottom : 5%;
+            
+//             #floatingBar_logo{
+//                 width : 40px;
+//                 height : 40px;
+//             }
+//         }
+//     }
+    
+//     @media(max-width : 768px){
+//         .floatingMenu{
+//             position : fixed;
+//             left : 87%;
+//             display : flex;
+//             justify-content: center;
+//             align-items: center;
+//             box-sizing : border-box;
+//             width : 59px;
+//             height : 59px;
+//             border-radius: 100px;
+//             background-color: #B3E7FF;
+//             border: 1.5px solid #FF8AA3;
+//             cursor : pointer;
+    
+//         }
+    
+//         #first {
+//             bottom : 26%;
+    
+//             #floating_home{
+//                 width : 48px;
+//                 height : 40px;
+//             }
+//         }
+    
+//         #second{
+//             bottom : 19%;
+    
+//             #floating_top{
+//                 width : 36px;
+//                 height : 40px;
+//             }
+//         }
+    
+//         #third{
+//             bottom : 12%;
+            
+//             #floating_inquiry{
+//                 width : 24px;
+//                 height : 39px;
+//             }
+//         }
+    
+//         #fourth{
+//             bottom : 5%;
+            
+//             #floatingBar_logo{
+//                 width : 34px;
+//                 height : 34px;
+//             }
+//         }
+//     }
+// }
+
 .floatingBarStyle{
     .floatingMenu{
         position : fixed;
-        left : 93%;
+        left : 94%;
         display : flex;
         justify-content: center;
         align-items: center;
@@ -162,4 +327,3 @@
         }
     }
 }
-

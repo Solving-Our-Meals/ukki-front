@@ -1,6 +1,8 @@
 
 
-#inquiryModal{
+#doInquiryModal{
+  display: flex;
+
   position: fixed;
   width: 1541px;
   height: 644px;
@@ -11,7 +13,11 @@
 
   border: 3px solid #FF8AA3;
   border-radius: 50px;
-  z-index: 1000005;
+  z-index: 100000000001;
+}
+
+#doInquiryModal.underModal{
+  filter: blur(3px);
 }
 
 #doInquiryText{
@@ -26,10 +32,11 @@ font-family: 'Bobaesum Jindo TTF';
 font-style: normal;
 font-weight: 400;
 font-size: 50px;
-line-height: 55px;
+height: 55px;
 
 color: #232323;
 
+cursor: default;
 }
 
 #doInquiryTitleText{
@@ -47,9 +54,10 @@ font-size: 30px;
 line-height: 36px;
 color: #232323;
 
+cursor: default;
 }
 
-#inputTitle{
+#inputDoTitle{
 
 
 position: absolute;
@@ -69,11 +77,11 @@ color: #232323;
 
 background: #FFF3A7;
 border-radius: 30px;
-border: none;
+/* border: none;  */
 padding-left: 10px;
 }
 
-#inputContent{
+#inputDoContent{
   /* Rectangle 99 */
 padding-left: 10px;
 padding-top: 20px;
@@ -97,7 +105,7 @@ top: 202px;
 
 background: #FFF9D1;
 border-radius: 30px;
-border: none;
+/* border: none; */
 }
 
 #categorySelection{
@@ -118,11 +126,20 @@ line-height: 36px;
 
 color: #232323;
 
-border: none;
+/* border: none; */
 
 background: #FFBBC8;
 border-radius: 30px;
 
+cursor: pointer;
+}
+
+#inputDoTitle, #inputDoContent, #categorySelection{
+  border: none;
+}
+
+#inputDoTitle.inquiryError , #inputDoContent.inquiryError , #categorySelection.inquiryError {
+  border: 1px solid #FF5D18;
 }
 
 .selectionOption{
@@ -131,22 +148,28 @@ font-style: normal;
 font-weight: 700;
 font-size: 30px;
 line-height: 36px;
+
 }
 
-#inquiryFile{
+.selectionOption:hover{
+  background-color: #FEDA00;
+}
+
+#inquiryDoFile{
   display: none;
 }
 
-#inquiryFileBtn{
+#inquiryDoFileBtn{
 position: absolute;
 width: 255px;
 height: 44px;
 left: 57px;
-top: 549px;
+top: 550px;
 
 background: #FEDA00;
 border-radius: 50px;
 
+z-index: 2000000000000000000;
 /* 첨부파일 */
 
 font-family: 'Pretendard Variable';
@@ -158,9 +181,11 @@ border: none;
 color: #232323;
 text-align: center;
 align-content: center;
+
+cursor: pointer;
 }
 
-#inquiryCancleBtn{
+#inquiryDoCancleBtn{
 
 
 background: #FEDA00;
@@ -179,6 +204,8 @@ font-size: 25px;
 line-height: 30px;
 color: #232323;
 border: none;
+
+cursor: pointer;
 }
 
 #doInquiryBtn{
@@ -197,9 +224,660 @@ font-family: 'Pretendard Variable';
 font-style: normal;
 font-weight: 700;
 font-size: 25px;
-line-height: 30px;
+
 color: #232323;
 
 border: none;
 
+cursor: pointer;
+}
+
+#inquiryDateAtUpdate{
+        
+  position: absolute;
+  height: 36px;
+  left: 1187px;
+  top: 124px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  
+
+  color: #232323;
+}
+#inquiryDateAtUpdate p{
+      display: inline-block;
+
+      font-family: 'Pretendard Variable';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 25px;
+      align-content: center;
+
+}
+
+#checkContent{
+  position: absolute;
+  height: 36px;
+  left: 1300px;
+  top: 524px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  
+
+  color: #FF5D18;
+}
+
+#checkTitle{
+  position: absolute;
+  height: 36px;
+  left: 750px;
+  top: 136px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  
+
+  color: #FF5D18;
+}
+
+#checkCategory{
+  position: absolute;
+  height: 36px;
+  left: 1250px;
+  top: 176px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  
+
+  color: #FF5D18;
+}
+
+
+/* 반응형 */
+@media (max-width: 768px) {
+
+  #doInquiryModal{
+
+    position: fixed;
+    width: 278px;
+    height: 320px;
+    left: 46px;
+    top: 20px;
+
+    background: #FFFFFF;
+
+    border: 3px solid #FF8AA3;
+    border-radius: 20px;
+
+
+  }
+  
+  #doInquiryText{
+  
+  /* 문의하기 */
+
+    position: absolute;
+    width: 74px;
+    height: 22px;
+    left: 20px;
+    top: 24px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+
+    /* text/strong */
+    color: #232323;
+
+
+  
+  }
+  
+  #doInquiryTitleText{
+  
+  /* 문의 제목 : */
+
+    position: absolute;
+    width: 51px;
+    height: 14px;
+    left: 11px;
+    top: 67px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+
+    /* text/strong */
+    color: #232323;
+
+
+  
+  }
+  
+  #inputDoTitle{
+  /* Rectangle 151 */
+
+    position: absolute;
+    width: 200px;
+    height: 20px;
+    left: 64px;
+    top: 64px;
+
+    background: #FFF3A7;
+    border-radius: 20px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+
+    color: #232323;
+
+    
+    padding-left: 10px;
+  }
+  
+  #inputDoContent{
+    padding-left: 10px;
+    padding-top: 10px;
+
+    position: absolute;
+    width: 260px;
+    height: 180px;
+    left: 7px;
+    top: 92px;
+
+    background: #FFF9D1;
+    border-radius: 15px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+
+    color: #232323;
+
+    
+  }
+  
+  #categorySelection{
+
+    position: absolute;
+    width: 96px;
+    height: 24px;
+    left: 148px;
+    top: 21px;
+
+    background: #FFBBC8;
+    border-radius: 30px;
+
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #232323;
+
+
+  
+  }
+  
+  .selectionOption{
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #232323;
+  }
+  
+  #inquiryDoFile{
+    display: none;
+  }
+  
+  #inquiryDoFileBtn{
+
+    position: absolute;
+    width: 100px;
+    height: 19px;
+    left: 14px;
+    top: 280px;
+
+    background: #FEDA00;
+    border-radius: 50px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+
+
+    border: none;
+    color: #232323;
+    text-align: center;
+    align-content: center;
+  }
+  
+  #inquiryDoCancleBtn{
+    
+    position: absolute;
+    width: 54px;
+    height: 19px;
+    left: 146px;
+    top: 280px;
+
+    background: #FEDA00;
+    border-radius: 25px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #232323;
+    border: none;
+  }
+  
+  #doInquiryBtn{
+  
+  
+    position: absolute;
+    width: 54px;
+    height: 19px;
+    left: 210px;
+    top: 280px;
+
+    background: #FF8AA3;
+    border-radius: 25px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #232323;
+    border: none;
+  }
+
+  #inquiryDateAtUpdate{
+    
+    position: absolute;
+    height: 36px;
+    left: 180px;
+    top: 28px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+    
+    
+    color: #232323;
+    }
+    #inquiryDateAtUpdate p{
+        display: inline-block;
+    
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 7px;
+        align-content: center;
+    
+    }
+
+    
+#checkContent{
+  position: absolute;
+  height: 36px;
+  left: 200px;
+  top: 272px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 7px;
+  
+
+  color: #FF5D18;
+}
+
+#checkTitle{
+  position: absolute;
+  height: 36px;
+  left: 200px;
+  top: 53px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 7px;
+  
+
+  color: #FF5D18;
+}
+
+#checkCategory{
+  position: absolute;
+  height: 36px;
+  left: 180px;
+  top: 10px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 7px;
+  
+
+  color: #FF5D18;
+}
+
+}
+
+/* 반응형 */
+@media (max-width: 1440px) and (min-width: 769px) {
+  #doInquiryModal{
+    /* Rectangle 203 */
+
+      position: fixed;
+      width: 931px;
+      height: 389px;
+      left: 46px;
+      top: 155px;
+
+      background: #FFFFFF;
+      /* primary */
+      border: 3px solid #FF8AA3;
+      border-radius: 30px;
+
+  }
+  #doInquiryText{
+  /* 문의하기 */
+
+    position: absolute;
+    width: 129px;
+    height: 39px;
+    left: 31px;
+    top: 22px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 39px;
+
+
+
+    color: #232323;
+
+
+    }
+    
+    #doInquiryTitleText{
+    /* 문의 제목 : */
+
+    position: absolute;
+    width: 102px;
+    height: 21px;
+    left: 37px;
+    top: 77px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    /* text/strong */
+    color: #232323;
+
+
+    
+    }
+    
+    #inputDoTitle{
+    position: absolute;
+    width: 318px;
+    height: 32px;
+    left: 138px;
+    top: 72px;
+
+    background: #FFF3A7;
+    border-radius: 30px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #232323;
+  
+    padding-left: 8px;
+    }
+    
+    #inputDoContent{
+    padding-left: 10px;
+    padding-top: 10px;
+    
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #232323;
+
+
+    resize: none;
+    position: absolute;
+    width: 868px;
+    height: 192px;
+    left: 37px;
+    top: 122px;
+
+    background: #FFF9D1;
+    border-radius: 15px;
+
+  
+    }
+    
+    #categorySelection{
+    
+    position: absolute;
+    width: 233px;
+    height: 32px;
+    left: 666px;
+    top: 70px;
+
+    background: #FFBBC8;
+    border-radius: 30px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #232323;    
+  
+    }
+    
+    .selectionOption{
+      font-family: 'Pretendard Variable';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+  
+      color: #232323;   
+    }
+    
+    #inquiryDoFile{
+      display: none;
+    }
+    
+    #inquiryDoFileBtn{
+    position: absolute;
+    width: 154px;
+    height: 27px;
+    left: 38px;
+    top: 332px;
+
+    background: #FEDA00;
+    border-radius: 50px;
+
+    
+    /* 첨부파일 */
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    border: none;
+    color: #232323;
+    text-align: center;
+    align-content: center;
+    }
+    
+    #inquiryDoCancleBtn{
+
+    position: absolute;
+    width: 103px;
+    height: 27px;
+    left: 664px;
+    top: 330px;
+
+    background: #FEDA00;
+    border-radius: 25px;
+
+    align-content: center;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    height: 30px;
+    color: #232323;
+    border: none;
+    }
+    
+    #doInquiryBtn{
+    
+   /* Rectangle 118 */
+
+    position: absolute;
+    width: 103px;
+    height: 27px;
+    left: 792px;
+    top: 330px;
+
+    /* primary */
+    background: #FF8AA3;
+    border-radius: 25px;
+
+    
+    /* 확인 */
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #232323;
+    
+    border: none;
+    
+    }
+    #inquiryDateAtUpdate{
+    
+      position: absolute;
+      height: 36px;
+      left: 707px;
+      top: 73px;
+      
+      font-family: 'Pretendard Variable';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      
+      
+      color: #232323;
+      }
+      #inquiryDateAtUpdate p{
+          display: inline-block;
+      
+          font-family: 'Pretendard Variable';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 15px;
+          align-content: center;
+      
+      }
+
+      #checkContent{
+        position: absolute;
+        height: 36px;
+        left: 810px;
+        top: 317px;
+      
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 10px;
+        
+      
+        color: #FF5D18;
+      }
+      
+      #checkTitle{
+        position: absolute;
+        height: 36px;
+        left: 465px;
+        top: 83px;
+      
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 10px;
+        
+      
+        color: #FF5D18;
+      }
+      
+      #checkCategory{
+        position: absolute;
+        height: 36px;
+        left: 810px;
+        top: 105px;
+      
+        font-family: 'Pretendard Variable';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 10px;
+        
+      
+        color: #FF5D18;
+      }
 }

@@ -1,0 +1,9 @@
+.profileStyle {
+  position: absolute;
+  left: 172px;
+  top: 258px;
+  width: 244px;
+  height: 221px;
+  text-align: center;
+  z-index: 99;
+}

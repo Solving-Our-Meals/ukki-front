@@ -1,0 +1,16 @@
+.bannerStyle {
+  position: relative;
+  overflow: hidden;
+  left: 50px;
+  top: 120px;
+  width: 1805px;
+  height: 381px;
+}
+.bannerStyle .slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.bannerStyle .slider .slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}

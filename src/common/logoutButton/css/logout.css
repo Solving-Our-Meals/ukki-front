@@ -1,0 +1,19 @@
+.logoutBtn {
+    position: absolute;
+    left: 92.14%;
+    right: 4.22%;
+    top: 0.6%;
+    bottom: 98.89%;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #232323;
+}
+
+.logoutBtn:hover {
+    background-color: #dddddd;
+}

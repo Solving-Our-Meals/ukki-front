@@ -8,11 +8,15 @@ div {
         overflow: hidden;
         top: 5vw;
         left: 3.5vw;
+        list-style: none;
 
         .slides {
             display: flex;
 
+
+
             .slide {
+
                 flex: 0 0 100%;
                 display: flex;
                 align-items: center;
@@ -20,7 +24,20 @@ div {
                 width: 90vw;
                 height: 80vh;
                 overflow: hidden;
+                position: relative;
 
+                .section1,
+                .section2,
+                .section3,
+                .section4,
+                .section5 {
+                    flex-shrink: 0;
+                    /* 슬라이드가 줄어들지 않도록 */
+                    width: 100vw;
+                    /* 각 슬라이드의 너비를 화면 너비에 맞추기 */
+                    height: 75vw;
+                    /* 높이도 비슷하게 맞추기 */
+                }
 
                 div {
                     h3 {
@@ -35,9 +52,9 @@ div {
 
                     img {
                         position: absolute;
-                        width: 20vw;
-                        left: 5vw;
-                        top: 18vw;
+                        width: 19vw;
+                        left: 6vw;
+                        top: 18.5vw;
                     }
 
                     p {
@@ -64,8 +81,33 @@ div {
                     }
                 }
             }
-        }
 
+
+        }
+    }
+
+    .pagination {
+        ul {
+            position: relative;
+            gap: 5vw;
+            left: 33vw;
+            top: -9vw;
+
+            li {
+                display: inline-block !important;
+                margin-left: 3vw !important;
+                width: 1vw !important;
+                height: 1vw !important;
+                background-color: #FEBA00 !important;
+                border-radius: 50px !important;
+                opacity: 0.5 !important;
+                cursor: pointer !important;
+
+                &.act {
+                    opacity: 1 !important; // 활성화된 상태의 색상
+                }
+            }
+        }
     }
 
     .search {
@@ -92,7 +134,141 @@ div {
         }
     }
 
-    .category{
-        
+    .btn {
+        position: relative;
+        font-size: 5vw;
+        top: -22vw;
+        left: 2vw;
+        color: #fff;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .rightbtn {
+        left: 85vw;
+        top: -27vw;
+    }
+
+
+    .category {
+        h3 {
+            position: absolute;
+            left: calc(50% - 401px/2 - 0.5px);
+            top: 68vw;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 2.5vw;
+            color: $textStrong;
+        }
+
+        p {
+            position: absolute;
+            left: 40vw;
+            top: 71.5vw;
+            font-family: 'Pretendard Variable';
+            font-size: 1.2vw;
+            text-align: center;
+            color: $textStrong;
+        }
+
+        div {
+            position: absolute;
+            width: 5vw;
+            height: 2vw;
+            left: 15vw;
+            top: 80vw;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+
+            &:nth-of-type(2) {
+                left: 30.5vw;
+                top: 82vw;
+            }
+
+            &:nth-of-type(3) {
+                left: 46vw;
+            }
+
+            &:nth-of-type(4) {
+                left: 61.5vw;
+                top: 82vw;
+            }
+
+            &:nth-of-type(5) {
+                left: 77vw;
+            }
+
+            p {
+                color: $textStrong;
+                position: absolute;
+                left: 1.5vw;
+                top: 0.5vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 500;
+                font-size: 1.2vw;
+                z-index: 5;
+            }
+
+        }
+
+        img {
+            width: 10vw;
+            border-radius: 10%;
+            position: absolute;
+            left: 12.5vw;
+            z-index: -1;
+            opacity: 0.8;
+            top: 76vw;
+            &:nth-of-type(2){
+                left: 28vw;
+                top: 78vw;
+            }
+
+            &:nth-of-type(3){
+                left: 43.5vw;
+            }
+
+            &:nth-of-type(4){
+                left: 59vw;
+                top: 78vw;
+            }
+
+            &:nth-of-type(5){
+                left: 74.5vw;
+            }
+            &:hover{
+                opacity: 1;
+            }
+        }
+
+        span {
+            position: absolute;
+            left: 14.5vw;
+            top: 87.5vw;
+            font-family: 'Pretendard Variable';
+            font-weight: 500;
+            font-size: 20px;
+            color: $textStrong;
+            background-color: $secondary2;
+            padding: 0.5vw 1vw;
+            border-radius: 50px;
+
+            &:nth-of-type(2){
+                left: 30vw;
+                top: 89.5vw;
+            }
+
+            &:nth-of-type(3){
+                left: 45.5vw;
+            }
+
+            &:nth-of-type(4){
+                left: 61vw;
+                top: 89.5vw;
+            }
+
+            &:nth-of-type(5){
+                left: 77vw;
+            }
+        }
     }
 }

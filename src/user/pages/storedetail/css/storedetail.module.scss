@@ -1,28 +1,7 @@
 @import "../../../../common/reset/reset.scss";
 
 .storeDetail{
-
-    .bannerStyle{
-        position : absolute;
-        left : 50px;
-        top : 120px;
-        width : 1805px;
-        height : 381px;
-        border : solid 1px black;
-        // padding-left : 10px;
-
-        #profileStyle{
-            position : absolute;
-            left : 140px;
-            top : 120px;
-            width : 244px;
-            height : 221px;
-            border : solid 1px black;
-            border-radius: 50px;
-            text-align: center;
-        }
-
-    }
+    cursor: default;
 
     #storeName {
         position : absolute;
@@ -59,52 +38,72 @@
     #storeAddress {
         position : absolute;
         left : 235px;
-        top : 822px;
+        top : 780px;
         width : max-content;
         height: 41px;
         font-family : 'Pretendard Variable';
         font-size : 25px;
         color: $textStrong;
-    }
-
-    #distance{
-        position : absolute;
-        left : 235px;
-        top : 778px;
-        width : max-content;
-        font-family : 'Pretendard Variable';
-        font-size : 25px;
-        color : red;
     }
 
     #operTime{
         position : absolute;
         left : 235px;
-        top : 866px;
+        top : 824px;
         width : max-content;
         height: 41px;
         font-family : 'Pretendard Variable';
         font-size : 25px;
         color: $textStrong;
+        cursor: pointer;
     }
 
     #triangle{
         position : absolute;
-        width : 20px;
-        height : 24px;
-        left : 585px;
-        top : 875px;
+        width : 18px;
+        height : 22px;
+        left : 573px;
+        top : 826px;
         cursor: pointer;
     }
 
-    #mapArea{
+    #tatolOperTime{
         position : absolute;
-        width: 698px;
-        height : 312px;
-        left : 1064px;
-        top : 587px;
-        border : 7.21px solid $primary;
-        border-radius: 36px;
+        left : 400px;
+        top : 858px;
+        width : 170px;
+        height : 233px;
+        border: 2.5px solid $textStrong;
+        background-color: #FFFFFF;
+        padding : 5px;
+        font-family: 'Pretendard Variable';
+        font-size: 16px;
+        font-weight: 500;
+        color: $textStrong;
+        line-height: 28px;
+        z-index : 5;
+
+        .week{
+            position : absolute;
+            padding-left : 5px;
+            
+        }
+
+        .weekOperTime{
+            position : absolute;
+            width : 126px;
+            margin-top: -28px;
+            margin-left: 30px;
+            text-align: center;
+        }
+
+        #breakTime {
+            position : absolute;
+            font-size: 13px;
+            color : $pending;
+            margin-left : 20px;
+            font-weight: 700;
+        }
     }
 
     .keywordArea{
@@ -148,5 +147,13 @@
         div:nth-of-type(6){
             left : 1529px;
         }
+    }
+
+    #hr{
+        position : absolute;
+        left : 91px;
+        top : 1106px;
+        width : 1738px;
+        background: #D9D9D9;
     }
 }

@@ -1,0 +1,402 @@
+/* 반응형 */
+@media (max-width: 768px) {
+
+    #inquiryInfoModal{
+  
+      position: fixed;
+      width: 278px;
+      height: 320px;
+      left: 46px;
+      top: 19px;
+  
+      background: #FFFFFF;
+  
+      border: 3px solid #FF8AA3;
+      border-radius: 20px;
+  
+      z-index: 100000000000;
+    }
+
+      #inquiryInfoText{
+
+
+        position: absolute;
+        width: 76px;
+        height: 56.18px;
+        left: 15px;
+        top: 18px;
+
+        font-family: 'Bobaesum Jindo TTF';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        
+        text-align: left;
+
+        color: #232323;
+
+
+  }
+
+  #backToInquiryListBtn{
+
+    position: absolute;
+    width: 50px;
+    height: 21px;
+    left: 147px;
+    top: 15px;
+
+    background: #FFC6D2;
+    border-radius: 50px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    align-content: center;
+
+    color: #232323;
+
+    border: none;
+}
+#deleteInquiryBtn{
+
+position: absolute;
+width: 50px;
+height: 21px;
+left: 205px;
+top: 15px;
+
+background: #FF8AA3;
+border-radius: 50px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+
+
+color: #232323;
+
+border: none;
+
+}
+#inquiryInfoTitleText{
+display: none;
+
+position: absolute;
+width: 100px;
+height: 36px;
+left: 15px;
+top: 35px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+color: #232323;
+}
+#inquiryInfoTitle{
+    position: absolute;
+    width: 230px;
+    height: 30px;
+    left: 15px;
+    top: 38px;
+
+    font-family: 'Pretendard Variable';
+    font-style: black;
+    font-weight: 800;
+    font-size: 10px;
+    
+    color: #232323;
+
+}
+#inquiryInfoDate{
+    
+position: absolute;
+height: 36px;
+left: 180px;
+top: 48px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 8px;
+
+
+color: #232323;
+}
+#inquiryInfoDate p{
+    display: inline-block;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 7px;
+    align-content: center;
+
+}
+#inquiryInfoContent{
+
+
+position: absolute;
+width: 250px;
+height: 100px;
+left: 10px;
+top: 62px;
+
+background: #FFF9D1;
+border-radius: 10px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 600;
+font-size: 8px;
+line-height: 12px;
+
+color: #232323;
+
+padding-left: 5px;
+padding-top: 3px;
+
+overflow: hidden;
+white-space: pre-wrap;
+}
+
+#inquiryInfoFile{
+    position: absolute;
+    width: 35px;
+    height: 10px;
+    left: 185px;
+    top: 164px;
+
+    background: #FEDA00;
+    border-radius: 10px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 5px;
+    
+
+    text-align: center;
+    align-content: center;
+
+    color: #232323;
+
+
+}
+
+#isAnswerTitleText{
+    display: none;
+
+    position: absolute;
+    width: 100px;
+    height: 36px;
+    left: 15px;
+    top: 177px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    color: #232323;
+}
+#isAnswerTitle{
+    position: absolute;
+    width: 230px;
+    height: 30px;
+    left: 15px;
+    top: 168px;
+
+    font-family: 'Pretendard Variable';
+    font-style: black;
+    font-weight: 800;
+    font-size: 10px;
+    
+    color: #232323;
+
+
+}
+#isAnswerDate{
+    position: absolute;
+    height: 36px;
+    left: 177px;
+    top: 178px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+    
+    color: #232323;
+}
+#isAnswerDate p{
+    display: inline-block;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 7px;
+    align-content: center;
+
+}
+
+#isAnswerContent{
+
+    position: absolute;
+    width: 250px;
+    height: 108px;
+    left: 10px;
+    top: 192px;
+
+background: #FFF9D1;
+border-radius: 10px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 600;
+font-size: 8px;
+line-height: 12px;
+
+color: #232323;
+
+padding-left: 5px;
+padding-top: 3px;
+
+overflow: hidden;
+white-space: pre-wrap;
+}
+
+#isAnswerContent.expanded, #inquiryInfoContent.expanded{
+position: absolute;
+z-index: 1000000;
+left: 10px;
+top: 40px;
+height: 260px;
+overflow: auto;
+}
+
+#inquiryOverFlowBtn{
+    position: absolute;
+    width: 25px;
+    height: 10px;
+    left: 235px;
+    top: 164px;
+
+background: #FEDA00;
+border-radius: 10px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 5px;
+
+text-align: center;
+align-content: center;
+
+border: none;
+
+color: #232323;
+}
+#answerOverFlowBtn{
+    position: absolute;
+    width: 25px;
+    height: 10px;
+    left: 235px;
+    top: 302px;
+    
+    background: #FEDA00;
+    border-radius: 10px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 5px;
+    
+    text-align: center;
+    align-content: center;
+    
+    border: none;
+    
+    color: #232323;
+}
+
+#inquiryOverFlowBtn.activeBtn, #answerOverFlowBtn.activeBtn{
+z-index: 1000000000000;
+position: absolute;
+width: 25px;
+height: 10px;
+left: 235px;
+top: 302px;
+}
+
+#answerAreaNoAnswer{
+position: absolute;
+width: 210px;
+height: 80px;
+left: 10px;
+top: 201px;
+
+background: #FFF3A7;
+border-radius: 20px;
+}
+
+#noAnswerImg{
+position: absolute;
+left: 0px;
+top: 0px;
+
+width: 80px;
+height: 80px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 30px;
+line-height: 36px;
+
+color: #232323;
+}
+
+#noAnswerContent{
+position: absolute;
+width: 108px;
+height: 36px;
+left: 85px;
+top: 35px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 9px;
+
+color: #232323;
+}
+
+#noAnswerUpdateBtn{
+
+position: absolute;
+width: 31px;
+height: 31px;
+left: 215px;
+top: 25px;
+
+background: #FEDA00;
+border-radius: 8px;
+
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+
+color: #232323;
+
+text-align: center;
+align-content: center;
+
+border: none;
+}
+
+
+}

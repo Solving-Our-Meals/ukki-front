@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef } from 'react'
 import '../css/reset.css';
 import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
+import ResultSmallModal from './ResultSmallModal';
 
 
-function UserDoInquiry(){
+function UserDoInquiry({closeModal}){
 
     
 
@@ -12,11 +13,16 @@ function UserDoInquiry(){
     const [selectCategory, setSelectCategory] = useState("");
     const [inquiryTitle, setInquiryTitle] = useState("");
     const [inquiryContent, setInquiryContent] = useState("");
-    const [inquiryFile, setInquiryFile] = useState("");
+    const [inquiryFile, setInquiryFile] = useState(null);
     const [isWrite, setIsWrite] = useState([false, false, false]);
+    const [showResultModal, setShowResultModal] = useState(false);
+    const [checkContent, setCheckContent] = useState(false);
+    const [resultMessage, setResultMessage] = useState("");
+    const fileInputRef = useRef(null);
 
 
     function handleTitleChange(e){
+      setCheckContent(false);
       setInquiryTitle(e.target.value);
        if(e.target.value==='' || e.target.value===null || e.target.value.length<5){
         isWrite[0] = false
@@ -26,6 +32,7 @@ function UserDoInquiry(){
         setIsWrite([...isWrite]);
        }}
     function handleContentChange(e){
+      setCheckContent(false);
       setInquiryContent(e.target.value);
       console.log(isWrite)
       if(e.target.value==='' || e.target.value===null || e.target.value.length<5){
@@ -39,6 +46,7 @@ function UserDoInquiry(){
       }
   
     function handleCategoryChange(e){
+      setCheckContent(false);
       setSelectCategory(e.target.value);
       if(e.target.value==='none'){
         isWrite[2] = false
@@ -48,76 +56,103 @@ function UserDoInquiry(){
         setIsWrite([...isWrite]);
        }}
     
-    function handleFileChange(e){setInquiryFile(e.target.value); console.log("file 사옹")}
+    function handleFileChange(e){setInquiryFile(e.target.files[0]); console.log("file 사옹")}
 
     async function fetchCategory(){
-        const categories = await inquiryCategory();
-        setCategory(categories)
+        // const categories = await inquiryCategory();
+        // setCategory([categories[0], categories[1], categories[2], categories[3]])
+         const categories = await inquiryCategory(); if (categories && categories.length > 0)
+        { setCategory(categories.slice(0, 4))}; // 첫 4개의 카테고리만 설정
     }
 
     function submit(e) {
-        e.preventDefault();
-        console.log(inquiryFile)
-        let isPass = false
-        for(var i = 0; i<3; i++){
-          if(isWrite[i]===true){
-            isPass = true
-          }else{
-            isPass = false
-            break;
-          }
+      e.preventDefault();
+      const inquiryDTO = {
+        userNo : 1,
+        inquiryTitle : inquiryTitle,
+        inquiryContent : inquiryContent,
+        categoryNo : selectCategory,
+      }
+      const formData = new FormData();
+      const json = JSON.stringify(inquiryDTO)
+      const blob = new Blob([json], {type: 'application/json'});
+      formData.append("data", blob)
+      formData.append("file", inquiryFile)
+      for (const x of formData.entries()) {
+        console.log(x);
+       };
+       let isPass = isWrite.every(Boolean);
+      if(isPass){
+      fetch(`/inquiries/users`, {
+        method: "POST",
+        headers: {},
+        body: formData
+      }).then(res => {
+        if(res.ok) {
+          setResultMessage("문의가 성공적으로 제출되었습니다.")
+          setShowResultModal(true)
+        }else{
+          setResultMessage("문의에 실패했습니다.")
         }
-        if(isPass){
-        fetch(`/inquiries/users`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userNo : 1,
-            inquiryTitle : inquiryTitle,
-            inquiryContent : inquiryContent,
-            categoryNo : selectCategory,
-            file : 'file'
-          }),
-        }).then(res => {
-          if(res.ok) {
-            alert(res.message)
-          }
-        })
-      }else{
-        alert("내용을 확인해주세요")
-      }
+      })
+    }else{
+      setCheckContent(true);
+    }
 
-      }
+    }
 
     useEffect(()=>{
         fetchCategory()
     },[])
 
+    function handleCancle(){
+      closeModal()
+    }
+
+    function handleFileButtonClick() {
+      fileInputRef.current.click();
+  }
+
+
     return(
         <>
-        <div id='inquiryModal'>
+        <div id='doInquiryModal' className={showResultModal? 'underModal':''}>
             <div id='doInquiryText'>문의하기</div>
             <div id='doInquiryTitleText'>문의 제목: </div>
             <form>
-                <input id='inputTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} required/>
-                <select id='categorySelection' name='categoryNo' onChange={handleCategoryChange} required>
+                <input id='inputDoTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} className={checkContent && !isWrite[0] ? 'inquiryError' : ''} required/>
+                <select id='categorySelection' name='categoryNo' onChange={handleCategoryChange} className={checkContent && !isWrite[2] ? 'inquiryError' : ''} required>
                     <option className='selectionOption' value="none" selected>문의 카테고리</option>
                     {category.map((item)=>(
                         <option className='selectionOption' value={item.categoryNo}>{item.categoryName}</option>
                     ))}
                 </select>
-                <textarea id='inputContent'  value={inquiryContent} onChange={handleContentChange} required/>
-                
-                <label id='inquiryFileBtn' htmlFor='inquiryFile'>
-                  첨부파일
-                <input type='file' id='inquiryFile' value={inquiryFile} onChange={handleFileChange}/>
-                </label>
-                <button type='button' id='inquiryCancleBtn'>취소</button>
+                <textarea id='inputDoContent'  value={inquiryContent} onChange={handleContentChange} className={checkContent && !isWrite[1] ? 'inquiryError' : ''} required/>
+                <input
+                        type="file"
+                        id="inquiryFile"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                    />
+                    <button type="button" id="inquiryDoFileBtn" onClick={handleFileButtonClick}>
+                        첨부파일
+                    </button>
+                <button type='button' id='inquiryDoCancleBtn' onClick={handleCancle}>취소</button>
                 <button id='doInquiryBtn' onClick={submit}>확인</button>
             </form>
+            {checkContent && !isWrite[0] && <div id='checkTitle'>내용을 확인해주세요</div>}
+            {checkContent && !isWrite[1] && <div id='checkContent'>내용을 확인해주세요</div>}
+            {checkContent && !isWrite[2] && <div id='checkCategory'>내용을 확인해주세요</div>}
         </div>
+        {showResultModal && (
+                <ResultSmallModal
+                    message={resultMessage}
+                    close={()=>{
+                        setShowResultModal(false)
+                        closeModal()
+                    }}/>
+            )}
         </>
     )
 }

@@ -1,6 +1,6 @@
 .floatingBarStyle .floatingMenu {
   position: fixed;
-  left: 93%;
+  left: 94%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,4 +128,4 @@
     width: 34px;
     height: 34px;
   }
-}/*# sourceMappingURL=floatingbar.module.css.map */
+}
