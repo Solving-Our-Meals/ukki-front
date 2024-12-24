@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import '../css/Login.css';
 import '../css/reset.css';
+import '../css/Login.css';
 import { Link } from 'react-router-dom'
 
 function Login() {
@@ -37,7 +37,7 @@ function Login() {
             setStep(2);
             setError('');
         } else {
-            setError('아이디가 유효하지 않거나 존재하지 않습니다.');
+            setError(' ⓘ 아이디가 유효하지 않거나 존재하지 않습니다.');
         }
     };
 
@@ -64,7 +64,7 @@ function Login() {
             setError('');
             window.location.href = '/main';
         } else {
-            setError(result.message || '비밀번호가 잘못되었습니다.');
+            setError(result.message || 'ⓘ 비밀번호가 잘못되었습니다.');
         }
     };
 
