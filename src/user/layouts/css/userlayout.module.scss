@@ -1,175 +1,40 @@
+// .wrapper {
+//     display: flex;
+//     flex-direction: column;
+//     // min-height : 100vh;
+//     height : 100vh;
+// }
+
+// .contentWrapper {
+//     flex: 1; /* 메인 콘텐츠 영역이 남은 공간을 차지하도록 */
+//     display: flex;
+//     flex-direction: column;
+//     background-color :red;
+// }
+
+// #footer {
+//     flex-shrink: 0; /* 푸터가 줄어들지 않도록 */
+//     background-color: #f8f9fa;
+//     padding: 20px;
+//     text-align: center;
+//     width: 100%;
+// }
+
 /* userlayout.module.css */
-.layoutStyle {
+
+.wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
 }
 
-.header {
-    flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
+
+.contentWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    // background-color: red;
+    overflow-y: auto;
 }
 
-.main {
-    flex: 1; /* 메인 콘텐츠 영역이 남은 공간을 차지하도록 */
-    padding: 20px;
-}
-
-.footer {
-    flex-shrink: 0; /* 푸터가 줄어들지 않도록 */
-    background-color: #f8f9fa;
-    padding: 20px;
-    text-align: center;
-    width: 100%;
-}
-
-// .layoutStyle {
-//     display: flex;
-//     flex-direction: column;
-//     min-height: 100vh;
-// }
-
-// .header {
-//     flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
-// }
-
-// .main {
-//     flex: 1; /* 메인 콘텐츠 영역이 남은 공간을 차지하도록 */
-//     padding: 20px;
-// }
-
-// .footerStyle {
-//     flex-shrink: 0; /* 푸터가 줄어들지 않도록 */
-//     background-color: #FFF3A7;
-//     cursor: default;
-//     width: 100%;
-//     height: 226px;
-//     position: relative; /* 위치를 고정하지 않도록 수정 */
-//     display: flex;
-//     flex-direction: column;
-
-//     #honbab_ukki {
-//         position: absolute;
-//         left: 8%;
-//         right: 84.32%;
-//         top: 12.83%;
-//         bottom: 36.28%;
-//         width: 152px;
-//         height: 115px;
-//     }
-
-//     p {
-//         position: absolute;
-//         top: 40px;
-//         color: #232323;
-//         width: max-content;
-//         font-family: 'Pretendard Variable';
-//         font-weight: 400;
-//         font-size: 15px;
-//         line-height: 30px;
-//         cursor: pointer;
-//     }
-
-//     #first {
-//         left: 27%;
-//     }
-
-//     #second {
-//         left: 34%;
-//     }
-
-//     #third {
-//         left: 45%;
-//     }
-
-//     .pinkArea {
-//         width: 100%;
-//         height: 56px;
-//         background-color: #FF8AA3;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         cursor: default;
-
-//         p {
-//             position: relative; /* position을 relative로 설정 */
-//             top: 13px;
-//             color: #FFFFFF;
-//             font-family: 'Pretendard Variable';
-//             font-weight: 700;
-//             font-size: 15px;
-//         }
-//     }
-
-//     /* 반응형 */
-//     @media (max-width: 1024px) {
-//         height: 120px;
-
-//         #honbab_ukki {
-//             width: 81px;
-//             height: 61px;
-//         }
-
-//         p {
-//             top: 16.00%;
-//             font-size: 12px;
-//             line-height: 20px;
-//         }
-
-//         #first {
-//             left: 22%;
-//         }
-
-//         #second {
-//             left: 29%;
-//         }
-
-//         #third {
-//             left: 41%;
-//         }
-
-//         .pinkArea {
-//             height: 30px;
-
-//             p {
-//                 top: 3px;
-//                 font-size: 10px;
-//             }
-//         }
-//     }
-
-//     @media (max-width: 768px) {
-//         height: 76px;
-
-//         #honbab_ukki {
-//             width: 51px;
-//             height: 39px;
-//         }
-
-//         p {
-//             top: 13px;
-//             font-size: 5px;
-//             line-height: 10px;
-//         }
-
-//         #first {
-//             left: 35%;
-//         }
-
-//         #second {
-//             left: 43%;
-//         }
-
-//         #third {
-//             left: 54%;
-//         }
-
-//         .pinkArea {
-//             height: 19px;
-
-//             p {
-//                 top: 5px;
-//                 font-size: 5px;
-//             }
-//         }
-//     }
-// }
+.contentWrapper:after {content: ''; display: block; clear: both;}
