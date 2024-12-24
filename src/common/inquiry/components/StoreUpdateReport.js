@@ -77,7 +77,7 @@ function StoreUpdateReport({ setEnterUpdate, reportDTO }) {
 
     return (
         <>
-            <div id='doInquiryModal'>
+            <div id='doInquiryModal' className={(showResultModal || showAgreementModal)? 'underModal':''}>
                 <div id='doInquiryText'>신고수정</div>
                 <div id='doInquiryTitleText'>신고 제목: </div>
                 <div id='inquiryDateAtUpdate'>신고 일자 : <p>{reportDTO.reportDate}</p></div>
