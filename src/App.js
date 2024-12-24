@@ -8,6 +8,7 @@ import UserDoInquiry from './common/inquiry/components/UserDoInquiry';
 import Main from './user/pages/main/Main';
 import InquiryEnter from './common/inquiry/components/StoreInquiryEnter';
 import UserStorePage from './user/pages/storedetail/pages/UserStorePage';
+import QrRoutes from './store/pages/qrCheck/router/QrRouter';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="inquiries" element={<UserDoInquiry/>}/>
       <Route path="sinquiries" element={<InquiryEnter/>}/>
       </Route>
+      <Route path="qr/*" element={<QrRoutes/>}/>
     </Routes>
     </BrowserRouter>
   );
