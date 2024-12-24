@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../../common/header/components/Header";
 import FloatingBar from "../../common/floatingBar/components/FloatingBar";
@@ -6,7 +7,21 @@ import styles from './css/userlayout.module.css';
 import { useEffect } from "react";
 
 function UserLayout() {
+    const [doInquiryModal, setDoInquiryModal] = useState(false);
 
+    return (
+        <>
+        <div className={!doInquiryModal? styles.layoutStyle : styles.layoutModalStyle}>
+            <Header className={styles.header} />
+            <main className={styles.main}>
+                <Outlet />
+            </main>
+            <Footer className={styles.footer} />
+        </div>
+        {doInquiryModal && <div className={styles.overlay}></div>}
+        <FloatingBar setDoInquiryModal={setDoInquiryModal} />
+        </>
+/*
     useEffect(() => {
         
     var parentElement = document.getElementById('parent');
@@ -28,7 +43,7 @@ function UserLayout() {
             </main>
             <Footer className={styles.footer} />
         </div>
-        
+*/        
     );
 }
 

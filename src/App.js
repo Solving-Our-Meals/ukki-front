@@ -4,7 +4,6 @@ import Signup from '../src/user/pages/signup/pages/Signup';
 import Login from '../src/user/pages/login/pages/Login'
 import Info from './user/pages/info/Info';
 import UserLayout from './user/layouts/UserLayout';
-import UserDoInquiry from './common/inquiry/components/UserDoInquiry';
 import Main from './user/pages/main/Main';
 import InquiryEnter from './common/inquiry/components/StoreInquiryEnter';
 import UserStorePage from './user/pages/storedetail/pages/UserStorePage';
@@ -21,7 +20,6 @@ function App() {
       <Route path="info" element={<Info/>}/>
       <Route path="main" element={<Main/>}/>
       <Route path="store" element={<UserStorePage/>}/>
-      <Route path="inquiries" element={<UserDoInquiry/>}/>
       <Route path="sinquiries" element={<InquiryEnter/>}/>
       </Route>
       <Route path="qr/*" element={<QrRoutes/>}/>

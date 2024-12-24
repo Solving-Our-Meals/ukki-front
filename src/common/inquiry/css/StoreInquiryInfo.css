@@ -15,6 +15,10 @@
     /* z-index: 1000005; */
   }
 
+  #inquiryInfoModal.underModal{
+    filter: blur(3px);
+  }
+
   #inquiryInfoText{
 
 

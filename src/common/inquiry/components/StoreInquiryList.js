@@ -106,22 +106,7 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
                     <span className='inquiryDate header'>문의 일자</span>
                     <span className='inquiryTitle header'>문의 제목</span>
                 </div>
-                <div id='listArea'>
-                    {loading ? (
-                        <div>Loading...</div>
-                     ) : (
-                        currentItem.map((item, index)=>{ 
-                        return  <div key={index} className={item.division} value={item.no} onClick={()=>handlerInquiryInfo(item.division, item.no)}>
-                                    <div id='inquiryListBody'>
-                                    <span className='inquiryState'>{item.state}</span>
-                                    <span className='inquiryDate'>{item.inquiryDate}</span>
-                                    <div className='inquiryTitle'><p className='inquiryTitleText'>{item.inquiryTitle}</p></div>
-                                    </div>
-                                </div>
-                        })
-                     )}
-                    </div>
-                    <div className='pageNation'>
+                <div className='pageNation'>
                     <button onClick={()=>paginate(currentPage-1)} disabled={currentPage === 1}>◀</button>
                 {visiblePageNum().map((pageNum)=>(
                     <button key={pageNum} onClick={() => paginate(pageNum)}
@@ -130,7 +115,22 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
                     </button>
                 ))}
                     <button onClick={()=>paginate(currentPage+1)}>▶</button>
-            </div>
+                </div>
+                    {loading ? (
+                        <div id='loadingInquiryListBackground'></div>
+                     ) : (
+                        <div id='listArea'>
+                        {currentItem.map((item, index)=>{ 
+                        return  <div key={index} className={item.division} value={item.no} onClick={()=>handlerInquiryInfo(item.division, item.no)}>
+                                    <div id='inquiryListBody'>
+                                    <span className='inquiryState'>{item.state}</span>
+                                    <span className='inquiryDate'>{item.inquiryDate}</span>
+                                    <div className='inquiryTitle'><p className='inquiryTitleText'>{item.inquiryTitle}</p></div>
+                                    </div>
+                                </div>
+                        })}
+                        </div>
+                     )}
             </div>
             {isReport && <StoreReportInfo reportNo={inquiryNo} setIsReport={setIsReport} fetchList={fetchList}/>}
             {isInquiry && <StoreInquiryInfo inquiryNo={inquiryNo} setIsInquiry={setIsInquiry} fetchList={fetchList}/>}

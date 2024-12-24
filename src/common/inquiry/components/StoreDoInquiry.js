@@ -2,7 +2,7 @@ import {useEffect, useState, useRef } from 'react'
 import '../css/reset.css';
 import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
-
+import ResultSmallModal from './ResultSmallModal';
 
 function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
 
@@ -15,6 +15,8 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
     const [inquiryFile, setInquiryFile] = useState(null);
     const [isWrite, setIsWrite] = useState([false, false, false]);
     const [checkContent, setCheckContent] = useState(false);
+    const [showResultModal, setShowResultModal] = useState(false);
+    const [resultMessage, setResultMessage] = useState("");
     const fileInputRef = useRef(null);
 
 
@@ -91,9 +93,10 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
         body: formData
       }).then(res => {
         if(res.ok) {
-          alert(res.message)
-          setStoreDoInquiry(false);
-          setIsLittleInquiryModal(true);
+          setResultMessage("문의기 성공적으로 제출되었습니다.")
+          setShowResultModal(true);
+        }else{
+          setResultMessage("문의에 실패했습니다.")
         }
       })
     }else{
@@ -108,18 +111,18 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
 
     return(
         <>
-        <div id='doInquiryModal'>
+        <div id='doInquiryModal' className={showResultModal? 'underModal':''}>
             <div id='doInquiryText'>문의하기</div>
             <div id='doInquiryTitleText'>문의 제목: </div>
             <form>
-                <input id='inputDoTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} className={checkContent && !isWrite[0] ? 'error' : ''} required/>
-                <select id='categorySelection' name='categoryNo' onChange={handleCategoryChange} className={checkContent && !isWrite[2] ? 'error' : ''} required>
+                <input id='inputDoTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} className={checkContent && !isWrite[0] ? 'inquiryError' : ''} required/>
+                <select id='categorySelection' name='categoryNo' onChange={handleCategoryChange} className={checkContent && !isWrite[2] ? 'inquiryError' : ''} required>
                     <option className='selectionOption' value="none" selected>문의 카테고리</option>
                     {category.map((item)=>(
                         <option className='selectionOption' value={item.categoryNo}>{item.categoryName}</option>
                     ))}
                 </select>
-                <textarea id='inputDoContent'  value={inquiryContent} onChange={handleContentChange} className={checkContent && !isWrite[1] ? 'error' : ''} required/>
+                <textarea id='inputDoContent'  value={inquiryContent} onChange={handleContentChange} className={checkContent && !isWrite[1] ? 'inquiryError' : ''} required/>
                 <input
                         type="file"
                         id="inquiryFile"
@@ -137,6 +140,15 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
             {checkContent && !isWrite[1] && <div id='checkContent'>내용을 확인해주세요</div>}
             {checkContent && !isWrite[2] && <div id='checkCategory'>내용을 확인해주세요</div>}
         </div>
+        {showResultModal && (
+                <ResultSmallModal
+                    message={resultMessage}
+                    close={()=>{
+                        setShowResultModal(false)
+                        setStoreDoInquiry(false)
+                        setIsLittleInquiryModal(true)
+                    }}/>
+            )}
         </>
     )
 }

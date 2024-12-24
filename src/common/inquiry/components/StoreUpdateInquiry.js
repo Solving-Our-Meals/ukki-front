@@ -91,7 +91,7 @@ function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
 
     return (
         <>
-            <div id='doInquiryModal'>
+            <div id='doInquiryModal' className={(showResultModal || showAgreementModal)? 'underModal':''}>
                 <div id='doInquiryText'>문의수정</div>
                 <div id='doInquiryTitleText'>문의 제목: </div>
                 <div id='inquiryDateAtUpdate'>문의 일자 : <p>{inquiryDTO.inquiryDate}</p></div>

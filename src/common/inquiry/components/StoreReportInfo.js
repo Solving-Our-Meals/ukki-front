@@ -67,7 +67,7 @@ function StoreReportInfo({ reportNo, setIsReport, fetchList }){
 
     return (
         <>
-            <div id='inquiryInfoModal'>
+            <div id='inquiryInfoModal' className={(showResultModal || showAgreementModal)? 'underModal':''} >
                 <div id="inquiryInfoText">신고 상세</div>
                 <button id='backToInquiryListBtn' onClick={handlerBack}>이전</button>
                 <button id='deleteInquiryBtn' onClick={handleDeleteInquiry}>삭제</button>
