@@ -7,6 +7,7 @@ import styles from '../layouts/css/userlayout.module.css';
 
 function UserLayout() {
     const [doInquiryModal, setDoInquiryModal] = useState(false);
+
     return (
         <>
         <div className={!doInquiryModal? styles.layoutStyle : styles.layoutModalStyle}>
@@ -16,6 +17,7 @@ function UserLayout() {
             </main>
             <Footer className={styles.footer} />
         </div>
+        {doInquiryModal && <div className={styles.overlay}></div>}
         <FloatingBar setDoInquiryModal={setDoInquiryModal} />
         </>
     );
