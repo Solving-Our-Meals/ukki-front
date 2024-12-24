@@ -84,10 +84,11 @@
 // export default Calendar;
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from '../css/reservation.module.css';
 import prevBtn from '../images/prev-or-next-icon.png';
 import nextBtn from '../images/prev-or-next-icon.png';
+import todayIcon from '../images/todayIcon.png';
 
 // 현재 월, 이전 월, 다음 월 날짜를 계산하는 함수
 const getCalendarDates = (year, month) => {
@@ -111,6 +112,7 @@ const getCalendarDates = (year, month) => {
 };
 
 function Calendar() {
+
     const [currentDate, setCurrentDate] = useState(new Date());
     const dayList = ["일", "월", "화", "수", "목", "금", "토"];
     const today = new Date();
@@ -150,8 +152,9 @@ function Calendar() {
                             key={index}
                             className={`${styles.dateCell} ${
                                 date.getMonth() === month ? styles.currentMonth : styles.otherMonth
-                            } ${isToday ? styles.today : ''}`}
+                            }`}
                         >
+                            <img src={todayIcon} style={{display : isToday ? "" : "none"}} alt="오늘 날짜 표시 아이콘"/>
                             {date.getDate()}
                         </div>
                         );
