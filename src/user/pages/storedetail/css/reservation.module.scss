@@ -203,10 +203,12 @@
             position: absolute;
             margin-top: 30px;
             padding-left: 30px;
+            padding-bottom: 20px;
             border: 4px solid $primary;
             border-top: none;
             width : 788px;
-            height : 380px;
+            // height : 380px;
+            height: max-content;
             
             
             .dayList {
@@ -274,17 +276,17 @@
                 }
             }
         }
-    }
 
-    .selectedDate {
-        position: absolute;
-        left: 960px;
-        top: 1326px;
-        width: max-content;
-        height: 50px;
-        font-family: 'Bobaesum Jindo TTF';
-        font-size: 45px;
-        color: $textStrong;
+        .selectedDate{
+            position: absolute;
+            left: 850px;
+            top : 10px;
+            width: max-content;
+            height: 50px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 45px;
+            color: $textStrong;
+        }
     }
 
     .morning, .afternoon {
@@ -312,7 +314,7 @@
     }
 
     .afternoon {
-        top: 1602px;
+        top: 1630px;
         height: 30px;
     }
 }
