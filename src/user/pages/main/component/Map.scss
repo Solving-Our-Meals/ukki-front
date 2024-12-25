@@ -1,0 +1,17 @@
+@import '../../../../common/header/css/reset.scss';
+div{
+    outline: none;
+    background: none;
+    border-radius: 20px;
+    border: none;
+    
+}
+#map {
+    position: absolute;
+    width: 30vw;
+    height: 20vw;
+    border-radius: 20px;
+    border: 3px solid $primary;
+    left: 20vw;
+    top: 4.5vw;
+}
