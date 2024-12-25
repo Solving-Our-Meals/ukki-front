@@ -229,10 +229,11 @@ a:active {
   position: absolute;
   margin-top: 30px;
   padding-left: 30px;
+  padding-bottom: 20px;
   border: 4px solid #FF8AA3;
   border-top: none;
   width: 788px;
-  height: 380px;
+  height: max-content;
 }
 .reservationStyle .calendarContainer .calendarBody .dayList {
   display: flex;
@@ -290,10 +291,10 @@ a:active {
   margin-top: -18px;
   z-index: -1;
 }
-.reservationStyle .selectedDate {
+.reservationStyle .calendarContainer .selectedDate {
   position: absolute;
-  left: 960px;
-  top: 1326px;
+  left: 850px;
+  top: 10px;
   width: max-content;
   height: 50px;
   font-family: "Bobaesum Jindo TTF";
@@ -322,6 +323,6 @@ a:active {
   height: 30px;
 }
 .reservationStyle .afternoon {
-  top: 1602px;
+  top: 1630px;
   height: 30px;
 }

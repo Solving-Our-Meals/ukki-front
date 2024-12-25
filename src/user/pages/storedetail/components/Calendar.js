@@ -84,7 +84,7 @@
 // export default Calendar;
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../css/reservation.module.css';
 import prevBtn from '../images/prev-or-next-icon.png';
 import nextBtn from '../images/prev-or-next-icon.png';
@@ -92,6 +92,7 @@ import todayIcon from '../images/todayIcon.png';
 
 // 현재 월, 이전 월, 다음 월 날짜를 계산하는 함수
 const getCalendarDates = (year, month) => {
+
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
     const startDay = new Date(firstDayOfMonth);
@@ -119,8 +120,71 @@ function Calendar() {
 
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
+    const date = currentDate.getDate();
+    const [day, setDay] = useState(currentDate.getDay());
+
+    useEffect(() => {
+        switch(day){
+            case 0:
+                setDay("일");
+                break;
+            case 1:
+                setDay("월");
+                break;
+            case 2:
+                setDay("화");
+                break;
+            case 3:
+                setDay("수");
+                break;
+            case 4:
+                setDay("목");
+                break;
+            case 5:
+                setDay("금");
+                break;
+            case 6:
+                setDay("토");
+                break;
+            default : 
+                break;
+        }
+    }, [day]);
+
+    const [selectedTotalDate, setSelectedTotalDate] = useState({
+        selectedYear : year,
+        selectedMonth : month + 1,
+        selectedDate : date,
+        selectedDay : day,
+    }); 
+    
+    useEffect(() => {
+        setSelectedTotalDate(prevState => ({
+            ...prevState,
+            selectedDay : day
+        }));
+    }, [day]);
 
     const calendarDates = getCalendarDates(year, month);
+
+    // 날짜별(-> 요일별) 예약 가능 시간(30분 단위)
+    // 가게 운영 시간 가져오기
+    const [operation, setOperation] = useState({
+        operation : [],
+        operationTime : ""
+    });
+
+    useEffect(
+        () => {
+            fetch('/store/test')  //검색 페이지 만들어지면 pathvariable로 변경하기
+            .then(res => res.json())
+            .then(data => {
+                setOperation(data.operationTime)
+                console.log("가게 정보22222 : ",data.operationTime);
+            })
+            .catch(error => console.log(error));
+        }, []
+    ); 
 
     const handlePrevMonth = () => {
         setCurrentDate(new Date(year, month - 1, 1));
@@ -129,6 +193,93 @@ function Calendar() {
     const handleNextMonth = () => {
         setCurrentDate(new Date(year, month + 1, 1));
     };
+
+    const selectedDateHandler = (selectDate) => {
+
+        let selectedDayStr = ''
+        let selectOperTime = ''
+
+        switch(selectDate.getDay()){
+            case 0:
+                selectedDayStr = "일";
+                // selectOperTime = operation.operationTime["sunday"]
+                break;
+            case 1:
+                selectedDayStr = "월";
+                break;
+            case 2:
+                selectedDayStr = "화";
+                break;
+            case 3:
+                selectedDayStr = "수";
+                break;
+            case 4:
+                selectedDayStr = "목";
+                break;
+            case 5:
+                selectedDayStr = "금";
+                break;
+            case 6:
+                selectedDayStr = "토";
+                break;
+            default : 
+                break;    
+        }
+
+        setSelectedTotalDate(prevState => ({
+            ...prevState,
+            selectedYear : selectDate.getFullYear(),
+            selectedMonth : selectDate.getMonth() + 1,
+            selectedDate : selectDate.getDate(),
+            selectedDay : selectedDayStr
+        }));
+
+        const day = selectDate.getDay();
+
+        const dayOfWeekMap = {
+            0 : "sunday",
+            1 : "monday",
+            2 : "tuesday", 
+            3 : "wednesday", 
+            4 : "thursday",
+            5 : "friday",
+            6 : "saturday"
+        };
+
+        const dayOfWeek = dayOfWeekMap[day];
+
+        // 선택한 날짜의 요일
+        console.log('선택한 날짜의 요일', dayOfWeek);
+        // 선택한 날짜의 운영 시간 -> String 형태 -> 16:00 ~ 02:00
+        console.log("선택한 날짜의 운영 시간",operation[dayOfWeek])
+        const operTimeOfDay = operation[dayOfWeek];
+        // 날짜 문자열 자르기
+        const strStartTime = operTimeOfDay.split('~')[0];
+        const [strStartHour, strStartMinute] = strStartTime.split(':');
+        const strEndTime = operTimeOfDay.split('~')[1];
+        const [strEndHour, strEndMinute] = strEndTime.split(':');
+        
+        
+        // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
+        const startTime = new Date();
+        startTime.setHours(parseInt(strStartHour));
+        startTime.setMinutes(parseInt(strStartMinute));
+        startTime.setSeconds(0);
+        const endTime = new Date();
+        endTime.setHours(parseInt(strEndHour));
+        endTime.setMinutes(parseInt(strEndMinute));
+        endTime.setSeconds(0);
+
+        // const startOperTime = startTime.getHours().toString().padStart(2, '0') + ':' + startTime.getMinutes().toString().padStart(2, '0');
+        const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
+        const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+        console.log("startHour",startTime);
+        console.log("endTime", endTime);
+        console.log(startOperTime);
+        console.log(endOperTime);
+       
+    }
+
 
     return (
         <>
@@ -144,7 +295,8 @@ function Calendar() {
                         <span key={index} className={styles.day}>{day}</span>
                     ))}
                 </div>
-                <div className={styles.calendarGrid}>
+                <div className={styles.calendarGrid}
+                >
                     {calendarDates.map((date, index) => {
                         const isToday = date.toDateString() === today.toDateString();
                         return(
@@ -153,6 +305,7 @@ function Calendar() {
                             className={`${styles.dateCell} ${
                                 date.getMonth() === month ? styles.currentMonth : styles.otherMonth
                             }`}
+                            onClick={() => selectedDateHandler(date)}
                         >
                             <img src={todayIcon} style={{display : isToday ? "" : "none"}} alt="오늘 날짜 표시 아이콘"/>
                             {date.getDate()}
@@ -160,6 +313,9 @@ function Calendar() {
                         );
                     })}
                 </div>
+            </div>
+            <div className={styles.selectedDate}>
+                {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth}.${selectedTotalDate.selectedDate}(${selectedTotalDate.selectedDay})`}
             </div>
         </>
     );

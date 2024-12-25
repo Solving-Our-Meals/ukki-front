@@ -36,7 +36,7 @@ function StoreDetail(){
             .then(res => res.json())
             .then(data => {
                 setStoreInfo(data)
-                console.log(data)
+                console.log("가게 정보 :",data)
             })
             .catch(error => console.log(error));
         }, []

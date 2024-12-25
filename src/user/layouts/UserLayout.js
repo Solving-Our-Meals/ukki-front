@@ -4,7 +4,7 @@ import Header from "../../common/header/components/Header";
 import FloatingBar from "../../common/floatingBar/components/FloatingBar";
 import Footer from "../../common/footer/components/Footer";
 import styles from './css/userlayout.module.css';
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 function UserLayout() {
     const [doInquiryModal, setDoInquiryModal] = useState(false);
