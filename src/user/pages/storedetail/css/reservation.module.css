@@ -189,6 +189,7 @@ a:active {
   position: absolute;
   left: 112px;
   top: 1253px;
+  width: -moz-max-content;
   width: max-content;
   font-family: "Pretendard Variable";
   font-size: 30px;
@@ -294,6 +295,7 @@ a:active {
   position: absolute;
   left: 960px;
   top: 1326px;
+  width: -moz-max-content;
   width: max-content;
   height: 50px;
   font-family: "Bobaesum Jindo TTF";
@@ -311,6 +313,7 @@ a:active {
   position: absolute;
   left: 960px;
   top: 1400px;
+  width: -moz-max-content;
   width: max-content;
   height: 31px;
   font-family: "Pretendard Variable";
@@ -324,4 +327,4 @@ a:active {
 .reservationStyle .afternoon {
   top: 1602px;
   height: 30px;
-}
+}/*# sourceMappingURL=reservation.module.css.map */
