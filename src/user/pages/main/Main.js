@@ -132,30 +132,30 @@ const Main = () => {
         const btn = document.querySelector(".rouletter-btn");
         const deg = [];
         for (let i = 1, len = rolLength; i <= len; i++) {
-          deg.push((360 / len) * i);
+            deg.push((360 / len) * i);
         }
-      
+
         let num = 0;
         document.body.append(hiddenInput);
         setNum = hiddenInput.value = rRandom();
-      
+
         // 애니메이션 설정
         panel.style.transition = "transform 5s ease-in-out"; // 애니메이션 지속 시간 조정
-      
+
         const totalRotation = 360 * 10 + deg[setNum]; // 10바퀴 돌고 최종 위치에 도달
-      
+
         panel.style.transform = `rotate(${totalRotation}deg)`;
         btn.disabled = true;
         btn.style.pointerEvents = "none";
-      
+        hiddenInput.remove();
         // 애니메이션 종료 후 버튼 활성화
         setTimeout(() => {
-          btn.disabled = false;
-          btn.style.pointerEvents = "auto";
-          hiddenInput.remove();
+            btn.disabled = false;
+            btn.style.pointerEvents = "auto";
+
         }, 5000); // 애니메이션 시간과 맞춤
-      };
-      
+    };
+
 
     const rLayerPopup = (num) => {
         switch (num) {
@@ -299,11 +299,11 @@ const Main = () => {
                 <div className='roulette'>
                     <div className="rouletter-bg">
                         <div className="rouletter-wacu">
-                            <img src={rBg}/>
+                            <img src={rBg} />
                         </div>
                     </div>
                     <div className="rouletter-arrow">
-                        <img src={pin}/>
+                        <img src={pin} />
                     </div>
                     <button className="rouletter-btn">start</button>
                 </div>

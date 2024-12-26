@@ -176,7 +176,6 @@ a:active {
 div {
   outline: none;
   background: none;
-  border-radius: 20px;
   border: none;
 }
 
@@ -188,4 +187,10 @@ div {
   border: 3px solid #FF8AA3;
   left: 20vw;
   top: 4.5vw;
+}
+#map div div div div {
+  position: absolute;
+  width: 150px;
+  height: 29px;
+  border-radius: 30px;
 }/*# sourceMappingURL=Map.css.map */

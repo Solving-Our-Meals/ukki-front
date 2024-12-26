@@ -49,7 +49,7 @@
         color: #FF8AA3;
     }
 
-    input {
+    .signupBasic input {
         position: absolute;
         width: 499.5px;
         height: 52.5px;
@@ -150,7 +150,7 @@
         transition: all 0.3s ease;
     }
     /* 레전드용 */
-    label {
+    .signupBasic label {
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
@@ -160,7 +160,7 @@
         pointer-events: none;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -170,7 +170,7 @@
         color: #007bff;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .signupBasicinput:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -233,7 +233,7 @@
         animation: fadeOut 0.5s forwards;
     }
 
-    .search {
+    .signupBasic  .search {
         position: absolute;
         height: 2vw;
         left: 37.5%;
@@ -309,7 +309,7 @@
         color: #FF8AA3;
     }
 
-    input {
+    .signupBasic input {
         position: absolute;
         width: 35vw;
         height: 10vh;
@@ -406,7 +406,7 @@
         transition: all 0.3s ease;
     }
     /* 레전드용 */
-    label {
+    .signupBasiclabel {
         position: absolute;
         transform: translate(-130%, -440%);
         font-family: 'Pretendard-Regular';
@@ -418,7 +418,7 @@
         pointer-events: none;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         margin-top: -40%;
         margin-left: -20%;
         font-size: 12px;
@@ -429,7 +429,7 @@
         display:none
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         margin-top: 5%;
         margin-left: 5%;
         scale: 5;
@@ -492,7 +492,7 @@
     .inputWrapper.hidden {
         animation: fadeOut 0.5s forwards;
     }
-    .search {
+    .signupBasic .search {
         position: absolute;
         width : 20vw;
         margin-top: -6.5%;
@@ -568,7 +568,7 @@
         color: #FF8AA3;
     }
 
-    input {
+    .signupBasic input {
         position: absolute;
         width: 36vw;
         height: 8vh;
@@ -666,7 +666,7 @@
         transition: all 0.3s ease;
     }
     /* 레전드용 */
-    label {
+    .signupBasic label {
         width: 20vw;
         position: absolute;
         transform: translate(-200%, -525%);
@@ -679,7 +679,7 @@
         pointer-events: none;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         margin-top: -6%;
         margin-left: -10%;
         font-size: 10px;
@@ -689,7 +689,7 @@
         color: #007bff;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         margin-top: -10%;
         margin-left: -10%;
         font-size: 10px;
@@ -752,7 +752,7 @@
     .inputWrapper.hidden {
         animation: fadeOut 0.5s forwards;
     }
-    .search {
+    .signupBasic .search {
         position: absolute;
         width : 20vw;
         margin-top: -9.4%;
