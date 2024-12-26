@@ -1,0 +1,23 @@
+#adminBackground{
+    width: 100vw;
+    height: 100vw;
+
+    background-color: #FFF9D3;
+}
+
+#renderingArea{
+    /* Rectangle 7 */
+
+position: absolute;
+width: 1623px;
+height: 810px;
+left: 229px;
+top: 107px;
+
+/* background */
+background: #FFFFFF;
+/* primary */
+border: 3px solid #FF8AA3;
+border-radius: 0px 50px 50px 0px;
+
+}
