@@ -20,11 +20,11 @@ function Find() {
         }));
     };
 
-    // 아이디
+    // 아이디 찾기
     const handleUsernameSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/login/step-one', {
+        const response = await fetch('/auth/find', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,11 +41,11 @@ function Find() {
         }
     };
 
-    // 비번
+    // 비번 찾기
     const handlePasswordSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/login/step-two', {
+        const response = await fetch('/auth/find', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
