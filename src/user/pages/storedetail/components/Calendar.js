@@ -114,6 +114,9 @@ const getCalendarDates = (year, month) => {
 
 function Calendar() {
 
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
+
     const [currentDate, setCurrentDate] = useState(new Date());
     const dayList = ["일", "월", "화", "수", "목", "금", "토"];
     const today = new Date();
@@ -122,6 +125,9 @@ function Calendar() {
     const month = currentDate.getMonth();
     const date = currentDate.getDate();
     const [day, setDay] = useState(currentDate.getDay());
+
+    const [operArray, setOperArray] = useState([]);    
+    const [isOper, setIsOper] = useState(true);
 
     useEffect(() => {
         switch(day){
@@ -181,6 +187,92 @@ function Calendar() {
             .then(data => {
                 setOperation(data.operationTime)
                 console.log("가게 정보22222 : ",data.operationTime);
+
+                const today = new Date().getDay();
+
+                const dayOfWeekMap = {
+                    0 : "sunday",
+                    1 : "monday",
+                    2 : "tuesday", 
+                    3 : "wednesday", 
+                    4 : "thursday",
+                    5 : "friday",
+                    6 : "saturday"
+                };
+
+                const dayOfWeek = dayOfWeekMap[today];
+
+                let operArr = [];
+
+                if(data.operationTime[dayOfWeek] !== '휴무'){
+                    setIsOper(true);
+                    const operTimeOfDay = data.operationTime[dayOfWeek];
+                    
+                    // 날짜 문자열 자르기
+                    const strStartTime = operTimeOfDay.split('~')[0];
+                    const [strStartHour, strStartMinute] = strStartTime.split(':');
+                    const strEndTime = operTimeOfDay.split('~')[1];
+                    const [strEndHour, strEndMinute] = strEndTime.split(':');
+                    
+                    
+                    // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
+                    const startTime = new Date();
+                    startTime.setHours(parseInt(strStartHour));
+                    startTime.setMinutes(parseInt(strStartMinute));
+                    const endTime = new Date();
+                    endTime.setHours(parseInt(strEndHour));
+                    endTime.setMinutes(parseInt(strEndMinute));
+
+                    const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
+                    const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+
+                    if (startTime < endTime) {
+                        for (let i = startTime.getHours(); i < endTime.getHours(); i++) {
+                            if (startTime.getMinutes() === 0) {
+                                for (let j = 0; j < 60; j += 30) {
+                                    operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                                }
+                            } else if (startTime.getMinutes() === 30) {
+                                for (let j = 30; j < 60; j += 30) {
+                                    operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                                }
+                            }
+                        }
+                        if (endTime.getMinutes() === 30) {
+                            operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                            
+                        } else {
+                            operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
+                        }
+                    } else {
+                        for (let i = startTime.getHours(); i <= 23; i++) {
+                            if (startTime.getMinutes() === 0) {
+                                for (let j = 0; j < 60; j += 30) {
+                                    operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                                }
+                            } else if (startTime.getMinutes() === 30) {
+                                for (let j = 30; j < 60; j += 30) {
+                                    operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                                }
+                            }
+                        }
+                        for (let i = 0; i < endTime.getHours(); i++) {
+                            for (let j = 0; j < 60; j += 30) {
+                                operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            }
+                        }
+                        if (endTime.getMinutes() === 30) {
+                            operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                        } else {
+                            operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
+                        }
+                    }
+                } else {
+                    setIsOper(false);
+                    operArr.push('00:00')
+                }
+                setOperArray(operArr);
+                console.log(operArr);
             })
             .catch(error => console.log(error));
         }, []
@@ -194,7 +286,16 @@ function Calendar() {
         setCurrentDate(new Date(year, month + 1, 1));
     };
 
+    const goToday = () => {
+        setSelectedDate(today); 
+        setCurrentDate(today);
+        selectedDateHandler(today);
+        setSelectedTimeIndex(null);
+    }
+
     const selectedDateHandler = (selectDate) => {
+
+        setSelectedDate(selectDate);
 
         let selectedDayStr = ''
         let selectOperTime = ''
@@ -250,69 +351,104 @@ function Calendar() {
 
         // 선택한 날짜의 요일
         console.log('선택한 날짜의 요일', dayOfWeek);
-        // 선택한 날짜의 운영 시간 -> String 형태 -> 16:00 ~ 02:00
+        // 선택한 날짜의 운영 시간 -> String 형태 -> 16:00 ~ 02:00 or 휴무
         console.log("선택한 날짜의 운영 시간",operation[dayOfWeek])
-        const operTimeOfDay = operation[dayOfWeek];
-        // 날짜 문자열 자르기
-        const strStartTime = operTimeOfDay.split('~')[0];
-        const [strStartHour, strStartMinute] = strStartTime.split(':');
-        const strEndTime = operTimeOfDay.split('~')[1];
-        const [strEndHour, strEndMinute] = strEndTime.split(':');
-        
-        
-        // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
-        const startTime = new Date();
-        startTime.setHours(parseInt(strStartHour));
-        startTime.setMinutes(parseInt(strStartMinute));
-        startTime.setSeconds(0);
-        const endTime = new Date();
-        endTime.setHours(parseInt(strEndHour));
-        endTime.setMinutes(parseInt(strEndMinute));
-        endTime.setSeconds(0);
 
-        // const startOperTime = startTime.getHours().toString().padStart(2, '0') + ':' + startTime.getMinutes().toString().padStart(2, '0');
-        const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
-        const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
-        console.log("startHour",startTime.getMinutes());
-        console.log("endTime", endTime.getMinutes());
-        console.log(startOperTime);
-        console.log(endOperTime);
+        // 운영 시간 배열에 담기
+        let operArr = [];
 
-        if(startTime < endTime){
-            for(let i = startTime.getHours(); i <= endTime.getHours(); i++){
-                if(i < 10){
-                    const paddedHour = i.toString().padStart(2, '0');
-                    console.log(paddedHour)
+        if(operation[dayOfWeek] !== '휴무'){
+            setIsOper(true);
+            const operTimeOfDay = operation[dayOfWeek];
+            // 날짜 문자열 자르기
+            const strStartTime = operTimeOfDay.split('~')[0];
+            const [strStartHour, strStartMinute] = strStartTime.split(':');
+            const strEndTime = operTimeOfDay.split('~')[1];
+            const [strEndHour, strEndMinute] = strEndTime.split(':');
+            
+            
+            // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
+            const startTime = new Date();
+            startTime.setHours(parseInt(strStartHour));
+            startTime.setMinutes(parseInt(strStartMinute));
+            startTime.setSeconds(0);
+            const endTime = new Date();
+            endTime.setHours(parseInt(strEndHour));
+            endTime.setMinutes(parseInt(strEndMinute));
+            endTime.setSeconds(0);
+
+            const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
+            const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+
+            if (startTime < endTime) {
+                for (let i = startTime.getHours(); i < endTime.getHours(); i++) {
+                    if (startTime.getMinutes() === 0) {
+                        for (let j = 0; j < 60; j += 30) {
+                            // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                        }
+                    } else if (startTime.getMinutes() === 30) {
+                        for (let j = 30; j < 60; j += 30) {
+                            // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                        }
+                    }
                 }
-                for(let j = startTime.getMinutes(); j <= endTime.getMinutes(); j+=30){
-                    console.log('1111', i, ':', j);
+                if (endTime.getMinutes() === 30) {
+                    // console.log(endTime.getHours().toString().padStart(2, '0') + ':30');
+                    operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                    
+                } else {
+                    // console.log(endTime.getHours().toString().padStart(2, '0') + ':00');
+                    operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
+                }
+            } else {
+                for (let i = startTime.getHours(); i <= 23; i++) {
+                    if (startTime.getMinutes() === 0) {
+                        for (let j = 0; j < 60; j += 30) {
+                            // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                        }
+                    } else if (startTime.getMinutes() === 30) {
+                        for (let j = 30; j < 60; j += 30) {
+                            // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                        }
+                    }
+                }
+                for (let i = 0; i < endTime.getHours(); i++) {
+                    for (let j = 0; j < 60; j += 30) {
+                        // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                        operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                    }
+                }
+                if (endTime.getMinutes() === 30) {
+                    // console.log(endTime.getHours().toString().padStart(2, '0') + ':30');
+                    operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                } else {
+                    // console.log(endTime.getHours().toString().padStart(2, '0') + ':00');
+                    operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
                 }
             }
         } else {
-            for(let i = startTime.getHours(); i <= 23; i++){
-                if(i < 10){
-                    const paddedHour = i.toString().padStart(2, '0');
-                    console.log('paddedHour111',paddedHour)
-                }
-                for(let j = startTime.getMinutes(); j <= endTime.getMinutes(); j += 30){
-                    console.log('2222', i ,':', j)
-                }
-            }
-            for(let i = 0; i <= endTime.getHours(); i++){
-                if(i < 10){
-                    const paddedHour = i.toString().padStart(2, '0');
-                    console.log('paddedHour222', paddedHour)
-                }
-                for(let j = startTime.getMinutes(); j <= endTime.getMinutes(); j += 30){
-                    console.log('3333', i ,':', j)
-                }
-            }
+            setIsOper(false);
+           operArr.push('00:00')
+        }
+        setOperArray(operArr);
+        console.log(operArr);
+    }
+
+    const selectTime = (index) => {
+        if(selectedTimeIndex === index){
+            setSelectedTimeIndex(null);
+        } else {
+            setSelectedTimeIndex(index);
         }
     }
 
-
     return (
         <>
+            <div id={styles.goToday} onClick={() => {goToday()}}><u>Today</u></div>
             <div className={styles.calendarHeader}>
                 <img src={prevBtn} alt='전 월로 가기' onClick={handlePrevMonth} />
                 <p>{year}년 &ensp;</p>
@@ -325,19 +461,23 @@ function Calendar() {
                         <span key={index} className={styles.day}>{day}</span>
                     ))}
                 </div>
-                <div className={styles.calendarGrid}
-                >
+                <div className={styles.calendarGrid}>
                     {calendarDates.map((date, index) => {
                         const isToday = date.toDateString() === today.toDateString();
+                        const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
                         return(
                         <div
                             key={index}
                             className={`${styles.dateCell} ${
                                 date.getMonth() === month ? styles.currentMonth : styles.otherMonth
                             }`}
-                            onClick={() => selectedDateHandler(date)}
+                            onClick={() => { selectedDateHandler(date); }}
                         >
-                            <img src={todayIcon} style={{display : isToday ? "" : "none"}} alt="오늘 날짜 표시 아이콘"/>
+                            <img 
+                                src={todayIcon} 
+                                style={{display : (isToday && !selectedDate) || isSelected ? "" : "none"}} 
+                                alt="오늘 날짜 표시 아이콘"
+                            />
                             {date.getDate()}
                         </div>
                         );
@@ -346,6 +486,21 @@ function Calendar() {
             </div>
             <div className={styles.selectedDate}>
                 {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth}.${selectedTotalDate.selectedDate}(${selectedTotalDate.selectedDay})`}
+            </div>
+            <div id={styles.operArray}>
+                {operArray.map((operArr, index) => (
+                    <div 
+                        key={index} 
+                        id={styles.operArr} 
+                        style={{backgroundColor : isOper ? (selectedTimeIndex === index ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
+                                color : isOper ? '' : '#BDBEBF', 
+                                cursor : isOper ? '' : 'default'
+                        }}
+                        onClick={() => {selectTime(index)}}
+                    >
+                       {operArr}
+                    </div>
+                ))}
             </div>
         </>
     );

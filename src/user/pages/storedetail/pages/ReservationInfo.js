@@ -61,8 +61,8 @@ function ReservationInfo() {
                 <Calendar />
             </div>
             <div className={styles.instructionTime}>시간을 선택해주세요.</div>
-            <div className={styles.morning}>오전</div>
-            <div className={styles.afternoon}>오후</div>
+            {/* <div className={styles.morning}>오전</div> */}
+            {/* <div className={styles.afternoon}>오후</div> */}
         </div>
     );
 }

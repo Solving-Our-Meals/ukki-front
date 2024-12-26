@@ -200,6 +200,18 @@ a:active {
   top: 1326px;
   width: 788px;
 }
+.reservationStyle .calendarContainer #goToday {
+  position: absolute;
+  left: 260px;
+  top: -75px;
+  width: max-content;
+  height: 36px;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  font-weight: 700;
+  color: #615DFF;
+  cursor: pointer;
+}
 .reservationStyle .calendarContainer .calendarHeader {
   height: 74px;
   background-color: #FF8AA3;
@@ -263,6 +275,9 @@ a:active {
   cursor: pointer;
   position: relative;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.currentMonth {
   color: #232323;
@@ -285,15 +300,13 @@ a:active {
   left: 50%;
   z-index: 3;
 }
-.reservationStyle .calendarContainer .calendarBody .calendarGrid img {
+.reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell img {
   position: absolute;
-  margin-left: -15px;
-  margin-top: -18px;
   z-index: -1;
 }
 .reservationStyle .calendarContainer .selectedDate {
   position: absolute;
-  left: 850px;
+  left: 900px;
   top: 10px;
   width: max-content;
   height: 50px;
@@ -301,28 +314,41 @@ a:active {
   font-size: 45px;
   color: #232323;
 }
-.reservationStyle .morning, .reservationStyle .afternoon {
+.reservationStyle .calendarContainer #operArray {
   position: absolute;
-  left: 960px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: right;
+  justify-content: left;
+  left: 885px;
+  top: 130px;
+  width: 760px;
+  height: max-content;
+}
+.reservationStyle .calendarContainer #operArray #operArr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 157px;
+  height: 37px;
+  background-color: #FEDA00;
+  border-radius: 10px;
   font-family: "Pretendard Variable";
-  font-size: 25px;
-  color: #232323;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 .reservationStyle .instructionTime {
   position: absolute;
-  left: 960px;
+  left: 1010px;
   top: 1400px;
   width: max-content;
   height: 31px;
   font-family: "Pretendard Variable";
   font-size: 30px;
   color: #232323;
-}
-.reservationStyle .morning {
-  top: 1478px;
-  height: 30px;
-}
-.reservationStyle .afternoon {
-  top: 1630px;
-  height: 30px;
-}
+}/*# sourceMappingURL=reservation.module.css.map */

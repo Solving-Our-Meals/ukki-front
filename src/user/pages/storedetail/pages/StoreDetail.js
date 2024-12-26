@@ -67,6 +67,10 @@ function StoreDetail(){
         }
 
         console.log("dayOfWeek : " , dayOfWeek);
+
+        if(storeInfo.operationTime.breakTime === null){
+            storeInfo.operationTime.breakTime = '없음';
+        }
     }, [storeInfo.operationTime]);
     
     useEffect(() => {
@@ -113,6 +117,7 @@ function StoreDetail(){
     
     console.log("요일 별 운영시간 : " , storeInfo.operationTime);
     console.log("오늘 운영 시간 : ", storeInfo.currentOperationTime);
+    console.log("브레이크 타임 : ", storeInfo.operationTime.breakTime);
 
     return(
         <div className={styles.storeDetail}>
