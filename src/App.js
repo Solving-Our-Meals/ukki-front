@@ -7,7 +7,8 @@ import UserLayout from './user/layouts/UserLayout';
 import Main from './user/pages/main/Main';
 import InquiryEnter from './common/inquiry/components/StoreInquiryEnter';
 import UserStorePage from './user/pages/storedetail/pages/UserStorePage';
-import QrRoutes from './store/pages/qrCheck/router/QrRouter';
+import QrRoutes from './store/pages/qrCheck/routes/QrRoutes';
+import AdminRoutes from './admin/route/AdminRoutes';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="sinquiries" element={<InquiryEnter/>}/>
       </Route>
       <Route path="qr/*" element={<QrRoutes/>}/>
+      <Route path='admin/*' element={<AdminRoutes/>}/>
     </Routes>
     </BrowserRouter>
   );
