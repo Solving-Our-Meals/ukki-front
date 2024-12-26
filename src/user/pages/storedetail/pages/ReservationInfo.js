@@ -52,17 +52,7 @@ import styles from '../css/reservation.module.css';
 import Calendar from '../components/Calendar';
 
 function ReservationInfo() {
-    // const [currentDate] = useState(new Date());
-    // const year = currentDate.getFullYear();
-    // const month = currentDate.getMonth();
-    // const date = currentDate.getDate();
-    // const [day, setDay] = useState(currentDate.getDay());
-
-    // useEffect(() => {
-    //     const days = ["일", "월", "화", "수", "목", "금", "토"];
-    //     setDay(days[currentDate.getDay()]);
-    // }, [currentDate]);
-
+    
     return (
         <div className={styles.reservationStyle}>
             <div className={styles.reservationTitle}>예약</div>
@@ -70,9 +60,6 @@ function ReservationInfo() {
             <div className={styles.calendarContainer}>
                 <Calendar />
             </div>
-            {/* <div className={styles.selectedDate}>
-                {`${year}.${month + 1}.${date}(${day})`}
-            </div> */}
             <div className={styles.instructionTime}>시간을 선택해주세요.</div>
             <div className={styles.morning}>오전</div>
             <div className={styles.afternoon}>오후</div>
