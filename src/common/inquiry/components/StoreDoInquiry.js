@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef } from 'react'
 import '../css/reset.css';
 import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
-
+import ResultSmallModal from './ResultSmallModal';
 
 function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
 
@@ -14,10 +14,15 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
     const [inquiryContent, setInquiryContent] = useState("");
     const [inquiryFile, setInquiryFile] = useState(null);
     const [isWrite, setIsWrite] = useState([false, false, false]);
+    const [checkContent, setCheckContent] = useState(false);
+    const [showResultModal, setShowResultModal] = useState(false);
+    const [resultMessage, setResultMessage] = useState("");
+    const fileInputRef = useRef(null);
 
 
     function handleTitleChange(e){
       setInquiryTitle(e.target.value);
+      setCheckContent(false);
        if(e.target.value==='' || e.target.value===null || e.target.value.length<5){
         isWrite[0] = false
         setIsWrite([...isWrite]);
@@ -27,7 +32,7 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
        }}
     function handleContentChange(e){
       setInquiryContent(e.target.value);
-      
+      setCheckContent(false);
       if(e.target.value==='' || e.target.value===null || e.target.value.length<5){
         isWrite[1] = false
         setIsWrite([...isWrite]);
@@ -40,6 +45,7 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
   
     function handleCategoryChange(e){
       setSelectCategory(e.target.value);
+      setCheckContent(false);
       if(e.target.value==='none'){
         isWrite[2] = false
         setIsWrite([...isWrite]);
@@ -54,6 +60,12 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
       setStoreDoInquiry(false);
       setIsLittleInquiryModal(true)
     }
+
+    
+    function handleFileButtonClick() {
+      fileInputRef.current.click();
+  }
+
 
     async function fetchCategory(){
          const categories = await inquiryCategory(); if (categories && categories.length > 0)
@@ -73,32 +85,22 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
       const blob = new Blob([json], {type: 'application/json'});
       formData.append("data", blob)
       formData.append("file", inquiryFile)
-      // for (const x of formData.entries()) {
-      //   console.log(x);
-      //  };
-      let isPass = false
-      for(var i = 0; i<3; i++){
-        if(isWrite[i]===true){
-          isPass = true
-        }else{
-          isPass = false
-          break;
-        }
-      }
+      let isPass = isWrite.every(Boolean);
       if(isPass){
       fetch(`/inquiries/stores`, {
         method: "POST",
-        headers: {
-          // "Content-Type": "multipart/form-data",
-        },
+        headers: {},
         body: formData
       }).then(res => {
         if(res.ok) {
-          alert(res.message)
+          setResultMessage("문의기 성공적으로 제출되었습니다.")
+          setShowResultModal(true);
+        }else{
+          setResultMessage("문의에 실패했습니다.")
         }
       })
     }else{
-      alert("내용을 확인해주세요")
+      setCheckContent(true);
     }
 
     }
@@ -109,27 +111,44 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
 
     return(
         <>
-        <div id='doInquiryModal'>
+        <div id='doInquiryModal' className={showResultModal? 'underModal':''}>
             <div id='doInquiryText'>문의하기</div>
             <div id='doInquiryTitleText'>문의 제목: </div>
             <form>
-                <input id='inputDoTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} required/>
-                <select id='categorySelection' name='categoryNo' onChange={handleCategoryChange} required>
+                <input id='inputDoTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} className={checkContent && !isWrite[0] ? 'inquiryError' : ''} required/>
+                <select id='categorySelection' name='categoryNo' onChange={handleCategoryChange} className={checkContent && !isWrite[2] ? 'inquiryError' : ''} required>
                     <option className='selectionOption' value="none" selected>문의 카테고리</option>
                     {category.map((item)=>(
                         <option className='selectionOption' value={item.categoryNo}>{item.categoryName}</option>
                     ))}
                 </select>
-                <textarea id='inputDoContent'  value={inquiryContent} onChange={handleContentChange} required/>
-                
-                <label id='inquiryDoFileBtn' htmlFor='inquiryDoFile' onChange={handleFileChange}>
-                  첨부파일
-                <input type='file' id='inquiryDoFile'/>
-                </label>
+                <textarea id='inputDoContent'  value={inquiryContent} onChange={handleContentChange} className={checkContent && !isWrite[1] ? 'inquiryError' : ''} required/>
+                <input
+                        type="file"
+                        id="inquiryFile"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                    />
+                    <button type="button" id="inquiryDoFileBtn" onClick={handleFileButtonClick}>
+                        첨부파일
+                    </button>
                 <button type='button' id='inquiryDoCancleBtn' onClick={handleCancle}>취소</button>
                 <button id='doInquiryBtn' onClick={submit}>확인</button>
             </form>
+            {checkContent && !isWrite[0] && <div id='checkTitle'>내용을 확인해주세요</div>}
+            {checkContent && !isWrite[1] && <div id='checkContent'>내용을 확인해주세요</div>}
+            {checkContent && !isWrite[2] && <div id='checkCategory'>내용을 확인해주세요</div>}
         </div>
+        {showResultModal && (
+                <ResultSmallModal
+                    message={resultMessage}
+                    close={()=>{
+                        setShowResultModal(false)
+                        setStoreDoInquiry(false)
+                        setIsLittleInquiryModal(true)
+                    }}/>
+            )}
         </>
     )
 }

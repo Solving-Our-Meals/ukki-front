@@ -55,6 +55,7 @@
         font-family : 'Pretendard Variable';
         font-size : 25px;
         color: $textStrong;
+        cursor: pointer;
     }
 
     #triangle{
@@ -103,17 +104,6 @@
             margin-left : 20px;
             font-weight: 700;
         }
-    }
-
-    #menu{
-        position : absolute;
-        left : 235px;
-        top : 864px;
-        width : max-content;
-        font-family : 'Pretendard Variable';
-        font-size : 20px;
-        color: $textCaption;
-        cursor: pointer;
     }
 
     .keywordArea{

@@ -5,6 +5,7 @@ import triangleBtn from '../images/inverted_triangle.png';
 import Banner from '../components/Banner';
 import Profile from '../components/Profile';
 import KakaoMap from '../components/KakaoMap';
+import Menu from '../components/Menu';
 
 
 function StoreDetail(){
@@ -122,7 +123,7 @@ function StoreDetail(){
             <p id={styles.storeDes}>{`식당 소개 : ${storeInfo.storeDes}`}</p>
             <img src={mapIcon} id={styles.mapIcon} alt = '지도 아이콘'/>
             <p id={styles.storeAddress}>{storeInfo.storeAddress}</p>
-            <p id={styles.operTime}>{`영업 시간(오늘) : ${storeInfo.currentOperationTime}`}</p>
+            <p id={styles.operTime} onClick={onClickHandler}>{`영업 시간(오늘) : ${storeInfo.currentOperationTime}`}</p>
             <div id={styles.tatolOperTime} style={{ display : isNone ? "none" : "block" }}>
                 <p className={styles.week}>(월)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorMonday }}>{storeInfo.operationTime.monday}</p> <br/>
                 <p className={styles.week}>(화)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorTuesday }}>{storeInfo.operationTime.tuesday}</p> <br/>
@@ -134,7 +135,7 @@ function StoreDetail(){
                 <p id={styles.breakTime}>{`*브레이크 타임 : ${storeInfo.operationTime.breakTime}`}</p> <br/>
             </div>
             <img src={triangleBtn} id={styles.triangle} onClick={onClickHandler} alt ="영업시간 더보기 버튼"/>
-            <p id={styles.menu}><u>메뉴 보기</u></p>
+            <Menu/>
             <div id={styles.mapArea}><KakaoMap/></div>
             <div className={styles.keywordArea}>
                 <div>{storeInfo.storeKeyword.keyword1}</div>
