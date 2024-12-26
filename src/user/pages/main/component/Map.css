@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
  v2.0 | 20110126
  License: none (public domain)
@@ -173,26 +174,1028 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
-
-div {
-  outline: none;
-  background: none;
+div .slidewrap {
+  width: 90vw;
+  height: 75vw;
+  position: relative;
+  overflow: hidden;
+  top: 5vw;
+  left: 3.5vw;
+  list-style: none;
+  border-radius: 0;
+}
+div .slidewrap .slides {
+  display: flex;
+}
+div .slidewrap .slides .slide {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0;
+}
+div .slidewrap .slides .slide .section1,
+div .slidewrap .slides .slide .section2,
+div .slidewrap .slides .slide .section3,
+div .slidewrap .slides .slide .section4,
+div .slidewrap .slides .slide .section5 {
+  flex-shrink: 0;
+  /* 슬라이드가 줄어들지 않도록 */
+  width: 100vw;
+  /* 각 슬라이드의 너비를 화면 너비에 맞추기 */
+  height: 75vw;
+  /* 높이도 비슷하게 맞추기 */
+}
+div .slidewrap .slides .slide div h3 {
+  position: absolute;
+  left: 9vw;
+  top: 24.5vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 2vw;
+  color: #FF8AA3;
+  z-index: 1;
+}
+div .slidewrap .slides .slide div img {
+  position: absolute;
+  width: 19vw;
+  left: 6vw;
+  top: 18.5vw;
+}
+div .slidewrap .slides .slide div p {
+  position: absolute;
+  left: 7vw;
+  top: 29vw;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 1.4vw;
+  color: #232323;
+}
+div .slidewrap .slides .slide div span {
+  position: absolute;
+  width: 24vw;
+  left: 7vw;
+  top: 32vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1vw;
+  line-height: 126%;
+  color: #232323;
+}
+div .pagination ul {
+  position: relative;
+  gap: 5vw;
+  left: 33vw;
+  top: -9vw;
+}
+div .pagination ul li {
+  display: inline-block !important;
+  margin-left: 3vw !important;
+  width: 1vw !important;
+  height: 1vw !important;
+  background-color: #FEBA00 !important;
+  border-radius: 50px !important;
+  opacity: 0.5 !important;
+  cursor: pointer !important;
+}
+div .pagination ul li.act {
+  opacity: 1 !important;
+}
+div .search {
+  position: absolute;
+  width: 100vw;
+  height: 50vw;
+  margin: 0;
+}
+div .search input {
+  position: absolute;
+  width: 60vw;
+  height: 5vw;
+  left: 18vw;
+  top: -16vw;
+  border-radius: 50px;
+  border: #FF8AA3 3px solid;
+  background-color: #FFF3A7;
+  color: #FEBA00;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 1.3vw;
+  margin: 0;
+}
+div .search img {
+  position: absolute;
+  width: 3.5vw;
+  left: 72vw;
+  top: -15.3vw;
+}
+div .btn {
+  position: relative;
+  font-size: 5vw;
+  top: -22vw;
+  left: 2vw;
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+div .rightbtn {
+  left: 85vw;
+  top: -27vw;
+}
+div .category h3 {
+  position: absolute;
+  left: 39vw;
+  top: 68vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 2.5vw;
+  color: #232323;
+}
+div .category p {
+  position: absolute;
+  left: 40vw;
+  top: 71.5vw;
+  font-family: "Pretendard Variable";
+  font-size: 1.2vw;
+  text-align: center;
+  color: #232323;
+}
+div .category div {
+  position: absolute;
+  width: 5vw;
+  height: 2vw;
+  left: 15vw;
+  top: 80vw;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+div .category div:nth-of-type(2) {
+  left: 30.5vw;
+  top: 82vw;
+}
+div .category div:nth-of-type(3) {
+  left: 46vw;
+}
+div .category div:nth-of-type(4) {
+  left: 61.5vw;
+  top: 82vw;
+}
+div .category div:nth-of-type(5) {
+  left: 77vw;
+}
+div .category div p {
+  color: #232323;
+  position: absolute;
+  left: 1.5vw;
+  top: 0.5vw;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.2vw;
+  z-index: 5;
+}
+div .category img {
+  width: 10vw;
+  border-radius: 10%;
+  position: absolute;
+  left: 12.5vw;
+  z-index: -1;
+  opacity: 0.8;
+  top: 76vw;
+}
+div .category img:nth-of-type(2) {
+  left: 28vw;
+  top: 78vw;
+}
+div .category img:nth-of-type(3) {
+  left: 43.5vw;
+}
+div .category img:nth-of-type(4) {
+  left: 59vw;
+  top: 78vw;
+}
+div .category img:nth-of-type(5) {
+  left: 74.5vw;
+}
+div .category img:hover {
+  opacity: 1;
+}
+div .category span {
+  position: absolute;
+  left: 14.5vw;
+  top: 87.5vw;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1vw;
+  color: #232323;
+  background-color: #FFF3A7;
+  padding: 0.5vw 1vw;
+  border-radius: 50px;
+}
+div .category span:nth-of-type(2) {
+  left: 30vw;
+  top: 89.5vw;
+}
+div .category span:nth-of-type(3) {
+  left: 45.5vw;
+}
+div .category span:nth-of-type(4) {
+  left: 61vw;
+  top: 89.5vw;
+}
+div .category span:nth-of-type(5) {
+  left: 77vw;
+}
+div .location {
+  position: absolute;
+  width: 100vw;
+  height: 30vw;
+  top: 100vw;
+  background: #FFF3A7;
+  left: 0;
+  border-radius: 0;
   border: none;
 }
-
-#map {
+div .location h3 {
   position: absolute;
-  width: 30vw;
-  height: 20vw;
-  border-radius: 20px;
-  border: 3px solid #FF8AA3;
-  left: 20vw;
-  top: 4.5vw;
+  left: 55vw;
+  top: 5vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 2vw;
+  color: #232323;
 }
-
-#map div div div div {
+div .location > img:nth-of-type(1) {
   position: absolute;
-  width: 150px;
-  height: 29px;
+  left: 55vw;
+  width: 9vw;
+  top: 8vw;
+  border: 3px solid #FF8AA3;
+  border-radius: 20px;
+}
+div .location p {
+  position: absolute;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 0.8vw;
+  color: #232323;
+}
+div .location p:nth-of-type(1) {
+  left: 65vw;
+  top: 8.5vw;
+}
+div .location p:nth-of-type(2) {
+  left: 65vw;
+  top: 10vw;
+}
+div .location p:nth-of-type(3) {
+  left: 65vw;
+  top: 13vw;
+}
+div .location span {
+  position: absolute;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.8vw;
+  color: #232323;
+}
+div .location span:nth-of-type(1) {
+  left: 69vw;
+  top: 8.5vw;
+}
+div .location span:nth-of-type(2) {
+  left: 65vw;
+  top: 11.5vw;
+}
+div .location span:nth-of-type(3) {
+  left: 70.5vw;
+  top: 13vw;
+}
+div .location input {
+  position: absolute;
+  width: 20.5vw;
+  height: 2.3vw;
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  color: #999999;
+  font-size: 0.8vw;
+  font-weight: normal;
+}
+div .location input:nth-of-type(1) {
+  left: 55vw;
+  top: 15.5vw;
+  text-align: center;
+}
+div .location input:nth-of-type(2) {
+  left: 55vw;
+  top: 18.5vw;
+  text-align: center;
+}
+div .location label:nth-of-type(1) {
+  position: absolute;
+  left: 56vw;
+  top: 16.2vw;
+  font-family: "Pretendard Variable";
+  font-weight: 600;
+  font-size: 1vw;
+  color: #232323;
+}
+div .location label:nth-of-type(2) {
+  position: absolute;
+  left: 56vw;
+  top: 19.2vw;
+  font-family: "Pretendard Variable";
+  font-weight: 600;
+  font-size: 1vw;
+  color: #232323;
+}
+div .location button {
+  position: absolute;
+  width: 9.5vw;
+  height: 1.8vw;
+  left: 55vw;
+  top: 22vw;
+  background: #FF8AA3;
+  border-radius: 50px;
+  border: none;
+  color: #232323;
+  font-weight: 700;
+  font-family: "Pretendard Variable";
+  font-size: 0.8vw;
+}
+div .location button:nth-of-type(2) {
+  left: 66vw;
+  background-color: #FFA8B8;
+}
+div .location img:nth-of-type(2) {
+  position: absolute;
+  width: 7vw;
+  left: 46vw;
+  top: 12vw;
+  z-index: 10;
+}
+div .talk img:nth-of-type(1) {
+  position: absolute;
+  width: 80vw;
+  top: 148vw;
+  left: 10vw;
+}
+div .talk img:nth-of-type(2) {
+  position: absolute;
+  width: 75vw;
+  top: 140vw;
+  left: 10vw;
+}
+div .talk img:nth-of-type(3) {
+  position: absolute;
+  width: 50vw;
+  top: 142vw;
+  left: 25vw;
+}
+div .random h3 {
+  position: absolute;
+  left: 15vw;
+  top: 175vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-weight: 400;
+  font-size: 3vw;
+  line-height: 128.63%;
+  color: #232323;
+}
+div .random h3 span {
+  color: #FF8AA3;
+}
+div .random p:nth-of-type(1) {
+  position: absolute;
+  left: 15vw;
+  top: 184vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5vw;
+  color: #232323;
+}
+div .random p:nth-of-type(2) {
+  position: absolute;
+  left: 15vw;
+  top: 187vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.8vw;
+  line-height: 150%;
+  color: #FF5D18;
+}
+div .random > span {
+  position: absolute;
+  left: 15vw;
+  top: 193vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1vw;
+  line-height: 150%;
+  color: #232323;
+}
+div .random button {
+  position: absolute;
+  width: 9vw;
+  height: 2vw;
+  left: 19vw;
+  top: 201vw;
+  background: #FEDA00;
   border-radius: 30px;
+  color: #232323;
+  border: none;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1vw;
+}
+div .random img:nth-of-type(1) {
+  position: absolute;
+  width: 4vw;
+  left: 14.5vw;
+  top: 200vw;
+  opacity: 0.6;
+}
+div .random img:nth-of-type(2) {
+  position: absolute;
+  width: 4vw;
+  left: 28.5vw;
+  top: 200vw;
+  opacity: 0.6;
+}
+div .roulette {
+  position: relative;
+  width: 30vw;
+  height: 30vw;
+}
+div .roulette .rouletter-bg {
+  position: absolute;
+  top: 113vw;
+  left: 65vw;
+  transform: translate(-50%, -50%);
+  width: 28vw;
+  height: 28vw;
+  border-radius: 350px;
+  overflow: hidden;
+  border: 8px solid #FF8AA3;
+}
+div .roulette .rouletter-bg .rouletter-wacu img {
+  width: 100%;
+  height: 100%;
+  background: #FF8AA3;
+  background-size: 100%;
+  transform-origin: center;
+  transition-timing-function: ease-in-out;
+  transition: 2s;
+}
+div .roulette .rouletter-arrow {
+  position: absolute;
+  top: 98vw;
+  left: 64vw;
+  z-index: 9;
+}
+div .roulette .rouletter-arrow img {
+  width: 2vw;
+}
+div .roulette .rouletter-btn {
+  position: absolute;
+  width: 4vw;
+  height: 4vw;
+  top: 111vw;
+  left: 63vw;
+  border-radius: 50%;
+  border: none;
+  background-color: #FF8AA3;
+  color: #fff;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1vw;
+}
+div .hidden-input {
+  display: none;
+}
+@media (max-width: 1440px) and (min-width: 769px) {
+  div input {
+    position: absolute;
+  }
+  div .slidewrap {
+    width: 90vw;
+    height: 65vw;
+    position: relative;
+    overflow: hidden;
+    top: 0vw;
+    left: 4vw;
+    list-style: none;
+    border-radius: 0;
+  }
+  div .slidewrap .slides {
+    display: flex;
+  }
+  div .slidewrap .slides .slide {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    height: 60vw;
+    overflow: hidden;
+    position: relative;
+    border-radius: 0;
+  }
+  div .slidewrap .slides .slide .section1,
+  div .slidewrap .slides .slide .section2,
+  div .slidewrap .slides .slide .section3,
+  div .slidewrap .slides .slide .section4,
+  div .slidewrap .slides .slide .section5 {
+    flex-shrink: 0;
+    /* 슬라이드가 줄어들지 않도록 */
+    width: 100vw;
+    /* 각 슬라이드의 너비를 화면 너비에 맞추기 */
+    height: 40vw;
+    /* 높이도 비슷하게 맞추기 */
+  }
+  div .slidewrap .slides .slide div h3 {
+    position: absolute;
+    left: 9vw;
+    top: 40vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 2.5vw;
+    color: #FF8AA3;
+    z-index: 1;
+  }
+  div .slidewrap .slides .slide div img {
+    position: absolute;
+    width: 22vw;
+    left: 6vw;
+    top: 33vw;
+  }
+  div .slidewrap .slides .slide div p {
+    position: absolute;
+    left: 8vw;
+    top: 45vw;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 1.6vw;
+    color: #232323;
+  }
+  div .slidewrap .slides .slide div span {
+    position: absolute;
+    width: 50vw;
+    left: 8vw;
+    top: 47vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5vw;
+    line-height: 126%;
+    color: #232323;
+  }
+  div .pagination {
+    position: relative;
+    top: 1vw;
+    z-index: 9;
+  }
+  div .pagination ul {
+    position: relative;
+    gap: 5vw;
+    left: 33vw;
+  }
+  div .pagination ul li {
+    display: inline-block !important;
+    margin-left: 3vw !important;
+    width: 1vw !important;
+    height: 1vw !important;
+    background-color: #FEBA00 !important;
+    border-radius: 50px !important;
+    opacity: 0.5 !important;
+    cursor: pointer !important;
+  }
+  div .pagination ul li.act {
+    opacity: 1 !important;
+  }
+  div .search {
+    position: absolute;
+    width: 100vw;
+    height: 50vw;
+    margin: 0;
+  }
+  div .search input {
+    position: absolute;
+    width: 60vw;
+    height: 5vw;
+    left: 18vw;
+    top: 8vw;
+    border-radius: 50px;
+    border: #FF8AA3 3px solid;
+    background-color: #FFF3A7;
+    color: #FEBA00;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 1.7vw;
+    margin: 0;
+    padding: 0;
+  }
+  div .search img {
+    position: absolute;
+    width: 3.5vw;
+    left: 72vw;
+    top: 8.8vw;
+  }
+  div .btn {
+    position: relative;
+    font-size: 5vw;
+    top: -28vw;
+    left: 2vw;
+    color: #fff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  div .rightbtn {
+    left: 85vw;
+    top: -33vw;
+  }
+  div .category h3 {
+    position: absolute;
+    left: 39vw;
+    top: 86vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 3vw;
+    color: #232323;
+  }
+  div .category p {
+    position: absolute;
+    left: 39.5vw;
+    top: 89.5vw;
+    font-family: "Pretendard Variable";
+    font-size: 1.5vw;
+    text-align: center;
+    color: #232323;
+  }
+  div .category div {
+    position: absolute;
+    width: 5vw;
+    height: 2vw;
+    left: 15vw;
+    top: 98vw;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+  div .category div:nth-of-type(2) {
+    left: 30.5vw;
+    top: 100vw;
+  }
+  div .category div:nth-of-type(3) {
+    left: 46vw;
+  }
+  div .category div:nth-of-type(4) {
+    left: 61.5vw;
+    top: 100vw;
+  }
+  div .category div:nth-of-type(5) {
+    left: 77vw;
+  }
+  div .category div p {
+    color: #232323;
+    position: absolute;
+    left: 1.5vw;
+    top: 0.5vw;
+    font-family: "Pretendard Variable";
+    font-weight: 500;
+    font-size: 1.5vw;
+    z-index: 5;
+  }
+  div .category img {
+    width: 11vw;
+    border-radius: 10%;
+    position: absolute;
+    left: 12.5vw;
+    z-index: -1;
+    opacity: 0.8;
+    top: 94vw;
+  }
+  div .category img:nth-of-type(2) {
+    left: 28vw;
+    top: 96vw;
+  }
+  div .category img:nth-of-type(3) {
+    left: 43.5vw;
+  }
+  div .category img:nth-of-type(4) {
+    left: 59vw;
+    top: 96vw;
+  }
+  div .category img:nth-of-type(5) {
+    left: 74.5vw;
+  }
+  div .category img:hover {
+    opacity: 1;
+  }
+  div .category span {
+    position: absolute;
+    left: 14.5vw;
+    top: 105.5vw;
+    font-family: "Pretendard Variable";
+    font-weight: 500;
+    font-size: 1vw;
+    color: #232323;
+    background-color: #FFF3A7;
+    padding: 0.5vw 1vw;
+    border-radius: 50px;
+  }
+  div .category span:nth-of-type(2) {
+    left: 30vw;
+    top: 107.5vw;
+  }
+  div .category span:nth-of-type(3) {
+    left: 45.5vw;
+  }
+  div .category span:nth-of-type(4) {
+    left: 61vw;
+    top: 107.5vw;
+  }
+  div .category span:nth-of-type(5) {
+    left: 77vw;
+  }
+  div .location {
+    position: absolute;
+    width: 100vw;
+    height: 30vw;
+    top: 120vw;
+    background: #FFF3A7;
+    left: 0;
+    border-radius: 0;
+    border: none;
+  }
+  div .location h3 {
+    position: absolute;
+    left: 55vw;
+    top: 5vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 2vw;
+    color: #232323;
+  }
+  div .location > img:nth-of-type(1) {
+    position: absolute;
+    left: 55vw;
+    width: 9vw;
+    top: 8vw;
+    border: 3px solid #FF8AA3;
+    border-radius: 20px;
+  }
+  div .location p {
+    position: absolute;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 0.8vw;
+    color: #232323;
+  }
+  div .location p:nth-of-type(1) {
+    left: 65vw;
+    top: 8.5vw;
+  }
+  div .location p:nth-of-type(2) {
+    left: 65vw;
+    top: 10vw;
+  }
+  div .location p:nth-of-type(3) {
+    left: 65vw;
+    top: 13vw;
+  }
+  div .location span {
+    position: absolute;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.8vw;
+    color: #232323;
+  }
+  div .location span:nth-of-type(1) {
+    left: 69vw;
+    top: 8.5vw;
+  }
+  div .location span:nth-of-type(2) {
+    left: 65vw;
+    top: 11.5vw;
+  }
+  div .location span:nth-of-type(3) {
+    left: 70.5vw;
+    top: 13vw;
+  }
+  div .location input {
+    position: absolute;
+    width: 20.5vw;
+    height: 2.3vw;
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    color: #999999;
+    font-size: 0.8vw;
+    font-weight: normal;
+  }
+  div .location input:nth-of-type(1) {
+    left: 55vw;
+    top: 15.5vw;
+    text-align: center;
+  }
+  div .location input:nth-of-type(2) {
+    left: 55vw;
+    top: 18.5vw;
+    text-align: center;
+  }
+  div .location label:nth-of-type(1) {
+    position: absolute;
+    left: 56vw;
+    top: 16.2vw;
+    font-family: "Pretendard Variable";
+    font-weight: 600;
+    font-size: 1vw;
+    color: #232323;
+  }
+  div .location label:nth-of-type(2) {
+    position: absolute;
+    left: 56vw;
+    top: 19.2vw;
+    font-family: "Pretendard Variable";
+    font-weight: 600;
+    font-size: 1vw;
+    color: #232323;
+    width: 60px;
+  }
+  div .location button {
+    position: absolute;
+    width: 9.5vw;
+    height: 1.8vw;
+    left: 55vw;
+    top: 22vw;
+    background: #FF8AA3;
+    border-radius: 50px;
+    border: none;
+    color: #232323;
+    font-weight: 700;
+    font-family: "Pretendard Variable";
+    font-size: 0.8vw;
+  }
+  div .location button:nth-of-type(2) {
+    left: 66vw;
+    background-color: #FFA8B8;
+  }
+  div .location img:nth-of-type(2) {
+    position: absolute;
+    width: 7vw;
+    left: 46vw;
+    top: 12vw;
+    z-index: 10;
+  }
+  div .talk img:nth-of-type(1) {
+    position: absolute;
+    width: 80vw;
+    top: 168vw;
+    left: 10vw;
+  }
+  div .talk img:nth-of-type(2) {
+    position: absolute;
+    width: 75vw;
+    top: 160vw;
+    left: 10vw;
+  }
+  div .talk img:nth-of-type(3) {
+    position: absolute;
+    width: 50vw;
+    top: 162vw;
+    left: 25vw;
+  }
+  div .random h3 {
+    position: absolute;
+    left: 15vw;
+    top: 195vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-weight: 400;
+    font-size: 3vw;
+    line-height: 128.63%;
+    color: #232323;
+  }
+  div .random h3 span {
+    color: #FF8AA3;
+  }
+  div .random p:nth-of-type(1) {
+    position: absolute;
+    left: 15vw;
+    top: 204vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.5vw;
+    color: #232323;
+  }
+  div .random p:nth-of-type(2) {
+    position: absolute;
+    left: 15vw;
+    top: 207vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.8vw;
+    line-height: 150%;
+    color: #FF5D18;
+  }
+  div .random > span {
+    position: absolute;
+    left: 15vw;
+    top: 213vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 150%;
+    color: #232323;
+  }
+  div .random button {
+    position: absolute;
+    width: 9vw;
+    height: 2vw;
+    left: 19vw;
+    top: 221vw;
+    background: #FEDA00;
+    border-radius: 30px;
+    color: #232323;
+    border: none;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1vw;
+  }
+  div .random img:nth-of-type(1) {
+    position: absolute;
+    width: 4vw;
+    left: 14.5vw;
+    top: 220vw;
+    opacity: 0.6;
+  }
+  div .random img:nth-of-type(2) {
+    position: absolute;
+    width: 4vw;
+    left: 28.5vw;
+    top: 220vw;
+    opacity: 0.6;
+  }
+  div .roulette {
+    position: relative;
+    width: 30vw;
+    height: 30vw;
+  }
+  div .roulette .rouletter-bg {
+    position: absolute;
+    top: 145vw;
+    left: 65vw;
+    transform: translate(-50%, -50%);
+    width: 28vw;
+    height: 28vw;
+    border-radius: 350px;
+    overflow: hidden;
+    border: 5px solid #FF8AA3;
+  }
+  div .roulette .rouletter-bg .rouletter-wacu img {
+    width: 100%;
+    height: 100%;
+    background: #FF8AA3;
+    background-size: 100%;
+    transform-origin: center;
+    transition-timing-function: ease-in-out;
+    transition: 2s;
+  }
+  div .roulette .rouletter-arrow {
+    position: absolute;
+    top: 130vw;
+    left: 64vw;
+    z-index: 9;
+  }
+  div .roulette .rouletter-arrow img {
+    width: 2vw;
+  }
+  div .roulette .rouletter-btn {
+    position: absolute;
+    width: 4vw;
+    height: 4vw;
+    top: 143vw;
+    left: 63vw;
+    border-radius: 50%;
+    border: none;
+    background-color: #FF8AA3;
+    color: #fff;
+    font-family: "Pretendard Variable";
+    font-weight: 500;
+    font-size: 1vw;
+  }
+  div .hidden-input {
+    display: none;
+    z-index: -9;
+    opacity: 0;
+  }
 }/*# sourceMappingURL=Map.css.map */
