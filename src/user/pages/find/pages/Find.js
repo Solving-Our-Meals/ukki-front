@@ -8,8 +8,7 @@ function Find() {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         email: '',
-        auth: '',
-        userId: '',
+        auth: ''
     });
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -38,7 +37,8 @@ function Find() {
     const handleEmailSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        setEmailPending(true); // 이메일 대기 중 상태 설정
+        setEmailPending(true);
+
 
         // 이메일 확인 -> 회원가입 로직에서 가져와서 !만 붙여서 응용
         const emailCheckResponse = await fetch('/auth/checkemail', {
@@ -112,6 +112,7 @@ function Find() {
 
     // 아이디 찾기
     const handleFindSubmit = async (e, type) => {
+        console.log("왜안돼?")
         e.preventDefault();
         const email = formData.email;
 
@@ -129,7 +130,7 @@ function Find() {
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (response.ok && data.username) {
                 setUsername(data.username);
                 setError('');
             } else {
