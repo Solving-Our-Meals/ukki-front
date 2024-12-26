@@ -103,7 +103,6 @@ function Signup() {
         });
 
         const emailCheckResult = await emailCheckResponse.json();
-        console.log(emailCheckResult)
 
         if (emailCheckResult.isDuplicate) {
             setError('ⓘ 이 이메일은 이미 사용 중입니다.');
