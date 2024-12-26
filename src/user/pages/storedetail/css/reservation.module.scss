@@ -170,6 +170,19 @@
         top: 1326px;
         width: 788px;
 
+        #goToday{
+            position : absolute;
+            left : 260px;
+            top : -75px;
+            width : max-content;
+            height : 36px;
+            font-family: 'Pretendard Variable';
+            font-size: 30px;
+            font-weight: 700;
+            color : $pending;
+            cursor: pointer;
+        }
+
         .calendarHeader {
             height: 74px;
             background-color: $primary;
@@ -242,6 +255,9 @@
                     cursor: pointer;
                     position : relative;
                     z-index : 2;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
 
                     &.currentMonth {
                         color : $textStrong;
@@ -266,20 +282,17 @@
                         left : 50%;
                         z-index : 3;
                     }
-                }
-
-                img{
-                    position:absolute;
-                    margin-left : -15px;
-                    margin-top : -18px;
-                    z-index : -1;
+                    img{
+                        position : absolute;
+                        z-index : -1;
+                    }
                 }
             }
         }
 
         .selectedDate{
             position: absolute;
-            left: 850px;
+            left: 900px;
             top : 10px;
             width: max-content;
             height: 50px;
@@ -287,19 +300,49 @@
             font-size: 45px;
             color: $textStrong;
         }
+
+        #operArray{
+            position : absolute;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: right;
+            justify-content: left;
+            left : 885px;
+            top : 130px;
+            width : 760px;
+            height : max-content;
+
+            #operArr{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width : 157px;
+                height : 37px;
+                background-color: $secondary;
+                border-radius: 10px;
+                font-family: 'Pretendard Variable';
+                font-size: 20px;
+                text-align: center;
+                margin-left: 16px;
+                margin-right: 16px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+        }
     }
 
-    .morning, .afternoon {
-        position: absolute;
-        left: 960px;
-        font-family: 'Pretendard Variable';
-        font-size: 25px;
-        color: $textStrong;
-    }
+    // .morning, .afternoon {
+    //     position: absolute;
+    //     left: 960px;
+    //     font-family: 'Pretendard Variable';
+    //     font-size: 25px;
+    //     color: $textStrong;
+    // }
 
     .instructionTime {
         position : absolute;
-        left : 960px;
+        left : 1010px;
         top : 1400px;
         width : max-content;
         height : 31px;
@@ -308,13 +351,13 @@
         color: $textStrong;
     }
 
-    .morning {
-        top: 1478px;
-        height: 30px;
-    }
+    // .morning {
+    //     top: 1478px;
+    //     height: 30px;
+    // }
 
-    .afternoon {
-        top: 1630px;
-        height: 30px;
-    }
+    // .afternoon {
+    //     top: 1630px;
+    //     height: 30px;
+    // }
 }
