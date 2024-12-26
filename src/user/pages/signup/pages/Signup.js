@@ -48,8 +48,6 @@ function Signup() {
             return;
         }
 
-        console.log("Submitting userid:", formData.userId);
-
         const response = await fetch('/auth/signupid', {
             method: 'POST',
             headers: {
