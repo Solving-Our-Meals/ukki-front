@@ -93,6 +93,7 @@ function Signup() {
     // 이메일 관련
     const handleEmailSubmit = async (e) => {
         e.preventDefault();
+
         setError('');
         setEmailPending(true); // 이메일 대기 중 상태 설정
 
@@ -106,16 +107,8 @@ function Signup() {
         });
 
         const emailCheckResult = await emailCheckResponse.json();
-        console.log(emailCheckResult)
-
         if (emailCheckResult.isDuplicate) {
             setError('ⓘ 이 이메일은 이미 사용 중입니다.');
-            setEmailPending(false);
-            return;
-        }
-
-        if (emailCheckResult.isNoshowLimitExceeded) {
-            setError('ⓘ 이전의 노쇼 횟수가 3회로 가입이 불가합니다.');
             setEmailPending(false);
             return;
         }
