@@ -228,6 +228,7 @@ a:active {
   font-family: "Pretendard Variable";
   font-size: 25px;
   color: #232323;
+  cursor: pointer;
 }
 .storeDetail #triangle {
   position: absolute;
