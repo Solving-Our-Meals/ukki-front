@@ -173,6 +173,13 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
+
+div {
+  outline: none;
+  background: none;
+  border: none;
+}
+
 #map {
   position: absolute;
   width: 30vw;
@@ -182,3 +189,10 @@ a:active {
   left: 20vw;
   top: 4.5vw;
 }
+
+#map div div div div {
+  position: absolute;
+  width: 150px;
+  height: 29px;
+  border-radius: 30px;
+}/*# sourceMappingURL=Map.css.map */

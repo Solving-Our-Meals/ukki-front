@@ -13,7 +13,7 @@ div {
 
         .slides {
             display: flex;
-            
+
 
 
 
@@ -114,12 +114,17 @@ div {
     }
 
     .search {
+        position: absolute;
+        width: 100vw;
+        height: 50vw;
+        margin: 0;
+
         input {
             position: absolute;
             width: 60vw;
             height: 5vw;
-            left: 20vw;
-            top: 55vw;
+            left: 18vw;
+            top: -16vw;
             border-radius: 50px;
             border: $primary 3px solid;
             background-color: $secondary2;
@@ -127,13 +132,14 @@ div {
             font-family: 'Pretendard Variable';
             font-weight: 700;
             font-size: 1.3vw;
+            margin: 0;
         }
 
         img {
             position: absolute;
             width: 3.5vw;
-            left: 75vw;
-            top: 55.7vw;
+            left: 72vw;
+            top: -15.3vw;
         }
     }
 
@@ -155,7 +161,7 @@ div {
     .category {
         h3 {
             position: absolute;
-            left: calc(50% - 401px/2 - 0.5px);
+            left: 39vw;
             top: 68vw;
             font-family: 'Bobaesum Jindo TTF';
             font-size: 2.5vw;
@@ -225,7 +231,7 @@ div {
             &:nth-of-type(2) {
                 left: 28vw;
                 top: 78vw;
-           
+
             }
 
             &:nth-of-type(3) {
@@ -381,21 +387,21 @@ div {
 
         label:nth-of-type(1) {
             position: absolute;
-            left: 55.5vw;
-            top: 16.6vw;
+            left: 56vw;
+            top: 16.2vw;
             font-family: 'Pretendard Variable';
             font-weight: 600;
-            font-size: 0.8vw;
+            font-size: 1vw;
             color: $textStrong;
         }
 
         label:nth-of-type(2) {
             position: absolute;
-            left: 55.5vw;
-            top: 19.6vw;
+            left: 56vw;
+            top: 19.2vw;
             font-family: 'Pretendard Variable';
             font-weight: 600;
-            font-size: 0.8vw;
+            font-size: 1vw;
             color: $textStrong;
         }
 
@@ -518,7 +524,7 @@ div {
             font-style: normal;
             font-weight: 600;
             font-size: 1vw;
-            
+
 
         }
 
@@ -537,7 +543,7 @@ div {
             top: 200vw;
             opacity: 0.6;
         }
-        
+
     }
 
     .roulette {
@@ -603,5 +609,628 @@ div {
 
     .hidden-input {
         display: none;
+    }
+
+    @media (max-width: 1440px) and (min-width: 769px) {
+        input {
+            position: absolute;
+        }
+
+        .slidewrap {
+            width: 90vw;
+            height: 65vw;
+            position: relative;
+            overflow: hidden;
+            top: 0vw;
+            left: 4vw;
+            list-style: none;
+            border-radius: 0;
+
+            .slides {
+                display: flex;
+
+
+
+
+                .slide {
+                    flex: 0 0 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 90vw;
+                    height: 60vw;
+                    overflow: hidden;
+                    position: relative;
+                    border-radius: 0;
+
+                    .section1,
+                    .section2,
+                    .section3,
+                    .section4,
+                    .section5 {
+                        flex-shrink: 0;
+                        /* 슬라이드가 줄어들지 않도록 */
+                        width: 100vw;
+                        /* 각 슬라이드의 너비를 화면 너비에 맞추기 */
+                        height: 40vw;
+                        /* 높이도 비슷하게 맞추기 */
+                    }
+
+                    div {
+                        h3 {
+                            position: absolute;
+                            left: 9vw;
+                            top: 40vw;
+                            font-family: 'Bobaesum Jindo TTF';
+                            font-size: 2.5vw;
+                            color: $primary;
+                            z-index: 1;
+                        }
+
+                        img {
+                            position: absolute;
+                            width: 22vw;
+                            left: 6vw;
+                            top: 33vw;
+                        }
+
+                        p {
+                            position: absolute;
+                            left: 8vw;
+                            top: 45vw;
+                            font-family: 'Pretendard Variable';
+                            font-weight: 700;
+                            font-size: 1.6vw;
+                            color: $textStrong;
+                        }
+
+                        span {
+                            position: absolute;
+                            width: 50vw;
+                            left: 8vw;
+                            top: 47vw;
+                            font-family: 'Pretendard Variable';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 1.5vw;
+                            line-height: 126%;
+                            color: $textStrong;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+        .pagination {
+            position: relative;
+            top: 1vw;
+            z-index: 9;
+
+            ul {
+                position: relative;
+                gap: 5vw;
+                left: 33vw;
+
+                li {
+                    display: inline-block !important;
+                    margin-left: 3vw !important;
+                    width: 1vw !important;
+                    height: 1vw !important;
+                    background-color: #FEBA00 !important;
+                    border-radius: 50px !important;
+                    opacity: 0.5 !important;
+                    cursor: pointer !important;
+
+                    &.act {
+                        opacity: 1 !important; // 활성화된 상태의 색상
+                    }
+                }
+            }
+        }
+
+        .search {
+            position: absolute;
+            width: 100vw;
+            height: 50vw;
+            margin: 0;
+    
+            input {
+                position: absolute;
+                width: 60vw;
+                height: 5vw;
+                left: 18vw;
+                top: 8vw;
+                border-radius: 50px;
+                border: $primary 3px solid;
+                background-color: $secondary2;
+                color: #FEBA00;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 1.7vw;
+                margin: 0;
+                padding: 0;
+            }
+
+            img {
+                position: absolute;
+                width: 3.5vw;
+                left: 72vw;
+                top: 8.8vw;
+            }
+        }
+
+        .btn {
+            position: relative;
+            font-size: 5vw;
+            top: -28vw;
+            left: 2vw;
+            color: #fff;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .rightbtn {
+            left: 85vw;
+            top: -33vw;
+        }
+
+
+        .category {
+            h3 {
+                position: absolute;
+                left: 39vw;
+                top: 86vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 3vw;
+                color: $textStrong;
+            }
+
+            p {
+                position: absolute;
+                left: 39.5vw;
+                top: 89.5vw;
+                font-family: 'Pretendard Variable';
+                font-size: 1.5vw;
+                text-align: center;
+                color: $textStrong;
+            }
+
+            div {
+                position: absolute;
+                width: 5vw;
+                height: 2vw;
+                left: 15vw;
+                top: 98vw;
+                background: #FFFFFF;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 20px;
+
+                &:nth-of-type(2) {
+                    left: 30.5vw;
+                    top: 100vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 46vw;
+                }
+
+                &:nth-of-type(4) {
+                    left: 61.5vw;
+                    top: 100vw;
+                }
+
+                &:nth-of-type(5) {
+                    left: 77vw;
+                }
+
+                p {
+                    color: $textStrong;
+                    position: absolute;
+                    left: 1.5vw;
+                    top: 0.5vw;
+                    font-family: 'Pretendard Variable';
+                    font-weight: 500;
+                    font-size: 1.5vw;
+                    z-index: 5;
+                }
+
+            }
+
+            img {
+                width: 11vw;
+                border-radius: 10%;
+                position: absolute;
+                left: 12.5vw;
+                z-index: -1;
+                opacity: 0.8;
+                top: 94vw;
+
+                &:nth-of-type(2) {
+                    left: 28vw;
+                    top: 96vw;
+
+                }
+
+                &:nth-of-type(3) {
+                    left: 43.5vw;
+                }
+
+                &:nth-of-type(4) {
+                    left: 59vw;
+                    top: 96vw;
+                }
+
+                &:nth-of-type(5) {
+                    left: 74.5vw;
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            span {
+                position: absolute;
+                left: 14.5vw;
+                top: 105.5vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 500;
+                font-size: 1vw;
+                color: $textStrong;
+                background-color: $secondary2;
+                padding: 0.5vw 1vw;
+                border-radius: 50px;
+
+                &:nth-of-type(2) {
+                    left: 30vw;
+                    top: 107.5vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 45.5vw;
+                }
+
+                &:nth-of-type(4) {
+                    left: 61vw;
+                    top: 107.5vw;
+                }
+
+                &:nth-of-type(5) {
+                    left: 77vw;
+                }
+            }
+        }
+
+        .location {
+            position: absolute;
+            width: 100vw;
+            height: 30vw;
+            top: 120vw;
+            background: $secondary2;
+            left: 0;
+            border-radius: 0;
+            border: none;
+
+            h3 {
+                position: absolute;
+                left: 55vw;
+                top: 5vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 2vw;
+                color: $textStrong;
+            }
+
+            &>img:nth-of-type(1) {
+                position: absolute;
+                left: 55vw;
+                width: 9vw;
+                top: 8vw;
+                border: 3px solid #FF8AA3;
+                border-radius: 20px;
+            }
+
+            p {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 0.8vw;
+                color: $textStrong;
+            }
+
+            p:nth-of-type(1) {
+                left: 65vw;
+                top: 8.5vw;
+            }
+
+            p:nth-of-type(2) {
+                left: 65vw;
+                top: 10vw;
+            }
+
+            p:nth-of-type(3) {
+                left: 65vw;
+                top: 13vw;
+            }
+
+            span {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 0.8vw;
+                color: $textStrong;
+            }
+
+            span:nth-of-type(1) {
+                left: 69vw;
+                top: 8.5vw;
+            }
+
+            span:nth-of-type(2) {
+                left: 65vw;
+                top: 11.5vw;
+            }
+
+            span:nth-of-type(3) {
+                left: 70.5vw;
+                top: 13vw;
+            }
+
+            input {
+                position: absolute;
+                width: 20.5vw;
+                height: 2.3vw;
+                background: #FFFFFF;
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                color: $textCaption;
+                font-size: 0.8vw;
+                font-weight: normal;
+
+            }
+
+            input:nth-of-type(1) {
+                left: 55vw;
+                top: 15.5vw;
+                text-align: center;
+            }
+
+            input:nth-of-type(2) {
+                left: 55vw;
+                top: 18.5vw;
+                text-align: center;
+            }
+
+            label:nth-of-type(1) {
+                position: absolute;
+                left: 56vw;
+                top: 16.2vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 600;
+                font-size: 1vw;
+                color: $textStrong;
+            }
+    
+            label:nth-of-type(2) {
+                position: absolute;
+                left: 56vw;
+                top: 19.2vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 600;
+                font-size: 1vw;
+                color: $textStrong;
+                width: 60px;
+            }
+
+            button {
+                position: absolute;
+                width: 9.5vw;
+                height: 1.8vw;
+                left: 55vw;
+                top: 22vw;
+                background: $primary;
+                border-radius: 50px;
+                border: none;
+                color: $textStrong;
+                font-weight: 700;
+                font-family: 'Pretendard Variable';
+                font-size: 0.8vw;
+            }
+
+            button:nth-of-type(2) {
+                left: 66vw;
+                background-color: #FFA8B8;
+            }
+
+            img:nth-of-type(2) {
+                position: absolute;
+                width: 7vw;
+                left: 46vw;
+                top: 12vw;
+                z-index: 10;
+            }
+        }
+
+        .talk {
+            img:nth-of-type(1) {
+                position: absolute;
+                width: 80vw;
+                top: 168vw;
+                left: 10vw;
+            }
+
+            img:nth-of-type(2) {
+                position: absolute;
+                width: 75vw;
+                top: 160vw;
+                left: 10vw;
+            }
+
+            img:nth-of-type(3) {
+                position: absolute;
+                width: 50vw;
+                top: 162vw;
+                left: 25vw;
+            }
+
+
+
+        }
+
+        .random {
+            h3 {
+                position: absolute;
+                left: 15vw;
+                top: 195vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-weight: 400;
+                font-size: 3vw;
+                line-height: 128.63%;
+                color: $textStrong;
+
+                span {
+                    color: $primary;
+                }
+            }
+
+            p:nth-of-type(1) {
+                position: absolute;
+                left: 15vw;
+                top: 204vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 1.5vw;
+                color: $textStrong;
+            }
+
+            p:nth-of-type(2) {
+                position: absolute;
+                left: 15vw;
+                top: 207vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 0.8vw;
+                line-height: 150%;
+                color: $danger;
+            }
+
+            &>span {
+                position: absolute;
+                left: 15vw;
+                top: 213vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1vw;
+                line-height: 150%;
+                color: $textStrong;
+            }
+
+            button {
+                position: absolute;
+                width: 9vw;
+                height: 2vw;
+                left: 19vw;
+                top: 221vw;
+                background: $secondary;
+                border-radius: 30px;
+                color: $textStrong;
+                border: none;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 1vw;
+
+
+            }
+
+            img:nth-of-type(1) {
+                position: absolute;
+                width: 4vw;
+                left: 14.5vw;
+                top: 220vw;
+                opacity: 0.6;
+            }
+
+            img:nth-of-type(2) {
+                position: absolute;
+                width: 4vw;
+                left: 28.5vw;
+                top: 220vw;
+                opacity: 0.6;
+            }
+
+        }
+
+        .roulette {
+            position: relative;
+            width: 30vw;
+            height: 30vw;
+
+            .rouletter-bg {
+                position: absolute;
+                top: 145vw;
+                left: 65vw;
+                transform: translate(-50%, -50%);
+                width: 28vw;
+                height: 28vw;
+                border-radius: 350px;
+                overflow: hidden;
+                border: 5px solid $primary;
+
+                .rouletter-wacu {
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        background: $primary;
+                        background-size: 100%;
+                        transform-origin: center;
+                        transition-timing-function: ease-in-out;
+                        transition: 2s;
+
+                    }
+                }
+            }
+
+            .rouletter-arrow {
+
+                position: absolute;
+                top: 130vw;
+                left: 64vw;
+                z-index: 9;
+
+                img {
+                    width: 2vw;
+                }
+
+            }
+
+
+            .rouletter-btn {
+                position: absolute;
+                width: 4vw;
+                height: 4vw;
+                top: 143vw;
+                left: 63vw;
+                border-radius: 50%;
+                border: none;
+                background-color: $primary;
+                color: $background;
+                font-family: 'Pretendard Variable';
+                font-weight: 500;
+                font-size: 1vw;
+
+            }
+        }
+
+        .hidden-input {
+            display: none;
+            z-index: -9;
+            opacity: 0;
+        }
     }
 }
