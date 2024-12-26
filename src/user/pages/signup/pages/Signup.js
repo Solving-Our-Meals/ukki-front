@@ -24,7 +24,6 @@ function Signup() {
             ...prevFormData,
             [name]: value
         }));
-        console.log("Updated formData:", { [name]: value });
     };
 
     // 아이디 유효성 검사
