@@ -114,7 +114,6 @@ function Find() {
     const handleFindSubmit = async (e, type) => {
         console.log("왜안돼?")
         e.preventDefault();
-        const email = formData.email;
 
         try {
             const response = await fetch('/auth/find', {
@@ -222,7 +221,7 @@ function Find() {
                 )}
 
                 {step === 3 && (
-                    <form onSubmit={handleFindSubmit}>
+                    <form onSubmit={(e) => handleFindSubmit(e, findType)}>
                         <fieldset className="fieldId">
                             <div className="inputWrapper">
                                 {username ? (
