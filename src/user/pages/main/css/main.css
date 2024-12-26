@@ -418,7 +418,6 @@ div .location h3 {
   font-size: 2vw;
   color: #232323;
 }
-
 div .location > img:nth-of-type(1) 
   position: absolute;
   left: 55vw;
