@@ -260,13 +260,16 @@ const Main = () => {
                     <span>흠..별로?</span>
                 </div>
                 <div className='location'>
-                    <Map />
+
+                    <Map/>
                     <h3>내 주변 한식 혼밥 리스트</h3>
                     <p>가게 이름 : </p> <span>우끼링 백반</span>
                     <p>가게 설명 : </p> <span>아주 맛난 백반 정식을 팔아용</span>
                     <p>가게 대표 매뉴 : </p> <span>불고기 백반</span>
-                    <img src={qorqks} />
-                    <img src={ukki} />
+
+                    <img src={qorqks}/>
+                    <img src={ukki}/>
+
                     <input value='눌러서 현재 위치 변경 가능'></input><label>현재 위치 : </label>
                     <input value='하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
                     <button>예약하기</button>
