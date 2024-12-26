@@ -1,0 +1,127 @@
+#adminNavBar{
+    /* Rectangle 142 */
+
+    position: absolute;
+    width: 132px;
+    height: 810px;
+    left: 99px;
+    top: 107px;
+
+    background: #FFEA67;
+    /* primary */
+    border: 3px solid #FF8AA3;
+    border-radius: 50px 0px 0px 50px;
+
+}
+
+#adminEnterDashboard{
+
+    position: absolute;
+    width: 102px;
+    height: 100px;
+    left: 15px;
+    top: 18px;
+
+    background: #FFFFFF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+
+    text-align: center;
+    align-content: center;
+}
+
+#adminEnterStore{
+
+    position: absolute;
+    width: 102px;
+    height: 100px;
+    left: 15px;
+    top: 128px;
+
+    background: #FFFFFF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+
+    text-align: center;
+    align-content: center;
+}
+
+#adminEnterUser{
+
+    position: absolute;
+    width: 102px;
+    height: 100px;
+    left: 15px;
+    top: 238px;
+
+    background: #FFFFFF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+
+    text-align: center;
+    align-content: center;
+}
+
+#adminEnterReservation{
+
+    position: absolute;
+    width: 102px;
+    height: 100px;
+    left: 15px;
+    top: 348px;
+
+    background: #FFFFFF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+
+    text-align: center;
+    align-content: center;
+}
+
+#adminEnterReview{
+
+    position: absolute;
+    width: 102px;
+    height: 100px;
+    left: 15px;
+    top: 458px;
+
+    background: #FFFFFF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+
+    text-align: center;
+    align-content: center;
+}
+
+#adminEnterInquiry{
+
+    position: absolute;
+    width: 102px;
+    height: 100px;
+    left: 15px;
+    top: 568px;
+
+    background: #FFFFFF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+
+    text-align: center;
+    align-content: center;
+}
+
+#adminEnterNotice{
+
+    position: absolute;
+    width: 102px;
+    height: 100px;
+    left: 15px;
+    top: 678px;
+
+    background: #FFFFFF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+
+    text-align: center;
+    align-content: center;
+}

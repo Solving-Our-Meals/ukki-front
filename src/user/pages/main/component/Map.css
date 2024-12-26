@@ -173,6 +173,7 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
+
 div {
   outline: none;
   background: none;
@@ -188,6 +189,7 @@ div {
   left: 20vw;
   top: 4.5vw;
 }
+
 #map div div div div {
   position: absolute;
   width: 150px;
