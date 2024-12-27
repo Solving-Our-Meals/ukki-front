@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../css/reset.css';
 import '../css/Login.css';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
     const [step, setStep] = useState(1);
@@ -11,6 +11,7 @@ function Login() {
     });
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -116,10 +117,10 @@ function Login() {
                         </fieldset>
                         {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
-                            <p className="search"><Link to="/auth/find?step=1">아이디 찾기</Link></p>
+                            <p className="search" onClick={() => handleSearchLink('step1')}>아이디 찾기</p>
                         </div>
-                            <button
-                                className="loginButton"
+                        <button
+                            className="loginButton"
                                 type="button"
                                 onClick={() => window.location.href = '/auth/signup'}
                             >회원가입
@@ -154,7 +155,7 @@ function Login() {
                         </fieldset>
                         {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
-                        <p className="search"><Link to="/auth/find?step=4">비밀번호 찾기</Link></p>
+                            <p className="search" onClick={() => handleSearchLink('step2')}>비밀번호 찾기</p>
                         </div>
                         <button
                             className="loginButton"
