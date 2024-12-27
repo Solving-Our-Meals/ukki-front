@@ -1,11 +1,13 @@
 @import '../../../../common/header/css/reset.scss';
-div{
+
+div {
     outline: none;
     background: none;
     border-radius: 20px;
     border: none;
-    
+
 }
+
 #map {
     position: absolute;
     width: 30vw;
@@ -15,6 +17,7 @@ div{
     left: 20vw;
     top: 4.5vw;
 }
+
 @media (max-width: 1440px) and (min-width: 769px) {
     #map {
         position: absolute;
@@ -24,8 +27,12 @@ div{
         border: 3px solid $primary;
         left: 25vw;
         top: 5vw;
+
     }
 }
+
+
+
 @media (max-width: 768px) {
     #map {
         position: absolute;
