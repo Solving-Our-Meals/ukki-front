@@ -2,6 +2,7 @@
 
 .storeDetail{
     cursor: default;
+    border-radius: 0;
 
     #storeName {
         position : absolute;
@@ -71,7 +72,7 @@
         position : absolute;
         left : 400px;
         top : 858px;
-        width : 170px;
+        width : 190px;
         height : 233px;
         border: 2.5px solid $textStrong;
         background-color: #FFFFFF;
@@ -85,24 +86,26 @@
 
         .week{
             position : absolute;
-            padding-left : 5px;
+            padding-left : 17px;
             
         }
 
         .weekOperTime{
             position : absolute;
-            width : 126px;
+            width : 146px;
             margin-top: -28px;
-            margin-left: 30px;
+            margin-left: 33px;
             text-align: center;
         }
 
         #breakTime {
             position : absolute;
-            font-size: 13px;
+            width : max-content;
+            font-size: 11px;
             color : $pending;
-            margin-left : 20px;
+            margin-left : 15px;
             font-weight: 700;
+            text-align: center;
         }
     }
 

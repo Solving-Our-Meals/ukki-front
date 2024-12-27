@@ -204,72 +204,142 @@ function Calendar() {
 
                 let operArr = [];
 
-                if(data.operationTime[dayOfWeek] !== '휴무'){
-                    setIsOper(true);
-                    const operTimeOfDay = data.operationTime[dayOfWeek];
-                    
-                    // 날짜 문자열 자르기
-                    const strStartTime = operTimeOfDay.split('~')[0];
-                    const [strStartHour, strStartMinute] = strStartTime.split(':');
-                    const strEndTime = operTimeOfDay.split('~')[1];
-                    const [strEndHour, strEndMinute] = strEndTime.split(':');
-                    
-                    
-                    // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
-                    const startTime = new Date();
-                    startTime.setHours(parseInt(strStartHour));
-                    startTime.setMinutes(parseInt(strStartMinute));
-                    const endTime = new Date();
-                    endTime.setHours(parseInt(strEndHour));
-                    endTime.setMinutes(parseInt(strEndMinute));
+                // 브레이크 타임 있을 경우
+                if(data.operationTime.breakTime !== null){
+                    if(data.operationTime[dayOfWeek] !== '휴무'){
+                        setIsOper(true);
+                        const operTimeOfDay = data.operationTime[dayOfWeek];
+                        const operBreakTime = data.operationTime.breakTime;
 
-                    const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
-                    const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+                        // 날짜 문자열 자르기
+                        const strStartTime = operTimeOfDay.split('~')[0];
+                        const [strStartHour, strStartMinute] = strStartTime.split(':');
+                        const strEndTime = operTimeOfDay.split('~')[1];
+                        const [strEndHour, strEndMinute] = strEndTime.split(':');
+                        const strStartBreak = operBreakTime.split('~')[0];
+                        const [strStartBreakHour, strStartBreakMinute] = strStartBreak.split(':');
+                        const strEndBreak = operBreakTime.split('~')[1];
+                        const [strEndBreakHour, strEndBreakMinute] = strEndBreak.split(':');
+                        
+                        // 선택한 날짜의 운영 시간 -> Date() 형태
+                        const startTime = new Date();
+                        startTime.setHours(parseInt(strStartHour));
+                        startTime.setMinutes(parseInt(strStartMinute));
+                        const startBreakTime = new Date();
+                        startBreakTime.setHours(parseInt(strStartBreakHour));
+                        startBreakTime.setMinutes(parseInt(strStartBreakMinute));
+                        const endBreakTime = new Date();
+                        endBreakTime.setHours(parseInt(strEndBreakHour));
+                        endBreakTime.setMinutes(parseInt(strEndBreakMinute));
+                        const endTime = new Date();
+                        endTime.setHours(parseInt(strEndHour));
+                        endTime.setMinutes(parseInt(strEndMinute));
 
-                    if (startTime < endTime) {
-                        for (let i = startTime.getHours(); i < endTime.getHours(); i++) {
-                            if (startTime.getMinutes() === 0) {
-                                for (let j = 0; j < 60; j += 30) {
+                        const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
+                        const startBreakOperTime = startBreakTime.getHours() + ':' + startBreakTime.getMinutes();
+                        const endBreakOperTime = endBreakTime.getHours() + ':' + endBreakTime.getMinutes();
+                        const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+                        
+                        
+                        for(let i = startTime.getHours(); i < startBreakTime.getHours(); i++){
+                            if(startTime.getMinutes() === 0){
+                                for(let j = 0; j < 60; j += 30){
                                     operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                                 }
-                            } else if (startTime.getMinutes() === 30) {
-                                for (let j = 30; j < 60; j += 30) {
+                            } else if(startTime.getMinutes() === 30){
+                                for(let j = 30; j < 60; j += 30){
                                     operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                                 }
                             }
                         }
-                        if (endTime.getMinutes() === 30) {
+                        if(startBreakTime.getMinutes() === 30){
+                            operArr.push(startBreakTime.getHours().toString().padStart(2, '0') + ':30');
+                        } else {
+                            operArr.push(startBreakTime.getHours().toString().padStart(2, '0') + ':00');
+                        }
+                        for(let i = endBreakTime.getHours(); i < endTime.getHours(); i++){
+                            for(let j = endBreakTime.getMinutes(); j < 60; j += 30){
+                                operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            }
+                            endBreakTime.setMinutes(0);
+                        }
+                        if(endTime.getMinutes() === 30){
                             operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
-                            
                         } else {
                             operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
                         }
                     } else {
-                        for (let i = startTime.getHours(); i <= 23; i++) {
-                            if (startTime.getMinutes() === 0) {
+                        setIsOper(false);
+                        operArr.push('00:00')
+                    }
+                } else {
+                    // 브레이크 타임 없을 경우
+                    if(data.operationTime[dayOfWeek] !== '휴무'){
+                        setIsOper(true);
+                        const operTimeOfDay = data.operationTime[dayOfWeek];
+                        
+                        // 날짜 문자열 자르기
+                        const strStartTime = operTimeOfDay.split('~')[0];
+                        const [strStartHour, strStartMinute] = strStartTime.split(':');
+                        const strEndTime = operTimeOfDay.split('~')[1];
+                        const [strEndHour, strEndMinute] = strEndTime.split(':');
+                        
+                        
+                        // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
+                        const startTime = new Date();
+                        startTime.setHours(parseInt(strStartHour));
+                        startTime.setMinutes(parseInt(strStartMinute));
+                        const endTime = new Date();
+                        endTime.setHours(parseInt(strEndHour));
+                        endTime.setMinutes(parseInt(strEndMinute));
+
+                        const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
+                        const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+
+                        if (startTime < endTime) {
+                            for (let i = startTime.getHours(); i < endTime.getHours(); i++) {
+                                if (startTime.getMinutes() === 0) {
+                                    for (let j = 0; j < 60; j += 30) {
+                                        operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                                    }
+                                } else if (startTime.getMinutes() === 30) {
+                                    for (let j = 30; j < 60; j += 30) {
+                                        operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                                    }
+                                }
+                            }
+                            if (endTime.getMinutes() === 30) {
+                                operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                            } else {
+                                operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
+                            }
+                        } else {
+                            for (let i = startTime.getHours(); i <= 23; i++) {
+                                if (startTime.getMinutes() === 0) {
+                                    for (let j = 0; j < 60; j += 30) {
+                                        operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                                    }
+                                } else if (startTime.getMinutes() === 30) {
+                                    for (let j = 30; j < 60; j += 30) {
+                                        operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                                    }
+                                }
+                            }
+                            for (let i = 0; i < endTime.getHours(); i++) {
                                 for (let j = 0; j < 60; j += 30) {
                                     operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                                 }
-                            } else if (startTime.getMinutes() === 30) {
-                                for (let j = 30; j < 60; j += 30) {
-                                    operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
-                                }
+                            }
+                            if (endTime.getMinutes() === 30) {
+                                operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                            } else {
+                                operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
                             }
                         }
-                        for (let i = 0; i < endTime.getHours(); i++) {
-                            for (let j = 0; j < 60; j += 30) {
-                                operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
-                            }
-                        }
-                        if (endTime.getMinutes() === 30) {
-                            operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
-                        } else {
-                            operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
-                        }
+                    } else {
+                        setIsOper(false);
+                        operArr.push('00:00')
                     }
-                } else {
-                    setIsOper(false);
-                    operArr.push('00:00')
                 }
                 setOperArray(operArr);
                 console.log(operArr);
@@ -357,82 +427,142 @@ function Calendar() {
         // 운영 시간 배열에 담기
         let operArr = [];
 
-        if(operation[dayOfWeek] !== '휴무'){
-            setIsOper(true);
-            const operTimeOfDay = operation[dayOfWeek];
-            // 날짜 문자열 자르기
-            const strStartTime = operTimeOfDay.split('~')[0];
-            const [strStartHour, strStartMinute] = strStartTime.split(':');
-            const strEndTime = operTimeOfDay.split('~')[1];
-            const [strEndHour, strEndMinute] = strEndTime.split(':');
-            
-            
-            // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
-            const startTime = new Date();
-            startTime.setHours(parseInt(strStartHour));
-            startTime.setMinutes(parseInt(strStartMinute));
-            startTime.setSeconds(0);
-            const endTime = new Date();
-            endTime.setHours(parseInt(strEndHour));
-            endTime.setMinutes(parseInt(strEndMinute));
-            endTime.setSeconds(0);
+        // 브레이크 타임 있을 경우
+        if(operation.breakTime !== null){
+            if(operation[dayOfWeek] !== '휴무'){
+                setIsOper(true);
+                const operTimeOfDay = operation[dayOfWeek];
+                const operBreakTime = operation.breakTime;
 
-            const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
-            const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+                // 날짜 문자열 자르기
+                const strStartTime = operTimeOfDay.split('~')[0];
+                const [strStartHour, strStartMinute] = strStartTime.split(':');
+                const strEndTime = operTimeOfDay.split('~')[1];
+                const [strEndHour, strEndMinute] = strEndTime.split(':');
+                const strStartBreak = operBreakTime.split('~')[0];
+                const [strStartBreakHour, strStartBreakMinute] = strStartBreak.split(':');
+                const strEndBreak = operBreakTime.split('~')[1];
+                const [strEndBreakHour, strEndBreakMinute] = strEndBreak.split(':');
+                
+                // 선택한 날짜의 운영 시간 -> Date() 형태
+                const startTime = new Date();
+                startTime.setHours(parseInt(strStartHour));
+                startTime.setMinutes(parseInt(strStartMinute));
+                const startBreakTime = new Date();
+                startBreakTime.setHours(parseInt(strStartBreakHour));
+                startBreakTime.setMinutes(parseInt(strStartBreakMinute));
+                const endBreakTime = new Date();
+                endBreakTime.setHours(parseInt(strEndBreakHour));
+                endBreakTime.setMinutes(parseInt(strEndBreakMinute));
+                const endTime = new Date();
+                endTime.setHours(parseInt(strEndHour));
+                endTime.setMinutes(parseInt(strEndMinute));
 
-            if (startTime < endTime) {
-                for (let i = startTime.getHours(); i < endTime.getHours(); i++) {
-                    if (startTime.getMinutes() === 0) {
-                        for (let j = 0; j < 60; j += 30) {
-                            // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
+                const startBreakOperTime = startBreakTime.getHours() + ':' + startBreakTime.getMinutes();
+                const endBreakOperTime = endBreakTime.getHours() + ':' + endBreakTime.getMinutes();
+                const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+                
+                
+                for(let i = startTime.getHours(); i < startBreakTime.getHours(); i++){
+                    if(startTime.getMinutes() === 0){
+                        for(let j = 0; j < 60; j += 30){
                             operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                         }
-                    } else if (startTime.getMinutes() === 30) {
-                        for (let j = 30; j < 60; j += 30) {
-                            // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                    } else if(startTime.getMinutes() === 30){
+                        for(let j = 30; j < 60; j += 30){
                             operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                         }
                     }
                 }
-                if (endTime.getMinutes() === 30) {
-                    // console.log(endTime.getHours().toString().padStart(2, '0') + ':30');
-                    operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
-                    
+                if(startBreakTime.getMinutes() === 30){
+                    operArr.push(startBreakTime.getHours().toString().padStart(2, '0') + ':30');
                 } else {
-                    // console.log(endTime.getHours().toString().padStart(2, '0') + ':00');
+                    operArr.push(startBreakTime.getHours().toString().padStart(2, '0') + ':00');
+                }
+                for(let i = endBreakTime.getHours(); i < endTime.getHours(); i++){
+                    for(let j = endBreakTime.getMinutes(); j < 60; j += 30){
+                        operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                    }
+                    endBreakTime.setMinutes(0);
+                }
+                if(endTime.getMinutes() === 30){
+                    operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                } else {
                     operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
                 }
             } else {
-                for (let i = startTime.getHours(); i <= 23; i++) {
-                    if (startTime.getMinutes() === 0) {
-                        for (let j = 0; j < 60; j += 30) {
-                            // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
-                            operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
-                        }
-                    } else if (startTime.getMinutes() === 30) {
-                        for (let j = 30; j < 60; j += 30) {
-                            // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
-                            operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
-                        }
-                    }
-                }
-                for (let i = 0; i < endTime.getHours(); i++) {
-                    for (let j = 0; j < 60; j += 30) {
-                        // console.log(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
-                        operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
-                    }
-                }
-                if (endTime.getMinutes() === 30) {
-                    // console.log(endTime.getHours().toString().padStart(2, '0') + ':30');
-                    operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
-                } else {
-                    // console.log(endTime.getHours().toString().padStart(2, '0') + ':00');
-                    operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
-                }
+                setIsOper(false);
+                operArr.push('00:00')
             }
         } else {
-            setIsOper(false);
-           operArr.push('00:00')
+            // 브레이크 타임 없을 경우
+            if( operation[dayOfWeek] !== '휴무'){
+                setIsOper(true);
+                const operTimeOfDay = operation[dayOfWeek];
+                
+                // 날짜 문자열 자르기
+                const strStartTime = operTimeOfDay.split('~')[0];
+                const [strStartHour, strStartMinute] = strStartTime.split(':');
+                const strEndTime = operTimeOfDay.split('~')[1];
+                const [strEndHour, strEndMinute] = strEndTime.split(':');
+                
+                
+                // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
+                const startTime = new Date();
+                startTime.setHours(parseInt(strStartHour));
+                startTime.setMinutes(parseInt(strStartMinute));
+                const endTime = new Date();
+                endTime.setHours(parseInt(strEndHour));
+                endTime.setMinutes(parseInt(strEndMinute));
+
+                const startOperTime = startTime.getHours() + ':' + startTime.getMinutes();
+                const endOperTime = endTime.getHours() + ':' + endTime.getMinutes();
+
+                if (startTime < endTime) {
+                    for (let i = startTime.getHours(); i < endTime.getHours(); i++) {
+                        if (startTime.getMinutes() === 0) {
+                            for (let j = 0; j < 60; j += 30) {
+                                operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            }
+                        } else if (startTime.getMinutes() === 30) {
+                            for (let j = 30; j < 60; j += 30) {
+                                operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            }
+                        }
+                    }
+                    if (endTime.getMinutes() === 30) {
+                        operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                    } else {
+                        operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
+                    }
+                } else {
+                    for (let i = startTime.getHours(); i <= 23; i++) {
+                        if (startTime.getMinutes() === 0) {
+                            for (let j = 0; j < 60; j += 30) {
+                                operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            }
+                        } else if (startTime.getMinutes() === 30) {
+                            for (let j = 30; j < 60; j += 30) {
+                                operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                            }
+                        }
+                    }
+                    for (let i = 0; i < endTime.getHours(); i++) {
+                        for (let j = 0; j < 60; j += 30) {
+                            operArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
+                        }
+                    }
+                    if (endTime.getMinutes() === 30) {
+                        operArr.push(endTime.getHours().toString().padStart(2, '0') + ':30');
+                    } else {
+                        operArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
+                    }
+                }
+            } else {
+                setIsOper(false);
+                operArr.push('00:00')
+            }
         }
         setOperArray(operArr);
         console.log(operArr);
@@ -484,23 +614,26 @@ function Calendar() {
                     })}
                 </div>
             </div>
-            <div className={styles.selectedDate}>
-                {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth}.${selectedTotalDate.selectedDate}(${selectedTotalDate.selectedDay})`}
-            </div>
-            <div id={styles.operArray}>
-                {operArray.map((operArr, index) => (
-                    <div 
-                        key={index} 
-                        id={styles.operArr} 
-                        style={{backgroundColor : isOper ? (selectedTimeIndex === index ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
-                                color : isOper ? '' : '#BDBEBF', 
-                                cursor : isOper ? '' : 'default'
-                        }}
-                        onClick={() => {selectTime(index)}}
-                    >
-                       {operArr}
-                    </div>
-                ))}
+            <div className={styles.selectArea}>
+                <div className={styles.selectedDate}>
+                    {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth}.${selectedTotalDate.selectedDate}(${selectedTotalDate.selectedDay})`}
+                </div>
+                <div className={styles.instructionTime}>시간을 선택해주세요.</div>
+                <div id={styles.operArray}>
+                    {operArray.map((operArr, index) => (
+                        <div 
+                            key={index} 
+                            id={styles.operArr} 
+                            style={{backgroundColor : isOper ? (selectedTimeIndex === index ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
+                                    color : isOper ? '' : '#BDBEBF', 
+                                    cursor : isOper ? '' : 'default'
+                            }}
+                            onClick={() => {selectTime(index)}}
+                        >
+                        {operArr}
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     );

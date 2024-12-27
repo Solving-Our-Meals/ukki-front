@@ -175,6 +175,7 @@ a:active {
 }
 .storeDetail {
   cursor: default;
+  border-radius: 0;
 }
 .storeDetail #storeName {
   position: absolute;
@@ -238,7 +239,7 @@ a:active {
   position: absolute;
   left: 400px;
   top: 858px;
-  width: 170px;
+  width: 190px;
   height: 233px;
   border: 2.5px solid #232323;
   background-color: #FFFFFF;
@@ -252,21 +253,23 @@ a:active {
 }
 .storeDetail #tatolOperTime .week {
   position: absolute;
-  padding-left: 5px;
+  padding-left: 17px;
 }
 .storeDetail #tatolOperTime .weekOperTime {
   position: absolute;
-  width: 126px;
+  width: 146px;
   margin-top: -28px;
-  margin-left: 30px;
+  margin-left: 33px;
   text-align: center;
 }
 .storeDetail #tatolOperTime #breakTime {
   position: absolute;
-  font-size: 13px;
+  width: max-content;
+  font-size: 11px;
   color: #615DFF;
-  margin-left: 20px;
+  margin-left: 15px;
   font-weight: 700;
+  text-align: center;
 }
 .storeDetail .keywordArea div {
   position: absolute;

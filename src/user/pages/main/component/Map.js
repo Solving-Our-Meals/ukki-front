@@ -23,7 +23,7 @@ const Map = () => {
                 const lon = position.coords.longitude; // 경도
 
                 const locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                const message = '<div style="padding:5px; height:5vw; font-weight:800;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
+                const message = '<div style="padding:5px; height:4vw; font-weight:800;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
 
                 // 마커와 인포윈도우를 표시합니다
                 displayMarker(locPosition, message);

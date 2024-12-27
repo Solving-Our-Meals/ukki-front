@@ -1,11 +1,28 @@
-#weeklyReservatonCount{
+#weeklyReservationCount{
 
     position: absolute;
-    width: 606.5px;
-    height: 300px;
+    width: 607px;
+    height: 242px;
     left: 83px;
-    top: 51px;
+    top: 109px;
 
-    border: 1px solid;
+    /* border: 1px solid; */
+    font-family: 'Bobaesum Jindo TTF';
+
+}
+
+#weeklyReservationCountText{
+
+    position: absolute;
+    height: 33px;
+    left: 114px;
+    top: 61px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    color: #232323;
 
 }

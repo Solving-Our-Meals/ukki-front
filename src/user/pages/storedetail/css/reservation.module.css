@@ -175,6 +175,7 @@ a:active {
 }
 .reservationStyle {
   cursor: default;
+  border-radius: 0;
 }
 .reservationStyle .reservationTitle {
   position: absolute;
@@ -304,28 +305,41 @@ a:active {
   position: absolute;
   z-index: -1;
 }
-.reservationStyle .calendarContainer .selectedDate {
+.reservationStyle .calendarContainer .selectArea {
   position: absolute;
-  left: 900px;
-  top: 10px;
+  width: 800px;
+  height: 500px;
+  left: 890px;
+  top: -10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.reservationStyle .calendarContainer .selectArea .selectedDate {
   width: max-content;
   height: 50px;
   font-family: "Bobaesum Jindo TTF";
   font-size: 45px;
   color: #232323;
 }
-.reservationStyle .calendarContainer #operArray {
-  position: absolute;
+.reservationStyle .calendarContainer .selectArea .instructionTime {
+  width: max-content;
+  height: 31px;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  color: #232323;
+  margin-top: 20px;
+}
+.reservationStyle .calendarContainer .selectArea #operArray {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: right;
-  justify-content: left;
-  left: 885px;
-  top: 130px;
   width: 760px;
   height: max-content;
+  margin-top: 0px;
+  margin-left: -10px;
 }
-.reservationStyle .calendarContainer #operArray #operArr {
+.reservationStyle .calendarContainer .selectArea #operArray #operArr {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -336,19 +350,6 @@ a:active {
   font-family: "Pretendard Variable";
   font-size: 20px;
   text-align: center;
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 7px 16px;
   cursor: pointer;
-}
-.reservationStyle .instructionTime {
-  position: absolute;
-  left: 1010px;
-  top: 1400px;
-  width: max-content;
-  height: 31px;
-  font-family: "Pretendard Variable";
-  font-size: 30px;
-  color: #232323;
 }/*# sourceMappingURL=reservation.module.css.map */
