@@ -267,8 +267,8 @@ const Main = () => {
                     <p>가게 대표 매뉴 : </p> <span>불고기 백반</span>
                     <img src={qorqks}/>
                     <img src={ukki}/>
-                    <input value='눌러서 현재 위치 변경 가능'></input><label>현재 위치 : </label>
-                    <input value='하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
+                    <input value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;눌러서 현재 위치 변경 가능'></input><label>현재 위치 : </label>
+                    <input value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
                     <button>예약하기</button>
                     <button>길안내</button>
                 </div>
