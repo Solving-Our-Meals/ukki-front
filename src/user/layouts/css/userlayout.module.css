@@ -1,19 +1,43 @@
-/* userlayout.module.css */
-.wrapper {
+/* .wrapper {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
+} */
 
-.contentWrapper {
-  flex-grow: 1;
+.layoutModalStyle {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  min-height: 100vh;
+  filter: blur(3px);
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
-.contentWrapper:after {
-  content: "";
-  display: block;
-  clear: both;
-}/*# sourceMappingURL=userlayout.module.css.map */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: all;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  z-index: 100000000000000000000000000;
+}
+
+.header {
+  flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
+}
+
+.main {
+  flex: 1; /* 메인 콘텐츠 영역이 남은 공간을 차지하도록 */
+  padding: 20px;
+  margin: 0;
+}
+
+.mainModalStyle{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}

@@ -1,3 +1,4 @@
+import '../../common/reset/reset.css'
 import "./css/AdminLayout.css"
 import AdminHeader from "../components/AdminHeader";
 import AdminNavBar from "../components/AdminNavBar";
