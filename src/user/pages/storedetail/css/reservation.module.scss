@@ -290,44 +290,58 @@
             }
         }
 
-        .selectedDate{
+        .selectArea{
             position: absolute;
-            left: 900px;
-            top : 10px;
-            width: max-content;
-            height: 50px;
-            font-family: 'Bobaesum Jindo TTF';
-            font-size: 45px;
-            color: $textStrong;
-        }
-
-        #operArray{
-            position : absolute;
+            // border: 10px solid red;
+            width: 800px;
+            height : 500px;
+            left : 890px;
+            top : -10px;
             display: flex;
-            flex-wrap: wrap;
-            flex-direction: right;
-            justify-content: left;
-            left : 885px;
-            top : 130px;
-            width : 760px;
-            height : max-content;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
 
-            #operArr{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width : 157px;
-                height : 37px;
-                background-color: $secondary;
-                border-radius: 10px;
+
+            .selectedDate{
+                width: max-content;
+                height: 50px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 45px;
+                color: $textStrong;
+            }
+
+            .instructionTime {
+                width : max-content;
+                height : 31px;
                 font-family: 'Pretendard Variable';
-                font-size: 20px;
-                text-align: center;
-                margin-left: 16px;
-                margin-right: 16px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                cursor: pointer;
+                font-size: 30px;
+                color: $textStrong;
+                margin-top: 20px;
+            }
+    
+            #operArray{
+                display: flex;
+                flex-wrap: wrap;
+                width : 760px;
+                height : max-content;
+                margin-top: 0px;
+                margin-left: -10px;
+    
+                #operArr{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width : 157px;
+                    height : 37px;
+                    background-color: $secondary;
+                    border-radius: 10px;
+                    font-family: 'Pretendard Variable';
+                    font-size: 20px;
+                    text-align: center;
+                    margin : 7px 16px;
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -339,17 +353,6 @@
     //     font-size: 25px;
     //     color: $textStrong;
     // }
-
-    .instructionTime {
-        position : absolute;
-        left : 1010px;
-        top : 1400px;
-        width : max-content;
-        height : 31px;
-        font-family: 'Pretendard Variable';
-        font-size: 30px;
-        color: $textStrong;
-    }
 
     // .morning {
     //     top: 1478px;
