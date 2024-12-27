@@ -178,7 +178,7 @@ function Find() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
-                        <p className="search"><Link to="/auth/find?step=4">비밀번호 찾기</Link></p>
+                        <p className="find"><Link to="/auth/find?step=4">비밀번호 찾기</Link></p>
                         <button
                             className="loginButton"
                             type="button"
@@ -208,7 +208,7 @@ function Find() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
-                        <p className="search"><Link to="/auth/find?step=4">비밀번호 찾기</Link></p>
+                        <p className="find"><Link to="/auth/find?step=4">비밀번호 찾기</Link></p>
                         <button
                             className="loginButton"
                             type="button"
@@ -233,7 +233,7 @@ function Find() {
                         </fieldset>
                         {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
-                            <p className="search"><Link to="/auth/find?step=4">비밀번호 찾기</Link></p>
+                            <p className="find"><Link to="/auth/find?step=4">비밀번호 찾기</Link></p>
                         </div>
                         <button
                             className="loginButton"
@@ -262,7 +262,7 @@ function Find() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
-                        <p className="search"><Link to="/auth/find?step=1">아이디 찾기</Link></p>
+                        <p className="find"><Link to="/auth/find?step=1">아이디 찾기</Link></p>
                         <button
                             className="loginButton"
                             type="button"
@@ -292,7 +292,7 @@ function Find() {
                             </div>
                         </fieldset>
                         {error && <p className="error">{error}</p>}
-                        <p className="search"><Link to="/auth/find?step=1">아이디 찾기</Link></p>
+                        <p className="find"><Link to="/auth/find?step=1">아이디 찾기</Link></p>
                         <button
                             className="loginButton"
                             type="button"

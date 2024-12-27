@@ -233,10 +233,10 @@ button:disabled {
     animation: fadeOut 0.5s forwards;
 }
 
-.search {
+.find {
     position: absolute;
     height: 2vw;
-    left: 37.5%;
+    left: 38.5%;
     top: 51.1%;
 
     font-family: 'Pretendard-Regular';
@@ -507,10 +507,10 @@ button:disabled {
         animation: fadeOut 0.5s forwards;
     }
 
-    .search {
+    .find {
         position: absolute;
         height: 2vw;
-        left: 37.5%;
+        left: 38.5%;
         top: 51.1%;
 
         font-family: 'Pretendard-Regular';
@@ -768,7 +768,7 @@ button:disabled {
     .inputWrapper.hidden {
         animation: fadeOut 0.5s forwards;
     }
-    .search {
+    .find {
         position: absolute;
         width : 20vw;
         margin-top: -6.5%;
@@ -1030,7 +1030,7 @@ button:disabled {
     .inputWrapper.hidden {
         animation: fadeOut 0.5s forwards;
     }
-    .search {
+    .find {
         position: absolute;
         width : 20vw;
         margin-top: -9.4%;
