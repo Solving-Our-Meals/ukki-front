@@ -116,7 +116,7 @@ div {
     .search {
         position: absolute;
         width: 100vw;
-        height: 50vw;
+        height: 5vw;
         margin: 0;
 
         input {
@@ -187,6 +187,7 @@ div {
             background: #FFFFFF;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 20px;
+            z-index: 3;
 
             &:nth-of-type(2) {
                 left: 30.5vw;
@@ -224,9 +225,10 @@ div {
             border-radius: 10%;
             position: absolute;
             left: 12.5vw;
-            z-index: -1;
+            z-index: 2;
             opacity: 0.8;
             top: 76vw;
+            transition: opacity 0.5s;
 
             &:nth-of-type(2) {
                 left: 28vw;
@@ -249,6 +251,7 @@ div {
 
             &:hover {
                 opacity: 1;
+                outline: $primary 3px solid;
             }
         }
 
@@ -433,6 +436,7 @@ div {
             z-index: 10;
         }
     }
+
     .talk {
         img:nth-of-type(1) {
             position: absolute;
@@ -621,7 +625,7 @@ div {
             height: 65vw;
             position: relative;
             overflow: hidden;
-            top: 0vw;
+            top: 5vw;
             left: 4vw;
             list-style: none;
             border-radius: 0;
@@ -733,14 +737,14 @@ div {
         .search {
             position: absolute;
             width: 100vw;
-            height: 50vw;
+            height: 5vw;
             margin: 0;
-    
+
             input {
                 position: absolute;
                 width: 60vw;
                 height: 5vw;
-                left: 18vw;
+                left: 20vw;
                 top: 8vw;
                 border-radius: 50px;
                 border: $primary 3px solid;
@@ -756,7 +760,7 @@ div {
             img {
                 position: absolute;
                 width: 3.5vw;
-                left: 72vw;
+                left: 74vw;
                 top: 8.8vw;
             }
         }
@@ -777,6 +781,10 @@ div {
 
 
         .category {
+            position: relative;
+            top: -65vw;
+            left: -2vw;
+
             h3 {
                 position: absolute;
                 left: 39vw;
@@ -800,35 +808,37 @@ div {
                 position: absolute;
                 width: 5vw;
                 height: 2vw;
-                left: 15vw;
-                top: 98vw;
+                left: 31.5vw;
+                top: 99vw;
                 background: #FFFFFF;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 border-radius: 20px;
+                z-index: 3;
 
                 &:nth-of-type(2) {
-                    left: 30.5vw;
-                    top: 100vw;
+                    left: 50vw;
+                    top: 101vw;
                 }
 
                 &:nth-of-type(3) {
-                    left: 46vw;
+                    left: 68.5vw;
                 }
 
                 &:nth-of-type(4) {
-                    left: 61.5vw;
-                    top: 100vw;
+                    left: 40.5vw;
+                    top: 120vw;
                 }
 
                 &:nth-of-type(5) {
-                    left: 77vw;
+                    left: 59.5vw;
+                    top: 120vw;
                 }
 
                 p {
                     color: $textStrong;
                     position: absolute;
-                    left: 1.5vw;
-                    top: 0.5vw;
+                    left: 1.2 vw;
+                    top: 0.4vw;
                     font-family: 'Pretendard Variable';
                     font-weight: 500;
                     font-size: 1.5vw;
@@ -838,42 +848,46 @@ div {
             }
 
             img {
-                width: 11vw;
+                width: 12vw;
                 border-radius: 10%;
                 position: absolute;
-                left: 12.5vw;
-                z-index: -1;
+                left: 28vw;
+                z-index: 2;
                 opacity: 0.8;
                 top: 94vw;
+                transition: opacity 0.5s;
 
                 &:nth-of-type(2) {
-                    left: 28vw;
+                    left: 46.5vw;
                     top: 96vw;
 
-                }
-
-                &:nth-of-type(3) {
-                    left: 43.5vw;
                 }
 
                 &:nth-of-type(4) {
-                    left: 59vw;
-                    top: 96vw;
+                    left: 65vw;
+                    top: 94vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 37vw;
+                    top: 115vw;
                 }
 
                 &:nth-of-type(5) {
-                    left: 74.5vw;
+                    left: 56vw;
+                    top: 115vw;
                 }
 
                 &:hover {
                     opacity: 1;
+                    outline: $primary 3px solid;
                 }
             }
 
             span {
                 position: absolute;
-                left: 14.5vw;
-                top: 105.5vw;
+                left: 31vw;
+                top: 107.5vw;
                 font-family: 'Pretendard Variable';
                 font-weight: 500;
                 font-size: 1vw;
@@ -883,21 +897,22 @@ div {
                 border-radius: 50px;
 
                 &:nth-of-type(2) {
-                    left: 30vw;
-                    top: 107.5vw;
+                    left: 50vw;
+                    top: 109.5vw;
                 }
 
                 &:nth-of-type(3) {
-                    left: 45.5vw;
+                    left: 68vw;
                 }
 
                 &:nth-of-type(4) {
-                    left: 61vw;
-                    top: 107.5vw;
+                    left: 40vw;
+                    top: 128.5vw;
                 }
 
                 &:nth-of-type(5) {
-                    left: 77vw;
+                    left: 59vw;
+                    top: 128.5vw;
                 }
             }
         }
@@ -905,8 +920,8 @@ div {
         .location {
             position: absolute;
             width: 100vw;
-            height: 30vw;
-            top: 120vw;
+            height: 40vw;
+            top: 140vw;
             background: $secondary2;
             left: 0;
             border-radius: 0;
@@ -914,7 +929,7 @@ div {
 
             h3 {
                 position: absolute;
-                left: 55vw;
+                left: 50vw;
                 top: 5vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-size: 2vw;
@@ -923,33 +938,33 @@ div {
 
             &>img:nth-of-type(1) {
                 position: absolute;
-                left: 55vw;
-                width: 9vw;
+                left: 50vw;
+                width: 10vw;
                 top: 8vw;
-                border: 3px solid #FF8AA3;
-                border-radius: 20px;
+                border: 2px solid #FF8AA3;
+                border-radius: 15px;
             }
 
             p {
                 position: absolute;
                 font-family: 'Pretendard Variable';
                 font-weight: 700;
-                font-size: 0.8vw;
+                font-size: 1vw;
                 color: $textStrong;
             }
 
             p:nth-of-type(1) {
-                left: 65vw;
+                left: 61vw;
                 top: 8.5vw;
             }
 
             p:nth-of-type(2) {
-                left: 65vw;
+                left: 61vw;
                 top: 10vw;
             }
 
             p:nth-of-type(3) {
-                left: 65vw;
+                left: 61vw;
                 top: 13vw;
             }
 
@@ -958,65 +973,65 @@ div {
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 0.8vw;
+                font-size: 1vw;
                 color: $textStrong;
             }
 
             span:nth-of-type(1) {
-                left: 69vw;
+                left: 66vw;
                 top: 8.5vw;
             }
 
             span:nth-of-type(2) {
-                left: 65vw;
+                left: 61vw;
                 top: 11.5vw;
             }
 
             span:nth-of-type(3) {
-                left: 70.5vw;
+                left: 68vw;
                 top: 13vw;
             }
 
             input {
                 position: absolute;
-                width: 20.5vw;
-                height: 2.3vw;
+                width: 23.5vw;
+                height: 3vw;
                 background: #FFFFFF;
                 border-radius: 20px;
                 border: none;
                 outline: none;
                 color: $textCaption;
-                font-size: 0.8vw;
+                font-size: 1vw;
                 font-weight: normal;
 
             }
 
             input:nth-of-type(1) {
-                left: 55vw;
-                top: 15.5vw;
+                left: 50vw;
+                top: 17vw;
                 text-align: center;
             }
 
             input:nth-of-type(2) {
-                left: 55vw;
-                top: 18.5vw;
+                left: 50vw;
+                top: 21vw;
                 text-align: center;
             }
 
             label:nth-of-type(1) {
                 position: absolute;
-                left: 56vw;
-                top: 16.2vw;
+                left: 52vw;
+                top: 18vw;
                 font-family: 'Pretendard Variable';
-                font-weight: 600;
+                font-weight: 700;
                 font-size: 1vw;
                 color: $textStrong;
             }
-    
+
             label:nth-of-type(2) {
                 position: absolute;
-                left: 56vw;
-                top: 19.2vw;
+                left: 52vw;
+                top: 22vw;
                 font-family: 'Pretendard Variable';
                 font-weight: 600;
                 font-size: 1vw;
@@ -1026,29 +1041,29 @@ div {
 
             button {
                 position: absolute;
-                width: 9.5vw;
-                height: 1.8vw;
-                left: 55vw;
-                top: 22vw;
+                width: 10vw;
+                height: 2.5vw;
+                left: 50vw;
+                top: 27vw;
                 background: $primary;
                 border-radius: 50px;
                 border: none;
                 color: $textStrong;
                 font-weight: 700;
                 font-family: 'Pretendard Variable';
-                font-size: 0.8vw;
+                font-size: 1.2vw;
             }
 
             button:nth-of-type(2) {
-                left: 66vw;
+                left: 63vw;
                 background-color: #FFA8B8;
             }
 
             img:nth-of-type(2) {
                 position: absolute;
                 width: 7vw;
-                left: 46vw;
-                top: 12vw;
+                left: 42vw;
+                top: 23vw;
                 z-index: 10;
             }
         }
@@ -1057,21 +1072,21 @@ div {
             img:nth-of-type(1) {
                 position: absolute;
                 width: 80vw;
-                top: 168vw;
+                top: 198vw;
                 left: 10vw;
             }
 
             img:nth-of-type(2) {
                 position: absolute;
                 width: 75vw;
-                top: 160vw;
+                top: 190vw;
                 left: 10vw;
             }
 
             img:nth-of-type(3) {
                 position: absolute;
                 width: 50vw;
-                top: 162vw;
+                top: 192vw;
                 left: 25vw;
             }
 
@@ -1083,7 +1098,7 @@ div {
             h3 {
                 position: absolute;
                 left: 15vw;
-                top: 195vw;
+                top: 215vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-weight: 400;
                 font-size: 3vw;
@@ -1098,7 +1113,7 @@ div {
             p:nth-of-type(1) {
                 position: absolute;
                 left: 15vw;
-                top: 204vw;
+                top: 224vw;
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 600;
@@ -1109,11 +1124,11 @@ div {
             p:nth-of-type(2) {
                 position: absolute;
                 left: 15vw;
-                top: 207vw;
+                top: 227vw;
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 0.8vw;
+                font-size: 1vw;
                 line-height: 150%;
                 color: $danger;
             }
@@ -1121,21 +1136,21 @@ div {
             &>span {
                 position: absolute;
                 left: 15vw;
-                top: 213vw;
+                top: 233vw;
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 1vw;
+                font-size: 1.2vw;
                 line-height: 150%;
                 color: $textStrong;
             }
 
             button {
                 position: absolute;
-                width: 9vw;
-                height: 2vw;
-                left: 19vw;
-                top: 221vw;
+                width: 10vw;
+                height: 3vw;
+                left: 20vw;
+                top: 241vw;
                 background: $secondary;
                 border-radius: 30px;
                 color: $textStrong;
@@ -1143,7 +1158,7 @@ div {
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 600;
-                font-size: 1vw;
+                font-size: 1.2vw;
 
 
             }
@@ -1152,15 +1167,15 @@ div {
                 position: absolute;
                 width: 4vw;
                 left: 14.5vw;
-                top: 220vw;
+                top: 240.5vw;
                 opacity: 0.6;
             }
 
             img:nth-of-type(2) {
                 position: absolute;
                 width: 4vw;
-                left: 28.5vw;
-                top: 220vw;
+                left: 31.5vw;
+                top: 240.5vw;
                 opacity: 0.6;
             }
 
@@ -1173,7 +1188,7 @@ div {
 
             .rouletter-bg {
                 position: absolute;
-                top: 145vw;
+                top: 165vw;
                 left: 65vw;
                 transform: translate(-50%, -50%);
                 width: 28vw;
@@ -1199,7 +1214,7 @@ div {
             .rouletter-arrow {
 
                 position: absolute;
-                top: 130vw;
+                top: 150vw;
                 left: 64vw;
                 z-index: 9;
 
@@ -1214,7 +1229,7 @@ div {
                 position: absolute;
                 width: 4vw;
                 height: 4vw;
-                top: 143vw;
+                top: 163vw;
                 left: 63vw;
                 border-radius: 50%;
                 border: none;
@@ -1223,6 +1238,642 @@ div {
                 font-family: 'Pretendard Variable';
                 font-weight: 500;
                 font-size: 1vw;
+
+            }
+        }
+
+        .hidden-input {
+            display: none;
+            z-index: -9;
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        input {
+            position: absolute;
+        }
+
+        .slidewrap {
+            width: 85vw;
+            height: 100vw;
+            position: relative;
+            overflow: hidden;
+            top: 10vw;
+            left: 6vw;
+            list-style: none;
+            border-radius: 0;
+
+            .slides {
+                display: flex;
+
+
+
+
+                .slide {
+                    flex: 0 0 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 90vw;
+                    height: 90vw;
+                    overflow: hidden;
+                    position: relative;
+                    border-radius: 0;
+
+                    .section1,
+                    .section2,
+                    .section3,
+                    .section4,
+                    .section5 {
+                        flex-shrink: 0;
+                        /* 슬라이드가 줄어들지 않도록 */
+                        width: 100vw;
+                        /* 각 슬라이드의 너비를 화면 너비에 맞추기 */
+                        height: 40vw;
+                        /* 높이도 비슷하게 맞추기 */
+                    }
+
+                    div {
+                        h3 {
+                            position: absolute;
+                            left: 11vw;
+                            top: 64.5vw;
+                            font-family: 'Bobaesum Jindo TTF';
+                            font-size: 3vw;
+                            color: $primary;
+                            z-index: 1;
+                        }
+
+                        img {
+                            position: absolute;
+                            width: 30vw;
+                            left: 6vw;
+                            top: 55vw;
+                        }
+
+                        p {
+                            position: absolute;
+                            left: 8vw;
+                            top: 70vw;
+                            font-family: 'Pretendard Variable';
+                            font-weight: 800;
+                            font-size: 2.5vw;
+                            color: $background;
+                        }
+
+                        span {
+                            position: absolute;
+                            width: 25vw;
+                            left: 8vw;
+                            top: 74vw;
+                            font-family: 'Pretendard Variable';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 2vw;
+                            line-height: 126%;
+                            color: $background;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+        .pagination {
+            position: relative;
+            top: -8vw;
+            z-index: 9;
+
+            ul {
+                position: relative;
+                gap: 5vw;
+                left: 33vw;
+
+                li {
+                    display: inline-block !important;
+                    margin-left: 3vw !important;
+                    width: 1vw !important;
+                    height: 1vw !important;
+                    background-color: $background !important;
+                    border-radius: 50px !important;
+                    opacity: 0.5 !important;
+                    cursor: pointer !important;
+
+                    &.act {
+                        opacity: 1 !important; // 활성화된 상태의 색상
+                    }
+                }
+            }
+        }
+
+        .search {
+            position: absolute;
+            width: 100vw;
+            height: 50vw;
+            margin: 0;
+
+            input {
+                position: absolute;
+                width: 70vw;
+                height: 8vw;
+                left: 13vw;
+                top: 15vw;
+                border-radius: 50px;
+                border: $primary 2px solid;
+                background-color: $secondary2;
+                color: #FEBA00;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 2.2vw;
+                margin: 0;
+                padding: 0;
+            }
+
+            img {
+                position: absolute;
+                width: 5vw;
+                left: 75vw;
+                top: 16.5vw;
+            }
+        }
+
+        .btn {
+            position: relative;
+            font-size: 10vw;
+            top: -55vw;
+            left: 2vw;
+            color: #fff;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .rightbtn {
+            left: 75vw;
+            top: -65vw;
+        }
+
+
+        .category {
+            position: relative;
+            top: -55vw;
+            left: -3vw;
+
+            h3 {
+                position: absolute;
+                left: 39vw;
+                top: 86vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 3vw;
+                color: $textStrong;
+            }
+
+            p {
+                position: absolute;
+                left: 36vw;
+                top: 89.5vw;
+                font-family: 'Pretendard Variable';
+                font-size: 2vw;
+                text-align: center;
+                color: $textStrong;
+            }
+
+            div {
+                position: absolute;
+                width: 12vw;
+                height: 4vw;
+                left: 28.5vw;
+                top: 106vw;
+                background: #FFFFFF;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 20px;
+
+                &:nth-of-type(2) {
+                    left: 61.5vw;
+                    top: 106vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 28.5vw;
+                    top: 140vw;
+                }
+
+                &:nth-of-type(4) {
+                    left: 61.5vw;
+                    top: 140vw;
+                }
+
+                &:nth-of-type(5) {
+                    left: 45vw;
+                    top: 173vw;
+                }
+
+                p {
+                    color: $textStrong;
+                    position: absolute;
+                    left: 4vw;
+                    top: 1vw;
+                    font-family: 'Pretendard Variable';
+                    font-weight: 500;
+                    font-size: 2.2vw;
+                    z-index: 5;
+                }
+
+            }
+
+            img {
+                width: 25vw;
+                border-radius: 10%;
+                position: absolute;
+                left: 22vw;
+                z-index: -1;
+                opacity: 0.8;
+                top: 96vw;
+                transition: opacity 0.5s;
+
+                &:nth-of-type(2) {
+                    left: 55vw;
+                    top: 96vw;
+                }
+
+                &:nth-of-type(4) {
+                    top: 130vw;
+                    left: 22vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 55vw;
+                    top: 130vw;
+                }
+
+                &:nth-of-type(5) {
+                    left: 38vw;
+                    top: 163vw;
+                }
+
+                &:hover {
+                    opacity: 1;
+                    outline: $primary 3px solid;
+                }
+            }
+
+            span {
+                position: absolute;
+                left: 29vw;
+                top: 123vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 500;
+                font-size: 1.5vw;
+                color: $textStrong;
+                background-color: $secondary2;
+                padding: 1vw 3vw;
+                border-radius: 50px;
+
+                &:nth-of-type(2) {
+                    left: 62vw;
+                    top: 123vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 29vw;
+                    top: 157vw;
+                }
+
+                &:nth-of-type(4) {
+                    left: 62vw;
+                    top: 157vw;
+                }
+
+                &:nth-of-type(5) {
+                    left: 45vw;
+                    top: 190vw;
+                }
+            }
+        }
+
+        .location {
+            position: absolute;
+            width: 100vw;
+            height: 125vw;
+            top: 250vw;
+            background: $secondary2;
+            left: -1.5vw;
+            border-radius: 0;
+            border: none;
+
+            h3 {
+                position: absolute;
+                left: 32vw;
+                top: 10vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 4vw;
+                color: $textStrong;
+            }
+
+            &>img:nth-of-type(1) {
+                position: absolute;
+                left: 30vw;
+                width: 20vw;
+                top: 18vw;
+                border: 2px solid #FF8AA3;
+                border-radius: 15px;
+            }
+
+            p {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 2vw;
+                color: $textStrong;
+            }
+
+            p:nth-of-type(1) {
+                left: 52vw;
+                top: 18.5vw;
+            }
+
+            p:nth-of-type(2) {
+                left: 52vw;
+                top: 22.5vw;
+            }
+
+            p:nth-of-type(3) {
+                left: 52vw;
+                top: 29vw;
+            }
+
+            span {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 2vw;
+                color: $textStrong;
+            }
+
+            span:nth-of-type(1) {
+                left: 61.5vw;
+                top: 18.5vw;
+            }
+
+            span:nth-of-type(2) {
+                left: 52vw;
+                top: 25.5vw;
+            }
+
+            span:nth-of-type(3) {
+                left: 65.5vw;
+                top: 29vw;
+            }
+
+            input {
+                position: absolute;
+                width: 45vw;
+                height: 5vw;
+                background: #FFFFFF;
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                color: $textCaption;
+                font-size: 2vw;
+                font-weight: normal;
+
+            }
+
+            input:nth-of-type(1) {
+                left: 30vw;
+                top: 35vw;
+                text-align: center;
+            }
+
+            input:nth-of-type(2) {
+                left: 30vw;
+                top: 42vw;
+                text-align: center;
+            }
+
+            label:nth-of-type(1) {
+                position: absolute;
+                left: 32vw;
+                top: 36.5vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 2vw;
+                color: $textStrong;
+            }
+
+            label:nth-of-type(2) {
+                position: absolute;
+                left: 32vw;
+                top: 43.5vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 600;
+                font-size: 2vw;
+                color: $textStrong;
+                width: 60px;
+            }
+
+            button {
+                position: absolute;
+                width: 18vw;
+                height: 4vw;
+                left: 30vw;
+                top: 50vw;
+                background: $primary;
+                border-radius: 50px;
+                border: none;
+                color: $textStrong;
+                font-weight: 700;
+                font-family: 'Pretendard Variable';
+                font-size: 2.2vw;
+            }
+
+            button:nth-of-type(2) {
+                left: 56vw;
+                background-color: #FFA8B8;
+            }
+
+            img:nth-of-type(2) {
+                position: absolute;
+                width: 15vw;
+                left: 72vw;
+                top: 83vw;
+                z-index: 10;
+            }
+        }
+
+        .talk {
+            position: relative;
+            top: -5vw;
+            img:nth-of-type(1) {
+                position: absolute;
+                width: 80vw;
+                top: 298vw;
+                left: 10vw;
+            }
+
+            img:nth-of-type(2) {
+                position: absolute;
+                width: 75vw;
+                top: 290vw;
+                left: 10vw;
+            }
+
+            img:nth-of-type(3) {
+                position: absolute;
+                width: 50vw;
+                top: 292vw;
+                left: 25vw;
+            }
+
+
+
+        }
+
+        .random {
+            h3 {
+                position: absolute;
+                left: 10vw;
+                top: 420vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-weight: 400;
+                font-size: 3.5vw;
+                line-height: 128.63%;
+                color: $textStrong;
+
+                span {
+                    color: $primary;
+                }
+            }
+
+            p:nth-of-type(1) {
+                position: absolute;
+                left: 10vw;
+                top: 432vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 2.2vw;
+                color: $textStrong;
+            }
+
+            p:nth-of-type(2) {
+                position: absolute;
+                left: 10vw;
+                top: 436vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1.8vw;
+                line-height: 150%;
+                color: $danger;
+            }
+
+            &>span {
+                position: absolute;
+                left: 10vw;
+                top: 447vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1.8vw;
+                line-height: 150%;
+                color: $textStrong;
+            }
+
+            button {
+                position: absolute;
+                width: 20vw;
+                height: 4vw;
+                left: 18vw;
+                top: 461vw;
+                background: $secondary;
+                border-radius: 30px;
+                color: $textStrong;
+                border: none;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 2vw;
+
+
+            }
+
+            img:nth-of-type(1) {
+                position: absolute;
+                width: 6vw;
+                left: 10vw;
+                top: 460vw;
+                opacity: 0.6;
+            }
+
+            img:nth-of-type(2) {
+                position: absolute;
+                width: 6vw;
+                left: 40vw;
+                top: 460vw;
+                opacity: 0.6;
+            }
+
+        }
+
+        .roulette {
+            position: relative;
+            width: 30vw;
+            height: 30vw;
+
+            .rouletter-bg {
+                position: absolute;
+                top: 340vw;
+                left: 70vw;
+                transform: translate(-50%, -50%);
+                width: 38vw;
+                height: 38vw;
+                border-radius: 350px;
+                overflow: hidden;
+                border: 5px solid $primary;
+
+                .rouletter-wacu {
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        background: $primary;
+                        background-size: 100%;
+                        transform-origin: center;
+                        transition-timing-function: ease-in-out;
+                        transition: 2s;
+
+                    }
+                }
+            }
+
+            .rouletter-arrow {
+
+                position: absolute;
+                top: 318.5vw;
+                left: 68.5vw;
+                z-index: 9;
+
+                img {
+                    width: 3vw;
+                }
+
+            }
+
+
+            .rouletter-btn {
+                position: absolute;
+                width: 8vw;
+                height: 8vw;
+                top: 335.5vw;
+                left: 66.5vw;
+                border-radius: 50%;
+                border: none;
+                background-color: $primary;
+                color: $background;
+                font-family: 'Pretendard Variable';
+                font-weight: 500;
+                font-size: 2vw;
 
             }
         }
