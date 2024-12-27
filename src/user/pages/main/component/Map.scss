@@ -736,6 +736,22 @@ div {
             height: 50vw;
             margin: 0;
     
+// 2024-12-27 병합 resolve
+// }
+#map {
+    position: absolute;
+    width: 30vw;
+    height: 20vw;
+    border-radius: 20px;
+    border: 3px solid $primary;
+    left: 20vw;
+    top: 4.5vw;
+
+    div {
+        div {
+            div {
+                div {
+// 2024-12-27 병합 resolve
             input {
                 position: absolute;
                 width: 60vw;
@@ -826,6 +842,7 @@ div {
 
                 p {
                     color: $textStrong;
+// 2024-12-27 병합 resolve
                     position: absolute;
                     left: 1.5vw;
                     top: 0.5vw;
@@ -1232,5 +1249,6 @@ div {
             z-index: -9;
             opacity: 0;
         }
+    }
     }
 }
