@@ -60,7 +60,6 @@ function Login() {
 
         const result = await response.json();
 
-        console.log(result.success)
         if (result.success) {
             setError('');
             window.location.href = '/main';
@@ -117,7 +116,7 @@ function Login() {
                         </fieldset>
                         {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
-                            <p className="search" onClick={() => handleSearchLink('step1')}>아이디 찾기</p>
+                            <p className="search">아이디 찾기</p>
                         </div>
                         <button
                             className="loginButton"
@@ -155,7 +154,7 @@ function Login() {
                         </fieldset>
                         {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
-                            <p className="search" onClick={() => handleSearchLink('step2')}>비밀번호 찾기</p>
+                            <p className="search">비밀번호 찾기</p>
                         </div>
                         <button
                             className="loginButton"
