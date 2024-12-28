@@ -5,6 +5,7 @@
   top: 120px;
   width: 1805px;
   height: 381px;
+  border-radius: 0;
 }
 .bannerStyle .slider {
   display: flex;
@@ -13,4 +14,4 @@
 .bannerStyle .slider .slide {
   min-width: 100%;
   box-sizing: border-box;
-}/*# sourceMappingURL=banner.module.css.map */
+}
