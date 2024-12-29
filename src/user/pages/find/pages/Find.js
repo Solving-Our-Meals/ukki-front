@@ -247,7 +247,6 @@ import '../../signup/css/Signup.css'
                         </form>
                     )}
 
-                    {/* 비밀번호 변경 완료 단계 */}
                     {step === 6 && (
                         <div>
                             <p>비밀번호가 성공적으로 변경되었습니다.</p>
