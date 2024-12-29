@@ -1,0 +1,40 @@
+@import "../../../../common/reset/reset.scss";
+
+.reviewStyle{
+    cursor: default;
+
+    #strReview{
+        position: absolute;
+        left : 112px;
+        top : 1984px;
+        width: max-content;
+        font-family: 'Bobaesum Jindo TTF';
+        font-size: 50px;
+        color: $textStrong;
+    }
+
+    #strCountReview{
+        position: absolute;
+        left : 112px;
+        top : 2051px;
+        width: max-content;
+        font-family: 'Pretendard Variable';
+        font-size: 30px;
+        color: $textStrong;
+    }
+
+    #btnWriteReview{
+        position : absolute;
+        left : 1400px;
+        top : 2019px;
+        width : 271px;
+        height : 61px;
+        background-color: $primary;
+        border-radius: 50px;
+        border: none;
+        font-family: 'Pretendard Variable';
+        font-size: 30px;
+        font-weight: 600;
+        color: $textStrong;
+    }
+}

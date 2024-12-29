@@ -17,7 +17,7 @@
 
     #storeDes{
         position : absolute;
-        width: max-content;
+        width: 780px;
         height: 30px;
         left : 112px;
         top : 700px;
@@ -25,6 +25,8 @@
         font-style: 'semi-bold';
         font-size : 25px;
         color: $textStrong;
+        line-height: 30px;
+        // border: 1px solid red;
     }
 
     #mapIcon{
@@ -32,13 +34,13 @@
         width : 145px;
         height : 164px;
         left : 85px;
-        top : 730px;
+        top : 750px;
     }
 
     #storeAddress {
         position : absolute;
         left : 235px;
-        top : 780px;
+        top : 800px;
         width : max-content;
         height: 41px;
         font-family : 'Pretendard Variable';
@@ -49,7 +51,7 @@
     #operTime{
         position : absolute;
         left : 235px;
-        top : 824px;
+        top : 844px;
         width : max-content;
         height: 41px;
         font-family : 'Pretendard Variable';
@@ -62,15 +64,17 @@
         position : absolute;
         width : 18px;
         height : 22px;
-        left : 573px;
-        top : 826px;
+        margin: 10px;
+        top : -10px;
+        // left : 573px;
+        // top : 826px;
         cursor: pointer;
     }
 
     #tatolOperTime{
         position : absolute;
         left : 400px;
-        top : 858px;
+        top : 878px;
         width : 190px;
         height : 233px;
         border: 2.5px solid $textStrong;

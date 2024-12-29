@@ -395,3 +395,10 @@ a:active {
   margin: 10px 10px;
   cursor: pointer;
 }
+.reservationStyle #hr {
+  position: absolute;
+  left: 91px;
+  top: 1912px;
+  width: 1738px;
+  background: #D9D9D9;
+}

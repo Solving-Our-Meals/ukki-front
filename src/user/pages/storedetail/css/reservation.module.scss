@@ -393,22 +393,11 @@
             }
         }
     }
-
-    // .morning, .afternoon {
-    //     position: absolute;
-    //     left: 960px;
-    //     font-family: 'Pretendard Variable';
-    //     font-size: 25px;
-    //     color: $textStrong;
-    // }
-
-    // .morning {
-    //     top: 1478px;
-    //     height: 30px;
-    // }
-
-    // .afternoon {
-    //     top: 1630px;
-    //     height: 30px;
-    // }
+    #hr{
+        position : absolute;
+        left : 91px;
+        top : 1106px;
+        width : 1738px;
+        background: #D9D9D9;
+    }
 }
