@@ -25,7 +25,7 @@
 
     #btnWriteReview{
         position : absolute;
-        left : 1400px;
+        left : 1530px;
         top : 2019px;
         width : 271px;
         height : 61px;
@@ -36,5 +36,91 @@
         font-size: 30px;
         font-weight: 600;
         color: $textStrong;
+        cursor: pointer;
+    }
+
+    .reviewArea{
+        cursor: default;
+        position: absolute;
+        left: 163px;
+        top : 2135px;
+
+        .reviewContainer{
+            position: relative;
+            display: inline-block;
+            border: 2px solid blue;
+
+            #reviewImg{
+                display: block;
+                top : 10px;
+                width: 1532px;
+                height : 475.5px;
+                z-index: 1;
+            }
+    
+            div{
+                position: absolute;
+                width : max-content;
+                cursor: default;
+                z-index: 2;
+            }
+    
+            div:nth-of-type(1){
+                left : 97px;
+                top : 50px;
+                width : 114px;
+                height : 108px;
+                z-index: 5;
+                border: 3px solid red;
+                border-radius: 0;
+            }
+
+            div:nth-of-type(2){
+                left: 230px;
+                top : 63px;
+                width: max-content;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 30px;
+                font-weight: 500;
+                font-style: normal;
+                color: $textStrong;
+            }
+
+            div:nth-of-type(3){
+               left : 230px;
+               top : 107px;
+               width: max-content;
+               font-family: 'Pretendard Variable';
+               font-size: 20px;
+               font-weight: 400;
+               font-style: normal; 
+               color: $textStrong;
+            }
+
+            div:nth-of-type(4){
+                left : 107px;
+                top : 173px;
+                width: 802px;
+                height: 217px;
+                background-color: #FFF9D3;
+                padding-left: 15px;
+                padding-top: 10px;
+                font-family: 'Pretendard Variable';
+                font-size: 20px;
+                font-weight: 400;
+                font-style: normal; 
+                color: $textStrong;
+                line-height: 160%;
+            }
+
+            div:nth-of-type(5){
+                left : 1022px;
+                top : 37px;
+                width: 468px;
+                height: 367px;
+                border: 2px solid red;
+            }
+            
+        }
     }
 }
