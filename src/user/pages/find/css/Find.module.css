@@ -9,6 +9,22 @@
     justify-content: center;
 }
 
+.findAccountText {
+    position: absolute;
+    height: 2vw;
+    left: 37.5%;
+    top: 51.1%;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #232323;
+    animation: hello 0.5s ease;
+}
+
 .findAccountContent {
     box-sizing: border-box;
 
@@ -36,16 +52,28 @@
     position: absolute;
     width: 241px;
     height: 63px;
-    left: 92px;
-    top: 110px;
+    left: 61px;
+    top: 105px;
 
     font-family: 'Mungyeong-Gamhong-Apple';
     font-style: normal;
     font-weight: 400;
-    font-size: 50px;
+    font-size: 30px;
     line-height: 62px;
 
     color: #FF8AA3;
+}
+
+.signupTextId {
+    left: 110px;
+    top: 120px;
+    font-size: 35px;
+}
+
+.signupTextPassword {
+    left: 100px;
+    top: 120px;
+    font-size: 30px;
 }
 
 input {
@@ -127,6 +155,26 @@ input.errorInput:focus {
     color: #000000;
 }
 
+.changeButton {
+    position: absolute;
+    width: 83px;
+    height: 38px;
+    left: 765px;
+    top: 295px;
+    border: none;
+
+    background: #FEDA00;
+    border-radius: 25px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #000000;
+}
+
 .loginButton:active {
     margin-left: 2px;
     margin-top: 1px;
@@ -146,6 +194,24 @@ input.errorInput:focus {
     margin-bottom: 20px;
     position: relative;
     transition: all 0.3s ease;
+}
+
+.userId {
+    position: absolute;
+    width: 500px;
+    left: 40.5%;
+    right: 37.92%;
+    top: 30%;
+    bottom: 56.24%;
+
+    font-family: 'Mungyeong-Gamhong-Apple';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    color: #232323;
 }
 
 .mainConfirm {
@@ -304,7 +370,7 @@ button:disabled {
     }
 }
 
-.inputWrapper {
+.inputWrapper, .passwordToggleBtn {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 0.5s forwards;
@@ -434,16 +500,28 @@ input[type="checkbox"] {
         position: absolute;
         width: 241px;
         height: 63px;
-        left: 92px;
-        top: 110px;
+        left: 61px;
+        top: 105px;
 
         font-family: 'Mungyeong-Gamhong-Apple';
         font-style: normal;
         font-weight: 400;
-        font-size: 50px;
+        font-size: 30px;
         line-height: 62px;
 
         color: #FF8AA3;
+    }
+
+    .signupTextId {
+        left: 105px;
+        top: 120px;
+        font-size: 35px;
+    }
+
+    .signupTextPassword {
+        left: 100px;
+        top: 120px;
+        font-size: 30px;
     }
 
     input {
@@ -544,6 +622,24 @@ input[type="checkbox"] {
         margin-bottom: 20px;
         position: relative;
         transition: all 0.3s ease;
+    }
+
+    .userId {
+        position: absolute;
+        width: 500px;
+        left: 37.5%;
+        right: 37.92%;
+        top: 40%;
+        bottom: 56.24%;
+
+        font-family: 'Mungyeong-Gamhong-Apple';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 44px;
+        text-align: center;
+
+        color: #232323;
     }
 
     .mainConfirm {
@@ -839,6 +935,14 @@ input[type="checkbox"] {
         line-height: 62px;
 
         color: #FF8AA3;
+    }
+
+    .signupTextId {
+        font-size: 20px;
+    }
+
+    .signupTextPassword {
+
     }
 
     input {
@@ -1224,16 +1328,28 @@ input[type="checkbox"] {
         position: absolute;
         width: 241px;
         height: 63px;
-        left: 38px;
-        top: 65px;
+        left: 61px;
+        top: 105px;
 
         font-family: 'Mungyeong-Gamhong-Apple';
         font-style: normal;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 30px;
         line-height: 62px;
 
         color: #FF8AA3;
+    }
+
+    .signupTextId {
+        left: 105px;
+        top: 120px;
+        font-size: 35px;
+    }
+
+    .signupTextPassword {
+        left: 100px;
+        top: 120px;
+        font-size: 30px;
     }
 
     input {
@@ -1490,7 +1606,7 @@ input[type="checkbox"] {
         }
     }
 
-    .inputWrapper {
+    .inputWrapper, .passwordToggleBtn {
         opacity: 0;
         transform: translateY(20px);
         animation: fadeIn 0.5s forwards;

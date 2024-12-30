@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import '../css/reset.css';
 import styles from '../css/Find.module.css';
 import '../../signup/css/Signup.css'
+import { Link } from 'react-router-dom';
 
     function Find() {
         const [step, setStep] = useState(1);
@@ -20,6 +21,7 @@ import '../../signup/css/Signup.css'
         const location = useLocation();
         const searchParams = new URLSearchParams(location.search);
         const searchType = searchParams.has('1') ? 'id' : (searchParams.has('2') ? 'password' : '');
+        const [showPassword, setShowPassword] = useState(false);
 
         const handleChange = (e) => {
             const { name, value } = e.target;
@@ -101,7 +103,14 @@ import '../../signup/css/Signup.css'
         };
 
         useEffect(() => {
-            if (step === 3 && searchType === 'password' && formData.email) {
+            if (step === 1) {
+                setFormData({
+                    email: '',
+                    auth: '',
+                    newPassword: '',
+                    confirmNewPassword: '',
+                });
+            } else if (step === 3 && searchType === 'password' && formData.email) {
                 setStep(4);
             } else if (step === 3 && searchType !== 'password' && formData.email) {
                 const fetchUserId = async () => {
@@ -146,103 +155,150 @@ import '../../signup/css/Signup.css'
 
             const result = await response.json();
             if (result.success) {
-                setStep(6);  // 비밀번호 변경 완료 단계로
+                setStep(5);
                 setError('');
             } else {
                 setError('ⓘ 비밀번호 변경에 실패했습니다.');
             }
         };
 
+        const searchError = {
+            display: 'flex',
+            cursor: 'pointer',
+            transform: error ? 'translateY(255px)' : 'translateY(230px)',
+            width: '1000px',
+        }
+
+        const togglePasswordVisibility = () => {
+            setShowPassword(prevState => !prevState);
+        };
+
         return (
             <div className={styles.findAccount}>
                 <div className={styles.findAccountContent}>
-                    <p className={styles.findAccountText}>아이디/비밀번호 찾기</p>
+                    <p className={`signupText ${searchType === 'id' ? styles.signupTextId : styles.signupTextPassword}`}>{searchType === 'id' ? '아이디 찾기' : '비밀번호 찾기'}</p>
+                    <img className="signupLogo" src="/images/signupLogo.png" alt="회원가입 로고"></img>
+                    <div style={searchError}>
+                        <p className={styles.findAccountText}>{searchType === 'id' ? (
+                            <Link to="/auth/find?2" onClick={() => setStep(1)}>비밀번호 찾기</Link>
+                        ) : (
+                            <Link to="/auth/find?1" onClick={() => setStep(1)}>아이디 찾기</Link>
+                        )}</p>
+                    </div>
 
-                    {/* 이메일 입력 단계 */}
-                    {step === 1 && (
-                        <form onSubmit={handleEmailSubmit}>
-                            <fieldset>
-                                <div className={styles.inputWrapper}>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        placeholder="이메일 입력"
+                        {/* 이메일 입력 단계 */}
+                        {step === 1 && (
+                            <form onSubmit={handleEmailSubmit}>
+                                <fieldset>
+                                    <div className={styles.inputWrapper}>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            placeholder="이메일 입력"
+                                        />
+                                    </div>
+                                </fieldset>
+                                    {error && <p className={styles.error}>{error}</p>}
+                                <button
+                                    className={styles.nextButton}
+                                    type="submit"
+                                    disabled={loading || emailPending}
+                                >
+                                    {loading || emailPending ? '처리중' : '다음'}
+                                </button>
+                            </form>
+                        )}
+
+                        {/* 이메일 인증 단계 */}
+                        {step === 2 && verificationCodeSent && (
+                            <form onSubmit={handleVerificationSubmit}>
+                                <fieldset>
+                                    <div className={styles.inputWrapper}>
+                                        <input
+                                            type="text"
+                                            name="auth"
+                                            value={formData.auth}
+                                            onChange={handleChange}
+                                            placeholder="인증번호 입력"
+                                        />
+                                    </div>
+                                </fieldset>
+                                {error && <p className={styles.error}>{error}</p>}
+                                <button className={styles.nextButton} type="submit">
+                                    다음
+                                </button>
+                            </form>
+                        )}
+
+                        {step === 3 && foundUserId && (
+                            <div>
+                                <p className={styles.userId}>아이디: <strong>{foundUserId}</strong></p>
+                                <button
+                                    className={styles.nextButton}
+                                >
+                                    <Link to="/auth/login">로그인</Link>
+                                </button>
+                            </div>
+                        )}
+
+                        {/* 비밀번호 변경 단계 */}
+                        {step === 4 && (
+                            <form onSubmit={(e) => {
+                                e.preventDefault();
+                                setError('');
+                                setStep(5);
+                            }}>
+                                <fieldset>
+                                    <div className={styles.inputWrapper}>
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            name="newPassword"
+                                            value={formData.newPassword}
+                                            onChange={handleChange}
+                                            placeholder="새 비밀번호 입력"
+                                        />
+                                    </div>
+                                </fieldset>
+                                <div className="passwordToggleBtn">
+                                    <img
+                                        src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                        alt="비밀번호 보이기/숨기기"
+                                        onClick={togglePasswordVisibility}
                                     />
                                 </div>
-                            </fieldset>
-                            {error && <p className={styles.error}>{error}</p>}
-                            <button
-                                className={styles.nextButton}
-                                type="submit"
-                                disabled={loading || emailPending}
-                            >
-                                {loading || emailPending ? '처리중' : '다음'}
-                            </button>
-                        </form>
-                    )}
+                                {error && <p className={styles.error}>{error}</p>}
+                                <button className={styles.nextButton} type="submit">
+                                    다음
+                                </button>
+                            </form>
+                        )}
 
-                    {/* 이메일 인증 단계 */}
-                    {step === 2 && verificationCodeSent && (
-                        <form onSubmit={handleVerificationSubmit}>
-                            <fieldset>
-                                <div className={styles.inputWrapper}>
-                                    <input
-                                        type="text"
-                                        name="auth"
-                                        value={formData.auth}
-                                        onChange={handleChange}
-                                        placeholder="인증번호 입력"
-                                    />
-                                </div>
-                            </fieldset>
-                            {error && <p className={styles.error}>{error}</p>}
-                            <button className={styles.nextButton} type="submit">
-                                다음
-                            </button>
-                        </form>
-                    )}
-
-                    {step === 3 && foundUserId && (
-                        <div>
-                            <p className={styles.userId}>가입된 아이디: <strong>{foundUserId}</strong></p>
-
-                            <button
-                                className={styles.nextButton}
-                                onClick={() => setStep(4)} // 비밀번호 변경 단계로 이동
-                            >
-                                비밀번호 변경
-                            </button>
-                        </div>
-                    )}
-
-                    {/* 비밀번호 변경 단계 */}
-                    {step === 4 && (
+                    {/* 비밀번호 변경 확인 단계 */}
+                    {step === 5 && (
                         <form onSubmit={handlePasswordSubmit}>
                             <fieldset>
                                 <div className={styles.inputWrapper}>
                                     <input
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         name="newPassword"
                                         value={formData.newPassword}
                                         onChange={handleChange}
                                         placeholder="새 비밀번호 입력"
                                     />
                                 </div>
-                                <div className={styles.inputWrapper}>
-                                    <input
-                                        type="password"
-                                        name="confirmNewPassword"
-                                        value={formData.confirmNewPassword}
-                                        onChange={handleChange}
-                                        placeholder="새 비밀번호 확인"
-                                    />
-                                </div>
                             </fieldset>
+                            <div className="passwordToggleBtn">
+                                <img
+                                    src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                    alt="비밀번호 보이기/숨기기"
+                                    onClick={togglePasswordVisibility}
+                                />
+                            </div>
                             {error && <p className={styles.error}>{error}</p>}
-                            <button className={styles.nextButton} type="submit">
-                                비밀번호 변경
+                            <button className={styles.changeButton} type="submit">
+                                변경
                             </button>
                         </form>
                     )}
@@ -256,11 +312,11 @@ import '../../signup/css/Signup.css'
                             >
                                 로그인 페이지로
                             </button>
-                        </div>
-                    )}
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
-        );
-    }
+                );
+                }
 
-export default Find;
+                export default Find;
