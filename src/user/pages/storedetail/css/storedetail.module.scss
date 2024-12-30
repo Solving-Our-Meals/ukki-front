@@ -7,7 +7,7 @@
     #storeName {
         position : absolute;
         width : max-content;
-        height : 55px;
+        height : max-content;
         left : 112px;
         top : 627px;
         font-family: 'Bobaesum Jindo TTF';
@@ -83,6 +83,7 @@
         color: $textStrong;
         line-height: 28px;
         z-index : 5;
+        border-radius: 0;
 
         .week{
             position : absolute;
@@ -117,10 +118,8 @@
             height : 61px;
             background-color: $primary;
             border-radius: 50px;
-            border-radius: 50px;
             font-family: 'Pretendard Variable';
             font-size : 25px;
-            font-style: 'medium';
             color: $textStrong;
             display : flex;
             justify-content: center;

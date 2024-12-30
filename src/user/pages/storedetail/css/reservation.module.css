@@ -218,6 +218,8 @@ a:active {
   background-color: #FF8AA3;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   color: #ffffff;
   font-family: "Pretendard Variable";
   font-size: 35px;
@@ -247,6 +249,7 @@ a:active {
   border-top: none;
   width: 788px;
   height: max-content;
+  border-radius: 0px;
 }
 .reservationStyle .calendarContainer .calendarBody .dayList {
   display: flex;
@@ -310,7 +313,7 @@ a:active {
   width: 800px;
   height: 500px;
   left: 890px;
-  top: -10px;
+  top: -4px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -325,31 +328,71 @@ a:active {
 }
 .reservationStyle .calendarContainer .selectArea .instructionTime {
   width: max-content;
-  height: 31px;
+  margin-left: 340px;
   font-family: "Pretendard Variable";
   font-size: 30px;
   color: #232323;
-  margin-top: 20px;
+  margin-top: -40px;
 }
-.reservationStyle .calendarContainer .selectArea #operArray {
+.reservationStyle .calendarContainer .selectArea .morningArray {
   display: flex;
   flex-wrap: wrap;
-  width: 760px;
+  width: 780px;
   height: max-content;
-  margin-top: 0px;
+  margin-top: 15px;
   margin-left: -10px;
 }
-.reservationStyle .calendarContainer .selectArea #operArray #operArr {
+.reservationStyle .calendarContainer .selectArea .morningArray #strMoring {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 600;
+}
+.reservationStyle .calendarContainer .selectArea .morningArray .morningArr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 157px;
+  width: 105px;
   height: 37px;
   background-color: #FEDA00;
   border-radius: 10px;
   font-family: "Pretendard Variable";
   font-size: 20px;
   text-align: center;
-  margin: 7px 16px;
+  margin: 10px 10px;
   cursor: pointer;
-}/*# sourceMappingURL=reservation.module.css.map */
+}
+.reservationStyle .calendarContainer .selectArea .afternoonArray {
+  display: flex;
+  flex-wrap: wrap;
+  width: 780px;
+  height: max-content;
+  margin-top: 5px;
+  margin-left: -10px;
+}
+.reservationStyle .calendarContainer .selectArea .afternoonArray #strAfternoon {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 600;
+}
+.reservationStyle .calendarContainer .selectArea .afternoonArray .afternoonArr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 105px;
+  height: 37px;
+  background-color: #FEDA00;
+  border-radius: 10px;
+  font-family: "Pretendard Variable";
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 10px;
+  cursor: pointer;
+}
