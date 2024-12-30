@@ -103,14 +103,7 @@ import { Link } from 'react-router-dom';
         };
 
         useEffect(() => {
-            if (step === 1) {
-                setFormData({
-                    email: '',
-                    auth: '',
-                    newPassword: '',
-                    confirmNewPassword: '',
-                });
-            } else if (step === 3 && searchType === 'password' && formData.email) {
+            if (step === 3 && searchType === 'password' && formData.email) {
                 setStep(4);
             } else if (step === 3 && searchType !== 'password' && formData.email) {
                 const fetchUserId = async () => {
@@ -134,6 +127,19 @@ import { Link } from 'react-router-dom';
             }
         }, [step, formData.email, searchType]);
 
+        // 폼 초기화용 -> 자꾸 저장됨 -> 편의성을 위해 이메일은 안할까하는데 혹시몰라서 주석처리로 해놓음
+        useEffect(() => {
+            if (step === 1) {
+                setFormData({
+                    // email: '',
+                    auth: '',
+                    newPassword: '',
+                    confirmNewPassword: '',
+                });
+            }
+        }, [step]);
+
+
         const handlePasswordSubmit = async (e) => {
             e.preventDefault();
 
@@ -155,7 +161,7 @@ import { Link } from 'react-router-dom';
 
             const result = await response.json();
             if (result.success) {
-                setStep(5);
+                setStep(6);
                 setError('');
             } else {
                 setError('ⓘ 비밀번호 변경에 실패했습니다.');
@@ -243,7 +249,6 @@ import { Link } from 'react-router-dom';
                             </div>
                         )}
 
-                        {/* 비밀번호 변경 단계 */}
                         {step === 4 && (
                             <form onSubmit={(e) => {
                                 e.preventDefault();
@@ -275,15 +280,14 @@ import { Link } from 'react-router-dom';
                             </form>
                         )}
 
-                    {/* 비밀번호 변경 확인 단계 */}
                     {step === 5 && (
                         <form onSubmit={handlePasswordSubmit}>
                             <fieldset>
                                 <div className={styles.inputWrapper}>
                                     <input
                                         type={showPassword ? "text" : "password"}
-                                        name="newPassword"
-                                        value={formData.newPassword}
+                                        name="confirmNewPassword"
+                                        value={formData.confirmNewPassword}
                                         onChange={handleChange}
                                         placeholder="새 비밀번호 입력"
                                     />
