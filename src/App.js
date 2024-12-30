@@ -9,6 +9,7 @@ import InquiryEnter from './common/inquiry/components/StoreInquiryEnter';
 import UserStorePage from './user/pages/storedetail/pages/UserStorePage';
 import QrRoutes from './store/pages/qrCheck/routes/QrRoutes';
 import AdminRoutes from './admin/route/AdminRoutes';
+import Search from './user/pages/search/Search';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="auth/login" element={<Login/>}/>
       <Route path="/" element={<UserLayout/>}>
       <Route index element={<Main/>}/>
+      <Route path="search" element={<Search/>}/>
       <Route path="info" element={<Info/>}/>
       <Route path="main" element={<Main/>}/>
       <Route path="store" element={<UserStorePage/>}/>

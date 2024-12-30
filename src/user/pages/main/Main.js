@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import banner1 from './image/main-banner1.png';
 import banner2 from './image/main-banner2.png';
 import banner3 from './image/main-banner3.png';
@@ -226,8 +227,8 @@ const Main = () => {
                     </div>
                 </div>
                 <div className='search'>
-                    <input type='search' value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" readOnly />
-                    <img src={search} alt="search" />
+                    <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동"/>
+                    <img src={search} alt="search"/>
                 </div>
                 <div className='category'>
                     <h3>지금 끌리는 메뉴는?</h3>
@@ -267,8 +268,8 @@ const Main = () => {
                     <p>가게 대표 매뉴 : </p> <span>불고기 백반</span>
                     <img src={qorqks}/>
                     <img src={ukki}/>
-                    <input value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;눌러서 현재 위치 변경 가능'></input><label>현재 위치 : </label>
-                    <input value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
+                    <input defaultValue='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;눌러서 현재 위치 변경 가능'></input><label>현재 위치 : </label>
+                    <input defaultValue='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
                     <button>예약하기</button>
                     <button>길안내</button>
                 </div>

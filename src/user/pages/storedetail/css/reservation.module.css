@@ -175,6 +175,7 @@ a:active {
 }
 .reservationStyle {
   cursor: default;
+  border-radius: 0;
 }
 .reservationStyle .reservationTitle {
   position: absolute;

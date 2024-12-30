@@ -10,7 +10,7 @@ const Map = () => {
         const mapContainer = document.getElementById('map'); // 지도를 표시할 div
         const mapOption = { 
             center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 2 // 지도의 확대 레벨 숫자 높을수록 확재범위 늘어남
+            level: 3 // 지도의 확대 레벨 숫자 높을수록 확재범위 늘어남
         }; 
 
         const kakaoMap = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -23,7 +23,7 @@ const Map = () => {
                 const lon = position.coords.longitude; // 경도
 
                 const locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                const message = '<div style="padding:5px; height:1.5vw;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
+                const message = '<div style="padding:5px; height:4vw; font-weight:800;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
 
                 // 마커와 인포윈도우를 표시합니다
                 displayMarker(locPosition, message);
