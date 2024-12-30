@@ -175,6 +175,7 @@ a:active {
 }
 .storeDetail {
   cursor: default;
+  border-radius: 0;
 }
 .storeDetail #storeName {
   position: absolute;

@@ -182,6 +182,7 @@ a:active {
   font-size: 20px;
   color: #999999;
   cursor: pointer;
+  border-radius: 0;
 }
 
 #xBtn {
@@ -192,6 +193,7 @@ a:active {
   left: 640px;
   top: 405px;
   cursor: pointer;
+  border-radius: 0;
 }
 
 #menuImg {
@@ -201,4 +203,5 @@ a:active {
   height: 500px;
   left: 335px;
   top: 390px;
-}
+  border-radius: 0;
+}/*# sourceMappingURL=menu.module.css.map */
