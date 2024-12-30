@@ -632,7 +632,7 @@ button:disabled {
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
-        font-size: 50px;
+        font-size: 25px;
         color: #aaa;
         transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
         pointer-events: none;
