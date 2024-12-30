@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import '../css/reset.css';
 import styles from '../css/Find.module.css';
-import '../../signup/css/Signup.css'
 import { useParams, Link } from 'react-router-dom';
 
     function Find() {
