@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../css/reset.css';
 import '../css/Login.css';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
     const [step, setStep] = useState(1);
@@ -11,6 +11,7 @@ function Login() {
     });
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -59,7 +60,6 @@ function Login() {
 
         const result = await response.json();
 
-        console.log(result.success)
         if (result.success) {
             setError('');
             window.location.href = '/main';
@@ -116,10 +116,10 @@ function Login() {
                         </fieldset>
                         {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
-                            <p className="search"><Link to="/find">아이디 찾기</Link></p>
+                            <Link to="/auth/find/id" className="search">아이디 찾기</Link>
                         </div>
-                            <button
-                                className="loginButton"
+                        <button
+                            className="loginButton"
                                 type="button"
                                 onClick={() => window.location.href = '/auth/signup'}
                             >회원가입
@@ -154,7 +154,7 @@ function Login() {
                         </fieldset>
                         {error && <p className="error">{error}</p>}
                         <div className="searchWrapper" style={searchError}>
-                        <p className="search"><Link to="/find">비밀번호 찾기</Link></p>
+                            <Link to="/auth/find/pwd" className="search">비밀번호 찾기</Link>
                         </div>
                         <button
                             className="loginButton"

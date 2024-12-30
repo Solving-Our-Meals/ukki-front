@@ -172,36 +172,4 @@ a:active {
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-}
-#menu {
-  position: absolute;
-  left: 235px;
-  top: 884px;
-  width: max-content;
-  font-family: "Pretendard Variable";
-  font-size: 20px;
-  color: #999999;
-  cursor: pointer;
-  border-radius: 0;
-}
-
-#xBtn {
-  position: absolute;
-  z-index: 10000;
-  width: 30px;
-  height: 30px;
-  left: 640px;
-  top: 405px;
-  cursor: pointer;
-  border-radius: 0;
-}
-
-#menuImg {
-  position: absolute;
-  z-index: 9999;
-  width: 350px;
-  height: 500px;
-  left: 335px;
-  top: 390px;
-  border-radius: 0;
-}/*# sourceMappingURL=menu.module.css.map */
+}/*# sourceMappingURL=reset.css.map */
