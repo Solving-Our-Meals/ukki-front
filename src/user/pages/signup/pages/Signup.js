@@ -48,8 +48,6 @@ function Signup() {
             return;
         }
 
-        console.log("Submitting userid:", formData.userId);
-
         const response = await fetch('/auth/signupid', {
             method: 'POST',
             headers: {
@@ -105,7 +103,6 @@ function Signup() {
         });
 
         const emailCheckResult = await emailCheckResponse.json();
-        console.log(emailCheckResult)
 
         if (emailCheckResult.isDuplicate) {
             setError('ⓘ 이 이메일은 이미 사용 중입니다.');
@@ -267,7 +264,6 @@ function Signup() {
                     </form>
                 )}
 
-                {/* 비밀번호 입력받는 스탭 */}
                 {step === 2 && (
                     <form onSubmit={handlePasswordSubmit}>
                         <fieldset className="fieldPwd">
@@ -302,14 +298,13 @@ function Signup() {
                     </form>
                 )}
 
-                {/* 이메일 입력받는 스탭 */}
                 {step === 3 && (
                     <form onSubmit={handleEmailSubmit}>
                         <fieldset className="fieldEmail">
                             <div className="inputWrapper">
                                 <input
                                     className={`signupEmail ${error ? 'errorInput' : ''}`}
-                                    type="text"
+                                    type="email" // 이메일 유효성 검사를 넣어놓았으나 이것도 넣어서 사실 의미가 없어졌다.
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}

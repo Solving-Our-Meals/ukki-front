@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.signupBasic {
+.findAccount {
     background-color: #FFF3A7;
     width: 100vw;
     height: 100vh;
@@ -9,7 +9,23 @@
     justify-content: center;
 }
 
-.signup {
+.findAccountText {
+    position: absolute;
+    height: 2vw;
+    left: 37.5%;
+    top: 51.1%;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #232323;
+    animation: hello 0.5s ease;
+}
+
+.findAccountContent {
     box-sizing: border-box;
 
     position: absolute;
@@ -36,16 +52,28 @@
     position: absolute;
     width: 241px;
     height: 63px;
-    left: 92px;
-    top: 110px;
+    left: 61px;
+    top: 105px;
 
     font-family: 'Mungyeong-Gamhong-Apple';
     font-style: normal;
     font-weight: 400;
-    font-size: 50px;
+    font-size: 30px;
     line-height: 62px;
 
     color: #FF8AA3;
+}
+
+.signupTextId {
+    left: 110px;
+    top: 120px;
+    font-size: 35px;
+}
+
+.signupTextPassword {
+    left: 100px;
+    top: 120px;
+    font-size: 30px;
 }
 
 input {
@@ -127,6 +155,29 @@ input.errorInput:focus {
     color: #000000;
 }
 
+.changeButton {
+    background: #FEDA00;
+
+}
+
+.changeConfirm {
+        position: absolute;
+        width: 1000px;
+        left: 38.7%;
+        right: 37.92%;
+        top: 42%;
+        bottom: 56.24%;
+
+        font-family: 'Mungyeong-Gamhong-Apple';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 44px;
+        text-align: left;
+
+        color: #232323;
+}
+
 .loginButton:active {
     margin-left: 2px;
     margin-top: 1px;
@@ -146,6 +197,24 @@ input.errorInput:focus {
     margin-bottom: 20px;
     position: relative;
     transition: all 0.3s ease;
+}
+
+.userId {
+    position: absolute;
+    width: 500px;
+    left: 40.5%;
+    right: 37.92%;
+    top: 30%;
+    bottom: 56.24%;
+
+    font-family: 'Mungyeong-Gamhong-Apple';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    color: #232323;
 }
 
 .mainConfirm {
@@ -304,7 +373,7 @@ button:disabled {
     }
 }
 
-.inputWrapper {
+.inputWrapper, .passwordToggleBtn {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 0.5s forwards;
@@ -314,113 +383,13 @@ button:disabled {
     animation: fadeOut 0.5s forwards;
 }
 
-/* 약관 */
-.fieldTerms {
-    max-height: 250px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    left: 400px;
-    top: 100px;
-    position: absolute;
-    width: 485px;
-    padding: 10px;
-    border: 5px solid #ccc;
-    border-radius: 5px;
-    background-color: white;
-
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-}
-
-.signupButton {
-    position: absolute;
-    width: 83px;
-    height: 38px;
-    left: 803px;
-    top: 370px;
-    border: none;
-
-    background: #FF8AA3;
-    border-radius: 25px;
-
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-
-    color: #000000;
-}
-
 .signupButton:active {
     margin-left: 2px;
     margin-top: 1px;
     box-shadow: 1px 0px 1px 1px black;
 }
 
-/* 체크박스 */
-.checkboxWrapper {
-    display: flex;
-    cursor: pointer;
-    transform: translate(40px, 170px);
-    width: 1000px;
-}
-
-input[type="checkbox"] {
-    top: 167px;
-    left: 120px;
-    border-radius: 4px;
-    transform: scale(0.5);
-}
-
-.termsLabel {
-    color: black;
-    font-size: 15px;
-    font-weight: 700;
-    font-family: 'Pretendard-Regular';
-    left: 400px;
-}
-
-.errorTerms {
-    position: absolute;
-    width: 500px;
-    left: 405px;
-    top: 355px;
-    color: #FF5D18;
-    line-height: 21px;
-}
-
-.fieldTerms.errorInput {
-    border: 3px solid #FF5D18;
-}
-
 @media  (min-width: 1025px) and (max-width: 1920px) {
-    .signupBasic {
-        background-color: #FFF3A7;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .signup {
-        box-sizing: border-box;
-
-        position: absolute;
-        width: 976px;
-        height: 455px;
-        left: 461px;
-        top: 250px;
-
-        background: #FFFFFF;
-        border: 5px solid #FF8AA3;
-        border-radius: 50px;
-    }
-
     .signupLogo {
 
         position: absolute;
@@ -434,19 +403,31 @@ input[type="checkbox"] {
         position: absolute;
         width: 241px;
         height: 63px;
-        left: 92px;
-        top: 110px;
+        left: 61px;
+        top: 105px;
 
         font-family: 'Mungyeong-Gamhong-Apple';
         font-style: normal;
         font-weight: 400;
-        font-size: 50px;
+        font-size: 30px;
         line-height: 62px;
 
         color: #FF8AA3;
     }
 
-    .signupBasic input {
+    .signupTextId {
+        left: 105px;
+        top: 120px;
+        font-size: 35px;
+    }
+
+    .signupTextPassword {
+        left: 100px;
+        top: 120px;
+        font-size: 30px;
+    }
+
+    input {
         position: absolute;
         width: 499.5px;
         height: 52.5px;
@@ -505,7 +486,7 @@ input[type="checkbox"] {
         color: #000000;
     }
 
-    .nextButton {
+    .nextButton, .changeButton {
         position: absolute;
         width: 83px;
         height: 38px;
@@ -525,7 +506,7 @@ input[type="checkbox"] {
         color: #000000;
     }
 
-    .loginButton:active {
+    .loginButton:active, .changeButton:active {
         margin-left: 2px;
         margin-top: 1px;
         box-shadow: 1px 0px 1px 1px black;
@@ -544,6 +525,24 @@ input[type="checkbox"] {
         margin-bottom: 20px;
         position: relative;
         transition: all 0.3s ease;
+    }
+
+    .userId {
+        position: absolute;
+        width: 500px;
+        left: 37.5%;
+        right: 37.92%;
+        top: 40%;
+        bottom: 56.24%;
+
+        font-family: 'Mungyeong-Gamhong-Apple';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 44px;
+        text-align: center;
+
+        color: #232323;
     }
 
     .mainConfirm {
@@ -625,7 +624,7 @@ input[type="checkbox"] {
     }
 
     /* 레전드용 */
-    .signupBasic label {
+    label {
         position: absolute;
         top: 196px;
         left: 390px;
@@ -633,13 +632,13 @@ input[type="checkbox"] {
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
-        font-size: 50px;
+        font-size: 25px;
         color: #aaa;
         transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
         pointer-events: none;
     }
 
-    .signupBasic input:focus + label,.signupBasic input:not(:placeholder-shown) + label {
+    input:focus + label, input:not(:placeholder-shown) + label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -649,7 +648,7 @@ input[type="checkbox"] {
         color: #007bff;
     }
 
-    .signupBasic input:focus + label, .signupBasic input:not(:placeholder-shown) + label {
+    input:focus + label, input:not(:placeholder-shown) + label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -659,7 +658,7 @@ input[type="checkbox"] {
         color: #007bff;
     }
 
-    .signupBasic input::placeholder {
+    input::placeholder {
         visibility: hidden;
     }
 
@@ -841,7 +840,15 @@ input[type="checkbox"] {
         color: #FF8AA3;
     }
 
-    .signupBasic input {
+    .signupTextId {
+        font-size: 20px;
+    }
+
+    .signupTextPassword {
+
+    }
+
+    input {
         position: absolute;
         width: 400px;
         left: 350px;
@@ -863,7 +870,8 @@ input[type="checkbox"] {
         top: 250px;
         color: #FF5D18;
         line-height: 21px;
-        font-size: 9px
+        font-size: 9px;
+        height:10px;
     }
 
     input.errorInput {
@@ -1018,7 +1026,7 @@ input[type="checkbox"] {
     }
 
     /* 레전드용 */
-    .signupBasic label {
+    label {
         top:215px;
         left:385px;
         position: absolute;
@@ -1032,7 +1040,7 @@ input[type="checkbox"] {
         pointer-events: none;
     }
 
-    .signupBasic input:focus +.signupBasic label,.signupBasic input:not(:placeholder-shown) +.signupBasic label {
+    input:focus + label, input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1042,7 +1050,7 @@ input[type="checkbox"] {
         color: #007bff;
     }
 
-    input:focus + .signupBasic label, input:not(:placeholder-shown) +.signupBasic label {
+    input:focus + label, input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1224,19 +1232,31 @@ input[type="checkbox"] {
         position: absolute;
         width: 241px;
         height: 63px;
-        left: 38px;
-        top: 65px;
+        left: 61px;
+        top: 105px;
 
         font-family: 'Mungyeong-Gamhong-Apple';
         font-style: normal;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 30px;
         line-height: 62px;
 
         color: #FF8AA3;
     }
 
-    .signupBasic input {
+    .signupTextId {
+        left: 105px;
+        top: 120px;
+        font-size: 35px;
+    }
+
+    .signupTextPassword {
+        left: 100px;
+        top: 120px;
+        font-size: 30px;
+    }
+
+    input {
         position: absolute;
         left: 370px;
         top: 165px;
@@ -1413,7 +1433,7 @@ input[type="checkbox"] {
     }
 
     /* 레전드용 */
-    .signupBasic label {
+    label {
         position: absolute;
         top: 191px;
         left: 390px;
@@ -1427,7 +1447,7 @@ input[type="checkbox"] {
         pointer-events: none;
     }
 
-    input:focus + .signupBasic label, input:not(:placeholder-shown) +.signupBasic label {
+    input:focus + label, input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1437,7 +1457,7 @@ input[type="checkbox"] {
         color: #007bff;
     }
 
-    input:focus +.signupBasic label, input:not(:placeholder-shown) +.signupBasic label {
+    input:focus + label, input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1490,7 +1510,7 @@ input[type="checkbox"] {
         }
     }
 
-    .inputWrapper {
+    .inputWrapper, .passwordToggleBtn {
         opacity: 0;
         transform: translateY(20px);
         animation: fadeIn 0.5s forwards;
