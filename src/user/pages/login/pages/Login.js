@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../css/reset.css';
-import '../css/Login.css';
+import styles from '../css/Login.module.css';
 import { Link } from 'react-router-dom'
 
 function Login() {
@@ -93,17 +93,17 @@ function Login() {
     }
 
     return (
-        <div className="signupBasic">
-            <div className="signup">
-                <p className="loginText">로그인</p>
-                <img className="signupLogo" src="/images/signupLogo.png" alt="회원가입 로고"></img>
+        <div className={styles.signupBasic}>
+            <div className={styles.signup}>
+                <p className={styles.loginText}>로그인</p>
+                <img className={styles.signupLogo} src="/images/signupLogo.png" alt="회원가입 로고"/>
                 {step === 1 && (
                     <form onSubmit={handleUsernameSubmit}>
 
-                        <fieldset className="fieldId">
-                            <div className="inputWrapper">
+                        <fieldset className={styles.fieldId}>
+                            <div className={styles.inputWrapper}>
                                 <input
-                                    className={`signupId ${error ? 'errorInput' : ''}`}
+                                    className={`${styles.signupId} ${error ? styles.errorInput : ''}`}
                                     type="text"
                                     name="userId"
                                     value={formData.userId}
@@ -114,27 +114,27 @@ function Login() {
                                 <label htmlFor="userId">아이디 입력</label>
                             </div>
                         </fieldset>
-                        {error && <p className="error">{error}</p>}
-                        <div className="searchWrapper" style={searchError}>
-                            <p className="search"><Link to="/find">아이디 찾기</Link></p>
+                        {error && <p className={styles.error}>{error}</p>}
+                        <div className={styles.searchWrapper} style={searchError}>
+                            <p className={styles.search}><Link to="/find">아이디 찾기</Link></p>
                         </div>
-                            <button
-                                className="loginButton"
-                                type="button"
-                                onClick={() => window.location.href = '/auth/signup'}
-                            >회원가입
-                            </button>
-                                <button className="nextButton">다음</button>
+                        <button
+                            className={styles.loginButton}
+                            type="button"
+                            onClick={() => window.location.href = '/auth/signup'}
+                        >회원가입
+                        </button>
+                        <button className={styles.nextButton}>다음</button>
                     </form>
-                    )}
+                )}
 
                 {/* 비밀번호 입력받는 스탭 */}
                 {step === 2 && (
                     <form onSubmit={handlePasswordSubmit}>
-                        <fieldset className="fieldPwd">
-                            <div className="inputWrapper">
+                        <fieldset className={styles.fieldPwd}>
+                            <div className={styles.inputWrapper}>
                                 <input
-                                    className={`signupPwd ${error ? 'errorInput' : ''}`}
+                                    className={`${styles.signupPwd} ${error ? styles.errorInput : ''}`}
                                     type={showPassword ? "text" : "password"}
                                     name="userPass"
                                     value={formData.userPass}
@@ -143,7 +143,7 @@ function Login() {
                                     placeholder="비밀번호 입력"
                                 />
                                 <label htmlFor="userPass">비밀번호 입력</label>
-                                <div className="passwordToggleBtn">
+                                <div className={styles.passwordToggleBtn}>
                                     <img
                                         src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
                                         alt="비밀번호 보이기/숨기기"
@@ -152,17 +152,17 @@ function Login() {
                                 </div>
                             </div>
                         </fieldset>
-                        {error && <p className="error">{error}</p>}
-                        <div className="searchWrapper" style={searchError}>
-                        <p className="search"><Link to="/find">비밀번호 찾기</Link></p>
+                        {error && <p className={styles.error}>{error}</p>}
+                        <div className={styles.searchWrapper} style={searchError}>
+                            <p className={styles.search}><Link to="/find">비밀번호 찾기</Link></p>
                         </div>
                         <button
-                            className="loginButton"
+                            className={styles.loginButton}
                             type="button"
                             onClick={() => window.location.href = '/auth/signup'}
                         >회원가입
                         </button>
-                        <button className="nextButton">로그인</button>
+                        <button className={styles.nextButton}>로그인</button>
                     </form>
                 )}
             </div>
