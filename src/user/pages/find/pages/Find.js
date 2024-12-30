@@ -107,7 +107,7 @@ import { useParams, Link } from 'react-router-dom';
                 setStep(4);
             } else if (step === 3 && type !== 'password' && formData.email) {
                 const fetchUserId = async () => {
-                    const userIdResponse = await fetch('/auth/finds1', {
+                    const userIdResponse = await fetch('/auth/find/id', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -164,7 +164,7 @@ import { useParams, Link } from 'react-router-dom';
                 return;
             }
 
-            const response = await fetch('/auth/finds2', {
+            const response = await fetch('/auth/find/pwd', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
