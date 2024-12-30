@@ -32,11 +32,11 @@
     top: 170px;
 }
 
-.signupText {
+.loginText {
     position: absolute;
     width: 241px;
     height: 63px;
-    left: 92px;
+    left: 120px;
     top: 110px;
 
     font-family: 'Mungyeong-Gamhong-Apple';
@@ -48,7 +48,7 @@
     color: #FF8AA3;
 }
 
-.signupBasic input {
+input {
     position: absolute;
     width: 499.5px;
     height: 52.5px;
@@ -103,6 +103,7 @@ input.errorInput:focus {
     font-weight: 700;
     font-size: 25px;
     line-height: 30px;
+    /* identical to box height */
 
     color: #000000;
 }
@@ -147,91 +148,8 @@ input.errorInput:focus {
     position: relative;
     transition: all 0.3s ease;
 }
-
-.mainConfirm {
-    position: absolute;
-    width: 500px;
-    left: 40.5%;
-    right: 37.92%;
-    top: 30%;
-    bottom: 56.24%;
-
-    font-family: 'BobaesumJindoTTF';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 44px;
-    text-align: center;
-
-    color: #232323;
-}
-
-.subConfirm {
-
-    position: absolute;
-    width: 300px;
-    left: 51.2%;
-    right: 42.66%;
-    top: 47.7%;
-    bottom: 49%;
-
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 36px;
-
-    color: #232323;
-}
-
-.mainButton {
-    position: absolute;
-    width: 170px;
-    height: 38px;
-    left: 430px;
-    top: 290px;
-    border: none;
-
-    background: #FEDA00;
-    border-radius: 25px;
-
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-}
-
-.loginButtonConfirm {
-    background: #FF8AA3;
-    border-radius: 25px;
-
-    position: absolute;
-    width: 170px;
-    height: 40px;
-    left: 675px;
-    top: 290px;
-    border: none;
-
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-}
-
-.mainButton:active, .loginButtonConfirm:active {
-    margin-left: 2px;
-    margin-top: 1px;
-    box-shadow: 1px 0px 1px 1px black;
-}
-
 /* 레전드용 */
-.signupBasic label {
-    position: absolute;
-    top: 196px;
-    left: 390px;
-    transform: translateY(-50%);
+label {
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
@@ -241,7 +159,7 @@ input.errorInput:focus {
     pointer-events: none;
 }
 
-.signupBasic input:focus + label,.signupBasic input:not(:placeholder-shown) + label {
+input:focus + label, input:not(:placeholder-shown) + label {
     top: 170px;
     left: 380px;
     font-size: 12px;
@@ -251,7 +169,7 @@ input.errorInput:focus {
     color: #007bff;
 }
 
-.signupBasic input:focus + label, .signupBasic input:not(:placeholder-shown) + label {
+input:focus + label, input:not(:placeholder-shown) + label {
     top: 170px;
     left: 380px;
     font-size: 12px;
@@ -261,7 +179,7 @@ input.errorInput:focus {
     color: #007bff;
 }
 
-.signupBasic input::placeholder {
+input::placeholder {
     visibility: hidden;
 }
 
@@ -314,37 +232,11 @@ button:disabled {
     animation: fadeOut 0.5s forwards;
 }
 
-/* 약관 */
-.fieldTerms {
-    max-height: 250px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    left: 400px;
-    top: 100px;
+.search {
     position: absolute;
-    width: 485px;
-    padding: 10px;
-    border: 5px solid #ccc;
-    border-radius: 5px;
-    background-color: white;
-
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-}
-
-.signupButton {
-    position: absolute;
-    width: 83px;
-    height: 38px;
-    left: 803px;
-    top: 370px;
-    border: none;
-
-    background: #FF8AA3;
-    border-radius: 25px;
+    height: 2vw;
+    left: 37.5%;
+    top: 51.1%;
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
@@ -352,49 +244,20 @@ button:disabled {
     font-size: 25px;
     line-height: 30px;
 
-    color: #000000;
+    color: #232323;
+    animation: hello 0.5s ease;
 }
 
-.signupButton:active {
-    margin-left: 2px;
-    margin-top: 1px;
-    box-shadow: 1px 0px 1px 1px black;
-}
-
-/* 체크박스 */
-.checkboxWrapper {
-    display: flex;
-    cursor: pointer;
-    transform: translate(40px, 170px);
-    width: 1000px;
-}
-
-input[type="checkbox"] {
-    top: 167px;
-    left: 120px;
-    border-radius: 4px;
-    transform: scale(0.5);
-}
-
-.termsLabel {
-    color: black;
-    font-size: 15px;
-    font-weight: 700;
-    font-family: 'Pretendard-Regular';
-    left: 400px;
-}
-
-.errorTerms {
-    position: absolute;
-    width: 500px;
-    left: 405px;
-    top: 355px;
-    color: #FF5D18;
-    line-height: 21px;
-}
-
-.fieldTerms.errorInput {
-    border: 3px solid #FF5D18;
+/* 똑같은거 있는데 혹시 수정할 수 있어서 나눔 */
+@keyframes hello {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media  (min-width: 1025px) and (max-width: 1920px) {
@@ -430,11 +293,11 @@ input[type="checkbox"] {
         top: 170px;
     }
 
-    .signupText {
+    .loginText {
         position: absolute;
         width: 241px;
         height: 63px;
-        left: 92px;
+        left: 120px;
         top: 110px;
 
         font-family: 'Mungyeong-Gamhong-Apple';
@@ -501,6 +364,7 @@ input[type="checkbox"] {
         font-weight: 700;
         font-size: 25px;
         line-height: 30px;
+        /* identical to box height */
 
         color: #000000;
     }
@@ -545,101 +409,18 @@ input[type="checkbox"] {
         position: relative;
         transition: all 0.3s ease;
     }
-
-    .mainConfirm {
-        position: absolute;
-        width: 500px;
-        left: 40.5%;
-        right: 37.92%;
-        top: 30%;
-        bottom: 56.24%;
-
-        font-family: 'BobaesumJindoTTF';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 40px;
-        line-height: 44px;
-        text-align: center;
-
-        color: #232323;
-    }
-
-    .subConfirm {
-
-        position: absolute;
-        width: 300px;
-        left: 51.2%;
-        right: 42.66%;
-        top: 47.7%;
-        bottom: 49%;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 36px;
-
-        color: #232323;
-    }
-
-    .mainButton {
-        position: absolute;
-        width: 170px;
-        height: 38px;
-        left: 430px;
-        top: 290px;
-        border: none;
-
-        background: #FEDA00;
-        border-radius: 25px;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-    }
-
-    .loginButtonConfirm {
-        background: #FF8AA3;
-        border-radius: 25px;
-
-        position: absolute;
-        width: 170px;
-        height: 40px;
-        left: 675px;
-        top: 290px;
-        border: none;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-    }
-
-    .mainButton:active, .loginButtonConfirm:active {
-        margin-left: 2px;
-        margin-top: 1px;
-        box-shadow: 1px 0px 1px 1px black;
-    }
-
     /* 레전드용 */
     .signupBasic label {
-        position: absolute;
-        top: 196px;
-        left: 390px;
-        transform: translateY(-50%);
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
-        font-size: 25px;
+        font-size: 50px;
         color: #aaa;
         transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
         pointer-events: none;
     }
 
-    .signupBasic input:focus + label,.signupBasic input:not(:placeholder-shown) + label {
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -649,7 +430,7 @@ input[type="checkbox"] {
         color: #007bff;
     }
 
-    .signupBasic input:focus + label, .signupBasic input:not(:placeholder-shown) + label {
+    .signupBasicinput:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -659,7 +440,7 @@ input[type="checkbox"] {
         color: #007bff;
     }
 
-    .signupBasic input::placeholder {
+    input::placeholder {
         visibility: hidden;
     }
 
@@ -712,37 +493,11 @@ input[type="checkbox"] {
         animation: fadeOut 0.5s forwards;
     }
 
-    /* 약관 */
-    .fieldTerms {
-        max-height: 250px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        left: 400px;
-        top: 100px;
+    .signupBasic  .search {
         position: absolute;
-        width: 485px;
-        padding: 10px;
-        border: 5px solid #ccc;
-        border-radius: 5px;
-        background-color: white;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-    }
-
-    .signupButton {
-        position: absolute;
-        width: 83px;
-        height: 38px;
-        left: 803px;
-        top: 370px;
-        border: none;
-
-        background: #FF8AA3;
-        border-radius: 25px;
+        height: 2vw;
+        left: 37.5%;
+        top: 51.1%;
 
         font-family: 'Pretendard-Regular';
         font-style: normal;
@@ -750,49 +505,20 @@ input[type="checkbox"] {
         font-size: 25px;
         line-height: 30px;
 
-        color: #000000;
+        color: #232323;
+        animation: hello 0.5s ease;
     }
 
-    .signupButton:active {
-        margin-left: 2px;
-        margin-top: 1px;
-        box-shadow: 1px 0px 1px 1px black;
-    }
-
-    /* 체크박스 */
-    .checkboxWrapper {
-        display: flex;
-        cursor: pointer;
-        transform: translate(40px, 170px);
-        width: 1000px;
-    }
-
-    input[type="checkbox"] {
-        top: 167px;
-        left: 120px;
-        border-radius: 4px;
-        transform: scale(0.5);
-    }
-
-    .termsLabel {
-        color: black;
-        font-size: 15px;
-        font-weight: 700;
-        font-family: 'Pretendard-Regular';
-        left: 400px;
-    }
-
-    .errorTerms {
-        position: absolute;
-        width: 500px;
-        left: 405px;
-        top: 355px;
-        color: #FF5D18;
-        line-height: 21px;
-    }
-
-    .fieldTerms.errorInput {
-        border: 3px solid #FF5D18;
+    /* 똑같은거 있는데 혹시 수정할 수 있어서 나눔 */
+    @keyframes hello {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
 
@@ -810,8 +536,10 @@ input[type="checkbox"] {
         box-sizing: border-box;
 
         position: absolute;
-        left:445px;
-        top:250px;
+        width: 70vw;
+        height: 70vh;
+        margin-top: -21%;
+        margin-left: -40%;
 
         background: #FFFFFF;
         border: 5px solid #FF8AA3;
@@ -820,417 +548,22 @@ input[type="checkbox"] {
 
     .signupLogo {
         position: absolute;
-        left:100px;
-        top: 175px;
-        scale:0.9;
+        width: 20vw;
+        height: 30vh;
+        margin-top: -7%;
+        margin-left: -9%;
     }
 
-    .signupText {
+    .loginText {
         position: absolute;
-        width: 241px;
-        height: 63px;
-        left: 61px;
-        top: 105px;
+        width: 200vw;
+        margin-top: 12%;
+        margin-left: 7.5%;
 
         font-family: 'Mungyeong-Gamhong-Apple';
         font-style: normal;
         font-weight: 400;
-        font-size: 30px;
-        line-height: 62px;
-
-        color: #FF8AA3;
-    }
-
-    .signupBasic input {
-        position: absolute;
-        width: 400px;
-        left: 350px;
-        top: 185px;
-
-        border: 3px solid #000000;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-        padding-left: 10px;
-    }
-
-    .error {
-        position: absolute;
-        left: 355px;
-        top: 250px;
-        color: #FF5D18;
-        line-height: 21px;
-        font-size: 9px
-    }
-
-    input.errorInput {
-        border: 3px solid #FF5D18;
-    }
-
-    input.errorInput:focus {
-        border: 3px solid black; /* 포커스 시에도 빨간색 테두리 유지 */
-    }
-
-    .signupId::placeholder {
-        color: #AAAAAA
-    }
-
-    .loginButton {
-        background: #FFF3A7;
-        border-radius: 25px;
-
-        position: absolute;
-        width: 117px;
-        height: 40px;
-        left: 610px;
-        top: 295px;
-        border: none;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-
-        color: #000000;
-    }
-
-    .nextButton {
-        position: absolute;
-        width: 83px;
-        height: 38px;
-        left: 765px;
-        top: 295px;
-        border: none;
-
-        background: #FF8AA3;
-        border-radius: 25px;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-
-        color: #000000;
-    }
-
-    .loginButton:active {
-        margin-left: 2px;
-        margin-top: 1px;
-        box-shadow: 1px 0px 1px 1px black;
-    }
-
-    .nextButton:active {
-        margin-left: 2px;
-        margin-top: 1px;
-        box-shadow: 1px 0px 1px 1px black;
-    }
-
-    .inputFieldset {
-        border: 2px solid #ccc;
-        padding: 10px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    .mainConfirm {
-        position: absolute;
-        width: 500px;
-        left: 140px;
-        right: 37.92%;
-        top: 35%;
-        bottom: 56.24%;
-
-        font-family: 'BobaesumJindoTTF';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 25px;
-        line-height: 44px;
-        text-align: center;
-
-        color: #232323;
-    }
-
-    .subConfirm {
-
-        position: absolute;
-        width: 300px;
-        left: 55%;
-        right: 42.66%;
-        top: 55%;
-        bottom: 49%;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 36px;
-
-        color: #232323;
-    }
-
-    .mainButton {
-        position: absolute;
-        width: 100px;
-        height: 38px;
-        left: 230px;
-        top: 265px;
-        border: none;
-
-        background: #FEDA00;
-        border-radius: 25px;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-    }
-
-    .loginButtonConfirm {
-        background: #FF8AA3;
-        border-radius: 25px;
-
-        position: absolute;
-        width: 100px;
-        height: 40px;
-        left: 425px;
-        top: 265px;
-        border: none;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-    }
-
-    .mainButton:active, .loginButtonConfirm:active {
-        margin-left: 2px;
-        margin-top: 1px;
-        box-shadow: 1px 0px 1px 1px black;
-    }
-
-    /* 레전드용 */
-    .signupBasic label {
-        top:215px;
-        left:385px;
-        position: absolute;
-        transform: translateY(-50%);
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
         font-size: 50px;
-        color: #aaa;
-        transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
-        pointer-events: none;
-    }
-
-    .signupBasic input:focus +.signupBasic label,.signupBasic input:not(:placeholder-shown) +.signupBasic label {
-        top: 165px;
-        left: 380px;
-        font-size: 12px;
-        background-color: white;
-        width: 90px;
-        padding-left: 10px;
-        color: #007bff;
-    }
-
-    input:focus + .signupBasic label, input:not(:placeholder-shown) +.signupBasic label {
-        top: 165px;
-        left: 380px;
-        font-size: 12px;
-        background-color: white;
-        width: 90px;
-        padding-left: 10px;
-        color: #007bff;
-    }
-
-    input::placeholder {
-        visibility: hidden;
-    }
-
-    /* 비밀번호 바나나 */
-    .passwordToggleBtn img {
-        position: absolute;
-        cursor: pointer;
-        width: 50px;
-        height: 50px;
-        left: 750px;
-        top: 185px;
-    }
-
-    button:disabled {
-        background-color: #d3d3d3;
-        color: #a1a1a1;
-        cursor: not-allowed;
-    }
-
-    /* 넘어갈 때 애니메이션 */
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes fadeOut {
-        0% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        100% {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-    }
-
-    .inputWrapper {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeIn 0.5s forwards;
-    }
-
-    .inputWrapper.hidden {
-        animation: fadeOut 0.5s forwards;
-    }
-
-    /* 약관 */
-    .fieldTerms {
-        max-height: 250px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        left: 230px;
-        top: 45px;
-        position: absolute;
-        width: 320px;
-        padding: 10px;
-        border: 5px solid #ccc;
-        border-radius: 5px;
-        background-color: white;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-    }
-
-    .signupButton {
-        position: absolute;
-        width: 83px;
-        height: 38px;
-        left: 470px;
-        top: 315px;
-        border: none;
-
-        background: #FF8AA3;
-        border-radius: 25px;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 25px;
-        line-height: 30px;
-
-        color: #000000;
-    }
-
-    .signupButton:active {
-        margin-left: 2px;
-        margin-top: 1px;
-        box-shadow: 1px 0px 1px 1px black;
-    }
-
-    /* 체크박스 */
-    .checkboxWrapper {
-        display: flex;
-        cursor: pointer;
-        width: 1000px;
-    }
-
-    input[type="checkbox"] {
-        top: 215px;
-        left: 260px;
-        border-radius: 4px;
-        transform: scale(0.5);
-    }
-
-    .termsLabel {
-        color: black;
-        font-size: 15px;
-        font-weight: 700;
-        font-family: 'Pretendard-Regular';
-        left: 380px;
-        top: 200px;
-    }
-
-    .errorTerms {
-        position: absolute;
-        width: 500px;
-        left: 235px;
-        top: 300px;
-        color: #FF5D18;
-        line-height: 21px;
-    }
-
-    .fieldTerms.errorInput {
-        border: 3px solid #FF5D18;
-    }
-}
-
-@media (max-width:768px) {
-    .signupBasic {
-        background-color: #FFF3A7;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .signup {
-        box-sizing: border-box;
-
-        position: absolute;
-        width: 976px;
-        height: 455px;
-        left: 461px;
-        top: 250px;
-
-        background: #FFFFFF;
-        border: 5px solid #FF8AA3;
-        border-radius: 50px;
-    }
-
-    .signupLogo {
-
-        position: absolute;
-        left: 100px;
-        top: 165px;
-    }
-
-    .signupText {
-        position: absolute;
-        width: 241px;
-        height: 63px;
-        left: 38px;
-        top: 65px;
-
-        font-family: 'Mungyeong-Gamhong-Apple';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 20px;
         line-height: 62px;
 
         color: #FF8AA3;
@@ -1238,8 +571,10 @@ input[type="checkbox"] {
 
     .signupBasic input {
         position: absolute;
-        left: 370px;
-        top: 165px;
+        width: 35vw;
+        height: 10vh;
+        margin-top: -10%;
+        margin-left: -20%;
 
         border: 3px solid #000000;
 
@@ -1253,10 +588,9 @@ input[type="checkbox"] {
 
     .error {
         position: absolute;
-        width: 500px;
-        height: 52.5px;
-        left: 375px;
-        top: 225px;
+        width: 100vw;
+        margin-top: -11%;
+        margin-left: -20%;
         color: #FF5D18;
         line-height: 21px;
     }
@@ -1274,31 +608,29 @@ input[type="checkbox"] {
     }
 
     .loginButton {
+        display: flex; justify-content: center; align-items: center;
         background: #FFF3A7;
         border-radius: 25px;
 
         position: absolute;
-        width: 100px;
-        height: 30px;
-        left: 653px;
-        top: 250px;
+        width: 15vw;
+        transform: translate(-270%, -120%);
         border: none;
 
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 25px;
         line-height: 30px;
+        /* identical to box height */
 
         color: #000000;
     }
 
     .nextButton {
         position: absolute;
-        width: 100px;
-        height: 30px;
-        left: 803px;
-        top: 251px;
+        width: 10vw;
+        transform: translate(-390%, -125%);
         border: none;
 
         background: #FF8AA3;
@@ -1307,7 +639,7 @@ input[type="checkbox"] {
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 25px;
         line-height: 30px;
 
         color: #000000;
@@ -1333,91 +665,10 @@ input[type="checkbox"] {
         position: relative;
         transition: all 0.3s ease;
     }
-
-    .mainConfirm {
-        position: absolute;
-        width: 500px;
-        left: 3.5%;
-        right: 37.92%;
-        top: 30%;
-        bottom: 56.24%;
-
-        font-family: 'BobaesumJindoTTF';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 44px;
-        text-align: center;
-
-        color: #232323;
-    }
-
-    .subConfirm {
-
-        position: absolute;
-        width: 300px;
-        left: 47%;
-        right: 42.66%;
-        top: 47.7%;
-        bottom: 49%;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 36px;
-
-        color: #232323;
-    }
-
-    .mainButton {
-        position: absolute;
-        width: 70px;
-        height: 25px;
-        left: 170px;
-        top: 170px;
-        border: none;
-
-        background: #FEDA00;
-        border-radius: 25px;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 25px;
-    }
-
-    .loginButtonConfirm {
-        background: #FF8AA3;
-        border-radius: 25px;
-
-        position: absolute;
-        width: 70px;
-        height: 25px;
-        left: 260px;
-        top: 170px;
-        border: none;
-
-        font-family: 'Pretendard-Regular';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 25px;
-    }
-
-    .mainButton:active, .loginButtonConfirm:active {
-        margin-left: 2px;
-        margin-top: 1px;
-        box-shadow: 1px 0px 1px 1px black;
-    }
-
     /* 레전드용 */
-    .signupBasic label {
+    .signupBasiclabel {
         position: absolute;
-        top: 191px;
-        left: 390px;
-        transform: translateY(-50%);
+        transform: translate(-130%, -440%);
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
@@ -1427,19 +678,21 @@ input[type="checkbox"] {
         pointer-events: none;
     }
 
-    input:focus + .signupBasic label, input:not(:placeholder-shown) +.signupBasic label {
-        top: 165px;
-        left: 380px;
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
+        margin-top: -40%;
+        margin-left: -20%;
         font-size: 12px;
         background-color: white;
         width: 90px;
         padding-left: 10px;
         color: #007bff;
+        display:none
     }
 
-    input:focus +.signupBasic label, input:not(:placeholder-shown) +.signupBasic label {
-        top: 165px;
-        left: 380px;
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
+        margin-top: 5%;
+        margin-left: 5%;
+        scale: 5;
         font-size: 12px;
         background-color: white;
         width: 90px;
@@ -1455,10 +708,10 @@ input[type="checkbox"] {
     .passwordToggleBtn img {
         position: absolute;
         cursor: pointer;
-        width: 50px;
-        height: 50px;
-        left: 815px;
-        top: 165px;
+        width: 5vw;
+        height: 9vh;
+        margin-top: -9.7%;
+        margin-left: -47%;
     }
 
     button:disabled {
@@ -1499,35 +752,145 @@ input[type="checkbox"] {
     .inputWrapper.hidden {
         animation: fadeOut 0.5s forwards;
     }
-
-    /* 약관 */
-    .fieldTerms {
-        max-height: 250px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        left: 150px;
-        top: 10px;
+    .signupBasic .search {
         position: absolute;
-        width: 210px;
-        height: 200px;
-        padding: 10px;
-        border: 5px solid #ccc;
-        border-radius: 5px;
-        background-color: white;
+        width : 20vw;
+        margin-top: -6.5%;
+        margin-left: 25.5%;
 
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
         font-size: 25px;
         line-height: 30px;
+
+        color: #232323;
+        animation: hello 0.5s ease;
     }
 
-    .signupButton {
+    /* 똑같은거 있는데 혹시 수정할 수 있어서 나눔 */
+    @keyframes hello {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .signupBasic {
+        background-color: #FFF3A7;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .signup {
+        box-sizing: border-box;
+
         position: absolute;
-        width: 70px;
-        height: 35px;
-        left: 285px;
-        top: 220px;
+        width: 70vw;
+        height: 60vh;
+        margin-top: -29%;
+        margin-left: -72%;
+
+        background: #FFFFFF;
+        border: 5px solid #FF8AA3;
+        border-radius: 50px;
+    }
+
+    .signupLogo {
+        position: absolute;
+        width: 15vw;
+        height: 18vh;
+        margin-top: -15%;
+        margin-left: -15%;
+    }
+
+    .loginText {
+        position: absolute;
+        width: 100vw;
+        margin-top: 18%;
+        margin-left: 11%;
+
+        font-family: 'Mungyeong-Gamhong-Apple';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 62px;
+
+        color: #FF8AA3;
+    }
+
+    .signupBasic input {
+        position: absolute;
+        width: 36vw;
+        height: 8vh;
+        margin-top: -18%;
+        margin-left: -57%;
+
+        border: 3px solid #000000;
+
+        font-family: 'Pretendard-Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        padding-left: 10px;
+    }
+
+    .error {
+        position: absolute;
+        width: 100vw;
+        margin-top: -23.5%;
+        margin-left: -57%;
+        color: #FF5D18;
+        line-height: 21px;
+        font-size: 10px;
+    }
+
+    input.errorInput {
+        border: 3px solid #FF5D18;
+    }
+
+    input.errorInput:focus {
+        border: 3px solid black; /* 포커스 시에도 빨간색 테두리 유지 */
+    }
+
+    .signupId::placeholder {
+        color: #AAAAAA
+    }
+
+    .loginButton {
+        display: flex; justify-content: center; align-items: center;
+        background: #FFF3A7;
+        border-radius: 25px;
+
+        position: absolute;
+        width: 14vw;
+        transform: translate(-575%, -235%);
+        border: none;
+
+        font-family: 'Pretendard-Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 30px;
+        /* identical to box height */
+
+        color: #000000;
+    }
+
+    .nextButton {
+        position: absolute;
+        width: 7vw;
+        transform: translate(-1275%, -240%);
         border: none;
 
         background: #FF8AA3;
@@ -1536,52 +899,144 @@ input[type="checkbox"] {
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
-        font-size: 25px;
+        font-size: 15px;
         line-height: 30px;
 
         color: #000000;
     }
 
-    .signupButton:active {
+    .loginButton:active {
         margin-left: 2px;
         margin-top: 1px;
         box-shadow: 1px 0px 1px 1px black;
     }
 
-    /* 체크박스 */
-    .checkboxWrapper {
-        display: flex;
-        cursor: pointer;
-        margin-left: 40px;
+    .nextButton:active {
+        margin-left: 2px;
+        margin-top: 1px;
+        box-shadow: 1px 0px 1px 1px black;
     }
 
-    input[type="checkbox"] {
-        margin-left: 200px;
-        border-radius: 4px;
-        left:-225px;
-        top: 215px;
-        scale:0.5;
+    .inputFieldset {
+        border: 2px solid #ccc;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        position: relative;
+        transition: all 0.3s ease;
     }
-
-    .termsLabel {
-        color: black;
-        font-size: 15px;
-        font-weight: 700;
-        font-family: 'Pretendard-Regular';
-        left: 325px;
-        top:125px;
-    }
-
-    .errorTerms {
+    /* 레전드용 */
+    .signupBasic label {
+        width: 20vw;
         position: absolute;
-        width: 500px;
-        left: 90px;
-        top: 215px;
-        color: #FF5D18;
-        line-height: 21px;
+        transform: translate(-200%, -525%);
+        font-family: 'Pretendard-Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 50px;
+        color: #aaa;
+        transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
+        pointer-events: none;
     }
 
-    .fieldTerms.errorInput {
-        border: 3px solid #FF5D18;
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
+        margin-top: -6%;
+        margin-left: -10%;
+        font-size: 10px;
+        background-color: white;
+        width: 90px;
+        padding-left: 10px;
+        color: #007bff;
+    }
+
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
+        margin-top: -10%;
+        margin-left: -10%;
+        font-size: 10px;
+        background-color: white;
+        width: 90px;
+        padding-left: 10px;
+        color: #007bff;
+        scale:10;
+    }
+
+    input::placeholder {
+        visibility: hidden;
+    }
+
+    /* 비밀번호 바나나 */
+    .passwordToggleBtn img {
+        position: absolute;
+        cursor: pointer;
+        width: 5vw;
+        height: 7vh;
+        margin-top:-17.5%;
+        margin-left: -127.5%;
+    }
+
+    button:disabled {
+        background-color: #d3d3d3;
+        color: #a1a1a1;
+        cursor: not-allowed;
+    }
+
+    /* 넘어갈 때 애니메이션 */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    }
+
+    .inputWrapper {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.5s forwards;
+    }
+
+    .inputWrapper.hidden {
+        animation: fadeOut 0.5s forwards;
+    }
+    .signupBasic .search {
+        position: absolute;
+        width : 20vw;
+        margin-top: -9.4%;
+        margin-left: 15%;
+
+        font-family: 'Pretendard-Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+
+        color: #232323;
+        animation: hello 0.5s ease;
+    }
+
+    /* 똑같은거 있는데 혹시 수정할 수 있어서 나눔 */
+    @keyframes hello {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
