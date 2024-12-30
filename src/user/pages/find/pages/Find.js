@@ -192,7 +192,6 @@ import { Link } from 'react-router-dom';
                         )}</p>
                     </div>
 
-                        {/* 이메일 입력 단계 */}
                         {step === 1 && (
                             <form onSubmit={handleEmailSubmit}>
                                 <fieldset>
@@ -309,18 +308,24 @@ import { Link } from 'react-router-dom';
 
                     {step === 6 && (
                         <div>
-                            <p>비밀번호가 성공적으로 변경되었습니다.</p>
+                            <p className={styles.changeConfirm}>비밀번호가 변경되었습니다.</p>
                             <button
                                 className={styles.loginButton}
                                 onClick={() => window.location.href = '/auth/login'}
                             >
-                                로그인 페이지로
+                                로그인
                             </button>
-                            </div>
-                        )}
-                    </div>
+                            <button
+                                className={styles.nextButton}
+                                onClick={() => window.location.href = '/auth/login'}
+                            >
+                                메인
+                            </button>
+                        </div>
+                    )}
                 </div>
-                );
-                }
+            </div>
+        );
+    }
 
-                export default Find;
+export default Find;

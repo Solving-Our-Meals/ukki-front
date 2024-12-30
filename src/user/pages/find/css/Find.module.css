@@ -156,23 +156,26 @@ input.errorInput:focus {
 }
 
 .changeButton {
-    position: absolute;
-    width: 83px;
-    height: 38px;
-    left: 765px;
-    top: 295px;
-    border: none;
-
     background: #FEDA00;
-    border-radius: 25px;
 
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
+}
 
-    color: #000000;
+.changeConfirm {
+        position: absolute;
+        width: 1000px;
+        left: 38.7%;
+        right: 37.92%;
+        top: 42%;
+        bottom: 56.24%;
+
+        font-family: 'Mungyeong-Gamhong-Apple';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 44px;
+        text-align: left;
+
+        color: #232323;
 }
 
 .loginButton:active {
@@ -583,7 +586,7 @@ input[type="checkbox"] {
         color: #000000;
     }
 
-    .nextButton {
+    .nextButton, .changeButton {
         position: absolute;
         width: 83px;
         height: 38px;
@@ -603,7 +606,7 @@ input[type="checkbox"] {
         color: #000000;
     }
 
-    .loginButton:active {
+    .loginButton:active, .changeButton:active {
         margin-left: 2px;
         margin-top: 1px;
         box-shadow: 1px 0px 1px 1px black;
