@@ -47,7 +47,6 @@
 
 // export default ReservationInfo;
 
-import { useState, useEffect } from 'react';
 import styles from '../css/reservation.module.css';
 import Calendar from '../components/Calendar';
 
@@ -60,9 +59,7 @@ function ReservationInfo() {
             <div className={styles.calendarContainer}>
                 <Calendar />
             </div>
-            
-            {/* <div className={styles.morning}>오전</div> */}
-            {/* <div className={styles.afternoon}>오후</div> */}
+            <hr id={styles.hr}></hr>
         </div>
     );
 }
