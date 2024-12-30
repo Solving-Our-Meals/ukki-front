@@ -264,7 +264,6 @@ function Signup() {
                     </form>
                 )}
 
-                {/* 비밀번호 입력받는 스탭 */}
                 {step === 2 && (
                     <form onSubmit={handlePasswordSubmit}>
                         <fieldset className="fieldPwd">
@@ -299,7 +298,6 @@ function Signup() {
                     </form>
                 )}
 
-                {/* 이메일 입력받는 스탭 */}
                 {step === 3 && (
                     <form onSubmit={handleEmailSubmit}>
                         <fieldset className="fieldEmail">

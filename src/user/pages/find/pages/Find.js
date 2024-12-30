@@ -193,6 +193,8 @@ import { Link } from 'react-router-dom';
             cursor: 'pointer',
             transform: error ? 'translateY(255px)' : 'translateY(230px)',
             width: '1000px',
+            position: 'absolute',
+            zIndex: 1
         }
 
         const togglePasswordVisibility = () => {
@@ -217,15 +219,17 @@ import { Link } from 'react-router-dom';
                                 <fieldset>
                                     <div className={styles.inputWrapper}>
                                         <input
+                                            className={`findEmail ${error ? 'errorInput' : ''}`}
                                             type="email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
                                             placeholder="이메일 입력"
                                         />
+                                        <label htmlFor="email">이메일 입력</label>
                                     </div>
                                 </fieldset>
-                                    {error && <p className={styles.error}>{error}</p>}
+                                {error && <p className={styles.error}>{error}</p>}
                                 <button
                                     className={styles.nextButton}
                                     type="submit"
@@ -235,19 +239,20 @@ import { Link } from 'react-router-dom';
                                 </button>
                             </form>
                         )}
-
-                        {/* 이메일 인증 단계 */}
+                    
                         {step === 2 && verificationCodeSent && (
                             <form onSubmit={handleVerificationSubmit}>
                                 <fieldset>
                                     <div className={styles.inputWrapper}>
                                         <input
+                                            className={`findAuth ${error ? 'errorInput' : ''}`}
                                             type="text"
                                             name="auth"
                                             value={formData.auth}
                                             onChange={handleChange}
                                             placeholder="인증번호 입력"
                                         />
+                                        <label htmlFor="auth">인증번호 입력</label>
                                     </div>
                                 </fieldset>
                                 {error && <p className={styles.error}>{error}</p>}
@@ -272,25 +277,25 @@ import { Link } from 'react-router-dom';
                             <form onSubmit={(e) => {
                                 e.preventDefault();
                                 setError('');
-                                // 비밀번호 유효성 검사
+                                // 번거로운 부분이 있어 find에서는 프론트에서 진행
                                 const passwordError = validatePassword(formData.newPassword);
                                 if (passwordError) {
-                                    setError(passwordError);  // 오류 메시지 설정
-                                    return;  // 비밀번호가 유효하지 않으면 더 이상 진행하지 않음
+                                    setError(passwordError);
+                                    return;
                                 }
-
-                                // 비밀번호 유효성 검사 통과하면 5번 스텝으로 진행
                                 setStep(5);
                             }}>
                                 <fieldset>
                                     <div className={styles.inputWrapper}>
                                         <input
+                                            className={`findPass ${error ? 'errorInput' : ''}`}
                                             type={showPassword ? "text" : "password"}
                                             name="newPassword"
                                             value={formData.newPassword}
                                             onChange={handleChange}
                                             placeholder="새 비밀번호 입력"
                                         />
+                                        <label htmlFor="newPassword" className="newPasswordLabel">변경할 비밀번호</label>
                                     </div>
                                 </fieldset>
                                 <div className={styles.passwordToggleBtn}>
@@ -312,12 +317,14 @@ import { Link } from 'react-router-dom';
                             <fieldset>
                                 <div className={styles.inputWrapper}>
                                     <input
+                                        className={`findPassConfirm ${error ? 'errorInput' : ''}`}
                                         type={showPassword ? "text" : "password"}
                                         name="confirmNewPassword"
                                         value={formData.confirmNewPassword}
                                         onChange={handleChange}
                                         placeholder="새 비밀번호 입력"
                                     />
+                                    <label htmlFor="confirmNewPassword">비밀번호 확인</label>
                                 </div>
                             </fieldset>
                             <div className={styles.passwordToggleBtn}>
