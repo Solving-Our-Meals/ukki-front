@@ -47,7 +47,7 @@ function Review(){
                             key={index} 
                             className={styles.review} 
                             style={{ 
-                                marginLeft : index % 2 !== 0 ? '60px' : '-60px', 
+                                marginLeft : index % 2 !== 0 ? '35px' : '-35px', 
                                 display : isMoreReview || index <= 2 ? "" : "none" }}
                         >
                             <img src={reviewImg} id={styles.reviewImg} style={{ transform : index % 2 !== 0 ? 'scaleX(-1)' : "" }} alt='리뷰 백그라운드'/>

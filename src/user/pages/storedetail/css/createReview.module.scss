@@ -1,0 +1,64 @@
+@import "../../../../common/reset/reset.scss";
+
+.createReview{
+    position: absolute;
+    left: 129px;
+    top : 2124px;
+    width : 1663px;
+    height: 810px;
+    border: 5px solid $primary;
+    border-radius: 50px;
+    background-color: #FFF9D1;
+    z-index: 10;
+    cursor: default;
+
+    #strReview{
+        position: absolute;
+        left : 107px;
+        top : 66px;
+        width: max-content;
+        font-family : 'Bobaesum Jindo TTF';
+        font-size : 41px;
+        font-weight: 600;
+        color: $textStrong;
+        z-index: 15;
+    }
+
+    #writeReviewArea{
+        position: absolute;
+        left: 83px;
+        top : 210px;
+        width : 1495px;
+        height: 452px;
+    }
+
+    #inputReview{
+        position : absolute;
+        left : 145px;
+        top : 239px;
+        width : 835px;
+        height : 355px;
+        resize: none;  // 영역 조절 불가
+        font-family: 'Pretendard Variable';
+        font-size: 18px;
+        color : $textStrong;
+        cursor: text;
+        border: none;
+        // border: 1px solid blue;
+    }
+
+    #inputReview:focus{
+        outline: none;
+    }
+
+    #addPhoto{
+        position: absolute;
+        left : 1260px;
+        top : 354px;
+        width : 113px;
+        height : 113px;
+        cursor: pointer;
+    }
+
+
+}
