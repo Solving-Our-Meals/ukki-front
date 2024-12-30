@@ -16,7 +16,7 @@ function App() {
     <Routes>
       <Route path="auth/signup" element={<Signup/>}/>
       <Route path="auth/login" element={<Login/>}/>
-      <Route path="auth/find" element={<Find/>}/>
+      <Route path="auth/find/:type" element={<Find/>}/>
       <Route path="/" element={<UserLayout/>}>
       <Route index element={<Main/>}/>
       <Route path="info" element={<Info/>}/>

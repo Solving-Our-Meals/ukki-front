@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import '../css/reset.css';
 import styles from '../css/Find.module.css';
 import '../../signup/css/Signup.css'
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
     function Find() {
         const [step, setStep] = useState(1);
@@ -19,9 +19,9 @@ import { Link } from 'react-router-dom';
         const [loading, setLoading] = useState(false);
         const [foundUserId, setFoundUserId] = useState('');
         const location = useLocation();
-        const searchParams = new URLSearchParams(location.search);
-        const searchType = searchParams.has('1') ? 'id' : (searchParams.has('2') ? 'password' : '');
         const [showPassword, setShowPassword] = useState(false);
+
+        const { type } = useParams();
 
         const handleChange = (e) => {
             const { name, value } = e.target;
@@ -95,7 +95,7 @@ import { Link } from 'react-router-dom';
 
             const result = await response.json();
             if (result.isValid) {
-                setStep(3);  // 인증번호가 유효하면 step을 3으로 변경
+                setStep(3);
                 setError('');
             } else {
                 setError('ⓘ 인증번호가 올바르지 않습니다.');
@@ -103,9 +103,9 @@ import { Link } from 'react-router-dom';
         };
 
         useEffect(() => {
-            if (step === 3 && searchType === 'password' && formData.email) {
+            if (step === 3 && type === 'password' && formData.email) {
                 setStep(4);
-            } else if (step === 3 && searchType !== 'password' && formData.email) {
+            } else if (step === 3 && type !== 'password' && formData.email) {
                 const fetchUserId = async () => {
                     const userIdResponse = await fetch('/auth/finds1', {
                         method: 'POST',
@@ -125,7 +125,7 @@ import { Link } from 'react-router-dom';
 
                 fetchUserId();
             }
-        }, [step, formData.email, searchType]);
+        }, [step, formData.email, type]);
 
         // 폼 초기화용 -> 자꾸 저장됨 -> 편의성을 위해 이메일은 안할까하는데 혹시몰라서 주석처리로 해놓음 -> 주석처리 금지 -> 주석하면 폼은 그대로 남아있으나 데이터 값은 써진게 없는걸로 판단함
         useEffect(() => {
@@ -140,23 +140,19 @@ import { Link } from 'react-router-dom';
         }, [step]);
 
         const validatePassword = (newPassword) => {
-            // 비밀번호 길이가 8자 미만인 경우
             if (newPassword.length < 8) {
                 return "ⓘ 비밀번호는 최소 8자 이상이어야 합니다.";
             }
 
-            // 숫자가 포함되지 않은 경우
             if (!newPassword.match(/\d/)) {
                 return "ⓘ 비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.";
             }
 
-            // 특수문자가 포함되지 않은 경우
             if (!newPassword.match(/[!@#$%^&*(),.?":{}|<>]/)) {
                 return "ⓘ 비밀번호에는 최소 하나의 특수문자가 포함되어야 합니다.";
             }
 
-            // 모든 조건을 만족하는 경우
-            return null;  // 유효한 비밀번호
+            return null;
         };
 
 
@@ -204,13 +200,13 @@ import { Link } from 'react-router-dom';
         return (
             <div className={styles.findAccount}>
                 <div className={styles.findAccountContent}>
-                    <p className={`signupText ${searchType === 'id' ? styles.signupTextId : styles.signupTextPassword}`}>{searchType === 'id' ? '아이디 찾기' : '비밀번호 찾기'}</p>
+                    <p className={`signupText ${type === 'id' ? styles.signupTextId : styles.signupTextPassword}`}>{type === 'id' ? '아이디 찾기' : '비밀번호 찾기'}</p>
                     <img className="signupLogo" src="/images/signupLogo.png" alt="회원가입 로고"></img>
                     <div style={searchError}>
-                        <p className={styles.findAccountText}>{searchType === 'id' ? (
-                            <Link to="/auth/find?2" onClick={() => setStep(1)}>비밀번호 찾기</Link>
+                        <p className={styles.findAccountText}>{type === 'id' ? (
+                            <Link to="/auth/find/pwd" onClick={() => setStep(1)}>비밀번호 찾기</Link>
                         ) : (
-                            <Link to="/auth/find?1" onClick={() => setStep(1)}>아이디 찾기</Link>
+                            <Link to="/auth/find/id" onClick={() => setStep(1)}>아이디 찾기</Link>
                         )}</p>
                     </div>
 
