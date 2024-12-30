@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles from '../css/Signup.module.css';
+import '../css/Signup.css';
 import '../css/reset.css';
 
 function Signup() {
@@ -19,7 +19,7 @@ function Signup() {
     const [emailPending, setEmailPending] = useState(false);  // 이메일 대기
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setFormData(prevFormData => ({
             ...prevFormData,
             [name]: value
@@ -55,7 +55,7 @@ function Signup() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({userId: formData.userId})
+            body: JSON.stringify({ userId: formData.userId })
         });
         const result = await response.json();
         if (result.isValid) {
@@ -75,7 +75,7 @@ function Signup() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({userPass: formData.userPass})
+            body: JSON.stringify({ userPass: formData.userPass })
         });
 
         const result = await response.json();
@@ -101,7 +101,7 @@ function Signup() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({email: formData.email}),
+            body: JSON.stringify({ email: formData.email }),
         });
 
         const emailCheckResult = await emailCheckResponse.json();
@@ -126,7 +126,7 @@ function Signup() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({email: formData.email}),
+            body: JSON.stringify({ email: formData.email }),
         });
 
         const result = await response.json();
@@ -188,7 +188,7 @@ function Signup() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({userName: formData.userName})
+            body: JSON.stringify({ userName: formData.userName })
         });
         const result = await response.json();
         if (result.isValid) {
@@ -236,16 +236,17 @@ function Signup() {
     };
 
     return (
-        <div className={styles.signupBasic}>
-            <div className={styles.signup}>
-                <p className={styles.signupText}>회원가입</p>
-                <img className={styles.signupLogo} src="/images/signupLogo.png" alt="회원가입 로고"/>
+        <div className="signupBasic">
+            <div className="signup">
+                <p className="signupText">회원가입</p>
+                <img className="signupLogo" src="/images/signupLogo.png" alt="회원가입 로고"></img>
                 {step === 1 && (
                     <form onSubmit={handleUsernameSubmit}>
-                        <fieldset className={styles.fieldId}>
-                            <div className={styles.inputWrapper}>
+
+                        <fieldset className="fieldId">
+                            <div className="inputWrapper">
                                 <input
-                                    className={`${styles.signupId} ${error ? styles.errorInput : ''}`}
+                                    className={`signupId ${error ? 'errorInput' : ''}`}
                                     type="text"
                                     name="userId"
                                     value={formData.userId}
@@ -256,24 +257,23 @@ function Signup() {
                                 <label htmlFor="userId">아이디 입력</label>
                             </div>
                         </fieldset>
-                        {error && <p className={styles.error}>{error}</p>}
+                        {error && <p className="error">{error}</p>}
                         <button
-                            className={styles.loginButton}
+                            className="loginButton"
                             type="button"
                             onClick={() => window.location.href = '/auth/login'}
-                        >로그인
-                        </button>
-                        <button type="submit" className={styles.nextButton}>다음</button>
+                        >로그인</button>
+                        <button type="submit" className="nextButton">다음</button>
                     </form>
                 )}
 
                 {/* 비밀번호 입력받는 스탭 */}
                 {step === 2 && (
                     <form onSubmit={handlePasswordSubmit}>
-                        <fieldset className={styles.fieldPwd}>
-                            <div className={styles.inputWrapper}>
+                        <fieldset className="fieldPwd">
+                            <div className="inputWrapper">
                                 <input
-                                    className={`${styles.signupPwd} ${error ? styles.errorInput : ''}`}
+                                    className={`signupPwd ${error ? 'errorInput' : ''}`}
                                     type={showPassword ? "text" : "password"}
                                     name="userPass"
                                     value={formData.userPass}
@@ -282,7 +282,7 @@ function Signup() {
                                     placeholder="비밀번호 입력"
                                 />
                                 <label htmlFor="userPass">비밀번호 입력</label>
-                                <div className={styles.passwordToggleBtn}>
+                                <div className="passwordToggleBtn">
                                     <img
                                         src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
                                         alt="비밀번호 보이기/숨기기"
@@ -291,24 +291,24 @@ function Signup() {
                                 </div>
                             </div>
                         </fieldset>
-                        {error && <p className={styles.error}>{error}</p>}
+                        {error && <p className="error">{error}</p>}
                         <button
-                            className={styles.loginButton}
+                            className="loginButton"
                             type="button"
                             onClick={() => window.location.href = '/auth/login'}
                         >로그인
                         </button>
-                        <button className={styles.nextButton}>다음</button>
+                        <button className="nextButton">다음</button>
                     </form>
                 )}
 
                 {/* 이메일 입력받는 스탭 */}
                 {step === 3 && (
                     <form onSubmit={handleEmailSubmit}>
-                        <fieldset className={styles.fieldEmail}>
-                            <div className={styles.inputWrapper}>
+                        <fieldset className="fieldEmail">
+                            <div className="inputWrapper">
                                 <input
-                                    className={`${styles.signupEmail} ${error ? styles.errorInput : ''}`}
+                                    className={`signupEmail ${error ? 'errorInput' : ''}`}
                                     type="text"
                                     name="email"
                                     value={formData.email}
@@ -319,14 +319,14 @@ function Signup() {
                                 <label htmlFor="email">이메일 입력</label>
                             </div>
                         </fieldset>
-                        {error && <p className={styles.error}>{error}</p>}
+                        {error && <p className="error">{error}</p>}
                         <button
-                            className={styles.loginButton}
+                            className="loginButton"
                             type="button"
                             onClick={() => window.location.href = '/auth/login'}
                         >로그인
                         </button>
-                        <button className={styles.nextButton}
+                        <button className="nextButton"
                                 disabled={loading || emailPending} // 이메일 전송 중이거나 로딩 중이면 버튼 비활성화
                         >{loading || emailPending ? '처리중' : '다음'}</button>
                     </form>
@@ -334,10 +334,10 @@ function Signup() {
 
                 {step === 4 && verificationCodeSent && (
                     <form onSubmit={handleVerificationSubmit}>
-                        <fieldset className={styles.fieldAuth}>
-                            <div className={styles.inputWrapper}>
+                        <fieldset className="fieldAuth">
+                            <div className="inputWrapper">
                                 <input
-                                    className={`${styles.signupAuth} ${error ? styles.errorInput : ''}`}
+                                    className={`signupAuth  ${error ? 'errorInput' : ''}`}
                                     type="text"
                                     name="auth"
                                     value={formData.auth}
@@ -348,23 +348,24 @@ function Signup() {
                                 <label htmlFor="email">인증번호 입력</label>
                             </div>
                         </fieldset>
-                        {error && <p className={styles.error}>{error}</p>}
+                        {error && <p className="error">{error}</p>}
                         <button
-                            className={styles.loginButton}
+                            className="loginButton"
                             type="button"
                             onClick={() => window.location.href = '/auth/login'}
                         >로그인
                         </button>
-                        <button className={styles.nextButton}>다음</button>
+                        <button className="nextButton">다음
+                        </button>
                     </form>
                 )}
 
                 {step === 5 && (
                     <form onSubmit={handleNicknameSubmit}>
-                        <fieldset className={styles.fieldAuth}>
-                            <div className={styles.inputWrapper}>
+                        <fieldset className="fieldAuth">
+                            <div className="inputWrapper">
                                 <input
-                                    className={`${styles.signupName} ${error ? styles.errorInput : ''}`}
+                                    className={`signupName ${error ? 'errorInput' : ''}`}
                                     type="text"
                                     name="userName"
                                     value={formData.userName}
@@ -375,22 +376,23 @@ function Signup() {
                                 <label htmlFor="email">닉네임 입력</label>
                             </div>
                         </fieldset>
-                        {error && <p className={styles.error}>{error}</p>}
+                        {error && <p className="error">{error}</p>}
                         <button
-                            className={styles.loginButton}
+                            className="loginButton"
                             type="button"
                             onClick={() => window.location.href = '/auth/login'}
                         >로그인
                         </button>
-                        <button className={styles.nextButton}>다음</button>
+                        <button className="nextButton">다음</button>
                     </form>
                 )}
 
                 {step === 6 && (
                     <form onSubmit={handleTermsSubmit}>
-                        <fieldset className={`${styles.fieldTerms} ${error ? styles.errorInput : ''}`}>
+                        <fieldset className={`fieldTerms ${error ? 'errorInput' : ''}`}>
+
                             {/* 약관 내용 텍스트 */}
-                            <div className={styles.termsContent}>
+                            <div className="termsContent">
                                 <p>약관 1 : 사이트 이름</p>
                                 <p>약관 1 : 위 사이트는 우끼라 칭한다.</p>
                                 <p>약관 2 : 위 사이트는 우끼라 칭한다.</p>
@@ -403,8 +405,8 @@ function Signup() {
                                 <p>약관 2 : 위 사이트는 우끼라 칭한다.</p>
                             </div>
                         </fieldset>
-                        <div className={styles.checkboxWrapper} style={checkboxWrapperStyle}>
-                            <label className={styles.termsLabel} htmlFor="terms">약관에 동의합니다.</label>
+                        <div className="checkboxWrapper" style={checkboxWrapperStyle}>
+                            <label className="termsLabel" htmlFor="terms">약관에 동의합니다.</label>
                             <input
                                 type="checkbox"
                                 name="terms"
@@ -413,23 +415,23 @@ function Signup() {
                                 onChange={(e) => setFormData({...formData, terms: e.target.checked})}
                             />
                         </div>
-                        {error && <p className={styles.errorTerms}>{error}</p>}
-                        <button className={styles.signupButton}>완료</button>
+                        {error && <p className="errorTerms">{error}</p>}
+                        <button className="signupButton">완료</button>
                     </form>
                 )}
 
                 {step === 7 && (
                     <form>
-                        <p className={styles.mainConfirm}>회원가입이 완료되었습니다.</p>
-                        <p className={styles.subConfirm}>우끼 가입을 환영합니다.</p>
+                        <p className="mainConfirm">회원가입이 완료되었습니다.</p>
+                        <p className="subConfirm">우끼 가입을 환영합니다.</p>
                         <button
-                            className={styles.mainButton}
+                            className="mainButton"
                             type="button"
                             onClick={() => window.location.href = '/main'}
                         >메인
                         </button>
                         <button
-                            className={styles.loginButtonConfirm}
+                            className="loginButtonConfirm"
                             type="button"
                             onClick={() => window.location.href = '/auth/login'}
                         >로그인
