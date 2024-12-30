@@ -173,142 +173,138 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
-.storeDetail {
+.reviewStyle {
   cursor: default;
-  border-radius: 0;
 }
-.storeDetail #storeName {
+.reviewStyle #strReview {
   position: absolute;
-  width: max-content;
-  height: max-content;
   left: 112px;
-  top: 627px;
+  top: 1984px;
+  width: max-content;
   font-family: "Bobaesum Jindo TTF";
-  font-style: "regular";
   font-size: 50px;
   color: #232323;
 }
-.storeDetail #storeDes {
+.reviewStyle #strCountReview {
   position: absolute;
-  width: 780px;
-  height: 30px;
   left: 112px;
-  top: 700px;
-  font-family: "Bobaesum Jindo TTF";
-  font-style: "semi-bold";
-  font-size: 25px;
-  color: #232323;
-  line-height: 30px;
-}
-.storeDetail #mapIcon {
-  position: absolute;
-  width: 145px;
-  height: 164px;
-  left: 85px;
-  top: 750px;
-}
-.storeDetail #storeAddress {
-  position: absolute;
-  left: 235px;
-  top: 800px;
+  top: 2051px;
   width: max-content;
-  height: 41px;
   font-family: "Pretendard Variable";
-  font-size: 25px;
+  font-size: 30px;
   color: #232323;
 }
-.storeDetail #operTime {
+.reviewStyle #btnWriteReview {
   position: absolute;
-  left: 235px;
-  top: 844px;
-  width: max-content;
-  height: 41px;
-  font-family: "Pretendard Variable";
-  font-size: 25px;
-  color: #232323;
-  cursor: pointer;
-}
-.storeDetail #triangle {
-  position: absolute;
-  width: 18px;
-  height: 22px;
-  margin: 10px;
-  top: -10px;
-  cursor: pointer;
-}
-.storeDetail #tatolOperTime {
-  position: absolute;
-  left: 400px;
-  top: 878px;
-  width: 190px;
-  height: 233px;
-  border: 2.5px solid #232323;
-  background-color: #FFFFFF;
-  padding: 5px;
-  font-family: "Pretendard Variable";
-  font-size: 16px;
-  font-weight: 500;
-  color: #232323;
-  line-height: 28px;
-  z-index: 5;
-  border-radius: 0;
-}
-.storeDetail #tatolOperTime .week {
-  position: absolute;
-  padding-left: 17px;
-}
-.storeDetail #tatolOperTime .weekOperTime {
-  position: absolute;
-  width: 146px;
-  margin-top: -28px;
-  margin-left: 33px;
-  text-align: center;
-}
-.storeDetail #tatolOperTime #breakTime {
-  position: absolute;
-  width: max-content;
-  font-size: 11px;
-  color: #615DFF;
-  margin-left: 15px;
-  font-weight: 700;
-  text-align: center;
-}
-.storeDetail .keywordArea div {
-  position: absolute;
-  top: 990px;
-  width: 240px;
+  left: 1530px;
+  top: 2019px;
+  width: 271px;
   height: 61px;
   background-color: #FF8AA3;
   border-radius: 50px;
+  border: none;
   font-family: "Pretendard Variable";
-  font-size: 25px;
+  font-size: 30px;
+  font-weight: 600;
   color: #232323;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  cursor: pointer;
 }
-.storeDetail .keywordArea div:nth-of-type(1) {
-  left: 119px;
-}
-.storeDetail .keywordArea div:nth-of-type(2) {
-  left: 401px;
-}
-.storeDetail .keywordArea div:nth-of-type(3) {
-  left: 683px;
-}
-.storeDetail .keywordArea div:nth-of-type(4) {
-  left: 965px;
-}
-.storeDetail .keywordArea div:nth-of-type(5) {
-  left: 1247px;
-}
-.storeDetail .keywordArea div:nth-of-type(6) {
-  left: 1529px;
-}
-.storeDetail #hr {
+.reviewStyle .reviewArea {
+  cursor: default;
   position: absolute;
-  left: 91px;
-  top: 1106px;
-  width: 1738px;
-  background: #D9D9D9;
-}/*# sourceMappingURL=storedetail.module.css.map */
+  left: 163px;
+  top: 2135px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.reviewStyle .reviewArea .reviewContainer {
+  position: relative;
+  display: inline-block;
+  width: 1550px;
+  height: max-content;
+}
+.reviewStyle .reviewArea .reviewContainer .review {
+  position: relative;
+  display: inline-block;
+  margin-top: 30px;
+}
+.reviewStyle .reviewArea .reviewContainer .review #reviewImg {
+  display: block;
+  top: 10px;
+  width: 1532px;
+  height: 475.5px;
+  z-index: 1;
+}
+.reviewStyle .reviewArea .reviewContainer .review #userProfile {
+  position: absolute;
+  left: 97px;
+  top: 50px;
+  width: 114px;
+  height: 108px;
+  z-index: 5;
+  border-radius: 0;
+}
+.reviewStyle .reviewArea .reviewContainer .review div {
+  position: absolute;
+  width: max-content;
+  cursor: default;
+  z-index: 2;
+}
+.reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(1) {
+  left: 230px;
+  top: 63px;
+  width: max-content;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 30px;
+  font-weight: 500;
+  font-style: normal;
+  color: #232323;
+  z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(2) {
+  left: 230px;
+  top: 107px;
+  width: max-content;
+  font-family: "Pretendard Variable";
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  color: #232323;
+  z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(3) {
+  left: 107px;
+  top: 173px;
+  width: 802px;
+  height: 217px;
+  background-color: #FFF9D3;
+  padding-left: 15px;
+  padding-top: 10px;
+  font-family: "Pretendard Variable";
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  color: #232323;
+  line-height: 160%;
+  border-radius: 0;
+  z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .review #reviewPhoto {
+  position: absolute;
+  left: 1022px;
+  top: 37px;
+  width: 468px;
+  height: 367px;
+  border-radius: 0;
+  z-index: 5;
+}
+.reviewStyle .reviewArea #moreReview {
+  margin-top: 50px;
+  font-family: "Pretendard Variable";
+  font-size: 40px;
+  font-weight: 700;
+  color: #232323;
+  cursor: pointer;
+}/*# sourceMappingURL=review.module.css.map */

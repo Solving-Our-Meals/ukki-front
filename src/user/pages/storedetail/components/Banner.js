@@ -77,7 +77,7 @@ function Banner() {
     
     return (
         <>
-            <div className={styles.bannerStyle} style={{border : '1px solid #000000'}}>
+            <div className={styles.bannerStyle}>
                 <div className={styles.slider} ref={sliderRef}>
                     {images.map((imgSrc, index) => (
                         <div key={index} className={styles.slide}>

@@ -1,224 +1,413 @@
 
-.footerStyle{
-    position : relative;
-    left : 0;
-    right : 0;
-    bottom : 0;
-    // top: 120vh;
-    top : 3928px;
-    width : 100%;
-    height : 226px;
-    background-color: #FFF3A7;
-    cursor : default;
-    border-radius: 0;
+// .footerStyle{
+//     position : relative;
+//     left : 0;
+//     right : 0;
+//     bottom : 0;
+//     // top: 120vh;
+//     top : 3928px;
+//     width : 100%;
+//     height : 226px;
+//     background-color: #FFF3A7;
+//     cursor : default;
+//     border-radius: 0;
 
-    #honbab_ukki{
-        position : absolute;
-        left: 8%;
-        right: 84.32%;
-        top: 12.83%;
-        bottom: 36.28%;
-        width : 152px;
-        height : 115px;
+//     #honbab_ukki{
+//         position : absolute;
+//         left: 8%;
+//         right: 84.32%;
+//         top: 12.83%;
+//         bottom: 36.28%;
+//         width : 152px;
+//         height : 115px;
 
-    }
+//     }
 
-    p{
-        position : absolute;
-        top: 40px;
-        bottom: 38.94%;
-        color : #232323;
-        width : max-content;
-        font-family: 'Pretendard Variable';
-        font-weight: 400;
-        font-size: 15px;
-        // top : 20px;
-        line-height: 30px;
-        cursor : pointer;
-    }
+//     p{
+//         position : absolute;
+//         top: 40px;
+//         bottom: 38.94%;
+//         color : #232323;
+//         width : max-content;
+//         font-family: 'Pretendard Variable';
+//         font-weight: 400;
+//         font-size: 15px;
+//         // top : 20px;
+//         line-height: 30px;
+//         cursor : pointer;
+//     }
 
-    #first{
-        left: 27%;
-        right: 64.11%;
-    }
+//     #first{
+//         left: 27%;
+//         right: 64.11%;
+//     }
 
-    #second{
-        left: 34%;
-        right: 53.39%;
-    }
+//     #second{
+//         left: 34%;
+//         right: 53.39%;
+//     }
 
-    #third{
-        left: 45%;
-        right: 11.67%;
-    }
+//     #third{
+//         left: 45%;
+//         right: 11.67%;
+//     }
 
-    .pinkArea{
-        position : absolute;
-        bottom : 0%;
-        width : 100%;
-        height : 56px;
-        background-color: #FF8AA3;
-        display : flex;
-        justify-content: center;
-        align-items: center;
-        cursor : default;
-        border-radius: 0;
+//     .pinkArea{
+//         position : absolute;
+//         bottom : 0%;
+//         width : 100%;
+//         height : 56px;
+//         background-color: #FF8AA3;
+//         display : flex;
+//         justify-content: center;
+//         align-items: center;
+//         cursor : default;
+//         border-radius: 0;
 
-        P{
-            position : absolute;
-            top : 13px;
-            color : #FFFFFF;
-            font-family: 'Pretendard Variable';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 15px;
-            cursor : default;
-        }
-    }
+//         P{
+//             position : absolute;
+//             top : 13px;
+//             color : #FFFFFF;
+//             font-family: 'Pretendard Variable';
+//             font-style: normal;
+//             font-weight: 700;
+//             font-size: 15px;
+//             cursor : default;
+//         }
+//     }
 
-    // 반응형
-    @media (max-width: 1024px) {
+//     // 반응형
+//     @media (max-width: 1024px) {
 
-        width : 100%;
-        height : 120px;
-        bottom : 0;
+//         width : 100%;
+//         height : 120px;
+//         bottom : 0;
 
-        #honbab_ukki{
+//         #honbab_ukki{
            
-            position: absolute;
-            left: 8%;
-            right: 84.32%;
-            top: 12.83%;
-            bottom: 36.28%;
-            width : 81px;
-            height : 61px;
+//             position: absolute;
+//             left: 8%;
+//             right: 84.32%;
+//             top: 12.83%;
+//             bottom: 36.28%;
+//             width : 81px;
+//             height : 61px;
 
-        }
+//         }
     
-        p{
-            position : absolute;
-            top: 16.00%;
-            bottom: 32.59%;
-            color : #232323;
-            font-family: 'Pretendard Variable';
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 20px;
-            cursor : pointer;
-        }
+//         p{
+//             position : absolute;
+//             top: 16.00%;
+//             bottom: 32.59%;
+//             color : #232323;
+//             font-family: 'Pretendard Variable';
+//             font-weight: 400;
+//             font-size: 12px;
+//             line-height: 20px;
+//             cursor : pointer;
+//         }
     
-        #first{
-            left: 22%;
-            right: 63.66%;
-        }
+//         #first{
+//             left: 22%;
+//             right: 63.66%;
+//         }
     
-        #second{
-            left: 29%;
-            right: 52.52%;
-        }
+//         #second{
+//             left: 29%;
+//             right: 52.52%;
+//         }
     
-        #third{
-            left: 41%;
-            right: 6.86%;
-        }
+//         #third{
+//             left: 41%;
+//             right: 6.86%;
+//         }
     
-        .pinkArea{
-            position: absolute;
-            width : 100%;
-            height : 30px;
-            left: 0%;
-            right: 0%;
-            top: 75.22%;
-            bottom: 0%;
-            background-color: #FF8AA3;
-            cursor : default;
+//         .pinkArea{
+//             position: absolute;
+//             width : 100%;
+//             height : 30px;
+//             left: 0%;
+//             right: 0%;
+//             top: 75.22%;
+//             bottom: 0%;
+//             background-color: #FF8AA3;
+//             cursor : default;
 
-            P{
-                position: absolute;
-                top : 3px;
-                font-family: 'Pretendard Variable';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 10px;
-                color: #FFFFFF;
-            }
-        }
-    }
+//             P{
+//                 position: absolute;
+//                 top : 3px;
+//                 font-family: 'Pretendard Variable';
+//                 font-style: normal;
+//                 font-weight: 700;
+//                 font-size: 10px;
+//                 color: #FFFFFF;
+//             }
+//         }
+//     }
 
-    @media (max-width: 768px) {
+//     @media (max-width: 768px) {
         
-        width : 100%;
-        height : 76px;
-        bottom : 0%;
+//         width : 100%;
+//         height : 76px;
+//         bottom : 0%;
 
-        #honbab_ukki{
+//         #honbab_ukki{
            
-            position: absolute;
-            left: 8%;
-            right: 78.89%;
-            bottom: 1.57%;
-            width : 51px;
-            height : 39px;
+//             position: absolute;
+//             left: 8%;
+//             right: 78.89%;
+//             bottom: 1.57%;
+//             width : 51px;
+//             height : 39px;
 
-        }
+//         }
     
-        p{
-            position : absolute;
-            top : 13px;
-            bottom: 1.87%;
-            color : #232323;
-            font-family: 'Pretendard Variable';
-            font-weight: 400;
-            font-size: 5px;
-            line-height: 10px;
-            cursor : pointer;
-        }
+//         p{
+//             position : absolute;
+//             top : 13px;
+//             bottom: 1.87%;
+//             color : #232323;
+//             font-family: 'Pretendard Variable';
+//             font-weight: 400;
+//             font-size: 5px;
+//             line-height: 10px;
+//             cursor : pointer;
+//         }
     
-        #first{
+//         #first{
             
-            left: 35%;
-            right: 70%;
+//             left: 35%;
+//             right: 70%;
 
-        }
+//         }
     
-        #second{
+//         #second{
 
-            left: 43%;
-            right: 58.14%;
+//             left: 43%;
+//             right: 58.14%;
 
-        }
+//         }
     
-        #third{
+//         #third{
 
-            left: 54%;
-            right: 6.04%;
+//             left: 54%;
+//             right: 6.04%;
 
-        }
+//         }
     
-        .pinkArea{
-            position: absolute;
-            width : 100%;
-            height : 19px;
-            left: 0%;
-            right: 0%;
-            bottom: 0%;
-            background-color: #FF8AA3;
-            display : flex;
-            justify-content: center;
-            align-items: center;
-            cursor : default;
+//         .pinkArea{
+//             position: absolute;
+//             width : 100%;
+//             height : 19px;
+//             left: 0%;
+//             right: 0%;
+//             bottom: 0%;
+//             background-color: #FF8AA3;
+//             display : flex;
+//             justify-content: center;
+//             align-items: center;
+//             cursor : default;
 
-            P{
+//             P{
                 
-                position: absolute;
-                top : 5px;
-                font-family: 'Pretendard Variable';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 5px;
-                color: #FFFFFF;
+//                 position: absolute;
+//                 top : 5px;
+//                 font-family: 'Pretendard Variable';
+//                 font-style: normal;
+//                 font-weight: 700;
+//                 font-size: 5px;
+//                 color: #FFFFFF;
 
-            }
-        }
+//             }
+//         }
+//     }
+// }
+
+.footerStyle {
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // top: 1930px;
+    // top : 3928px;
+    top : 5000px;
+    width: 100%;
+    height: 226px;
+    background-color: #FFF3A7;
+    cursor: default;
+    border-radius: 0;
+  }
+  .footerStyle #honbab_ukki {
+    position: absolute;
+    left: 8%;
+    right: 84.32%;
+    top: 12.83%;
+    bottom: 36.28%;
+    width: 152px;
+    height: 115px;
+  }
+  .footerStyle p {
+    position: absolute;
+    top: 40px;
+    bottom: 38.94%;
+    color: #232323;
+    width: max-content;
+    font-family: "Pretendard Variable";
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 30px;
+    cursor: pointer;
+  }
+  .footerStyle #first {
+    left: 27%;
+    right: 64.11%;
+  }
+  .footerStyle #second {
+    left: 34%;
+    right: 53.39%;
+  }
+  .footerStyle #third {
+    left: 45%;
+    right: 11.67%;
+  }
+  .footerStyle .pinkArea {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 56px;
+    background-color: #FF8AA3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    border-radius: 0;
+  }
+  .footerStyle .pinkArea P {
+    position: absolute;
+    top: 13px;
+    color: #FFFFFF;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: default;
+  }
+  @media (max-width: 1024px) {
+    .footerStyle {
+      width: 100%;
+      height: 120px;
+      bottom: 0;
     }
-}
+    .footerStyle #honbab_ukki {
+      position: absolute;
+      left: 8%;
+      right: 84.32%;
+      top: 12.83%;
+      bottom: 36.28%;
+      width: 81px;
+      height: 61px;
+    }
+    .footerStyle p {
+      position: absolute;
+      top: 16%;
+      bottom: 32.59%;
+      color: #232323;
+      font-family: "Pretendard Variable";
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 20px;
+      cursor: pointer;
+    }
+    .footerStyle #first {
+      left: 22%;
+      right: 63.66%;
+    }
+    .footerStyle #second {
+      left: 29%;
+      right: 52.52%;
+    }
+    .footerStyle #third {
+      left: 41%;
+      right: 6.86%;
+    }
+    .footerStyle .pinkArea {
+      position: absolute;
+      width: 100%;
+      height: 30px;
+      left: 0%;
+      right: 0%;
+      top: 75.22%;
+      bottom: 0%;
+      background-color: #FF8AA3;
+      cursor: default;
+    }
+    .footerStyle .pinkArea P {
+      position: absolute;
+      top: 3px;
+      font-family: "Pretendard Variable";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 10px;
+      color: #FFFFFF;
+    }
+  }
+  @media (max-width: 768px) {
+    .footerStyle {
+      width: 100%;
+      height: 76px;
+      bottom: 0%;
+    }
+    .footerStyle #honbab_ukki {
+      position: absolute;
+      left: 8%;
+      right: 78.89%;
+      bottom: 1.57%;
+      width: 51px;
+      height: 39px;
+    }
+    .footerStyle p {
+      position: absolute;
+      top: 13px;
+      bottom: 1.87%;
+      color: #232323;
+      font-family: "Pretendard Variable";
+      font-weight: 400;
+      font-size: 5px;
+      line-height: 10px;
+      cursor: pointer;
+    }
+    .footerStyle #first {
+      left: 35%;
+      right: 70%;
+    }
+    .footerStyle #second {
+      left: 43%;
+      right: 58.14%;
+    }
+    .footerStyle #third {
+      left: 54%;
+      right: 6.04%;
+    }
+    .footerStyle .pinkArea {
+      position: absolute;
+      width: 100%;
+      height: 19px;
+      left: 0%;
+      right: 0%;
+      bottom: 0%;
+      background-color: #FF8AA3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: default;
+    }
+    .footerStyle .pinkArea P {
+      position: absolute;
+      top: 5px;
+      font-family: "Pretendard Variable";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 5px;
+      color: #FFFFFF;
+    }
+  }
