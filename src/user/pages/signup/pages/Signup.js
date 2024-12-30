@@ -306,7 +306,7 @@ function Signup() {
                             <div className="inputWrapper">
                                 <input
                                     className={`signupEmail ${error ? 'errorInput' : ''}`}
-                                    type="text"
+                                    type="email" // 이메일 유효성 검사를 넣어놓았으나 이것도 넣어서 사실 의미가 없어졌다.
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}

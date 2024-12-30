@@ -127,17 +127,37 @@ import { Link } from 'react-router-dom';
             }
         }, [step, formData.email, searchType]);
 
-        // 폼 초기화용 -> 자꾸 저장됨 -> 편의성을 위해 이메일은 안할까하는데 혹시몰라서 주석처리로 해놓음
+        // 폼 초기화용 -> 자꾸 저장됨 -> 편의성을 위해 이메일은 안할까하는데 혹시몰라서 주석처리로 해놓음 -> 주석처리 금지 -> 주석하면 폼은 그대로 남아있으나 데이터 값은 써진게 없는걸로 판단함
         useEffect(() => {
             if (step === 1) {
                 setFormData({
-                    // email: '',
+                    email: '',
                     auth: '',
                     newPassword: '',
                     confirmNewPassword: '',
                 });
             }
         }, [step]);
+
+        const validatePassword = (newPassword) => {
+            // 비밀번호 길이가 8자 미만인 경우
+            if (newPassword.length < 8) {
+                return "ⓘ 비밀번호는 최소 8자 이상이어야 합니다.";
+            }
+
+            // 숫자가 포함되지 않은 경우
+            if (!newPassword.match(/\d/)) {
+                return "ⓘ 비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.";
+            }
+
+            // 특수문자가 포함되지 않은 경우
+            if (!newPassword.match(/[!@#$%^&*(),.?":{}|<>]/)) {
+                return "ⓘ 비밀번호에는 최소 하나의 특수문자가 포함되어야 합니다.";
+            }
+
+            // 모든 조건을 만족하는 경우
+            return null;  // 유효한 비밀번호
+        };
 
 
         const handlePasswordSubmit = async (e) => {
@@ -252,6 +272,14 @@ import { Link } from 'react-router-dom';
                             <form onSubmit={(e) => {
                                 e.preventDefault();
                                 setError('');
+                                // 비밀번호 유효성 검사
+                                const passwordError = validatePassword(formData.newPassword);
+                                if (passwordError) {
+                                    setError(passwordError);  // 오류 메시지 설정
+                                    return;  // 비밀번호가 유효하지 않으면 더 이상 진행하지 않음
+                                }
+
+                                // 비밀번호 유효성 검사 통과하면 5번 스텝으로 진행
                                 setStep(5);
                             }}>
                                 <fieldset>
@@ -265,7 +293,7 @@ import { Link } from 'react-router-dom';
                                         />
                                     </div>
                                 </fieldset>
-                                <div className="passwordToggleBtn">
+                                <div className={styles.passwordToggleBtn}>
                                     <img
                                         src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
                                         alt="비밀번호 보이기/숨기기"
@@ -292,14 +320,21 @@ import { Link } from 'react-router-dom';
                                     />
                                 </div>
                             </fieldset>
-                            <div className="passwordToggleBtn">
+                            <div className={styles.passwordToggleBtn}>
                                 <img
+                                    className={styles.banana}
                                     src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
                                     alt="비밀번호 보이기/숨기기"
                                     onClick={togglePasswordVisibility}
                                 />
                             </div>
                             {error && <p className={styles.error}>{error}</p>}
+                            <button className={styles.loginButton}
+                                    type="button"
+                                    onClick={() => setStep(4)}  // 비밀번호 입력 단계로 돌아가기
+                            >
+                                뒤로
+                            </button>
                             <button className={styles.changeButton} type="submit">
                                 변경
                             </button>
@@ -317,7 +352,7 @@ import { Link } from 'react-router-dom';
                             </button>
                             <button
                                 className={styles.nextButton}
-                                onClick={() => window.location.href = '/auth/login'}
+                                onClick={() => window.location.href = '/main'}
                             >
                                 메인
                             </button>
