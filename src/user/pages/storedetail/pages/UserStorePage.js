@@ -1,4 +1,5 @@
 import ReservationInfo from "./ReservationInfo";
+import Review from "./Review";
 import StoreDetail from "./StoreDetail";
 
 function UserStorePage(){
@@ -7,6 +8,7 @@ function UserStorePage(){
         <>
             <StoreDetail/>
             <ReservationInfo/>
+            <Review/>
         </>
     );
 }
