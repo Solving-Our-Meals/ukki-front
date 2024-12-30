@@ -214,35 +214,45 @@ a:active {
   position: absolute;
   left: 163px;
   top: 2135px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .reviewStyle .reviewArea .reviewContainer {
   position: relative;
   display: inline-block;
-  border: 2px solid blue;
+  width: 1550px;
+  height: max-content;
 }
-.reviewStyle .reviewArea .reviewContainer #reviewImg {
+.reviewStyle .reviewArea .reviewContainer .review {
+  position: relative;
+  display: inline-block;
+  margin-top: 30px;
+}
+.reviewStyle .reviewArea .reviewContainer .review #reviewImg {
   display: block;
   top: 10px;
   width: 1532px;
   height: 475.5px;
   z-index: 1;
 }
-.reviewStyle .reviewArea .reviewContainer div {
+.reviewStyle .reviewArea .reviewContainer .review #userProfile {
   position: absolute;
-  width: max-content;
-  cursor: default;
-  z-index: 2;
-}
-.reviewStyle .reviewArea .reviewContainer div:nth-of-type(1) {
   left: 97px;
   top: 50px;
   width: 114px;
   height: 108px;
   z-index: 5;
-  border: 3px solid red;
   border-radius: 0;
 }
-.reviewStyle .reviewArea .reviewContainer div:nth-of-type(2) {
+.reviewStyle .reviewArea .reviewContainer .review div {
+  position: absolute;
+  width: max-content;
+  cursor: default;
+  z-index: 2;
+}
+.reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(1) {
   left: 230px;
   top: 63px;
   width: max-content;
@@ -251,8 +261,9 @@ a:active {
   font-weight: 500;
   font-style: normal;
   color: #232323;
+  z-index: 5;
 }
-.reviewStyle .reviewArea .reviewContainer div:nth-of-type(3) {
+.reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(2) {
   left: 230px;
   top: 107px;
   width: max-content;
@@ -261,8 +272,9 @@ a:active {
   font-weight: 400;
   font-style: normal;
   color: #232323;
+  z-index: 5;
 }
-.reviewStyle .reviewArea .reviewContainer div:nth-of-type(4) {
+.reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(3) {
   left: 107px;
   top: 173px;
   width: 802px;
@@ -272,15 +284,27 @@ a:active {
   padding-top: 10px;
   font-family: "Pretendard Variable";
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   color: #232323;
   line-height: 160%;
+  border-radius: 0;
+  z-index: 5;
 }
-.reviewStyle .reviewArea .reviewContainer div:nth-of-type(5) {
+.reviewStyle .reviewArea .reviewContainer .review #reviewPhoto {
+  position: absolute;
   left: 1022px;
   top: 37px;
   width: 468px;
   height: 367px;
-  border: 2px solid red;
+  border-radius: 0;
+  z-index: 5;
 }
+.reviewStyle .reviewArea #moreReview {
+  margin-top: 50px;
+  font-family: "Pretendard Variable";
+  font-size: 40px;
+  font-weight: 700;
+  color: #232323;
+  cursor: pointer;
+}/*# sourceMappingURL=review.module.css.map */
