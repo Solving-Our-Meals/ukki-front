@@ -9,11 +9,9 @@ function MyProfile() {
     useEffect(() => {
         const token = Cookies.get('token');
         if (token) {
-            // JWT 토큰 디코딩하여 유저 아이디 추출
             const decodedToken = jwtDecode(token);
-            const userNo = decodedToken.userNo; // JWT 토큰 안에서 유저 ID가 포함되어 있다고 가정
+            const userNo = decodedToken.userNo;
 
-            // 유저 아이디를 이용해서 서버로 API 요청
             fetchUserInfo(userNo);
         }
     }, []);
@@ -23,7 +21,7 @@ function MyProfile() {
             const response = await fetch(`/user/${userNo}`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${Cookies.get('token')}`, // Authorization 헤더에 토큰을 포함
+                    'Authorization': `Bearer ${Cookies.get('token')}`,
                 },
             });
 
