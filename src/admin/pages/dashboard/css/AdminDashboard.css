@@ -303,3 +303,15 @@ border-radius: 10px;
 
     display: inline-block;
 }
+
+#dashboardCenterLine{
+
+position: absolute;
+width: 2px;
+height: 687px;
+left: 830px;
+top: 51px;
+
+background: #BDBEBF;
+
+}

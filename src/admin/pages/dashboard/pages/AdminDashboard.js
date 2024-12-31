@@ -79,6 +79,7 @@ function AdminDashboard(){
                 <div><div style={{backgroundColor: '#EFE03B'}}></div> 주의</div>
                 <div><div style={{backgroundColor: '#51CC16'}}></div> 양호</div>
             </div>
+            <div id='dashboardCenterLine'></div>
         </>
     )
 }
