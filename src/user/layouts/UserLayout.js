@@ -21,9 +21,7 @@ function UserLayout() {
         <>
         <div className={!doInquiryModal? styles.layoutStyle : styles.layoutModalStyle}>
             <Header className={styles.header} />
-            <main className={!doInquiryModal? styles.main: styles.mainModalStyle}>
                 <Outlet />
-            </main>
             <Footer className={styles.footer} />
         </div>
         {doInquiryModal && <div className={styles.overlay}></div>}

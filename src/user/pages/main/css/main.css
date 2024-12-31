@@ -174,15 +174,19 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
+div {
+  user-select: none;
+}
 div .slidewrap {
   width: 90vw;
   height: 75vw;
   position: relative;
   overflow: hidden;
   top: 5vw;
-  left: 3.5vw;
+  left: 4.5vw;
   list-style: none;
   border-radius: 0;
+  cursor: pointer;
 }
 div .slidewrap .slides {
   display: flex;
@@ -500,20 +504,22 @@ div .location input:nth-of-type(2) {
 div .location label:nth-of-type(1) {
   position: absolute;
   left: 56vw;
-  top: 16.2vw;
+  top: 16.7vw;
   font-family: "Pretendard Variable";
   font-weight: 600;
   font-size: 1vw;
   color: #232323;
+  width: 93px;
 }
 div .location label:nth-of-type(2) {
   position: absolute;
   left: 56vw;
-  top: 19.2vw;
+  top: 19.7vw;
   font-family: "Pretendard Variable";
   font-weight: 600;
   font-size: 1vw;
   color: #232323;
+  width: 93px;
 }
 div .location button {
   position: absolute;
@@ -1026,22 +1032,23 @@ div .hidden-input {
   }
   div .location label:nth-of-type(1) {
     position: absolute;
-    left: 52vw;
-    top: 18vw;
+    left: 51vw;
+    top: 18.5vw;
     font-family: "Pretendard Variable";
     font-weight: 700;
     font-size: 1vw;
     color: #232323;
+    width: 72px;
   }
   div .location label:nth-of-type(2) {
     position: absolute;
-    left: 52vw;
-    top: 22vw;
+    left: 51vw;
+    top: 22.5vw;
     font-family: "Pretendard Variable";
     font-weight: 600;
     font-size: 1vw;
     color: #232323;
-    width: 60px;
+    width: 72px;
   }
   div .location button {
     position: absolute;
@@ -1558,22 +1565,23 @@ div .hidden-input {
   }
   div .location label:nth-of-type(1) {
     position: absolute;
-    left: 32vw;
-    top: 36.5vw;
+    left: 31vw;
+    top: 37.5vw;
     font-family: "Pretendard Variable";
     font-weight: 700;
     font-size: 2vw;
     color: #232323;
+    width: 72px;
   }
   div .location label:nth-of-type(2) {
     position: absolute;
-    left: 32vw;
-    top: 43.5vw;
+    left: 31vw;
+    top: 44.5vw;
     font-family: "Pretendard Variable";
     font-weight: 600;
     font-size: 2vw;
     color: #232323;
-    width: 60px;
+    width: 72px;
   }
   div .location button {
     position: absolute;
