@@ -226,4 +226,36 @@ a:active {
   width: 113px;
   height: 113px;
   cursor: pointer;
-}/*# sourceMappingURL=createReview.module.css.map */
+}
+.createReview #cancle {
+  position: absolute;
+  left: 1263px;
+  top: 718px;
+  width: 145px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: #FEDA00;
+  font-family: "Pretendard Variable";
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.createReview #confirm {
+  position: absolute;
+  left: 1432px;
+  top: 718px;
+  width: 145px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: #FF8AA3;
+  font-family: "Pretendard Variable";
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
