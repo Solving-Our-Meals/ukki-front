@@ -1,0 +1,38 @@
+.activeTab1, .activeTab2, .activeTab3, .activeTab4 {
+    position: absolute;
+    cursor : pointer;
+
+    font-family: 'Bobaesum-Jindo-TTF';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 22px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 20px;
+    top: 200px;
+
+    /* text/normal - dark */
+    color: #BDBEBF;
+}
+
+.activeTab1 {
+    margin-left: 10px;
+}
+
+.activeTab2 {
+    left:100px;
+}
+
+.activeTab3 {
+    left:230px;
+}
+
+.activeTab4 {
+    left:340px;
+}
+
+.activeTab1:hover, .activeTab2:hover, .activeTab3:hover, .activeTab4:hover {
+    color: #999999
+}
+
