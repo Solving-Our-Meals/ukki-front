@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styles from '../css/Signup.module.css';
 import '../css/reset.css';
 
@@ -17,6 +17,8 @@ function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false); // 이메일 다음 버튼 때문에
     const [emailPending, setEmailPending] = useState(false);  // 이메일 대기
+    const [canSubmit, setCanSubmit] = useState(false);
+    const termsContentRef = useRef(null);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -230,9 +232,16 @@ function Signup() {
 
     const checkboxWrapperStyle = {
         display: 'flex',
-        cursor: 'pointer',
         transform: error ? 'translate(40px, 200px)' : 'translate(40px, 180px)',
         width: '1000px',
+    };
+
+    const handleScroll = () => {
+        const termsContent = termsContentRef.current;
+        if (termsContent) {
+            const isAtBottom = termsContent.scrollHeight === termsContent.scrollTop + termsContent.clientHeight;
+            setCanSubmit(isAtBottom);
+        }
     };
 
     return (
@@ -302,7 +311,6 @@ function Signup() {
                     </form>
                 )}
 
-                {/* 이메일 입력받는 스탭 */}
                 {step === 3 && (
                     <form onSubmit={handleEmailSubmit}>
                         <fieldset className={styles.fieldEmail}>
@@ -388,8 +396,7 @@ function Signup() {
 
                 {step === 6 && (
                     <form onSubmit={handleTermsSubmit}>
-                        <fieldset className={`${styles.fieldTerms} ${error ? styles.errorInput : ''}`}>
-                            {/* 약관 내용 텍스트 */}
+                        <fieldset ref={termsContentRef} onScroll={handleScroll} className={`${styles.fieldTerms} ${error ? styles.errorInput : ''}`}>
                             <div className={styles.termsContent}>
                                 <p>약관 1 : 사이트 이름</p>
                                 <p>약관 1 : 위 사이트는 우끼라 칭한다.</p>
@@ -411,6 +418,7 @@ function Signup() {
                                 id="terms"
                                 checked={formData.terms}
                                 onChange={(e) => setFormData({...formData, terms: e.target.checked})}
+                                disabled={!canSubmit}
                             />
                         </div>
                         {error && <p className={styles.errorTerms}>{error}</p>}

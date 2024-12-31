@@ -390,6 +390,45 @@ button:disabled {
 }
 
 @media  (min-width: 1025px) and (max-width: 1920px) {
+    .findAccount {
+        background-color: #FFF3A7;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .findAccountText {
+        position: absolute;
+        height: 2vw;
+        left: 37.5%;
+        top: 51.1%;
+
+        font-family: 'Pretendard-Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 30px;
+
+        color: #232323;
+        animation: hello 0.5s ease;
+    }
+
+    .findAccountContent {
+        box-sizing: border-box;
+
+        position: absolute;
+        width: 976px;
+        height: 455px;
+        left: 461px;
+        top: 250px;
+
+        background: #FFFFFF;
+        border: 5px solid #FF8AA3;
+        border-radius: 50px;
+    }
+
     .signupLogo {
 
         position: absolute;
@@ -427,7 +466,7 @@ button:disabled {
         font-size: 30px;
     }
 
-    input {
+    .findAccountContent input {
         position: absolute;
         width: 499.5px;
         height: 52.5px;
@@ -796,7 +835,7 @@ button:disabled {
 }
 
 @media (min-width:769px) and (max-width: 1024px) {
-    .signupBasic {
+    .findAccount {
         background-color: #FFF3A7;
         width: 100vw;
         height: 100vh;
@@ -805,12 +844,30 @@ button:disabled {
         justify-content: center;
     }
 
-    .signup {
+    .findAccountText {
+        position: absolute;
+        top:15px;
+        left: 350px;
+
+        font-family: 'Pretendard-Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 30px;
+
+        color: #232323;
+        animation: hello 0.5s ease;
+    }
+
+    .findAccountContent {
+        scale:0.7;
         box-sizing: border-box;
 
         position: absolute;
-        left:445px;
-        top:250px;
+        width: 900px;
+        height: 455px;
+        left: -10px;
+        top: -10px;
 
         background: #FFFFFF;
         border: 5px solid #FF8AA3;
@@ -828,8 +885,8 @@ button:disabled {
         position: absolute;
         width: 241px;
         height: 63px;
-        left: 61px;
-        top: 105px;
+        left: 100px;
+        top: 130px;
 
         font-family: 'Mungyeong-Gamhong-Apple';
         font-style: normal;
@@ -1034,7 +1091,7 @@ button:disabled {
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
-        font-size: 50px;
+        font-size: 25px;
         color: #aaa;
         transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
         pointer-events: none;
@@ -1198,23 +1255,37 @@ button:disabled {
 }
 
 @media (max-width:768px) {
-    .signupBasic {
+    .findAccount {
         background-color: #FFF3A7;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .signup {
+    .findAccountText {
+        position: absolute;
+
+        font-family: 'Pretendard-Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 30px;
+
+        color: #232323;
+        animation: hello 0.5s ease;
+    }
+
+    .findAccountContent {
+        scale: 0.5;
         box-sizing: border-box;
 
         position: absolute;
-        width: 976px;
+        width: 900px;
         height: 455px;
-        left: 461px;
-        top: 250px;
+        left: -170px;
+        top:-5px;
 
         background: #FFFFFF;
         border: 5px solid #FF8AA3;
@@ -1441,7 +1512,7 @@ button:disabled {
         font-family: 'Pretendard-Regular';
         font-style: normal;
         font-weight: 700;
-        font-size: 50px;
+        font-size: 25px;
         color: #aaa;
         transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
         pointer-events: none;
