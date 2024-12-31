@@ -1,15 +1,17 @@
 @import '../../../../common/header/css/reset.scss';
 
 div {
+    user-select: none;
     .slidewrap {
         width: 90vw;
         height: 75vw;
         position: relative;
         overflow: hidden;
         top: 5vw;
-        left: 3.5vw;
+        left: 4.5vw;
         list-style: none;
         border-radius: 0;
+        cursor: pointer;
 
         .slides {
             display: flex;
@@ -391,21 +393,23 @@ div {
         label:nth-of-type(1) {
             position: absolute;
             left: 56vw;
-            top: 16.2vw;
+            top: 16.7vw;
             font-family: 'Pretendard Variable';
             font-weight: 600;
             font-size: 1vw;
             color: $textStrong;
+            width: 93px;
         }
 
         label:nth-of-type(2) {
             position: absolute;
             left: 56vw;
-            top: 19.2vw;
+            top: 19.7vw;
             font-family: 'Pretendard Variable';
             font-weight: 600;
             font-size: 1vw;
             color: $textStrong;
+            width: 93px;
         }
 
         button {
@@ -1020,23 +1024,24 @@ div {
 
             label:nth-of-type(1) {
                 position: absolute;
-                left: 52vw;
-                top: 18vw;
+                left: 51vw;
+                top: 18.5vw;
                 font-family: 'Pretendard Variable';
                 font-weight: 700;
                 font-size: 1vw;
                 color: $textStrong;
+                width: 72px;
             }
 
             label:nth-of-type(2) {
                 position: absolute;
-                left: 52vw;
-                top: 22vw;
+                left: 51vw;
+                top: 22.5vw;
                 font-family: 'Pretendard Variable';
                 font-weight: 600;
                 font-size: 1vw;
                 color: $textStrong;
-                width: 60px;
+                width: 72px;
             }
 
             button {
@@ -1654,23 +1659,24 @@ div {
 
             label:nth-of-type(1) {
                 position: absolute;
-                left: 32vw;
-                top: 36.5vw;
+                left: 31vw;
+                top: 37.5vw;
                 font-family: 'Pretendard Variable';
                 font-weight: 700;
                 font-size: 2vw;
                 color: $textStrong;
+                width: 72px;
             }
 
             label:nth-of-type(2) {
                 position: absolute;
-                left: 32vw;
-                top: 43.5vw;
+                left: 31vw;
+                top: 44.5vw;
                 font-family: 'Pretendard Variable';
                 font-weight: 600;
                 font-size: 2vw;
                 color: $textStrong;
-                width: 60px;
+                width: 72px;
             }
 
             button {
