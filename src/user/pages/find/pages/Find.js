@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { useLocation } from 'react-router-dom';
-import '../css/reset.css';
-import styles from '../css/Find.module.css';
 import { useParams, Link } from 'react-router-dom';
+import styles from '../css/Find.module.css';
+import '../css/reset.css';
 
     function Find() {
         const [step, setStep] = useState(1);
@@ -17,7 +16,6 @@ import { useParams, Link } from 'react-router-dom';
         const [emailPending, setEmailPending] = useState(false);
         const [loading, setLoading] = useState(false);
         const [foundUserId, setFoundUserId] = useState('');
-        const location = useLocation();
         const [showPassword, setShowPassword] = useState(false);
 
         const { type } = useParams();
@@ -199,11 +197,11 @@ import { useParams, Link } from 'react-router-dom';
         return (
             <div className={styles.findAccount}>
                 <div className={styles.findAccountContent}>
-                    <p className={`signupText ${type === 'id' ? styles.signupTextId : styles.signupTextPassword}`}>{type === 'id' ? '아이디 찾기' : '비밀번호 찾기'}</p>
-                    <img className="signupLogo" src="/images/signupLogo.png" alt="회원가입 로고"></img>
+                    <p className={`${styles.signupText} ${type === 'id' ? styles.signupTextId : styles.signupTextPassword}`}>{type === 'id' ? '아이디 찾기' : '비밀번호 찾기'}</p>
+                    <img className={styles.signupLogo} src="/images/signupLogo.png" alt="회원가입 로고"></img>
                     <div style={searchError}>
                         <p className={styles.findAccountText}>{type === 'id' ? (
-                            <Link to="/auth/find/pwd" onClick={() => setStep(1)}>비밀번호 찾기</Link>
+                            <Link to="/auth/find/password" onClick={() => setStep(1)}>비밀번호 찾기</Link>
                         ) : (
                             <Link to="/auth/find/id" onClick={() => setStep(1)}>아이디 찾기</Link>
                         )}</p>
@@ -234,7 +232,7 @@ import { useParams, Link } from 'react-router-dom';
                                 </button>
                             </form>
                         )}
-                    
+
                         {step === 2 && verificationCodeSent && (
                             <form onSubmit={handleVerificationSubmit}>
                                 <fieldset>
@@ -324,7 +322,6 @@ import { useParams, Link } from 'react-router-dom';
                             </fieldset>
                             <div className={styles.passwordToggleBtn}>
                                 <img
-                                    className={styles.banana}
                                     src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
                                     alt="비밀번호 보이기/숨기기"
                                     onClick={togglePasswordVisibility}
