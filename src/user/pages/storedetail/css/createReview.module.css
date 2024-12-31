@@ -173,6 +173,22 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
+#btnWriteReview {
+  position: absolute;
+  left: 1530px;
+  top: 2019px;
+  width: 271px;
+  height: 61px;
+  background-color: #FF8AA3;
+  border-radius: 50px;
+  border: none;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  font-weight: 600;
+  color: #232323;
+  cursor: pointer;
+}
+
 .createReview {
   position: absolute;
   left: 129px;
@@ -233,6 +249,7 @@ a:active {
   top: 718px;
   width: 145px;
   height: 36px;
+  border: none;
   border-radius: 20px;
   background-color: #FEDA00;
   font-family: "Pretendard Variable";
@@ -243,12 +260,13 @@ a:active {
   align-items: center;
   cursor: pointer;
 }
-.createReview #confirm {
+.createReview #submit {
   position: absolute;
   left: 1432px;
   top: 718px;
   width: 145px;
   height: 36px;
+  border: none;
   border-radius: 20px;
   background-color: #FF8AA3;
   font-family: "Pretendard Variable";

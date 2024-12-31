@@ -23,22 +23,6 @@
         color: $textStrong;
     }
 
-    #btnWriteReview{
-        position : absolute;
-        left : 1530px;
-        top : 2019px;
-        width : 271px;
-        height : 61px;
-        background-color: $primary;
-        border-radius: 50px;
-        border: none;
-        font-family: 'Pretendard Variable';
-        font-size: 30px;
-        font-weight: 600;
-        color: $textStrong;
-        cursor: pointer;
-    }
-
     .reviewArea{
         cursor: default;
         position: absolute;

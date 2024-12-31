@@ -1,5 +1,21 @@
 @import "../../../../common/reset/reset.scss";
 
+#btnWriteReview{
+    position : absolute;
+    left : 1530px;
+    top : 2019px;
+    width : 271px;
+    height : 61px;
+    background-color: $primary;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Pretendard Variable';
+    font-size: 30px;
+    font-weight: 600;
+    color: $textStrong;
+    cursor: pointer;
+}
+
 .createReview{
 
     position: absolute;
@@ -67,6 +83,7 @@
         top : 718px;
         width: 145px;
         height : 36px;
+        border: none;
         border-radius: 20px;
         background-color: $secondary;
         font-family: 'Pretendard Variable';
@@ -78,12 +95,13 @@
         cursor: pointer;
     }
 
-    #confirm{
+    #submit{
         position: absolute;
         left : 1432px;
         top : 718px;
         width: 145px;
         height : 36px;
+        border: none;
         border-radius: 20px;
         background-color: $primary;
         font-family: 'Pretendard Variable';
