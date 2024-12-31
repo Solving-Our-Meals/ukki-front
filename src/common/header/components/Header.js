@@ -21,8 +21,8 @@ function Header() {
                     <NavLink to="/info">소개</NavLink>
                     <NavLink to="/">공지사항</NavLink>
                     <NavLink to="/">마이페이지</NavLink>
-                    <NavLink to="/">로그인</NavLink>
-                    <NavLink to="/">회원가입</NavLink>
+                    <NavLink to="/auth/login">로그인</NavLink>
+                    <NavLink to="/auth/signup">회원가입</NavLink>
                 </span>
                 <button className="menu-button" onClick={toggleMenu}>
                     <img src={menuIcon} alt="Menu" />
