@@ -6,7 +6,7 @@ function MypageMain () {
 
     return (
         <div className={styles.mypageMain}>
-            <p>마이페이지</p>
+            <div className={styles.contentList}></div>
         </div>
     );
 }
