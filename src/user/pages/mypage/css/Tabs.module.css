@@ -1,0 +1,17 @@
+.activeTab {
+    cursor : pointer;
+
+    font-family: 'Bobaesum-Jindo-TTF';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 22px;
+    text-align: center;
+
+    /* text/normal - dark */
+    color: #BDBEBF;
+}
+
+.activeTab:hover {
+    color: #999999
+}

@@ -53,7 +53,7 @@ function Header() {
                     <NavLink to="search">검색</NavLink>
                     <NavLink to="/info">소개</NavLink>
                     <NavLink to="/">공지사항</NavLink>
-                    <NavLink to="/">마이페이지</NavLink>
+                    <NavLink to="/user/mypage">마이페이지</NavLink>
                     {!isLoggedIn ? (
                         <>
                             <NavLink to="/auth/login">로그인</NavLink>
