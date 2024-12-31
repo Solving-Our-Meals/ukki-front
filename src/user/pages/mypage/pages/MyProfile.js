@@ -9,11 +9,13 @@ function MyProfile() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const token = Cookies.get('token');
+        const token = Cookies.get('authToken');
+        console.log('Token:', token);
         if (token) {
             try {
                 const decodedToken = jwtDecode(token);
                 const userNo = decodedToken.userNo;
+                console.log(decodedToken)
 
                 fetchUserInfo(userNo);
             } catch (err) {
@@ -27,12 +29,14 @@ function MyProfile() {
     }, []);
 
     const fetchUserInfo = async (userNo) => {
+        const token = Cookies.get('authToken');
         try {
             const response = await fetch(`/user/${userNo}`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${Cookies.get('token')}`,
+                    'Authorization': `Bearer ${token}`,
                 },
+                credentials: 'include',
             });
 
             if (response.ok) {

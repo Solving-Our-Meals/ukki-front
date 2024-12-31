@@ -1,0 +1,12 @@
+.profileMain {
+    position: absolute;
+    width: 456px;
+    height: 764px;
+    left: 1406px;
+    top: 128px;
+
+    background: #FFFFFF;
+    border: 5px solid #FF8AA3;
+    border-radius: 50px;
+
+}

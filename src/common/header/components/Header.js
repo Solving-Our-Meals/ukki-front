@@ -48,9 +48,9 @@ function Header() {
     return (
         <>
             <header>
-                <NavLink to="main"><img src={headerLogo} alt='header-logo' /></NavLink>
+                <NavLink to="/main"><img src={headerLogo} alt='header-logo' /></NavLink>
                 <span className={`menu ${menuOpen ? 'open' : ''}`}>
-                    <NavLink to="search">검색</NavLink>
+                    <NavLink to="/search">검색</NavLink>
                     <NavLink to="/info">소개</NavLink>
                     <NavLink to="/">공지사항</NavLink>
                     <NavLink to="/user/mypage">마이페이지</NavLink>
