@@ -116,7 +116,7 @@ function Login() {
                         </fieldset>
                         {error && <p className={styles.error}>{error}</p>}
                         <div className={styles.searchWrapper} style={searchError}>
-                            <p className={styles.search}><Link to="/find">아이디 찾기</Link></p>
+                            <p className={styles.search}><Link to="/find/id">아이디 찾기</Link></p>
                         </div>
                         <button
                             className={styles.loginButton}
@@ -154,7 +154,7 @@ function Login() {
                         </fieldset>
                         {error && <p className={styles.error}>{error}</p>}
                         <div className={styles.searchWrapper} style={searchError}>
-                            <p className={styles.search}><Link to="/find">비밀번호 찾기</Link></p>
+                            <p className={styles.search}><Link to="/find/pwd">비밀번호 찾기</Link></p>
                         </div>
                         <button
                             className={styles.loginButton}
