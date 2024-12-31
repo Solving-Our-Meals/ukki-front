@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../css/MypageMain.module.css'
+import MyProfile from "./MyProfile";
 
 function MypageMain () {
     const [reservation, setReservation] = useState([]);
@@ -7,6 +8,7 @@ function MypageMain () {
     return (
         <div className={styles.mypageMain}>
             <div className={styles.contentList}></div>
+            <MyProfile />
         </div>
     );
 }

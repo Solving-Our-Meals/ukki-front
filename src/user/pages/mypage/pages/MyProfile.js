@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../css/MyProfile.module.css'
-import jwtDecode from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 import Cookies from 'js-cookie'
 
 function MyProfile() {
     const [userInfo, setUserInfo] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const token = Cookies.get('token');
         if (token) {
-            const decodedToken = jwtDecode(token);
-            const userNo = decodedToken.userNo;
+            try {
+                const decodedToken = jwtDecode(token);
+                const userNo = decodedToken.userNo;
 
-            fetchUserInfo(userNo);
+                fetchUserInfo(userNo);
+            } catch (err) {
+                setError('유효하지 않은 토큰입니다.');
+                setLoading(false);
+            }
+        } else {
+            setError('토큰이 존재하지 않습니다.');
+            setLoading(false);
         }
     }, []);
 
