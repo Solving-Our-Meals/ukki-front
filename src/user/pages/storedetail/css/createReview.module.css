@@ -235,13 +235,56 @@ a:active {
 .createReview #inputReview:focus {
   outline: none;
 }
-.createReview #addPhoto {
+.createReview #addFile {
   position: absolute;
-  left: 1260px;
-  top: 354px;
+  width: 530px;
+  height: 415px;
+  left: 1043px;
+  top: 210px;
+  border-radius: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.createReview #addFile .previewInfo {
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Pretendard Variable";
+  color: #232323;
+}
+.createReview #addFile .previewInfo .info_key {
+  display: block;
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 4px;
+  font-family: "Pretendard Variable";
+  color: #232323;
+}
+.createReview #addFile .previewInfo .info_value {
+  font-size: 14px;
+  font-family: "Pretendard Variable";
+  color: #232323;
+}
+.createReview #addFile #reviewImage {
+  width: 530px;
+  height: 415px;
+  border: none;
+  left: 0px;
+  top: 0px;
+  display: none;
+}
+.createReview #addFile #preview {
+  width: 468px;
+  height: 367px;
+}
+.createReview #addFile #addPhoto {
+  position: absolute;
+  left: 208px;
+  top: 151px;
   width: 113px;
   height: 113px;
-  cursor: pointer;
 }
 .createReview #cancle {
   position: absolute;
@@ -275,5 +318,114 @@ a:active {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+#finalConfirmReview {
+  position: absolute;
+  left: 521px;
+  top: 2371px;
+  width: 879px;
+  height: 316px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+#finalConfirmReview #reallyWriteReview {
+  width: max-content;
+  margin-top: 5px;
+  height: 44px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  color: #232323;
+}
+#finalConfirmReview #noticeReview {
+  width: max-content;
+  margin-top: 40px;
+  height: 36px;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  font-weight: 500;
+  color: #FF5D18;
+}
+#finalConfirmReview #cancleWriteReview {
+  margin-top: 40px;
+  margin-left: -220px;
+  width: 171px;
+  height: 44px;
+  background-color: #FEDA00;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
+}
+#finalConfirmReview #confirmWriteReview {
+  margin-top: -44px;
+  margin-left: 220px;
+  width: 171px;
+  height: 44px;
+  background-color: #FF8AA3;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
+}
+
+#completeReview {
+  position: absolute;
+  left: 521px;
+  top: 2371px;
+  width: 879px;
+  height: 316px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+#completeReview #completedReviewMessage {
+  width: max-content;
+  margin-top: 5px;
+  height: 44px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  color: #232323;
+}
+#completeReview #completedReviewNotice {
+  width: max-content;
+  margin-top: 40px;
+  height: 36px;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  font-weight: 500;
+  color: #FF5D18;
+}
+#completeReview #completeBtn {
+  margin-top: 40px;
+  width: 171px;
+  height: 44px;
+  background-color: #FEDA00;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
   cursor: pointer;
 }
