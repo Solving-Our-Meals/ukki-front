@@ -19,7 +19,7 @@ function WeeklyRes(data) {
     const dataValues = Object.values(filterData[0]);
     const maxValue = Math.max(...dataValues)
     const chartData = {
-        labels: labels,
+        labels: ['월', '화', '수', '목', '금', '토', '일'],
         datasets: [
             {
                 label: '예약 수',

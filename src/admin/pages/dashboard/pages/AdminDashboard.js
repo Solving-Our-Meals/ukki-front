@@ -1,14 +1,15 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import '../../../../common/reset/reset.css'
+import '../css/reset.css'
 import '../css/AdminDashboard.css';
 // import WeeklyRes from '../components/WeeklyRes';
-import { fetchGraphData1, fetchGraphData2, fetchGraphData3, fetchGraphData4, fetchGraphData5 } from '../api/DashboardAPI';
+import { fetchGraphData1, fetchGraphData2, fetchGraphData3, fetchGraphData4, fetchGraphData5, fetchGraphData6 } from '../api/DashboardAPI';
 
 const WeeklyRes = lazy(() => import('../components/WeeklyRes'));
 const TotalStores = lazy(() => import('../components/TotalStores'))
 const TodayRes = lazy(() => import('../components/TodayRes'))
 const MonthlyStores = lazy(() => import('../components/MonthlyStores'))
 const MonthlyNoShow = lazy(() => import('../components/MonthlyNoshow'))
+const ProcessingInquiry = lazy(() => import('../components/ProcessingInquiry'))
 
 function AdminDashboard(){
 
@@ -24,7 +25,7 @@ function AdminDashboard(){
                     fetchGraphData3(),
                     fetchGraphData4(),
                     fetchGraphData5(),
-                    // fetchGraphData6()
+                    fetchGraphData6()
                 ]);
                 setData({
                     graph1: data1,
@@ -32,7 +33,7 @@ function AdminDashboard(){
                     graph3: data3,
                     graph4: data4,
                     graph5: data5,
-                    // graph6: data6
+                    graph6: data6
                 });
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -70,13 +71,15 @@ function AdminDashboard(){
             <MonthlyStores data={data.graph4} />
             <div id='montlyNoshowCountText'>이번달 노쇼 비율</div>
             <MonthlyNoShow data={data.graph5}/>
-            
-                {/* <MonthlyRes data={data.graph2} />
-                <YearlyRes data={data.graph3} />
-                <WeeklyRes data={data.graph4} />
-                <MonthlyRes data={data.graph5} />
-                <YearlyRes data={data.graph6} /> */}
+            <div id='processingInquiryText'>처리할 문의 수</div>
+            <ProcessingInquiry data={data.graph6}/>
             </Suspense>
+            <div id='processingInquiryGuide'>
+                <div><div style={{backgroundColor: '#FF5D18'}}></div> 위험</div>
+                <div><div style={{backgroundColor: '#EFE03B'}}></div> 주의</div>
+                <div><div style={{backgroundColor: '#51CC16'}}></div> 양호</div>
+            </div>
+            <div id='dashboardCenterLine'></div>
         </>
     )
 }

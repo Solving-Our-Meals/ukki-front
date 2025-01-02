@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
@@ -11,9 +11,12 @@ export default function TodayReservationGraph(data){
 
     const [isAchievement, setIsAchievement] = useState(false);
     
-    if(dataValues >= 300){
-        setIsAchievement(true);
-    }
+    useEffect(() => 
+        { if (dataValues[0] >= 300) { 
+            setIsAchievement(true); 
+        } else { 
+            setIsAchievement(false); 
+        } }, [dataValues]);
 
     const fail = {
         labels: ["현재 예약 수", "남은 목표 수"],
