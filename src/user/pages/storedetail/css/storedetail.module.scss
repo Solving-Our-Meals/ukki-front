@@ -279,17 +279,16 @@
             }
         }
     
-        // 여기까지-----------------------------------------
         .keywordArea{
             div{
                 position : absolute;
-                top : 990px;
-                width : 240px;
-                height : 61px;
+                top : 587px;
+                width : 126px;
+                height : 34px;
                 background-color: $primary;
                 border-radius: 50px;
                 font-family: 'Pretendard Variable';
-                font-size : 25px;
+                font-size : 15px;
                 color: $textStrong;
                 display : flex;
                 justify-content: center;
@@ -297,35 +296,35 @@
             }
             
             div:nth-of-type(1){
-                left : 119px;
+                left : 48px;
             }
         
             div:nth-of-type(2){
-                left : 401px;
+                left : 190.4px;
             }
         
             div:nth-of-type(3){
-                left : 683px;
+                left : 332.8px;
             }
         
             div:nth-of-type(4){
-                left : 965px;
+                left : 475.2px;
             }
             
             div:nth-of-type(5){
-                left : 1247px;
+                left : 617.6px;
             }
         
             div:nth-of-type(6){
-                left : 1529px;
+                left : 760px;
             }
         }
     
         #hr{
             position : absolute;
-            left : 91px;
-            top : 1106px;
-            width : 1738px;
+            left : 28px;
+            top : 650px;
+            width : 878px;
             background: #D9D9D9;
         }
     }

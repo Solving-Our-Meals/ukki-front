@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* styles.css 파일에 추가 */
-.profileStyle {
+#profileStyle {
   position: absolute;
   left: 172px;
   top: 258px;
@@ -10,14 +10,14 @@
   z-index: 99;
 }
 
-@media (max-width: 1024px) {
-  .profileStyle {
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  #profileStyle {
     position: absolute;
-    left: 52px;
-    top: 170px;
+    left: 55px;
+    top: 168px;
     width: 122px;
     height: 110px;
     text-align: center;
     z-index: 99;
   }
-}/*# sourceMappingURL=profile.module.css.map */
+}
