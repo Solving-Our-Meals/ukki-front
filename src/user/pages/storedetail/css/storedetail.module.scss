@@ -163,3 +163,174 @@
         background: #D9D9D9;
     }
 }
+@media(max-width : 1024px){
+    .storeDetail{
+        cursor: default;
+        border-radius: 0;
+    
+        #storeName {
+            position : absolute;
+            width : max-content;
+            height : max-content;
+            left : 51px;
+            top : 391px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-style: 'regular';
+            font-size : 35px;
+            color: $textStrong;
+        }
+    
+        #storeDes{
+            position : absolute;
+            width: 488px;
+            height: 18px;
+            left : 51px;
+            top : 440px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-style: 'semi-bold';
+            font-size : 15px;
+            color: $textStrong;
+            line-height: 15px;
+            // border: 1px solid red;
+        }
+    
+        #mapIcon{
+            position : absolute;
+            width : 89px;
+            height : 102px;
+            left : 32px;
+            top : 449px;
+        }
+    
+        #storeAddress {
+            position : absolute;
+            left : 118px;
+            top : 478px;
+            width : max-content;
+            height: 20px;
+            font-family : 'Pretendard Variable';
+            font-size : 15px;
+            color: $textStrong;
+        }
+    
+        #operTime{
+            position : absolute;
+            left : 118px;
+            top : 523px;
+            width : max-content;
+            height: 27px;
+            font-family : 'Pretendard Variable';
+            font-size : 15px;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    
+        #triangle{
+            position : absolute;
+            width : 11px;
+            height : 14px;
+            margin: 10px;
+            top : -10px;
+            cursor: pointer;
+        }
+    
+        #tatolOperTime{
+            position : absolute;
+            left : 195px;
+            top : 545px;
+            width : 150px;
+            height : 200px;
+            border: 2px solid $textStrong;
+            background-color: #FFFFFF;
+            padding : 2px;
+            font-family: 'Pretendard Variable';
+            font-size: 13px;
+            font-weight: 500;
+            color: $textStrong;
+            line-height: 25px;
+            z-index : 5;
+            border-radius: 0;
+    
+            .week{
+                position : absolute;
+                padding-left : 13px;
+                padding-top: 2px;
+                
+            }
+    
+            .weekOperTime{
+                position : absolute;
+                width : 146px;
+                margin-top: -23px;
+                margin-left: 14px;
+                text-align: center;
+            }
+    
+            #breakTime {
+                position : absolute;
+                width : max-content;
+                font-size: 9px;
+                color : $pending;
+                margin-left : 13px;
+                margin-top : -3px;
+                font-weight: 700;
+                text-align: center;
+            }
+        }
+    
+        // 여기까지-----------------------------------------
+        .keywordArea{
+            div{
+                position : absolute;
+                top : 990px;
+                width : 240px;
+                height : 61px;
+                background-color: $primary;
+                border-radius: 50px;
+                font-family: 'Pretendard Variable';
+                font-size : 25px;
+                color: $textStrong;
+                display : flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            div:nth-of-type(1){
+                left : 119px;
+            }
+        
+            div:nth-of-type(2){
+                left : 401px;
+            }
+        
+            div:nth-of-type(3){
+                left : 683px;
+            }
+        
+            div:nth-of-type(4){
+                left : 965px;
+            }
+            
+            div:nth-of-type(5){
+                left : 1247px;
+            }
+        
+            div:nth-of-type(6){
+                left : 1529px;
+            }
+        }
+    
+        #hr{
+            position : absolute;
+            left : 91px;
+            top : 1106px;
+            width : 1738px;
+            background: #D9D9D9;
+        }
+    }
+
+}
+
+@media (max-width : 768px){
+
+}

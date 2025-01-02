@@ -6,4 +6,16 @@
   height: 221px;
   text-align: center;
   z-index: 99;
+}
+
+@media (max-width: 1024px) {
+  .profileStyle {
+    position: absolute;
+    left: 52px;
+    top: 170px;
+    width: 100px;
+    height: 90px;
+    text-align: center;
+    z-index: 99;
+  }
 }/*# sourceMappingURL=profile.module.css.map */

@@ -17,3 +17,25 @@
         }
     }
 }
+
+@media (max-width : 1024px){
+    .bannerStyle{
+        position : relative;
+        overflow : hidden;
+        left : 17px;
+        top : 90px;
+        width : 910px;
+        height : 207px;
+        border-radius: 0;
+    
+        .slider{
+            display : flex;
+            transition: transform 0.5s ease-in-out;
+    
+            .slide{
+                min-width : 100%;
+                box-sizing : border-box;
+            }
+        }
+    }
+}

@@ -311,4 +311,148 @@ a:active {
   top: 1106px;
   width: 1738px;
   background: #D9D9D9;
+}
+
+@media (max-width: 1024px) {
+  .storeDetail {
+    cursor: default;
+    border-radius: 0;
+  }
+  .storeDetail #storeName {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 51px;
+    top: 391px;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: "regular";
+    font-size: 35px;
+    color: #232323;
+  }
+  .storeDetail #storeDes {
+    position: absolute;
+    width: 488px;
+    height: 18px;
+    left: 51px;
+    top: 440px;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: "semi-bold";
+    font-size: 15px;
+    color: #232323;
+    line-height: 15px;
+  }
+  .storeDetail #mapIcon {
+    position: absolute;
+    width: 89px;
+    height: 102px;
+    left: 32px;
+    top: 449px;
+  }
+  .storeDetail #storeAddress {
+    position: absolute;
+    left: 118px;
+    top: 478px;
+    width: max-content;
+    height: 20px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    color: #232323;
+  }
+  .storeDetail #operTime {
+    position: absolute;
+    left: 118px;
+    top: 523px;
+    width: max-content;
+    height: 27px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    color: #232323;
+    cursor: pointer;
+  }
+  .storeDetail #triangle {
+    position: absolute;
+    width: 11px;
+    height: 14px;
+    margin: 10px;
+    top: -10px;
+    cursor: pointer;
+  }
+  .storeDetail #tatolOperTime {
+    position: absolute;
+    left: 195px;
+    top: 545px;
+    width: 150px;
+    height: 200px;
+    border: 2px solid #232323;
+    background-color: #FFFFFF;
+    padding: 2px;
+    font-family: "Pretendard Variable";
+    font-size: 13px;
+    font-weight: 500;
+    color: #232323;
+    line-height: 25px;
+    z-index: 5;
+    border-radius: 0;
+  }
+  .storeDetail #tatolOperTime .week {
+    position: absolute;
+    padding-left: 13px;
+    padding-top: 2px;
+  }
+  .storeDetail #tatolOperTime .weekOperTime {
+    position: absolute;
+    width: 146px;
+    margin-top: -23px;
+    margin-left: 14px;
+    text-align: center;
+  }
+  .storeDetail #tatolOperTime #breakTime {
+    position: absolute;
+    width: max-content;
+    font-size: 9px;
+    color: #615DFF;
+    margin-left: 13px;
+    margin-top: -3px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .storeDetail .keywordArea div {
+    position: absolute;
+    top: 990px;
+    width: 240px;
+    height: 61px;
+    background-color: #FF8AA3;
+    border-radius: 50px;
+    font-family: "Pretendard Variable";
+    font-size: 25px;
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .storeDetail .keywordArea div:nth-of-type(1) {
+    left: 119px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(2) {
+    left: 401px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(3) {
+    left: 683px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(4) {
+    left: 965px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(5) {
+    left: 1247px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(6) {
+    left: 1529px;
+  }
+  .storeDetail #hr {
+    position: absolute;
+    left: 91px;
+    top: 1106px;
+    width: 1738px;
+    background: #D9D9D9;
+  }
 }/*# sourceMappingURL=storedetail.module.css.map */
