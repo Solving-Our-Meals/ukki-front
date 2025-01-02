@@ -194,21 +194,6 @@ a:active {
   font-size: 30px;
   color: #232323;
 }
-.reviewStyle #btnWriteReview {
-  position: absolute;
-  left: 1530px;
-  top: 2019px;
-  width: 271px;
-  height: 61px;
-  background-color: #FF8AA3;
-  border-radius: 50px;
-  border: none;
-  font-family: "Pretendard Variable";
-  font-size: 30px;
-  font-weight: 600;
-  color: #232323;
-  cursor: pointer;
-}
 .reviewStyle .reviewArea {
   cursor: default;
   position: absolute;
@@ -307,4 +292,4 @@ a:active {
   font-weight: 700;
   color: #232323;
   cursor: pointer;
-}
+}/*# sourceMappingURL=review.module.css.map */

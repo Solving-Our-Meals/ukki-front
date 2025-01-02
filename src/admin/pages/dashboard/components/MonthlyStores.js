@@ -11,7 +11,7 @@ export default function MonthlyStores({ data }) {
   const [selectedYear, setSelectedYear] = useState(today.getFullYear());
   const [viewMinusArrow, setViewMinusArrow] = useState(true);
   const [viewPlusArrow, setViewPlusArrow] = useState(true);
-  // 년도별 데이터 그룹화
+
   const groupbyYearData = {}
   for(let item of data){
     if(!groupbyYearData[item.year]){
@@ -26,7 +26,6 @@ export default function MonthlyStores({ data }) {
   },[selectedYear])
 
   const maxValue = Math.max(...groupbyYearData[selectedYear].map(item => item.registStore));
-  console.log(maxValue)
 
   function viewMinusArrowHandler(year){
     if(!Object.keys(groupbyYearData).find(e => e === year.toString())){
@@ -36,7 +35,6 @@ export default function MonthlyStores({ data }) {
     }
   }
   function viewPlusArrowHandler(year){
-    console.log(Object.keys(groupbyYearData).find(e => e === year.toString()))
     if(!Object.keys(groupbyYearData).find(e => e === year.toString())){
         setViewPlusArrow(false);
     }else{
@@ -79,7 +77,6 @@ export default function MonthlyStores({ data }) {
         beginAtZero: true,
         title: {
           display: false,
-          text: '등록된 가게 수',
         },
         min: 0,
         max: Math.floor(maxValue/5+1)*5,
@@ -90,7 +87,6 @@ export default function MonthlyStores({ data }) {
       x: {
         title: {
           display: false,
-          text: '년도-월',
         },
       },
     },

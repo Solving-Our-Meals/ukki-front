@@ -13,7 +13,6 @@ function Review(){
     });
     const [isMoreReview, setIsMoreReview] = useState(false);
     const [hiddenWord, setHiddenWord] = useState(true);
-    const [isDisplay, setIsDisplay] = useState(false);
 
     useEffect(
         () => {
@@ -33,17 +32,11 @@ function Review(){
         setIsMoreReview(prevState => !prevState);
         setHiddenWord(prevState => !prevState);
     }
-
-    const createReviewHandler = () => {
-        setIsDisplay(prevState => !prevState);
-        console.log('왜안나타', isDisplay)
-    }
     
     return(
         <div className={styles.reviewStyle}>
             <div id={styles.strReview}>리뷰</div>
             <div id={styles.strCountReview}>{`총 ${reviewContent.reviewCount}개의 리뷰가 있습니다.`}</div>
-            <button type='button' id={styles.btnWriteReview} onClick={() => createReviewHandler()}>리뷰 작성하기</button>
             <div className={styles.reviewArea}>
                 <div className={styles.reviewContainer}>
                     {reviews.map((review, index) => (
@@ -80,9 +73,7 @@ function Review(){
                     {hiddenWord ? "리뷰 더보기 > " : "리뷰 닫기"} 
                 </div>
             </div>
-            <div style={{display : isDisplay ? "block" : "none"}}>
-                <CreateReview/>
-            </div>
+            <CreateReview/>
         </div>
     );
 }
