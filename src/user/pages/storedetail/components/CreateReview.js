@@ -34,9 +34,9 @@ function CreateReview(){
     const [review, setReview] = useState({
         reviewDate : today,
         reviewContent : "",
-        reviewImage : null,
-        storeNo : 5,
-        userNo : 1
+        reviewImage : {},
+        storeNo : "5",
+        userNo : "1"
     });
 
     const onChangeHandler = (e) => {
@@ -47,10 +47,10 @@ function CreateReview(){
     }
 
     useEffect(() => {
-        if(uploadedInfo && uploadedInfo.name){
+        if(uploadedInfo && uploadedInfo.file){
             setReview((prevReview) => ({
                 ...prevReview,
-                reviewImage : uploadedInfo.name
+                reviewImage : uploadedInfo.file
             }));
         }
     }, [uploadedInfo])
@@ -74,12 +74,13 @@ function CreateReview(){
 
      // 파일 미리보기 기능
      const setFileInfo = (file) => {
-        const {type} = file;
+        const {type, name} = file;
         const isImage = type.includes('image');
         const size = (file.size / (1024 * 1024)).toFixed(2) + 'mb';
-        const fileName = `REVIEW${new Date().getFullYear().toString().slice(2)}${(new Date().getMonth() + 1).toString().padStart(2, '0')}${new Date().getDate().toString().padStart(2,'0')}`;
+        const updatedInfo = {name, size, type, file, isImage}
 
-        const updatedInfo = {name : fileName, size, type}
+        console.log('updatedInfo : ' , updatedInfo);
+
         if(!isImage){
            setUploadedInfo(updatedInfo); // name, size, type 정보를 uploadedInfo에 저장
             return;
@@ -95,88 +96,41 @@ function CreateReview(){
                     ...prevReview,
                     reviewImage : file
                 };
-                console.log("updated review with file : " , updatedReview);
                 return updatedReview;
             });
         };
+
         reader.readAsDataURL(file);
     }
 
-    // const submitHandler = () => {
-    //     fetch(`/store/5/review`, {
-    //         method : "POST",
-    //         body : JSON.stringify(review),
-    //     })
-    //     .then((res) => {
-    //         if(res.ok){
-    //             setIsDisplay(false);
-    //             setDoWriteReview(false);
-    //             setIsCompletedReview(true);
-    //         }
-    //     })
-    // }
-    
+    // 파일 업로드 족같네
+    const submitHandler = () => {
+        const formData = new FormData();
+        formData.append('params', JSON.stringify({
+            reviewDate: review.reviewDate,
+            reviewContent: review.reviewContent,
+            storeNo: review.storeNo,
+            userNo: review.userNo
+        }));
+        formData.append('reviewImage', review.reviewImage); // 파일 객체 추가
 
-    // const submitHandler = () => {
-    //     const formData = new FormData();
-    //     formData.append('params', JSON.stringify({
-    //         reviewDate: review.reviewDate,
-    //         reviewContent: review.reviewContent,
-    //         reviewImage : review.reviewImage,
-    //         storeNo: review.storeNo,
-    //         userNo: review.userNo
-    //     }));
-    
-    //     fetch(`/store/5/review`, {
-    //         method: "POST",
-    //         body: formData,
-    //     })
-    //     .then((res) => {
-    //         if (res.ok) {
-    //             setIsDisplay(false);
-    //             setDoWriteReview(false);
-    //             setIsCompletedReview(true);
-    //             console.log("Review submitted successfully");
-    //         } else {
-    //             console.error("Failed to submit review", res.statusText);
-    //         }
-    //     })
-    //     .catch(error => console.error("Error:", error));
-    // };
+        fetch('/store/5/review', {
+            method: 'POST',
+            body: formData,
 
-    // const submitHandler = () => {
-    //     const formData = new FormData();
-    //     formData.append('params', JSON.stringify({
-    //         reviewDate: review.reviewDate,
-    //         reviewContent: review.reviewContent,
-    //         storeNo: review.storeNo,
-    //         userNo: review.userNo
-    //     }));
-    //     formData.append('reviewImage', review.reviewImage); // 파일 객체 추가
-
-    //     //formData 내용 확인
-    //     for(let pair of formData.entries()){
-    //         console.log('SSSSSSSSS',pair[0] + ', ' + pair[1]);
-    //     }
-    //     // console.log("FormData content : ", formData.get('params'));
-    //     // console.log("FormData file : ", formData.get('reviewImage'));
-    
-    //     fetch(`/store/5/review`, {
-    //         method: "POST",
-    //         body: formData,
-    //     })
-    //     .then((res) => {
-    //         if (res.ok) {
-    //             setIsDisplay(false);
-    //             setDoWriteReview(false);
-    //             setIsCompletedReview(true);
-    //             console.log("Review submitted successfully");
-    //         } else {
-    //             console.error("Failed to submit review", res.statusText);
-    //         }
-    //     })
-    //     .catch(error => console.error("Error:", error));
-    // };
+        })
+        .then((res) => {
+            if (res.ok) {
+                setIsDisplay(false);
+                setDoWriteReview(false);
+                setIsCompletedReview(true);
+                console.log("Review submitted successfully");
+            } else {
+                console.error("Failed to submit review", res.statusText);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    };
     
 
     const completeHandler = () => {
@@ -218,9 +172,22 @@ function CreateReview(){
         e.preventDefault();
     }
 
+    // const getOverlayClass = () => {
+    //     if(doWriteReview) return `${styles.overlay} ${styles.zIndex11} ${styles.show}`;
+    //     if(isDisplay || isCompletedReview) return `${styles.overlay} ${styles.zIndex10} ${styles.show}`
+    //     return styles.overlay;
+    // }
+
+    const getOverlayClass = () => { 
+        if (doWriteReview) return `${styles.overlay} ${styles.zIndex11} ${styles.show}`; 
+        if (isDisplay || isCompletedReview) return `${styles.overlay} ${styles.zIndex10} ${styles.show}`; 
+        return styles.overlay; 
+    }
+
     return(
         <>
             <button type='button' id={styles.btnWriteReview} onClick={() => createReviewHandler()}>리뷰 작성하기</button>
+            <div className={getOverlayClass()}></div>
             <div className={styles.createReview} style={{display : isDisplay ? "" : "none"}} >
                 <div id={styles.strReview}>리뷰하기</div>
                 <img src={writeArea} id={styles.writeReviewArea} alt='리뷰 작성란'/>
@@ -247,9 +214,6 @@ function CreateReview(){
                         <img ref={previewRef} src={imageUrl} id={styles.preview} name='addphoto' alt='업로드된 이미지 미리보기'/> 
                     ) : ( 
                     <img ref={previewRef} src={addPhoto} id={styles.addPhoto} name='addphoto' alt='사진 추가하기 버튼'/> )} 
-                    {/* uploadedInfo 값 유무에 따른 분기 */}
-                    {/* &emsp; */}
-                    {/* {uploadedInfo && <FileInfo uploadedInfo={uploadedInfo}/>} */}
                 </div>
                 <button type='button' id={styles.cancle} onClick={(e) => cancleHandler(e)}>취소</button>
                 <button type='button' id={styles.submit} onClick={() => setDoWriteReview(true)}>확인</button>
@@ -258,7 +222,7 @@ function CreateReview(){
                 <p id={styles.reallyWriteReview}>리뷰를 작성하시겠습니까?</p>
                 <p id={styles.noticeReview}>작성하신 내용으로 리뷰가 게시됩니다.</p>
                 <button type='button' id={styles.cancleWriteReview} onClick={() => setDoWriteReview(false)}>취소</button>
-                {/* <button type='submit' id={styles.confirmWriteReview} onClick={() => submitHandler()}>확인</button> */}
+                <button type='submit' id={styles.confirmWriteReview} onClick={() => submitHandler()}>확인</button>
             </div>
             <div id={styles.completeReview} style={{display : isCompletedReview ? "" : "none"}}>
                 <p id={styles.completedReviewMessage}>리뷰가 업로드되었습니다.</p>
