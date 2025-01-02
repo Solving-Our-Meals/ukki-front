@@ -248,7 +248,7 @@ function Signup() {
         <div className={styles.signupBasic}>
             <div className={styles.signup}>
                 <p className={styles.signupText}>회원가입</p>
-                <img className={styles.signupLogo} src="/images/signupLogo.png" alt="회원가입 로고"/>
+                <img className={styles.signupLogo} src="/images/signup/signupLogo.png" alt="회원가입 로고"/>
                 {step === 1 && (
                     <form onSubmit={handleUsernameSubmit}>
                         <fieldset className={styles.fieldId}>

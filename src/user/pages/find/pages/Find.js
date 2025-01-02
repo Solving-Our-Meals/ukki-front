@@ -198,7 +198,7 @@ import '../css/reset.css';
             <div className={styles.findAccount}>
                 <div className={styles.findAccountContent}>
                     <p className={`${styles.signupText} ${type === 'id' ? styles.signupTextId : styles.signupTextPassword}`}>{type === 'id' ? '아이디 찾기' : '비밀번호 찾기'}</p>
-                    <img className={styles.signupLogo} src="/images/signupLogo.png" alt="회원가입 로고"></img>
+                    <img className={styles.signupLogo} src="/images/signup/signupLogo.png" alt="회원가입 로고"></img>
                     <div style={searchError}>
                         <p className={styles.findAccountText}>{type === 'id' ? (
                             <Link to="/auth/find/password" onClick={() => setStep(1)}>비밀번호 찾기</Link>
