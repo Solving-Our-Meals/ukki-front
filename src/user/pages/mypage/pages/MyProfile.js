@@ -53,8 +53,7 @@ function MyProfile() {
 
     return (
         <div className={styles.profileMain}>
-            <div className={styles.profileImage}/>
-            {/*<img src={userInfo.profileImage} alt="Profile"/>*/}
+            <img className={styles.profileImage} src={userInfo?.profileImage || "/images/mypage/profile/default.png"} alt="Profile"/>
             <p className={styles.mypageNickname}>{userInfo?.nickname || ''}</p>
             <hr className={styles.mypageHorizonLine1}/>
             <div className={styles.mypageTextBox}>나의 도전현황</div>

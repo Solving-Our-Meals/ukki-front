@@ -15,6 +15,11 @@
     align-items: center;
 }
 
+.profileImage {
+    position: absolute;
+    top:50px;
+}
+
 .mypageNickname {
     transform: translateY(-55px);
 

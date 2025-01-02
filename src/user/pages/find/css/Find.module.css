@@ -296,7 +296,7 @@ input.errorInput:focus {
 }
 
 /* 레전드용 */
-label {
+.findAccount label {
     position: absolute;
     top: 196px;
     left: 390px;
@@ -304,13 +304,13 @@ label {
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
-    font-size: 50px;
+    font-size: 25px;
     color: #aaa;
-    transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
+    transition: transform 0.1s ease, font-size 0.05s ease, left 0.1s ease, top 0.1s ease, color 0.1s ease;
     pointer-events: none;
 }
 
-input:focus + label, input:not(:placeholder-shown) + label {
+.findAccount input:focus + label, input:not(:placeholder-shown) + label {
     top: 170px;
     left: 380px;
     font-size: 12px;
@@ -320,7 +320,7 @@ input:focus + label, input:not(:placeholder-shown) + label {
     color: #007bff;
 }
 
-input:focus + label, input:not(:placeholder-shown) + label {
+.findAccount input:focus + label, input:not(:placeholder-shown) + label {
     top: 170px;
     left: 380px;
     font-size: 12px;
@@ -663,7 +663,7 @@ button:disabled {
     }
 
     /* 레전드용 */
-    label {
+    .findAccount label {
         position: absolute;
         top: 196px;
         left: 390px;
@@ -677,7 +677,7 @@ button:disabled {
         pointer-events: none;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -687,7 +687,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -1083,7 +1083,7 @@ button:disabled {
     }
 
     /* 레전드용 */
-    label {
+    .findAccount label {
         top:215px;
         left:385px;
         position: absolute;
@@ -1097,7 +1097,7 @@ button:disabled {
         pointer-events: none;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1107,7 +1107,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1504,7 +1504,7 @@ button:disabled {
     }
 
     /* 레전드용 */
-    label {
+    .findAccount label {
         position: absolute;
         top: 191px;
         left: 390px;
@@ -1518,7 +1518,7 @@ button:disabled {
         pointer-events: none;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1528,7 +1528,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;

@@ -248,7 +248,7 @@ function Signup() {
         <div className={styles.signupBasic}>
             <div className={styles.signup}>
                 <p className={styles.signupText}>회원가입</p>
-                <img className={styles.signupLogo} src="/images/signupLogo.png" alt="회원가입 로고"/>
+                <img className={styles.signupLogo} src="/images/signup/signupLogo.png" alt="회원가입 로고"/>
                 {step === 1 && (
                     <form onSubmit={handleUsernameSubmit}>
                         <fieldset className={styles.fieldId}>
@@ -357,12 +357,12 @@ function Signup() {
                             </div>
                         </fieldset>
                         {error && <p className={styles.error}>{error}</p>}
-                        <button
-                            className={styles.loginButton}
-                            type="button"
-                            onClick={() => window.location.href = '/auth/login'}
-                        >로그인
+                        <button className={styles.loginButton}
+                                type="button"
+                                onClick={() => setStep(3)}  // 비밀번호 입력 단계로 돌아가기
+                        >뒤로
                         </button>
+
                         <button className={styles.nextButton}>다음</button>
                     </form>
                 )}

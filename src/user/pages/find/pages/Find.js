@@ -198,7 +198,7 @@ import '../css/reset.css';
             <div className={styles.findAccount}>
                 <div className={styles.findAccountContent}>
                     <p className={`${styles.signupText} ${type === 'id' ? styles.signupTextId : styles.signupTextPassword}`}>{type === 'id' ? '아이디 찾기' : '비밀번호 찾기'}</p>
-                    <img className={styles.signupLogo} src="/images/signupLogo.png" alt="회원가입 로고"></img>
+                    <img className={styles.signupLogo} src="/images/signup/signupLogo.png" alt="회원가입 로고"></img>
                     <div style={searchError}>
                         <p className={styles.findAccountText}>{type === 'id' ? (
                             <Link to="/auth/find/password" onClick={() => setStep(1)}>비밀번호 찾기</Link>
@@ -230,15 +230,21 @@ import '../css/reset.css';
                                 >
                                     {loading || emailPending ? '처리중' : '다음'}
                                 </button>
+                                <button
+                                    className={styles.loginButton}
+                                    type="button"
+                                    onClick={() => window.location.href = '/auth/login'}
+                                >로그인
+                                </button>
                             </form>
                         )}
 
-                        {step === 2 && verificationCodeSent && (
-                            <form onSubmit={handleVerificationSubmit}>
-                                <fieldset>
-                                    <div className={styles.inputWrapper}>
-                                        <input
-                                            className={`findAuth ${error ? 'errorInput' : ''}`}
+                    {step === 2 && verificationCodeSent && (
+                        <form onSubmit={handleVerificationSubmit}>
+                            <fieldset>
+                                <div className={styles.inputWrapper}>
+                                    <input
+                                        className={`findAuth ${error ? 'errorInput' : ''}`}
                                             type="text"
                                             name="auth"
                                             value={formData.auth}
@@ -252,6 +258,12 @@ import '../css/reset.css';
                                 <button className={styles.nextButton} type="submit">
                                     다음
                                 </button>
+                            <button className={styles.loginButton}
+                                    type="button"
+                                    onClick={() => setStep(1)}  // 비밀번호 입력 단계로 돌아가기
+                            >
+                                뒤로
+                            </button>
                             </form>
                         )}
 
