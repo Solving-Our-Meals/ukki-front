@@ -4,7 +4,7 @@ import {jwtDecode} from "jwt-decode";
 import Cookies from 'js-cookie'
 
 function MyProfile() {
-    const [userInfo, setUserInfo] = useState('');
+    const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -14,10 +14,9 @@ function MyProfile() {
         if (token) {
             try {
                 const decodedToken = jwtDecode(token);
-                const userNo = decodedToken.userNo;
-                console.log(decodedToken)
+                const userId = decodedToken.sub;
 
-                fetchUserInfo(userNo);
+                fetchUserInfo(userId);
             } catch (err) {
                 setError('유효하지 않은 토큰입니다.');
                 setLoading(false);
@@ -28,20 +27,21 @@ function MyProfile() {
         }
     }, []);
 
-    const fetchUserInfo = async (userNo) => {
+    const fetchUserInfo = async (userId) => {
         const token = Cookies.get('authToken');
         try {
-            const response = await fetch(`/user/${userNo}`, {
+            const response = await fetch(`/user/${userId}`, {
                 method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-                credentials: 'include',
+                // headers: {
+                //     'Authorization': `Bearer ${token}`,
+                // }, -> 쿠키로 보낼거라서 없어도 됩니다 ! 다른 팀원 분들 참고해주세요.
+                credentials: 'include', // 얘를 쓰면 쿠키로 보낼 수 있습니다.
             });
 
             if (response.ok) {
                 const data = await response.json();
                 setUserInfo(data);
+                console.log(data)
             } else {
                 console.error('유저 정보를 가져오는 데 실패했습니다.');
             }
@@ -54,7 +54,7 @@ function MyProfile() {
         <div className={styles.profileMain}>
             <div className={styles.profileImage}/>
             {/*<img src={userInfo.profileImage} alt="Profile"/>*/}
-            <h2>{userInfo.nickname}</h2>
+            <h2>{userInfo?.nickname}</h2>
         </div>
     )
 

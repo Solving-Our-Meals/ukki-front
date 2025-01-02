@@ -10,26 +10,28 @@
     text-align: center;
     display: inline-block;
     margin-left: 20px;
-    top: 200px;
+    top: 300px;
+    z-index: 999;
 
     /* text/normal - dark */
     color: #BDBEBF;
 }
 
 .activeTab1 {
-    margin-left: 10px;
+    left:250px;
+    margin-left: -5px;
 }
 
 .activeTab2 {
-    left:100px;
+    left:350px;
 }
 
 .activeTab3 {
-    left:230px;
+    left:480px;
 }
 
 .activeTab4 {
-    left:340px;
+    left:590px;
 }
 
 .activeTab1:hover, .activeTab2:hover, .activeTab3:hover, .activeTab4:hover {
