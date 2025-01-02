@@ -69,6 +69,10 @@ function MyProfile() {
             <span className={styles.mypageRandomNo}>{userInfo?.randomCount || ''}</span>
             </div>
 
+            <div className={styles.challengerMedal}>
+                메달영역
+            </div>
+
             <hr className={styles.mypageHorizonLine2}/>
             <hr className={styles.mypageHorizonLine3}/>
             <p className={styles.mypageProfilePlus}>더보기</p>
