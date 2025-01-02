@@ -9,4 +9,80 @@
     border: 5px solid #FF8AA3;
     border-radius: 50px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mypageNickname {
+    width: 166px;
+    height: 33px;
+    transform: translateY(-90px);
+
+    font-family: 'Bobaesum-Jindo-TTF';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    text-align: center;
+
+    color: #232323;
+}
+
+.mypageHorizonLine1 {
+    transform: translateY(-80px);
+    /* Line 1 */
+
+    width: 389px;
+    border: 1px solid #BDBEBF;
+}
+.mypageHorizonLine2 {
+    transform: translateY(30px);
+    width: 389px;
+    border: 1px solid #BDBEBF;
+}
+.mypageHorizonLine3 {
+    transform: translateY(250px);
+    width: 389px;
+    border: 1px solid #BDBEBF;
+}
+
+.mypageTextBox {
+    width: 146px;
+    height: 35px;
+
+    transform: translateY(-70px);
+    background: #FEDA00;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 103%;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.mypageProfilePlus {
+    transform: translateY(260px);
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 103%;
+    text-align: center;
+
+    color: #232323;
+
+
 }
