@@ -51,6 +51,24 @@ function MyProfile() {
         }
     };
 
+    const fetchUserChallengeInfo = async (userId) => {
+            try {
+                const response = await fetch(`/user/${userId}`, {
+                method: 'GET',
+                credentials: 'include',
+            });
+            if (response.ok) {
+            const data = await response.json();
+            setUserInfo(data);
+            console.log(data)
+            } else {
+            console.error('유저 정보를 가져오는 데 실패했습니다.');
+            }
+        } catch (error) {
+        console.error('에러 발생:', error);
+        }
+    };
+
     return (
         <div className={styles.profileMain}>
             <div className={styles.profileImage}/>
@@ -58,6 +76,13 @@ function MyProfile() {
             <p className={styles.mypageNickname}>{userInfo?.nickname || "닉네임 없음"}</p>
             <hr className={styles.mypageHorizonLine1}/>
             <div className={styles.mypageTextBox}>나의 도전현황</div>
+
+            <p className={styles.mypageReservationNo}></p>
+
+            <p className={styles.mypageReviewNo}></p>
+
+            <p className={styles.mypageRandomNo}></p>
+
             <hr className={styles.mypageHorizonLine2}/>
             <hr className={styles.mypageHorizonLine3}/>
             <p className={styles.mypageProfilePlus}>더보기</p>
