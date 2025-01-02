@@ -16,8 +16,6 @@
 }
 
 .mypageNickname {
-    width: 166px;
-    height: 33px;
     transform: translateY(-90px);
 
     font-family: 'Bobaesum-Jindo-TTF';
@@ -37,7 +35,7 @@
     border: 1px solid #BDBEBF;
 }
 .mypageHorizonLine2 {
-    transform: translateY(30px);
+    transform: translateY(-5px);
     width: 389px;
     border: 1px solid #BDBEBF;
 }
@@ -83,6 +81,57 @@
     text-align: center;
 
     color: #232323;
+}
 
+.allReservationTitle, .allReviewTitle, .allRandomTitle {
+    /* 총 예약 */
 
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    text-align: center;
+
+    color: #232323;
+}
+
+.allReservationTitle {
+    display: inline-block;
+    transform: translate(5px, -55px);
+}
+
+.allReviewTitle {
+    display: inline-block;
+    transform: translate(70px, -55px);
+}
+
+.allRandomTitle {
+    display: inline-block;
+    transform: translate(125px, -55px);
+}
+
+.mypageReservationNo, .mypageReviewNo, .mypageRandomNo {
+
+    font-family: 'Mungyeong-Gamhong-Apple';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 103%;
+    text-align: center;
+    letter-spacing: 0.03em;
+    display: inline-block;
+
+    color: #FF8AA3;
+}
+
+.mypageReservationNo {
+    transform: translate(-237px, -25px);
+}
+
+.mypageReviewNo {
+    transform: translate(-132px, -25px);
+}
+
+.mypageRandomNo {
+    transform: translate(-23px, -25px);
 }
