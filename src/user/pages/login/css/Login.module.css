@@ -159,7 +159,7 @@ input.errorInput:focus {
     font-weight: 700;
     font-size: 25px;
     color: #aaa;
-    transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
+    transition: transform 0.1s ease, font-size 0.05s ease, left 0.1s ease, top 0.1s ease, color 0.1s ease;
     pointer-events: none;
 }
 
@@ -420,7 +420,7 @@ button:disabled {
         font-weight: 700;
         font-size: 25px;
         color: #aaa;
-        transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
+        transition: transform 0.1s ease, font-size 0.05s ease, left 0.1s ease, top 0.1s ease, color 0.1s ease;
         pointer-events: none;
     }
 
@@ -683,7 +683,7 @@ button:disabled {
         font-weight: 700;
         font-size: 25px;
         color: #aaa;
-        transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
+        transition: transform 0.1s ease, font-size 0.05s ease, left 0.1s ease, top 0.1s ease, color 0.1s ease;
         pointer-events: none;
     }
 
@@ -946,7 +946,7 @@ button:disabled {
         font-weight: 700;
         font-size: 25px;
         color: #aaa;
-        transition: transform 0.1s ease, font-size 0.1s ease, color 0.1s ease;
+        transition: transform 0.1s ease, font-size 0.05s ease, left 0.1s ease, top 0.1s ease, color 0.1s ease;
         pointer-events: none;
     }
 
