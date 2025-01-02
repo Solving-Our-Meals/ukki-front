@@ -55,9 +55,24 @@ function MyProfile() {
         <div className={styles.profileMain}>
             <div className={styles.profileImage}/>
             {/*<img src={userInfo.profileImage} alt="Profile"/>*/}
-            <p className={styles.mypageNickname}>{userInfo?.nickname || "닉네임 없음"}</p>
+            <p className={styles.mypageNickname}>{userInfo?.nickname || ''}</p>
             <hr className={styles.mypageHorizonLine1}/>
             <div className={styles.mypageTextBox}>나의 도전현황</div>
+
+            <div>
+                <p className={styles.allReservationTitle}>총 예약</p>
+                <p className={styles.allReviewTitle}>리뷰 작성</p>
+                <p className={styles.allRandomTitle}>랜덤 예약</p>
+
+            <span className={styles.mypageReservationNo}>{userInfo?.reservationCount || ''}</span>
+            <span className={styles.mypageReviewNo}>{userInfo?.reviewCount || ''}</span>
+            <span className={styles.mypageRandomNo}>{userInfo?.randomCount || ''}</span>
+            </div>
+
+            <div className={styles.challengerMedal}>
+                메달영역
+            </div>
+
             <hr className={styles.mypageHorizonLine2}/>
             <hr className={styles.mypageHorizonLine3}/>
             <p className={styles.mypageProfilePlus}>더보기</p>

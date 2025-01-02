@@ -16,9 +16,7 @@
 }
 
 .mypageNickname {
-    width: 166px;
-    height: 33px;
-    transform: translateY(-90px);
+    transform: translateY(-55px);
 
     font-family: 'Bobaesum-Jindo-TTF';
     font-style: normal;
@@ -30,19 +28,19 @@
 }
 
 .mypageHorizonLine1 {
-    transform: translateY(-80px);
+    transform: translateY(-50px);
     /* Line 1 */
 
     width: 389px;
     border: 1px solid #BDBEBF;
 }
 .mypageHorizonLine2 {
-    transform: translateY(30px);
+    transform: translateY(25px);
     width: 389px;
     border: 1px solid #BDBEBF;
 }
 .mypageHorizonLine3 {
-    transform: translateY(250px);
+    transform: translateY(270px);
     width: 389px;
     border: 1px solid #BDBEBF;
 }
@@ -51,7 +49,7 @@
     width: 146px;
     height: 35px;
 
-    transform: translateY(-70px);
+    transform: translateY(-40px);
     background: #FEDA00;
     border-radius: 10px;
 
@@ -68,12 +66,11 @@
     line-height: 103%;
     text-align: center;
 
-    /* text/strong */
     color: #232323;
 }
 
 .mypageProfilePlus {
-    transform: translateY(260px);
+    transform: translateY(270px);
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
@@ -81,8 +78,68 @@
     font-size: 20px;
     line-height: 103%;
     text-align: center;
+    cursor: pointer;
 
     color: #232323;
+}
 
+.allReservationTitle, .allReviewTitle, .allRandomTitle {
+    /* 총 예약 */
 
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    text-align: center;
+
+    color: #232323;
+}
+
+.allReservationTitle {
+    display: inline-block;
+    transform: translate(5px, -25px);
+}
+
+.allReviewTitle {
+    display: inline-block;
+    transform: translate(70px, -25px);
+}
+
+.allRandomTitle {
+    display: inline-block;
+    transform: translate(125px, -25px);
+}
+
+.mypageReservationNo, .mypageReviewNo, .mypageRandomNo {
+
+    font-family: 'Mungyeong-Gamhong-Apple';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 103%;
+    text-align: center;
+    letter-spacing: 0.03em;
+    display: inline-block;
+
+    color: #FF8AA3;
+}
+
+.mypageReservationNo {
+    transform: translate(-237px, 5px);
+}
+
+.mypageReviewNo {
+    transform: translate(-132px, 5px);
+}
+
+.mypageRandomNo {
+    transform: translate(-23px, 5px);
+}
+
+.challengerMedal {
+    position: absolute;
+    background: yellow;
+    width:390px;
+    height:240px;
+    top:450px;
 }
