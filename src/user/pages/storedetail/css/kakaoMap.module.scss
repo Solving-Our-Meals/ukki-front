@@ -1,0 +1,33 @@
+#mapContainer{
+    position : 'absolute';
+    left : 1064px;
+    top : 585px;
+    width: 698px;
+    height : 352px;
+    border : 7.21px solid #FFA8B8;
+    border-Radius : 36px;
+
+    .customoverlay{
+        color : #323232;
+        font-Family : "Pretendard Variable";
+        font-Size : 17px;
+        font-Style : "Regular";
+        font-Weight : 600;
+        display : block;
+        flex-Direction : column;
+        border : 2px solid #323232;
+        border-Radius : 36px;
+        background-Color : #FFFFFF;
+        padding : 10;
+        text-Align : center;
+    
+        .mapLink{
+            color : #007AFF;
+            font-Family : 'Pretendard Variable';
+            font-Size : 15px;
+            font-Style : 'Regular';
+            border : 'none';
+        }
+    }
+}
+

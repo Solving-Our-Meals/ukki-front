@@ -1,3 +1,5 @@
+@charset "UTF-8";
+/* styles.css 파일에 추가 */
 .profileStyle {
   position: absolute;
   left: 172px;
@@ -13,8 +15,8 @@
     position: absolute;
     left: 52px;
     top: 170px;
-    width: 100px;
-    height: 90px;
+    width: 122px;
+    height: 110px;
     text-align: center;
     z-index: 99;
   }

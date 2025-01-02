@@ -196,10 +196,10 @@
     
         #mapIcon{
             position : absolute;
-            width : 89px;
-            height : 102px;
+            width : 92px;
+            height : 105px;
             left : 32px;
-            top : 449px;
+            top : 445px;
         }
     
         #storeAddress {
@@ -216,7 +216,7 @@
         #operTime{
             position : absolute;
             left : 118px;
-            top : 523px;
+            top : 505px;
             width : max-content;
             height: 27px;
             font-family : 'Pretendard Variable';
@@ -229,7 +229,8 @@
             position : absolute;
             width : 11px;
             height : 14px;
-            margin: 10px;
+            margin-top: 10px;
+            margin-left: 6px;
             top : -10px;
             cursor: pointer;
         }
@@ -237,7 +238,7 @@
         #tatolOperTime{
             position : absolute;
             left : 195px;
-            top : 545px;
+            top : 525px;
             width : 150px;
             height : 200px;
             border: 2px solid $textStrong;
