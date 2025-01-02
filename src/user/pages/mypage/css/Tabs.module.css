@@ -34,6 +34,33 @@
     left:590px;
 }
 
+.line1, .line2, .line3 {
+    position: absolute;
+    font-family: 'Bobaesum-Jindo-TTF';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 20px;
+    top: 300px;
+    z-index: 999;
+    color: #BDBEBF;
+
+    transform: translateY(-1px);
+}
+.line1 {
+    left:335px;
+}
+
+.line2 {
+    left:465.5px;
+}
+
+.line3 {
+    left: 575.5px;
+}
+
 .activeTab1:hover, .activeTab2:hover, .activeTab3:hover, .activeTab4:hover {
     color: #999999
 }

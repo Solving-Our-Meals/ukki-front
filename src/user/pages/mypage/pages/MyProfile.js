@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/MyProfile.module.css'
 import {jwtDecode} from "jwt-decode";
 import Cookies from 'js-cookie'
+import '../css/reset.css';
 
 function MyProfile() {
     const [userInfo, setUserInfo] = useState(null);
@@ -54,7 +55,12 @@ function MyProfile() {
         <div className={styles.profileMain}>
             <div className={styles.profileImage}/>
             {/*<img src={userInfo.profileImage} alt="Profile"/>*/}
-            <h2>{userInfo?.nickname}</h2>
+            <p className={styles.mypageNickname}>{userInfo?.nickname || "닉네임 없음"}</p>
+            <hr className={styles.mypageHorizonLine1}/>
+            <div className={styles.mypageTextBox}>나의 도전현황</div>
+            <hr className={styles.mypageHorizonLine2}/>
+            <hr className={styles.mypageHorizonLine3}/>
+            <p className={styles.mypageProfilePlus}>더보기</p>
         </div>
     )
 
