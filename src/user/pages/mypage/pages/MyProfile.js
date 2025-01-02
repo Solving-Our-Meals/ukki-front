@@ -51,24 +51,6 @@ function MyProfile() {
         }
     };
 
-    const fetchUserChallengeInfo = async (userId) => {
-            try {
-                const response = await fetch(`/user/${userId}`, {
-                method: 'GET',
-                credentials: 'include',
-            });
-            if (response.ok) {
-            const data = await response.json();
-            setUserInfo(data);
-            console.log(data)
-            } else {
-            console.error('유저 정보를 가져오는 데 실패했습니다.');
-            }
-        } catch (error) {
-        console.error('에러 발생:', error);
-        }
-    };
-
     return (
         <div className={styles.profileMain}>
             <div className={styles.profileImage}/>
