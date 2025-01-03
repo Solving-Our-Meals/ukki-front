@@ -16,7 +16,7 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
   .bannerStyle {
     position: relative;
     overflow: hidden;
@@ -35,3 +35,22 @@
     box-sizing: border-box;
   }
 }
+@media screen and (max-width: 768px) {
+  .bannerStyle {
+    position: relative;
+    overflow: hidden;
+    left: 17px;
+    top: 45px;
+    width: 450px;
+    height: 90px;
+    border-radius: 0;
+  }
+  .bannerStyle .slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  .bannerStyle .slider .slide {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+}/*# sourceMappingURL=banner.module.css.map */
