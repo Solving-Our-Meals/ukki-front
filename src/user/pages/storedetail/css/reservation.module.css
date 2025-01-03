@@ -402,4 +402,241 @@ a:active {
   top: 1905px;
   width: 1738px;
   background: #D9D9D9;
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .reservationStyle {
+    cursor: default;
+    border-radius: 0;
+  }
+  .reservationStyle .reservationTitle {
+    position: absolute;
+    left: 51px;
+    top: 694px;
+    width: max-content;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 35px;
+    color: #232323;
+  }
+  .reservationStyle .instructionDate {
+    position: absolute;
+    left: 51px;
+    top: 739px;
+    width: max-content;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    color: #232323;
+  }
+  .reservationStyle .calendarContainer {
+    position: absolute;
+    left: 51px;
+    top: 790px;
+    width: 400px;
+  }
+  .reservationStyle .calendarContainer #goToday {
+    position: absolute;
+    left: 175px;
+    top: -53px;
+    width: max-content;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    font-weight: 700;
+    color: #615DFF;
+    cursor: pointer;
+  }
+  .reservationStyle .calendarContainer .calendarHeader {
+    height: 40px;
+    background-color: #FF8AA3;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    color: #ffffff;
+    font-family: "Pretendard Variable";
+    font-size: 21px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .reservationStyle .calendarContainer .calendarHeader img {
+    width: 13.5px;
+    height: 16.3px;
+    cursor: pointer;
+  }
+  .reservationStyle .calendarContainer .calendarHeader img:first-child {
+    margin-right: 20px;
+    transform: scaleX(-1);
+  }
+  .reservationStyle .calendarContainer .calendarHeader img:last-child {
+    margin-left: 20px;
+  }
+  .reservationStyle .calendarContainer .calendarBody {
+    position: absolute;
+    margin-top: 20px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    border: 4px solid #FF8AA3;
+    border-top: none;
+    width: 400px;
+    height: max-content;
+    border-radius: 0px;
+  }
+  .reservationStyle .calendarContainer .calendarBody .dayList {
+    display: flex;
+    width: 365px;
+    margin-bottom: 7px;
+  }
+  .reservationStyle .calendarContainer .calendarBody .dayList .day {
+    flex: 1;
+    text-align: center;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .reservationStyle .calendarContainer .calendarBody .calendarGrid {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 365px;
+    z-index: 1;
+    cursor: pointer;
+  }
+  .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell {
+    width: 14.2857142857%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.currentMonth {
+    color: #232323;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.otherMonth {
+    color: #999999;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.today {
+    background-color: #FF8AA3;
+    border-radius: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+  }
+  .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell img {
+    position: absolute;
+    z-index: -1;
+    width: 30px;
+    height: 30px;
+  }
+  .reservationStyle .calendarContainer .selectArea {
+    position: absolute;
+    width: max-content;
+    height: 320px;
+    left: 440px;
+    top: -25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .reservationStyle .calendarContainer .selectArea .selectedDate {
+    width: max-content;
+    height: max-content;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 32px;
+    color: #232323;
+  }
+  .reservationStyle .calendarContainer .selectArea .instructionTime {
+    width: max-content;
+    margin-left: 200px;
+    padding-top: 17px;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    color: #232323;
+  }
+  .reservationStyle .calendarContainer .selectArea .morningArray {
+    display: flex;
+    flex-wrap: wrap;
+    width: 410px;
+    height: max-content;
+    margin-top: -10px;
+    margin-left: -8px;
+  }
+  .reservationStyle .calendarContainer .selectArea .morningArray #strMoring {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    margin-left: 9px;
+    font-family: "Pretendard Variable";
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .reservationStyle .calendarContainer .selectArea .morningArray .morningArr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 20px;
+    background-color: #FEDA00;
+    border-radius: 5px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    text-align: center;
+    margin: 5px 5px;
+    cursor: pointer;
+  }
+  .reservationStyle .calendarContainer .selectArea .afternoonArray {
+    display: flex;
+    flex-wrap: wrap;
+    width: 410px;
+    height: max-content;
+    margin-top: -10px;
+    margin-left: -8px;
+  }
+  .reservationStyle .calendarContainer .selectArea .afternoonArray #strAfternoon {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 9px;
+    font-family: "Pretendard Variable";
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .reservationStyle .calendarContainer .selectArea .afternoonArray .afternoonArr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 20px;
+    background-color: #FEDA00;
+    border-radius: 5px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    text-align: center;
+    margin: 5px 5px;
+    cursor: pointer;
+  }
+  .reservationStyle #hr {
+    position: absolute;
+    left: 28px;
+    top: 1108px;
+    width: 878px;
+    background: #D9D9D9;
+  }
 }/*# sourceMappingURL=reservation.module.css.map */

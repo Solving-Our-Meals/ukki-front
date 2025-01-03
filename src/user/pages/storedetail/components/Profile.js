@@ -17,9 +17,7 @@ function Profile() {
 
     return (
         <>
-            <div className={styles.profileStyle}>
-                <img src={profile} alt="프로필이미지" />
-            </div>
+            <img id={styles.profileStyle} src={profile} alt="프로필이미지" />
         </>
     );
 }

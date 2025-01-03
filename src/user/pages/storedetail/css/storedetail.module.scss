@@ -163,7 +163,8 @@
         background: #D9D9D9;
     }
 }
-@media(max-width : 1024px){
+
+@media screen and (min-width:769px) and (max-width : 1024px){
     .storeDetail{
         cursor: default;
         border-radius: 0;
@@ -196,10 +197,10 @@
     
         #mapIcon{
             position : absolute;
-            width : 89px;
-            height : 102px;
+            width : 92px;
+            height : 105px;
             left : 32px;
-            top : 449px;
+            top : 445px;
         }
     
         #storeAddress {
@@ -216,7 +217,7 @@
         #operTime{
             position : absolute;
             left : 118px;
-            top : 523px;
+            top : 505px;
             width : max-content;
             height: 27px;
             font-family : 'Pretendard Variable';
@@ -229,7 +230,8 @@
             position : absolute;
             width : 11px;
             height : 14px;
-            margin: 10px;
+            margin-top: 10px;
+            margin-left: 6px;
             top : -10px;
             cursor: pointer;
         }
@@ -237,7 +239,7 @@
         #tatolOperTime{
             position : absolute;
             left : 195px;
-            top : 545px;
+            top : 525px;
             width : 150px;
             height : 200px;
             border: 2px solid $textStrong;
@@ -278,17 +280,16 @@
             }
         }
     
-        // 여기까지-----------------------------------------
         .keywordArea{
             div{
                 position : absolute;
-                top : 990px;
-                width : 240px;
-                height : 61px;
+                top : 587px;
+                width : 126px;
+                height : 34px;
                 background-color: $primary;
                 border-radius: 50px;
                 font-family: 'Pretendard Variable';
-                font-size : 25px;
+                font-size : 15px;
                 color: $textStrong;
                 display : flex;
                 justify-content: center;
@@ -296,41 +297,207 @@
             }
             
             div:nth-of-type(1){
-                left : 119px;
+                left : 48px;
             }
         
             div:nth-of-type(2){
-                left : 401px;
+                left : 190.4px;
             }
         
             div:nth-of-type(3){
-                left : 683px;
+                left : 332.8px;
             }
         
             div:nth-of-type(4){
-                left : 965px;
+                left : 475.2px;
             }
             
             div:nth-of-type(5){
-                left : 1247px;
+                left : 617.6px;
             }
         
             div:nth-of-type(6){
-                left : 1529px;
+                left : 760px;
             }
         }
     
         #hr{
             position : absolute;
-            left : 91px;
-            top : 1106px;
-            width : 1738px;
+            left : 28px;
+            top : 650px;
+            width : 878px;
             background: #D9D9D9;
         }
     }
 
 }
 
-@media (max-width : 768px){
-
+@media screen and (max-width : 768px){
+    .storeDetail{
+        cursor: default;
+        border-radius: 0;
+    
+        #storeName {
+            position : absolute;
+            width : max-content;
+            height : max-content;
+            left : 35px;
+            top : 160px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-style: 'regular';
+            font-size : 20px;
+            color: $textStrong;
+        }
+    
+        #storeDes{
+            position : absolute;
+            width: 300px;
+            height: max-content;
+            left : 35px;
+            top : 180px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-style: 'semi-bold';
+            font-size : 8px;
+            color: $textStrong;
+            line-height: auto;
+            // border: 1px solid red;
+        }
+    
+        #mapIcon{
+            position : absolute;
+            width : 45px;
+            height : 55px;
+            left : 30px;
+            top : 200px;
+        }
+    
+        #storeAddress {
+            position : absolute;
+            left : 75px;
+            top : 215px;
+            width : max-content;
+            font-family : 'Pretendard Variable';
+            font-size : 8px;
+            color: $textStrong;
+        }
+    
+        #operTime{
+            position : absolute;
+            left : 75px;
+            top : 230px;
+            width : max-content;
+            font-family : 'Pretendard Variable';
+            font-size : 8px;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    
+        #triangle{
+            position : absolute;
+            width : 6px;
+            height : 8px;
+            margin-top: 10px;
+            margin-left: 4px;
+            top : -10px;
+            cursor: pointer;
+        }
+    
+        #tatolOperTime{
+            position : absolute;
+            left : 115px;
+            top : 243px;
+            width : 110px;
+            height : 125px;
+            border: 1.5px solid $textStrong;
+            background-color: #FFFFFF;
+            padding : 2px;
+            font-family: 'Pretendard Variable';
+            font-size: 8px;
+            font-weight: 500;
+            color: $textStrong;
+            line-height: 15px;
+            z-index : 5;
+            border-radius: 0;
+    
+            .week{
+                position : absolute;
+                padding-left : 12px;
+                padding-top: 2px;
+            }
+    
+            .weekOperTime{
+                position : absolute;
+                width : 60px;
+                margin-top: -12.7px;
+                margin-left: 32px;
+                text-align: center;
+                // border: 1px solid red;
+            }
+    
+            #breakTime {
+                position : absolute;
+                width : max-content;
+                font-size: 6px;
+                color : $pending;
+                margin-left : 5px;
+                margin-top : -1px;
+                font-weight: 700;
+                text-align: center;
+            }
+        }
+    
+        .keywordArea{
+            div{
+                position : absolute;
+                width : 80px;
+                height : 25px;
+                background-color: $primary;
+                border-radius: 50px;
+                font-family: 'Pretendard Variable';
+                font-size : 11px;
+                color: $textStrong;
+                display : flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            div:nth-of-type(1){
+                left : 100px;
+                top : 280px;
+            }
+        
+            div:nth-of-type(2){
+                left : 200px;
+                top : 280px;
+            }
+        
+            div:nth-of-type(3){
+                left : 340px;
+                top : 280px;
+            }
+        
+            div:nth-of-type(4){
+                left : 475.2px;
+                top : 350px;
+            }
+            
+            div:nth-of-type(5){
+                left : 617.6px;
+                top : 350px;
+            }
+        
+            div:nth-of-type(6){
+                left : 380px;
+                top : 350px;
+            }
+        }
+    
+        #hr{
+            position : absolute;
+            left : 28px;
+            top : 650px;
+            width : 878px;
+            background: #D9D9D9;
+        }
+    }
 }

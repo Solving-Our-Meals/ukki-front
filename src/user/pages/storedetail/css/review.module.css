@@ -214,6 +214,7 @@ a:active {
   position: relative;
   display: inline-block;
   margin-top: 30px;
+  margin-left: -35px;
 }
 .reviewStyle .reviewArea .reviewContainer .review #reviewImg {
   display: block;
@@ -285,6 +286,82 @@ a:active {
   border-radius: 0;
   z-index: 5;
 }
+.reviewStyle .reviewArea .reviewContainer .transformReview {
+  position: relative;
+  display: inline-block;
+  margin-top: 30px;
+  margin-left: 70px;
+}
+.reviewStyle .reviewArea .reviewContainer .transformReview #reviewImg {
+  display: block;
+  top: 10px;
+  width: 1532px;
+  height: 475.5px;
+  z-index: 1;
+}
+.reviewStyle .reviewArea .reviewContainer .transformReview #userProfile {
+  position: absolute;
+  left: 613px;
+  top: 53px;
+  width: 114px;
+  height: 108px;
+  z-index: 5;
+  border-radius: 0;
+}
+.reviewStyle .reviewArea .reviewContainer .transformReview div {
+  position: absolute;
+  width: max-content;
+  cursor: default;
+  z-index: 2;
+}
+.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) {
+  left: 744px;
+  top: 70px;
+  width: max-content;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 30px;
+  font-weight: 500;
+  font-style: normal;
+  color: #232323;
+  z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
+  left: 744px;
+  top: 111px;
+  width: max-content;
+  font-family: "Pretendard Variable";
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  color: #232323;
+  z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(3) {
+  left: 624px;
+  top: 176px;
+  width: 802px;
+  height: 217px;
+  background-color: #FFF9D3;
+  padding-left: 15px;
+  padding-top: 10px;
+  font-family: "Pretendard Variable";
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  color: #232323;
+  line-height: 160%;
+  border-radius: 0;
+  z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .transformReview #reviewPhoto {
+  position: absolute;
+  left: 43px;
+  top: 38px;
+  width: 468px;
+  height: 367px;
+  border-radius: 0;
+  z-index: 5;
+}
 .reviewStyle .reviewArea #moreReview {
   margin-top: 50px;
   font-family: "Pretendard Variable";
@@ -292,4 +369,204 @@ a:active {
   font-weight: 700;
   color: #232323;
   cursor: pointer;
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .reviewStyle {
+    cursor: default;
+  }
+  .reviewStyle #strReview {
+    position: absolute;
+    left: 51px;
+    top: 1150px;
+    width: max-content;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 35px;
+    color: #232323;
+  }
+  .reviewStyle #strCountReview {
+    position: absolute;
+    left: 51px;
+    top: 1200px;
+    width: max-content;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    color: #232323;
+  }
+  .reviewStyle .reviewArea {
+    cursor: default;
+    position: absolute;
+    left: 45px;
+    top: 1225px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .reviewStyle .reviewArea .reviewContainer {
+    position: relative;
+    display: inline-block;
+    width: 850px;
+    height: max-content;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review {
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: -20px;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review #reviewImg {
+    display: block;
+    top: 5px;
+    width: 831px;
+    height: 258px;
+    z-index: 1;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review #userProfile {
+    position: absolute;
+    left: 52px;
+    top: 27px;
+    width: 62px;
+    height: 59px;
+    z-index: 5;
+    border-radius: 0;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review div {
+    position: absolute;
+    width: max-content;
+    cursor: default;
+    z-index: 2;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(1) {
+    left: 124px;
+    top: 30px;
+    width: max-content;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    color: #232323;
+    z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(2) {
+    left: 124px;
+    top: 56px;
+    width: max-content;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    color: #232323;
+    z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(3) {
+    left: 58px;
+    top: 94px;
+    width: 436px;
+    height: 117px;
+    background-color: #FFF9D3;
+    padding-left: 7px;
+    padding-top: 5px;
+    font-family: "Pretendard Variable";
+    font-size: 13px;
+    font-weight: 500;
+    font-style: normal;
+    color: #232323;
+    line-height: 160%;
+    border-radius: 0;
+    z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review #reviewPhoto {
+    position: absolute;
+    left: 550px;
+    top: 17px;
+    width: 263px;
+    height: 206px;
+    border-radius: 0;
+    z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview {
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 40px;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview #reviewImg {
+    display: block;
+    top: 5px;
+    width: 831px;
+    height: 258px;
+    z-index: 1;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview #userProfile {
+    position: absolute;
+    left: 333px;
+    top: 28px;
+    width: 62px;
+    height: 59px;
+    z-index: 5;
+    border-radius: 0;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview div {
+    position: absolute;
+    width: max-content;
+    cursor: default;
+    z-index: 2;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) {
+    left: 403px;
+    top: 34px;
+    width: max-content;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    color: #232323;
+    z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
+    left: 403px;
+    top: 61px;
+    width: max-content;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    color: #232323;
+    z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(3) {
+    left: 338px;
+    top: 95px;
+    width: 436px;
+    height: 117px;
+    background-color: #FFF9D3;
+    padding-left: 7px;
+    padding-top: 5px;
+    font-family: "Pretendard Variable";
+    font-size: 13px;
+    font-weight: 500;
+    font-style: normal;
+    color: #232323;
+    line-height: 160%;
+    border-radius: 0;
+    z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview #reviewPhoto {
+    position: absolute;
+    left: 20px;
+    top: 17px;
+    width: 263px;
+    height: 206px;
+    border-radius: 0;
+    z-index: 5;
+  }
+  .reviewStyle .reviewArea #moreReview {
+    margin-top: 30px;
+    font-family: "Pretendard Variable";
+    font-size: 30px;
+    font-weight: 700;
+    color: #232323;
+    cursor: pointer;
+  }
 }/*# sourceMappingURL=review.module.css.map */
