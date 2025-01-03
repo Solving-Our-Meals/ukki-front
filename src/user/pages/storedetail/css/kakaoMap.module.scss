@@ -35,7 +35,7 @@
     }
 }
 
-@media all and (min-width:769px) and (max-width:1024px){
+@media screen and (min-width:769px) and (max-width:1024px){
     #mapContainer{
         position : absolute;
         // left : 490px;
@@ -45,6 +45,43 @@
         width: 379px;
         height : 189px;
         border : 5.21px solid #FFA8B8;
+        border-Radius : 20px;
+    
+        .customoverlay{
+            color : $textStrong;
+            font-Family : "Pretendard Variable";
+            font-Size : 11px;
+            font-Style : "Regular";
+            font-Weight : 600;
+            display : block;
+            flex-Direction : column;
+            border : 2px solid #323232;
+            border-Radius : 36px;
+            background-Color : #FFFFFF;
+            padding : 5px;
+            text-Align : center;
+        
+            .mapLink{
+                color : #007AFF;
+                font-Family : 'Pretendard Variable';
+                font-Size : 11px;
+                font-Style : 'Regular';
+                border : none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width : 768px){
+    #mapContainer{
+        position : absolute;
+        // left : 490px;
+        // top : 170px;
+        left : 35px;
+        top : 265px;
+        width: 410px;
+        height : 150px;
+        border : 3.21px solid #FFA8B8;
         border-Radius : 20px;
     
         .customoverlay{
