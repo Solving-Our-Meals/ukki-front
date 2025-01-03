@@ -71,11 +71,11 @@
 @media screen and (max-width:768px){
     #menu{
         position : absolute;
-        left : 75px;
-        top : 245px;
+        left : 390px;
+        top : 225px;
         width : max-content;
         font-family : 'Pretendard Variable';
-        font-size : 7px;
+        font-size : 9px;
         color: $textCaption;
         cursor: pointer;
         border-radius: 0;
@@ -86,8 +86,8 @@
         z-index: 10000;
         width : 10px;
         height : 10px;
-        left : 175px;
-        top : 160px;
+        left : 408px;
+        top : 243px;
         cursor: pointer;
         border-radius: 0;
     }
@@ -97,8 +97,8 @@
         z-index: 9999;
         width : 80px;
         height : 100px;
-        left : 110px;
-        top : 155px;
+        left : 343px;
+        top : 238px;
         border-radius: 0;
     }
 }
