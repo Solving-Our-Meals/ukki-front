@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     // axiosInstance 설정
     const axiosInstance = axios.create({
         baseURL: '/auth',
-        withCredentials: true, // 쿠키를 포함하여 요청
+        withCredentials: true,
     });
 
     // 인증된 상태 확인 함수

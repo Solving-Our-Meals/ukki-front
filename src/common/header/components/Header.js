@@ -14,33 +14,37 @@ function Header() {
         setMenuOpen(!menuOpen);
     };
 
-    const getCookie = (name) => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return null;
-    };
-
     useEffect(() => {
-        const authToken = getCookie('authToken');
-        if (authToken) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
+        const checkAuthStatus = async () => {
+            try {
+                // 토큰 검증 로직
+                const response = await fetch('/auth/check-auth', {
+                    method: 'GET',
+                    credentials: 'include',
+                });
+
+                if (response.ok) {
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
+                }
+            } catch (error) {
+                console.error('Error checking auth status:', error);
+                setIsLoggedIn(false);
+            }
+        };
+
+        checkAuthStatus();
     }, []);
 
     const handleLogout = async () => {
-        // 서버에 로그아웃 요청 보내기
+        // 로그아웃 요청
         await fetch('/auth/logout', {
-            method: 'POST', // 로그아웃 요청은 POST 방식으로 보낼 수 있습니다.
-            credentials: 'include', // 쿠키를 서버에 함께 전송
+            method: 'POST',
+            credentials: 'include',
         });
 
-        // 로그아웃 후 로그인 상태를 false로 변경
         setIsLoggedIn(false);
-
-        // 로그인 페이지로 리다이렉트 (또는 원하는 페이지로 이동)
         navigate('/main');
         window.location.reload();
     };

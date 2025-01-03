@@ -3,53 +3,58 @@ import styles from '../css/MyProfile.module.css'
 import {jwtDecode} from "jwt-decode";
 import Cookies from 'js-cookie'
 import '../css/reset.css';
+import { useNavigate } from 'react-router-dom';
 
 function MyProfile() {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const token = Cookies.get('authToken');
-        console.log('Token:', token);
-        if (token) {
-            try {
-                const decodedToken = jwtDecode(token);
-                const userId = decodedToken.sub;
-
-                fetchUserInfo(userId);
-            } catch (err) {
-                setError('유효하지 않은 토큰입니다.');
-                setLoading(false);
-            }
-        } else {
-            setError('토큰이 존재하지 않습니다.');
-            setLoading(false);
-        }
+        fetchUserInfo();
     }, []);
 
-    const fetchUserInfo = async (userId) => {
-        const token = Cookies.get('authToken');
+    const fetchUserInfo = async () => {
         try {
-            const response = await fetch(`/user/${userId}`, {
+            // 서버의 /user/info API 호출
+            const response = await fetch('/user/info', {
                 method: 'GET',
-                // headers: {
-                //     'Authorization': `Bearer ${token}`,
-                // }, -> 쿠키로 보낼거라서 없어도 됩니다 ! 다른 팀원 분들 참고해주세요.
-                credentials: 'include', // 얘를 쓰면 쿠키로 보낼 수 있습니다.
+                credentials: 'include',  // 쿠키를 함께 보내기
             });
 
             if (response.ok) {
                 const data = await response.json();
                 setUserInfo(data);
-                console.log(data)
+                console.log(data);
+            } else if (response.status === 401) {
+                // 인증 실패 시 로그인 페이지로 리다이렉트
+                setError('인증이 필요합니다.');
+                navigate('/login');
             } else {
-                console.error('유저 정보를 가져오는 데 실패했습니다.');
+                setError('유저 정보를 가져오는 데 실패했습니다.');
             }
         } catch (error) {
-            console.error('에러 발생:', error);
+            setError('에러 발생: ' + error.message);
+        } finally {
+            setLoading(false);
         }
     };
+
+    // 로딩 중일 때
+    if (loading) {
+        return <div>로딩 중...</div>;
+    }
+
+    // 에러가 발생했을 때
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    // 유저 정보가 없을 때
+    if (!userInfo) {
+        return <div>유저 정보를 찾을 수 없습니다.</div>;
+    }
 
     return (
         <div className={styles.profileMain}>
