@@ -72,19 +72,6 @@ function Login() {
         setShowPassword(prevState => !prevState);
     };
 
-    // 토큰 확인용 // 지울것
-    const getAuthToken = () => {
-        const cookie = document.cookie.split('; ').find(row => row.startsWith('authToken='));
-        return cookie ? cookie.split('=')[1] : null;  // authToken이 있으면 그 값을 반환, 없으면 null 반환
-    };
-    // 토큰 확인용 // 지울것
-    const token = getAuthToken();
-    if (token) {
-        console.log('JWT Token:', token);  // 토큰 확인
-    } else {
-        console.log('토큰이 없습니다.');
-    }
-
     const searchError = {
         display: 'flex',
         cursor: 'pointer',
