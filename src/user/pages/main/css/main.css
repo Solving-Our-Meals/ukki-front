@@ -175,7 +175,9 @@ a:active {
   font-style: normal;
 }
 div {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 div .slidewrap {
   width: 90vw;
@@ -197,10 +199,16 @@ div .slidewrap .slides .slide {
   align-items: center;
   justify-content: center;
   width: 90vw;
-  height: 80vh;
+  height: 40vw;
   overflow: hidden;
   position: relative;
   border-radius: 0;
+}
+div .slidewrap .slides .slide > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 div .slidewrap .slides .slide .section1,
 div .slidewrap .slides .slide .section2,
@@ -254,7 +262,7 @@ div .pagination ul {
   position: relative;
   gap: 5vw;
   left: 33vw;
-  top: -9vw;
+  top: -7vw;
 }
 div .pagination ul li {
   display: inline-block !important;
@@ -368,7 +376,11 @@ div .category img {
   z-index: 2;
   opacity: 0.8;
   top: 76vw;
-  transition: opacity 0.5s;
+  transition: all 0.5s;
+}
+div .category img.selected-img {
+  opacity: 1;
+  border: 5px solid #FF8AA3;
 }
 div .category img:nth-of-type(2) {
   left: 28vw;
@@ -384,10 +396,6 @@ div .category img:nth-of-type(4) {
 div .category img:nth-of-type(5) {
   left: 74.5vw;
 }
-div .category img:hover {
-  opacity: 1;
-  outline: #FF8AA3 3px solid;
-}
 div .category span {
   position: absolute;
   left: 14.5vw;
@@ -399,20 +407,46 @@ div .category span {
   background-color: #FFF3A7;
   padding: 0.5vw 1vw;
   border-radius: 50px;
+  transition: all 0.4s;
+}
+div .category span.selected-span {
+  background-color: #FF8AA3;
+  font-weight: 700;
+  left: 14vw;
 }
 div .category span:nth-of-type(2) {
   left: 30vw;
   top: 89.5vw;
 }
+div .category span:nth-of-type(2).selected-span {
+  background-color: #FF8AA3;
+  font-weight: 700;
+  left: 29.5vw;
+}
 div .category span:nth-of-type(3) {
   left: 45.5vw;
+}
+div .category span:nth-of-type(3).selected-span {
+  background-color: #FF8AA3;
+  font-weight: 700;
+  left: 45vw;
 }
 div .category span:nth-of-type(4) {
   left: 61vw;
   top: 89.5vw;
 }
+div .category span:nth-of-type(4).selected-span {
+  background-color: #FF8AA3;
+  font-weight: 700;
+  left: 60.5vw;
+}
 div .category span:nth-of-type(5) {
   left: 77vw;
+}
+div .category span:nth-of-type(5).selected-span {
+  background-color: #FF8AA3;
+  font-weight: 700;
+  left: 76.2vw;
 }
 div .location {
   position: absolute;
@@ -423,6 +457,13 @@ div .location {
   left: 0;
   border-radius: 0;
   border: none;
+}
+div .location p {
+  position: absolute;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 0.8vw;
+  color: #232323;
 }
 div .location h3 {
   position: absolute;
@@ -439,13 +480,6 @@ div .location > img:nth-of-type(1) {
   top: 8vw;
   border: 3px solid #FF8AA3;
   border-radius: 20px;
-}
-div .location p {
-  position: absolute;
-  font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 0.8vw;
-  color: #232323;
 }
 div .location p:nth-of-type(1) {
   left: 65vw;
@@ -504,22 +538,24 @@ div .location input:nth-of-type(2) {
 div .location label:nth-of-type(1) {
   position: absolute;
   left: 56vw;
-  top: 16.7vw;
+  top: 16.2vw;
   font-family: "Pretendard Variable";
   font-weight: 600;
   font-size: 1vw;
   color: #232323;
-  width: 93px;
+  width: 10vw;
+  background-color: transparent;
 }
 div .location label:nth-of-type(2) {
   position: absolute;
   left: 56vw;
-  top: 19.7vw;
+  top: 19.2vw;
   font-family: "Pretendard Variable";
   font-weight: 600;
   font-size: 1vw;
   color: #232323;
-  width: 93px;
+  width: 10vw;
+  background-color: transparent;
 }
 div .location button {
   position: absolute;
@@ -563,6 +599,15 @@ div .talk img:nth-of-type(3) {
   width: 50vw;
   top: 142vw;
   left: 25vw;
+}
+div .talk img {
+  opacity: 0;
+  transform: translateY(20vw);
+  transition: opacity 1s, transform 1s;
+}
+div .talk img.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 div .random h3 {
   position: absolute;
@@ -716,6 +761,12 @@ div .hidden-input {
     overflow: hidden;
     position: relative;
     border-radius: 0;
+  }
+  div .slidewrap .slides .slide > img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   div .slidewrap .slides .slide .section1,
   div .slidewrap .slides .slide .section2,
@@ -896,25 +947,25 @@ div .hidden-input {
     top: 94vw;
     transition: opacity 0.5s;
   }
+  div .category img.selected-img {
+    opacity: 1;
+    border: 5px solid #FF8AA3;
+  }
   div .category img:nth-of-type(2) {
     left: 46.5vw;
     top: 96vw;
   }
-  div .category img:nth-of-type(4) {
+  div .category img:nth-of-type(3) {
     left: 65vw;
     top: 94vw;
   }
-  div .category img:nth-of-type(3) {
+  div .category img:nth-of-type(4) {
     left: 37vw;
     top: 115vw;
   }
   div .category img:nth-of-type(5) {
     left: 56vw;
     top: 115vw;
-  }
-  div .category img:hover {
-    opacity: 1;
-    outline: #FF8AA3 3px solid;
   }
   div .category span {
     position: absolute;
@@ -927,21 +978,47 @@ div .hidden-input {
     background-color: #FFF3A7;
     padding: 0.5vw 1vw;
     border-radius: 50px;
+    transition: all 0.4s;
+  }
+  div .category span.selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 30.5vw;
   }
   div .category span:nth-of-type(2) {
     left: 50vw;
     top: 109.5vw;
   }
+  div .category span:nth-of-type(2).selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 49.5vw;
+  }
   div .category span:nth-of-type(3) {
     left: 68vw;
+  }
+  div .category span:nth-of-type(3).selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 67.5vw;
   }
   div .category span:nth-of-type(4) {
     left: 40vw;
     top: 128.5vw;
   }
+  div .category span:nth-of-type(4).selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 39.5vw;
+  }
   div .category span:nth-of-type(5) {
     left: 59vw;
     top: 128.5vw;
+  }
+  div .category span:nth-of-type(5).selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 58.5vw;
   }
   div .location {
     position: absolute;
@@ -1033,22 +1110,24 @@ div .hidden-input {
   div .location label:nth-of-type(1) {
     position: absolute;
     left: 51vw;
-    top: 18.5vw;
+    top: 18vw;
     font-family: "Pretendard Variable";
     font-weight: 700;
     font-size: 1vw;
     color: #232323;
-    width: 72px;
+    width: 10vw;
+    background-color: transparent;
   }
   div .location label:nth-of-type(2) {
     position: absolute;
     left: 51vw;
-    top: 22.5vw;
+    top: 22vw;
     font-family: "Pretendard Variable";
     font-weight: 600;
     font-size: 1vw;
     color: #232323;
-    width: 72px;
+    width: 10vw;
+    background-color: transparent;
   }
   div .location button {
     position: absolute;
@@ -1249,6 +1328,12 @@ div .hidden-input {
     position: relative;
     border-radius: 0;
   }
+  div .slidewrap .slides .slide > img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
   div .slidewrap .slides .slide .section1,
   div .slidewrap .slides .slide .section2,
   div .slidewrap .slides .slide .section3,
@@ -1299,7 +1384,7 @@ div .hidden-input {
   }
   div .pagination {
     position: relative;
-    top: -8vw;
+    top: -10vw;
     z-index: 9;
   }
   div .pagination ul {
@@ -1312,7 +1397,7 @@ div .hidden-input {
     margin-left: 3vw !important;
     width: 1vw !important;
     height: 1vw !important;
-    background-color: #fff !important;
+    background-color: #FEBA00 !important;
     border-radius: 50px !important;
     opacity: 0.5 !important;
     cursor: pointer !important;
@@ -1428,25 +1513,25 @@ div .hidden-input {
     top: 96vw;
     transition: opacity 0.5s;
   }
+  div .category img.selected-img {
+    opacity: 1;
+    border: 5px solid #FF8AA3;
+  }
   div .category img:nth-of-type(2) {
     left: 55vw;
     top: 96vw;
   }
-  div .category img:nth-of-type(4) {
+  div .category img:nth-of-type(3) {
     top: 130vw;
     left: 22vw;
   }
-  div .category img:nth-of-type(3) {
+  div .category img:nth-of-type(4) {
     left: 55vw;
     top: 130vw;
   }
   div .category img:nth-of-type(5) {
     left: 38vw;
     top: 163vw;
-  }
-  div .category img:hover {
-    opacity: 1;
-    outline: #FF8AA3 3px solid;
   }
   div .category span {
     position: absolute;
@@ -1459,22 +1544,48 @@ div .hidden-input {
     background-color: #FFF3A7;
     padding: 1vw 3vw;
     border-radius: 50px;
+    transition: all 0.4s;
+  }
+  div .category span.selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 28.5vw;
   }
   div .category span:nth-of-type(2) {
     left: 62vw;
     top: 123vw;
   }
+  div .category span:nth-of-type(2).selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 61.5vw;
+  }
   div .category span:nth-of-type(3) {
     left: 29vw;
     top: 157vw;
+  }
+  div .category span:nth-of-type(3).selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 28.5vw;
   }
   div .category span:nth-of-type(4) {
     left: 62vw;
     top: 157vw;
   }
+  div .category span:nth-of-type(4).selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 61.5vw;
+  }
   div .category span:nth-of-type(5) {
     left: 45vw;
     top: 190vw;
+  }
+  div .category span:nth-of-type(5).selected-span {
+    background-color: #FF8AA3;
+    font-weight: 700;
+    left: 44.5vw;
   }
   div .location {
     position: absolute;
@@ -1566,22 +1677,24 @@ div .hidden-input {
   div .location label:nth-of-type(1) {
     position: absolute;
     left: 31vw;
-    top: 37.5vw;
+    top: 36.5vw;
     font-family: "Pretendard Variable";
     font-weight: 700;
     font-size: 2vw;
     color: #232323;
-    width: 72px;
+    width: 10vw;
+    background-color: transparent;
   }
   div .location label:nth-of-type(2) {
     position: absolute;
     left: 31vw;
-    top: 44.5vw;
+    top: 43.7vw;
     font-family: "Pretendard Variable";
     font-weight: 600;
     font-size: 2vw;
     color: #232323;
-    width: 72px;
+    width: 10vw;
+    background-color: transparent;
   }
   div .location button {
     position: absolute;

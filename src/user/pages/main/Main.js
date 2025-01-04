@@ -51,14 +51,33 @@ const rRandom = () => {
 const Main = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const [selectedCategory, setSelectedCategory,] = useState(0);
     const slideInterval = useRef(null);
     const startX = useRef(0);
     const endX = useRef(0);
 
     useEffect(() => {
+        const handleScroll = () => {
+            const images = document.querySelectorAll('.talk img');
+            images.forEach(img => {
+                const rect = img.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    img.classList.add('show');
+                } else {
+                    img.classList.remove('show');
+                }
+            });
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []); 
+    
+    useEffect(() => {
         startAutoSlide();
         return () => clearInterval(slideInterval.current);
-    }, []);
+    }, []); 
+    
 
     const startAutoSlide = () => {
         if (slideInterval.current) clearInterval(slideInterval.current);
@@ -151,6 +170,8 @@ const Main = () => {
         hiddenInput.remove();
         // 애니메이션 종료 후 버튼 활성화
         setTimeout(() => {
+            panel.style.transition="";
+            panel.style.transform = `rotate(${deg[setNum]}deg)`; //리셋
             btn.disabled = false;
             btn.style.pointerEvents = "auto";
 
@@ -176,10 +197,14 @@ const Main = () => {
 
     const handleRouletteClick = (e) => {
         const target = e.target;
-        if (target.tagName === "BUTTON") {
+        if (target.className === "rouletter-btn") {
             rRotate();
             rReset(target);
         }
+    };
+
+    const handleCategoryClick = (index) => {
+        setSelectedCategory(index);
     };
 
     return (
@@ -227,47 +252,51 @@ const Main = () => {
                     </div>
                 </div>
                 <div className='search'>
-                    <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동"/>
-                    <img src={search} alt="search"/>
+                    <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" />
+                    <img src={search} alt="search" />
                 </div>
                 <div className='category'>
                     <h3>지금 끌리는 메뉴는?</h3>
                     <p>카테고리 별로 근처 식당을 추천해드려요!</p>
-                    <div>
+                    <div onClick={() => handleCategoryClick(0)}>
                         <p>한식</p>
                     </div>
-                    <img src={gkstlr} />
-                    <span>흠..별로?</span>
-                    <div>
+                    <img src={gkstlr} onClick={() => handleCategoryClick(0)} className={selectedCategory === 0 ? 'selected-img' : ''} />
+                    <span className={selectedCategory === 0 ? 'selected-span' : ''}>
+                        {selectedCategory === 0 ? '너로 정했다!' : '흠..별로?'}</span>
+                    <div onClick={() => handleCategoryClick(1)}>
                         <p>양식</p>
                     </div>
-                    <img src={didtlr} />
-                    <span>흠..별로?</span>
-                    <div>
+                    <img src={didtlr} onClick={() => handleCategoryClick(1)} className={selectedCategory === 1 ? 'selected-img' : ''} />
+                    <span className={selectedCategory === 1 ? 'selected-span' : ''}>
+                        {selectedCategory === 1 ? '너로 정했다!' : '흠..별로?'}</span>
+                    <div onClick={() => handleCategoryClick(2)}>
                         <p>일식</p>
                     </div>
-                    <img src={dlftlr} />
-                    <span>흠..별로?</span>
-                    <div>
+                    <img src={wndtlr} onClick={() => handleCategoryClick(2)}className={selectedCategory === 2 ? 'selected-img' : ''} />
+                    <span className={selectedCategory === 2 ? 'selected-span' : ''}>
+                        {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span>
+                    <div onClick={() => handleCategoryClick(3)}>
                         <p>중식</p>
                     </div>
-                    <img src={wndtlr} />
-                    <span>흠..별로?</span>
-
-                    <div>
+                    <img src={dlftlr} onClick={() => handleCategoryClick(3)} className={selectedCategory === 3 ? 'selected-img' : ''} />
+                    <span className={selectedCategory === 3 ? 'selected-span' : ''}>
+                        {selectedCategory === 3 ? '너로 정했다!' : '흠..별로?'}</span>
+                    <div onClick={() => handleCategoryClick(4)}>
                         <p>기타</p>
                     </div>
-                    <img src={rlxk} />
-                    <span>흠..별로?</span>
+                    <img src={rlxk} onClick={() => handleCategoryClick(4)} className={selectedCategory === 4 ? 'selected-img' : ''} />
+                    <span className={selectedCategory === 4 ? 'selected-span' : ''}>
+                        {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span>
                 </div>
                 <div className='location'>
-                    <Map/>
+                    <Map />
                     <h3>내 주변 한식 혼밥 리스트</h3>
                     <p>가게 이름 : </p> <span>우끼링 백반</span>
                     <p>가게 설명 : </p> <span>아주 맛난 백반 정식을 팔아용</span>
                     <p>가게 대표 매뉴 : </p> <span>불고기 백반</span>
-                    <img src={qorqks}/>
-                    <img src={ukki}/>
+                    <img src={qorqks} />
+                    <img src={ukki} />
                     <input defaultValue='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;눌러서 현재 위치 변경 가능'></input><label>현재 위치 : </label>
                     <input defaultValue='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
                     <button>예약하기</button>
@@ -293,7 +322,7 @@ const Main = () => {
                         4. 이메일로 받은 예약 QR코드를 확인한뒤 방문한다
                     </span>
                     <img src={arrow1} />
-                    <button>랜덤 예약 돌리기</button>
+                    <button className="rouletter-btn">랜덤 예약 돌리기</button>
                     <img src={arrow2} />
                 </div>
 

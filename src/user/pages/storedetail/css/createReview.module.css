@@ -227,6 +227,7 @@ a:active {
   position: absolute;
   left: 107px;
   top: 66px;
+  width: -moz-max-content;
   width: max-content;
   font-family: "Bobaesum Jindo TTF";
   font-size: 41px;
@@ -339,6 +340,7 @@ a:active {
   background-color: #FFFFFF;
 }
 #finalConfirmReview #reallyWriteReview {
+  width: -moz-max-content;
   width: max-content;
   margin-top: 5px;
   height: 44px;
@@ -348,6 +350,7 @@ a:active {
   color: #232323;
 }
 #finalConfirmReview #noticeReview {
+  width: -moz-max-content;
   width: max-content;
   margin-top: 40px;
   height: 36px;
@@ -401,6 +404,7 @@ a:active {
   background-color: #FFFFFF;
 }
 #completeReview #completedReviewMessage {
+  width: -moz-max-content;
   width: max-content;
   margin-top: 5px;
   height: 44px;
@@ -410,6 +414,7 @@ a:active {
   color: #232323;
 }
 #completeReview #completedReviewNotice {
+  width: -moz-max-content;
   width: max-content;
   margin-top: 40px;
   height: 36px;
@@ -482,6 +487,7 @@ a:active {
     position: absolute;
     left: 50px;
     top: 35px;
+    width: -moz-max-content;
     width: max-content;
     font-family: "Bobaesum Jindo TTF";
     font-size: 21px;

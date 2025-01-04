@@ -177,6 +177,7 @@ a:active {
   position: absolute;
   left: 235px;
   top: 884px;
+  width: -moz-max-content;
   width: max-content;
   font-family: "Pretendard Variable";
   font-size: 20px;
@@ -211,6 +212,7 @@ a:active {
     position: absolute;
     left: 118px;
     top: 533px;
+    width: -moz-max-content;
     width: max-content;
     font-family: "Pretendard Variable";
     font-size: 10px;
@@ -243,6 +245,7 @@ a:active {
     position: absolute;
     left: 75px;
     top: 245px;
+    width: -moz-max-content;
     width: max-content;
     font-family: "Pretendard Variable";
     font-size: 7px;
