@@ -29,7 +29,8 @@ const getCalendarDates = (year, month) => {
 function Calendar() {
 
     const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
+    const [selectedMorningTimeIndex, setSelectedMorningTimeIndex] = useState(null);
+    const [selectedAfternoonTimeIndex, setSelectedAfternoonTimeIndex] = useState(null);
 
     const [currentDate, setCurrentDate] = useState(new Date());
     const dayList = ["일", "월", "화", "수", "목", "금", "토"];
@@ -387,7 +388,8 @@ function Calendar() {
         setSelectedDate(today); 
         setCurrentDate(today);
         selectedDateHandler(today);
-        setSelectedTimeIndex(null);
+        setSelectedMorningTimeIndex(null);
+        setSelectedAfternoonTimeIndex(null);
     }
 
     const selectedDateHandler = (selectDate) => {
@@ -700,11 +702,21 @@ function Calendar() {
 
     }
 
-    const selectTime = (index) => {
-        if(selectedTimeIndex === index){
-            setSelectedTimeIndex(null);
+    const selectedMorningTime = (index) => {
+        setSelectedAfternoonTimeIndex(null);
+        if(selectedMorningTimeIndex === index){
+            setSelectedMorningTimeIndex(null);
         } else {
-            setSelectedTimeIndex(index);
+            setSelectedMorningTimeIndex(index);
+        }
+    }
+
+    const selectedAfternoonTime = (index) => {
+        setSelectedMorningTimeIndex(null);
+        if(selectedAfternoonTimeIndex === index){
+            setSelectedAfternoonTimeIndex(null);
+        } else {
+            setSelectedAfternoonTimeIndex(index);
         }
     }
 
@@ -733,7 +745,7 @@ function Calendar() {
                             className={`${styles.dateCell} ${
                                 date.getMonth() === month ? styles.currentMonth : styles.otherMonth
                             }`}
-                            onClick={() => { selectedDateHandler(date); }}
+                            onClick={() => { selectedDateHandler(date) }}
                         >
                             <img 
                                 src={todayIcon} 
@@ -753,15 +765,15 @@ function Calendar() {
                 <div className={styles.instructionTime}>시간을 선택해주세요.</div>
                 <div className={styles.morningArray}>
                     <div id={styles.strMoring}>오전</div>
-                    {morningArray.map((morningArr, index) => (
+                    {morningArray.map((morningArr, morningIndex) => (
                         <div 
-                            key={index} 
+                            key={morningIndex} 
                             className={styles.morningArr} 
-                            style={{backgroundColor : isOper ? (selectedTimeIndex === index ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
+                            style={{backgroundColor : isOper ? (selectedMorningTimeIndex === morningIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
                                     color : isOper ? '' : '#BDBEBF', 
                                     cursor : isOper ? '' : 'default'
                             }}
-                            onClick={() => {selectTime(index)}}
+                            onClick={() => {selectedMorningTime(morningIndex)}}
                         >
                         {morningArr}
                         </div>
@@ -769,15 +781,15 @@ function Calendar() {
                 </div>
                 <div className={styles.afternoonArray}>
                     <div id={styles.strAfternoon}>오후</div>
-                    {afternoonArray.map((afternoonArr, index) => (
+                    {afternoonArray.map((afternoonArr, afternoonIndex) => (
                         <div 
-                            key={index} 
+                            key={afternoonIndex} 
                             className={styles.afternoonArr} 
-                            style={{backgroundColor : isOper ? (selectedTimeIndex === index ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
+                            style={{backgroundColor : isOper ? (selectedAfternoonTimeIndex === afternoonIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
                                     color : isOper ? '' : '#BDBEBF', 
                                     cursor : isOper ? '' : 'default'
                             }}
-                            onClick={() => {selectTime(index)}}
+                            onClick={() => {selectedAfternoonTime(afternoonIndex)}}
                         >
                         {afternoonArr}
                         </div>

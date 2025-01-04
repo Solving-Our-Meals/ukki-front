@@ -562,7 +562,7 @@
             top: 590px;
             width: max-content;
             font-family: 'Pretendard Variable';
-            font-size: 11px;
+            font-size: 15px;
             color: $textStrong;
         }
     
@@ -570,16 +570,16 @@
         .calendarContainer {
             position: absolute;
             left: 80px;
-            top: 620px;
+            top: 625px;
             width: 333px;
     
             #goToday{
                 position : absolute;
-                left : 48px;
-                top : -31px;
+                left : 85px;
+                top : -35.5px;
                 width : max-content;
                 font-family: 'Pretendard Variable';
-                font-size: 11px;
+                font-size: 14px;
                 font-weight: 700;
                 color : $pending;
                 cursor: pointer;
@@ -705,8 +705,8 @@
                 position: absolute;
                 width: max-content;
                 height : 320px;
-                left : 440px;
-                top : -25px;
+                left : -35px;
+                top : 260px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -717,16 +717,16 @@
                     width: max-content;
                     height: max-content;
                     font-family: 'Bobaesum Jindo TTF';
-                    font-size: 31px;
+                    font-size: 16px;
                     color: $textStrong;
                 }
     
                 .instructionTime {
                     width : max-content;
-                    margin-left: 235px;
-                    padding-top : 17px;
+                    margin-left: 130px;
+                    padding-top : 25px;
                     font-family: 'Pretendard Variable';
-                    font-size: 20px;
+                    font-size: 15px;
                     color: $textStrong;
                 }
         
@@ -734,7 +734,7 @@
                     // border: 1px solid red;
                     display: flex;
                     flex-wrap: wrap;
-                    width : 410px;
+                    width : 423px;
                     height : max-content;
                     margin-top: -10px;
                     margin-left: -8px;
@@ -746,7 +746,7 @@
                         margin-bottom: 5px;
                         margin-left: 9px;
                         font-family: 'Pretendard Variable';
-                        font-size: 17px;
+                        font-size: 13px;
                         font-weight: 600;
                     }
         
@@ -761,7 +761,7 @@
                         font-family: 'Pretendard Variable';
                         font-size: 14px;
                         text-align: center;
-                        margin : 5px 5px;
+                        margin : 5px 7px;
                         cursor: pointer;
                     }
                 }
@@ -770,7 +770,7 @@
                     // border: 1px solid red;
                     display: flex;
                     flex-wrap: wrap;
-                    width : 410px;
+                    width : 423px;
                     height : max-content;
                     margin-top: -10px;
                     margin-left: -8px;
@@ -782,7 +782,7 @@
                         margin-bottom: 5px;
                         margin-left: 9px;
                         font-family: 'Pretendard Variable';
-                        font-size: 17px;
+                        font-size: 13px;
                         font-weight: 600;
                     }
         
@@ -797,7 +797,7 @@
                         font-family: 'Pretendard Variable';
                         font-size: 14px;
                         text-align: center;
-                        margin : 5px 5px;
+                        margin : 5px 7px;
                         cursor: pointer;
                     }
                 }
@@ -805,10 +805,10 @@
         }
         #hr{
             position : absolute;
-            left : 28px;
-            top : 1108px;
-            width : 878px;
-            background: #D9D9D9;
+            left : 23px;
+            top : 1218px;
+            width : 458px;
+            // background: #D9D9D9;
         }
     }
     
