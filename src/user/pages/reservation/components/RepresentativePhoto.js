@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from '../css/representativePhoto.module.css';
 
 function RepresentativePhoto(){
 
     const [photo, setPhoto] = useState(null);
 
+    const location = useLocation();
+    const storeInfo = {...location.state};
+    const storeNo = storeInfo.storeNo;
+
     useEffect(
         () => {
-            fetch('/reservation/5/repPhoto')
+            fetch(`/reservation/${storeNo}/repPhoto`)
             .then(res => res.text())
             .then(data => {
                 const bannerUrl = `/reservation/api/repPhoto?repPhotoName=${data}`

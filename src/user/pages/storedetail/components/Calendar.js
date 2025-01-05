@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../css/reservation.module.css';
 import prevBtn from '../images/prev-or-next-icon.png';
 import nextBtn from '../images/prev-or-next-icon.png';
@@ -28,6 +29,7 @@ const getCalendarDates = (year, month) => {
 
 function Calendar() {
 
+    const [storeInfo, setStoreInfo] = useState({});
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedMorningTimeIndex, setSelectedMorningTimeIndex] = useState(null);
     const [selectedAfternoonTimeIndex, setSelectedAfternoonTimeIndex] = useState(null);
@@ -41,7 +43,7 @@ function Calendar() {
     const date = currentDate.getDate();
     const [day, setDay] = useState(currentDate.getDay());
 
-    const [operArray, setOperArray] = useState([]);  
+    // const [operArray, setOperArray] = useState([]);  
     const [morningArray, setMorningArray] = useState([]);
     const [afternoonArray, setAfternoonArray] = useState([]);  
     const [isOper, setIsOper] = useState(true);
@@ -104,6 +106,8 @@ function Calendar() {
             .then(data => {
                 setOperation(data.operationTime)
                 console.log("가게 정보22222 : ",data.operationTime);
+                setStoreInfo(data);
+                console.log('뱌얍야뱌야뱌ㅑㅇ뱌야 ',data)
 
                 const today = new Date().getDay();
 
@@ -702,6 +706,9 @@ function Calendar() {
 
     }
 
+    // 시간 클릭 시 예약 페이지로 정보 넘기기
+    const navigate = useNavigate();
+
     const selectedMorningTime = (index) => {
         setSelectedAfternoonTimeIndex(null);
         if(selectedMorningTimeIndex === index){
@@ -709,7 +716,18 @@ function Calendar() {
         } else {
             setSelectedMorningTimeIndex(index);
         }
-    }
+
+        navigate('/reservation',{
+            state:{
+                date :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
+                time : morningArray[index],
+                storeName : storeInfo.storeName,
+                storeNo : storeInfo.storeNo,
+                latitude : storeInfo.latitude,
+                longitude : storeInfo.longitude
+            },
+        });
+    };
 
     const selectedAfternoonTime = (index) => {
         setSelectedMorningTimeIndex(null);
@@ -718,7 +736,21 @@ function Calendar() {
         } else {
             setSelectedAfternoonTimeIndex(index);
         }
+
+        navigate('/reservation',{
+            state:{
+                date : `${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
+                time : afternoonArray[index],
+                storeName : storeInfo.storeName,
+                storeNo : storeInfo.storeNo,
+                latitude : storeInfo.latitude,
+                longitude : storeInfo.longitude
+            },
+        });
     }
+
+
+
 
     return (
         <>

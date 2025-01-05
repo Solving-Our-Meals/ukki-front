@@ -1,5 +1,7 @@
 import Profile from "../components/Profile";
 import RepresentativePhoto from "../components/RepresentativePhoto";
+import ReservationInfo from "../components/ReservationInfo";
+import TermsOfUse from "../components/TermsOfUse";
 
 function Reservation () {
 
@@ -7,8 +9,8 @@ function Reservation () {
         <>
             <div><RepresentativePhoto/></div>
             <div><Profile/></div>
-            <div>예약 정보</div>
-            <div>이용약관</div>
+            <div><ReservationInfo/></div>
+            <div><TermsOfUse/></div>
         </>
     );
 }
