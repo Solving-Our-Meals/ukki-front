@@ -181,3 +181,24 @@ a:active {
   height: 221px;
   border-radius: 50px;
 }
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  #profile {
+    position: relative;
+    left: 50px;
+    top: -45px;
+    width: 126px;
+    height: 114px;
+    border-radius: 30px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #profile {
+    position: relative;
+    left: 32px;
+    top: -28px;
+    width: 80px;
+    height: 75px;
+    border-radius: 15px;
+  }
+}
