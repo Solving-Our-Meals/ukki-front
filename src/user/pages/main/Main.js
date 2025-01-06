@@ -25,6 +25,7 @@ import '../../../common/header/css/reset.css';
 import './css/main.css';
 import Map from './component/Map.js';
 
+
 const banners = [banner1, banner2, banner3, banner4, banner5];
 const storeInfos = [
     { name: "해당 가게 이름1", time: "영업시간 10:00 - 22:00", desc: "가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명1" },
@@ -55,6 +56,16 @@ const Main = () => {
     const slideInterval = useRef(null);
     const startX = useRef(0);
     const endX = useRef(0);
+    const defaultValue = "눌러서 현재 위치 변경 가능";
+   const [address, setAddress] = useState(defaultValue);
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            if (event.target.value !== defaultValue) {
+                setAddress(event.target.value);
+            }
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -68,16 +79,16 @@ const Main = () => {
                 }
             });
         };
-    
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []); 
-    
+    }, []);
+
     useEffect(() => {
         startAutoSlide();
         return () => clearInterval(slideInterval.current);
-    }, []); 
-    
+    }, []);
+
 
     const startAutoSlide = () => {
         if (slideInterval.current) clearInterval(slideInterval.current);
@@ -170,7 +181,7 @@ const Main = () => {
         hiddenInput.remove();
         // 애니메이션 종료 후 버튼 활성화
         setTimeout(() => {
-            panel.style.transition="";
+            panel.style.transition = "";
             panel.style.transform = `rotate(${deg[setNum]}deg)`; //리셋
             btn.disabled = false;
             btn.style.pointerEvents = "auto";
@@ -203,9 +214,27 @@ const Main = () => {
         }
     };
 
+    const fetchStoresLocation = async (categoryCode) => {
+        try {
+            const response = await fetch(`/api/stores?category=${categoryCode}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error('Error fetching store locations:', error);
+        }
+    };
+    
+    // 카테고리 클릭 핸들러
     const handleCategoryClick = (index) => {
         setSelectedCategory(index);
+        fetchStoresLocation(index + 1); // 카테고리 코드를 +1 해서 전달
     };
+    
+
+    
 
     return (
         <>
@@ -253,7 +282,7 @@ const Main = () => {
                 </div>
                 <div className='search'>
                     <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" />
-                    <img src={search} alt="search" />
+                    <NavLink to="/search"><img src={search} alt="search" /></NavLink>
                 </div>
                 <div className='category'>
                     <h3>지금 끌리는 메뉴는?</h3>
@@ -273,7 +302,7 @@ const Main = () => {
                     <div onClick={() => handleCategoryClick(2)}>
                         <p>일식</p>
                     </div>
-                    <img src={wndtlr} onClick={() => handleCategoryClick(2)}className={selectedCategory === 2 ? 'selected-img' : ''} />
+                    <img src={wndtlr} onClick={() => handleCategoryClick(2)} className={selectedCategory === 2 ? 'selected-img' : ''} />
                     <span className={selectedCategory === 2 ? 'selected-span' : ''}>
                         {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span>
                     <div onClick={() => handleCategoryClick(3)}>
@@ -290,15 +319,15 @@ const Main = () => {
                         {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span>
                 </div>
                 <div className='location'>
-                    <Map />
+                    <Map address={address} setAddress={setAddress} defaultValue={defaultValue}/>
                     <h3>내 주변 한식 혼밥 리스트</h3>
                     <p>가게 이름 : </p> <span>우끼링 백반</span>
                     <p>가게 설명 : </p> <span>아주 맛난 백반 정식을 팔아용</span>
                     <p>가게 대표 매뉴 : </p> <span>불고기 백반</span>
                     <img src={qorqks} />
                     <img src={ukki} />
-                    <input defaultValue='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;눌러서 현재 위치 변경 가능'></input><label>현재 위치 : </label>
-                    <input defaultValue='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
+                    <input onKeyPress={handleKeyPress} defaultValue={defaultValue}></input><label>현재 위치 : </label>
+                    <input defaultValue='하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
                     <button>예약하기</button>
                     <button>길안내</button>
                 </div>
