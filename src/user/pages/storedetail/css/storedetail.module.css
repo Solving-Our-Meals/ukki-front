@@ -179,7 +179,9 @@ a:active {
 }
 .storeDetail #storeName {
   position: absolute;
+  width: -moz-max-content;
   width: max-content;
+  height: -moz-max-content;
   height: max-content;
   left: 112px;
   top: 627px;
@@ -211,6 +213,7 @@ a:active {
   position: absolute;
   left: 235px;
   top: 800px;
+  width: -moz-max-content;
   width: max-content;
   height: 41px;
   font-family: "Pretendard Variable";
@@ -221,6 +224,7 @@ a:active {
   position: absolute;
   left: 235px;
   top: 844px;
+  width: -moz-max-content;
   width: max-content;
   height: 41px;
   font-family: "Pretendard Variable";
@@ -266,6 +270,7 @@ a:active {
 }
 .storeDetail #tatolOperTime #breakTime {
   position: absolute;
+  width: -moz-max-content;
   width: max-content;
   font-size: 11px;
   color: #615DFF;
@@ -320,7 +325,9 @@ a:active {
   }
   .storeDetail #storeName {
     position: absolute;
+    width: -moz-max-content;
     width: max-content;
+    height: -moz-max-content;
     height: max-content;
     left: 51px;
     top: 391px;
@@ -352,6 +359,7 @@ a:active {
     position: absolute;
     left: 118px;
     top: 478px;
+    width: -moz-max-content;
     width: max-content;
     height: 20px;
     font-family: "Pretendard Variable";
@@ -362,6 +370,7 @@ a:active {
     position: absolute;
     left: 118px;
     top: 505px;
+    width: -moz-max-content;
     width: max-content;
     height: 27px;
     font-family: "Pretendard Variable";
@@ -409,6 +418,7 @@ a:active {
   }
   .storeDetail #tatolOperTime #breakTime {
     position: absolute;
+    width: -moz-max-content;
     width: max-content;
     font-size: 9px;
     color: #615DFF;
@@ -464,7 +474,9 @@ a:active {
   }
   .storeDetail #storeName {
     position: absolute;
+    width: -moz-max-content;
     width: max-content;
+    height: -moz-max-content;
     height: max-content;
     left: 35px;
     top: 160px;
@@ -476,6 +488,7 @@ a:active {
   .storeDetail #storeDes {
     position: absolute;
     width: 300px;
+    height: -moz-max-content;
     height: max-content;
     left: 35px;
     top: 180px;
@@ -504,8 +517,12 @@ a:active {
   }
   .storeDetail #operTime {
     position: absolute;
+    left: 75px;
+    top: 230px;
+    width: -moz-max-content;
     left: 227px;
     top: 225px;
+
     width: max-content;
     height: max-content;
     font-family: "Pretendard Variable";
@@ -553,6 +570,7 @@ a:active {
   }
   .storeDetail #tatolOperTime #breakTime {
     position: absolute;
+    width: -moz-max-content;
     width: max-content;
     font-size: 6px;
     color: #615DFF;
