@@ -49,7 +49,6 @@ function StoreInquiryList({setInquiryList, setIsLittleInquiryModal}){
           }
 
     function handlerInquiryInfo(className, value){
-        // 추가 로직을 여기서 처리합니다.
         if (className === "report") 
             { setIsReport(true);
                 setIsInquiry(false);
