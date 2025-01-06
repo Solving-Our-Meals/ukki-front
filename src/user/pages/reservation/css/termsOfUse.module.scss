@@ -74,3 +74,162 @@
     }
 
 }
+
+@media screen and (min-width : 769px) and (max-width : 1024px){
+    .termsOfUse{
+        position: relative;
+        left : 30px;
+        top : -400px;
+        width : 880px;
+        height : 330px;
+        background-color: $secondary2;
+        border: none;
+        border-radius: 30px;
+    
+        #strTerms{
+            position: absolute;
+            left : 30px;
+            top : 20px;
+            width : max-content;
+            height: max-content;
+            font-family: 'Pretendard Variable';
+            color: $textStrong;
+            line-height: 160%;
+            font-size: 20px;
+            font-weight: 600;
+            // border: 1px solid red;
+        }
+    
+        #temsArea{
+            position: absolute;
+            left : 30px;
+            top : 70px;
+            width : 810px;
+            height : 235px;
+            background-color: #FFFFFF;
+            border: none;
+            border-radius: 0px;
+            overflow: scroll;
+            overflow-x: hidden;
+    
+            p{
+                font-family: 'Pretendard Variable';
+                color: $textStrong;
+                line-height: 160%;
+                font-size: 15px;
+                margin: 12px;
+            }
+        }
+    }
+    
+    .agreeArea{
+        position: relative;
+        left : 175px;
+        top : -380px;
+    
+        button{
+            background-color: #FFFFFF;
+            border: 4px solid $primary;
+            border-radius: 50px;
+            height : 40px;
+            font-family: 'Pretendard Variable';
+            font-size: 20px;
+            font-weight: 600;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    
+        #agree{
+            width : 520px;
+            margin-left : -140px;
+        }
+    
+        #agreeAll{
+            width : 320px;
+            margin-left: 25px;
+        }
+    
+    }
+}
+
+@media screen and (max-width:768px){
+    .termsOfUse{
+        position: relative;
+        left : 20px;
+        top : -70px;
+        width : 580px;
+        height : 460px;
+        background-color: $secondary2;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    
+        #strTerms{
+            position: absolute;
+            left : 20px;
+            top : 20px;
+            width : max-content;
+            height: max-content;
+            font-family: 'Pretendard Variable';
+            color: $textStrong;
+            line-height: 160%;
+            font-size: 18px;
+            font-weight: 700;
+            // border: 1px solid red;
+        }
+    
+        #temsArea{
+            position: absolute;
+            left : 30px;
+            top : 70px;
+            width : 520px;
+            height : 300px;
+            background-color: #FFFFFF;
+            border: none;
+            border-radius: 0px;
+            overflow: scroll;
+            overflow-x: hidden;
+    
+            p{
+                font-family: 'Pretendard Variable';
+                color: $textStrong;
+                line-height: 160%;
+                font-size: 15px;
+                margin: 12px;
+            }
+        }
+    }
+    
+    .agreeArea{
+        position: relative;
+    
+        button{
+            background-color: #FFFFFF;
+            border: 4px solid $primary;
+            border-radius: 50px;
+            height : 40px;
+            font-family: 'Pretendard Variable';
+            font-size: 20px;
+            font-weight: 600;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    
+        #agree{
+            position :absolute;
+            left : -650px;
+            top : 615px;
+            width : 510px;
+            margin-left : -145px;
+        }
+    
+        #agreeAll{
+            position:absolute;
+            left : -730px;
+            top : 720px;
+            width : 320px;
+        }
+    
+    }
+}

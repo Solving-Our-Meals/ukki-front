@@ -94,3 +94,199 @@
 
     }
 }
+
+@media screen and (min-width : 769px) and (max-width : 1024px) {
+    .reservationInfo{
+        position: relative;
+        left : 350px;
+        top : -420px;
+        width : 560px;
+        height : 391px;
+        background-color: $secondary2;
+        border: none;
+        border-radius: 30px;
+    
+        #orderer{
+            // border: 1px solid red;
+            position: absolute;
+            left : 30px;
+            top : 45px;
+            width : max-content;
+            height : max-content;
+            border-radius: 0px;
+            line-height: 40px;
+    
+            p{
+                font-family: 'Pretendard Variable';
+                color: $textStrong;
+            }
+    
+            p:nth-of-type(1){
+                font-weight: 600;
+                font-size: 20px;
+            }
+    
+            p:nth-of-type(2){
+                font-weight: 500;
+                font-size: 19px;
+            }
+        }
+    
+        #reservationConfirm{
+            // border: 1px solid blue;
+            position: absolute;
+            left : 30px;
+            top : 160px;
+            width : max-content;
+            height : max-content;
+            border-radius: 0px;
+            line-height: 40px;
+    
+            p{
+                font-family: 'Pretendard Variable';
+                color: $textStrong;
+            }
+    
+            p:nth-of-type(1){
+                font-weight: 600;
+                font-size: 20px;
+            }
+    
+            p:nth-of-type(2){
+                font-weight: 500;
+                font-size: 19px;
+            }
+    
+            p:nth-of-type(3){
+                font-weight: 500;
+                font-size: 19px;
+            }
+    
+            p:nth-of-type(4){
+                font-weight: 500;
+                font-size: 19px;
+            }
+        }
+    
+        #storeLocation{
+            // border: 1px solid green;
+            position: absolute;
+            left : 300px;
+            top : 20px;
+            width : max-content;
+            height : max-content;
+            border-radius: 0px;
+    
+            p{
+                font-family: 'Pretendard Variable';
+                color: $textStrong;
+            }
+    
+            p:nth-of-type(1){
+                font-weight: 600;
+                font-size: 20px;
+            }
+    
+        }
+    }
+}
+
+@media screen and (max-width : 768px){
+    .reservationInfo{
+        position: relative;
+        left : 270px;
+        top : -310px;
+        width : 330px;
+        height : 290px;
+        background-color: $secondary2;
+        border: none;
+        border-radius: 15px;
+    
+        #orderer{
+            position: absolute;
+            left : 20px;
+            top : 15px;
+            width : max-content;
+            height : max-content;
+            border-radius: 0px;
+            line-height: 40px;
+    
+            p{
+                font-family: 'Pretendard Variable';
+                color: $textStrong;
+            }
+    
+            p:nth-of-type(1){
+                font-weight: 700;
+                font-size: 18px;
+            }
+    
+            p:nth-of-type(2){
+                font-weight: 500;
+                font-size: 17px;
+            }
+        }
+    
+        #reservationConfirm{
+            // border: 1px solid blue;
+            position: absolute;
+            left : 20px;
+            top : 115px;
+            width : max-content;
+            height : max-content;
+            border-radius: 0px;
+            line-height: 40px;
+    
+            p{
+                font-family: 'Pretendard Variable';
+                color: $textStrong;
+            }
+    
+            p:nth-of-type(1){
+                font-weight: 700;
+                font-size: 18px;
+            }
+    
+            p:nth-of-type(2){
+                font-weight: 500;
+                font-size: 17px;
+            }
+    
+            p:nth-of-type(3){
+                font-weight: 500;
+                font-size: 17px;
+            }
+    
+            p:nth-of-type(4){
+                font-weight: 500;
+                font-size: 17px;
+            }
+        }
+    
+        #storeLocation{
+            // border: 1px solid green;
+            position: absolute;
+            left : -250px;
+            top : 300px;
+            width : 580px;
+            height : 250px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            background-color: $secondary2;
+    
+            p{
+                font-family: 'Pretendard Variable';
+                color: $textStrong;
+            }
+    
+            p:nth-of-type(1){
+                font-weight: 700;
+                font-size: 18px;
+                margin-left : 15px;
+            }
+    
+        }
+    }
+}
