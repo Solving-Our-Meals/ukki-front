@@ -156,49 +156,20 @@ a:active {
 }
 
 @font-face {
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard Regular";
   src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: "BobaesumJindoTTF";
+  font-family: "Bobaesum Jindo TTF";
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Mungyeong-Gamhong-Apple";
+  font-family: "Mungyeong Gamhong Apple";
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-}
-#representativePhoto {
-  position: relative;
-  left: 89px;
-  top: 160px;
-  width: 587px;
-  height: 690px;
-  border-radius: 50px;
-}
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  #representativePhoto {
-    position: relative;
-    left: 30px;
-    top: 90px;
-    width: 304px;
-    height: 391px;
-    border-radius: 30px;
-  }
-}
-@media screen and (max-width: 768px) {
-  #representativePhoto {
-    position: relative;
-    left: 20px;
-    top: 60px;
-    width: 230px;
-    height: 290px;
-    border-radius: 15px;
-  }
-}/*# sourceMappingURL=representativePhoto.module.css.map */
+}/*# sourceMappingURL=reset.css.map */
