@@ -1,6 +1,7 @@
 import ReservationInfo from "./ReservationInfo";
 import Review from "./Review";
 import StoreDetail from "./StoreDetail";
+import Footer from "../../../../common/footer/components/Footer";
 
 function UserStorePage(){
 
@@ -9,6 +10,7 @@ function UserStorePage(){
             <StoreDetail/>
             <ReservationInfo/>
             <Review/>
+            <Footer/>
         </>
     );
 }

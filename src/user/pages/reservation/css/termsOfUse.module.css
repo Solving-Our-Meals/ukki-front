@@ -175,8 +175,8 @@ a:active {
 }
 .termsOfUse {
   position: relative;
-  left: 700px;
-  top: -780px;
+  left: 720px;
+  top: -505px;
   width: 1107px;
   height: 210px;
   background-color: #FFF3A7;
@@ -218,7 +218,7 @@ a:active {
 .agreeArea {
   position: relative;
   left: 850px;
-  top: -750px;
+  top: -480px;
 }
 .agreeArea button {
   background-color: #FFFFFF;
@@ -244,7 +244,7 @@ a:active {
   .termsOfUse {
     position: relative;
     left: 30px;
-    top: -400px;
+    top: -280px;
     width: 880px;
     height: 330px;
     background-color: #FFF3A7;
@@ -285,7 +285,7 @@ a:active {
   .agreeArea {
     position: relative;
     left: 175px;
-    top: -380px;
+    top: -260px;
   }
   .agreeArea button {
     background-color: #FFFFFF;
@@ -311,7 +311,7 @@ a:active {
   .termsOfUse {
     position: relative;
     left: 20px;
-    top: -70px;
+    top: 15px;
     width: 580px;
     height: 460px;
     background-color: #FFF3A7;
@@ -321,7 +321,7 @@ a:active {
     border-bottom-right-radius: 15px;
   }
   .termsOfUse #strTerms {
-    position: absolute;
+    position: relative;
     left: 20px;
     top: 20px;
     width: max-content;
@@ -333,11 +333,11 @@ a:active {
     font-weight: 700;
   }
   .termsOfUse #temsArea {
-    position: absolute;
+    position: relative;
     left: 30px;
-    top: 70px;
+    top: 20px;
     width: 520px;
-    height: 300px;
+    height: 230px;
     background-color: #FFFFFF;
     border: none;
     border-radius: 0px;
@@ -366,16 +366,16 @@ a:active {
     cursor: pointer;
   }
   .agreeArea #agree {
-    position: absolute;
+    position: relative;
     left: -650px;
-    top: 615px;
+    top: 360px;
     width: 510px;
     margin-left: -145px;
   }
   .agreeArea #agreeAll {
-    position: absolute;
+    position: relative;
     left: -730px;
-    top: 720px;
+    top: 385px;
     width: 320px;
   }
-}
+}/*# sourceMappingURL=termsOfUse.module.css.map */
