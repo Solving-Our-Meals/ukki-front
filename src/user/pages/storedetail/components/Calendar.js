@@ -748,7 +748,7 @@ function Calendar() {
             </div>
             <div className={styles.selectArea}>
                 <div className={styles.selectedDate}>
-                    {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth}.${selectedTotalDate.selectedDate}(${selectedTotalDate.selectedDay})`}
+                    {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}.${selectedTotalDate.selectedDate.toString().padStart(2,'0')}(${selectedTotalDate.selectedDay})`}
                 </div>
                 <div className={styles.instructionTime}>시간을 선택해주세요.</div>
                 <div className={styles.morningArray}>
