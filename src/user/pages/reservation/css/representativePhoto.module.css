@@ -173,104 +173,32 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
-#menu {
-  position: absolute;
-  left: 235px;
-  top: 884px;
-  width: -moz-max-content;
-  width: max-content;
-  font-family: "Pretendard Variable";
-  font-size: 20px;
-  color: #999999;
-  cursor: pointer;
-  border-radius: 0;
-}
-
-#xBtn {
-  position: absolute;
-  z-index: 10000;
-  width: 30px;
-  height: 30px;
-  left: 640px;
-  top: 405px;
-  cursor: pointer;
-  border-radius: 0;
-}
-
-#menuImg {
-  position: absolute;
-  z-index: 9999;
-  width: 350px;
-  height: 500px;
-  left: 335px;
-  top: 390px;
-  border-radius: 0;
+#representativePhoto {
+  position: relative;
+  left: 58px;
+  top: 115px;
+  width: 587px;
+  height: 690px;
+  border-radius: 50px;
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-  #menu {
-    position: absolute;
-    left: 118px;
-    top: 533px;
-    width: -moz-max-content;
-    width: max-content;
-    font-family: "Pretendard Variable";
-    font-size: 10px;
-    color: #999999;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  #xBtn {
-    position: absolute;
-    z-index: 10000;
-    width: 20px;
-    height: 20px;
-    left: 350px;
-    top: 273px;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  #menuImg {
-    position: absolute;
-    z-index: 9999;
-    width: 200px;
-    height: 280px;
-    left: 180px;
-    top: 265px;
-    border-radius: 0;
+  #representativePhoto {
+    position: relative;
+    left: 30px;
+    top: 90px;
+    width: 304px;
+    height: 391px;
+    border-radius: 30px;
   }
 }
 @media screen and (max-width: 768px) {
-  #menu {
-    position: absolute;
-    left: 75px;
-    top: 245px;
-    width: -moz-max-content;
-
-    width: max-content;
-    font-family: "Pretendard Variable";
-    font-size: 9px;
-    color: #999999;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  #xBtn {
-    position: absolute;
-    z-index: 10000;
-    width: 10px;
-    height: 10px;
-    left: 408px;
-    top: 243px;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  #menuImg {
-    position: absolute;
-    z-index: 9999;
-    width: 80px;
-    height: 100px;
-    left: 343px;
-    top: 238px;
-    border-radius: 0;
+  #representativePhoto {
+    position: relative;
+    left: 20px;
+    top: 60px;
+    width: 230px;
+    height: 290px;
+    border-radius: 15px;
   }
 }

@@ -265,7 +265,7 @@
     }
 }
 
-@media all and (min-width:768px) and (max-width :1024px){
+@media screen and (min-width:769px) and (max-width :1024px){
     .reservationStyle {
         cursor: default;
         border-radius: 0;
@@ -442,13 +442,13 @@
                     width: max-content;
                     height: max-content;
                     font-family: 'Bobaesum Jindo TTF';
-                    font-size: 32px;
+                    font-size: 31px;
                     color: $textStrong;
                 }
     
                 .instructionTime {
                     width : max-content;
-                    margin-left: 200px;
+                    margin-left: 235px;
                     padding-top : 17px;
                     font-family: 'Pretendard Variable';
                     font-size: 20px;
@@ -480,11 +480,11 @@
                         justify-content: center;
                         align-items: center;
                         width : 70px;
-                        height : 20px;
+                        height : 25px;
                         background-color: $secondary;
                         border-radius: 5px;
                         font-family: 'Pretendard Variable';
-                        font-size: 15px;
+                        font-size: 14px;
                         text-align: center;
                         margin : 5px 5px;
                         cursor: pointer;
@@ -516,11 +516,11 @@
                         justify-content: center;
                         align-items: center;
                         width : 70px;
-                        height : 20px;
+                        height : 25px;
                         background-color: $secondary;
                         border-radius: 5px;
                         font-family: 'Pretendard Variable';
-                        font-size: 15px;
+                        font-size: 14px;
                         text-align: center;
                         margin : 5px 5px;
                         cursor: pointer;
@@ -534,6 +534,281 @@
             top : 1108px;
             width : 878px;
             background: #D9D9D9;
+        }
+    }
+    
+}
+
+@media screen and (max-width:768px){
+    .reservationStyle {
+        cursor: default;
+        border-radius: 0;
+    
+        // 예약
+        .reservationTitle {
+            position: absolute;
+            left: 35px;
+            top: 560px;
+            width: max-content;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 20px;
+            color: $textStrong;
+        }
+    
+        // 날짜를 선택해주세요
+        .instructionDate {
+            position: absolute;
+            left: 35px;
+            top: 590px;
+            width: max-content;
+            font-family: 'Pretendard Variable';
+            font-size: 15px;
+            color: $textStrong;
+        }
+    
+        // 달력
+        .calendarContainer {
+            position: absolute;
+            left: 80px;
+            top: 625px;
+            width: 333px;
+    
+            #goToday{
+                position : absolute;
+                left : 85px;
+                top : -35.5px;
+                width : max-content;
+                font-family: 'Pretendard Variable';
+                font-size: 14px;
+                font-weight: 700;
+                color : $pending;
+                cursor: pointer;
+            }
+    
+            .calendarHeader {
+                height: 32px;
+                background-color: $primary;
+                border-top-left-radius: 30px;
+                border-top-right-radius: 30px;
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+                color: #ffffff;
+                font-family: 'Pretendard Variable';
+                font-size: 13px;
+                font-weight: 700;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+                img {
+                    width: 13px;
+                    height: 16px;
+                    cursor: pointer;
+                }
+    
+                img:first-child {
+                    margin-right: 20px;
+                    transform: scaleX(-1);
+                }
+    
+                img:last-child {
+                    margin-left: 20px;
+                }
+            }
+
+            .calendarBody{
+                position: absolute;
+                margin-top: 10px;
+                padding-left: 18px;
+                padding-bottom: 5px;
+                border: 2px solid $primary;
+                border-top: none;
+                width : 333px;
+                // height : 247px;
+                height: max-content;
+                border-radius: 0px;
+                
+                .dayList {
+                    display: flex;
+                    width : 295px;
+                    margin-top: 5px;
+                    margin-bottom: 7px;
+    
+                    .day{
+                        flex: 1;
+                        text-align: center;
+                        font-family: 'Bobaesum Jindo TTF';
+                        font-size: 15px;
+                        font-weight: 700;
+                    }
+                }
+    
+                .calendarGrid {
+                    position : relative;
+                    display: flex;
+                    flex-wrap: wrap;
+                    width : 295px;
+                    z-index : 1;
+                    cursor: pointer;
+                    // border: 1px solid red;
+    
+                    .dateCell {
+                        width: calc(100% / 7);
+                        text-align: center;
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                        box-sizing: border-box;
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                        position : relative;
+                        z-index : 2;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+    
+                        &.currentMonth {
+                            color : $textStrong;
+                            font-family: 'Pretendard Variable';
+                            font-size: 14px;
+                            font-weight: 700;
+                        }
+    
+                        &.otherMonth {
+                            color: $textCaption;
+                            font-family: 'Pretendard Variable';
+                            font-size: 14px;
+                            font-weight: 700;
+                        }
+    
+                        &.today{
+                            background-color: $primary;
+                            border-radius: 100px;
+                            position : absolute;
+                            top : 50%;
+                            left : 50%;
+                            z-index : 3;
+                        }
+
+                        img{
+                            position : absolute;
+                            z-index : -1;
+                            width : 30px;
+                            height : 30px;
+                        }
+                    }
+                }
+            }
+    
+            .selectArea{
+                // border: 1px solid red;
+                position: absolute;
+                width: max-content;
+                height : 320px;
+                left : -35px;
+                top : 260px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+    
+    
+                .selectedDate{
+                    width: max-content;
+                    height: max-content;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-size: 16px;
+                    color: $textStrong;
+                }
+    
+                .instructionTime {
+                    width : max-content;
+                    margin-left: 130px;
+                    padding-top : 25px;
+                    font-family: 'Pretendard Variable';
+                    font-size: 15px;
+                    color: $textStrong;
+                }
+        
+                .morningArray{
+                    // border: 1px solid red;
+                    display: flex;
+                    flex-wrap: wrap;
+                    width : 423px;
+                    height : max-content;
+                    margin-top: -10px;
+                    margin-left: -8px;
+    
+                    #strMoring{
+                        display: block;
+                        width : 100%;
+                        margin-top: 25px;
+                        margin-bottom: 5px;
+                        margin-left: 9px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 13px;
+                        font-weight: 600;
+                    }
+        
+                    .morningArr{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width : 70px;
+                        height : 25px;
+                        background-color: $secondary;
+                        border-radius: 5px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 14px;
+                        text-align: center;
+                        margin : 5px 7px;
+                        cursor: pointer;
+                    }
+                }
+    
+                .afternoonArray{
+                    // border: 1px solid red;
+                    display: flex;
+                    flex-wrap: wrap;
+                    width : 423px;
+                    height : max-content;
+                    margin-top: -10px;
+                    margin-left: -8px;
+    
+                    #strAfternoon{
+                        display: block;
+                        width : 100%;
+                        margin-top: 20px;
+                        margin-bottom: 5px;
+                        margin-left: 9px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 13px;
+                        font-weight: 600;
+                    }
+        
+                    .afternoonArr{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width : 70px;
+                        height : 25px;
+                        background-color: $secondary;
+                        border-radius: 5px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 14px;
+                        text-align: center;
+                        margin : 5px 7px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        #hr{
+            position : absolute;
+            left : 23px;
+            top : 1218px;
+            width : 458px;
+            // background: #D9D9D9;
         }
     }
     

@@ -14,6 +14,7 @@ import UserStorePage from './user/pages/storedetail/pages/UserStorePage';
 import QrRoutes from './store/pages/qrCheck/routes/QrRoutes';
 import AdminRoutes from './admin/route/AdminRoutes';
 import Search from './user/pages/search/Search';
+import Reservation from './user/pages/reservation/pages/ReservationPage';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="info" element={<Info />} />
             <Route path="main" element={<Main />} />
             <Route path="store" element={<UserStorePage />} />
+            <Route path="reservation" element={<Reservation/>}/>
             <Route path="sinquiries" element={<InquiryEnter />} />
           </Route>
           <Route path="qr/*" element={<QrRoutes />} />

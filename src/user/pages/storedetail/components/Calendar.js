@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../css/reservation.module.css';
 import prevBtn from '../images/prev-or-next-icon.png';
 import nextBtn from '../images/prev-or-next-icon.png';
@@ -28,8 +29,10 @@ const getCalendarDates = (year, month) => {
 
 function Calendar() {
 
+    const [storeInfo, setStoreInfo] = useState({});
     const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
+    const [selectedMorningTimeIndex, setSelectedMorningTimeIndex] = useState(null);
+    const [selectedAfternoonTimeIndex, setSelectedAfternoonTimeIndex] = useState(null);
 
     const [currentDate, setCurrentDate] = useState(new Date());
     const dayList = ["일", "월", "화", "수", "목", "금", "토"];
@@ -40,7 +43,7 @@ function Calendar() {
     const date = currentDate.getDate();
     const [day, setDay] = useState(currentDate.getDay());
 
-    const [operArray, setOperArray] = useState([]);  
+    // const [operArray, setOperArray] = useState([]);  
     const [morningArray, setMorningArray] = useState([]);
     const [afternoonArray, setAfternoonArray] = useState([]);  
     const [isOper, setIsOper] = useState(true);
@@ -103,6 +106,8 @@ function Calendar() {
             .then(data => {
                 setOperation(data.operationTime)
                 console.log("가게 정보22222 : ",data.operationTime);
+                setStoreInfo(data);
+                console.log('뱌얍야뱌야뱌ㅑㅇ뱌야 ',data)
 
                 const today = new Date().getDay();
 
@@ -387,7 +392,8 @@ function Calendar() {
         setSelectedDate(today); 
         setCurrentDate(today);
         selectedDateHandler(today);
-        setSelectedTimeIndex(null);
+        setSelectedMorningTimeIndex(null);
+        setSelectedAfternoonTimeIndex(null);
     }
 
     const selectedDateHandler = (selectDate) => {
@@ -700,13 +706,51 @@ function Calendar() {
 
     }
 
-    const selectTime = (index) => {
-        if(selectedTimeIndex === index){
-            setSelectedTimeIndex(null);
+    // 시간 클릭 시 예약 페이지로 정보 넘기기
+    const navigate = useNavigate();
+
+    const selectedMorningTime = (index) => {
+        setSelectedAfternoonTimeIndex(null);
+        if(selectedMorningTimeIndex === index){
+            setSelectedMorningTimeIndex(null);
         } else {
-            setSelectedTimeIndex(index);
+            setSelectedMorningTimeIndex(index);
         }
+
+        navigate('/reservation',{
+            state:{
+                date :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
+                time : morningArray[index],
+                storeName : storeInfo.storeName,
+                storeNo : storeInfo.storeNo,
+                latitude : storeInfo.latitude,
+                longitude : storeInfo.longitude
+            },
+        });
+    };
+
+    const selectedAfternoonTime = (index) => {
+        setSelectedMorningTimeIndex(null);
+        if(selectedAfternoonTimeIndex === index){
+            setSelectedAfternoonTimeIndex(null);
+        } else {
+            setSelectedAfternoonTimeIndex(index);
+        }
+
+        navigate('/reservation',{
+            state:{
+                date : `${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
+                time : afternoonArray[index],
+                storeName : storeInfo.storeName,
+                storeNo : storeInfo.storeNo,
+                latitude : storeInfo.latitude,
+                longitude : storeInfo.longitude
+            },
+        });
     }
+
+
+
 
     return (
         <>
@@ -733,7 +777,7 @@ function Calendar() {
                             className={`${styles.dateCell} ${
                                 date.getMonth() === month ? styles.currentMonth : styles.otherMonth
                             }`}
-                            onClick={() => { selectedDateHandler(date); }}
+                            onClick={() => { selectedDateHandler(date) }}
                         >
                             <img 
                                 src={todayIcon} 
@@ -748,20 +792,20 @@ function Calendar() {
             </div>
             <div className={styles.selectArea}>
                 <div className={styles.selectedDate}>
-                    {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth}.${selectedTotalDate.selectedDate}(${selectedTotalDate.selectedDay})`}
+                    {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}.${selectedTotalDate.selectedDate.toString().padStart(2,'0')}(${selectedTotalDate.selectedDay})`}
                 </div>
                 <div className={styles.instructionTime}>시간을 선택해주세요.</div>
                 <div className={styles.morningArray}>
                     <div id={styles.strMoring}>오전</div>
-                    {morningArray.map((morningArr, index) => (
+                    {morningArray.map((morningArr, morningIndex) => (
                         <div 
-                            key={index} 
+                            key={morningIndex} 
                             className={styles.morningArr} 
-                            style={{backgroundColor : isOper ? (selectedTimeIndex === index ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
+                            style={{backgroundColor : isOper ? (selectedMorningTimeIndex === morningIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
                                     color : isOper ? '' : '#BDBEBF', 
                                     cursor : isOper ? '' : 'default'
                             }}
-                            onClick={() => {selectTime(index)}}
+                            onClick={() => {selectedMorningTime(morningIndex)}}
                         >
                         {morningArr}
                         </div>
@@ -769,15 +813,15 @@ function Calendar() {
                 </div>
                 <div className={styles.afternoonArray}>
                     <div id={styles.strAfternoon}>오후</div>
-                    {afternoonArray.map((afternoonArr, index) => (
+                    {afternoonArray.map((afternoonArr, afternoonIndex) => (
                         <div 
-                            key={index} 
+                            key={afternoonIndex} 
                             className={styles.afternoonArr} 
-                            style={{backgroundColor : isOper ? (selectedTimeIndex === index ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
+                            style={{backgroundColor : isOper ? (selectedAfternoonTimeIndex === afternoonIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
                                     color : isOper ? '' : '#BDBEBF', 
                                     cursor : isOper ? '' : 'default'
                             }}
-                            onClick={() => {selectTime(index)}}
+                            onClick={() => {selectedAfternoonTime(afternoonIndex)}}
                         >
                         {afternoonArr}
                         </div>
