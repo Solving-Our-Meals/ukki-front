@@ -31,7 +31,7 @@ function ReservationInfo(){
             <div id={styles.reservationConfirm}>
                 <p>예약 정보 확인</p>
                 <p>{`예약 가게 : ${reservationInfo.storeName}`}</p>
-                <p>{`예약 날짜 : ${reservationInfo.date}`}</p>
+                <p>{`예약 날짜 : ${reservationInfo.date1}`}</p>
                 <p>{`예약 시간 : ${reservationInfo.time}`}</p>
             </div>
             <div id={styles.storeLocation}>
