@@ -1,0 +1,209 @@
+.userListText{
+    /* 회원리스트 */
+    position: absolute;
+    width: 230px;
+    height: 55px;
+    left: 61px;
+    top: 47px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 55px;
+
+    /* text/title */
+    color: #1E1E1E;
+
+}
+
+.userListSelection{
+    /* Rectangle 31 */
+
+    position: absolute;
+    width: 167px;
+    height: 43px;
+    left: 308px;
+    top: 53px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    text-align: center;
+
+    /* background */
+    background: #FFFFFF;
+    /* primary */
+    border: 3px solid #FF8AA3;
+    border-radius: 50px;
+
+}
+.userListOption{
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    text-align: center;
+
+    /* text/title */
+    color: #1E1E1E;
+
+}
+
+.userListSearchInput{
+    /* Rectangle 30 */
+
+    position: absolute;
+    width: 840px;
+    height: 64px;
+    left: 695px;
+    top: 36px;
+
+    padding-left: 20px;
+    /* background */
+    background: #FFFFFF;
+    /* primary */
+    border: 3px solid #FF8AA3;
+    border-radius: 50px;
+
+}
+
+.userListSearchBtn{
+    
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    left: 1453px;
+    top: 42px;
+
+    border: none;
+
+    background-color: #FFFFFF;
+    background-image: url('images/Search.png');
+}
+
+.userList{
+    /* Group 298 */
+
+    position: absolute;
+    width: 1489px;
+    height: 71px;
+    left: 61px;
+    top: 150px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-collapse: separate;
+    border-spacing: 0; 
+    overflow: hidden;
+}
+
+.userListHeader{
+    /* Group 56 */
+    height: 71px;
+    background-color: #7BD5FF;
+        
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 28px;
+    text-align: center;
+    align-content: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.userListHeader th { 
+    text-align: center; 
+    vertical-align: middle;
+}
+
+#userListBodyPosition{
+    position: absolute;
+    left: 61px;
+    top: 221px;
+}
+
+.userListBody {
+    width: 1489px;
+    height: 71px;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    align-content: center;
+
+    /* text/strong */
+    color: #232323;
+
+    border: 1px solid #E3E3E3;
+
+    border-radius: 0px;
+}
+
+.userListBody div{
+    display: inline-block;
+}
+
+.STORE{
+    background-color: #FFF3A7;
+    height: 60px;
+    align-content: center;
+}
+
+#storeUserRegist{
+    /* Rectangle 34 */
+
+    position: absolute;
+    width: 222px;
+    height: 47px;
+    left: 1328px;
+    top: 690px;
+
+    background: #FFF3A7;
+    border: 3px solid #FF8AA3;
+    border-radius: 50px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+
+    color: #1E1E1E;
+}
+
+.pageNation{
+    position: absolute;
+    width: 370px;
+    height: 28px;
+    left: 620px;
+    top: 700px;
+
+    text-align: center;
+    align-content: center;
+}
+
+
+.pageNation button{
+    background-color: white;
+    border: none;
+    font-size: 20px;
+    color: #FF8AA3;
+    margin-left: 10px;
+  }
+
+  .pageNation button.active{
+    background-color: #FF8AA3;
+    color: white;
+  }
