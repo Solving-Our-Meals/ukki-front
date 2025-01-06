@@ -240,7 +240,7 @@ a:active {
 @media screen and (max-width: 768px) {
   #mapContainer {
     position: absolute;
-    left: 35px;
+    left: 30px;
     top: 265px;
     width: 410px;
     height: 150px;
@@ -268,4 +268,4 @@ a:active {
     font-Style: "Regular";
     border: none;
   }
-}/*# sourceMappingURL=kakaoMap.module.css.map */
+}

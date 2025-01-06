@@ -173,100 +173,80 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
-#menu {
+.reservationInfo {
+  position: relative;
+  left: 700px;
+  top: -800px;
+  width: 1107px;
+  height: 365px;
+  background-color: #FFF3A7;
+  border: none;
+  border-radius: 30px;
+}
+.reservationInfo #orderer {
   position: absolute;
-  left: 235px;
-  top: 884px;
+  left: 50px;
+  top: 45px;
   width: max-content;
+  height: max-content;
+  border-radius: 0px;
+  line-height: 40px;
+}
+.reservationInfo #orderer p {
   font-family: "Pretendard Variable";
-  font-size: 20px;
-  color: #999999;
-  cursor: pointer;
-  border-radius: 0;
+  color: #232323;
 }
-
-#xBtn {
+.reservationInfo #orderer p:nth-of-type(1) {
+  font-weight: 600;
+  font-size: 25px;
+}
+.reservationInfo #orderer p:nth-of-type(2) {
+  font-weight: 500;
+  font-size: 23px;
+}
+.reservationInfo #reservationConfirm {
   position: absolute;
-  z-index: 10000;
-  width: 30px;
-  height: 30px;
-  left: 640px;
-  top: 405px;
-  cursor: pointer;
-  border-radius: 0;
+  left: 50px;
+  top: 160px;
+  width: max-content;
+  height: max-content;
+  border-radius: 0px;
+  line-height: 40px;
 }
-
-#menuImg {
+.reservationInfo #reservationConfirm p {
+  font-family: "Pretendard Variable";
+  color: #232323;
+}
+.reservationInfo #reservationConfirm p:nth-of-type(1) {
+  font-weight: 600;
+  font-size: 25px;
+}
+.reservationInfo #reservationConfirm p:nth-of-type(2) {
+  font-weight: 500;
+  font-size: 23px;
+}
+.reservationInfo #reservationConfirm p:nth-of-type(3) {
+  font-weight: 500;
+  font-size: 23px;
+}
+.reservationInfo #reservationConfirm p:nth-of-type(4) {
+  font-weight: 500;
+  font-size: 23px;
+}
+.reservationInfo #storeLocation {
   position: absolute;
-  z-index: 9999;
-  width: 350px;
-  height: 500px;
-  left: 335px;
-  top: 390px;
-  border-radius: 0;
+  left: 605px;
+  top: 30px;
+  width: max-content;
+  height: max-content;
+  border-radius: 0px;
+  line-height: 50px;
 }
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  #menu {
-    position: absolute;
-    left: 118px;
-    top: 533px;
-    width: max-content;
-    font-family: "Pretendard Variable";
-    font-size: 10px;
-    color: #999999;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  #xBtn {
-    position: absolute;
-    z-index: 10000;
-    width: 20px;
-    height: 20px;
-    left: 350px;
-    top: 273px;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  #menuImg {
-    position: absolute;
-    z-index: 9999;
-    width: 200px;
-    height: 280px;
-    left: 180px;
-    top: 265px;
-    border-radius: 0;
-  }
+.reservationInfo #storeLocation p {
+  font-family: "Pretendard Variable";
+  color: #232323;
 }
-@media screen and (max-width: 768px) {
-  #menu {
-    position: absolute;
-    left: 390px;
-    top: 225px;
-    width: max-content;
-    font-family: "Pretendard Variable";
-    font-size: 9px;
-    color: #999999;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  #xBtn {
-    position: absolute;
-    z-index: 10000;
-    width: 10px;
-    height: 10px;
-    left: 408px;
-    top: 243px;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  #menuImg {
-    position: absolute;
-    z-index: 9999;
-    width: 80px;
-    height: 100px;
-    left: 343px;
-    top: 238px;
-    border-radius: 0;
-  }
+.reservationInfo #storeLocation p:nth-of-type(1) {
+  font-weight: 600;
+  font-size: 25px;
 }
