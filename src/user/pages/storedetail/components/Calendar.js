@@ -853,7 +853,7 @@ function Calendar() {
                                 key={morningIndex} 
                                 className={styles.morningArr} 
                                 style={{
-                                    backgroundColor: isOper
+                                    backgroundColor: isClickable
                                         ? (selectedMorningTimeIndex === morningIndex ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7', 
                                     color: isOper
@@ -915,7 +915,7 @@ function Calendar() {
                                 key={afternoonIndex} 
                                 className={styles.afternoonArr} 
                                 style={{
-                                    backgroundColor: isOper ? (selectedAfternoonTimeIndex === afternoonIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
+                                    backgroundColor: isClickable ? (selectedAfternoonTimeIndex === afternoonIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
                                     color: isOper ? '' : '#BDBEBF', 
                                     cursor: isOper ? (isClickable ? 'pointer' : 'default') : 'default',
                                     pointerEvents: isClickable ? 'auto' : 'none'
