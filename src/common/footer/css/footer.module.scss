@@ -225,12 +225,12 @@
 
 .footerStyle {
     position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0%;
     // top: 1930px;
     // top : 3928px;
-    top : 2200px;
+    top : 5000px;
     width: 100%;
     height: 226px;
     background-color: #FFF3A7;
@@ -296,7 +296,7 @@
     .footerStyle {
       width: 100%;
       height: 120px;
-      bottom: 0;
+      bottom: 0%;
     }
     .footerStyle #honbab_ukki {
       position: absolute;
@@ -355,7 +355,7 @@
     .footerStyle {
       width: 100%;
       height: 76px;
-      bottom: 0%;
+      bottom: 0px;
     }
     .footerStyle #honbab_ukki {
       position: absolute;

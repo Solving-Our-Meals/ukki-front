@@ -1,0 +1,14 @@
+.reservation {
+  height: 915px;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .reservation {
+    height: 915px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .reservation {
+    height: 1080px;
+  }
+}/*# sourceMappingURL=reservation.module.css.map */

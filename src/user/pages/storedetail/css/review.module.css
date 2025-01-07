@@ -180,7 +180,6 @@ a:active {
   position: absolute;
   left: 112px;
   top: 1984px;
-  width: -moz-max-content;
   width: max-content;
   font-family: "Bobaesum Jindo TTF";
   font-size: 50px;
@@ -190,7 +189,6 @@ a:active {
   position: absolute;
   left: 112px;
   top: 2051px;
-  width: -moz-max-content;
   width: max-content;
   font-family: "Pretendard Variable";
   font-size: 30px;
@@ -210,7 +208,6 @@ a:active {
   position: relative;
   display: inline-block;
   width: 1550px;
-  height: -moz-max-content;
   height: max-content;
 }
 .reviewStyle .reviewArea .reviewContainer .review {
@@ -237,7 +234,6 @@ a:active {
 }
 .reviewStyle .reviewArea .reviewContainer .review div {
   position: absolute;
-  width: -moz-max-content;
   width: max-content;
   cursor: default;
   z-index: 2;
@@ -245,7 +241,6 @@ a:active {
 .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(1) {
   left: 230px;
   top: 63px;
-  width: -moz-max-content;
   width: max-content;
   font-family: "Bobaesum Jindo TTF";
   font-size: 30px;
@@ -257,7 +252,6 @@ a:active {
 .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(2) {
   left: 230px;
   top: 107px;
-  width: -moz-max-content;
   width: max-content;
   font-family: "Pretendard Variable";
   font-size: 20px;
@@ -316,7 +310,6 @@ a:active {
 }
 .reviewStyle .reviewArea .reviewContainer .transformReview div {
   position: absolute;
-  width: -moz-max-content;
   width: max-content;
   cursor: default;
   z-index: 2;
@@ -324,7 +317,6 @@ a:active {
 .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) {
   left: 744px;
   top: 70px;
-  width: -moz-max-content;
   width: max-content;
   font-family: "Bobaesum Jindo TTF";
   font-size: 30px;
@@ -336,7 +328,6 @@ a:active {
 .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
   left: 744px;
   top: 111px;
-  width: -moz-max-content;
   width: max-content;
   font-family: "Pretendard Variable";
   font-size: 20px;
@@ -388,7 +379,6 @@ a:active {
     position: absolute;
     left: 51px;
     top: 1150px;
-    width: -moz-max-content;
     width: max-content;
     font-family: "Bobaesum Jindo TTF";
     font-size: 35px;
@@ -398,7 +388,6 @@ a:active {
     position: absolute;
     left: 51px;
     top: 1200px;
-    width: -moz-max-content;
     width: max-content;
     font-family: "Pretendard Variable";
     font-size: 20px;
@@ -418,7 +407,6 @@ a:active {
     position: relative;
     display: inline-block;
     width: 850px;
-    height: -moz-max-content;
     height: max-content;
   }
   .reviewStyle .reviewArea .reviewContainer .review {
@@ -445,7 +433,6 @@ a:active {
   }
   .reviewStyle .reviewArea .reviewContainer .review div {
     position: absolute;
-    width: -moz-max-content;
     width: max-content;
     cursor: default;
     z-index: 2;
@@ -453,7 +440,6 @@ a:active {
   .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(1) {
     left: 124px;
     top: 30px;
-    width: -moz-max-content;
     width: max-content;
     font-family: "Bobaesum Jindo TTF";
     font-size: 20px;
@@ -465,7 +451,6 @@ a:active {
   .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(2) {
     left: 124px;
     top: 56px;
-    width: -moz-max-content;
     width: max-content;
     font-family: "Pretendard Variable";
     font-size: 15px;
@@ -524,7 +509,6 @@ a:active {
   }
   .reviewStyle .reviewArea .reviewContainer .transformReview div {
     position: absolute;
-    width: -moz-max-content;
     width: max-content;
     cursor: default;
     z-index: 2;
@@ -532,7 +516,6 @@ a:active {
   .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) {
     left: 403px;
     top: 34px;
-    width: -moz-max-content;
     width: max-content;
     font-family: "Bobaesum Jindo TTF";
     font-size: 20px;
@@ -544,7 +527,6 @@ a:active {
   .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
     left: 403px;
     top: 61px;
-    width: -moz-max-content;
     width: max-content;
     font-family: "Pretendard Variable";
     font-size: 15px;
@@ -786,4 +768,4 @@ a:active {
     color: #232323;
     cursor: pointer;
   }
-}
+}/*# sourceMappingURL=review.module.css.map */
