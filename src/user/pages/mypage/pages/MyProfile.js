@@ -15,10 +15,9 @@ function MyProfile() {
 
     const fetchUserInfo = async () => {
         try {
-            // 서버의 /user/info API 호출
             const response = await fetch('/user/info', {
                 method: 'GET',
-                credentials: 'include',  // 쿠키를 함께 보내기
+                credentials: 'include',
             });
 
             if (response.ok) {
@@ -26,9 +25,8 @@ function MyProfile() {
                 setUserInfo(data);
                 console.log(data);
             } else if (response.status === 401) {
-                // 인증 실패 시 로그인 페이지로 리다이렉트
                 setError('인증이 필요합니다.');
-                navigate('/login');
+                navigate('/auth/login');
             } else {
                 setError('유저 정보를 가져오는 데 실패했습니다.');
             }
@@ -39,17 +37,14 @@ function MyProfile() {
         }
     };
 
-    // 로딩 중일 때
     if (loading) {
         return <div>로딩 중...</div>;
     }
 
-    // 에러가 발생했을 때
     if (error) {
         return <div>{error}</div>;
     }
 
-    // 유저 정보가 없을 때
     if (!userInfo) {
         return <div>유저 정보를 찾을 수 없습니다.</div>;
     }
