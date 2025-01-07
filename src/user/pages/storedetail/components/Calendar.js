@@ -839,7 +839,7 @@ function Calendar() {
                         const morningDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), morningHours, morningMinutes);
 
                         // 클릭 가능 여부 결정
-                        const isClickable = morningDateTime >= currentDateTime && isOper;
+                        const isClickable = morningDateTime > currentDateTime && isOper;
 
                         // 클릭 이벤트 핸들러
                         const handleClick = () => {
@@ -856,7 +856,7 @@ function Calendar() {
                                     backgroundColor: isClickable
                                         ? (selectedMorningTimeIndex === morningIndex ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7', 
-                                    color: isOper
+                                    color: isClickable
                                         ? (selectedMorningTimeIndex === morningIndex ? '#000000' : '#000000')
                                         : '#BDBEBF', 
                                     cursor: isOper && isClickable ? 'pointer' : 'default',
@@ -901,7 +901,7 @@ function Calendar() {
                         const afternoonDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), afternoonHours, afternoonMinutes);
 
                         // 클릭 가능 여부 결정
-                        const isClickable = afternoonDateTime >= currentDateTime && isOper;
+                        const isClickable = afternoonDateTime > currentDateTime && isOper;
 
                         // 클릭 이벤트 핸들러
                         const handleClick = () => {
@@ -916,7 +916,7 @@ function Calendar() {
                                 className={styles.afternoonArr} 
                                 style={{
                                     backgroundColor: isClickable ? (selectedAfternoonTimeIndex === afternoonIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
-                                    color: isOper ? '' : '#BDBEBF', 
+                                    color: isClickable ? '' : '#BDBEBF', 
                                     cursor: isOper ? (isClickable ? 'pointer' : 'default') : 'default',
                                     pointerEvents: isClickable ? 'auto' : 'none'
                                 }}
