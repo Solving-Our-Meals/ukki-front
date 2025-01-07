@@ -2,7 +2,7 @@
     /* 회원번호 4 */
 
     position: absolute;
-    width: 230px;
+    
     height: 55px;
     left: 61px;
     top: 47px;
@@ -187,7 +187,7 @@
     width: 90px;
     height: 147px;
     left: 246px;
-    top: 576px;
+    top: 556px;
 
 }
 #reviewCount{
@@ -195,7 +195,7 @@
     width: 90px;
     height: 147px;
     left: 735px;
-    top: 576px;
+    top: 556px;
 }
 #noshowCount{
     position: absolute;
@@ -275,7 +275,7 @@
     /* 뱃지 */
 
     position: absolute;
-    width: 52px;
+    width: 70px;
     height: 36px;
     left: 25px;
     top: 20px;
