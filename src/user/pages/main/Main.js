@@ -57,7 +57,16 @@ const Main = () => {
     const startX = useRef(0);
     const endX = useRef(0);
     const defaultValue = "눌러서 현재 위치 변경 가능";
-   const [address, setAddress] = useState(defaultValue);
+    const [address, setAddress] = useState(defaultValue);
+    const [stores, setStores]=useState([]);
+
+    const [storeInfo, setStoreInfo] = useState({
+        storeNo: 0,
+        storeName: "가게 이름",
+        storeDes: "가게 소개글",
+        storeAddress: "가게 주소",
+
+    });
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -214,27 +223,31 @@ const Main = () => {
         }
     };
 
-    const fetchStoresLocation = async (categoryCode) => {
+
+    const fetchStoresLocation = async (category) => {
         try {
-            const response = await fetch(`/api/stores?category=${categoryCode}`);
+            const response = await fetch(`/main/category/category=${category}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            
             const data = await response.json();
+            setStores(data);
+            setStoreInfo(data);
             console.log(data);
         } catch (error) {
             console.error('Error fetching store locations:', error);
         }
     };
-    
+
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (index) => {
         setSelectedCategory(index);
         fetchStoresLocation(index + 1); // 카테고리 코드를 +1 해서 전달
     };
-    
 
-    
+
+
 
     return (
         <>
@@ -319,8 +332,16 @@ const Main = () => {
                         {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span>
                 </div>
                 <div className='location'>
-                    <Map address={address} setAddress={setAddress} defaultValue={defaultValue}/>
-                    <h3>내 주변 한식 혼밥 리스트</h3>
+                    <Map address={address} setAddress={setAddress} defaultValue={defaultValue} />
+                    <h3>
+                        {selectedCategory === 0 ? '내 주변 한식 혼밥 리스트' :
+                            selectedCategory === 1 ? '내 주변 양식 혼밥 리스트' :
+                                selectedCategory === 2 ? '내 주변 일식 혼밥 리스트' :
+                                    selectedCategory === 3 ? '내 주변 중식 혼밥 리스트' :
+                                        selectedCategory === 4 ? '내 주변 기타 혼밥 리스트' :
+                                            ''}
+                    </h3>
+
                     <p>가게 이름 : </p> <span>우끼링 백반</span>
                     <p>가게 설명 : </p> <span>아주 맛난 백반 정식을 팔아용</span>
                     <p>가게 대표 매뉴 : </p> <span>불고기 백반</span>

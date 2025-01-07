@@ -10,7 +10,7 @@ const Map = ({ address, setAddress, defaultValue }) => {
     const [currentMarker, setCurrentMarker] = useState({ marker: null, infowindow: null });
 
     useEffect(() => {
-        fetch('/api/stores')
+        fetch('/main/category')
             .then((response) => response.json())
             .then((data) => setStores(data));
 
@@ -35,7 +35,7 @@ const Map = ({ address, setAddress, defaultValue }) => {
 
                 const geocoder = new kakao.maps.services.Geocoder();
 
-                geocoder.coord2Address(lon, lat, (result, status) => {
+                geocoder.coord2Address(lat, lon, (result, status) => {
                     if (status === kakao.maps.services.Status.OK) {
                         const address = result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
                         if (address !== defaultValue) {
