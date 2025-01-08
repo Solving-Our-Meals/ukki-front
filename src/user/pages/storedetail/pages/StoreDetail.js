@@ -143,7 +143,7 @@ function StoreDetail(){
                 <p id={styles.breakTime}>{`*브레이크 타임 : ${storeInfo.operationTime.breakTime}`}</p> <br/>
             </div>
             <Menu/>
-            <div id={styles.mapArea}><KakaoMap/></div>
+            {/* <div id={styles.mapArea}><KakaoMap/></div> */}
             <div className={styles.keywordArea}>
                 <div>{storeInfo.storeKeyword.keyword1}</div>
                 <div>{storeInfo.storeKeyword.keyword2}</div>
