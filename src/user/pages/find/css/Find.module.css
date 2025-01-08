@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.signupBasic input::placeholder {
+    opacity: 0;
+}
+
 .findAccount {
     background-color: #FFF3A7;
     width: 100vw;
