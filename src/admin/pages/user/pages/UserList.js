@@ -92,6 +92,12 @@ function UserList(){
             console.log(url)
             navigate(url)
         }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                searchClickHandler();
+            }
+        }
     return(
     <>
         <div className={styles.userListText}>회원리스트</div>
@@ -101,7 +107,13 @@ function UserList(){
             <option className={styles.userListOption} value="USER_NAME">닉네임</option>
             <option className={styles.userListOption} value="EMAIL">이메일</option>
         </select>   
-        <input type="text" className={styles.userListSearchInput} value={searchWord} onChange={searchChangeHandler}></input>
+        <input 
+            type="text" 
+            className={styles.userListSearchInput} 
+            value={searchWord} 
+            onChange={searchChangeHandler}
+            onKeyPress={handleKeyPress}
+        ></input>
         <button type="button" onClick={searchClickHandler} className={styles.userListSearchBtn}/>
         <table className={styles.userList}>
             <thead className={styles.userListHeader}>
