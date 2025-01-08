@@ -823,7 +823,7 @@ function Calendar() {
                     ))}
                 </div> */}
                 <div className={styles.morningArray}>
-                    <div id={styles.strMoring} style={{display : morningArray.lengh === 0 ? "none" : "" }}>오전</div>
+                    <div id={styles.strMoring} style={{display : morningArray.length == 0 ? "none" : "" }}>오전</div>
                     {morningArray.map((morningArr, morningIndex) => {
                         // 현재 날짜와 시간을 얻는다
                         const now = new Date();
@@ -885,7 +885,7 @@ function Calendar() {
                     ))}
                 </div> */}
                 <div className={styles.afternoonArray}>
-                    <div id={styles.strAfternoon} style={{display : afternoonArray.length === 0 ? "none" : "" }}>오후</div>
+                    <div id={styles.strAfternoon} style={{display : afternoonArray.length == 0 ? "none" : "" }}>오후</div>
                     {afternoonArray.map((afternoonArr, afternoonIndex) => {
                         // 현재 날짜와 시간을 얻는다
                         const now = new Date();
