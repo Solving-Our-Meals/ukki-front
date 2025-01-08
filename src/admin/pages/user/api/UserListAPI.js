@@ -5,7 +5,7 @@ export async function UserListAPI(category, word){
     let userList = {}
     if(category == null && word == null){
         console.log("요기")
-    const res = await fetch('/admin/users/list/')
+    const res = await fetch('/admin/users/list')
     userList = await res.json();
     }else if(category == 'none' && word != null){
         console.log("저기")

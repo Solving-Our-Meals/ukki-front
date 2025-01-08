@@ -153,7 +153,6 @@ function UserInfo(){
                         navigate("/admin/users/list");
                     }else{
                         setShowResultModal(false)
-                        // navigate(`/admin/users/info/${userNo}`);
                     }
                 }}/>
             )}
