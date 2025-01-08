@@ -467,7 +467,7 @@ div .location h3 {
   left: 55vw;
   top: 5vw;
   font-family: "Bobaesum Jindo TTF";
-  font-size: 2vw;
+  font-size: 2.2vw;
   color: #232323;
 }
 div .location > img:nth-of-type(1) {
@@ -504,7 +504,15 @@ div .location span:nth-of-type(1) {
 }
 div .location span:nth-of-type(2) {
   left: 65vw;
-  top: 11.5vw;
+  top: 11.3vw;
+  width: 13vw;
+  display: -webkit-box; /* Ensures the box model is correct for ellipsis */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* Limit the lines to 3 */
+  overflow: hidden; /* Hide any overflow */
+  text-overflow: ellipsis;
+  line-height: 130%; /* Adjust the line height as necessary */
+  max-height: 3.9em; /* Ensures it cuts off after 3 lines */
 }
 div .location span:nth-of-type(3) {
   left: 70.5vw;
@@ -512,7 +520,7 @@ div .location span:nth-of-type(3) {
 }
 div .location input {
   position: absolute;
-  width: 20.5vw;
+  width: 22.5vw;
   height: 2.3vw;
   background: #FFFFFF;
   border-radius: 20px;
@@ -521,6 +529,7 @@ div .location input {
   color: #999999;
   font-size: 0.8vw;
   font-weight: normal;
+  padding-left: 5vw;
 }
 div .location input:nth-of-type(1) {
   left: 55vw;
@@ -534,7 +543,7 @@ div .location input:nth-of-type(2) {
 }
 div .location label:nth-of-type(1) {
   position: absolute;
-  left: 56vw;
+  left: 55.5vw;
   top: 16.2vw;
   font-family: "Pretendard Variable";
   font-weight: 600;
@@ -545,7 +554,7 @@ div .location label:nth-of-type(1) {
 }
 div .location label:nth-of-type(2) {
   position: absolute;
-  left: 56vw;
+  left: 55.5vw;
   top: 19.2vw;
   font-family: "Pretendard Variable";
   font-weight: 600;
@@ -556,7 +565,7 @@ div .location label:nth-of-type(2) {
 }
 div .location button {
   position: absolute;
-  width: 9.5vw;
+  width: 10vw;
   height: 1.8vw;
   left: 55vw;
   top: 22vw;
@@ -569,7 +578,7 @@ div .location button {
   font-size: 0.8vw;
 }
 div .location button:nth-of-type(2) {
-  left: 66vw;
+  left: 67vw;
   background-color: #FFA8B8;
 }
 div .location img:nth-of-type(2) {
@@ -1865,4 +1874,4 @@ div .hidden-input {
     z-index: -9;
     opacity: 0;
   }
-}/*# sourceMappingURL=main.css.map */
+}

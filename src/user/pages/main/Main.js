@@ -52,12 +52,28 @@ const rRandom = () => {
 const Main = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
-    const [selectedCategory, setSelectedCategory,] = useState(0);
+    const [selectedCategory, setSelectedCategory,] = useState(1);
     const slideInterval = useRef(null);
     const startX = useRef(0);
     const endX = useRef(0);
     const defaultValue = "눌러서 현재 위치 변경 가능";
-   const [address, setAddress] = useState(defaultValue);
+    const [address, setAddress] = useState(defaultValue);
+    const [stores, setStores] = useState([]);
+
+    const [storeInfo, setStoreInfo] = useState({
+        storeName: '',
+        storeDes: '',
+        storeAddress: '',
+        storeProfile: '',
+        storeMenu: ''
+
+    });
+
+    const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress) => {
+        setStoreInfo({
+            storeName, storeDes, storeMenu, storeProfile, storeAddress
+        });
+    };
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -214,27 +230,47 @@ const Main = () => {
         }
     };
 
-    const fetchStoresLocation = async (categoryCode) => {
+
+    const fetchStoresLocation = async (category) => {
         try {
-            const response = await fetch(`/api/stores?category=${categoryCode}`);
+            const response = await fetch(`/main/category?category=${category}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
             const data = await response.json();
+            setStores(data);
+            setStoreInfo(data);
             console.log(data);
         } catch (error) {
             console.error('Error fetching store locations:', error);
         }
     };
-    
+
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (index) => {
-        setSelectedCategory(index);
+        setSelectedCategory(index + 1);
         fetchStoresLocation(index + 1); // 카테고리 코드를 +1 해서 전달
     };
-    
 
-    
+
+    const getNearestStore = async () => {
+        // 가장 가까운 가게를 찾는 로직 구현 (예: API 호출)
+        const response = await fetch('/api/nearest-store');
+        const nearestStore = await response.json();
+        return nearestStore;
+    };
+
+
+    useEffect(() => {
+        const fetchNearestStore = async () => {
+            const nearestStore = await getNearestStore();
+            setAddress(nearestStore.address);
+            setStoreInfo(nearestStore);
+        };
+        fetchNearestStore();
+    }, []);
+
 
     return (
         <>
@@ -290,47 +326,56 @@ const Main = () => {
                     <div onClick={() => handleCategoryClick(0)}>
                         <p>한식</p>
                     </div>
-                    <img src={gkstlr} onClick={() => handleCategoryClick(0)} className={selectedCategory === 0 ? 'selected-img' : ''} />
-                    <span className={selectedCategory === 0 ? 'selected-span' : ''}>
-                        {selectedCategory === 0 ? '너로 정했다!' : '흠..별로?'}</span>
-                    <div onClick={() => handleCategoryClick(1)}>
-                        <p>양식</p>
-                    </div>
-                    <img src={didtlr} onClick={() => handleCategoryClick(1)} className={selectedCategory === 1 ? 'selected-img' : ''} />
+                    <img src={gkstlr} onClick={() => handleCategoryClick(0)} className={selectedCategory === 1 ? 'selected-img' : ''} />
                     <span className={selectedCategory === 1 ? 'selected-span' : ''}>
                         {selectedCategory === 1 ? '너로 정했다!' : '흠..별로?'}</span>
+                    <div onClick={() => handleCategoryClick(1)}>
+                        <p>중식</p>
+                    </div>
+                    <img src={dlftlr} onClick={() => handleCategoryClick(1)} className={selectedCategory === 2 ? 'selected-img' : ''} />
+                    <span className={selectedCategory === 2 ? 'selected-span' : ''}>
+                        {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span>
                     <div onClick={() => handleCategoryClick(2)}>
                         <p>일식</p>
                     </div>
-                    <img src={wndtlr} onClick={() => handleCategoryClick(2)} className={selectedCategory === 2 ? 'selected-img' : ''} />
-                    <span className={selectedCategory === 2 ? 'selected-span' : ''}>
-                        {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span>
-                    <div onClick={() => handleCategoryClick(3)}>
-                        <p>중식</p>
-                    </div>
-                    <img src={dlftlr} onClick={() => handleCategoryClick(3)} className={selectedCategory === 3 ? 'selected-img' : ''} />
+                    <img src={wndtlr} onClick={() => handleCategoryClick(2)} className={selectedCategory === 3 ? 'selected-img' : ''} />
                     <span className={selectedCategory === 3 ? 'selected-span' : ''}>
                         {selectedCategory === 3 ? '너로 정했다!' : '흠..별로?'}</span>
+                    <div onClick={() => handleCategoryClick(3)}>
+                        <p>양식</p>
+                    </div>
+                    <img src={didtlr} onClick={() => handleCategoryClick(3)} className={selectedCategory === 4 ? 'selected-img' : ''} />
+                    <span className={selectedCategory === 4 ? 'selected-span' : ''}>
+                        {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span>
                     <div onClick={() => handleCategoryClick(4)}>
                         <p>기타</p>
                     </div>
-                    <img src={rlxk} onClick={() => handleCategoryClick(4)} className={selectedCategory === 4 ? 'selected-img' : ''} />
-                    <span className={selectedCategory === 4 ? 'selected-span' : ''}>
-                        {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span>
+                    <img src={rlxk} onClick={() => handleCategoryClick(4)} className={selectedCategory === 5 ? 'selected-img' : ''} />
+                    <span className={selectedCategory === 5 ? 'selected-span' : ''}>
+                        {selectedCategory === 5 ? '너로 정했다!' : '흠..별로?'}</span>
                 </div>
                 <div className='location'>
-                    <Map address={address} setAddress={setAddress} defaultValue={defaultValue}/>
-                    <h3>내 주변 한식 혼밥 리스트</h3>
-                    <p>가게 이름 : </p> <span>우끼링 백반</span>
-                    <p>가게 설명 : </p> <span>아주 맛난 백반 정식을 팔아용</span>
-                    <p>가게 대표 매뉴 : </p> <span>불고기 백반</span>
-                    <img src={qorqks} />
-                    <img src={ukki} />
+                    <Map address={address} setAddress={setAddress} defaultValue={defaultValue} selectedCategory={selectedCategory} onMarkerClick={handleMarkerClick} />
+
+                    <h3>
+                        {selectedCategory === 1 ? '내 주변 한식 혼밥 리스트' :
+                            selectedCategory === 2 ? '내 주변 중식 혼밥 리스트' :
+                                selectedCategory === 3 ? '내 주변 일식 혼밥 리스트' :
+                                    selectedCategory === 4 ? '내 주변 양식 혼밥 리스트' :
+                                        selectedCategory === 5 ? '내 주변 기타 혼밥 리스트' :
+                                            '내 주변 한식 혼밥 리스트'}
+                    </h3>
+
+                    <p>가게 이름 : <span>{storeInfo.storeName}</span></p>
+                    <p>가게 설명 : <span>{storeInfo.storeDes}</span></p>
+                    <img src={storeInfo.storeProfile} alt="store" />
+                    <img src={ukki} alt="ukki" />
                     <input onKeyPress={handleKeyPress} defaultValue={defaultValue}></input><label>현재 위치 : </label>
-                    <input defaultValue='하남시 덕풍동로 90 802호'></input><label>가게 위치 : </label>
+                    <input defaultValue={storeInfo.storeAddress}></input><label>가게 위치 : </label>
                     <button>예약하기</button>
                     <button>길안내</button>
                 </div>
+
                 <div className='talk'>
                     <img src={talk1} />
                     <img src={talk2} />

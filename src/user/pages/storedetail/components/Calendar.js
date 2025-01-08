@@ -771,23 +771,34 @@ function Calendar() {
                 </div>
                 <div className={styles.calendarGrid}>
                     {calendarDates.map((date, index) => {
+                        // 오늘 날짜를 비교하기 위해 시간 값을 0으로 설정
+                        const todayWithoutTime = new Date(today).setHours(0, 0, 0, 0);
+                        const dateWithoutTime = new Date(date).setHours(0, 0, 0, 0);
+
                         const isToday = date.toDateString() === today.toDateString();
                         const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+                        const isPastDate = dateWithoutTime < todayWithoutTime // 오늘 이전 날짜 확인
+
                         return(
-                        <div
-                            key={index}
-                            className={`${styles.dateCell} ${
-                                date.getMonth() === month ? styles.currentMonth : styles.otherMonth
-                            }`}
-                            onClick={() => { selectedDateHandler(date) }}
-                        >
-                            <img 
-                                src={todayIcon} 
-                                style={{display : (isToday && !selectedDate) || isSelected ? "" : "none"}} 
-                                alt="오늘 날짜 표시 아이콘"
-                            />
-                            {date.getDate()}
-                        </div>
+                            <div
+                                key={index}
+                                className={`${styles.dateCell} ${
+                                    date.getMonth() === month ? styles.currentMonth : styles.otherMonth
+                                }`}
+                                style={{
+                                    pointerEvents : isPastDate ? 'none' : 'auto', // 오늘 이전 날짜는 클릭 불가
+                                    cursor : isPastDate ? 'default' : 'pointer', // 커서 변경
+                                    color : isPastDate ? '#BDBEBF' : ''
+                                }}
+                                onClick={!isPastDate ? () => { selectedDateHandler(date) } : undefined}
+                            >
+                                <img 
+                                    src={todayIcon} 
+                                    style={{display : (isToday && !selectedDate) || isSelected ? "" : "none"}} 
+                                    alt="오늘 날짜 표시 아이콘"
+                                />
+                                {date.getDate()}
+                            </div>
                         );
                     })}
                 </div>
@@ -797,7 +808,7 @@ function Calendar() {
                     {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}.${selectedTotalDate.selectedDate.toString().padStart(2,'0')}(${selectedTotalDate.selectedDay})`}
                 </div>
                 <div className={styles.instructionTime}>시간을 선택해주세요.</div>
-                <div className={styles.morningArray}>
+                {/* <div className={styles.morningArray}>
                     <div id={styles.strMoring}>오전</div>
                     {morningArray.map((morningArr, morningIndex) => (
                         <div 
@@ -812,8 +823,54 @@ function Calendar() {
                         {morningArr}
                         </div>
                     ))}
+                </div> */}
+                <div className={styles.morningArray}>
+                    <div id={styles.strMoring}>오전</div>
+                    {morningArray.map((morningArr, morningIndex) => {
+                        // 현재 날짜와 시간을 얻는다
+                        const now = new Date();
+                        const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
+
+                        // morningArr의 시간을 분리하여 비교
+                        const [morningHours, morningMinutes] = morningArr.split(":").map(Number);
+
+                        // 비교를 위한 Date 객체 생성
+                        const currentDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), currentHours, currentMinutes);
+                        const morningDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), morningHours, morningMinutes);
+
+                        // 클릭 가능 여부 결정
+                        const isClickable = morningDateTime > currentDateTime && isOper;
+
+                        // 클릭 이벤트 핸들러
+                        const handleClick = () => {
+                            if (isClickable) {
+                                selectedMorningTime(morningIndex);
+                            }
+                        };
+
+                        return (
+                            <div 
+                                key={morningIndex} 
+                                className={styles.morningArr} 
+                                style={{
+                                    backgroundColor: isClickable
+                                        ? (selectedMorningTimeIndex === morningIndex ? '#FF8AA3' : '#FEDA00')
+                                        : '#FFF3A7', 
+                                    color: isClickable
+                                        ? (selectedMorningTimeIndex === morningIndex ? '#000000' : '#000000')
+                                        : '#BDBEBF', 
+                                    cursor: isOper && isClickable ? 'pointer' : 'default',
+                                    pointerEvents: isClickable ? 'auto' : 'none'
+                                }}
+                                onClick={handleClick}
+                            >
+                            {morningArr}
+                            </div>
+                        );
+                    })}
                 </div>
-                <div className={styles.afternoonArray}>
+
+                {/* <div className={styles.afternoonArray}>
                     <div id={styles.strAfternoon}>오후</div>
                     {afternoonArray.map((afternoonArr, afternoonIndex) => (
                         <div 
@@ -828,6 +885,47 @@ function Calendar() {
                         {afternoonArr}
                         </div>
                     ))}
+                </div> */}
+                <div className={styles.afternoonArray}>
+                    <div id={styles.strAfternoon}>오후</div>
+                    {afternoonArray.map((afternoonArr, afternoonIndex) => {
+                        // 현재 날짜와 시간을 얻는다
+                        const now = new Date();
+                        const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
+
+                        // morningArr의 시간을 분리하여 비교
+                        const [afternoonHours, afternoonMinutes] = afternoonArr.split(":").map(Number);
+
+                        // 비교를 위한 Date 객체 생성
+                        const currentDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), currentHours, currentMinutes);
+                        const afternoonDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), afternoonHours, afternoonMinutes);
+
+                        // 클릭 가능 여부 결정
+                        const isClickable = afternoonDateTime > currentDateTime && isOper;
+
+                        // 클릭 이벤트 핸들러
+                        const handleClick = () => {
+                            if (isClickable) {
+                                selectedAfternoonTime(afternoonIndex);
+                            }
+                        };
+
+                        return (
+                            <div 
+                                key={afternoonIndex} 
+                                className={styles.afternoonArr} 
+                                style={{
+                                    backgroundColor: isClickable ? (selectedAfternoonTimeIndex === afternoonIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
+                                    color: isClickable ? '' : '#BDBEBF', 
+                                    cursor: isOper ? (isClickable ? 'pointer' : 'default') : 'default',
+                                    pointerEvents: isClickable ? 'auto' : 'none'
+                                }}
+                                onClick={() => handleClick()}
+                            >
+                            {afternoonArr}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </>
