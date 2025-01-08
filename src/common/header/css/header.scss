@@ -5,10 +5,9 @@ header {
     left: 0;
     right: 0;
     top: 0;
-    background: $secondary2;
-    box-shadow: 0px 4px 7.3px 1px rgba(0, 0, 0, 0.25);
+    background: $background;
     width: 100%;
-    height: 80px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,215 +15,227 @@ header {
     box-sizing: border-box;
     z-index: 999999;
 
+
     img {
         position: absolute;
-        left: 3.54%;
+        left: 4.5%;
         right: 89.43%;
-        top: 15%;
+        top: 15.5%;
         bottom: 21.25%;
-        width: 135px;
+        width: 110px;
     }
 
     .menu {
         display: flex;
-        gap: 20px;
+        gap: 2px;
         position: relative;
-        right: -70%;
+        justify-content: center;
         top: 30%;
 
+        .menu-item {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .menu-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         a {
-            font-family: 'Bobaesum Jindo TTF';
+            font-family: 'Pretendard Variable';
             font-style: normal;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 1.3rem;
             line-height: 1.5rem;
-            color: $primary;
-            transition: color 1s;
+            color: $textCaption;
+            transition: all 0.4s ease;
             position: relative;
+            background-color: #f6f6f6;
+            padding: 3px 20px;
+            border-radius: 50px;
+            border: 1.5px solid transparent;
 
-            &:hover {
-                color: #FF5176;
-            }
-
-            &::before {
-                position: absolute;
-                content: '';
-                width: 0;
-                height: 4px;
-                background-color: #FF5176;
-                bottom: -7px;
-                left: 50%;
-                transform: translateX(-50%);
-                transition: width 1s ease-in-out;
-                border-radius: 50px;
-            }
-
-            &::before {
-                height: 0.15rem;
-            }
-
-            &:hover::before {
-                width: 2.5rem;
-            }
-
-            &:nth-of-type(3):hover::before {
-                width: 5.5rem;
-            }
-
-            &:nth-of-type(4):hover::before {
-                width: 6.5rem;
-            }
-
-            &:nth-of-type(5) {
-                font-family: 'Pretendard Variable';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 1rem;
+            &.active {
                 color: $textStrong;
+                border: 1.5px solid $textStrong;
             }
+        }
 
-            &:nth-of-type(6) {
-                font-family: 'Pretendard Variable';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 1rem;
-                color: $textStrong;
-            }
+        .indicator {
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: $textStrong;
+            transition: all 0.4s ease;
+        }
+
+        .menu-item.active .indicator {
+            width: 100%;
+        }
+
+        a:nth-of-type(7) {
+            position: absolute;
+            font-family: 'Pretendard Variable';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1rem;
+            color: $background;
+            background-color: $textStrong;
+            right: 5vw;
+        }
+
+        a:nth-of-type(8) {
+            position: absolute;
+            font-family: 'Pretendard Variable';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1rem;
+            color: $background;
+            background-color: $textStrong;
+            right: 11vw;
         }
     }
 
     .menu-button {
         position: absolute;
-        right: 7%;
-        top: 0.41%;
+        right: 10%;
+        top: 10%;
         background: none;
         border: none;
         outline: none;
         display: none;
-        width: 56px;
-        height: 56px;
+
+        img {
+            width: 40px;
+        }
     }
 
-
-
-    // 반응형
     @media (max-width: 768px) {
-        flex-direction: column ;
-        align-items: center ;
-        padding: 10px ;
-        width: 100% ;
-        max-height: 28px ;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        width: 100%;
+        height: 50px;
 
         img {
-            height: 17px ;
-            width: auto ;
-            left: 5% ;
+            width: 80px;
+            left: 5%;
         }
 
         .menu-button {
-            background: none ;
+            background: none;
 
             img {
-                position: absolute ;
-                top: 10% ;
-                left: 80% ;
+                position: absolute;
+                top: 5px;
+                left: 80%;
+                height: 30px;
+                width: 30px;
             }
         }
 
         .menu {
             display: none;
-            right: 0%;
+
+            &.open {
+                position: absolute;
+                width: 100%;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                top: 50px;
+                height: 350px;
+                background-color: $background;
+                gap: 15px;
+                box-shadow: 0px 4px 7.3px rgba(0, 0, 0, 0.25);
+
+
+            }
 
             a {
-                font-size: 0.7rem !important;
+                position: relative;
+                left: 20px;
+                background: none;
+                border: none;
+                top: -22px;
 
-                &:nth-of-type(5) {
-                    font-size: 0.5rem !important;
+                &.active {
+                    color: $textStrong;
+                    border: none;
+                    font-weight: 700;
+
                 }
 
-                &:nth-of-type(6) {
-                    font-size: 0.5rem !important;
+
+                &:nth-of-type(7) {
+                    width: 100px;
+                    position: absolute;
+                    top: 300px;
+
+                    font-weight: 700;
+                    font-size: 1rem;
+                    color: $background;
+                    background-color: $textStrong;
+                    left: 35px;
+                }
+
+                &:nth-of-type(8) {
+                    width: 100px;
+                    position: absolute;
+                    top: 300px;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    color: $background;
+                    background-color: $textStrong;
+                    left: 150px;
                 }
             }
-        }
-
-        .menu.open {
-            position: absolute;
-            width: 100%;
-            justify-content: center;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            top: 28px;
-            background: #FFF9D1;
-            height: 50px;
-            box-shadow: 0px 4px 7.3px rgba(0, 0, 0, 0.25);
         }
 
         .menu-button {
             display: block;
             position: absolute;
         }
-    
+
     }
-    // 반응형 
+
     @media (max-width: 1440px) and (min-width: 769px) {
-        flex-direction: column ;
-        align-items: center ;
-        padding: 10px ;
-        width: 100% ;
-        max-height: 48px ;
+        height: 60px;
+        padding: 0 15px;
 
         img {
-            height: 30px ;
-            width: auto ;
-            left: 5% ;
-        }
-
-        .menu-button {
-            background: none ;
-
-            img {
-                position: absolute ;
-                top: 15% ;
-                left: 80% ;
-            }
+            left: 4%;
+            right: 88%;
+            top: 13.5%;
+            bottom: 18%;
+            width: 90px;
         }
 
         .menu {
-            display: none;
-            right: 0%;
+            gap: 2px;
 
             a {
-                font-size: 1rem !important;
+                font-size: 1.1rem;
+                padding: 2px 12px;
+            }
 
-                &:nth-of-type(5) {
-                    font-size: 0.7rem !important;
-                }
+            a:nth-of-type(7) {
+                right: 4vw;
+            }
 
-                &:nth-of-type(6) {
-                    font-size: 0.7rem !important;
-                }
+            a:nth-of-type(8) {
+                right: 9vw;
             }
         }
 
-        .menu.open {
-            position: absolute;
-            width: 100%;
-            justify-content: center;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            top: 48px;
-            background: #FFF9D1;
-            height: 80px;
-            box-shadow: 0px 4px 7.3px rgba(0, 0, 0, 0.25);
-        }
-
         .menu-button {
-            display: block;
-            position: absolute;
+            display: none;
         }
     }
-
 }

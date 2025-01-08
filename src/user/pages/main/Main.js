@@ -285,7 +285,7 @@ const Main = () => {
                     </div>
                     <div className="leftbtn btn" onClick={handlePrev}>&lt;</div>
                     <div className="rightbtn btn" onClick={handleNext}>&gt;</div>
-                    <div className="pagination">
+                    {/* <div className="pagination">
                         <ul>
                             {banners.map((_, index) => (
                                 <li
@@ -299,7 +299,7 @@ const Main = () => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='search'>
                     <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" />
