@@ -172,21 +172,34 @@ function CreateReview(){
         e.preventDefault();
     }
 
-    // const getOverlayClass = () => {
-    //     if(doWriteReview) return `${styles.overlay} ${styles.zIndex11} ${styles.show}`;
-    //     if(isDisplay || isCompletedReview) return `${styles.overlay} ${styles.zIndex10} ${styles.show}`
-    //     return styles.overlay;
-    // }
-
     const getOverlayClass = () => { 
         if (doWriteReview) return `${styles.overlay} ${styles.zIndex11} ${styles.show}`; 
         if (isDisplay || isCompletedReview) return `${styles.overlay} ${styles.zIndex10} ${styles.show}`; 
         return styles.overlay; 
     }
 
+    // 리뷰 작성하기 버튼 활성화 여부
+    const [writeReview, setWriteReview] = useState(false);
+
+    // DB에 유저 넘버와 가게 번호 넘기기
+    // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기
+    // 가져온 값에 예약 시간이 적혀야하며 예약 날짜와 시간이 지났지만 1주일 이내일 경우 writeReview를 true로 변경
+    // useEffect(
+    //     () => {
+    //         fetch(`/store/reviewhistory?userNo=${userNo}&storeNo=${storeNo}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log('리뷰 쓸 수 있겠니...?', data)
+    //         })
+    //         .catch(error => console.log(error));
+    //     }, []
+    // )
+
+
+
     return(
         <>
-            <button type='button' id={styles.btnWriteReview} onClick={() => createReviewHandler()}>리뷰 작성하기</button>
+            <button type='button' id={styles.btnWriteReview} style={{display : writeReview ? "" : "none"}} onClick={() => createReviewHandler()}>리뷰 작성하기</button>
             <div className={getOverlayClass()}></div>
             <div className={styles.createReview} style={{display : isDisplay ? "" : "none"}} >
                 <div id={styles.strReview}>리뷰하기</div>

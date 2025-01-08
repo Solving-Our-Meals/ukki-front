@@ -227,6 +227,7 @@ function Calendar() {
                         setIsOper(false);
                         morningArr.push('00:00');
                         afternoonArr.push('00:00');
+                        afternoonArr.push('00:00');
                     }
                 // 1-2. 브레이크 타임 없을 경우    
                 } else {
@@ -368,8 +369,8 @@ function Calendar() {
                     // 2-2. 휴무인 날    
                     } else {
                         setIsOper(false);
-                        // operArr.push('00:00')
                         morningArr.push('00:00');
+                        afternoonArr.push('00:00');
                         afternoonArr.push('00:00');
                     }          
                 }
@@ -544,16 +545,11 @@ function Calendar() {
                     });
                 }
         
-                console.log('morningArr:', morningArr);
-                console.log('afternoonArr:', afternoonArr);
-        
-                // setMorningArray(morningArr);
-                // setAfternoonArray(afternoonArr);
-        
             // 2-2. 휴무인 날    
             } else {
                 setIsOper(false);
                 morningArr.push('00:00');
+                afternoonArr.push('00:00');
                 afternoonArr.push('00:00');
             }
         } else {
@@ -692,12 +688,11 @@ function Calendar() {
                         afternoonArr.push('23:00');
                     }
                 } 
-                console.log('4444');
             // 2-2. 휴무인 날    
             } else {
                 setIsOper(false);
-                // operArr.push('00:00')
                 morningArr.push('00:00');
+                afternoonArr.push('00:00');
                 afternoonArr.push('00:00');
             }          
         }
@@ -772,10 +767,15 @@ function Calendar() {
                         // 오늘 날짜를 비교하기 위해 시간 값을 0으로 설정
                         const todayWithoutTime = new Date(today).setHours(0, 0, 0, 0);
                         const dateWithoutTime = new Date(date).setHours(0, 0, 0, 0);
+                        const nextWeekWithoutTime = new Date(today);
+                        nextWeekWithoutTime.setDate(today.getDate() + 7);
 
                         const isToday = date.toDateString() === today.toDateString();
                         const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
-                        const isPastDate = dateWithoutTime < todayWithoutTime // 오늘 이전 날짜 확인
+                        const isPastDate = dateWithoutTime < todayWithoutTime; // 오늘 이전 날짜 확인
+                        const isBeyondNextWeek = dateWithoutTime > nextWeekWithoutTime;  // 다음 주 이후 날짜 확인
+
+                        const isWithinOneWeek = !isPastDate && !isBeyondNextWeek;
 
                         return(
                             <div
@@ -784,11 +784,11 @@ function Calendar() {
                                     date.getMonth() === month ? styles.currentMonth : styles.otherMonth
                                 }`}
                                 style={{
-                                    pointerEvents : isPastDate ? 'none' : 'auto', // 오늘 이전 날짜는 클릭 불가
-                                    cursor : isPastDate ? 'default' : 'pointer', // 커서 변경
-                                    color : isPastDate ? '#BDBEBF' : ''
+                                    pointerEvents : isWithinOneWeek ? 'auto' : 'none', // 오늘 이전 날짜는 클릭 불가
+                                    cursor : isWithinOneWeek ? 'pointer' : 'default', // 커서 변경
+                                    color : isWithinOneWeek ? '' : '#BDBEBF'
                                 }}
-                                onClick={!isPastDate ? () => { selectedDateHandler(date) } : undefined}
+                                onClick={isWithinOneWeek ? () => { selectedDateHandler(date) } : undefined}
                             >
                                 <img 
                                     src={todayIcon} 
@@ -828,6 +828,8 @@ function Calendar() {
                         // 현재 날짜와 시간을 얻는다
                         const now = new Date();
                         const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
+                        const todayWithoutTime = new Date(now).setHours(0, 0, 0, 0);
+                        const selectedDateWithoutTime = new Date(selectedTotalDate.selectedYear, selectedTotalDate.selectedMonth - 1, selectedTotalDate.selectedDate).setHours(0, 0, 0, 0);
 
                         // morningArr의 시간을 분리하여 비교
                         const [morningHours, morningMinutes] = morningArr.split(":").map(Number);
@@ -837,7 +839,8 @@ function Calendar() {
                         const morningDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), morningHours, morningMinutes);
 
                         // 클릭 가능 여부 결정
-                        const isClickable = morningDateTime > currentDateTime && isOper;
+                        const isToday = todayWithoutTime === selectedDateWithoutTime;
+                        const isClickable = (isToday && morningDateTime > currentDateTime) || (!isToday && isOper);
 
                         // 클릭 이벤트 핸들러
                         const handleClick = () => {
@@ -887,9 +890,13 @@ function Calendar() {
                 <div className={styles.afternoonArray}>
                     <div id={styles.strAfternoon} style={{display : afternoonArray.length == 0 ? "none" : "" }}>오후</div>
                     {afternoonArray.map((afternoonArr, afternoonIndex) => {
+                        // 마지막 인덱스는 건너뛰기
+                        if(afternoonIndex === afternoonArray.length - 1) return null;
                         // 현재 날짜와 시간을 얻는다
                         const now = new Date();
                         const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
+                        const todayWithoutTime = new Date(now).setHours(0, 0, 0, 0);
+                        const selectedDateWithoutTime = new Date(selectedTotalDate.selectedYear, selectedTotalDate.selectedMonth - 1, selectedTotalDate.selectedDate).setHours(0, 0, 0, 0);
 
                         // morningArr의 시간을 분리하여 비교
                         const [afternoonHours, afternoonMinutes] = afternoonArr.split(":").map(Number);
@@ -899,7 +906,8 @@ function Calendar() {
                         const afternoonDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), afternoonHours, afternoonMinutes);
 
                         // 클릭 가능 여부 결정
-                        const isClickable = afternoonDateTime > currentDateTime && isOper;
+                        const isToday = todayWithoutTime === selectedDateWithoutTime;
+                        const isClickable = (isToday && afternoonDateTime > currentDateTime) || (!isToday && isOper);
 
                         // 클릭 이벤트 핸들러
                         const handleClick = () => {
