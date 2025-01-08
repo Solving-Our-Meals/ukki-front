@@ -254,22 +254,7 @@ const Main = () => {
     };
 
 
-    const getNearestStore = async () => {
-        // 가장 가까운 가게를 찾는 로직 구현 (예: API 호출)
-        const response = await fetch('/api/nearest-store');
-        const nearestStore = await response.json();
-        return nearestStore;
-    };
 
-
-    useEffect(() => {
-        const fetchNearestStore = async () => {
-            const nearestStore = await getNearestStore();
-            setAddress(nearestStore.address);
-            setStoreInfo(nearestStore);
-        };
-        fetchNearestStore();
-    }, []);
 
 
     return (
