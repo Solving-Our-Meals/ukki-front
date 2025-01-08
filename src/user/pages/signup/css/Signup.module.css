@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
-.signupBasic input::placeholder {
-    opacity: 0;
+@-moz-document url-prefix() {
+    .signupBasic input::placeholder {
+        opacity: 0;
+    }
 }
 
 .signupBasic {
