@@ -17,30 +17,31 @@ import Search from './user/pages/search/Search';
 import Reservation from './user/pages/reservation/pages/ReservationPage';
 
 function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="auth/signup" element={<Signup />} />
+                <Route path="auth/login" element={<Login />} />
+                <Route path="auth/find/:type" element={<Find />} />
+                <Route path="/" element={<UserLayout />}>
+                <Route path="/" element={<Main />} />
+                <Route path="info" element={<Info />} />
+                </Route>
 
-  return (
-      <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route path="auth/signup" element={<Signup />} />
-          <Route path="auth/login" element={<Login />} />
-          <Route path="auth/find/:type" element={<Find />} />
-          <Route path="user/mypage" element={<Mypage />} />
-          <Route path="/" element={<UserLayout />}>
-            <Route index element={<Main />} />
-            <Route path="search" element={<Search />} />
-            <Route path="info" element={<Info />} />
-            <Route path="main" element={<Main />} />
-            <Route path="store" element={<UserStorePage />} />
-            <Route path="reservation" element={<Reservation/>}/>
-            <Route path="sinquiries" element={<InquiryEnter />} />
-          </Route>
-          <Route path="qr/*" element={<QrRoutes />} />
-          <Route path="admin/*" element={<AdminRoutes />} />
-        </Routes>
-        </AuthProvider>
-      </BrowserRouter>
-  );
+                <Route element={<AuthProvider />}>
+                    <Route path="user/mypage" element={<Mypage />} />
+                    <Route path="/" element={<UserLayout />}>
+                        <Route path="search" element={<Search />} />
+                        <Route path="store" element={<UserStorePage />} />
+                        <Route path="reservation" element={<Reservation />} />
+                        <Route path="sinquiries" element={<InquiryEnter />} />
+                    </Route>
+                </Route>
+
+                <Route path="qr/*" element={<QrRoutes />} />
+                <Route path="admin/*" element={<AdminRoutes />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
-
 export default App;

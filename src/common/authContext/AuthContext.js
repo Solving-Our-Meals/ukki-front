@@ -9,8 +9,9 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(null); // 인증 상태
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // 인증 상태 초기값을 false로 설정
     const [authToken, setAuthToken] = useState(null); // authToken 상태
+    const [loading, setLoading] = useState(true); // 로딩 상태
     const navigate = useNavigate();
 
     // axiosInstance 설정
@@ -48,7 +49,6 @@ export const AuthProvider = ({ children }) => {
         const verifyAuthToken = async () => {
             const isValid = await checkAuthToken();
             if (!isValid) {
-                // authToken이 없거나 만료된 경우 refreshToken을 통해 갱신
                 const newToken = await refreshAuthToken();
                 if (newToken) {
                     setIsAuthenticated(true);
@@ -59,10 +59,15 @@ export const AuthProvider = ({ children }) => {
             } else {
                 setIsAuthenticated(true);
             }
+            setLoading(false); // 인증 확인이 끝나면 로딩 상태 해제
         };
 
         verifyAuthToken();
     }, [navigate]);
+
+    if (loading) {
+        return <div>로딩 만들고 넣을것</div>;
+    }
 
     // 전역으로 인증 정보를 제공
     return (
