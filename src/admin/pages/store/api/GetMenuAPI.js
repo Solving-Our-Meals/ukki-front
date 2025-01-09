@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
-
-export const getMenuAPI = async (storeNo) => {
-    const [menu, setMenu] = useState("");
-    useEffect(() => {
-        fetch(`/store/storeMenu/${storeNo}`)
-        .then(res => res.text())
-        .then(data => {
-            const menuUrl = `/store/api/menu?menuName=${data}`
-            setMenu(menuUrl);
-        })
-    }, []);
-
-    return menu;
+export async function GetMenuAPI(storeNo) {
+    try {
+        const response = await fetch(`/store/storeMenu/${storeNo}`);
+        const data = await response.text();
+        return `/store/api/menu?menuName=${data}`;
+    } catch (error) {
+        console.error('메뉴 이미지 로드 실패:', error);
+        return '';
+    }
 }
