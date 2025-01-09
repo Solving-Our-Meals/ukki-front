@@ -64,6 +64,7 @@
     line-height: 36px;
     /* text/title */
     color: #1E1E1E;
+    user-select: text;
 }
 
 #userInfoId > p{
@@ -74,6 +75,7 @@
     font-weight: 400;
     font-size: 30px;
     line-height: 33px;
+    user-select: text;
 }
 
 #userInfoName{
@@ -95,6 +97,7 @@
     color: #1E1E1E;
 
     align-content: center;
+    user-select: text;
 
 }
 #userInfoName > p{
@@ -105,6 +108,7 @@
     font-weight: 400;
     font-size: 30px;
     line-height: 33px;
+    user-select: text;
 }
 #userInfoEmail{
 
@@ -124,6 +128,8 @@
     /* text/title */
     color: #1E1E1E;
 
+    user-select: text;
+
 }
 #userInfoEmail > p{    
     display: inline-block;
@@ -133,6 +139,7 @@
     font-weight: 400;
     font-size: 30px;
     line-height: 33px;
+    user-select: text;
 }
 #userInfoNameChangeBtn{
     /* Rectangle 166 */
@@ -158,6 +165,10 @@
     align-content: center;
 
     border: none;
+    cursor: pointer;
+}
+#userInfoNameChangeBtn:hover {
+    background: #FFE970;
 }
 #userInfoDeleteBtn{
 
@@ -180,6 +191,10 @@
     color: #232323;
 
     border: none;
+    cursor: pointer;
+}
+#userInfoDeleteBtn:hover {
+    background: #FF6B87;
 }
 #reservationCount{
 
@@ -217,6 +232,7 @@
     /* text/title */
     color: #1E1E1E;
 
+    user-select: text;
 
 }
 .userActInfoCount{
@@ -231,6 +247,8 @@
 
     /* text/title */
     color: #1E1E1E;
+
+    user-select: text;
 
 }
 
@@ -298,14 +316,17 @@
     left: 10px;
     top: 80px;
     border-radius: 0px;
-    overflow: scroll;
-    overflow-x: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: nowrap;
 }
 
 .badge{
-    margin-left: 20px;
-    display: inline-block;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
+    margin: 0;
     background-color: #E3E3E3;
+    flex-shrink: 0;
 }
