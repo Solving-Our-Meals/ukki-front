@@ -5,7 +5,7 @@ import { AuthProvider, useAuth } from './common/authContext/AuthContext';
 import Signup from './user/pages/signup/pages/Signup';
 import Login from './user/pages/login/pages/Login';
 import Find from './user/pages/find/pages/Find';
-import Mypage from './user/pages/mypage/component/Mypage';
+import Mypage from './user/pages/mypage/pages/Mypage';
 import Info from './user/pages/info/Info';
 import UserLayout from './user/layouts/UserLayout';
 import Main from './user/pages/main/Main';
@@ -33,6 +33,7 @@ function App() {
                     </Route>
 
                     {/* 로그인 인증이 필요한 라우트들 넣고 element에 PrivateRoute 붙여주세요. */}
+                    <Route path="user/mypage" element={<PrivateRoute element={<Mypage />} />} />
                     <Route path="user/mypage/reservation" element={<PrivateRoute element={<Mypage />} />} />
                     <Route path="/" element={<UserLayout />}>
                         <Route path="search" element={<PrivateRoute element={<Search />} />} />

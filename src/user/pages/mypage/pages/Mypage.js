@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import Header from '../../../../common/header/components/Header'
 import styles from '../css/Mypage.module.css';
 import '../css/reset.css';
-import MyProfile from "../pages/MyProfile";
-import Reservation from "../pages/Reservation";
-import { Link } from 'react-router-dom';
+import MyProfile from "../component/MyProfile";
+import Reservation from "./Reservation";
 
 function Mypage() {
     return (

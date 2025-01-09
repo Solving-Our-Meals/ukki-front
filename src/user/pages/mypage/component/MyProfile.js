@@ -24,7 +24,6 @@ function MyProfile() {
             if (response.ok) {
                 const data = await response.json();
                 setUserInfo(data);
-                console.log(data);
             } else if (response.status === 401) {
                 setError('인증이 필요합니다.');
                 navigate('/auth/login');
@@ -39,7 +38,7 @@ function MyProfile() {
     };
 
     if (loading) {
-        return <div>로딩 중...</div>;
+        return <div>로딩창 넣을곳</div>;
     }
 
     if (error) {
