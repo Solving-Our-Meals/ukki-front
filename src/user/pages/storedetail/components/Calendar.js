@@ -105,9 +105,9 @@ function Calendar() {
             .then(res => res.json())
             .then(data => {
                 setOperation(data.operationTime)
-                console.log("가게 정보22222 : ",data.operationTime);
+                //console.log("가게 정보22222 : ",data.operationTime);
                 setStoreInfo(data);
-                console.log('뱌얍야뱌야뱌ㅑㅇ뱌야 ',data)
+                //console.log('뱌얍야뱌야뱌ㅑㅇ뱌야 ',data)
 
                 const today = new Date().getDay();
 
@@ -158,10 +158,10 @@ function Calendar() {
                         endTime.setHours(parseInt(strEndHour));
                         endTime.setMinutes(parseInt(strEndMinute));
 
-                        console.log('Start Time:', startTime);
-                        console.log('Break Start Time:', startBreakTime);
-                        console.log('Break End Time:', endBreakTime);
-                        console.log('End Time:', endTime);
+                        //console.log('Start Time:', startTime);
+                        //console.log('Break Start Time:', startBreakTime);
+                        //console.log('Break End Time:', endBreakTime);
+                        //console.log('End Time:', endTime);
 
                         const addTimeSlots = (arr, start, end) => {
                             for (let i = start.getHours(); i <= end.getHours(); i++) {
@@ -216,8 +216,8 @@ function Calendar() {
                             });
                         }
 
-                        console.log('morningArr:', morningArr);
-                        console.log('afternoonArr:', afternoonArr);
+                        //console.log('morningArr:', morningArr);
+                        //console.log('afternoonArr:', afternoonArr);
 
                         // setMorningArray(morningArr);
                         // setAfternoonArray(afternoonArr);
@@ -252,7 +252,7 @@ function Calendar() {
 
                         // 3-1. 오전 시작 : 장사 시작 시간이 8시 미만일 경우
                         if(startTime.getHours() < 8){
-                            console.log('1111');
+                            //console.log('1111');
                             // 4-1. 마감 시간이 23시 이전인 경우
                             if(endTime.getHours() <= 23){
                                 for(let i = 8; i < 12; i++){
@@ -284,7 +284,7 @@ function Calendar() {
                             }
                         // 3-2.오전 시작 : 장사 시작 시간이 8시 초과   
                         } else if(8 <= startTime.getHours() && startTime.getHours() < 12){
-                            console.log('2222');
+                            //console.log('2222');
                             // 4-1. 마감 시간이 23시 이전인 경우
                             if(endTime.getHours() <= 23){
                                 for(let i = startTime.getHours(); i < 12; i++){
@@ -330,7 +330,7 @@ function Calendar() {
                             }
                         // 3-3. 오후 시작    
                         } else if(startTime.getHours() >= 12){
-                            console.log('3333');
+                            //console.log('3333');
                             // 4-1. 마감 시간이 23시 이전인 경우 -> 새벽 마감인 경우에도 23 이하이므로 8 초과라는 조건을 더 줌줌
                             if(endTime.getHours() <= 23 && endTime.getHours() > 8){
                                 for(let i = startTime.getHours(); i < endTime.getHours(); i++){
@@ -365,7 +365,7 @@ function Calendar() {
                                 afternoonArr.push('23:00');
                             }
                         } 
-                        console.log('4444');
+                        //console.log('4444');
                     // 2-2. 휴무인 날    
                     } else {
                         setIsOper(false);
@@ -452,9 +452,9 @@ function Calendar() {
         const dayOfWeek = dayOfWeekMap[day];
 
         // 선택한 날짜의 요일
-        console.log('선택한 날짜의 요일', dayOfWeek);
+        //console.log('선택한 날짜의 요일', dayOfWeek);
         // 선택한 날짜의 운영 시간 -> String 형태 -> 16:00 ~ 02:00 or 휴무
-        console.log("선택한 날짜의 운영 시간",operation[dayOfWeek])
+        //console.log("선택한 날짜의 운영 시간",operation[dayOfWeek])
 
         // 운영 시간 배열에 담기
         // let operArr = [];
@@ -575,7 +575,7 @@ function Calendar() {
 
                 // 3-1. 오전 시작 : 장사 시작 시간이 8시 미만일 경우
                 if(startTime.getHours() < 8){
-                    console.log('1111');
+                    //console.log('1111');
                     // 4-1. 마감 시간이 23시 이전인 경우
                     if(endTime.getHours() <= 23){
                         for(let i = 8; i < 12; i++){
@@ -607,7 +607,7 @@ function Calendar() {
                     }
                 // 3-2.오전 시작 : 장사 시작 시간이 8시 초과   
                 } else if(8 <= startTime.getHours() && startTime.getHours() < 12){
-                    console.log('2222');
+                    //console.log('2222');
                     // 4-1. 마감 시간이 23시 이전인 경우
                     if(endTime.getHours() <= 23){
                         for(let i = startTime.getHours(); i < 12; i++){
@@ -653,7 +653,7 @@ function Calendar() {
                     }
                 // 3-3. 오후 시작    
                 } else if(startTime.getHours() >= 12){
-                    console.log('3333');
+                    //console.log('3333');
                     // 4-1. 마감 시간이 23시 이전인 경우 -> 새벽 마감인 경우에도 23 이하이므로 8 초과라는 조건을 더 줌줌
                     if(endTime.getHours() <= 23 && endTime.getHours() > 8){
                         for(let i = startTime.getHours(); i < endTime.getHours(); i++){

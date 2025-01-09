@@ -22,11 +22,14 @@ function Menu(){
 
     return(
         <>
-            {/* <p id={styles.menu} onClick={onClickHandler}><u>메뉴 보기</u></p> */}
-            {/* <div className={styles.menuStyle} style={{ display : none? "none" : "block" }}> */}
-                {/* <img src={xButton} id={styles.xBtn} onClick={onClickHandler} alt='X버튼'/> */}
+            <div id={styles.menuStyle}>
                 <img src={menu} id={styles.menuImg} alt='메뉴판'/>
-            {/* </div> */}
+            </div>
+            {/* <p id={styles.menu} onClick={onClickHandler}><u>메뉴 보기</u></p>
+            <div className={styles.menuStyle} style={{ display : none? "none" : "block" }}>
+                <img src={xButton} id={styles.xBtn} onClick={onClickHandler} alt='X버튼'/>
+                <img src={menu} id={styles.menuImg} alt='메뉴판'/>
+            </div> */}
         </>
     );
 }
