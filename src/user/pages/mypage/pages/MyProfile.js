@@ -8,6 +8,7 @@ function MyProfile() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const [showTooltip, setShowTooltip] = useState(null);
 
     useEffect(() => {
         fetchUserInfo();
@@ -49,9 +50,21 @@ function MyProfile() {
         return <div>유저 정보를 찾을 수 없습니다.</div>;
     }
 
+    const rvc = userInfo.reservationCount;
+    const rc = userInfo.reviewCount;
+    const rdc = userInfo.randomCount;
+
+    const hasAchievedBadge = rvc >= 10;
+    const hasAchievedBadge2 = rc >= 10;
+    const hasAchievedBadge3 = rvc >= 25;
+    const hasAchievedBadge4 = rdc >=3;
+    const hasAchievedBadge5 = rc >= 20;
+    const hasAchievedBadge6 = rvc >=30 && rc >=20 && rdc >= 5;
+
     return (
         <div className={styles.profileMain}>
-            <img className={styles.profileImage} src={userInfo?.profileImage || "/images/mypage/profile/default.png"} alt="Profile"/>
+            <img className={styles.profileImage} src={userInfo?.profileImage || "/images/mypage/profile/default.png"}
+                 alt="Profile"/>
             <p className={styles.mypageNickname}>{userInfo?.nickname || ''}</p>
             <hr className={styles.mypageHorizonLine1}/>
             <div className={styles.mypageTextBox}>나의 도전현황</div>
@@ -61,18 +74,111 @@ function MyProfile() {
                 <p className={styles.allReviewTitle}>리뷰 작성</p>
                 <p className={styles.allRandomTitle}>랜덤 예약</p>
 
-            <span className={styles.mypageReservationNo}>{userInfo?.reservationCount || ''}</span>
-            <span className={styles.mypageReviewNo}>{userInfo?.reviewCount || ''}</span>
-            <span className={styles.mypageRandomNo}>{userInfo?.randomCount || ''}</span>
-            </div>
-
-            <div className={styles.challengerMedal}>
-                메달영역
+                <span className={styles.mypageReservationNo}>{userInfo?.reservationCount || ''}</span>
+                <span className={styles.mypageReviewNo}>{userInfo?.reviewCount || ''}</span>
+                <span className={styles.mypageRandomNo}>{userInfo?.randomCount || ''}</span>
             </div>
 
             <hr className={styles.mypageHorizonLine2}/>
+            <div className={styles.challengerMedal}>
+                {/* 1번 뱃지에 대한 부분*/}
+                <img
+                    src="/images/badge/badge1.png"
+                    alt="메달"
+                    className={`${styles.medalImage} ${!hasAchievedBadge ? styles.grayscale : ''}`}
+                    onMouseEnter={() => setShowTooltip('badge1')}
+                    onMouseLeave={() => setShowTooltip(null)}
+                />
+                {showTooltip === 'badge1' && (
+                    <div className={`${styles.tooltip} ${!hasAchievedBadge ? styles.tooltipGrayscale : ''}`}>
+                        총 예약수 10번 이상
+                    </div>
+                )}
+
+                {/* 2번 뱃지에 대한 부분*/}
+                <img
+                    src="/images/badge/badge2.png"
+                    alt="메달"
+                    className={`${styles.medalImage2} ${!hasAchievedBadge2 ? styles.grayscale : ''}`}
+                    onMouseEnter={() => setShowTooltip('badge2')}
+                    onMouseLeave={() => setShowTooltip(null)}
+                />
+                {showTooltip === 'badge2' && (
+                    <div
+                        className={`${styles.tooltip2} ${!hasAchievedBadge2 ? styles.tooltipGrayscale : ''}`}
+                    >
+                        총 리뷰수 10번 이상
+                    </div>
+                )}
+
+                {/* 3번 뱃지에 대한 부분*/}
+                <img
+                    src="/images/badge/badge3.png"
+                    alt="메달"
+                    className={`${styles.medalImage3} ${!hasAchievedBadge3 ? styles.grayscale : ''}`}
+                    onMouseEnter={() => setShowTooltip('badge3')}
+                    onMouseLeave={() => setShowTooltip(null)}
+                />
+                {showTooltip === 'badge3' && (
+                    <div
+                        className={`${styles.tooltip3} ${!hasAchievedBadge3 ? styles.tooltipGrayscale : ''}`}
+                    >
+                        총 예약수 25번 이상
+                    </div>
+                )}
+
+                {/* 4번 뱃지에 대한 부분*/}
+                <img
+                    src="/images/badge/badge4.png"
+                    alt="메달"
+                    className={`${styles.medalImage4} ${!hasAchievedBadge4 ? styles.grayscale : ''}`}
+                    onMouseEnter={() => setShowTooltip('badge4')}
+                    onMouseLeave={() => setShowTooltip(null)}
+                />
+                {showTooltip === 'badge4' && (
+                    <div
+                        className={`${styles.tooltip4} ${!hasAchievedBadge4 ? styles.tooltipGrayscale : ''}`}
+                    >
+                        총 랜덤 예약 3번 이상
+                    </div>
+                )}
+
+                {/* 5번 뱃지에 대한 부분*/}
+                <img
+                    src="/images/badge/badge5.png"
+                    alt="메달"
+                    className={`${styles.medalImage5} ${!hasAchievedBadge5 ? styles.grayscale : ''}`}
+                    onMouseEnter={() => setShowTooltip('badge5')}
+                    onMouseLeave={() => setShowTooltip(null)}
+                />
+                {showTooltip === 'badge5' && (
+                    <div
+                        className={`${styles.tooltip5} ${!hasAchievedBadge5 ? styles.tooltipGrayscale : ''}`}
+                    >
+                        총 리뷰 수 20번 이상
+                    </div>
+                )}
+
+                {/* 6번 뱃지에 대한 부분*/}
+                <img
+                    src="/images/badge/badge6.png"
+                    alt="메달"
+                    className={`${styles.medalImage6} ${!hasAchievedBadge6 ? styles.grayscale : ''}`}
+                    onMouseEnter={() => setShowTooltip('badge6')}
+                    onMouseLeave={() => setShowTooltip(null)}
+                />
+                {showTooltip === 'badge6' && (
+                    <div
+                        className={`${styles.tooltip6} ${!hasAchievedBadge6 ? styles.tooltipGrayscale : ''}`}
+                    >
+                        총 예약 수 20번 이상
+                        총 리뷰 수 20번 이상
+                        총 랜덤 예약 5번 이상
+                    </div>
+                )}
+            </div>
+
             <hr className={styles.mypageHorizonLine3}/>
-            <p className={styles.mypageProfilePlus}>더보기</p>
         </div>
     )
 

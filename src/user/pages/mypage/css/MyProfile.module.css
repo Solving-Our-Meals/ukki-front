@@ -21,7 +21,7 @@
 }
 
 .mypageNickname {
-    transform: translateY(-55px);
+    transform: translateY(50px);
 
     font-family: 'Bobaesum-Jindo-TTF';
     font-style: normal;
@@ -33,19 +33,19 @@
 }
 
 .mypageHorizonLine1 {
-    transform: translateY(-50px);
+    transform: translateY(65px);
     /* Line 1 */
 
     width: 389px;
     border: 1px solid #BDBEBF;
 }
 .mypageHorizonLine2 {
-    transform: translateY(25px);
+    transform: translateY(140px);
     width: 389px;
     border: 1px solid #BDBEBF;
 }
 .mypageHorizonLine3 {
-    transform: translateY(270px);
+    transform: translateY(150px);
     width: 389px;
     border: 1px solid #BDBEBF;
 }
@@ -54,7 +54,7 @@
     width: 146px;
     height: 35px;
 
-    transform: translateY(-40px);
+    transform: translateY(80px);
     background: #FEDA00;
     border-radius: 10px;
 
@@ -89,7 +89,6 @@
 }
 
 .allReservationTitle, .allReviewTitle, .allRandomTitle {
-    /* 총 예약 */
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
@@ -102,17 +101,17 @@
 
 .allReservationTitle {
     display: inline-block;
-    transform: translate(5px, -25px);
+    transform: translate(5px, 90px);
 }
 
 .allReviewTitle {
     display: inline-block;
-    transform: translate(70px, -25px);
+    transform: translate(70px, 90px);
 }
 
 .allRandomTitle {
     display: inline-block;
-    transform: translate(125px, -25px);
+    transform: translate(125px, 90px);
 }
 
 .mypageReservationNo, .mypageReviewNo, .mypageRandomNo {
@@ -130,23 +129,207 @@
 }
 
 .mypageReservationNo {
-    transform: translate(-237px, 5px);
+    transform: translate(-237px, 120px);
 }
 
 .mypageReviewNo {
-    transform: translate(-132px, 5px);
+    transform: translate(-132px, 120px);
 }
 
 .mypageRandomNo {
-    transform: translate(-23px, 5px);
+    transform: translate(-23px, 120px);
 }
+
 
 .challengerMedal {
-    position: absolute;
-    background: yellow;
     width:390px;
     height:240px;
-    top:450px;
 }
 
 
+
+.medalImage {
+    width:100px;
+    height:100px;
+    transform: translate(5px, 140px);
+    object-fit: contain;
+}
+
+.tooltip {
+    position: absolute;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: inline-block;
+    color: #000000;
+    transform: translate(-130px, 230px);
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 138, 163, 0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.challengerMedal:hover .tooltip {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 138, 163, 1), 0 0 50px rgba(255, 138, 163, 0.5); /* 더 강한 빛나는 효과 */
+    animation: sparkle 1s infinite alternate;
+}
+
+.medalImage2 {
+    width:100px;
+    height:100px;
+    transform: translate(50px, 140px);
+    object-fit: contain;
+}
+
+.tooltip2 {
+    position: absolute;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: inline-block;
+    color: #000000;
+    transform: translate(-90px, 230px);
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 138, 163, 0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.challengerMedal:hover .tooltip2 {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 138, 163, 1), 0 0 50px rgba(255, 138, 163, 0.5); /* 더 강한 빛나는 효과 */
+    animation: sparkle 1s infinite alternate;
+}
+
+.medalImage3 {
+    width:100px;
+    height:100px;
+    transform: translate(92px, 140px);
+    object-fit: contain;
+}
+
+.tooltip3 {
+    width:200px;
+    text-align: center;
+    position: absolute;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: inline-block;
+    color: #000000;
+    transform: translate(-60px, 230px);
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 138, 163, 0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.challengerMedal:hover .tooltip3 {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 138, 163, 1), 0 0 50px rgba(255, 138, 163, 0.5); /* 더 강한 빛나는 효과 */
+    animation: sparkle 1s infinite alternate;
+}
+
+.medalImage4 {
+    width:100px;
+    height:100px;
+    transform: translate(5px, 160px);
+    object-fit: contain;
+}
+
+.tooltip4 {
+    width:200px;
+    text-align: center;
+    position: absolute;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: inline-block;
+    color: #000000;
+    transform: translate(-140px, 250px);
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 138, 163, 0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.challengerMedal:hover .tooltip4 {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 138, 163, 1), 0 0 50px rgba(255, 138, 163, 0.5); /* 더 강한 빛나는 효과 */
+    animation: sparkle 1s infinite alternate;
+}
+
+.medalImage5 {
+    width:100px;
+    height:100px;
+    transform: translate(50px, 160px);
+    object-fit: contain;
+}
+
+.tooltip5 {
+    width:200px;
+    text-align: center;
+    position: absolute;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: inline-block;
+    color: #000000;
+    transform: translate(-100px, 250px);
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 138, 163, 0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.challengerMedal:hover .tooltip5 {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 138, 163, 1), 0 0 50px rgba(255, 138, 163, 0.5); /* 더 강한 빛나는 효과 */
+    animation: sparkle 1s infinite alternate;
+}
+
+.medalImage6 {
+    width:100px;
+    height:100px;
+    transform: translate(92px, 160px);
+    object-fit: contain;
+}
+
+.tooltip6 {
+    width:200px;
+    text-align: center;
+    position: absolute;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: inline-block;
+    color: #000000;
+    transform: translate(-50px, 250px);
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 138, 163, 0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.challengerMedal:hover .tooltip6 {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 138, 163, 1), 0 0 50px rgba(255, 138, 163, 0.5); /* 더 강한 빛나는 효과 */
+    animation: sparkle 1s infinite alternate;
+}
+
+@keyframes sparkle {
+    0% {
+        text-shadow: 0 0 5px #ff8aa3, 0 0 10px #ff8aa3, 0 0 15px #ff8aa3;
+    }
+    50% {
+        text-shadow: 0 0 15px #ff8aa3, 0 0 30px #ff8aa3, 0 0 45px #ff8aa3;
+    }
+    100% {
+        text-shadow: 0 0 25px #ff8aa3, 0 0 50px #ff8aa3, 0 0 75px #ff8aa3;
+    }
+}
+
+.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.tooltipGrayscale {
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
