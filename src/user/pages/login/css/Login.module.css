@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+@-moz-document url-prefix() {
+    .signupBasic input::placeholder {
+        opacity: 0;
+    }
+}
 .signupBasic {
     background-color: #FFF3A7;
     width: 100vw;
@@ -265,6 +270,10 @@ button:disabled {
 }
 
 @media  (min-width: 1025px) and (max-width: 1920px) {
+    input::placeholder {
+        visibility: hidden;
+    }
+
     .signupBasic {
         background-color: #FFF3A7;
         width: 100vw;
