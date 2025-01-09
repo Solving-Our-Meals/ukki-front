@@ -1,0 +1,45 @@
+.mypageReservation {
+    display: flex;
+}
+
+ .tab2, .tab3, .tab4 {
+    display: inline-block;
+    font-family: 'Bobaesum-Jindo-TTF';
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 900;
+    transform: translate(90px, 50px);
+     margin-left: 10px;
+     cursor: pointer;
+     color : #BDBEBF;
+}
+
+.tab2:hover, .tab3:hover, .tab4:hover {
+    color : #232323;
+}
+
+ .line1, .line2 {
+     display: inline-block;
+     font-family: 'Bobaesum-Jindo-TTF';
+     font-style: normal;
+     font-size: 20px;
+     font-weight: 900;
+     transform: translate(90px, 47px);
+     margin-left: 10px;
+     color : #BDBEBF;
+ }
+
+.tab1 {
+    display: inline-block;
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    transform: translate(75px, 30px);
+
+    /* text/strong */
+    color: #232323;
+    cursor: pointer;
+
+
+}

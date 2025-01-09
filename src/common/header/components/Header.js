@@ -39,8 +39,8 @@ function Header() {
         checkAuthStatus();
     }, []);
 
+    // 로그아웃
     const handleLogout = async () => {
-        // 로그아웃 요청
         await fetch('/auth/logout', {
             method: 'POST',
             credentials: 'include',
