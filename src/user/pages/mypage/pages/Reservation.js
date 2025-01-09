@@ -16,7 +16,7 @@ function Reservation () {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/info', {
+            const response = await fetch('/user/reservation', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -48,10 +48,6 @@ function Reservation () {
     if (!userInfo) {
         return <div>유저 정보를 찾을 수 없습니다.</div>;
     }
-
-
-
-
 
     return (
         <div className={styles.mypageReservation}>
