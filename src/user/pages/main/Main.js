@@ -52,13 +52,153 @@ const rRandom = () => {
 const Main = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
-    const [selectedCategory, setSelectedCategory,] = useState(1);
+    const [selectedCategory, setSelectedCategory] = useState(1);
+    const [currentPosition, setCurrentPosition] = useState(null);
     const slideInterval = useRef(null);
     const startX = useRef(0);
     const endX = useRef(0);
     const defaultValue = "눌러서 현재 위치 변경 가능";
     const [address, setAddress] = useState(defaultValue);
     const [stores, setStores] = useState([]);
+    const [isFirstImgClicked, setIsFirstImgClicked] = useState(true); // 추가된 상태 정의
+    const [isSecondImgClicked, setIsSecondImgClicked] = useState(false); // 추가된 상태 정의
+    const [isThreeImgClicked, setIsThreeImgClicked] = useState(false); // 추가된 상태 정의
+    const [isFourImgClicked, setIsFourImgClicked] = useState(false); // 추가된 상태 정의
+    const [isLastImgClicked, setIsLastImgClicked] = useState(false); // 추가된 상태 정의
+
+
+    const locationRef = useRef(null);
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                setCurrentPosition({
+                    x: position.coords.longitude,
+                    y: position.coords.latitude
+                });
+            });
+        }
+    },
+        []);
+    const requestDirections = async () => {
+        if (currentPosition && storeInfo.storeAddress) {
+            const directionsResponse = await fetch('/main/directions',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        origin: currentPosition,
+                        destination: {
+                            x: storeInfo.storeAddress.longitude,
+                            y: storeInfo.storeAddress.latitude
+                        },
+                        waypoints: []
+                    })
+                });
+            const directionsData = await directionsResponse.json();
+            console.log('Directions:', directionsData);
+        }
+    };
+
+    useEffect(() => {
+        const fImg = document.querySelector('.category>div');
+        const SImg = document.querySelector('.category>div:nth-of-type(2)');
+        const TImg = document.querySelector('.category>div:nth-of-type(3)');
+        const FImg = document.querySelector('.category>div:nth-of-type(4)');
+        const LImg = document.querySelector('.category>div:nth-of-type(5)');
+
+        if (isFirstImgClicked) {
+            fImg.style.left = '28.5vw';
+            SImg.style.left = '51.5vw';
+            TImg.style.left = '60.5vw';
+            FImg.style.left = '69.5vw';
+            LImg.style.left = '78.5vw';
+        } else if (isSecondImgClicked) {
+            fImg.style.left = '15.5vw';
+            SImg.style.left = '37.5vw';
+            TImg.style.left = '60.5vw';
+            FImg.style.left = '69.5vw';
+            LImg.style.left = '78.5vw';
+
+        } else if (isThreeImgClicked) {
+            fImg.style.left = '15.5vw';
+            SImg.style.left = '24.5vw';
+            TImg.style.left = '47.5vw';
+            FImg.style.left = '69.5vw';
+            LImg.style.left = '78.5vw';
+
+        } else if (isFourImgClicked) {
+            fImg.style.left = '15.5vw';
+            SImg.style.left = '24.5vw';
+            TImg.style.left = '33.5vw';
+            FImg.style.left = '56.5vw';
+            LImg.style.left = '78.5vw';
+        } else {
+            fImg.style.left = '15.5vw';
+            SImg.style.left = '24.5vw';
+            TImg.style.left = '33.5vw';
+            FImg.style.left = '43vw';
+            LImg.style.left = '65.5vw';
+        }
+    }, [isFirstImgClicked, isSecondImgClicked, isThreeImgClicked, isFourImgClicked, isLastImgClicked]);
+
+
+
+    const handleFirstImgClick = () => {
+        setIsFirstImgClicked(true);
+        setIsSecondImgClicked(false);
+        setIsThreeImgClicked(false);
+        setIsFourImgClicked(false);
+        setIsLastImgClicked(false);
+        scrollToLocation();
+    };
+
+    const handleSecondImgClick = () => {
+        setIsFirstImgClicked(false);
+        setIsSecondImgClicked(true);
+        setIsThreeImgClicked(false);
+        setIsFourImgClicked(false);
+        setIsLastImgClicked(false);
+        scrollToLocation();
+    };
+
+
+    const handleThreeImgClick = () => {
+        setIsFirstImgClicked(false);
+        setIsSecondImgClicked(false);
+        setIsThreeImgClicked(true);
+        setIsFourImgClicked(false);
+        setIsLastImgClicked(false);
+        scrollToLocation();
+    };
+
+    const handleFourImgClick = () => {
+        setIsFirstImgClicked(false);
+        setIsSecondImgClicked(false);
+        setIsThreeImgClicked(false);
+        setIsFourImgClicked(true);
+        setIsLastImgClicked(false);
+        scrollToLocation();
+    };
+
+    const handleLastImgClick = () => {
+        setIsFirstImgClicked(false);
+        setIsSecondImgClicked(false);
+        setIsThreeImgClicked(false);
+        setIsFourImgClicked(false);
+        setIsLastImgClicked(true);
+        scrollToLocation();
+    };
+
+
+    const scrollToLocation = () => {
+        locationRef.current.scrollIntoView({
+            behavior: 'smooth'
+        });
+    };
+
 
     const [storeInfo, setStoreInfo] = useState({
         storeName: '',
@@ -256,7 +396,6 @@ const Main = () => {
 
 
 
-
     return (
         <>
             <div onClick={handleRouletteClick}>
@@ -301,46 +440,47 @@ const Main = () => {
                         </ul>
                     </div> */}
                 </div>
-                <div className='search'>
+                {/* <div className='search'>
                     <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" />
                     <NavLink to="/search"><img src={search} alt="search" /></NavLink>
-                </div>
+                </div> */}
                 <div className='category'>
                     <h3>지금 끌리는 메뉴는?</h3>
                     <p>카테고리 별로 근처 식당을 추천해드려요!</p>
-                    <div onClick={() => handleCategoryClick(0)}>
+                    <div onClick={() => { handleFirstImgClick(); handleCategoryClick(0) }}>
                         <p>한식</p>
                     </div>
-                    <img src={gkstlr} onClick={() => handleCategoryClick(0)} className={selectedCategory === 1 ? 'selected-img' : ''} />
-                    <span className={selectedCategory === 1 ? 'selected-span' : ''}>
-                        {selectedCategory === 1 ? '너로 정했다!' : '흠..별로?'}</span>
-                    <div onClick={() => handleCategoryClick(1)}>
+                    <img src={gkstlr} onClick={() => { handleFirstImgClick(); handleCategoryClick(0); }} className={selectedCategory === 1 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 1 ? 'selected-span' : ''}>
+                        {selectedCategory === 1 ? '너로 정했다!' : '흠..별로?'}</span> */}
+                    <div onClick={() => { handleSecondImgClick(); handleCategoryClick(1) }}>
                         <p>중식</p>
                     </div>
-                    <img src={dlftlr} onClick={() => handleCategoryClick(1)} className={selectedCategory === 2 ? 'selected-img' : ''} />
-                    <span className={selectedCategory === 2 ? 'selected-span' : ''}>
-                        {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span>
-                    <div onClick={() => handleCategoryClick(2)}>
+                    <img src={dlftlr} onClick={() => { handleSecondImgClick(); handleCategoryClick(1) }} className={selectedCategory === 2 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 2 ? 'selected-span' : ''}>
+                        {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span> */}
+                    <div onClick={() => { handleThreeImgClick(); handleCategoryClick(2) }}>
                         <p>일식</p>
                     </div>
-                    <img src={wndtlr} onClick={() => handleCategoryClick(2)} className={selectedCategory === 3 ? 'selected-img' : ''} />
-                    <span className={selectedCategory === 3 ? 'selected-span' : ''}>
-                        {selectedCategory === 3 ? '너로 정했다!' : '흠..별로?'}</span>
-                    <div onClick={() => handleCategoryClick(3)}>
+                    <img src={wndtlr} onClick={() => { handleThreeImgClick(); handleCategoryClick(2) }} className={selectedCategory === 3 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 3 ? 'selected-span' : ''}>
+                        {selectedCategory === 3 ? '너로 정했다!' : '흠..별로?'}</span> */}
+                    <div onClick={() => { handleFourImgClick(); handleCategoryClick(3) }}>
                         <p>양식</p>
                     </div>
-                    <img src={didtlr} onClick={() => handleCategoryClick(3)} className={selectedCategory === 4 ? 'selected-img' : ''} />
-                    <span className={selectedCategory === 4 ? 'selected-span' : ''}>
-                        {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span>
-                    <div onClick={() => handleCategoryClick(4)}>
+                    <img src={didtlr} onClick={() => { handleFourImgClick(); handleCategoryClick(3) }} className={selectedCategory === 4 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 4 ? 'selected-span' : ''}>
+                        {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span> */}
+                    <div onClick={() => { handleLastImgClick(); handleCategoryClick(4) }}>
                         <p>기타</p>
                     </div>
-                    <img src={rlxk} onClick={() => handleCategoryClick(4)} className={selectedCategory === 5 ? 'selected-img' : ''} />
-                    <span className={selectedCategory === 5 ? 'selected-span' : ''}>
-                        {selectedCategory === 5 ? '너로 정했다!' : '흠..별로?'}</span>
+                    <img src={rlxk} onClick={() => { handleLastImgClick(); handleCategoryClick(4) }} className={selectedCategory === 5 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 5 ? 'selected-span' : ''}>
+                        {selectedCategory === 5 ? '너로 정했다!' : '흠..별로?'}</span> */}
                 </div>
-                <div className='location'>
-                    <Map address={address} setAddress={setAddress} defaultValue={defaultValue} selectedCategory={selectedCategory} onMarkerClick={handleMarkerClick} />
+                <div className='location' ref={locationRef}>
+                <Map address={address} setAddress={setAddress} defaultValue={defaultValue} selectedCategory={selectedCategory} onMarkerClick={handleMarkerClick} requestDirections={requestDirections} currentPosition={currentPosition} />
+
 
                     <h3>
                         {selectedCategory === 1 ? '내 주변 한식 혼밥 리스트' :
@@ -358,7 +498,8 @@ const Main = () => {
                     <input onKeyPress={handleKeyPress} defaultValue={defaultValue}></input><label>현재 위치 : </label>
                     <input defaultValue={storeInfo.storeAddress}></input><label>가게 위치 : </label>
                     <button>예약하기</button>
-                    <button>길안내</button>
+                    <button onClick={requestDirections}>길안내</button>
+                    <div></div>
                 </div>
 
                 <div className='talk'>

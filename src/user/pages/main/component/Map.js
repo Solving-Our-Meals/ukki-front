@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './Map.css';
 import loMarker from '../image/marker.png';
 
-
-
 const { kakao } = window;
 const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClick }) => {
     const [map, setMap] = useState(null);
     const [stores, setStores] = useState([]);
     const [currentMarker, setCurrentMarker] = useState({ marker: null, infowindow: null });
     const [markers, setMarkers] = useState([]);
+    const [currentPosition, setCurrentPosition] = useState(null); // 사용자 현재 위치
+    const [selectedStore, setSelectedStore] = useState(null); // 선택된 가게 정보
 
     useEffect(() => {
         if (selectedCategory) {
@@ -32,7 +32,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
         const mapContainer = document.getElementById('map');
         const mapOption = {
             center: new kakao.maps.LatLng(37.562997, 127.189575),
-            level: 2
+            level: 3
         };
 
         const kakaoMap = new kakao.maps.Map(mapContainer, mapOption);
@@ -44,9 +44,10 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                 const lon = position.coords.longitude;
 
                 const locPosition = new kakao.maps.LatLng(lat, lon);
-                const message = '<div style="padding:5px; padding-left:35px; height:1.5vw; font-weight:900; color:#FF8AA3;">현재 위치</div>';
+                const message = '<div style="padding:3px; padding-left:40px; height:1.5vw; font-weight:700; color:#FF8AA3;">현재 위치</div>';
 
                 displayMarker(locPosition, message, kakaoMap);
+                setCurrentPosition({ x: lon, y: lat }); // 사용자 현재 위치 설정
 
                 kakaoMap.setCenter(locPosition);
 
@@ -98,7 +99,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
                 let isEnlarged = false;
 
-                kakao.maps.event.addListener(marker, 'click', () => {
+                kakao.maps.event.addListener(marker, 'click', async () => {
                     if (isEnlarged) {
                         marker.setImage(new kakao.maps.MarkerImage(imageSrc, new kakao.maps.Size(imageSize.width * 0.7, imageSize.height * 0.7), imageOption));
                         infowindow.close();
@@ -116,6 +117,25 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                         infowindow.open(map, marker);
                         setCurrentMarker({ marker, infowindow });
 
+                        // 경로 요청
+                        if (currentPosition) {
+                            const directionsResponse = await fetch('/main/directions', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    origin: currentPosition,
+                                    destination: { x: store.longitude, y: store.latitude },
+                                    waypoints: []
+                                })
+                            });
+
+                            const directionsData = await directionsResponse.json();
+                            console.log('Directions:', directionsData);
+                            // directionsData를 이용하여 지도에 경로 표시 로직 추가
+                        }
+
                         // Update store information
                         onMarkerClick(store.storeName, store.storeDes, store.storeMenu, store.storeProfile, store.storeAddress);
                     }
@@ -130,7 +150,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
             setMarkers(newMarkers);
         }
-    }, [map, stores]);
+    }, [map, stores, currentPosition]);
 
     useEffect(() => {
         if (map && address && address !== defaultValue) {
@@ -147,6 +167,26 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             });
         }
     }, [map, address, defaultValue]);
+
+    const requestDirections = async () => {
+        if (currentPosition && selectedStore) {
+            const directionsResponse = await fetch('/main/directions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    origin: currentPosition,
+                    destination: { x: selectedStore.longitude, y: selectedStore.latitude },
+                    waypoints: []
+                })
+            });
+
+            const directionsData = await directionsResponse.json();
+            console.log('Directions:', directionsData);
+            // directionsData를 이용하여 지도에 경로 표시 로직 추가
+        }
+    };
 
     function displayMarker(locPosition, message, mapInstance) {
         if (!mapInstance) return;
@@ -170,11 +210,11 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
         mapInstance.setCenter(locPosition);
         setCurrentMarker({ marker, infowindow });
-
     }
 
     return (
-        <div id="map"></div>
+        <div id="map">
+        </div>
     );
 };
 
