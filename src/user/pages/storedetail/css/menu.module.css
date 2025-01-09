@@ -173,14 +173,21 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
-#menuImg {
+#menuStyle {
   position: absolute;
-  z-index: 10;
-  width: 770px;
-  height: 400px;
-  left: 1000px;
-  top: 550px;
-  border-radius: 0;
+  text-align: center;
+  display: table;
+  border: none;
+  left: 1220px;
+  top: 520px;
+  width: 300px;
+  height: 450px;
+}
+#menuStyle #menuImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {

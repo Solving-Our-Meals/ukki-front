@@ -177,12 +177,25 @@ a:active {
   cursor: default;
   border-radius: 0;
 }
-.storeDetail #reserve {
+.storeDetail .nameAndReserve {
   position: absolute;
-  width: 300px;
+  top: 627px;
+  left: 112px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.storeDetail .nameAndReserve #storeName {
+  position: static;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: "regular";
+  font-size: 50px;
+  color: #232323;
+}
+.storeDetail .nameAndReserve #reserve {
+  position: static;
+  width: 250px;
   height: 50px;
-  left: 350px;
-  top: 623px;
   border: none;
   background-color: #FF8AA3;
   border-radius: 40px;
@@ -193,17 +206,7 @@ a:active {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-.storeDetail #storeName {
-  position: absolute;
-  width: max-content;
-  height: max-content;
-  left: 112px;
-  top: 627px;
-  font-family: "Bobaesum Jindo TTF";
-  font-style: "regular";
-  font-size: 50px;
-  color: #232323;
+  margin-left: 15px;
 }
 .storeDetail #storeDes {
   position: absolute;
@@ -256,7 +259,7 @@ a:active {
 .storeDetail #tatolOperTime {
   position: absolute;
   left: 400px;
-  top: 878px;
+  top: 890px;
   width: 190px;
   height: 233px;
   border: 2.5px solid #232323;
@@ -296,7 +299,7 @@ a:active {
   width: 240px;
   height: 61px;
   background-color: #FFFFFF;
-  border: 3px solid #FF8AA3;
+  border: 4px solid #FF8AA3;
   border-radius: 50px;
   font-family: "Pretendard Variable";
   font-size: 25px;
@@ -326,7 +329,7 @@ a:active {
 .storeDetail #hr {
   position: absolute;
   left: 91px;
-  top: 1106px;
+  top: 1120px;
   width: 1738px;
   background: #D9D9D9;
 }
@@ -336,33 +339,19 @@ a:active {
     cursor: default;
     border-radius: 0;
   }
-  .storeDetail #reserve {
-    position: absolute;
+  .storeDetail .nameAndReserve {
+    top: 391px;
+    left: 51px;
+    gap: 15px;
+  }
+  .storeDetail .nameAndReserve #storeName {
+    font-size: 35px;
+  }
+  .storeDetail .nameAndReserve #reserve {
     width: 180px;
     height: 30px;
-    left: 190px;
-    top: 392px;
-    border: none;
-    background-color: #FF8AA3;
-    border-radius: 40px;
-    font-family: "Bobaesum Jindo TTF";
     font-size: 18px;
-    color: #232323;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  .storeDetail #storeName {
-    position: absolute;
-    width: max-content;
-    height: max-content;
-    left: 51px;
-    top: 391px;
-    font-family: "Bobaesum Jindo TTF";
-    font-style: "regular";
-    font-size: 35px;
-    color: #232323;
+    margin-left: 20px;
   }
   .storeDetail #storeDes {
     position: absolute;
@@ -498,33 +487,19 @@ a:active {
     cursor: default;
     border-radius: 0;
   }
-  .storeDetail #reserve {
-    position: absolute;
+  .storeDetail .nameAndReserve {
+    top: 160px;
+    left: 35px;
+    gap: 10px;
+  }
+  .storeDetail .nameAndReserve #storeName {
+    font-size: 20px;
+  }
+  .storeDetail .nameAndReserve #reserve {
     width: 100px;
     height: 20px;
-    left: 120px;
-    top: 155px;
-    border: none;
-    background-color: #FF8AA3;
-    border-radius: 40px;
-    font-family: "Bobaesum Jindo TTF";
     font-size: 15px;
-    color: #232323;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  .storeDetail #storeName {
-    position: absolute;
-    width: max-content;
-    height: max-content;
-    left: 35px;
-    top: 160px;
-    font-family: "Bobaesum Jindo TTF";
-    font-style: "regular";
-    font-size: 20px;
-    color: #232323;
+    margin-left: 20px;
   }
   .storeDetail #storeDes {
     position: absolute;
@@ -578,7 +553,7 @@ a:active {
   .storeDetail #tatolOperTime {
     position: absolute;
     left: 260px;
-    top: 239px;
+    top: 250px;
     width: 110px;
     height: 125px;
     border: 1.5px solid #232323;

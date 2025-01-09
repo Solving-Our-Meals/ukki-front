@@ -194,6 +194,33 @@ a:active {
   font-size: 30px;
   color: #232323;
 }
+.reviewStyle #reviewSort {
+  outline: none;
+  position: absolute;
+  left: 230px;
+  top: 1984px;
+  width: 170px;
+  height: 50px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  border: 5px solid #FF8AA3;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  font-weight: 600;
+  color: #232323;
+  cursor: pointer;
+  padding: 0 20px;
+}
+.reviewStyle option {
+  width: 170px;
+  height: 50px;
+  background-color: #FFFFFF;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  color: #232323;
+  cursor: pointer;
+  padding: 0 20px;
+}
 .reviewStyle .reviewArea {
   cursor: default;
   position: absolute;
@@ -393,6 +420,30 @@ a:active {
     font-size: 20px;
     color: #232323;
   }
+  .reviewStyle #reviewSort {
+    left: 120px;
+    top: 1153px;
+    width: 120px;
+    height: 28px;
+    font-size: 18px;
+    border-radius: 30px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 3px solid #FF8AA3;
+    color: #232323;
+    cursor: pointer;
+    padding: 0 20px;
+  }
+  .reviewStyle option {
+    width: 120px;
+    height: 28px;
+    background-color: #FFFFFF;
+    font-family: "Pretendard Variable";
+    font-size: 18px;
+    color: #232323;
+    cursor: pointer;
+    padding: 0 20px;
+  }
   .reviewStyle .reviewArea {
     cursor: default;
     position: absolute;
@@ -591,6 +642,29 @@ a:active {
     font-family: "Pretendard Variable";
     font-size: 15px;
     color: #232323;
+  }
+  .reviewStyle #reviewSort {
+    left: 80px;
+    top: 1269px;
+    width: 100px;
+    height: 20px;
+    font-size: 13px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 2px solid #FF8AA3;
+    color: #232323;
+    cursor: pointer;
+    padding: 0 20px;
+  }
+  .reviewStyle option {
+    width: 80px;
+    height: 20px;
+    background-color: #FFFFFF;
+    font-family: "Pretendard Variable";
+    font-size: 13px;
+    color: #232323;
+    cursor: pointer;
+    padding: 0 20px;
   }
   .reviewStyle .reviewArea {
     cursor: default;
