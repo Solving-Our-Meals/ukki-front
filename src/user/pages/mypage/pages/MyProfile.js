@@ -59,7 +59,7 @@ function MyProfile() {
     const hasAchievedBadge3 = rvc >= 25;
     const hasAchievedBadge4 = rdc >=3;
     const hasAchievedBadge5 = rc >= 20;
-    const hasAchievedBadge6 = rvc >=30 && rc >=20 && rdc >= 5;
+    const hasAchievedBadge6 = rvc >= 50 && rc >= 30 && rdc >= 7;
 
     return (
         <div className={styles.profileMain}>
@@ -171,9 +171,9 @@ function MyProfile() {
                     <div
                         className={`${styles.tooltip6} ${!hasAchievedBadge6 ? styles.tooltipGrayscale : ''}`}
                     >
-                        총 예약 수 20번 이상
-                        총 리뷰 수 20번 이상
-                        총 랜덤 예약 5번 이상
+                        총 예약 수 50번 이상
+                        총 리뷰 수 30번 이상
+                        총 랜덤 예약 7번 이상
                     </div>
                 )}
             </div>

@@ -203,12 +203,12 @@
 }
 
 .medalImage {
-    transform: translate(5px, 140px);
+    transform: translate(5px, 155px);
     object-fit: contain;
 }
 
 .tooltip {
-    transform: translate(-140px, 230px);
+    transform: translate(-140px, 255px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip {
@@ -218,12 +218,12 @@
 }
 
 .medalImage2 {
-    transform: translate(50px, 140px);
+    transform: translate(50px, 155px);
     object-fit: contain;
 }
 
 .tooltip2 {
-    transform: translate(-95px, 230px);
+    transform: translate(-95px, 255px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip2 {
@@ -233,12 +233,12 @@
 }
 
 .medalImage3 {
-    transform: translate(92px, 140px);
+    transform: translate(92px, 155px);
     object-fit: contain;
 }
 
 .tooltip3 {
-    transform: translate(-60px, 230px);
+    transform: translate(-60px, 255px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip3 {
@@ -248,12 +248,12 @@
 }
 
 .medalImage4 {
-    transform: translate(5px, 160px);
+    transform: translate(5px, 175px);
     object-fit: contain;
 }
 
 .tooltip4 {
-    transform: translate(-140px, 250px);
+    transform: translate(-140px, 275px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip4 {
@@ -263,12 +263,12 @@
 }
 
 .medalImage5 {
-    transform: translate(50px, 160px);
+    transform: translate(50px, 175px);
     object-fit: contain;
 }
 
 .tooltip5 {
-    transform: translate(-100px, 250px);
+    transform: translate(-100px, 275px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip5 {
@@ -278,13 +278,13 @@
 }
 
 .medalImage6 {
-    transform: translate(92px, 160px);
+    transform: translate(92px, 175px);
     object-fit: contain;
 }
 
 .tooltip6 {
     line-height: 30px;
-    transform: translate(-50px, 250px);
+    transform: translate(-55px, 275px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip6 {
