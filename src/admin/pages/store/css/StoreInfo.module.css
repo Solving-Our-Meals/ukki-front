@@ -121,12 +121,23 @@
     width: 50px;
 }
 
-.weekOperTime{
-    display: inline-block;
-    width: 200px;
+.week[data-current="true"] {
+    color: #FF6B87;
+    font-weight: 700;
 }
 
-#breakTime{
+.weekOperTime {
+    display: inline-block;
+    width: 200px;
+    color: #323232;
+}
+
+.weekOperTime[data-status="휴무"] {
+    color: #FF5D18;
+}
+
+.breakTime{
+    display: inline-block;
     color: #FF5D18;
 }
 
@@ -144,7 +155,8 @@
     width: 140px;
     height: 40px;
     margin-right: 20px;
-    background: #FFF3A7;
+    background: #FFFFFF;
+    border: 1px solid #FF6B87;
     border-radius: 50px;
 
     font-family: 'Pretendard Variable';
@@ -259,4 +271,9 @@
 }
 #storeInfoDeleteBtn:hover {
     background: #FF6B87;
+}
+
+.weekOperTime[data-current="true"] {
+    font-weight: 700;
+    border-bottom: 2px solid #FF6B87;
 }
