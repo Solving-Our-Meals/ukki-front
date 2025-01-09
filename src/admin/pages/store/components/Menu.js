@@ -1,0 +1,1 @@
+import styles from '../css/StoreInfo.module.css'; 
