@@ -4,11 +4,10 @@ import mapIcon from '../images/mapMarker-logo.png';
 import triangleBtn from '../images/inverted_triangle.png';
 import Banner from '../components/Banner';
 import Profile from '../components/Profile';
-import KakaoMap from '../components/KakaoMap';
 import Menu from '../components/Menu';
 
 
-function StoreDetail(){
+function StoreDetail({reservationHandler}){
 
     const [colorMonday, setColorMonday] = useState("");
     const [colorTuesday, setColorTuesday] = useState("");
@@ -124,6 +123,7 @@ function StoreDetail(){
             <div><Banner/>
                 <div><Profile/></div>
             </div>
+            <div id={styles.reserve} onClick={reservationHandler}>예약하기</div>
             <p id={styles.storeName}>{storeInfo.storeName}</p>
             <p id={styles.storeDes}>{storeInfo.storeDes}</p>
             <img src={mapIcon} id={styles.mapIcon} alt = '지도 아이콘'/>
@@ -143,7 +143,7 @@ function StoreDetail(){
                 <p id={styles.breakTime}>{`*브레이크 타임 : ${storeInfo.operationTime.breakTime}`}</p> <br/>
             </div>
             <Menu/>
-            <div id={styles.mapArea}><KakaoMap/></div>
+            {/* <div id={styles.mapArea}><KakaoMap/></div> */}
             <div className={styles.keywordArea}>
                 <div>{storeInfo.storeKeyword.keyword1}</div>
                 <div>{storeInfo.storeKeyword.keyword2}</div>

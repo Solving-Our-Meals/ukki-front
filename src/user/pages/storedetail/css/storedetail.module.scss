@@ -4,6 +4,24 @@
     cursor: default;
     border-radius: 0;
 
+    #reserve{
+        position: absolute;
+        width : 300px;
+        height : 50px;
+        left : 350px;
+        top : 623px;
+        border: none;
+        background-color: $primary;
+        border-radius: 40px;
+        font-family: 'Bobaesum Jindo TTF';
+        font-size: 30px;
+        color: $textStrong;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
     #storeName {
         position : absolute;
         width : max-content;
@@ -41,7 +59,7 @@
     #storeAddress {
         position : absolute;
         left : 235px;
-        top : 800px;
+        top : 810px;
         width : max-content;
         height: 41px;
         font-family : 'Pretendard Variable';
@@ -52,7 +70,7 @@
     #operTime{
         position : absolute;
         left : 235px;
-        top : 844px;
+        top : 860px;
         width : max-content;
         height: 41px;
         font-family : 'Pretendard Variable';
@@ -120,7 +138,9 @@
             top : 990px;
             width : 240px;
             height : 61px;
-            background-color: $primary;
+            // background-color: $primary;
+            background-color: #FFFFFF;
+            border: 3px solid $primary;
             border-radius: 50px;
             font-family: 'Pretendard Variable';
             font-size : 25px;
@@ -165,9 +185,30 @@
 }
 
 @media screen and (min-width:769px) and (max-width : 1024px){
+
     .storeDetail{
         cursor: default;
         border-radius: 0;
+
+        #reserve{
+            position: absolute;
+            width : 180px;
+            height : 30px;
+            left : 190px;
+            top : 392px;
+            border: none;
+            background-color: $primary;
+            // background-color: #FFFFFF;
+            // border: 3px solid $primary;
+            border-radius: 40px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 18px;
+            color: $textStrong;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
     
         #storeName {
             position : absolute;
@@ -206,7 +247,7 @@
         #storeAddress {
             position : absolute;
             left : 118px;
-            top : 478px;
+            top : 485px;
             width : max-content;
             height: 20px;
             font-family : 'Pretendard Variable';
@@ -217,7 +258,7 @@
         #operTime{
             position : absolute;
             left : 118px;
-            top : 505px;
+            top : 515px;
             width : max-content;
             height: 27px;
             font-family : 'Pretendard Variable';
@@ -286,7 +327,9 @@
                 top : 587px;
                 width : 126px;
                 height : 34px;
-                background-color: $primary;
+                // background-color: $primary;
+                background-color: #FFFFFF;
+                border: 3px solid $primary;
                 border-radius: 50px;
                 font-family: 'Pretendard Variable';
                 font-size : 15px;
@@ -336,6 +379,25 @@
     .storeDetail{
         cursor: default;
         border-radius: 0;
+
+        #reserve{
+            position: absolute;
+            width : 100px;
+            height : 20px;
+            left : 120px;
+            top : 155px;
+            border: none;
+            background-color: $primary;
+            border-radius: 40px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 15px;
+            color: $textStrong;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    
     
         #storeName {
             position : absolute;
@@ -408,7 +470,7 @@
     
         #tatolOperTime{
             position : absolute;
-            left : 228px;
+            left : 260px;
             top : 239px;
             width : 110px;
             height : 125px;
@@ -420,7 +482,7 @@
             font-weight: 500;
             color: $textStrong;
             line-height: 15px;
-            z-index : 5;
+            z-index : 13;
             border-radius: 0;
     
             .week{
@@ -455,7 +517,9 @@
                 position : absolute;
                 width : 80px;
                 height : 25px;
-                background-color: $primary;
+                // background-color: $primary;
+                background-color: #FFFFFF;
+                border: 3px solid $primary;
                 border-radius: 50px;
                 font-family: 'Pretendard Variable';
                 font-size : 11px;
