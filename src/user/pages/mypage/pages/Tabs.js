@@ -13,24 +13,24 @@ function Tabs ({activeTab, onTabChange}) {
             </span>
             <div className={styles.line1}>|</div>
             <span
-                className={`${styles.activeTab2} ${activeTab === 'reservation' ? 'style.active' : ''}`}
+                className={`${styles.activeTab2} ${activeTab === 'review' ? 'style.active' : ''}`}
                 onClick={() => onTabChange('review')}
             >
                 작성된 리뷰
             </span>
             <div className={styles.line2}>|</div>
             <span
-                className={`${styles.activeTab3} ${activeTab === 'reservation' ? 'style.active' : ''}`}
-                onClick={() => onTabChange('inquiry')}
+                className={`${styles.activeTab3} ${activeTab === 'profile' ? 'style.active' : ''}`}
+                onClick={() => onTabChange('profile')}
             >
-                문의 내역
+                회원 정보
             </span>
             <div className={styles.line3}>|</div>
             <span
-                className={`${styles.activeTab4} ${activeTab === 'reservation' ? 'style.active' : ''}`}
-                onClick={() => onTabChange('profile')}
+                className={`${styles.activeTab4} ${activeTab === 'inquiry' ? 'style.active' : ''}`}
+                onClick={() => onTabChange('inquiry')}
             >
-                회원정보수정
+                문의 내역
             </span>
         </div>
     );

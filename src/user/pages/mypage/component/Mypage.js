@@ -16,6 +16,9 @@ function Mypage() {
             <Tabs activeTab={activeTab} onTabChange={handleTabChange} />
             {<Header/>}
             {activeTab === 'reservation' && <MypageMain />}
+            {activeTab === 'review' && <div>작성된 리뷰 내용</div>}
+            {activeTab === 'profile' && <div>회원정보수정</div>}
+            {activeTab === 'inquiry' && <div>문의 내역</div>}
         </div>
     )
 }
