@@ -8,6 +8,8 @@ import AdminInquiry from "../pages/inquiry/pages/AdminInquiry";
 import UserList from "../pages/user/pages/UserList";
 import UserInfo from "../pages/user/pages/UserInfo";
 import StoreList from "../pages/store/pages/StoreList";
+import StoreInfo from "../pages/store/pages/StoreInfo";
+import StoreEdit from "../pages/store/pages/StoreEdit";
 
 function AdminRoutes(){
     return(
@@ -23,6 +25,8 @@ function AdminRoutes(){
                 <Route path="/stores" >
                     <Route index element={<Navigate to="list" replace/>}/>
                     <Route path="list" element={<StoreList/>}/>
+                    <Route path="info/:storeNo" element={<StoreInfo/>}/>
+                    <Route path="info/:storeNo/edit" element={<StoreEdit/>}/>
                 </Route>
                 <Route path="/reservations" element={<AdminReservation/>}/>
                 <Route path="/reviews" element={<AdminReview/>}/>

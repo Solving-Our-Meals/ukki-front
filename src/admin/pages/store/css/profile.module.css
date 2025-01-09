@@ -1,0 +1,10 @@
+#profileStyle {
+  position: absolute;
+  left: 72px;
+  top: 121px;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  z-index: 99;
+  object-fit: contain;
+}

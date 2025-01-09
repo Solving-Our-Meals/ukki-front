@@ -259,33 +259,6 @@ div .slidewrap .slides .slide div span {
   color: #232323;
   height: 60px;
 }
-div .search {
-  position: absolute;
-  width: 100vw;
-  height: 5vw;
-  margin: 0;
-}
-div .search input {
-  position: absolute;
-  width: 60vw;
-  height: 5vw;
-  left: 18vw;
-  top: -16vw;
-  border-radius: 50px;
-  border: #FF8AA3 3px solid;
-  background-color: #FFF3A7;
-  color: #FEBA00;
-  font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 1.3vw;
-  margin: 0;
-}
-div .search img {
-  position: absolute;
-  width: 3.5vw;
-  left: 72vw;
-  top: -15.3vw;
-}
 div .btn {
   position: relative;
   font-size: 5vw;
@@ -298,20 +271,26 @@ div .rightbtn {
   left: 85vw;
   top: -33vw;
 }
+div .category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: left 0.7s ease;
+}
 div .category h3 {
   position: absolute;
-  left: 39vw;
-  top: 68vw;
+  left: 40vw;
+  top: 66vw;
   font-family: "Bobaesum Jindo TTF";
-  font-size: 2.5vw;
+  font-size: 2.5rem;
   color: #232323;
 }
 div .category p {
   position: absolute;
-  left: 40vw;
-  top: 71.5vw;
+  left: 40.5vw;
+  top: 70vw;
   font-family: "Pretendard Variable";
-  font-size: 1.2vw;
+  font-size: 1.2rem;
   text-align: center;
   color: #232323;
 }
@@ -319,26 +298,25 @@ div .category div {
   position: absolute;
   width: 5vw;
   height: 2vw;
-  left: 15vw;
-  top: 80vw;
+  left: 28.5vw;
+  top: 86.5vw;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
+  transition: left 0.5s ease;
   z-index: 3;
 }
 div .category div:nth-of-type(2) {
-  left: 30.5vw;
-  top: 82vw;
+  left: 51.5vw;
 }
 div .category div:nth-of-type(3) {
-  left: 46vw;
+  left: 60.5vw;
 }
 div .category div:nth-of-type(4) {
-  left: 61.5vw;
-  top: 82vw;
+  left: 69.5vw;
 }
 div .category div:nth-of-type(5) {
-  left: 77vw;
+  left: 78.5vw;
 }
 div .category div p {
   color: #232323;
@@ -351,32 +329,52 @@ div .category div p {
   z-index: 5;
 }
 div .category img {
-  width: 10vw;
-  border-radius: 10%;
-  position: absolute;
-  left: 12.5vw;
+  width: 8vw;
+  border-radius: 20px;
   z-index: 2;
   opacity: 0.8;
-  top: 76vw;
   transition: all 0.5s;
+  height: 27.5vw;
+  object-fit: cover;
+  margin: 10px;
+  margin-top: 0vw;
+  transition: left 0.5s ease;
 }
 div .category img.selected-img {
   opacity: 1;
-  border: 5px solid #FF8AA3;
+  width: 35vw;
 }
 div .category img:nth-of-type(2) {
-  left: 28vw;
-  top: 78vw;
+  left: 49vw;
+}
+div .category img:nth-of-type(2).selected-img {
+  opacity: 1;
+  width: 35vw;
+  left: 22vw;
 }
 div .category img:nth-of-type(3) {
-  left: 43.5vw;
+  left: 58vw;
+}
+div .category img:nth-of-type(3).selected-img {
+  opacity: 1;
+  width: 35vw;
+  left: 31vw;
 }
 div .category img:nth-of-type(4) {
-  left: 59vw;
-  top: 78vw;
+  left: 67vw;
+}
+div .category img:nth-of-type(4).selected-img {
+  opacity: 1;
+  width: 35vw;
+  left: 40vw;
 }
 div .category img:nth-of-type(5) {
-  left: 74.5vw;
+  left: 76vw;
+}
+div .category img:nth-of-type(5).selected-img {
+  opacity: 1;
+  width: 35vw;
+  left: 50vw;
 }
 div .category span {
   position: absolute;
@@ -434,8 +432,7 @@ div .location {
   position: absolute;
   width: 100vw;
   height: 30vw;
-  top: 100vw;
-  background: #FFF3A7;
+  top: 110vw;
   left: 0;
   border-radius: 0;
   border: none;
@@ -443,117 +440,132 @@ div .location {
 div .location p {
   position: absolute;
   font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 0.8vw;
+  font-weight: 600;
+  font-size: 1.1rem;
   color: #232323;
 }
 div .location h3 {
   position: absolute;
-  left: 55vw;
-  top: 5vw;
+  left: 13.5vw;
+  top: 9vw;
   font-family: "Bobaesum Jindo TTF";
-  font-size: 2.2vw;
+  font-size: 2.2rem;
   color: #232323;
+  background: linear-gradient(to right, #FF8AA3 50%, #232323 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: changeColor 2s ease-in-out;
+}
+@keyframes colorChange {
+  0% {
+    color: #FF8AA3;
+  }
+  50% {
+    color: #FF8AA3;
+  }
+  100% {
+    color: #232323;
+  }
 }
 div .location > img:nth-of-type(1) {
   position: absolute;
-  left: 55vw;
-  width: 9vw;
-  top: 8vw;
-  border: 3px solid #FF8AA3;
-  border-radius: 20px;
+  left: 52vw;
+  width: 13vw;
+  height: 15vw;
+  top: 37.5vw;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  z-index: 10;
+  object-fit: cover;
 }
 div .location p:nth-of-type(1) {
-  left: 65vw;
-  top: 8.5vw;
+  left: 66.5vw;
+  top: 37.5vw;
+  z-index: 10;
 }
 div .location p:nth-of-type(2) {
-  left: 65vw;
-  top: 10vw;
-}
-div .location p:nth-of-type(3) {
-  left: 65vw;
-  top: 13vw;
+  left: 66.5vw;
+  top: 39.5vw;
+  z-index: 10;
 }
 div .location span {
   position: absolute;
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 500;
-  font-size: 0.8vw;
+  font-size: 1rem;
   color: #232323;
 }
 div .location p:nth-of-type(1) span {
-  left: 4vw;
-  top: -0.1vw;
-  width: 10vw;
+  left: 6vw;
+  top: 0vw;
+  width: 18vw;
   line-height: 130%;
 }
 div .location p:nth-of-type(2) span {
-  left: 4vw;
-  top: -0.1vw;
-  width: 8vw;
+  left: 0vw;
+  top: 1.7vw;
+  width: 22vw;
   display: -webkit-box;
   /* Ensures the box model is correct for ellipsis */
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   /* Limit the lines to 3 */
   overflow: hidden;
   /* Hide any overflow */
   text-overflow: ellipsis;
   line-height: 140%;
   /* Adjust the line height as necessary */
-  max-height: 5.6em;
+  max-height: 4.2em;
   /* Ensures it cuts off after 3 lines */
-}
-div .location span:nth-of-type(3) {
-  left: 70.5vw;
-  top: 13vw;
 }
 div .location input {
   position: absolute;
-  width: 22.5vw;
+  width: 22vw;
   height: 2.3vw;
   background: #FFFFFF;
   border-radius: 20px;
   border: none;
   outline: none;
   color: #999999;
-  font-size: 0.8vw;
+  font-size: 0.9rem;
   font-weight: normal;
   padding-left: 5vw;
+  z-index: 10;
 }
 div .location input:nth-of-type(1) {
-  left: 55vw;
-  top: 15.5vw;
+  left: 66.5vw;
+  top: 47vw;
   text-align: center;
 }
 div .location input:nth-of-type(2) {
-  left: 55vw;
-  top: 18.5vw;
+  left: 66.5vw;
+  top: 50.2vw;
   text-align: center;
 }
 div .location label:nth-of-type(1) {
   position: absolute;
-  left: 55.5vw;
-  top: 16.2vw;
+  left: 66.7vw;
+  top: 47.6vw;
   font-family: "Pretendard Variable";
   font-weight: 600;
-  font-size: 1vw;
+  font-size: 1rem;
   color: #232323;
   width: 10vw;
   background-color: transparent;
+  z-index: 10;
 }
 div .location label:nth-of-type(2) {
   position: absolute;
-  left: 55.5vw;
-  top: 19.2vw;
+  left: 66.7vw;
+  top: 50.8vw;
   font-family: "Pretendard Variable";
   font-weight: 600;
   font-size: 1vw;
   color: #232323;
   width: 10vw;
   background-color: transparent;
+  z-index: 10;
 }
 div .location button {
   position: absolute;
@@ -568,6 +580,7 @@ div .location button {
   font-weight: 700;
   font-family: "Pretendard Variable";
   font-size: 0.8vw;
+  z-index: 10;
 }
 div .location button:nth-of-type(2) {
   left: 67vw;
@@ -576,9 +589,20 @@ div .location button:nth-of-type(2) {
 div .location img:nth-of-type(2) {
   position: absolute;
   width: 7vw;
-  left: 46vw;
-  top: 12vw;
-  z-index: 10;
+  left: 83vw;
+  top: 24vw;
+  z-index: 100;
+}
+div .location > div {
+  width: 40vw;
+  height: 20vw;
+  background-color: #f0f0f0;
+  z-index: 9;
+  position: relative;
+  left: 50vw;
+  top: 35vw;
+  border: 2px solid #fff;
+  box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
 }
 div .talk img:nth-of-type(1) {
   position: absolute;
