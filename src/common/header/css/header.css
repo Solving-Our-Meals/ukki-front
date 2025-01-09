@@ -178,10 +178,9 @@ header {
   left: 0;
   right: 0;
   top: 0;
-  background: #FFF3A7;
-  box-shadow: 0px 4px 7.3px 1px rgba(0, 0, 0, 0.25);
+  background: #fff;
   width: 100%;
-  height: 80px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -191,80 +190,90 @@ header {
 }
 header img {
   position: absolute;
-  left: 3.54%;
+  left: 4.5%;
   right: 89.43%;
-  top: 15%;
+  top: 15.5%;
   bottom: 21.25%;
-  width: 135px;
+  width: 110px;
 }
 header .menu {
   display: flex;
-  gap: 20px;
+  gap: 2px;
   position: relative;
-  right: -70%;
+  justify-content: center;
   top: 30%;
 }
+header .menu .menu-item {
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+header .menu .menu-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 header .menu a {
-  font-family: "Bobaesum Jindo TTF";
+  font-family: "Pretendard Variable";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.3rem;
   line-height: 1.5rem;
-  color: #FF8AA3;
-  transition: color 1s;
+  color: #999999;
+  transition: all 0.4s ease;
   position: relative;
-}
-header .menu a:hover {
-  color: #FF5176;
-}
-header .menu a::before {
-  position: absolute;
-  content: "";
-  width: 0;
-  height: 4px;
-  background-color: #FF5176;
-  bottom: -7px;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: width 1s ease-in-out;
+  background-color: #f6f6f6;
+  padding: 3px 20px;
   border-radius: 50px;
+  border: 1.5px solid transparent;
 }
-header .menu a::before {
-  height: 0.15rem;
+header .menu a.active {
+  color: #232323;
+  border: 1.5px solid #232323;
 }
-header .menu a:hover::before {
-  width: 2.5rem;
+header .menu .indicator {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #232323;
+  transition: all 0.4s ease;
 }
-header .menu a:nth-of-type(3):hover::before {
-  width: 5.5rem;
+header .menu .menu-item.active .indicator {
+  width: 100%;
 }
-header .menu a:nth-of-type(4):hover::before {
-  width: 6.5rem;
-}
-header .menu a:nth-of-type(5) {
+header .menu a:nth-of-type(7) {
+  position: absolute;
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 700;
   font-size: 1rem;
-  color: #232323;
+  color: #fff;
+  background-color: #232323;
+  right: 5vw;
 }
-header .menu a:nth-of-type(6) {
+header .menu a:nth-of-type(8) {
+  position: absolute;
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 700;
   font-size: 1rem;
-  color: #232323;
+  color: #fff;
+  background-color: #232323;
+  right: 11vw;
 }
 header .menu-button {
   position: absolute;
-  right: 7%;
-  top: 0.41%;
+  right: 10%;
+  top: 10%;
   background: none;
   border: none;
   outline: none;
   display: none;
-  width: 56px;
-  height: 56px;
+}
+header .menu-button img {
+  width: 40px;
 }
 @media (max-width: 768px) {
   header {
@@ -272,11 +281,10 @@ header .menu-button {
     align-items: center;
     padding: 10px;
     width: 100%;
-    max-height: 28px;
+    height: 50px;
   }
   header img {
-    height: 17px;
-    width: auto;
+    width: 80px;
     left: 5%;
   }
   header .menu-button {
@@ -284,33 +292,58 @@ header .menu-button {
   }
   header .menu-button img {
     position: absolute;
-    top: 10%;
+    top: 5px;
     left: 80%;
+    height: 30px;
+    width: 30px;
   }
   header .menu {
     display: none;
-    right: 0%;
-  }
-  header .menu a {
-    font-size: 0.7rem !important;
-  }
-  header .menu a:nth-of-type(5) {
-    font-size: 0.5rem !important;
-  }
-  header .menu a:nth-of-type(6) {
-    font-size: 0.5rem !important;
   }
   header .menu.open {
     position: absolute;
     width: 100%;
     justify-content: center;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    top: 28px;
-    background: #FFF9D1;
-    height: 50px;
+    flex-direction: column;
+    align-items: start;
+    top: 50px;
+    height: 350px;
+    background-color: #fff;
+    gap: 15px;
     box-shadow: 0px 4px 7.3px rgba(0, 0, 0, 0.25);
+  }
+  header .menu a {
+    position: relative;
+    left: 20px;
+    background: none;
+    border: none;
+    top: -22px;
+  }
+  header .menu a.active {
+    color: #232323;
+    border: none;
+    font-weight: 700;
+  }
+  header .menu a:nth-of-type(7) {
+    width: 100px;
+    position: absolute;
+    top: 300px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #232323;
+    left: 35px;
+  }
+  header .menu a:nth-of-type(8) {
+    width: 100px;
+    position: absolute;
+    top: 300px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #232323;
+    left: 150px;
   }
   header .menu-button {
     display: block;
@@ -319,52 +352,30 @@ header .menu-button {
 }
 @media (max-width: 1440px) and (min-width: 769px) {
   header {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    width: 100%;
-    max-height: 48px;
+    height: 60px;
+    padding: 0 15px;
   }
   header img {
-    height: 30px;
-    width: auto;
-    left: 5%;
-  }
-  header .menu-button {
-    background: none;
-  }
-  header .menu-button img {
-    position: absolute;
-    top: 15%;
-    left: 80%;
+    left: 4%;
+    right: 88%;
+    top: 13.5%;
+    bottom: 18%;
+    width: 90px;
   }
   header .menu {
-    display: none;
-    right: 0%;
+    gap: 2px;
   }
   header .menu a {
-    font-size: 1rem !important;
+    font-size: 1.1rem;
+    padding: 2px 12px;
   }
-  header .menu a:nth-of-type(5) {
-    font-size: 0.7rem !important;
+  header .menu a:nth-of-type(7) {
+    right: 4vw;
   }
-  header .menu a:nth-of-type(6) {
-    font-size: 0.7rem !important;
-  }
-  header .menu.open {
-    position: absolute;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    top: 48px;
-    background: #FFF9D1;
-    height: 80px;
-    box-shadow: 0px 4px 7.3px rgba(0, 0, 0, 0.25);
+  header .menu a:nth-of-type(8) {
+    right: 9vw;
   }
   header .menu-button {
-    display: block;
-    position: absolute;
+    display: none;
   }
-}
+}/*# sourceMappingURL=header.css.map */

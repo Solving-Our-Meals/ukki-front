@@ -254,22 +254,7 @@ const Main = () => {
     };
 
 
-    const getNearestStore = async () => {
-        // 가장 가까운 가게를 찾는 로직 구현 (예: API 호출)
-        const response = await fetch('/api/nearest-store');
-        const nearestStore = await response.json();
-        return nearestStore;
-    };
 
-
-    useEffect(() => {
-        const fetchNearestStore = async () => {
-            const nearestStore = await getNearestStore();
-            setAddress(nearestStore.address);
-            setStoreInfo(nearestStore);
-        };
-        fetchNearestStore();
-    }, []);
 
 
     return (
@@ -300,7 +285,7 @@ const Main = () => {
                     </div>
                     <div className="leftbtn btn" onClick={handlePrev}>&lt;</div>
                     <div className="rightbtn btn" onClick={handleNext}>&gt;</div>
-                    <div className="pagination">
+                    {/* <div className="pagination">
                         <ul>
                             {banners.map((_, index) => (
                                 <li
@@ -314,7 +299,7 @@ const Main = () => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='search'>
                     <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" />

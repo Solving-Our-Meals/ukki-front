@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Map.css';
 import loMarker from '../image/marker.png';
 
+
+
 const { kakao } = window;
 const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClick }) => {
     const [map, setMap] = useState(null);
