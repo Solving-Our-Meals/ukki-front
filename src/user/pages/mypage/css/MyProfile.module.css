@@ -218,7 +218,7 @@
 }
 
 .medalImage2 {
-    transform: translate(50px, 155px);
+    transform: translate(47px, 155px);
     object-fit: contain;
 }
 
@@ -233,7 +233,7 @@
 }
 
 .medalImage3 {
-    transform: translate(92px, 155px);
+    transform: translate(89px, 155px);
     object-fit: contain;
 }
 
@@ -263,7 +263,7 @@
 }
 
 .medalImage5 {
-    transform: translate(50px, 175px);
+    transform: translate(47px, 175px);
     object-fit: contain;
 }
 
@@ -278,7 +278,7 @@
 }
 
 .medalImage6 {
-    transform: translate(92px, 175px);
+    transform: translate(89spx, 175px);
     object-fit: contain;
 }
 
