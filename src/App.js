@@ -15,33 +15,40 @@ import QrRoutes from './store/pages/qrCheck/routes/QrRoutes';
 import AdminRoutes from './admin/route/AdminRoutes';
 import Search from './user/pages/search/Search';
 import Reservation from './user/pages/reservation/pages/ReservationPage';
+import PrivateRoute from './common/authContext/PrivateRoute';
 
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="auth/signup" element={<Signup />} />
-                <Route path="auth/login" element={<Login />} />
-                <Route path="auth/find/:type" element={<Find />} />
-                <Route path="/" element={<UserLayout />}>
-                <Route path="/" element={<Main />} />
-                <Route path="info" element={<Info />} />
-                </Route>
-
-                <Route element={<AuthProvider />}>
-                    <Route path="user/mypage" element={<Mypage />} />
+            <AuthProvider>
+                <Routes>
+                    {/* 로그인 인증이 필요 없는 라우트 넣기 */}
+                    <Route path="auth/signup" element={<Signup />} />
+                    <Route path="auth/login" element={<Login />} />
+                    <Route path="auth/find/:type" element={<Find />} />
                     <Route path="/" element={<UserLayout />}>
-                        <Route path="search" element={<Search />} />
-                        <Route path="store" element={<UserStorePage />} />
-                        <Route path="reservation" element={<Reservation />} />
-                        <Route path="sinquiries" element={<InquiryEnter />} />
+                        <Route path="/" element={<Main />} />
+                        <Route path="/main" element={<Main />} />
+                        <Route path="info" element={<Info />} />
                     </Route>
-                </Route>
 
-                <Route path="qr/*" element={<QrRoutes />} />
-                <Route path="admin/*" element={<AdminRoutes />} />
-            </Routes>
+                    {/* 로그인 인증이 필요한 라우트들 넣고 element에 PrivateRoute 붙여주세요. */}
+                    <Route path="user/mypage" element={<PrivateRoute element={<Mypage />} />} />
+                    <Route path="/" element={<UserLayout />}>
+                        <Route path="search" element={<PrivateRoute element={<Search />} />} />
+                        <Route path="store" element={<PrivateRoute element={<UserStorePage />} />} />
+                        <Route path="reservation" element={<PrivateRoute element={<Reservation />} />} />
+                        <Route path="sinquiries" element={<PrivateRoute element={<InquiryEnter />} />} />
+                    </Route>
+
+                    {/* QR 관련 및 관리자 관련 라우팅 */}
+                    <Route path="qr/*" element={<QrRoutes />} />
+                    <Route path="admin/*" element={<AdminRoutes />} />
+                </Routes>
+            </AuthProvider>
         </BrowserRouter>
     );
 }
+
+
 export default App;
