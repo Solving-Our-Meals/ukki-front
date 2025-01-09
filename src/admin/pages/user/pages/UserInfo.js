@@ -98,7 +98,7 @@ function UserInfo(){
     <>
     {isInfo?
         <>
-        <div id={styles.userInfoText}>회원번호</div>
+        <div id={styles.userInfoText}>회원 상세정보</div>
         <div className={styles.horizon1}></div>
         <div id={styles.userInfoProfile}>프로필 정리되면 불러올 예정{userInfo.profile}</div>
         <div id={styles.userInfoContentText}>회원정보</div>
