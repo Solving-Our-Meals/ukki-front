@@ -1,11 +1,11 @@
 /* StoreDetail의 CSS를 기반으로 AdminLayout의 renderingArea에 맞게 수정 */
-.storeInfo {
+.storeEdit {
     width: 1550px;  /* AdminLayout의 renderingArea 너비에 맞춤 */
     margin: 0 auto;
     padding: 20px;
 }
 
-#storeInfoText{
+#storeEditText{
     position: absolute;
     
     height: 55px;
@@ -206,7 +206,7 @@
     color: #1E1E1E;
 }
 
-#storeInfoEditBtn{
+#storeEditCancleBtn{
     /* Rectangle 166 */
     position: absolute;
     width: 110px;
@@ -231,10 +231,10 @@
     border: none;
     cursor: pointer;
 }
-#storeInfoEditBtn:hover {
+#storeEditCancleBtn:hover {
     background: #FFE970;
 }
-#storeInfoDeleteBtn{
+#storeEditOkBtn{
 
     position: absolute;
     width: 110px;
@@ -257,6 +257,6 @@
     border: none;
     cursor: pointer;
 }
-#storeInfoDeleteBtn:hover {
+#storeEditOkBtn:hover {
     background: #FF6B87;
 }

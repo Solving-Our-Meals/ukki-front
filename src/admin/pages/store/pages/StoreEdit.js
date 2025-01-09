@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styles from '../css/StoreInfo.module.css';
+import styles from '../css/StoreEdit.module.css';
 import '../css/reset.css';
-import triangleBtn from '../css/images/inverted_triangle.png';
 import Banner from '../components/Banner';
 import Profile from '../components/Profile';
 import Menu from '../components/Menu';
+import triangleBtn from '../css/images/inverted_triangle.png';
 
-function StoreInfo() {
+function StoreEdit() {
     const { storeNo } = useParams();
     const navigate = useNavigate();
     const [colorMonday, setColorMonday] = useState("");
@@ -124,8 +124,8 @@ function StoreInfo() {
 
 
     return(
-        <div className={styles.storeDetail}>
-            <div id={styles.storeInfoText}>가게 상세정보</div>
+        <div className={styles.storeEdit}>
+            <div id={styles.storeEditText}>가게 수정</div>
             <div><Banner/>
                 <div><Profile/></div>
             </div>
@@ -160,15 +160,14 @@ function StoreInfo() {
             <hr className={styles.hr2}></hr>
             <div id={styles.storeRegistDate}>등록 일자 : {storeInfo.storeRegistDate}</div>
             <div id={styles.posNumber}>기본 예약 가능 인원 : {storeInfo.posNumber}</div>
-            <button 
-                id={styles.storeInfoEditBtn} 
-                onClick={() => navigate(`/admin/stores/info/${storeNo}/edit`)}
-            >
-                수정
-            </button>
-            <button id={styles.storeInfoDeleteBtn}>삭제</button>
+            <button id={styles.storeEditCancleBtn} onClick={() => navigate(`/admin/stores/info/${storeNo}`)}>
+                    취소
+                </button>
+                <button id={styles.storeEditOkBtn}>
+                    확인
+                </button>
         </div>
     );
 }
 
-export default StoreInfo; 
+export default StoreEdit; 
