@@ -52,7 +52,8 @@ function Review() {
             });
 
             if (response.ok) {
-                setUserInfo(prevState => prevState.filter(review => review.no !== reviewNo));
+                setUserInfo(prevState => prevState.filter(review => review.reviewNo !== reviewNo));
+                window.location.reload();
             } else {
                 setError('리뷰 삭제에 실패했습니다.');
             }
