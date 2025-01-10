@@ -10,6 +10,9 @@ import UserInfo from "../pages/user/pages/UserInfo";
 import StoreList from "../pages/store/pages/StoreList";
 import StoreInfo from "../pages/store/pages/StoreInfo";
 import StoreEdit from "../pages/store/pages/StoreEdit";
+import StoreUserRegist from "../pages/store/pages/StoreUserRegist";
+import StoreInfoRegist from "../pages/store/pages/StoreInfoRegist";
+
 
 function AdminRoutes(){
     return(
@@ -27,6 +30,8 @@ function AdminRoutes(){
                     <Route path="list" element={<StoreList/>}/>
                     <Route path="info/:storeNo" element={<StoreInfo/>}/>
                     <Route path="info/:storeNo/edit" element={<StoreEdit/>}/>
+                    <Route path="regist/user" element={<StoreUserRegist/>}/>
+                    <Route path="regist/store" element={<StoreInfoRegist/>}/>
                 </Route>
                 <Route path="/reservations" element={<AdminReservation/>}/>
                 <Route path="/reviews" element={<AdminReview/>}/>
