@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../css/Review.module.css';
+import styles from '../css/Inquiry.module.css';
 import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Review() {
+function Inquiry() {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -39,29 +39,6 @@ function Review() {
             setLoading(false);
         }
     };
-
-    const deleteReview = async (reviewNo) => {
-        try {
-            const response = await fetch('/user/review/delete', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify({ reviewNo }) // 리뷰 ID를 본문에 포함
-            });
-
-            if (response.ok) {
-                setUserInfo(prevState => prevState.filter(review => review.reviewNo !== reviewNo));
-                window.location.reload();
-            } else {
-                setError('리뷰 삭제에 실패했습니다.');
-            }
-        } catch (error) {
-            setError('에러 발생: ' + error.message);
-        }
-    };
-
 
     if (loading) {
         return (
@@ -100,10 +77,6 @@ function Review() {
         return stars;
     };
 
-    const handleReviewClick = (storeNo) => {
-        navigate(`/store/${storeNo}`);
-    };
-
     return (
         <div className={styles.mypageReservation}>
             <div className={styles.allTabs}>
@@ -135,11 +108,7 @@ function Review() {
                 {/* 리뷰 항목 */}
                 {currentItems.length > 0 ? (
                     currentItems.map((review, index) => (
-                        <div
-                            key={index}
-                            className={styles.reservationItem}
-                            onClick={() => handleReviewClick(review.storeNo)}
-                        >
+                        <div key={index} className={styles.reservationItem}>
                             <div className={styles.headerItem}>{review.storeName}</div>
                             <div className={styles.headerItem}>
                                 {review.reviewDate}
@@ -150,15 +119,6 @@ function Review() {
                             <div className={styles.headerItem}>
                                 {renderStars(review.star)}
                             </div>
-                            <button
-                                className={styles.deleteButton}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    deleteReview(review.reviewNo);
-                                }}
-                            >
-                                삭제
-                            </button>
                         </div>
                     ))
                 ) : (
@@ -193,4 +153,4 @@ function Review() {
     );
 }
 
-export default Review;
+export default Inquiry;

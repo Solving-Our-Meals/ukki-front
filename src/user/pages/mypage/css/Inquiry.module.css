@@ -49,7 +49,7 @@
 /* 예약 리스트 CSS */
 .mypageReservationMain .headerRow {
     display: grid;
-    grid-template-columns:  2fr 5fr 12fr 15fr;;
+    grid-template-columns:  2fr 5fr 3fr 3fr;;
     padding: 10px 0;
 
 
@@ -81,14 +81,14 @@
 
 /* 좌측 정렬 2 */
 .headerItem {
-    width:250px;
+    width:325px;
     background: none;
 }
 
 /* 예약 항목 */
 .reservationItem {
     display: grid;
-    grid-template-columns:  2fr 5fr 12fr 15fr;
+    grid-template-columns:  2fr 5fr 3fr 3fr;;
     padding: 10px 0;
 
     font-family: 'Pretendard-Regular';
@@ -195,43 +195,4 @@
 .loadingContainer img {
     max-width: 100%;
     height: auto;
-}
-
-
-.deleteButton {
-    position: absolute;
-    left: 1020px;
-    top: 10px;
-    background-color: #ff4c4c;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    display: none;
-    font-family: 'Pretendard-Regular';
-    color: #232323;
-}
-
-.reservationItem:hover .deleteButton {
-    display: block;
-}
-
-.deleteButton:hover {
-    background-color: #ff2b2b;
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.deleteButton:active {
-    transform: scale(1);
-    box-shadow: none;
-}
-
-.deleteButton:focus {
-    outline: none;
 }
