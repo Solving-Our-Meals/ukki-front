@@ -41,7 +41,11 @@ function Reservation() {
     };
 
     if (loading) {
-        return <div>로딩창 넣을곳</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+            </div>
+        )
     }
 
     if (error) {
