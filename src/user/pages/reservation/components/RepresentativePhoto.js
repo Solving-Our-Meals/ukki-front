@@ -12,7 +12,7 @@ function RepresentativePhoto(){
 
     useEffect(
         () => {
-            fetch(`/reservation/${storeNo}/repPhoto`)
+            fetch(`/reservation/repPhoto?storeNo=${storeNo}`)
             .then(res => res.text())
             .then(data => {
                 const bannerUrl = `/reservation/api/repPhoto?repPhotoName=${data}`

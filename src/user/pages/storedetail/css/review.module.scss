@@ -69,6 +69,43 @@
             width: 1550px;
             height: max-content;
 
+            .review, .transformReview {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+
+                .userInfoContainer {
+                    display: flex;
+                    align-items: center;
+                    order: 1;
+
+                    .userName {
+                        display: inline-block;
+                    }
+
+                    .starRating {
+                        display: inline-flex;
+                        margin-left: 20px;
+                        
+                        img {
+                            height: 20px;
+                        }
+                    }
+                }
+
+                > div {
+                    margin-bottom: 8px;
+
+                    &:nth-child(4) {
+                        order: 2;
+                    }
+
+                    &:nth-child(6) {
+                        order: 3;
+                    }
+                }
+            }
+
             .review{
                 position: relative;
                 display: inline-block;
@@ -110,6 +147,10 @@
                     font-style: normal;
                     color: $textStrong;
                     z-index: 5;
+
+                    span{
+                        margin-right: 15px;
+                    }
                 }
     
                 div:nth-of-type(2){
@@ -123,7 +164,7 @@
                    color: $textStrong;
                    z-index: 5;
                 }
-    
+
                 div:nth-of-type(3){
                     left : 107px;
                     top : 173px;
@@ -194,6 +235,11 @@
                     font-style: normal;
                     color: $textStrong;
                     z-index: 5;
+                    
+                    span{
+                        margin-right: 15px;
+                    }
+
                 }
     
                 div:nth-of-type(2){
@@ -317,6 +363,43 @@
                 height: max-content;
                 // margin-left: -10px;
     
+                .review, .transformReview {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+
+                    .userInfoContainer {
+                        display: flex;
+                        align-items: center;
+                        order: 1;
+
+                        .userName {
+                            display: inline-block;
+                        }
+
+                        .starRating {
+                            display: inline-flex;
+                            margin-left: 20px;
+                            
+                            img {
+                                height: 20px;
+                            }
+                        }
+                    }
+
+                    > div {
+                        margin-bottom: 8px;
+
+                        &:nth-child(4) {
+                            order: 2;
+                        }
+
+                        &:nth-child(6) {
+                            order: 3;
+                        }
+                    }
+                }
+
                 .review{
                     position: relative;
                     display: inline-block;
@@ -358,6 +441,10 @@
                         font-style: normal;
                         color: $textStrong;
                         z-index: 5;
+
+                        span{
+                            margin-right: 10px;
+                        }
                     }
         
                     div:nth-of-type(2){
@@ -442,6 +529,10 @@
                         font-style: normal;
                         color: $textStrong;
                         z-index: 5;
+
+                        span{
+                            margin-right: 10px;
+                        }
                     }
         
                     div:nth-of-type(2){
@@ -607,6 +698,10 @@
                         font-style: normal;
                         color: $textStrong;
                         z-index: 5;
+
+                        span{
+                            margin-right: 8px;
+                        }
                     }
         
                     div:nth-of-type(2){
@@ -620,8 +715,17 @@
                        color: $textStrong;
                        z-index: 5;
                     }
-        
+
                     div:nth-of-type(3){
+                        left : 65px;
+                        top : 40px;
+                        
+                        img{
+                            border: 1px solid red;
+                        }
+                    }
+        
+                    div:nth-of-type(4){
                         left : 18px;
                         top : 55px;
                         width: 255px;
@@ -691,6 +795,10 @@
                         font-style: normal;
                         color: $textStrong;
                         z-index: 5;
+
+                        span{
+                            margin-right: 8px;
+                        }
                     }
         
                     div:nth-of-type(2){

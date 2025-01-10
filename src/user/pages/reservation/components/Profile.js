@@ -13,7 +13,7 @@ function Profile(){
 
     useEffect(
         () => {
-            fetch(`/reservation/${storeNo}/profile`)
+            fetch(`/reservation/profile?storeNo=${storeNo}`)
             .then(res => res.text())
             .then(data => {
                 const profileUrl = `/reservation/api/profile?profileName=${data}`
