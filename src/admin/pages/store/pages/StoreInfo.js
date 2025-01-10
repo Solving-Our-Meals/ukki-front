@@ -12,12 +12,15 @@ function StoreInfo() {
     const navigate = useNavigate();
     const [isNone, setIsNone] = useState(true);
     const [currentDay, setCurrentDay] = useState('');
+    const [categoryName, setCategoryName] = useState('');
        
     const [storeInfo, setStoreInfo] = useState({
         storeNo: 0,
         storeName: "가게 이름",
         storeDes: "가게 소개글",
         storeAddress: "가게 주소",
+        storeCategoryNo: 0,
+        storeCategory: {},
         storeKeyword: [],
         operationTime: ""
     });
@@ -28,10 +31,17 @@ function StoreInfo() {
             .then(res => res.json())
             .then(data => {
                 setStoreInfo(data)
+                // 카테고리 이름 설정
+                const matchingCategory = data.storeCategory.find(
+                    category => category.categoryNo === data.storeCategoryNo
+                );
+                if (matchingCategory) {
+                    setCategoryName(matchingCategory.categoryName);
+                }
                 console.log("가게 정보 :",data)
             })
             .catch(error => console.log(error));
-        }, []
+        }, [storeNo]
     );
 
     useEffect(() => {
@@ -98,7 +108,10 @@ function StoreInfo() {
             <div><Banner/>
                 <div><Profile/></div>
             </div>
-            <p id={styles.storeName}>{storeInfo.storeName}</p>
+            <div className={styles.storeHeader}>
+                <p id={styles.storeName}>{storeInfo.storeName}</p>
+                <p id={styles.storeCategory}>{categoryName}</p>
+            </div>
             <p id={styles.storeDes}>{storeInfo.storeDes}</p>
             <p id={styles.storeAddress}>{storeInfo.storeAddress}</p>
             <p id={styles.operTime} onClick={onClickHandler}>

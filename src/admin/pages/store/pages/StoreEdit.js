@@ -25,7 +25,9 @@ function StoreEdit() {
             latitude: 0,
             longitude: 0
         },
-        operationTime: ""
+        operationTime: "",
+        storeCategoryNo: 0,
+        storeCategory: []
     });
     const [isAddressChanged, setIsAddressChanged] = useState(false);
     const [coordError, setCoordError] = useState('');
@@ -38,6 +40,7 @@ function StoreEdit() {
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultMessage , setResultMessage] = useState('');
     const [agreeMessage , setAgreeMessage] = useState('');
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const fetchStoreData = async () => {
@@ -65,6 +68,7 @@ function StoreEdit() {
 
                 setInitialData(initialStoreData);
                 setStoreInfo(initialStoreData);
+                setCategories(storeData.storeCategory);
                 setMenuImage(menuUrl);
                 setProfileImage(profileUrl);
                 setBannerImages(bannerImages);
@@ -118,7 +122,8 @@ function StoreEdit() {
         const fieldName = id.replace(styles.storeName, 'storeName')
             .replace(styles.storeDes, 'storeDes')
             .replace(styles.storeAddress, 'storeAddress')
-            .replace(styles.posNumberInput, 'posNumber');
+            .replace(styles.posNumberInput, 'posNumber')
+            .replace(styles.categorySelect, 'storeCategoryNo');
 
         setStoreInfo(prev => ({
             ...prev,
@@ -199,9 +204,7 @@ function StoreEdit() {
             reader.readAsDataURL(file);
         }
     }, []);
-
-    const handleMenuDelete = useCallback(() => setMenuImage(''), []);
-    const handleProfileDelete = useCallback(() => setProfileImage(''), []);
+    
     const onClickHandler = useCallback(() => setIsNone(prev => !prev), []);
 
     // 주소 변환 핸들러
@@ -242,7 +245,7 @@ function StoreEdit() {
         const changes = {};
         
         // 기본 필드 비교
-        ['storeName', 'storeDes', 'storeAddress', 'posNumber'].forEach(field => {
+        ['storeName', 'storeDes', 'storeAddress', 'posNumber', 'storeCategoryNo'].forEach(field => {
             if (storeInfo[field] !== initialData[field]) {
                 changes[field] = storeInfo[field];
             }
@@ -265,6 +268,11 @@ function StoreEdit() {
         if (keywordsChanged) {
             changes.storeKeyword = storeInfo.storeKeyword;
         }
+
+        // 카테고리 번호 비교
+        // if (selectedCategory !== initialData.storeCategoryNo) {
+        //     changes.storeCategoryNo = selectedCategory;
+        // }
 
         return Object.keys(changes).length > 0 ? changes : null;
     }, [initialData, storeInfo]);
@@ -298,7 +306,8 @@ function StoreEdit() {
     }, [bannerImages, menuImage, profileImage]);
 
     // 수정 요청 처리 함수 수정
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+
         const changedData = getChangedData();
         const changedImages = getChangedImages();
 
@@ -320,6 +329,7 @@ function StoreEdit() {
             const formData = new FormData();
 
             if (changedData) {
+                changedData.storeNo = storeNo;
                 formData.append('storeData', JSON.stringify(changedData));
             }
 
@@ -371,6 +381,24 @@ function StoreEdit() {
         <div className={styles.storeEdit}>
             <div id={styles.storeEditText}>가게 수정</div>
             
+                <input 
+                    type='text' 
+                    id={styles.storeName} 
+                    value={storeInfo.storeName} 
+                    onChange={handleInputChange}
+                />
+                <select 
+                    id={styles.categorySelect}
+                    value={storeInfo.storeCategoryNo} 
+                    onChange={handleInputChange}
+                >
+                    {categories.map(category => (
+                        <option key={category.categoryNo} value={category.categoryNo}>
+                            {category.categoryName}
+                        </option>
+                    ))}
+                </select>
+            
             <div className={styles.bannerArea}>
                 {[0, 1, 2, 3, 4].map((index) => (
                     <div key={index} className={styles.bannerUploadBox}>
@@ -412,25 +440,7 @@ function StoreEdit() {
                     id="menu-upload"
                 />
                 <label htmlFor="menu-upload" className={styles.uploadLabel}>
-                    {menuImage ? (
-                        <>
                             <img src={menuImage} alt="메뉴" className={styles.uploadImage}/>
-                            <button 
-                                className={styles.deleteButton}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleMenuDelete();
-                                }}
-                            >
-                                <img src={xBtn} alt="삭제"/>
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                        <p>메뉴 업로드</p>
-                        <img src={plusBtn} alt="메뉴 업로드" className={styles.plusButton}/>
-                        </>
-                    )}
                 </label>
             </div>
 
@@ -443,29 +453,10 @@ function StoreEdit() {
                     id="profile-upload"
                 />
                 <label htmlFor="profile-upload" className={styles.uploadLabel}>
-                    {profileImage ? (
-                        <>
                             <img src={profileImage} alt="프로필" className={styles.uploadImage}/>
-                            <button 
-                                className={styles.deleteButton}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleProfileDelete();
-                                }}
-                            >
-                                <img src={xBtn} alt="삭제"/>
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                        <p>프로필 업로드</p>
-                        <img src={plusBtn} alt="프로필 업로드" className={styles.plusButton}/>
-                        </>
-                    )}
                 </label>
             </div>
             
-            <input type='text' id={styles.storeName} value={storeInfo.storeName} onChange={handleInputChange}/>
             <input type='text' id={styles.storeDes} value={storeInfo.storeDes} onChange={handleInputChange}/>
             <input type='text' id={styles.storeAddress} value={storeInfo.storeAddress} onChange={handleInputChange}/>
             <button 
