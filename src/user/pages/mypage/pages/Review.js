@@ -67,7 +67,7 @@ function Review() {
                 setUserInfo(prevState => prevState.filter(review => review.reviewNo !== reviewNo));
                 setShowModal(false);
                 setShowSuccessModal(true);
-                setTimeout(() => setShowSuccessModal(false), 2000);
+                // setTimeout(() => setShowSuccessModal(false), 2000);
             } else {
                 setError('리뷰 삭제에 실패했습니다.');
                 setShowModal(false);
@@ -143,9 +143,9 @@ function Review() {
         return (
             <div className={styles.modalOverlay}>
                 <div className={styles.modal}>
-                    <h3 className={styles.modalMainText}>삭제가 완료되었습니다!</h3>
+                    <h3 className={styles.modalMainText2}>삭제가 완료되었습니다!</h3>
                     <div className={styles.modalButtons}>
-                        <button className={styles.modalButton1} onClick={onClose}>확인</button>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
                     </div>
                 </div>
             </div>

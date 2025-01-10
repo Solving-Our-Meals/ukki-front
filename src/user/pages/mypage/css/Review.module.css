@@ -296,12 +296,37 @@
     cursor: pointer;
 }
 
+.modalButton3 {
+    transform: translate(350px, 130px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FF8AA3;
+    border-radius: 25px;
+
+
+    cursor: pointer;
+}
+
 .modalButton:hover {
     background-color: #FF2B2B;
 }
 
 .modalMainText {
     transform: translateY(60px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalMainText2 {
+    transform: translateY(90px);
     font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-weight: 400;
@@ -337,17 +362,17 @@
 }
 
 /* 모달 두 번째 버튼 */
-.modalButton2:hover {
+.modalButton2:hover, .modalButton3:hover {
     background: #ff7a8e;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.modalButton2:active {
+.modalButton2:active .modalButton3:active {
     background: #ff7a8e;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.modalButton1, .modalButton2 {
+.modalButton1, .modalButton2, .modalButton3 {
     transition: background-color 0.3s ease, box-shadow 0.2s ease;
 }
 
