@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from '../css/review.module.css';
 import reviewImg from '../images/reviewBackground.png';
 import CreateReview from '../components/CreateReview';
+import starFilled from '../images/Star Filled.png';
 
 function Review(){
 
@@ -92,7 +93,18 @@ function Review(){
                                 id={styles.userProfile} 
                                 alt='프로필 이미지'
                                 />
-                            <div>{review.userName}</div>
+                            <div>
+                                <span>{review.userName}</span>
+                                {/* 
+                                    Array(review.reviewScope) : review.reviewScope의 길이만큼의 배열을 생성한다.
+                                    .fill() : 배열을 비어있는 값으로 채운다.
+                                    .map((_, i) => ...) : 첫 번째 매개변수 _는 요소 값(여기서는 사용하지 않음)을 나타내며, 두 번째 매개변수 i는 인덱스를 나타냄.
+
+                                */}
+                                {Array(review.reviewScope).fill().map((_, i) => (
+                                    <img key={i} src={starFilled} alt='별점'/>
+                                ))}
+                            </div>
                             <div>{review.reviewDate}</div>
                             <div>{review.reviewContent}</div>
                             <img src={`/store/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>

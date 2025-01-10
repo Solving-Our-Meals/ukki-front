@@ -216,7 +216,7 @@ a:active {
   left: 129px;
   top: 2124px;
   width: 1663px;
-  height: 700px;
+  height: 710px;
   border: 5px solid #FF8AA3;
   border-radius: 50px;
   background-color: #FFF9D1;
@@ -226,7 +226,7 @@ a:active {
 .createReview #strReview {
   position: absolute;
   left: 107px;
-  top: 66px;
+  top: 55px;
   width: max-content;
   font-family: "Bobaesum Jindo TTF";
   font-size: 41px;
@@ -234,17 +234,51 @@ a:active {
   color: #232323;
   z-index: 15;
 }
+.createReview .reviewScope {
+  position: absolute;
+  left: 107px;
+  top: 120px;
+}
+.createReview .reviewScope .starRatingContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.createReview .reviewScope .starRatingContainer .starLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.createReview .reviewScope .starRatingContainer .starLabel .starRadio {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+  display: "none";
+}
+.createReview .reviewScope .starRatingContainer .starLabel .starRadio:checked + span {
+  color: #FF8AA3;
+}
+.createReview .reviewScope .starRatingContainer .starLabel span {
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  color: #232323;
+  font-weight: 600;
+}
+.createReview .reviewScope .starRatingContainer .starLabel:hover span {
+  color: #FF7B9C;
+}
 .createReview #writeReviewArea {
   position: absolute;
   left: 83px;
-  top: 160px;
+  top: 180px;
   width: 1495px;
   height: 452px;
 }
 .createReview #inputReview {
   position: absolute;
   left: 145px;
-  top: 189px;
+  top: 210px;
   width: 835px;
   height: 355px;
   resize: none;
@@ -262,7 +296,7 @@ a:active {
   width: 530px;
   height: 415px;
   left: 1043px;
-  top: 160px;
+  top: 170px;
   border-radius: 0;
   cursor: pointer;
   display: flex;
@@ -291,7 +325,7 @@ a:active {
 .createReview #cancle {
   position: absolute;
   left: 1263px;
-  top: 618px;
+  top: 633px;
   width: 145px;
   height: 36px;
   border: none;
@@ -308,7 +342,7 @@ a:active {
 .createReview #submit {
   position: absolute;
   left: 1432px;
-  top: 618px;
+  top: 633px;
   width: 145px;
   height: 36px;
   border: none;
