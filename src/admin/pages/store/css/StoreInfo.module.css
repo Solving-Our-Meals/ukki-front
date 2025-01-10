@@ -24,12 +24,11 @@
 }
 
 #storeName{
-    position: absolute;
-    width: 500px;
+    position: relative;
+    width: auto;
     height: 55px;
-    left: 61px;
-    top: 350px;
-
+    margin-right: 15px;
+    
     font-family: "Bobaesum Jindo TTF";
     font-style: normal;
     font-weight: 400;
@@ -276,4 +275,30 @@
 .weekOperTime[data-current="true"] {
     font-weight: 700;
     border-bottom: 2px solid #FF6B87;
+}
+
+/* 가게명과 카테고리를 감싸는 컨테이너 */
+.storeHeader {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 61px;
+    top: 350px;
+}
+
+/* 카테고리 스타일 추가 */
+#storeCategory {
+    position: relative;  /* absolute 대신 relative 사용 */
+    height: 35px;
+    padding: 0 15px;
+    
+    background: #FF8AA3;
+    border-radius: 20px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 35px;
+    color: #FFFFFF;
 }
