@@ -151,7 +151,8 @@
 
 .keywordArea div{
     display: inline-block;
-    width: 140px;
+    min-width: 140px;
+    max-width: 200px;
     height: 40px;
     margin-right: 20px;
     background: #FFFFFF;
@@ -165,6 +166,9 @@
     text-align: center;
     align-content: center;
     color: #1E1E1E;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 

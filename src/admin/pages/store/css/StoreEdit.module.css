@@ -44,10 +44,11 @@
 
 .uploadBox .plusButton {
     position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 25%;
-    left: 25%;
+    width: 20%;
+    height: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     object-fit: contain;
 }
 
@@ -71,6 +72,7 @@
 .uploadBox .deleteButton img {
     width: 30px;
     height: 30px;
+    padding-right: 12px;
     object-fit: contain;
 }
 
@@ -109,26 +111,6 @@
     top: 350px;
 }
 
-.menuUploadBox p {
-    position: absolute;
-    left: 35%;
-    top: 5%;
-}
-
-
-.menuUploadBox .deleteButton {
-    right: 20px;
-}
-
-
-.menuUploadBox .uploadLabel {
-    position: absolute;
-    top: 10px;
-    left: -10px;
-    width: 290px;
-    height: 400px;
-}
-
 /* 프로필 업로드 영역 */
 .profileUploadBox {
     composes: uploadBox;
@@ -139,13 +121,6 @@
     text-align: center;
     z-index: 99;
 }
-
-.profileUploadBox p {
-    position: absolute;
-    left: 25%;
-    top: 5%;
-}
-
 #storeEditText{
     position: absolute;
     
