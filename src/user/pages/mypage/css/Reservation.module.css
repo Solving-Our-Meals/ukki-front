@@ -2,14 +2,20 @@
     display: flex;
 }
 
- .tab2, .tab3, .tab4 {
+.allTabs {
+    position: absolute;
+    top:50px;
+    left:50px;
     display: inline-block;
+}
+
+ .tab2, .tab3, .tab4 {
+     display: inline-block;
     font-family: 'Bobaesum-Jindo-TTF';
     font-style: normal;
     font-size: 20px;
     font-weight: 900;
-    transform: translate(90px, 50px);
-     margin-left: 10px;
+     margin-left: 30px;
      cursor: pointer;
      color : #BDBEBF;
 }
@@ -24,8 +30,7 @@
      font-style: normal;
      font-size: 20px;
      font-weight: 900;
-     transform: translate(90px, 47px);
-     margin-left: 10px;
+     margin-left: 20px;
      color : #BDBEBF;
  }
 
@@ -35,11 +40,114 @@
     font-style: normal;
     font-weight: 400;
     font-size: 45px;
-    transform: translate(75px, 30px);
 
     /* text/strong */
     color: #232323;
     cursor: pointer;
-
-
 }
+
+/* 예약 리스트 CSS */
+.mypageReservationMain .headerRow {
+    display: grid;
+    grid-template-columns:  2fr 5fr 3fr 3fr;;
+    padding: 10px 0;
+
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+
+    /* text/strong */
+    color: #232323;
+}
+
+
+.mypageReservationMain {
+    transform: translate(-30px, 150px);
+}
+
+.headerItem {
+    width:325px;
+    background: none;
+    text-align: center;
+}
+
+/* 예약 항목 */
+.reservationItem {
+    display: grid;
+    grid-template-columns:  2fr 5fr 3fr 3fr;;
+    padding: 10px 0;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination span {
+
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 28px;
+
+    color: #232323;
+}
+
+.paginationButton {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 28px;
+    cursor: pointer;
+    color: #FF8AA3;
+}
+
+.paginationButton.disabled {
+    visibility: hidden;
+}
+
+.headerRow, .reservationItem {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.headerRow::before, .reservationItem::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 90%;
+    height: 2px;
+    background-color: #ccc;
+    transform: translateX(-50%);
+}
+

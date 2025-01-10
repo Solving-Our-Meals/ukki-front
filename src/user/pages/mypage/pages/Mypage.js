@@ -10,7 +10,7 @@ function Mypage() {
         <div className={styles.mypage}>
             <Header/>
             <div className={styles.contentList}>
-                    <Reservation />
+                <Reservation />
             </div>
             <MyProfile />
         </div>
