@@ -1,0 +1,10 @@
+#menuImg {
+  position: absolute;
+  z-index: 10;
+  width: 570px;
+  height: 400px;
+  left: 1135px;
+  top: 350px;
+  border-radius: 0;
+  object-fit: contain;
+}

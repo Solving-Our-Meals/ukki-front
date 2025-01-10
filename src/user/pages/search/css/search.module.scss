@@ -1,0 +1,740 @@
+@import '../../../../common/header/css/reset.scss';
+
+#search {
+    .input {
+        div {
+            position: relative;
+            width: 100vw;
+            top: 0vw;
+            input {
+                position: absolute;
+                width: 50vw;
+                height: 4vw;
+                left: 22vw;
+                top: 8vw;
+                border-radius: 50px;
+                border: $primary 0.3vw solid;
+                background-color: $secondary2;
+                color: #FEBA00;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 1.3vw;
+                margin: 0;
+            }
+
+            img {
+                position: absolute;
+                width: 4vw;
+                top: 8vw;
+                left: 73vw;
+            }
+        }
+
+        p {
+            position: absolute;
+            left: 14vw;
+            font-family: 'Pretendard Variable';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1.2vw;
+            color: $textStrong;
+            z-index: 2;
+
+            &:nth-of-type(1) {
+                top: 14vw;
+            }
+
+            &:nth-of-type(2) {
+                top: 22vw;
+                left: 13vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+            }
+        }
+
+        .boxs {
+            position: absolute;
+            top: 16vw;
+            left: 13.5vw;
+            display: flex;
+            gap: 4.5vw;
+
+            span {
+                padding: 0.6vw 3vw;
+                background-color: #fff9d6;
+                border-radius: 50px;
+                color: #FEBA00;
+                font-size: 1vw;
+                font-weight: 700;
+                font-family: 'Pretendard Variable';
+            }
+        }
+
+        .dlsrl {
+            position: absolute;
+            width: 75vw;
+            height: 3.5vw;
+            left: 12vw;
+            top: 24vw;
+            background: #FFF9D3;
+            border-radius: 15px;
+        }
+    }
+
+    .banner {
+        p {
+            position: absolute;
+            left: 13vw;
+            top: 34.5vw;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 1.3vw;
+            color: $textStrong;
+        }
+
+        span {
+            position: absolute;
+            left: 13vw;
+            top: 36.5vw;
+            font-family: 'Pretendard Variable';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1vw;
+            color: $textStrong;
+        }
+
+        img {
+            position: absolute;
+            z-index: -1;
+            width: 100vw;
+            top: 32vw;
+            height: 8vw;
+        }
+    }
+
+    .today {
+        h3 {
+            position: absolute;
+            left: 13vw;
+            top: 45vw;
+            font-family: 'Bobaesum Jindo TTF';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.5vw;
+            color: $textStrong;
+        }
+
+        span {
+            position: absolute;
+            font-family: 'Pretendard Variable';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 1vw;
+            color: $textStrong;
+
+            &:nth-of-type(1) {
+                left: 26vw;
+                top: 45.3vw;
+            }
+
+            &:nth-of-type(2) {
+                left: 15vw;
+                top: 67.5vw;
+                font-weight: 800;
+                font-size: 1.2vw;
+            }
+
+            &:nth-of-type(3) {
+                left: 41.5vw;
+                top: 67.5vw;
+                font-weight: 800;
+                font-size: 1.2vw;
+            }
+
+            &:nth-of-type(4) {
+                left: 68vw;
+                top: 67.5vw;
+                font-weight: 800;
+                font-size: 1.2vw;
+            }
+        }
+
+        p {
+            position: absolute;
+            font-family: 'Pretendard Variable';
+            font-weight: 600;
+            font-size: 0.9vw;
+            color: $textStrong;
+            top: 67.7vw;
+            left: 26.3vw;
+
+            &:nth-of-type(2) {
+                left: 52vw;
+            }
+
+            &:nth-of-type(3) {
+                left: 79.3vw;
+            }
+
+        }
+
+        img {
+            position: absolute;
+            width: 24vw;
+            left: 13vw;
+            top: 48.5vw;
+            border-radius: 10%;
+
+            &:nth-of-type(2) {
+                left: 39vw;
+            }
+
+            &:nth-of-type(3) {
+                left: 65vw;
+            }
+        }
+    }
+
+    .rhkdrh {
+        img:nth-of-type(1) {
+            position: absolute;
+            width: 75.5vw;
+            left: 13vw;
+            top: 76vw;
+        }
+
+        img:nth-of-type(2) {
+            position: absolute;
+            left: 18vw;
+            top: 82vw;
+            width: 19vw;
+        }
+
+        h3 {
+            position: absolute;
+            left: 21.4vw;
+            top: 88vw;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 2vw;
+            color: $primary;
+            z-index: 1;
+        }
+
+        p {
+            position: absolute;
+            left: 21.5vw;
+            top: 92vw;
+            font-family: 'Pretendard Variable';
+            font-weight: 700;
+            font-size: 1.4vw;
+            color: $textStrong;
+        }
+
+        span {
+            position: absolute;
+            width: 24vw;
+            left: 21.5vw;
+            top: 94.5vw;
+            font-family: 'Pretendard Variable';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 1vw;
+            line-height: 150%;
+            color: $textStrong;
+        }
+    }
+}
+
+@media (max-width: 1440px) and (min-width: 769px) {
+    #search {
+        .input {
+            div {
+                position: relative;
+                width: 100vw;
+                top: 0vw;
+                input {
+                    position: absolute;
+                    width: 50vw;
+                    height: 4vw;
+                    left: 22vw;
+                    top: 8vw;
+                    border-radius: 50px;
+                    border: $primary 0.3vw solid;
+                    background-color: $secondary2;
+                    color: #FEBA00;
+                    font-family: 'Pretendard Variable';
+                    font-weight: 700;
+                    font-size: 1.3vw;
+                    margin: 0;
+                }
+
+                img {
+                    position: absolute;
+                    width: 4vw;
+                    top: 8vw;
+                    left: 73vw;
+                }
+            }
+
+            p {
+                position: absolute;
+                left: 14vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 1.5vw;
+                color: $textStrong;
+                z-index: 2;
+
+                &:nth-of-type(1) {
+                    top: 14vw;
+                }
+
+                &:nth-of-type(2) {
+                    top: 22vw;
+                    left: 13vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-style: normal;
+                    font-weight: 400;
+                }
+            }
+
+            .boxs {
+                position: absolute;
+                top: 16.5vw;
+                left: 13.5vw;
+                display: flex;
+                gap: 4.5vw;
+
+                span {
+                    padding: 0.6vw 3vw;
+                    background-color: #fff9d6;
+                    border-radius: 50px;
+                    color: #FEBA00;
+                    font-size: 1.2vw;
+                    font-weight: 700;
+                    font-family: 'Pretendard Variable';
+                }
+            }
+
+            .dlsrl {
+                position: absolute;
+                width: 75vw;
+                height: 3.5vw;
+                left: 12vw;
+                top: 24vw;
+                background: #FFF9D3;
+                border-radius: 15px;
+            }
+        }
+
+        .banner {
+            p {
+                position: absolute;
+                left: 13vw;
+                top: 34.5vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 1.5vw;
+                color: $textStrong;
+            }
+
+            span {
+                position: absolute;
+                left: 13vw;
+                top: 36.5vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 1.2vw;
+                color: $textStrong;
+            }
+
+            img {
+                position: absolute;
+                z-index: -1;
+                width: 100vw;
+                top: 32vw;
+                height: 8vw;
+            }
+        }
+
+        .today {
+            h3 {
+                position: absolute;
+                left: 13vw;
+                top: 45vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 2vw;
+                color: $textStrong;
+            }
+
+            span {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1.2vw;
+                color: $textStrong;
+
+                &:nth-of-type(1) {
+                    left: 30vw;
+                    top: 45.5vw;
+                }
+
+                &:nth-of-type(2) {
+                    left: 15vw;
+                    top: 67.5vw;
+                    font-weight: 800;
+                    font-size: 1.5vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 41.5vw;
+                    top: 67.5vw;
+                    font-weight: 800;
+                    font-size: 1.5vw;
+                }
+
+                &:nth-of-type(4) {
+                    left: 68vw;
+                    top: 67.5vw;
+                    font-weight: 800;
+                    font-size: 1.5vw;
+                }
+            }
+
+            p {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-weight: 600;
+                font-size: 1.1vw;
+                color: $textStrong;
+                top: 67.7vw;
+                left: 29vw;
+
+                &:nth-of-type(2) {
+                    left: 55vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 82vw;
+                }
+
+            }
+
+            img {
+                position: absolute;
+                width: 24vw;
+                left: 13vw;
+                top: 48.5vw;
+                border-radius: 10%;
+
+                &:nth-of-type(2) {
+                    left: 39vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 65vw;
+                }
+            }
+        }
+
+        .rhkdrh {
+            img:nth-of-type(1) {
+                position: absolute;
+                width: 75.5vw;
+                left: 13vw;
+                top: 76vw;
+            }
+
+            img:nth-of-type(2) {
+                position: absolute;
+                left: 18vw;
+                top: 82vw;
+                width: 19vw;
+            }
+
+            h3 {
+                position: absolute;
+                left: 21.4vw;
+                top: 88vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 2vw;
+                color: $primary;
+                z-index: 1;
+            }
+
+            p {
+                position: absolute;
+                left: 21.5vw;
+                top: 92vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 1.4vw;
+                color: $textStrong;
+            }
+
+            span {
+                position: absolute;
+                width: 24vw;
+                left: 21.5vw;
+                top: 94.5vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1vw;
+                line-height: 150%;
+                color: $textStrong;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #search {
+        .input {
+            div {
+                position: relative;
+                width: 100vw;
+                top: 0vw;
+                input {
+                    position: absolute;
+                    width: 50vw;
+                    height: 4vw;
+                    left: 22vw;
+                    top: 8vw;
+                    border-radius: 50px;
+                    border: $primary 0.3vw solid;
+                    background-color: $secondary2;
+                    color: #FEBA00;
+                    font-family: 'Pretendard Variable';
+                    font-weight: 700;
+                    font-size: 1.3vw;
+                    margin: 0;
+                }
+
+                img {
+                    position: absolute;
+                    width: 4vw;
+                    top: 8vw;
+                    left: 73vw;
+                }
+            }
+
+            p {
+                position: absolute;
+                left: 14vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 1.5vw;
+                color: $textStrong;
+                z-index: 2;
+
+                &:nth-of-type(1) {
+                    top: 14vw;
+                }
+
+                &:nth-of-type(2) {
+                    top: 22vw;
+                    left: 13vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-style: normal;
+                    font-weight: 400;
+                }
+            }
+
+            .boxs {
+                position: absolute;
+                top: 16.5vw;
+                left: 13.5vw;
+                display: flex;
+                gap: 4.5vw;
+
+                span {
+                    padding: 0.6vw 3vw;
+                    background-color: #fff9d6;
+                    border-radius: 50px;
+                    color: #FEBA00;
+                    font-size: 1.2vw;
+                    font-weight: 700;
+                    font-family: 'Pretendard Variable';
+                }
+            }
+
+            .dlsrl {
+                position: absolute;
+                width: 75vw;
+                height: 3.5vw;
+                left: 12vw;
+                top: 24vw;
+                background: #FFF9D3;
+                border-radius: 15px;
+            }
+        }
+
+        .banner {
+            p {
+                position: absolute;
+                left: 13vw;
+                top: 34.5vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 1.5vw;
+                color: $textStrong;
+            }
+
+            span {
+                position: absolute;
+                left: 13vw;
+                top: 36.5vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 1.2vw;
+                color: $textStrong;
+            }
+
+            img {
+                position: absolute;
+                z-index: -1;
+                width: 100vw;
+                top: 32vw;
+                height: 8vw;
+            }
+        }
+
+        .today {
+            h3 {
+                position: absolute;
+                left: 13vw;
+                top: 45vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 2vw;
+                color: $textStrong;
+            }
+
+            span {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1.2vw;
+                color: $textStrong;
+
+                &:nth-of-type(1) {
+                    left: 30vw;
+                    top: 45.5vw;
+                }
+
+                &:nth-of-type(2) {
+                    left: 15vw;
+                    top: 67.5vw;
+                    font-weight: 800;
+                    font-size: 1.5vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 41.5vw;
+                    top: 67.5vw;
+                    font-weight: 800;
+                    font-size: 1.5vw;
+                }
+
+                &:nth-of-type(4) {
+                    left: 68vw;
+                    top: 67.5vw;
+                    font-weight: 800;
+                    font-size: 1.5vw;
+                }
+            }
+
+            p {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-weight: 600;
+                font-size: 1.1vw;
+                color: $textStrong;
+                top: 67.7vw;
+                left: 29vw;
+
+                &:nth-of-type(2) {
+                    left: 55vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 82vw;
+                }
+
+            }
+
+            img {
+                position: absolute;
+                width: 24vw;
+                left: 13vw;
+                top: 48.5vw;
+                border-radius: 10%;
+
+                &:nth-of-type(2) {
+                    left: 39vw;
+                }
+
+                &:nth-of-type(3) {
+                    left: 65vw;
+                }
+            }
+        }
+
+        .rhkdrh {
+            img:nth-of-type(1) {
+                position: absolute;
+                width: 75.5vw;
+                left: 13vw;
+                top: 76vw;
+            }
+
+            img:nth-of-type(2) {
+                position: absolute;
+                left: 18vw;
+                top: 82vw;
+                width: 19vw;
+            }
+
+            h3 {
+                position: absolute;
+                left: 21.4vw;
+                top: 88vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 2vw;
+                color: $primary;
+                z-index: 1;
+            }
+
+            p {
+                position: absolute;
+                left: 21.5vw;
+                top: 92vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 1.4vw;
+                color: $textStrong;
+            }
+
+            span {
+                position: absolute;
+                width: 24vw;
+                left: 21.5vw;
+                top: 94.5vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1vw;
+                line-height: 150%;
+                color: $textStrong;
+            }
+        }
+    }
+}

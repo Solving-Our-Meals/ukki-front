@@ -1,0 +1,569 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+.overLay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: none;
+  z-index: 9;
+  display: block;
+}
+
+.termsOfUse {
+  position: relative;
+  left: 720px;
+  top: -505px;
+  width: 1107px;
+  height: 210px;
+  background-color: #FFF3A7;
+  border: none;
+  border-radius: 30px;
+}
+.termsOfUse #strTerms {
+  position: absolute;
+  left: 50px;
+  top: 20px;
+  width: max-content;
+  height: max-content;
+  font-family: "Pretendard Variable";
+  color: #232323;
+  line-height: 160%;
+  font-size: 25px;
+  font-weight: 600;
+}
+.termsOfUse #temsArea {
+  position: absolute;
+  left: 50px;
+  top: 60px;
+  width: 1018px;
+  height: 130px;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 0px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.termsOfUse #temsArea p {
+  font-family: "Pretendard Variable";
+  color: #232323;
+  line-height: 160%;
+  font-size: 15px;
+  margin: 12px;
+}
+
+.agreeArea {
+  position: relative;
+  left: 850px;
+  top: -480px;
+}
+.agreeArea button {
+  background-color: #FFFFFF;
+  border: 4px solid #FF8AA3;
+  border-radius: 50px;
+  height: 49px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 600;
+  color: #232323;
+  cursor: pointer;
+}
+.agreeArea #agree {
+  width: 730px;
+  margin-left: -140px;
+}
+.agreeArea #agreeAll {
+  width: 330px;
+  margin-left: 30px;
+}
+
+#completeReservation {
+  position: absolute;
+  left: 550px;
+  top: 300px;
+  width: 800px;
+  height: 316px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+#completeReservation #completeMessage {
+  width: max-content;
+  margin-top: 5px;
+  height: 44px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  color: #232323;
+}
+#completeReservation #comfirnEmailMessage {
+  width: max-content;
+  margin-top: 40px;
+  height: 36px;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  font-weight: 500;
+  color: #FF5D18;
+}
+#completeReservation #toMain {
+  margin-top: 40px;
+  margin-left: -220px;
+  width: 171px;
+  height: 44px;
+  background-color: #FEDA00;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
+}
+#completeReservation #toMypage {
+  margin-top: -44px;
+  margin-left: 220px;
+  width: 171px;
+  height: 44px;
+  background-color: #FF8AA3;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .termsOfUse {
+    position: relative;
+    left: 30px;
+    top: -280px;
+    width: 880px;
+    height: 330px;
+    background-color: #FFF3A7;
+    border: none;
+    border-radius: 30px;
+  }
+  .termsOfUse #strTerms {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    width: max-content;
+    height: max-content;
+    font-family: "Pretendard Variable";
+    color: #232323;
+    line-height: 160%;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .termsOfUse #temsArea {
+    position: absolute;
+    left: 30px;
+    top: 70px;
+    width: 810px;
+    height: 235px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 0px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  .termsOfUse #temsArea p {
+    font-family: "Pretendard Variable";
+    color: #232323;
+    line-height: 160%;
+    font-size: 15px;
+    margin: 12px;
+  }
+  .agreeArea {
+    position: relative;
+    left: 175px;
+    top: -260px;
+  }
+  .agreeArea button {
+    background-color: #FFFFFF;
+    border: 4px solid #FF8AA3;
+    border-radius: 50px;
+    height: 40px;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    font-weight: 600;
+    color: #232323;
+    cursor: pointer;
+  }
+  .agreeArea #agree {
+    width: 520px;
+    margin-left: -140px;
+  }
+  .agreeArea #agreeAll {
+    width: 320px;
+    margin-left: 25px;
+  }
+  #completeReservation {
+    position: absolute;
+    left: 225px;
+    top: 360px;
+    width: 500px;
+    height: 190px;
+    border: 3px solid #FF8AA3;
+    border-radius: 30px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+  }
+  #completeReservation #completeMessage {
+    margin-top: 10px;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 24px;
+    font-weight: 500;
+    color: #232323;
+  }
+  #completeReservation #comfirnEmailMessage {
+    margin-top: 8px;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    font-weight: 500;
+    color: #FF5D18;
+  }
+  #completeReservation #toMain {
+    margin-top: 10px;
+    margin-left: -130px;
+    width: 110px;
+    height: 28px;
+    background-color: #FEDA00;
+    border: none;
+    border-radius: 16px;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 500;
+    color: #232323;
+    cursor: pointer;
+  }
+  #completeReservation #toMypage {
+    margin-top: -28px;
+    margin-left: 130px;
+    width: 110px;
+    height: 28px;
+    background-color: #FF8AA3;
+    border: none;
+    border-radius: 16px;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 500;
+    color: #232323;
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 768px) {
+  .termsOfUse {
+    position: relative;
+    left: 20px;
+    top: 15px;
+    width: 580px;
+    height: 460px;
+    background-color: #FFF3A7;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  .termsOfUse #strTerms {
+    position: relative;
+    left: 20px;
+    top: 20px;
+    width: max-content;
+    height: max-content;
+    font-family: "Pretendard Variable";
+    color: #232323;
+    line-height: 160%;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .termsOfUse #temsArea {
+    position: relative;
+    left: 30px;
+    top: 20px;
+    width: 520px;
+    height: 230px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 0px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  .termsOfUse #temsArea p {
+    font-family: "Pretendard Variable";
+    color: #232323;
+    line-height: 160%;
+    font-size: 15px;
+    margin: 12px;
+  }
+  .agreeArea {
+    position: relative;
+  }
+  .agreeArea button {
+    background-color: #FFFFFF;
+    border: 4px solid #FF8AA3;
+    border-radius: 50px;
+    height: 40px;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    font-weight: 600;
+    color: #232323;
+    cursor: pointer;
+  }
+  .agreeArea #agree {
+    position: relative;
+    left: -650px;
+    top: 360px;
+    width: 510px;
+    margin-left: -145px;
+  }
+  .agreeArea #agreeAll {
+    position: relative;
+    left: -730px;
+    top: 385px;
+    width: 320px;
+  }
+  #completeReservation {
+    position: absolute;
+    left: 50px;
+    top: 400px;
+    width: 400px;
+    height: 150px;
+    border: 3px solid #FF8AA3;
+    border-radius: 20px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+  }
+  #completeReservation #completeMessage {
+    margin-top: 2px;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 18px;
+    font-weight: 500;
+    color: #232323;
+  }
+  #completeReservation #comfirnEmailMessage {
+    margin-top: -3px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-weight: 500;
+    color: #FF5D18;
+  }
+  #completeReservation #toMain {
+    margin-top: -2px;
+    margin-left: -130px;
+    width: 100px;
+    height: 25px;
+    background-color: #FEDA00;
+    border: none;
+    border-radius: 16px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-weight: 500;
+    color: #232323;
+    cursor: pointer;
+  }
+  #completeReservation #toMypage {
+    margin-top: -25px;
+    margin-left: 130px;
+    width: 100px;
+    height: 25px;
+    background-color: #FF8AA3;
+    border: none;
+    border-radius: 16px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-weight: 500;
+    color: #232323;
+    cursor: pointer;
+  }
+}/*# sourceMappingURL=termsOfUse.module.css.map */

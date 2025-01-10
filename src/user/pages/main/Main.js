@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import banner1 from './image/main-banner1.png';
 import banner2 from './image/main-banner2.png';
 import banner3 from './image/main-banner3.png';
@@ -13,8 +14,16 @@ import wndtlr from './image/image-3.png';
 import rlxk from './image/image-4.png';
 import qorqks from './image/store1.png';
 import ukki from './image/ukiLemone.png';
+import talk1 from './image/talk-bg1.png';
+import talk2 from './image/talk-bg2.png';
+import talk3 from './image/talk.png';
+import arrow1 from './image/Arrow1.png';
+import arrow2 from './image/Arrow2.png';
+import pin from './image/pin.png';
+import rBg from './image/roulette.png';
 import '../../../common/header/css/reset.css';
 import './css/main.css';
+import Map from './component/Map.js';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
@@ -26,17 +35,216 @@ const storeInfos = [
     { name: "해당 가게 이름5", time: "가게의 영업 시간 및 날짜5", desc: "가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명5" }
 ];
 
+const rolLength = 8; //룰렛 갯수
+let setNum;
+const hiddenInput = document.createElement("input");
+hiddenInput.className = "hidden-input";
+
+
+const rRandom = () => {
+    const min = Math.ceil(0);
+    const max = Math.floor(rolLength - 1);
+    return Math.floor(Math.random() * (max - min)) + min;
+};
+
+
+
 const Main = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(1);
+    const [currentPosition, setCurrentPosition] = useState(null);
     const slideInterval = useRef(null);
     const startX = useRef(0);
     const endX = useRef(0);
+    const defaultValue = "눌러서 현재 위치 변경 가능";
+    const [address, setAddress] = useState(defaultValue);
+    const [stores, setStores] = useState([]);
+    const [isFirstImgClicked, setIsFirstImgClicked] = useState(true); // 추가된 상태 정의
+    const [isSecondImgClicked, setIsSecondImgClicked] = useState(false); // 추가된 상태 정의
+    const [isThreeImgClicked, setIsThreeImgClicked] = useState(false); // 추가된 상태 정의
+    const [isFourImgClicked, setIsFourImgClicked] = useState(false); // 추가된 상태 정의
+    const [isLastImgClicked, setIsLastImgClicked] = useState(false); // 추가된 상태 정의
+
+
+    const locationRef = useRef(null);
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                setCurrentPosition({
+                    x: position.coords.longitude,
+                    y: position.coords.latitude
+                });
+            });
+        }
+    },
+        []);
+    const requestDirections = async () => {
+        if (currentPosition && storeInfo.storeAddress) {
+            const directionsResponse = await fetch('/main/directions',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        origin: currentPosition,
+                        destination: {
+                            x: storeInfo.storeAddress.longitude,
+                            y: storeInfo.storeAddress.latitude
+                        },
+                        waypoints: []
+                    })
+                });
+            const directionsData = await directionsResponse.json();
+            console.log('Directions:', directionsData);
+        }
+    };
+
+    useEffect(() => {
+        const fImg = document.querySelector('.category>div');
+        const SImg = document.querySelector('.category>div:nth-of-type(2)');
+        const TImg = document.querySelector('.category>div:nth-of-type(3)');
+        const FImg = document.querySelector('.category>div:nth-of-type(4)');
+        const LImg = document.querySelector('.category>div:nth-of-type(5)');
+
+        if (isFirstImgClicked) {
+            fImg.style.left = '28.5vw';
+            SImg.style.left = '51.5vw';
+            TImg.style.left = '60.5vw';
+            FImg.style.left = '69.5vw';
+            LImg.style.left = '78.5vw';
+        } else if (isSecondImgClicked) {
+            fImg.style.left = '15.5vw';
+            SImg.style.left = '37.5vw';
+            TImg.style.left = '60.5vw';
+            FImg.style.left = '69.5vw';
+            LImg.style.left = '78.5vw';
+
+        } else if (isThreeImgClicked) {
+            fImg.style.left = '15.5vw';
+            SImg.style.left = '24.5vw';
+            TImg.style.left = '47.5vw';
+            FImg.style.left = '69.5vw';
+            LImg.style.left = '78.5vw';
+
+        } else if (isFourImgClicked) {
+            fImg.style.left = '15.5vw';
+            SImg.style.left = '24.5vw';
+            TImg.style.left = '33.5vw';
+            FImg.style.left = '56.5vw';
+            LImg.style.left = '78.5vw';
+        } else {
+            fImg.style.left = '15.5vw';
+            SImg.style.left = '24.5vw';
+            TImg.style.left = '33.5vw';
+            FImg.style.left = '43vw';
+            LImg.style.left = '65.5vw';
+        }
+    }, [isFirstImgClicked, isSecondImgClicked, isThreeImgClicked, isFourImgClicked, isLastImgClicked]);
+
+
+
+    const handleFirstImgClick = () => {
+        setIsFirstImgClicked(true);
+        setIsSecondImgClicked(false);
+        setIsThreeImgClicked(false);
+        setIsFourImgClicked(false);
+        setIsLastImgClicked(false);
+        scrollToLocation();
+    };
+
+    const handleSecondImgClick = () => {
+        setIsFirstImgClicked(false);
+        setIsSecondImgClicked(true);
+        setIsThreeImgClicked(false);
+        setIsFourImgClicked(false);
+        setIsLastImgClicked(false);
+        scrollToLocation();
+    };
+
+
+    const handleThreeImgClick = () => {
+        setIsFirstImgClicked(false);
+        setIsSecondImgClicked(false);
+        setIsThreeImgClicked(true);
+        setIsFourImgClicked(false);
+        setIsLastImgClicked(false);
+        scrollToLocation();
+    };
+
+    const handleFourImgClick = () => {
+        setIsFirstImgClicked(false);
+        setIsSecondImgClicked(false);
+        setIsThreeImgClicked(false);
+        setIsFourImgClicked(true);
+        setIsLastImgClicked(false);
+        scrollToLocation();
+    };
+
+    const handleLastImgClick = () => {
+        setIsFirstImgClicked(false);
+        setIsSecondImgClicked(false);
+        setIsThreeImgClicked(false);
+        setIsFourImgClicked(false);
+        setIsLastImgClicked(true);
+        scrollToLocation();
+    };
+
+
+    const scrollToLocation = () => {
+        locationRef.current.scrollIntoView({
+            behavior: 'smooth'
+        });
+    };
+
+
+    const [storeInfo, setStoreInfo] = useState({
+        storeName: '',
+        storeDes: '',
+        storeAddress: '',
+        storeProfile: '',
+        storeMenu: ''
+
+    });
+
+    const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress) => {
+        setStoreInfo({
+            storeName, storeDes, storeMenu, storeProfile, storeAddress
+        });
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            if (event.target.value !== defaultValue) {
+                setAddress(event.target.value);
+            }
+        }
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const images = document.querySelectorAll('.talk img');
+            images.forEach(img => {
+                const rect = img.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    img.classList.add('show');
+                } else {
+                    img.classList.remove('show');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         startAutoSlide();
         return () => clearInterval(slideInterval.current);
     }, []);
+
 
     const startAutoSlide = () => {
         if (slideInterval.current) clearInterval(slideInterval.current);
@@ -105,9 +313,92 @@ const Main = () => {
         resetAutoSlide();
     };
 
+
+    const rRotate = () => {
+        const panel = document.querySelector(".rouletter-wacu");
+        const btn = document.querySelector(".rouletter-btn");
+        const deg = [];
+        for (let i = 1, len = rolLength; i <= len; i++) {
+            deg.push((360 / len) * i);
+        }
+
+        let num = 0;
+        document.body.append(hiddenInput);
+        setNum = hiddenInput.value = rRandom();
+
+        // 애니메이션 설정
+        panel.style.transition = "transform 5s ease-in-out"; // 애니메이션 지속 시간 조정
+
+        const totalRotation = 360 * 10 + deg[setNum]; // 10바퀴 돌고 최종 위치에 도달
+
+        panel.style.transform = `rotate(${totalRotation}deg)`;
+        btn.disabled = true;
+        btn.style.pointerEvents = "none";
+        hiddenInput.remove();
+        // 애니메이션 종료 후 버튼 활성화
+        setTimeout(() => {
+            panel.style.transition = "";
+            panel.style.transform = `rotate(${deg[setNum]}deg)`; //리셋
+            btn.disabled = false;
+            btn.style.pointerEvents = "auto";
+
+        }, 5000); // 애니메이션 시간과 맞춤
+    };
+
+
+    const rLayerPopup = (num) => {
+        switch (num) {
+            default:
+                alert("예약이 완료 되었습니다");
+        }
+    };
+
+    const rReset = (ele) => {
+        setTimeout(() => {
+            ele.disabled = false;
+            ele.style.pointerEvents = "auto";
+            rLayerPopup(setNum);
+            hiddenInput.remove();
+        }, 5000);
+    };
+
+    const handleRouletteClick = (e) => {
+        const target = e.target;
+        if (target.className === "rouletter-btn") {
+            rRotate();
+            rReset(target);
+        }
+    };
+
+
+    const fetchStoresLocation = async (category) => {
+        try {
+            const response = await fetch(`/main/category?category=${category}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setStores(data);
+            setStoreInfo(data);
+            console.log(data);
+        } catch (error) {
+            console.error('Error fetching store locations:', error);
+        }
+    };
+
+    // 카테고리 클릭 핸들러
+    const handleCategoryClick = (index) => {
+        setSelectedCategory(index + 1);
+        fetchStoresLocation(index + 1); // 카테고리 코드를 +1 해서 전달
+    };
+
+
+
+
     return (
         <>
-            <div>
+            <div onClick={handleRouletteClick}>
                 <div className="slidewrap" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     <div
                         className="slides"
@@ -133,7 +424,7 @@ const Main = () => {
                     </div>
                     <div className="leftbtn btn" onClick={handlePrev}>&lt;</div>
                     <div className="rightbtn btn" onClick={handleNext}>&gt;</div>
-                    <div className="pagination">
+                    {/* <div className="pagination">
                         <ul>
                             {banners.map((_, index) => (
                                 <li
@@ -147,60 +438,105 @@ const Main = () => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
-                <div className='search'>
-                    <input type='search' value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" readOnly />
-                    <img src={search} alt="search" />
-                </div>
+                {/* <div className='search'>
+                    <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" />
+                    <NavLink to="/search"><img src={search} alt="search" /></NavLink>
+                </div> */}
                 <div className='category'>
                     <h3>지금 끌리는 메뉴는?</h3>
                     <p>카테고리 별로 근처 식당을 추천해드려요!</p>
-                        <div>
-                            <p>한식</p>
-                        </div>
-                        <img src={gkstlr} />
-                        <span>흠..별로?</span>
-                        <div>
-                            <p>양식</p>
-                        </div>
-                        <img src={didtlr} />
-                        <span>흠..별로?</span>
-                        <div>
-                            <p>일식</p>
-                        </div>
-                        <img src={dlftlr} />
-                        <span>흠..별로?</span>
-                        <div>
-                            <p>중식</p>
-                        </div>
-                        <img src={wndtlr} />
-                        <span>흠..별로?</span>
-
-                        <div>
-                            <p>기타</p>
-                        </div>
-                        <img src={rlxk} />
-                        <span>흠..별로?</span>
+                    <div onClick={() => { handleFirstImgClick(); handleCategoryClick(0) }}>
+                        <p>한식</p>
+                    </div>
+                    <img src={gkstlr} onClick={() => { handleFirstImgClick(); handleCategoryClick(0); }} className={selectedCategory === 1 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 1 ? 'selected-span' : ''}>
+                        {selectedCategory === 1 ? '너로 정했다!' : '흠..별로?'}</span> */}
+                    <div onClick={() => { handleSecondImgClick(); handleCategoryClick(1) }}>
+                        <p>중식</p>
+                    </div>
+                    <img src={dlftlr} onClick={() => { handleSecondImgClick(); handleCategoryClick(1) }} className={selectedCategory === 2 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 2 ? 'selected-span' : ''}>
+                        {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span> */}
+                    <div onClick={() => { handleThreeImgClick(); handleCategoryClick(2) }}>
+                        <p>일식</p>
+                    </div>
+                    <img src={wndtlr} onClick={() => { handleThreeImgClick(); handleCategoryClick(2) }} className={selectedCategory === 3 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 3 ? 'selected-span' : ''}>
+                        {selectedCategory === 3 ? '너로 정했다!' : '흠..별로?'}</span> */}
+                    <div onClick={() => { handleFourImgClick(); handleCategoryClick(3) }}>
+                        <p>양식</p>
+                    </div>
+                    <img src={didtlr} onClick={() => { handleFourImgClick(); handleCategoryClick(3) }} className={selectedCategory === 4 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 4 ? 'selected-span' : ''}>
+                        {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span> */}
+                    <div onClick={() => { handleLastImgClick(); handleCategoryClick(4) }}>
+                        <p>기타</p>
+                    </div>
+                    <img src={rlxk} onClick={() => { handleLastImgClick(); handleCategoryClick(4) }} className={selectedCategory === 5 ? 'selected-img' : ''} />
+                    {/* <span className={selectedCategory === 5 ? 'selected-span' : ''}>
+                        {selectedCategory === 5 ? '너로 정했다!' : '흠..별로?'}</span> */}
                 </div>
-                <div className='location'>
+                <div className='location' ref={locationRef}>
+                <Map address={address} setAddress={setAddress} defaultValue={defaultValue} selectedCategory={selectedCategory} onMarkerClick={handleMarkerClick} requestDirections={requestDirections} currentPosition={currentPosition} />
 
-                    <h3>내 주변 한식 혼밥 리스트</h3>
-                    <p>가게 이름 : </p> <span>우끼링 백반</span>
-                    <p>가게 설명 : </p> <span>아주 맛난 백반 정식을 팔아용</span>
-                    <p>가게 대표 매뉴 : </p> <span>불고기 백반</span>
-                    <img src={qorqks}/>
-                    <img src={ukki}/>
-                    <p>현재 위치 : </p>
-                    <input placeholder='눌러서 현재 위치 변경 가능'></input>
-                    <p>가게 위치 : </p>
-                    <input  placeholder='하남시 덕풍동로 90 802호'></input>
-                <button>예약하기</button>
 
-                    <button>길안내</button>
+                    <h3>
+                        {selectedCategory === 1 ? '내 주변 한식 혼밥 리스트' :
+                            selectedCategory === 2 ? '내 주변 중식 혼밥 리스트' :
+                                selectedCategory === 3 ? '내 주변 일식 혼밥 리스트' :
+                                    selectedCategory === 4 ? '내 주변 양식 혼밥 리스트' :
+                                        selectedCategory === 5 ? '내 주변 기타 혼밥 리스트' :
+                                            '내 주변 한식 혼밥 리스트'}
+                    </h3>
+
+                    <p>가게 이름 : <span>{storeInfo.storeName}</span></p>
+                    <p>가게 설명 : <span>{storeInfo.storeDes}</span></p>
+                    <img src={storeInfo.storeProfile} alt="store" />
+                    <img src={ukki} alt="ukki" />
+                    <input onKeyPress={handleKeyPress} defaultValue={defaultValue}></input><label>현재 위치 : </label>
+                    <input defaultValue={storeInfo.storeAddress}></input><label>가게 위치 : </label>
+                    <button>예약하기</button>
+                    <button onClick={requestDirections}>길안내</button>
+                    <div></div>
                 </div>
 
+                <div className='talk'>
+                    <img src={talk1} />
+                    <img src={talk2} />
+                    <img src={talk3} />
+                </div>
 
+                <div className='random'>
+                    <h3><span>도파민 중독자</span>인<br />
+                        당신을 위한<span> 랜덤 예약</span>!</h3>
+                    <p>랜덤 예약시 경고문을 잘 읽어 주세요</p>
+                    <p>  * 랜덤 예약은 당일/현재 시간을 기준으로 예약됩니다 *<br />
+                        * 랜덤 예약 취소 시 노쇼와 같은 패널티를 받게 됩니다 *<br />
+                        * 랜덤 예약의 가격대는 설정할 수 없습니다 *</p>
+                    <span>
+                        1. 우끼가 내 위치 주변에 있는 식당을 찾는다.<br />
+                        2. 찾은 식당들을 우끼링이 랜덤으로 돌린다.<br />
+                        3. 마이페이지에서 어느가게에 예약되었는지 확인한다.<br />
+                        4. 이메일로 받은 예약 QR코드를 확인한뒤 방문한다
+                    </span>
+                    <img src={arrow1} />
+                    <button className="rouletter-btn">랜덤 예약 돌리기</button>
+                    <img src={arrow2} />
+                </div>
+
+                <div className='roulette'>
+                    <div className="rouletter-bg">
+                        <div className="rouletter-wacu">
+                            <img src={rBg} />
+                        </div>
+                    </div>
+                    <div className="rouletter-arrow">
+                        <img src={pin} />
+                    </div>
+                    <button className="rouletter-btn">start</button>
+                </div>
             </div>
         </>
     );

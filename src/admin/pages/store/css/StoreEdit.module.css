@@ -1,0 +1,506 @@
+/* StoreDetail의 CSS를 기반으로 AdminLayout의 renderingArea에 맞게 수정 */
+.storeEdit {
+    width: 1550px;  /* AdminLayout의 renderingArea 너비에 맞춤 */
+    margin: 0 auto;
+    padding: 20px;
+}
+.bannerArea {
+    position: absolute;
+    display: flex;  
+    left: 40px;
+    top: 120px;
+    width: 1525px;
+    height: 201px;
+    border-radius: 0;
+    border: 1px solid #232323;
+}
+
+.bannerUploadBox {
+    position: relative;
+    width: 20%;  
+    height: 100%;
+    border-right: 1px solid #232323;
+    border-radius: 0;
+}
+
+.bannerUploadBox:last-child {
+    border-right: none;
+}
+
+.bannerUploadBox input {
+    display: none;  /* input 숨기기 */
+}
+
+/* Find_findAccount__eAwiN의 스타일 덮어쓰기 */
+.bannerUploadBox input:focus + label,
+.bannerUploadBox input:not(:placeholder-shown) + label {
+    position: static !important;  /* !important로 기존 스타일 덮어쓰기 */
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-size: inherit !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    color: inherit !important;
+    cursor: pointer;
+}
+
+
+.bannerUploadBox img {
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.plusButton {
+    position: absolute;
+    top: 15% !important;
+    left: 15% !important;
+    width: 50% !important;
+    height: 50% !important;
+    object-fit:contain !important;
+}
+
+.deleteButton {
+    position: absolute;
+    top: 0 !important;
+    left: 90% !important;
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: cover !important;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+}
+
+.menuUploadBox {
+    position: absolute;
+    width: 270px;
+    height: 400px;
+    left: 1305px;
+    top: 350px;
+    border-radius: 0;
+    object-fit: contain !important;
+    overflow: hidden;
+    border: 1px solid #232323;
+}
+
+.menuUploadBox p{
+    position: absolute;
+    left: 35%;
+    top: 5%;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 29px;
+    color: #1E1E1E;
+}
+
+.menuUploadBox .uploadLabel{
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 290px !important;
+    height: 400px !important;
+    object-fit: contain !important;
+    overflow: hidden;
+
+}
+
+.menuUploadBox .plusButton{
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.menuUploadBox .deleteButton,
+.profileUploadBox .deleteButton {
+    position: absolute !important;
+    width: 40px !important;
+    height: 40px !important;
+    left: 230px !important;
+    top: 0px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    border: none !important;
+    color: white !important;
+    font-size: 18px !important;
+}
+
+.deleteButton:hover {
+    border-radius: 30px;
+    background-color: rgba(0, 2, 0, 0.3) !important;
+}
+
+/* X 버튼 이미지 크기 조정 */
+.menuUploadBox .deleteButton img,
+.profileUploadBox .deleteButton img {
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: contain !important;
+}
+
+.profileUploadBox {
+    position: absolute;
+    left: 1075px;
+    top: 350px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #232323;
+    text-align: center;
+    z-index: 99;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+.profileUploadBox img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.profileUploadBox p{
+    position: absolute;
+    left: 25%;
+    top: 5%;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 29px;
+    color: #1E1E1E;
+}
+
+.profileUploadBox .plusButton{
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.profileUploadBox .deleteButton{
+    border: none !important;
+    margin-top: -5px;
+    margin-left: -70px;
+}
+
+.profileUploadBox .deleteButton img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+#storeEditText{
+    position: absolute;
+    
+    height: 55px;
+    left: 61px;
+    top: 47px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 55px;
+
+    /* text/title */
+    color: #1E1E1E;
+
+}
+
+#storeName{
+    position: absolute;
+    width: 500px;
+    height: 55px;
+    left: 61px;
+    top: 350px;
+
+    border: 1px solid #232323;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 54px;
+
+    color: #1E1E1E;
+}
+
+#storeDes{
+    position: absolute;
+    width: 800px;
+    left: 61px;
+    top: 420px;
+    border: 1px solid #232323;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+}
+
+#storeAddress{
+    position: absolute;
+    width: 1000px;
+    height: 29px;
+    left: 61px;
+    top: 480px;
+    border: 1px solid #232323;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+}
+
+#operTime{
+    position: absolute;
+    width: 1000px;
+    height: 29px;
+    left: 61px;
+    top: 520px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+
+    cursor: pointer;
+}
+
+#triangle{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 150px;
+    top: 5px;
+}
+
+#tatolOperTime{
+    position: absolute;
+    width: 280px;
+    height: 260px;
+    left: 61px;
+    top: 560px;
+    text-align: center;
+    border: 2.5px solid #232323;
+    background-color: #FFFFFF;
+    padding: 5px;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 500;
+    color: #232323;
+    line-height: 28px;
+    z-index: 5;
+    border-radius: 0;
+}
+
+.week{
+    display: inline-block;
+    width: 50px;
+}
+
+.weekOperTime{
+    display: inline-block;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    height: 20px;
+    width: 140px;
+    padding-left: 15px;
+
+    font-size: 16px;
+}
+.weekOperTime::placeholder{
+    color: #E3E3E3;
+    visibility: visible;
+}
+
+#breakTime{
+    color: #FF5D18;
+}
+
+.keywordArea{
+    position: absolute;
+    width: 1000px;
+    height: 50px;
+    left: 61px;
+    top: 590px;
+    align-content: center;
+}
+
+.keywordArea div{
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    margin-right: 20px;
+    background: #FFF3A7;
+    border-radius: 50px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    align-content: center;
+    color: #1E1E1E;
+}
+
+.keywordInput{
+    position: relative;
+    width: 110px;
+    height: 35px;
+    left: 0px;
+    top: 0px;
+    background: #FFF3A7;
+    border: 0.2px solid #232323;
+    border-radius: 5px;
+    padding-left: 0px;
+    font-family: 'Pretendard Variable';
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    align-content: center;
+    color: #1E1E1E;
+}
+
+.hr1{
+    position: absolute;
+    width: 1000px;
+    height: 2px;
+    left: 61px;
+    top: 560px;
+    background: #E3E3E3;
+} 
+
+.hr2{
+    position: absolute;
+    width: 1000px;
+    height: 2px;
+    left: 61px;
+    top: 650px;
+    background: #E3E3E3;
+} 
+
+#storeRegistDate{
+    position: absolute;
+    width: 800px;
+    height: 29px;
+    left: 380px;
+    top: 55px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+}
+#posNumber{
+    position: absolute;
+    width: 800px;
+    height: 29px;
+    left: 61px;
+    top: 700px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+}
+
+#posNumberInput{
+    position: relative;
+    width: 60px;
+    height: 40px;
+    left: 10px;
+    top: 0px;
+    border: 1px solid #232323;
+    border-radius: 5px;
+    padding-left: 0px;
+    font-family: 'Pretendard Variable';
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    align-content: center;
+    color: #1E1E1E;
+}
+
+#storeEditCancleBtn{
+    /* Rectangle 166 */
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    left: 1275px;
+    top: 43px;
+    
+    /* secondary2 */
+    background: #FFF3A7;
+    border-radius: 50px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+
+    color: #232323;
+
+    text-align: center;
+    align-content: center;
+
+    border: none;
+    cursor: pointer;
+}
+#storeEditCancleBtn:hover {
+    background: #FFE970;
+}
+#storeEditOkBtn{
+
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    left: 1405px;
+    top: 43px;
+
+    background: #FF8AA3;
+    border-radius: 40px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    align-items: center;
+
+    /* text/strong */
+    color: #232323;
+
+    border: none;
+    cursor: pointer;
+}
+#storeEditOkBtn:hover {
+    background: #FF6B87;
+}

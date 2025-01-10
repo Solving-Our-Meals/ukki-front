@@ -1,0 +1,276 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+#mapContainer {
+  position: absolute;
+  left: -8px;
+  top: 50px;
+  width: 463px;
+  height: 260px;
+  border: 7.21px solid #FFA8B8;
+  border-Radius: 30px;
+  z-index: 3;
+}
+#mapContainer .customoverlay {
+  color: #232323;
+  font-Family: "Pretendard Variable";
+  font-Size: 15px;
+  font-Style: "Regular";
+  font-Weight: 600;
+  display: block;
+  flex-Direction: column;
+  border: 2px solid #323232;
+  border-Radius: 36px;
+  background-Color: #FFFFFF;
+  padding: 6px;
+  text-Align: center;
+  line-height: 130%;
+  z-index: 99999;
+}
+#mapContainer .customoverlay .mapLink {
+  color: #007AFF;
+  font-Family: "Pretendard Variable";
+  font-Size: 13px;
+  font-Style: "Regular";
+  border: none;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  #mapContainer {
+    position: absolute;
+    left: -8px;
+    top: 50px;
+    width: 245px;
+    height: 295px;
+    border: 5.21px solid #FFA8B8;
+    border-Radius: 30px;
+    z-index: 3;
+  }
+  #mapContainer .customoverlay {
+    color: #232323;
+    font-Family: "Pretendard Variable";
+    font-Size: 15px;
+    font-Style: "Regular";
+    font-Weight: 600;
+    display: block;
+    flex-Direction: column;
+    border: 2px solid #323232;
+    border-Radius: 36px;
+    background-Color: #FFFFFF;
+    padding: 6px;
+    text-Align: center;
+    line-height: 130%;
+    z-index: 99999;
+  }
+  #mapContainer .customoverlay .mapLink {
+    color: #007AFF;
+    font-Family: "Pretendard Variable";
+    font-Size: 13px;
+    font-Style: "Regular";
+    border: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  #mapContainer {
+    position: absolute;
+    left: 30px;
+    top: 50px;
+    width: 520px;
+    height: 180px;
+    border: 3.21px solid #FFA8B8;
+    border-Radius: 20px;
+  }
+  #mapContainer .customoverlay {
+    color: #232323;
+    font-Family: "Pretendard Variable";
+    font-Size: 11px;
+    font-Style: "Regular";
+    font-Weight: 600;
+    display: block;
+    flex-Direction: column;
+    border: 2px solid #323232;
+    border-Radius: 36px;
+    background-Color: #FFFFFF;
+    padding: 5px;
+    text-Align: center;
+  }
+  #mapContainer .customoverlay .mapLink {
+    color: #007AFF;
+    font-Family: "Pretendard Variable";
+    font-Size: 11px;
+    font-Style: "Regular";
+    border: none;
+  }
+}/*# sourceMappingURL=kakaoMap.module.css.map */

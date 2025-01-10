@@ -1,0 +1,317 @@
+#weeklyReservationCount{
+
+    position: absolute;
+    width: 607px;
+    height: 242px;
+    left: 83px;
+    top: 109px;
+
+    /* border: 1px solid; */
+    font-family: 'Bobaesum Jindo TTF';
+
+}
+
+#weeklyReservationCountText{
+
+    position: absolute;
+    height: 33px;
+    left: 114px;
+    top: 61px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    color: #232323;
+
+}
+
+#totalStoreCount{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: 432px;
+    top: 490px;
+}
+
+#totalStoreCountText{
+    position: absolute;
+    left: 442px;
+    top: 410px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    color: #232323;
+}
+#totalStoreCountInner{
+    position: absolute;
+    width: 75px;
+    left: 85px;
+    top: 100px;
+    
+    text-align: center;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    
+
+    color: #FEDA00;
+
+}
+#totalStoreCountInner.pass{
+
+    color: #51CC16;
+
+}
+
+#todayResCount{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: 95px;
+    top: 490px;
+}
+
+#todayDate{
+    position: absolute;
+    left: 170px;
+    top: 450px;
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+
+    color: #232323;
+}
+
+#todayResCountText{
+    position: absolute;
+    left: 135px;
+    top: 410px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    color: #232323;
+}
+#todayResCountInner{
+    position: absolute;
+    width: 75px;
+    left: 85px;
+    top: 100px;
+
+    
+    text-align: center;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    
+
+    
+    color: #FEDA00;
+
+}
+
+#todayResCountInner.pass{
+
+    color: #51CC16;
+
+}
+
+
+#montlyStoreCount{
+
+    position: absolute;
+    width: 607px;
+    height: 242px;
+    left: 928px;
+    top: 109px;
+
+    font-family: 'Bobaesum Jindo TTF';
+
+}
+
+#montlyStoreCountText{
+
+    position: absolute;
+    height: 33px;
+    left: 959px;
+    top: 61px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    color: #232323;
+
+}
+
+#montlyStoreYear{
+    position: absolute;
+    width: 250px;
+    left: 1319px;
+    top: 61px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#montlyStoreYear > * {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+#montlyStoreYear > .monthlyYearBtn{
+    background-color: #FFFFFF;
+    border: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: #232323;
+    font-size: 22px;
+}
+
+#montlyNoshowCountText{
+    position: absolute;
+    left: 942px;
+    top: 410px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    color: #232323;
+}
+
+#montlyNoshowCount{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: 932px;
+    top: 490px;
+}
+
+#montlyNoshowContent{
+    position: absolute;
+    left: 982px;
+    top: 450px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+
+    color: #232323;
+}
+
+#montlyNoshowContent > *{
+    display: inline-block;
+}
+
+#montlyNoshowContent > p{
+    color: #FF8AA3;
+}
+
+#processingInquiryText{
+    position: absolute;
+    left: 1300px;
+    top: 410px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    color: #232323;
+}
+
+#processingInquiryCount{
+/* Rectangle 179 */
+
+position: absolute;
+width: 125px;
+height: 273px;
+left: 1330px;
+top: 465px;
+
+/* text/normal - dark */
+border: 2px solid #BDBEBF;
+border-radius: 10px;
+
+}
+
+#processingInquiryCount > .line1{
+
+    position: absolute;
+    top: 33%;
+    width: 100%;
+
+    border: 2px solid #BDBEBF;
+    border-radius: 0px;
+}
+#processingInquiryCount > .line2{
+
+    position: absolute;
+    top: 66%;
+    width: 100%;
+
+    border: 2px solid #BDBEBF;
+    border-radius: 0px;
+}
+
+#processingInquiryCount > .count{
+
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    color: #FFFFFF;
+    text-align: center;
+
+}
+
+#processingInquiryGuide{
+    position: absolute;
+    left: 1500px;
+    top: 655px;
+}
+
+#processingInquiryGuide > div{
+    height: 30px;
+}
+
+#processingInquiryGuide > div > div{
+    width: 11px; 
+    height: 11px; 
+
+    display: inline-block;
+}
+
+#dashboardCenterLine{
+
+position: absolute;
+width: 2px;
+height: 687px;
+left: 830px;
+top: 51px;
+
+background: #BDBEBF;
+
+}

@@ -173,32 +173,42 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
-#menu {
+#menuStyle {
   position: absolute;
-  left: 235px;
-  top: 864px;
-  width: max-content;
-  font-family: "Pretendard Variable";
-  font-size: 20px;
-  color: #999999;
-  cursor: pointer;
+  text-align: center;
+  display: table;
+  border: none;
+  left: 1220px;
+  top: 520px;
+  width: 300px;
+  height: 450px;
+}
+#menuStyle #menuImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
 }
 
-#xBtn {
-  position: absolute;
-  z-index: 10000;
-  width: 30px;
-  height: 30px;
-  left: 640px;
-  top: 405px;
-  cursor: pointer;
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  #menuImg {
+    position: absolute;
+    z-index: 10;
+    width: 380px;
+    height: 230px;
+    left: 520px;
+    top: 330px;
+    border-radius: 0;
+  }
 }
-
-#menuImg {
-  position: absolute;
-  z-index: 9999;
-  width: 350px;
-  height: 500px;
-  left: 335px;
-  top: 390px;
-}
+@media screen and (max-width: 768px) {
+  #menuImg {
+    position: absolute;
+    z-index: 10;
+    width: 280px;
+    height: 150px;
+    left: 98px;
+    top: 260px;
+    border-radius: 0;
+  }
+}/*# sourceMappingURL=menu.module.css.map */

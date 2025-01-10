@@ -4,23 +4,17 @@
 
 ### main (최종 병합 브랜치)
 > 1. develop 브랜치에서 문제가 없을 경우, 해당 브랜치에 최종 merge
+> 2. 일주일에 한번 develop에서 main으로 병합
 
 ### develop (병합 전 테스트 브랜치)
-> 1. main 브랜치에 merge하기 전에 merge 후 테스트 <br>
-> 2. main 브랜치에 올리기 전 백업 용도로 사용할 수 있는 브랜치 <br>
+> 1. 기본 브랜치에 가까운 main 브랜치에 올리기 전 merge하는 공간
+> 2. 평일에 한번씩 머지하는 공간은 이 공간으로 우리가 업데이트하는 브랜치
 
 ### feature (기능 개발 브랜치)
 > 1. 영문 대문자 금지 <br>
 > 2. "-"(하이픈)만 사용 <br>
 > 3. 명명규칙 예시 : feature/#1(이슈번호)-add-resource-files <br>
 > 4. 1기능 당 한개의 브랜치 생성 <br>
->> chore : 작은 수정 <br>
->> ci : ci 수정 <br>
->> docs : 문서 수정 <br>
->> style : 코드 스타일 수정 <br>
->> refactor : 코드 리팩토링 <br>
->> test : 테스트 <br>
->> perf : 성능 개선 <br>
 
 ### hotfix (긴급 문제수정용 브랜치)
 > 1. 영문 대문자 금지

@@ -1,0 +1,332 @@
+#userInfoText{
+    /* 회원번호 4 */
+
+    position: absolute;
+    
+    height: 55px;
+    left: 61px;
+    top: 47px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 55px;
+
+    /* text/title */
+    color: #1E1E1E;
+
+}
+#userInfoProfile{
+    /* image 4 */
+
+    position: absolute;
+    width: 254px;
+    height: 254px;
+    left: 56px;
+    top: 203px;
+    /* secondary1 */
+    border: 3px solid #FEDA00;
+    border-radius: 500px;
+
+}
+#userInfoContentText{
+    /* 회원정보 */
+
+    position: absolute;
+    width: 129px;
+    height: 39px;
+    left: 409px;
+    top: 232px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 39px;
+    /* identical to box height */
+
+    /* text/title */
+    color: #1E1E1E;
+}
+#userInfoId{
+    /* 아이디 : gh_wns123 */
+
+    position: absolute;
+    height: 36px;
+    left: 409px;
+    top: 292px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    /* text/title */
+    color: #1E1E1E;
+    user-select: text;
+}
+
+#userInfoId > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#userInfoName{
+
+    position: absolute;
+    height: 40px;
+    left: 409px;
+    top: 351px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    /* text/title */
+    color: #1E1E1E;
+
+    /* text/title */
+    color: #1E1E1E;
+
+    align-content: center;
+    user-select: text;
+
+}
+#userInfoName > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+#userInfoEmail{
+
+    position: absolute;
+    height: 36px;
+    left: 409px;
+    top: 410px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    /* text/title */
+    color: #1E1E1E;
+
+    /* text/title */
+    color: #1E1E1E;
+
+    user-select: text;
+
+}
+#userInfoEmail > p{    
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+#userInfoNameChangeBtn{
+    /* Rectangle 166 */
+
+    margin-left: 20px;
+
+    width: 169px;
+    height: 41px;
+    
+    /* secondary2 */
+    background: #FFF3A7;
+    border-radius: 50px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    /* system/danger */
+    color: #FF5D18;
+
+    text-align: center;
+    align-content: center;
+
+    border: none;
+    cursor: pointer;
+}
+#userInfoNameChangeBtn:hover {
+    background: #FFE970;
+}
+#userInfoDeleteBtn{
+
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    left: 1405px;
+    top: 43px;
+
+    background: #FF8AA3;
+    border-radius: 40px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    align-items: center;
+
+    /* text/strong */
+    color: #232323;
+
+    border: none;
+    cursor: pointer;
+}
+#userInfoDeleteBtn:hover {
+    background: #FF6B87;
+}
+#reservationCount{
+
+    position: absolute;
+    width: 90px;
+    height: 147px;
+    left: 246px;
+    top: 556px;
+
+}
+#reviewCount{
+    position: absolute;
+    width: 90px;
+    height: 147px;
+    left: 735px;
+    top: 556px;
+}
+#noshowCount{
+    position: absolute;
+    width: 140px;
+    height: 147px;
+    left: 1241px;
+    top: 556px;
+    text-align: center;
+}
+.userActInfoText{
+    position: absolute;
+    width: 140px;
+    text-align: center;
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+
+    /* text/title */
+    color: #1E1E1E;
+
+    user-select: text;
+
+}
+.userActInfoCount{
+    position: absolute;
+    width: 140px;
+    top: 100px;
+    text-align: center;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+
+    /* text/title */
+    color: #1E1E1E;
+
+    user-select: text;
+
+}
+
+.horizon1{
+    position: absolute;
+    width: 1488px;
+    height: 2px;
+    left: 56px;
+    top: 156px;
+
+    background: #E3E3E3;
+}
+
+.horizon2{
+    position: absolute;
+    width: 1488px;
+    height: 2px;
+    left: 56px;
+    top: 502px;
+
+    background: #E3E3E3;
+}
+
+#badgeArea{
+    /* Rectangle 154 */
+
+    position: absolute;
+    width: 607px;
+    height: 254px;
+    left: 937px;
+    top: 203px;
+
+    /* background */
+    background: #FFFFFF;
+    /* primary */
+    border: 3px solid #FF8AA3;
+    border-radius: 42px;
+
+}
+
+#badgeAreaText{
+    /* 뱃지 */
+
+    position: absolute;
+    width: 70px;
+    height: 36px;
+    left: 25px;
+    top: 20px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    align-items: center;
+
+    /* text/title */
+    color: #1E1E1E;
+}
+
+#badgeImgArea{
+    position: absolute;
+    width: 583px;
+    height: 150px;
+    left: 10px;
+    top: 80px;
+    border-radius: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: nowrap;
+}
+
+.badge{
+    width: 70px;
+    height: 70px;
+    margin: 0;
+    background-color: #E3E3E3;
+    flex-shrink: 0;
+}

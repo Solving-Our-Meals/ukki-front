@@ -175,21 +175,42 @@ a:active {
 }
 .storeDetail {
   cursor: default;
+  border-radius: 0;
 }
-.storeDetail #storeName {
+.storeDetail .nameAndReserve {
   position: absolute;
-  width: max-content;
-  height: 55px;
-  left: 112px;
   top: 627px;
+  left: 112px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.storeDetail .nameAndReserve #storeName {
+  position: static;
   font-family: "Bobaesum Jindo TTF";
   font-style: "regular";
   font-size: 50px;
   color: #232323;
 }
+.storeDetail .nameAndReserve #reserve {
+  position: static;
+  width: 250px;
+  height: 50px;
+  border: none;
+  background-color: #FF8AA3;
+  border-radius: 40px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 30px;
+  color: #232323;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 15px;
+}
 .storeDetail #storeDes {
   position: absolute;
-  width: max-content;
+  width: 780px;
   height: 30px;
   left: 112px;
   top: 700px;
@@ -197,18 +218,19 @@ a:active {
   font-style: "semi-bold";
   font-size: 25px;
   color: #232323;
+  line-height: 30px;
 }
 .storeDetail #mapIcon {
   position: absolute;
   width: 145px;
   height: 164px;
   left: 85px;
-  top: 730px;
+  top: 750px;
 }
 .storeDetail #storeAddress {
   position: absolute;
   left: 235px;
-  top: 780px;
+  top: 810px;
   width: max-content;
   height: 41px;
   font-family: "Pretendard Variable";
@@ -218,7 +240,7 @@ a:active {
 .storeDetail #operTime {
   position: absolute;
   left: 235px;
-  top: 824px;
+  top: 860px;
   width: max-content;
   height: 41px;
   font-family: "Pretendard Variable";
@@ -230,15 +252,15 @@ a:active {
   position: absolute;
   width: 18px;
   height: 22px;
-  left: 573px;
-  top: 826px;
+  margin: 10px;
+  top: -10px;
   cursor: pointer;
 }
 .storeDetail #tatolOperTime {
   position: absolute;
   left: 400px;
-  top: 858px;
-  width: 170px;
+  top: 890px;
+  width: 190px;
   height: 233px;
   border: 2.5px solid #232323;
   background-color: #FFFFFF;
@@ -249,36 +271,38 @@ a:active {
   color: #232323;
   line-height: 28px;
   z-index: 5;
+  border-radius: 0;
 }
 .storeDetail #tatolOperTime .week {
   position: absolute;
-  padding-left: 5px;
+  padding-left: 17px;
 }
 .storeDetail #tatolOperTime .weekOperTime {
   position: absolute;
-  width: 126px;
+  width: 146px;
   margin-top: -28px;
-  margin-left: 30px;
+  margin-left: 33px;
   text-align: center;
 }
 .storeDetail #tatolOperTime #breakTime {
   position: absolute;
-  font-size: 13px;
+  width: max-content;
+  font-size: 11px;
   color: #615DFF;
-  margin-left: 20px;
+  margin-left: 15px;
   font-weight: 700;
+  text-align: center;
 }
 .storeDetail .keywordArea div {
   position: absolute;
   top: 990px;
   width: 240px;
   height: 61px;
-  background-color: #FF8AA3;
-  border-radius: 50px;
+  background-color: #FFFFFF;
+  border: 4px solid #FF8AA3;
   border-radius: 50px;
   font-family: "Pretendard Variable";
   font-size: 25px;
-  font-style: "medium";
   color: #232323;
   display: flex;
   justify-content: center;
@@ -305,7 +329,309 @@ a:active {
 .storeDetail #hr {
   position: absolute;
   left: 91px;
-  top: 1106px;
+  top: 1120px;
   width: 1738px;
   background: #D9D9D9;
 }
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .storeDetail {
+    cursor: default;
+    border-radius: 0;
+  }
+  .storeDetail .nameAndReserve {
+    top: 391px;
+    left: 51px;
+    gap: 15px;
+  }
+  .storeDetail .nameAndReserve #storeName {
+    font-size: 35px;
+  }
+  .storeDetail .nameAndReserve #reserve {
+    width: 180px;
+    height: 30px;
+    font-size: 18px;
+    margin-left: 20px;
+  }
+  .storeDetail #storeDes {
+    position: absolute;
+    width: 488px;
+    height: 18px;
+    left: 51px;
+    top: 440px;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: "semi-bold";
+    font-size: 15px;
+    color: #232323;
+    line-height: 15px;
+  }
+  .storeDetail #mapIcon {
+    position: absolute;
+    width: 92px;
+    height: 105px;
+    left: 32px;
+    top: 445px;
+  }
+  .storeDetail #storeAddress {
+    position: absolute;
+    left: 118px;
+    top: 485px;
+    width: max-content;
+    height: 20px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    color: #232323;
+  }
+  .storeDetail #operTime {
+    position: absolute;
+    left: 118px;
+    top: 515px;
+    width: max-content;
+    height: 27px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    color: #232323;
+    cursor: pointer;
+  }
+  .storeDetail #triangle {
+    position: absolute;
+    width: 11px;
+    height: 14px;
+    margin-top: 10px;
+    margin-left: 6px;
+    top: -10px;
+    cursor: pointer;
+  }
+  .storeDetail #tatolOperTime {
+    position: absolute;
+    left: 195px;
+    top: 525px;
+    width: 150px;
+    height: 200px;
+    border: 2px solid #232323;
+    background-color: #FFFFFF;
+    padding: 2px;
+    font-family: "Pretendard Variable";
+    font-size: 13px;
+    font-weight: 500;
+    color: #232323;
+    line-height: 25px;
+    z-index: 5;
+    border-radius: 0;
+  }
+  .storeDetail #tatolOperTime .week {
+    position: absolute;
+    padding-left: 13px;
+    padding-top: 2px;
+  }
+  .storeDetail #tatolOperTime .weekOperTime {
+    position: absolute;
+    width: 146px;
+    margin-top: -23px;
+    margin-left: 14px;
+    text-align: center;
+  }
+  .storeDetail #tatolOperTime #breakTime {
+    position: absolute;
+    width: max-content;
+    font-size: 9px;
+    color: #615DFF;
+    margin-left: 13px;
+    margin-top: -3px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .storeDetail .keywordArea div {
+    position: absolute;
+    top: 587px;
+    width: 126px;
+    height: 34px;
+    background-color: #FFFFFF;
+    border: 3px solid #FF8AA3;
+    border-radius: 50px;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .storeDetail .keywordArea div:nth-of-type(1) {
+    left: 48px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(2) {
+    left: 190.4px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(3) {
+    left: 332.8px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(4) {
+    left: 475.2px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(5) {
+    left: 617.6px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(6) {
+    left: 760px;
+  }
+  .storeDetail #hr {
+    position: absolute;
+    left: 28px;
+    top: 650px;
+    width: 878px;
+    background: #D9D9D9;
+  }
+}
+@media screen and (max-width: 768px) {
+  .storeDetail {
+    cursor: default;
+    border-radius: 0;
+  }
+  .storeDetail .nameAndReserve {
+    top: 160px;
+    left: 35px;
+    gap: 10px;
+  }
+  .storeDetail .nameAndReserve #storeName {
+    font-size: 20px;
+  }
+  .storeDetail .nameAndReserve #reserve {
+    width: 100px;
+    height: 20px;
+    font-size: 15px;
+    margin-left: 20px;
+  }
+  .storeDetail #storeDes {
+    position: absolute;
+    width: 300px;
+    height: max-content;
+    left: 35px;
+    top: 180px;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: "semi-bold";
+    font-size: 12px;
+    color: #232323;
+    line-height: auto;
+  }
+  .storeDetail #mapIcon {
+    position: absolute;
+    width: 45px;
+    height: 55px;
+    left: 30px;
+    top: 200px;
+  }
+  .storeDetail #storeAddress {
+    position: absolute;
+    width: 150px;
+    height: max-content;
+    left: 75px;
+    top: 225px;
+    font-family: "Pretendard Variable";
+    font-size: 10px;
+    color: #232323;
+  }
+  .storeDetail #operTime {
+    position: absolute;
+    left: 227px;
+    top: 225px;
+    width: max-content;
+    height: max-content;
+    font-family: "Pretendard Variable";
+    font-size: 10px;
+    color: #232323;
+    cursor: pointer;
+  }
+  .storeDetail #triangle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    margin-top: 11px;
+    margin-left: 5px;
+    top: -10px;
+    cursor: pointer;
+  }
+  .storeDetail #tatolOperTime {
+    position: absolute;
+    left: 260px;
+    top: 250px;
+    width: 110px;
+    height: 125px;
+    border: 1.5px solid #232323;
+    background-color: #FFFFFF;
+    padding: 2px;
+    font-family: "Pretendard Variable";
+    font-size: 8px;
+    font-weight: 500;
+    color: #232323;
+    line-height: 15px;
+    z-index: 13;
+    border-radius: 0;
+  }
+  .storeDetail #tatolOperTime .week {
+    position: absolute;
+    padding-left: 12px;
+    padding-top: 2px;
+  }
+  .storeDetail #tatolOperTime .weekOperTime {
+    position: absolute;
+    width: 60px;
+    margin-top: -12.7px;
+    margin-left: 32px;
+    text-align: center;
+  }
+  .storeDetail #tatolOperTime #breakTime {
+    position: absolute;
+    width: max-content;
+    font-size: 6px;
+    color: #615DFF;
+    margin-left: 5px;
+    margin-top: -1px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .storeDetail .keywordArea div {
+    position: absolute;
+    width: 80px;
+    height: 25px;
+    background-color: #FFFFFF;
+    border: 3px solid #FF8AA3;
+    border-radius: 50px;
+    font-family: "Pretendard Variable";
+    font-size: 11px;
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .storeDetail .keywordArea div:nth-of-type(1) {
+    left: 35px;
+    top: 430px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(2) {
+    left: 145px;
+    top: 430px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(3) {
+    left: 252px;
+    top: 430px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(4) {
+    left: 363px;
+    top: 430px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(5) {
+    left: 35px;
+    top: 470px;
+  }
+  .storeDetail .keywordArea div:nth-of-type(6) {
+    left: 145px;
+    top: 470px;
+  }
+  .storeDetail #hr {
+    position: absolute;
+    left: 23px;
+    top: 520px;
+    width: 458px;
+    background: #D9D9D9;
+  }
+}/*# sourceMappingURL=storedetail.module.css.map */

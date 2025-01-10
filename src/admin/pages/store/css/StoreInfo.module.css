@@ -1,0 +1,262 @@
+/* StoreDetail의 CSS를 기반으로 AdminLayout의 renderingArea에 맞게 수정 */
+.storeInfo {
+    width: 1550px;  /* AdminLayout의 renderingArea 너비에 맞춤 */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#storeInfoText{
+    position: absolute;
+    
+    height: 55px;
+    left: 61px;
+    top: 47px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 55px;
+
+    /* text/title */
+    color: #1E1E1E;
+
+}
+
+#storeName{
+    position: absolute;
+    width: 500px;
+    height: 55px;
+    left: 61px;
+    top: 350px;
+
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 54px;
+
+    color: #1E1E1E;
+}
+
+#storeDes{
+    position: absolute;
+    width: 800px;
+    height: 29px;
+    left: 61px;
+    top: 420px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+}
+
+#storeAddress{
+    position: absolute;
+    width: 1000px;
+    height: 29px;
+    left: 61px;
+    top: 480px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+}
+
+#operTime{
+    position: absolute;
+    width: 1000px;
+    height: 29px;
+    left: 61px;
+    top: 520px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+
+    cursor: pointer;
+}
+
+#triangle{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 350px;
+    top: 5px;
+}
+
+#tatolOperTime{
+    position: absolute;
+    width: 280px;
+    height: 230px;
+    left: 151px;
+    top: 560px;
+    text-align: center;
+    border: 2.5px solid #232323;
+    background-color: #FFFFFF;
+    padding: 5px;
+    font-family: "Pretendard Variable";
+    font-size: 16px;
+    font-weight: 500;
+    color: #232323;
+    line-height: 28px;
+    z-index: 5;
+    border-radius: 0;
+}
+
+.week{
+    display: inline-block;
+    width: 50px;
+}
+
+.weekOperTime{
+    display: inline-block;
+    width: 200px;
+}
+
+#breakTime{
+    color: #FF5D18;
+}
+
+.keywordArea{
+    position: absolute;
+    width: 1000px;
+    height: 50px;
+    left: 61px;
+    top: 590px;
+    align-content: center;
+}
+
+.keywordArea div{
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    margin-right: 20px;
+    background: #FFF3A7;
+    border-radius: 50px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    align-content: center;
+    color: #1E1E1E;
+}
+
+
+.hr1{
+    position: absolute;
+    width: 1000px;
+    height: 2px;
+    left: 61px;
+    top: 560px;
+    background: #E3E3E3;
+} 
+
+.hr2{
+    position: absolute;
+    width: 1000px;
+    height: 2px;
+    left: 61px;
+    top: 650px;
+    background: #E3E3E3;
+} 
+
+#storeRegistDate{
+    position: absolute;
+    width: 800px;
+    height: 29px;
+    left: 380px;
+    top: 55px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+}
+#posNumber{
+    position: absolute;
+    width: 800px;
+    height: 29px;
+    left: 61px;
+    top: 700px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #1E1E1E;
+}
+
+#storeInfoEditBtn{
+    /* Rectangle 166 */
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    left: 1275px;
+    top: 43px;
+    
+    /* secondary2 */
+    background: #FFF3A7;
+    border-radius: 50px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+
+    color: #232323;
+
+    text-align: center;
+    align-content: center;
+
+    border: none;
+    cursor: pointer;
+}
+#storeInfoEditBtn:hover {
+    background: #FFE970;
+}
+#storeInfoDeleteBtn{
+
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    left: 1405px;
+    top: 43px;
+
+    background: #FF8AA3;
+    border-radius: 40px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    align-items: center;
+
+    /* text/strong */
+    color: #232323;
+
+    border: none;
+    cursor: pointer;
+}
+#storeInfoDeleteBtn:hover {
+    background: #FF6B87;
+}

@@ -1,0 +1,19 @@
+.mypage {
+    position: relative;
+    width:100vw;
+    height:100vh;
+    background: #FFF9D3;
+}
+
+.contentList {
+    position: absolute;
+    width: 1287px;
+    height: 764px;
+    left: 48px;
+    top: 133px;
+
+    background: #FFFFFF;
+    /* primary */
+    border: 3px solid #FF8AA3;
+    border-radius: 50px;
+}

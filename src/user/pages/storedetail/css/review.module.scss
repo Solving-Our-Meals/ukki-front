@@ -1,0 +1,748 @@
+@import "../../../../common/reset/reset.scss";
+
+.reviewStyle{
+    cursor: default;
+
+    #strReview{
+        position: absolute;
+        left : 112px;
+        top : 1984px;
+        width: max-content;
+        font-family: 'Bobaesum Jindo TTF';
+        font-size: 50px;
+        color: $textStrong;
+    }
+
+    #strCountReview{
+        position: absolute;
+        left : 112px;
+        top : 2051px;
+        width: max-content;
+        font-family: 'Pretendard Variable';
+        font-size: 30px;
+        color: $textStrong;
+    }
+
+    #reviewSort {
+        outline: none;
+        position: absolute;
+        left: 230px;
+        top: 1984px;
+        width: 170px;
+        height: 50px;
+        background-color: #FFFFFF;
+        border-radius: 5px;
+        border: 5px solid $primary;
+        font-family: 'Pretendard Variable';
+        font-size: 30px;
+        font-weight: 600;
+        color: $textStrong;
+        cursor: pointer;
+        padding: 0 20px;
+    }
+
+    option{
+        width: 170px;
+        height: 50px;
+        background-color: #FFFFFF;
+        font-family: 'Pretendard Variable';
+        font-size: 30px;
+        color: $textStrong;
+        cursor: pointer;
+        padding: 0 20px;
+    }
+    
+
+    .reviewArea{
+        cursor: default;
+        position: absolute;
+        left: 163px;
+        top : 2135px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .reviewContainer{
+            position: relative;
+            display: inline-block;
+            width: 1550px;
+            height: max-content;
+
+            .review{
+                position: relative;
+                display: inline-block;
+                margin-top: 30px;
+                margin-left: -35px;
+
+                #reviewImg{
+                    display: block;
+                    top : 10px;
+                    width: 1532px;
+                    height : 475.5px;
+                    z-index: 1;
+                }
+
+                #userProfile{
+                    position: absolute;
+                    left : 97px;
+                    top : 50px;
+                    width : 114px;
+                    height : 108px;
+                    z-index: 5;
+                    border-radius: 0;
+                }
+        
+                div{
+                    position: absolute;
+                    width : max-content;
+                    cursor: default;
+                    z-index: 2;
+                }
+    
+                div:nth-of-type(1){
+                    left: 230px;
+                    top : 63px;
+                    width: max-content;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-size: 30px;
+                    font-weight: 500;
+                    font-style: normal;
+                    color: $textStrong;
+                    z-index: 5;
+                }
+    
+                div:nth-of-type(2){
+                   left : 230px;
+                   top : 107px;
+                   width: max-content;
+                   font-family: 'Pretendard Variable';
+                   font-size: 20px;
+                   font-weight: 400;
+                   font-style: normal;
+                   color: $textStrong;
+                   z-index: 5;
+                }
+    
+                div:nth-of-type(3){
+                    left : 107px;
+                    top : 173px;
+                    width: 802px;
+                    height: 217px;
+                    background-color: #FFF9D3;
+                    padding-left: 15px;
+                    padding-top: 10px;
+                    font-family: 'Pretendard Variable';
+                    font-size: 20px;
+                    font-weight: 500;
+                    font-style: normal; 
+                    color: $textStrong;
+                    line-height: 160%;
+                    border-radius: 0;
+                    z-index: 5;
+                }
+    
+                #reviewPhoto{
+                    position: absolute;
+                    left : 1022px;
+                    top : 37px;
+                    width: 468px;
+                    height: 367px;
+                    border-radius: 0;
+                    z-index: 5;
+                }
+            }
+
+            .transformReview{
+                position: relative;
+                display: inline-block;
+                margin-top: 30px;
+                margin-left: 70px;
+
+                #reviewImg{
+                    display: block;
+                    top : 10px;
+                    width: 1532px;
+                    height : 475.5px;
+                    z-index: 1;
+                }
+
+                #userProfile{
+                    position: absolute;
+                    left : 613px;
+                    top : 53px;
+                    width : 114px;
+                    height : 108px;
+                    z-index: 5;
+                    border-radius: 0;
+                }
+        
+                div{
+                    position: absolute;
+                    width : max-content;
+                    cursor: default;
+                    z-index: 2;
+                }
+    
+                div:nth-of-type(1){
+                    left: 744px;
+                    top : 70px;
+                    width: max-content;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-size: 30px;
+                    font-weight: 500;
+                    font-style: normal;
+                    color: $textStrong;
+                    z-index: 5;
+                }
+    
+                div:nth-of-type(2){
+                   left : 744px;
+                   top : 111px;
+                   width: max-content;
+                   font-family: 'Pretendard Variable';
+                   font-size: 20px;
+                   font-weight: 400;
+                   font-style: normal;
+                   color: $textStrong;
+                   z-index: 5;
+                }
+    
+                div:nth-of-type(3){
+                    left : 624px;
+                    top : 176px;
+                    width: 802px;
+                    height: 217px;
+                    background-color: #FFF9D3;
+                    padding-left: 15px;
+                    padding-top: 10px;
+                    font-family: 'Pretendard Variable';
+                    font-size: 20px;
+                    font-weight: 500;
+                    font-style: normal; 
+                    color: $textStrong;
+                    line-height: 160%;
+                    border-radius: 0;
+                    z-index: 5;
+                }
+    
+                #reviewPhoto{
+                    position: absolute;
+                    left : 43px;
+                    top : 38px;
+                    width: 468px;
+                    height: 367px;
+                    border-radius: 0;
+                    z-index: 5;
+                }
+            }
+        }
+
+        #moreReview{
+            margin-top: 50px;
+            font-family: 'Pretendard Variable';
+            font-size: 40px;
+            font-weight: 700;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (min-width:769px) and (max-width:1024px){
+    .reviewStyle{
+        cursor: default;
+    
+        #strReview{
+            position: absolute;
+            left : 51px;
+            top : 1150px;
+            width: max-content;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 35px;
+            color: $textStrong;
+        }
+    
+        #strCountReview{
+            position: absolute;
+            left : 51px;
+            top : 1200px;
+            width: max-content;
+            font-family: 'Pretendard Variable';
+            font-size: 20px;
+            color: $textStrong;
+        }
+    
+        #reviewSort {
+            left: 120px;
+            top: 1153px;
+            width: 120px;
+            height: 28px;
+            font-size : 18px;
+            border-radius: 30px;
+            background-color: #FFFFFF;
+            border-radius: 5px;
+            border: 3px solid $primary;
+            color: $textStrong;
+            cursor: pointer;
+            padding: 0 20px;
+        }
+
+        option{
+            width: 120px;
+            height: 28px;
+            background-color: #FFFFFF;
+            font-family: 'Pretendard Variable';
+            font-size: 18px;
+            color: $textStrong;
+            cursor: pointer;
+            padding: 0 20px;
+        }
+    
+        .reviewArea{
+            cursor: default;
+            position: absolute;
+            left: 45px;
+            top : 1225px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            // border: 1px solid red;
+    
+            .reviewContainer{
+                position: relative;
+                display: inline-block;
+                width: 850px;
+                height: max-content;
+                // margin-left: -10px;
+    
+                .review{
+                    position: relative;
+                    display: inline-block;
+                    margin-top: 30px;
+                    margin-left: -20px;
+    
+                    #reviewImg{
+                        display: block;
+                        top : 5px;
+                        width: 831px;
+                        height : 258px;
+                        z-index: 1;
+                    }
+    
+                    #userProfile{
+                        position: absolute;
+                        left : 52px;
+                        top : 27px;
+                        width : 62px;
+                        height : 59px;
+                        z-index: 5;
+                        border-radius: 0;
+                    }
+            
+                    div{
+                        position: absolute;
+                        width : max-content;
+                        cursor: default;
+                        z-index: 2;
+                    }
+        
+                    div:nth-of-type(1){
+                        left: 124px;
+                        top : 30px;
+                        width: max-content;
+                        font-family: 'Bobaesum Jindo TTF';
+                        font-size: 20px;
+                        font-weight: 500;
+                        font-style: normal;
+                        color: $textStrong;
+                        z-index: 5;
+                    }
+        
+                    div:nth-of-type(2){
+                       left : 124px;
+                       top : 56px;
+                       width: max-content;
+                       font-family: 'Pretendard Variable';
+                       font-size: 15px;
+                       font-weight: 400;
+                       font-style: normal;
+                       color: $textStrong;
+                       z-index: 5;
+                    }
+        
+                    div:nth-of-type(3){
+                        left : 58px;
+                        top : 94px;
+                        width: 436px;
+                        height: 117px;
+                        background-color: #FFF9D3;
+                        padding-left: 7px;
+                        padding-top: 5px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 13px;
+                        font-weight: 500;
+                        font-style: normal; 
+                        color: $textStrong;
+                        line-height: 160%;
+                        border-radius: 0;
+                        z-index: 5;
+                    }
+        
+                    #reviewPhoto{
+                        position: absolute;
+                        left : 550px;
+                        top : 17px;
+                        width: 263px;
+                        height: 206px;
+                        border-radius: 0;
+                        z-index: 5;
+                    }
+                }
+
+                .transformReview{
+                    position: relative;
+                    display: inline-block;
+                    margin-top: 30px;
+                    margin-left: 40px;
+
+                    #reviewImg{
+                        display: block;
+                        top : 5px;
+                        width: 831px;
+                        height : 258px;
+                        z-index: 1;
+                    }
+    
+                    #userProfile{
+                        position: absolute;
+                        left : 333px;
+                        top : 28px;
+                        width : 62px;
+                        height : 59px;
+                        z-index: 5;
+                        border-radius: 0;
+                    }
+            
+                    div{
+                        position: absolute;
+                        width : max-content;
+                        cursor: default;
+                        z-index: 2;
+                    }
+        
+                    div:nth-of-type(1){
+                        left: 403px;
+                        top : 34px;
+                        width: max-content;
+                        font-family: 'Bobaesum Jindo TTF';
+                        font-size: 20px;
+                        font-weight: 500;
+                        font-style: normal;
+                        color: $textStrong;
+                        z-index: 5;
+                    }
+        
+                    div:nth-of-type(2){
+                       left : 403px;
+                       top : 61px;
+                       width: max-content;
+                       font-family: 'Pretendard Variable';
+                       font-size: 15px;
+                       font-weight: 400;
+                       font-style: normal;
+                       color: $textStrong;
+                       z-index: 5;
+                    }
+        
+                    div:nth-of-type(3){
+                        left : 338px;
+                        top : 95px;
+                        width: 436px;
+                        height: 117px;
+                        background-color: #FFF9D3;
+                        padding-left: 7px;
+                        padding-top: 5px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 13px;
+                        font-weight: 500;
+                        font-style: normal; 
+                        color: $textStrong;
+                        line-height: 160%;
+                        border-radius: 0;
+                        z-index: 5;
+                    }
+        
+                    #reviewPhoto{
+                        position: absolute;
+                        left : 20px;
+                        top : 17px;
+                        width: 263px;
+                        height: 206px;
+                        border-radius: 0;
+                        z-index: 5;
+                    }
+                }
+            }
+    
+            #moreReview{
+                margin-top: 30px;
+                font-family: 'Pretendard Variable';
+                font-size: 30px;
+                font-weight: 700;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:768px){
+    .reviewStyle{
+        cursor: default;
+    
+        #strReview{
+            position: absolute;
+            left : 35px;
+            top : 1270px;
+            width: max-content;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 20px;
+            color: $textStrong;
+        }
+    
+        #strCountReview{
+            position: absolute;
+            left : 35px;
+            top : 1300px;
+            width: max-content;
+            font-family: 'Pretendard Variable';
+            font-size: 15px;
+            color: $textStrong;
+        }
+    
+        #reviewSort {
+            left: 80px;
+            top: 1269px;
+            width: 100px;
+            height: 20px;
+            font-size: 13px;
+            background-color: #FFFFFF;
+            border-radius: 5px;
+            border: 2px solid $primary;
+            color: $textStrong;
+            cursor: pointer;
+            padding: 0 20px;
+        }
+    
+        option{
+            width: 80px;
+            height: 20px;
+            background-color: #FFFFFF;
+            font-family: 'Pretendard Variable';
+            font-size: 13px;
+            color: $textStrong;
+            cursor: pointer;
+            padding: 0 20px;
+        }
+    
+        .reviewArea{
+            cursor: default;
+            position: absolute;
+            left: 45px;
+            top : 1320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            // border: 1px solid red;
+    
+            .reviewContainer{
+                position: relative;
+                display: inline-block;
+                width: 440px;
+                height: max-content;
+                margin-left: -10px;
+                // border: 1px solid red;
+    
+                .review{
+                    position: relative;
+                    display: inline-block;
+                    margin-top: 30px;
+                    margin-left: -20px;
+                    // border: 1px solid red;
+    
+                    #reviewImg{
+                        display: block;
+                        width: 450px;
+                        height : 158px;
+                        z-index: 1;
+                    }
+    
+                    #userProfile{
+                        position: absolute;
+                        left : 23px;
+                        top : 15px;
+                        width : 33px;
+                        height : 34px;
+                        z-index: 5;
+                        border-radius: 0;
+                    }
+            
+                    div{
+                        position: absolute;
+                        width : max-content;
+                        cursor: default;
+                        z-index: 2;
+                    }
+        
+                    div:nth-of-type(1){
+                        left: 65px;
+                        top : 17px;
+                        width: max-content;
+                        font-family: 'Bobaesum Jindo TTF';
+                        font-size: 12px;
+                        font-weight: 500;
+                        font-style: normal;
+                        color: $textStrong;
+                        z-index: 5;
+                    }
+        
+                    div:nth-of-type(2){
+                       left : 65px;
+                       top : 32px;
+                       width: max-content;
+                       font-family: 'Pretendard Variable';
+                       font-size: 11px;
+                       font-weight: 400;
+                       font-style: normal;
+                       color: $textStrong;
+                       z-index: 5;
+                    }
+        
+                    div:nth-of-type(3){
+                        left : 18px;
+                        top : 55px;
+                        width: 255px;
+                        height: 75px;
+                        background-color: #FFF9D3;
+                        padding-left: 7px;
+                        padding-top: 5px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 10px;
+                        font-weight: 500;
+                        font-style: normal; 
+                        color: $textStrong;
+                        line-height: 150%;
+                        border-radius: 0;
+                        z-index: 5;
+                    }
+        
+                    #reviewPhoto{
+                        position: absolute;
+                        left : 295px;
+                        top : 9px;
+                        width: 147px;
+                        height: 128px;
+                        border-radius: 0;
+                        z-index: 5;
+                    }
+                }
+
+                .transformReview{
+                    position: relative;
+                    display: inline-block;
+                    margin-top: 30px;
+                    margin-left: -5px;
+
+                    #reviewImg{
+                        display: block;
+                        top : 5px;
+                        width: 450px;
+                        height : 158px;
+                        z-index: 1;
+                    }
+    
+                    #userProfile{
+                        position: absolute;
+                        left : 180px;
+                        top : 15px;
+                        width : 33px;
+                        height : 34px;
+                        z-index: 5;
+                        border-radius: 0;
+                    }
+            
+                    div{
+                        position: absolute;
+                        width : max-content;
+                        cursor: default;
+                        z-index: 2;
+                    }
+        
+                    div:nth-of-type(1){
+                        left: 222px;
+                        top : 17px;
+                        width: max-content;
+                        font-family: 'Bobaesum Jindo TTF';
+                        font-size: 12px;
+                        font-weight: 500;
+                        font-style: normal;
+                        color: $textStrong;
+                        z-index: 5;
+                    }
+        
+                    div:nth-of-type(2){
+                       left : 222px;
+                       top : 32px;
+                       width: max-content;
+                       font-family: 'Pretendard Variable';
+                       font-size: 11px;
+                       font-weight: 400;
+                       font-style: normal;
+                       color: $textStrong;
+                       z-index: 5;
+                    }
+        
+                    div:nth-of-type(3){
+                        left : 175px;
+                        top : 55px;
+                        width: 255px;
+                        height: 75px;
+                        background-color: #FFF9D3;
+                        padding-left: 7px;
+                        padding-top: 5px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 10px;
+                        font-weight: 500;
+                        font-style: normal; 
+                        color: $textStrong;
+                        line-height: 150%;
+                        border-radius: 0;
+                        z-index: 5;
+                    }
+        
+                    #reviewPhoto{
+                        position: absolute;
+                        left : 8px;
+                        top : 10px;
+                        width: 147px;
+                        height: 128px;
+                        border-radius: 0;
+                        z-index: 5;
+                    }
+                }
+            }
+    
+            #moreReview{
+                margin-top: 30px;
+                font-family: 'Pretendard Variable';
+                font-size: 15px;
+                font-weight: 700;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+    }
+}
