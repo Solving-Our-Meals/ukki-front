@@ -42,9 +42,13 @@ function Review() {
 
     const deleteReview = async (reviewId) => {
         try {
-            const response = await fetch(`/user/review/${reviewId}`, {
+            const response = await fetch('/user/review/delete', {
                 method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 credentials: 'include',
+                body: JSON.stringify({ reviewId }) // 리뷰 ID를 본문에 포함
             });
 
             if (response.ok) {
@@ -57,6 +61,7 @@ function Review() {
             setError('에러 발생: ' + error.message);
         }
     };
+
 
     if (loading) {
         return (
