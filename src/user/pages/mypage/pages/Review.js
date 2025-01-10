@@ -40,7 +40,7 @@ function Review() {
         }
     };
 
-    const deleteReview = async (reviewId) => {
+    const deleteReview = async (reviewNo) => {
         try {
             const response = await fetch('/user/review/delete', {
                 method: 'DELETE',
@@ -48,12 +48,11 @@ function Review() {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-                body: JSON.stringify({ reviewId }) // 리뷰 ID를 본문에 포함
+                body: JSON.stringify({ reviewNo }) // 리뷰 ID를 본문에 포함
             });
 
             if (response.ok) {
-                // 리뷰 삭제 성공 시 해당 리뷰를 화면에서 제거
-                setUserInfo(prevState => prevState.filter(review => review.id !== reviewId));
+                setUserInfo(prevState => prevState.filter(review => review.no !== reviewNo));
             } else {
                 setError('리뷰 삭제에 실패했습니다.');
             }
@@ -154,7 +153,7 @@ function Review() {
                                 className={styles.deleteButton}
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    deleteReview(review.userId);
+                                    deleteReview(review.reviewNo);
                                 }}
                             >
                                 삭제
