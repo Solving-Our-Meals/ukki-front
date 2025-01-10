@@ -62,15 +62,14 @@
     color: #232323;
 }
 
-
+/* 리스트 전체 위치 조정용 */
 .mypageReservationMain {
-    transform: translate(-30px, 150px);
+    transform: translate(100px, 150px);
 }
 
 .headerItem {
     width:325px;
     background: none;
-    text-align: center;
 }
 
 /* 예약 항목 */
@@ -135,16 +134,18 @@
     visibility: hidden;
 }
 
+/* 선 1 */
 .headerRow, .reservationItem {
     position: relative;
     padding-bottom: 10px;
 }
 
+/* 선 2 */
 .headerRow::before, .reservationItem::before {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 40%;
     width: 90%;
     height: 2px;
     background-color: #ccc;
