@@ -67,7 +67,7 @@ function Review() {
                 setUserInfo(prevState => prevState.filter(review => review.reviewNo !== reviewNo));
                 setShowModal(false);
                 setShowSuccessModal(true);
-                // setTimeout(() => setShowSuccessModal(false), 2000);
+                setTimeout(() => setShowSuccessModal(false), 2000);
             } else {
                 setError('리뷰 삭제에 실패했습니다.');
                 setShowModal(false);
