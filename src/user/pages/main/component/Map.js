@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Map.css';
 import loMarker from '../image/marker.png';
 
 const { kakao } = window;
-const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClick }) => {
+
+const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClick, toggleIsMarkerClicked }) => {
     const [map, setMap] = useState(null);
     const [stores, setStores] = useState([]);
     const [currentMarker, setCurrentMarker] = useState({ marker: null, infowindow: null });
-    const [markers, setMarkers] = useState([]);
+    const markersRef = useRef([]); // 마커들을 상태 대신 참조로 관리
     const [currentPosition, setCurrentPosition] = useState(null); // 사용자 현재 위치
     const [selectedStore, setSelectedStore] = useState(null); // 선택된 가게 정보
+    const [isMarkerClicked, setIsMarkerClicked] = useState(false);
+    const [clickedStoreId, setClickedStoreId] = useState(null);
+    const [polylines, setPolylines] = useState([]);  // 표시된 경로들
 
     useEffect(() => {
         if (selectedCategory) {
@@ -17,28 +21,38 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                 .then((response) => response.json())
                 .then((data) => {
                     setStores(data);
-                    markers.forEach(marker => {
-                        marker.setMap(null);
+
+                    // 기존 마커들 삭제
+                    markersRef.current.forEach(marker => {
+                        marker.setMap(null);  // 마커 삭제
                         if (marker.infowindow) {
                             marker.infowindow.close();
                         }
                     });
-                    setMarkers([]);
+                    markersRef.current = []; // 기존 마커 배열 초기화
                 });
         }
     }, [selectedCategory]);
 
     useEffect(() => {
-        const mapContainer = document.getElementById('map');
-        const mapOption = {
-            center: new kakao.maps.LatLng(37.562997, 127.189575),
-            level: 3
+        const script = document.createElement('script');
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAOMAP_APP_KEY}&libraries=services`;
+        script.async = true;
+        script.onload = () => {
+            const mapContainer = document.getElementById('map');
+            const mapOption = {
+                center: new kakao.maps.LatLng(37.562997, 127.189575),
+                level: 5
+            };
+
+            const kakaoMap = new kakao.maps.Map(mapContainer, mapOption);
+            setMap(kakaoMap); // 상태 업데이트
         };
+        document.head.appendChild(script);
+    }, []);  // map을 의존성 배열에서 제거
 
-        const kakaoMap = new kakao.maps.Map(mapContainer, mapOption);
-        setMap(kakaoMap);
-
-        if (navigator.geolocation) {
+    useEffect(() => {
+        if (map && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
@@ -46,16 +60,17 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                 const locPosition = new kakao.maps.LatLng(lat, lon);
                 const message = '<div style="padding:3px; padding-left:40px; height:1.5vw; font-weight:700; color:#FF8AA3;">현재 위치</div>';
 
-                displayMarker(locPosition, message, kakaoMap);
+                displayMarker(locPosition, message, map);
                 setCurrentPosition({ x: lon, y: lat }); // 사용자 현재 위치 설정
 
-                kakaoMap.setCenter(locPosition);
+                map.setCenter(locPosition);
 
                 const geocoder = new kakao.maps.services.Geocoder();
-
                 geocoder.coord2Address(lat, lon, (result, status) => {
                     if (status === kakao.maps.services.Status.OK) {
-                        const address = result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
+                        const address = result[0].road_address
+                            ? result[0].road_address.address_name
+                            : result[0].address.address_name;
                         if (address !== defaultValue) {
                             setAddress(address);
                         }
@@ -65,10 +80,12 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
         } else {
             const locPosition = new kakao.maps.LatLng(37.562997, 127.189575);
             const message = '현재위치 추적 불가능';
-            displayMarker(locPosition, message, kakaoMap);
-            kakaoMap.setCenter(locPosition);
+            if (map) {
+                displayMarker(locPosition, message, map);
+                map.setCenter(locPosition);
+            }
         }
-    }, [defaultValue, setAddress]);
+    }, [map, defaultValue, setAddress]);
 
     useEffect(() => {
         if (map && stores.length > 0) {
@@ -91,103 +108,140 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                     removable: true
                 });
 
-                kakao.maps.event.addListener(infowindow, 'close', () => {
-                    const reducedImageSize = new kakao.maps.Size(imageSize.width * 0.7, imageSize.height * 0.7);
-                    const reducedImageOption = { offset: new kakao.maps.Point(reducedImageSize.width / 2, reducedImageSize.height) };
-                    marker.setImage(new kakao.maps.MarkerImage(imageSrc, reducedImageSize, reducedImageOption));
-                });
-
-                let isEnlarged = false;
-
                 kakao.maps.event.addListener(marker, 'click', async () => {
-                    if (isEnlarged) {
-                        marker.setImage(new kakao.maps.MarkerImage(imageSrc, new kakao.maps.Size(imageSize.width * 0.7, imageSize.height * 0.7), imageOption));
-                        infowindow.close();
-                    } else {
-                        markers.forEach(m => {
-                            m.setImage(new kakao.maps.MarkerImage(imageSrc, new kakao.maps.Size(imageSize.width * 0.7, imageSize.height * 0.7), imageOption));
-                            if (m.infowindow) {
-                                m.infowindow.close();
-                            }
-                        });
-
-                        const enlargedImageSize = new kakao.maps.Size(imageSize.width, imageSize.height);
-                        const enlargedImageOption = { offset: new kakao.maps.Point(enlargedImageSize.width / 2, enlargedImageSize.height) };
-                        marker.setImage(new kakao.maps.MarkerImage(imageSrc, enlargedImageSize, enlargedImageOption));
-                        infowindow.open(map, marker);
-                        setCurrentMarker({ marker, infowindow });
-
-                        // 경로 요청
-                        if (currentPosition) {
-                            const directionsResponse = await fetch('/main/directions', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    origin: currentPosition,
-                                    destination: { x: store.longitude, y: store.latitude },
-                                    waypoints: []
-                                })
-                            });
-
-                            const directionsData = await directionsResponse.json();
-                            console.log('Directions:', directionsData);
-                            // directionsData를 이용하여 지도에 경로 표시 로직 추가
+                    // 모든 마커의 크기를 원래대로 리셋
+                    markersRef.current.forEach(m => {
+                        const originalImageSize = new kakao.maps.Size(44, 55); // 원래 크기로 리셋
+                        const originalImageOption = { offset: new kakao.maps.Point(originalImageSize.width / 2, originalImageSize.height) };
+                        m.setImage(new kakao.maps.MarkerImage(imageSrc, originalImageSize, originalImageOption));
+                        if (m.infowindow) {
+                            m.infowindow.close();
                         }
+                    });
 
-                        // Update store information
-                        onMarkerClick(store.storeName, store.storeDes, store.storeMenu, store.storeProfile, store.storeAddress);
+                    // 클릭된 마커 확대
+                    const enlargedImageSize = new kakao.maps.Size(55, 66); // 클릭된 마커 크기
+                    const enlargedImageOption = { offset: new kakao.maps.Point(enlargedImageSize.width / 2, enlargedImageSize.height) };
+                    marker.setImage(new kakao.maps.MarkerImage(imageSrc, enlargedImageSize, enlargedImageOption));
+                    infowindow.open(map, marker);
+                    setCurrentMarker({ marker, infowindow });
+                    setSelectedStore(store);
+
+                    // 현재 위치가 있으면 경로를 요청하는 함수 호출
+                    if (currentPosition) {
+                        requestDirections(store);
                     }
 
-                    isEnlarged = !isEnlarged;
+                    // 가게 정보를 업데이트
+                    onMarkerClick(store.storeName, store.storeDes, store.storeMenu, store.storeProfile, store.storeAddress);
                 });
 
                 marker.setMap(map);
                 marker.infowindow = infowindow;
+
+                // 마커를 ref에 저장
+                markersRef.current.push(marker);
                 return marker;
             });
 
-            setMarkers(newMarkers);
+            // markersRef.current는 참조 배열이므로 별도로 상태를 업데이트할 필요가 없습니다.
         }
     }, [map, stores, currentPosition]);
 
-    useEffect(() => {
-        if (map && address && address !== defaultValue) {
-            const places = new kakao.maps.services.Places();
-
-            places.keywordSearch(address, function (result, status) {
-                if (status === kakao.maps.services.Status.OK) {
-                    const locPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
-                    const message = '<div style="padding:5px; padding-left:35px; height:1.5vw; font-weight:900; color:#FF8AA3;">현재 위치</div>';
-                    displayMarker(locPosition, message, map);
+    
+    const requestDirections = async (store) => {
+        try {
+            if (!currentPosition) return;
+    
+            const url = `https://apis-navi.kakaomobility.com/v1/waypoints/directions`;
+    
+            const headers = {
+                'Authorization': `KakaoAK ${process.env.REACT_APP_KAKAOMAP_REST_API_KEY}`,
+                'Content-Type': 'application/json',
+            };
+    
+            const body = JSON.stringify({
+                origin: currentPosition,
+                destination: { x: store.longitude, y: store.latitude },
+                waypoints: []
+            });
+    
+            const response = await fetch(url, { method: 'POST', headers, body });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
+            const data = await response.json();
+    
+            // 경로 데이터 처리
+            if (data.routes && data.routes.length > 0 && data.routes[0].sections && data.routes[0].sections.length > 0) {
+                const roads = data.routes[0].sections[0].roads;
+                if (roads && roads.length > 0) {
+                    const routePath = roads.flatMap(road => road.vertexes.map((coord, index, arr) => {
+                        if (index % 2 === 0 && arr[index + 1] !== undefined) {
+                            const lat = arr[index + 1];
+                            const lon = coord;
+                            if (!isNaN(lat) && !isNaN(lon)) {
+                                return [lon, lat];
+                            }
+                        }
+                        return null;
+                    }).filter(Boolean));
+    
+                    if (routePath && routePath.length > 0) {
+                        // 기존 경로 삭제
+                        polylines.forEach(poly => {
+                            poly.setMap(null);  // 기존 경로 삭제
+                        });
+    
+                        // 새 경로 표시
+                        displayRoute(routePath);
+                    } else {
+                        console.error('Invalid directions data: No valid route path found in roads', data);
+                    }
                 } else {
-                    alert('주소를 찾을 수 없습니다.');
+                    console.error('Invalid directions data: No roads found in sections', data);
                 }
-            });
-        }
-    }, [map, address, defaultValue]);
-
-    const requestDirections = async () => {
-        if (currentPosition && selectedStore) {
-            const directionsResponse = await fetch('/main/directions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    origin: currentPosition,
-                    destination: { x: selectedStore.longitude, y: selectedStore.latitude },
-                    waypoints: []
-                })
-            });
-
-            const directionsData = await directionsResponse.json();
-            console.log('Directions:', directionsData);
-            // directionsData를 이용하여 지도에 경로 표시 로직 추가
+            } else {
+                console.error('Invalid directions data: No valid route or sections found', data);
+            }
+        } catch (error) {
+            console.error('Error fetching directions:', error);
         }
     };
-
+    
+    const displayRoute = (routePath) => {
+        if (!routePath || routePath.length === 0) {
+            console.error('Invalid directions data: No route path found');
+            return;
+        }
+    
+        // 기존 경로들 삭제
+        polylines.forEach(poly => {
+            poly.setMap(null);  // 기존 경로 삭제
+        });
+    
+        const polyline = new kakao.maps.Polyline({
+            path: routePath.map(point => new kakao.maps.LatLng(point[1], point[0])),
+            strokeWeight: 5,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1,
+            strokeStyle: 'solid'
+        });
+    
+        polyline.setMap(map);
+    
+        // 경로의 범위에 맞춰 지도 bounds 설정
+        const bounds = new kakao.maps.LatLngBounds();
+        routePath.forEach(point => bounds.extend(new kakao.maps.LatLng(point[1], point[0])));
+        map.setBounds(bounds);
+    
+        // 새로운 경로 배열로 업데이트
+        setPolylines([polyline]);  // 이 부분을 통해 새로운 경로 상태 업데이트
+    };
+    
+    
     function displayMarker(locPosition, message, mapInstance) {
         if (!mapInstance) return;
 
@@ -213,8 +267,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
     }
 
     return (
-        <div id="map">
-        </div>
+        <div id="map"></div>
     );
 };
 
