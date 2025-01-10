@@ -74,7 +74,8 @@ function StoreEdit() {
                 setBannerImages(bannerImages);
 
             } catch (error) {
-                console.error('데이터 로딩 중 오류 발생:', error);
+                setResultMessage('데이터 로딩 중 오류가 발생했습니다.');
+                setShowResultModal(true);
             }
         };
 
@@ -98,17 +99,6 @@ function StoreEdit() {
 
         const dayOfWeek = dayOfWeekMap[day];
         const currentOperationTime = storeInfo.operationTime[dayOfWeek];
-
-        // 색상 업데이트
-        const updateColors = {
-            monday: storeInfo.operationTime.monday === "휴무" ? "#FF5D18" : "#323232",
-            tuesday: storeInfo.operationTime.tuesday === "휴무" ? "#FF5D18" : "#323232",
-            wednesday: storeInfo.operationTime.wednesday === "휴무" ? "#FF5D18" : "#323232",
-            thursday: storeInfo.operationTime.thursday === "휴무" ? "#FF5D18" : "#323232",
-            friday: storeInfo.operationTime.friday === "휴무" ? "#FF5D18" : "#323232",
-            saturday: storeInfo.operationTime.saturday === "휴무" ? "#FF5D18" : "#323232",
-            sunday: storeInfo.operationTime.sunday === "휴무" ? "#FF5D18" : "#323232"
-        };
 
         setStoreInfo(prev => ({
             ...prev,
@@ -230,14 +220,6 @@ function StoreEdit() {
         }
     }, [storeInfo.storeAddress]);
 
-    useEffect(() => {
-        if (storeInfo.operationTime) {
-            console.log("요일 별 운영시간 : ", storeInfo.operationTime);
-            console.log("오늘 운영 시간 : ", storeInfo.currentOperationTime);
-            console.log("브레이크 타임 : ", storeInfo.operationTime.breakTime);
-        }
-    }, [storeInfo.operationTime, storeInfo.currentOperationTime]);
-
     // 변경된 데이터만 추출하는 함수
     const getChangedData = useCallback(() => {
         if (!initialData) return null;
@@ -282,7 +264,6 @@ function StoreEdit() {
         const changes = {};
         
         // 현재 배너 이미지들을 모두 전송
-        console.log("bannerImages : ", bannerImages);
         const currentBanners = bannerImages.reduce((acc, img, index) => {
             if (img) {
                 acc[`banner${index + 1}`] = img.startsWith('data:') ? img : null; // base64는 그대로, 기존 URL은 null로
@@ -336,7 +317,12 @@ function StoreEdit() {
             // 배너 이미지 처리
             if (imageData.bannerImages) {
                 // 현재 배너 상태 전송
-                console.log("imageData.bannerStatus : ", imageData.bannerStatus);
+                const isBannerStatusEmpty = imageData.bannerStatus.every(status => status === "");
+                if(isBannerStatusEmpty) {
+                    setResultMessage('배너 이미지는 최소 1개 이상 있어야합니다.');
+                    setShowResultModal(true);
+                    return;
+                };
                 formData.append('bannerStatus', JSON.stringify(
                     imageData.bannerStatus
                 ));
@@ -371,7 +357,6 @@ function StoreEdit() {
             setResultMessage('성공적으로 수정되었습니다.');
             setShowResultModal(true);
         } catch (error) {
-            console.error('수정 중 오류 발생:', error);
             setResultMessage('수정 중 오류가 발생했습니다.');
             setShowResultModal(true);
         }
@@ -604,9 +589,12 @@ function StoreEdit() {
                         message={resultMessage} 
                         close={() => {
                             setShowResultModal(false);
-                            if (resultMessage === '성공적으로 수정되었습니다.') {
+                            if (resultMessage !== '배너 이미지는 최소 1개 이상 있어야합니다.' || resultMessage !== '변경된 내용이 없습니다.') {
                                 navigate(`/admin/stores/info/${storeNo}`);
+                            }else if(resultMessage === '데이터 로딩 중 오류가 발생했습니다.'){
+                                navigate(`/admin/stores/list`);
                             }
+                            
                         }}
                     />
                 )}

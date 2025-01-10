@@ -6,6 +6,8 @@ import triangleBtn from '../css/images/inverted_triangle.png';
 import Banner from '../components/Banner';
 import Profile from '../components/Profile';
 import Menu from '../components/Menu';
+import AdminAgreementModal from '../../../components/AdminAgreementModal';
+import AdminResultModal from '../../../components/AdminResultModal';
 
 function StoreInfo() {
     const { storeNo } = useParams();
@@ -24,10 +26,14 @@ function StoreInfo() {
         storeKeyword: [],
         operationTime: ""
     });
+    const [showAgreementModal, setShowAgreementModal] = useState(false);
+    const [showResultModal, setShowResultModal] = useState(false);
+    const [resultMessage , setResultMessage] = useState('');
+    const [agreeMessage , setAgreeMessage] = useState('');
 
     useEffect(
         () => {
-            fetch(`/admin/stores/info/${storeNo}`)  //검색 페이지 만들어지면 pathvariable로 변경하기
+            fetch(`/admin/stores/info/${storeNo}`)
             .then(res => res.json())
             .then(data => {
                 setStoreInfo(data)
@@ -93,14 +99,31 @@ function StoreInfo() {
     const onClickHandler = (e) => {
         setIsNone(prevState => !prevState);
     } 
-    
-    console.log("요일 별 운영시간 : " , storeInfo.operationTime);
-    console.log("오늘 운영 시간 : ", storeInfo.currentOperationTime);
-    console.log("브레이크 타임 : ", storeInfo.operationTime.breakTime);
 
+    function deleteHandler(){
+        setShowAgreementModal(true);
+        setAgreeMessage('정말로 삭제하시겠습니까?');
+    }
 
-    // StoreDetail.js의 나머지 useEffect와 함수들 복사
-
+    // 삭제 확인 모달 표시
+    function deleteConfirm(){
+        fetch(`/admin/stores/info/${storeNo}/delete`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.ok){
+                setShowResultModal(true);
+                setResultMessage('삭제되었습니다.');
+            }else{
+                setShowResultModal(true);
+                setResultMessage('삭제에 실패했습니다.');
+            }
+        })
+        .catch(error => console.log(error));
+        setShowResultModal(true);
+        setResultMessage('삭제에 실패했습니다.');
+    }
 
     return(
         <div className={styles.storeDetail}>
@@ -167,7 +190,26 @@ function StoreInfo() {
             >
                 수정
             </button>
-            <button id={styles.storeInfoDeleteBtn}>삭제</button>
+            <button id={styles.storeInfoDeleteBtn} onClick={deleteHandler}>삭제</button>
+            {showAgreementModal && (
+                    <AdminAgreementModal
+                        message={agreeMessage}
+                        onConfirm={() => {
+                            setShowAgreementModal(false);
+                            deleteConfirm();
+                        }}
+                        onCancel={() => setShowAgreementModal(false)}
+                    />
+                )}
+                {showResultModal && (
+                    <AdminResultModal 
+                        message={resultMessage} 
+                        close={() => {
+                            setShowResultModal(false);
+                            navigate(`/admin/stores/list`);
+                        }}
+                    />
+                )}
         </div>
     );
 }
