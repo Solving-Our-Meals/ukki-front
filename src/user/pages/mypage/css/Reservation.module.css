@@ -62,11 +62,24 @@
     color: #232323;
 }
 
-/* 리스트 전체 위치 조정용 */
+/* 가운데 정렬 */
+/*.mypageReservationMain {
+    transform: translate(-30px, 150px);
+}
+
+/* 가운데 정렬 2 */
+/*.headerItem {
+    width:325px;
+    background: none;
+    text-align: center;
+}*/
+
+/* 좌측 정렬 */
 .mypageReservationMain {
     transform: translate(100px, 150px);
 }
 
+/* 좌측 정렬 2 */
 .headerItem {
     width:325px;
     background: none;
@@ -134,13 +147,26 @@
     visibility: hidden;
 }
 
-/* 선 1 */
+/* 선 */
 .headerRow, .reservationItem {
     position: relative;
     padding-bottom: 10px;
 }
 
-/* 선 2 */
+/* 선 2 (가운데 정렬) */
+/*.headerRow::before, .reservationItem::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 90%;
+    height: 2px;
+    background-color: #ccc;
+    transform: translateX(-50%);
+}*/
+
+
+/* 선 2 (좌측 정렬) */
 .headerRow::before, .reservationItem::before {
     content: "";
     position: absolute;
@@ -151,4 +177,3 @@
     background-color: #ccc;
     transform: translateX(-50%);
 }
-
