@@ -237,6 +237,35 @@ a:active {
   width: 1550px;
   height: max-content;
 }
+.reviewStyle .reviewArea .reviewContainer .review, .reviewStyle .reviewArea .reviewContainer .transformReview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.reviewStyle .reviewArea .reviewContainer .review .userInfoContainer, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer {
+  display: flex;
+  align-items: center;
+  order: 1;
+}
+.reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .userName, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .userName {
+  display: inline-block;
+}
+.reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .starRating, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .starRating {
+  display: inline-flex;
+  margin-left: 20px;
+}
+.reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .starRating img, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .starRating img {
+  height: 20px;
+}
+.reviewStyle .reviewArea .reviewContainer .review > div, .reviewStyle .reviewArea .reviewContainer .transformReview > div {
+  margin-bottom: 8px;
+}
+.reviewStyle .reviewArea .reviewContainer .review > div:nth-child(4), .reviewStyle .reviewArea .reviewContainer .transformReview > div:nth-child(4) {
+  order: 2;
+}
+.reviewStyle .reviewArea .reviewContainer .review > div:nth-child(6), .reviewStyle .reviewArea .reviewContainer .transformReview > div:nth-child(6) {
+  order: 3;
+}
 .reviewStyle .reviewArea .reviewContainer .review {
   position: relative;
   display: inline-block;
@@ -275,6 +304,9 @@ a:active {
   font-style: normal;
   color: #232323;
   z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(1) span {
+  margin-right: 15px;
 }
 .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(2) {
   left: 230px;
@@ -351,6 +383,9 @@ a:active {
   font-style: normal;
   color: #232323;
   z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) span {
+  margin-right: 15px;
 }
 .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
   left: 744px;
@@ -460,6 +495,35 @@ a:active {
     width: 850px;
     height: max-content;
   }
+  .reviewStyle .reviewArea .reviewContainer .review, .reviewStyle .reviewArea .reviewContainer .transformReview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer {
+    display: flex;
+    align-items: center;
+    order: 1;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .userName, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .userName {
+    display: inline-block;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .starRating, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .starRating {
+    display: inline-flex;
+    margin-left: 20px;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .starRating img, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .starRating img {
+    height: 20px;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review > div, .reviewStyle .reviewArea .reviewContainer .transformReview > div {
+    margin-bottom: 8px;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review > div:nth-child(4), .reviewStyle .reviewArea .reviewContainer .transformReview > div:nth-child(4) {
+    order: 2;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review > div:nth-child(6), .reviewStyle .reviewArea .reviewContainer .transformReview > div:nth-child(6) {
+    order: 3;
+  }
   .reviewStyle .reviewArea .reviewContainer .review {
     position: relative;
     display: inline-block;
@@ -498,6 +562,9 @@ a:active {
     font-style: normal;
     color: #232323;
     z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(1) span {
+    margin-right: 10px;
   }
   .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(2) {
     left: 124px;
@@ -574,6 +641,9 @@ a:active {
     font-style: normal;
     color: #232323;
     z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) span {
+    margin-right: 10px;
   }
   .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
     left: 403px;
@@ -721,6 +791,9 @@ a:active {
     color: #232323;
     z-index: 5;
   }
+  .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(1) span {
+    margin-right: 8px;
+  }
   .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(2) {
     left: 65px;
     top: 32px;
@@ -733,6 +806,13 @@ a:active {
     z-index: 5;
   }
   .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(3) {
+    left: 65px;
+    top: 40px;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(3) img {
+    border: 1px solid red;
+  }
+  .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(4) {
     left: 18px;
     top: 55px;
     width: 255px;
@@ -796,6 +876,9 @@ a:active {
     font-style: normal;
     color: #232323;
     z-index: 5;
+  }
+  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) span {
+    margin-right: 8px;
   }
   .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
     left: 222px;

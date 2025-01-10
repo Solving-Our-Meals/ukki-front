@@ -9,30 +9,30 @@
     display: inline-block;
 }
 
- .tab2, .tab3, .tab4 {
-     display: inline-block;
+.tab2, .tab3, .tab4 {
+    display: inline-block;
     font-family: 'Bobaesum-Jindo-TTF';
     font-style: normal;
     font-size: 20px;
     font-weight: 900;
-     margin-left: 30px;
-     cursor: pointer;
-     color : #BDBEBF;
+    margin-left: 30px;
+    cursor: pointer;
+    color : #BDBEBF;
 }
 
 .tab2:hover, .tab3:hover, .tab4:hover {
     color : #232323;
 }
 
- .line1, .line2 {
-     display: inline-block;
-     font-family: 'Bobaesum-Jindo-TTF';
-     font-style: normal;
-     font-size: 20px;
-     font-weight: 900;
-     margin-left: 20px;
-     color : #BDBEBF;
- }
+.line1, .line2 {
+    display: inline-block;
+    font-family: 'Bobaesum-Jindo-TTF';
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 20px;
+    color : #BDBEBF;
+}
 
 .tab1 {
     display: inline-block;

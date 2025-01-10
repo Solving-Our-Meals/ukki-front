@@ -50,7 +50,6 @@ function Banner() {
         fetch("/store/storebanner/5")
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 const imageUrls = data.map(filename => `/store/api/files?filename=${filename}`);
                 setImages(imageUrls);
             });
@@ -92,4 +91,3 @@ function Banner() {
 }
 
 export default Banner;
-

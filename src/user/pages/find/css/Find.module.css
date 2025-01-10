@@ -82,7 +82,7 @@
     font-size: 30px;
 }
 
-input {
+.findAccount input {
     position: absolute;
     width: 499.5px;
     height: 52.5px;
@@ -316,7 +316,7 @@ input.errorInput:focus {
     pointer-events: none;
 }
 
-.findAccount input:focus + label, input:not(:placeholder-shown) + label {
+.findAccount input:focus + label, .findAccount input:not(:placeholder-shown) + label {
     top: 170px;
     left: 380px;
     font-size: 12px;
@@ -326,7 +326,7 @@ input.errorInput:focus {
     color: #007bff;
 }
 
-.findAccount input:focus + label, input:not(:placeholder-shown) + label {
+.findAccount input:focus + label, .findAccount input:not(:placeholder-shown) + label {
     top: 170px;
     left: 380px;
     font-size: 12px;
@@ -683,7 +683,7 @@ button:disabled {
         pointer-events: none;
     }
 
-    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, .findAccount input:not(:placeholder-shown) + label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -693,7 +693,7 @@ button:disabled {
         color: #007bff;
     }
 
-    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, .findAccount input:not(:placeholder-shown) + label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -911,7 +911,7 @@ button:disabled {
 
     }
 
-    input {
+    .findAccount input {
         position: absolute;
         width: 400px;
         left: 350px;
@@ -1103,7 +1103,7 @@ button:disabled {
         pointer-events: none;
     }
 
-    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, .findAccount input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1113,7 +1113,7 @@ button:disabled {
         color: #007bff;
     }
 
-    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, .findAccount input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1524,7 +1524,7 @@ button:disabled {
         pointer-events: none;
     }
 
-    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, .findAccount input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;
@@ -1534,7 +1534,7 @@ button:disabled {
         color: #007bff;
     }
 
-    .findAccount input:focus + label, input:not(:placeholder-shown) + label {
+    .findAccount input:focus + label, .findAccount input:not(:placeholder-shown) + label {
         top: 165px;
         left: 380px;
         font-size: 12px;

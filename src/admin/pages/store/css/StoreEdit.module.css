@@ -1,208 +1,125 @@
 /* StoreDetail의 CSS를 기반으로 AdminLayout의 renderingArea에 맞게 수정 */
 .storeEdit {
-    width: 1550px;  /* AdminLayout의 renderingArea 너비에 맞춤 */
+    width: 1550px;
     margin: 0 auto;
     padding: 20px;
 }
+
+.storeEdit div > input:hover{
+    border: 3px solid #FF6B87;
+}
+
+.storeEdit .storeEditText > input:hover{
+    border: 3px solid #FF6B87;
+}
+/* 공통 업로드 스타일 */
+.uploadBox {
+    position: absolute;
+    border: 1px solid #232323;
+    overflow: hidden;
+}
+
+.uploadBox:hover{
+    border: 3px solid #FF6B87;
+}
+
+.uploadBox input {
+    display: none;
+}
+
+.uploadBox p {
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 29px;
+    color: #1E1E1E;
+}
+
+.uploadBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.uploadBox .plusButton {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+}
+
+.uploadBox .deleteButton {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.uploadBox .deleteButton:hover {
+    background-color: rgba(0, 2, 0, 0.3);
+    border-radius: 30px;
+}
+
+.uploadBox .deleteButton img {
+    width: 30px;
+    height: 30px;
+    padding-right: 12px;
+    object-fit: contain;
+}
+
+.uploadBox .uploadLabel{
+    padding-left: 0px !important;
+}
+
+/* 배너 업로드 영역 */
 .bannerArea {
     position: absolute;
     display: flex;  
-    left: 40px;
+    left: 30px;
     top: 120px;
     width: 1525px;
     height: 201px;
-    border-radius: 0;
-    border: 1px solid #232323;
 }
 
 .bannerUploadBox {
+    composes: uploadBox;
     position: relative;
     width: 20%;  
     height: 100%;
     border-right: 1px solid #232323;
-    border-radius: 0;
 }
 
-.bannerUploadBox:last-child {
-    border-right: none;
+.bannerUploadBox .uploadLabel{
+    padding-left: 0px !important;
 }
 
-.bannerUploadBox input {
-    display: none;  /* input 숨기기 */
-}
-
-/* Find_findAccount__eAwiN의 스타일 덮어쓰기 */
-.bannerUploadBox input:focus + label,
-.bannerUploadBox input:not(:placeholder-shown) + label {
-    position: static !important;  /* !important로 기존 스타일 덮어쓰기 */
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    height: 100% !important;
-    font-size: inherit !important;
-    background-color: transparent !important;
-    padding: 0 !important;
-    color: inherit !important;
-    cursor: pointer;
-}
-
-
-.bannerUploadBox img {
-    margin-top: 5%;
-    margin-left: 10%;
-    width: 80%;
-    height: 80%;
-    object-fit: cover;
-}
-
-.plusButton {
-    position: absolute;
-    top: 15% !important;
-    left: 15% !important;
-    width: 50% !important;
-    height: 50% !important;
-    object-fit:contain !important;
-}
-
-.deleteButton {
-    position: absolute;
-    top: 0 !important;
-    left: 90% !important;
-    width: 30px !important;
-    height: 30px !important;
-    object-fit: cover !important;
-    background-color: transparent !important;
-    border: none !important;
-    cursor: pointer;
-}
-
+/* 메뉴 업로드 영역 */
 .menuUploadBox {
-    position: absolute;
+    composes: uploadBox;
     width: 270px;
     height: 400px;
-    left: 1305px;
+    left: 1295px;
     top: 350px;
-    border-radius: 0;
-    object-fit: contain !important;
-    overflow: hidden;
-    border: 1px solid #232323;
 }
 
-.menuUploadBox p{
-    position: absolute;
-    left: 35%;
-    top: 5%;
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 29px;
-    color: #1E1E1E;
-}
-
-.menuUploadBox .uploadLabel{
-    position: absolute;
-    top: 10px;
-    left: -10px;
-    width: 290px !important;
-    height: 400px !important;
-    object-fit: contain !important;
-    overflow: hidden;
-
-}
-
-.menuUploadBox .plusButton{
-    margin-top: 5%;
-    margin-left: 10%;
-    width: 80%;
-    height: 80%;
-    object-fit: cover;
-}
-
-.menuUploadBox .deleteButton,
-.profileUploadBox .deleteButton {
-    position: absolute !important;
-    width: 40px !important;
-    height: 40px !important;
-    left: 230px !important;
-    top: 0px !important;
-    padding: 0 !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    cursor: pointer !important;
-    z-index: 10 !important;
-    border: none !important;
-    color: white !important;
-    font-size: 18px !important;
-}
-
-.deleteButton:hover {
-    border-radius: 30px;
-    background-color: rgba(0, 2, 0, 0.3) !important;
-}
-
-/* X 버튼 이미지 크기 조정 */
-.menuUploadBox .deleteButton img,
-.profileUploadBox .deleteButton img {
-    width: 30px !important;
-    height: 30px !important;
-    object-fit: contain !important;
-}
-
+/* 프로필 업로드 영역 */
 .profileUploadBox {
-    position: absolute;
+    composes: uploadBox;
     left: 1075px;
     top: 350px;
     width: 200px;
     height: 200px;
-    border: 1px solid #232323;
     text-align: center;
     z-index: 99;
-    object-fit: contain;
-    overflow: hidden;
-}
-
-.profileUploadBox img{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.profileUploadBox p{
-    position: absolute;
-    left: 25%;
-    top: 5%;
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 29px;
-    color: #1E1E1E;
-}
-
-.profileUploadBox .plusButton{
-    margin-top: 10%;
-    margin-left: 10%;
-    width: 80%;
-    height: 80%;
-    object-fit: cover;
-}
-
-.profileUploadBox .deleteButton{
-    border: none !important;
-    margin-top: -5px;
-    margin-left: -70px;
-}
-
-.profileUploadBox .deleteButton img{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 }
 #storeEditText{
     position: absolute;
@@ -230,6 +147,7 @@
     top: 350px;
 
     border: 1px solid #232323;
+    border-radius: 10px;
     font-family: "Bobaesum Jindo TTF";
     font-style: normal;
     font-weight: 400;
@@ -239,12 +157,17 @@
     color: #1E1E1E;
 }
 
+#storeName:hover {
+    border: 3px solid #FF6B87;
+}
+
 #storeDes{
     position: absolute;
     width: 800px;
     left: 61px;
     top: 420px;
     border: 1px solid #232323;
+    border-radius: 10px;
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 400;
@@ -254,13 +177,18 @@
     color: #1E1E1E;
 }
 
+#storeDes:hover {
+    border: 3px solid #FF6B87;
+}
+
 #storeAddress{
     position: absolute;
-    width: 1000px;
+    width: 800px;
     height: 29px;
     left: 61px;
     top: 480px;
     border: 1px solid #232323;
+    border-radius: 10px;
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 400;
@@ -268,6 +196,10 @@
     line-height: 29px;
 
     color: #1E1E1E;
+}
+
+#storeAddress:hover {
+    border: 3px solid #FF6B87;
 }
 
 #operTime{
@@ -298,14 +230,14 @@
 
 #tatolOperTime{
     position: absolute;
-    width: 280px;
+    width: 210px;
     height: 260px;
     left: 61px;
     top: 560px;
     text-align: center;
     border: 2.5px solid #232323;
     background-color: #FFFFFF;
-    padding: 5px;
+    padding-top: 5px;
     font-family: "Pretendard Variable";
     font-size: 16px;
     font-weight: 500;
@@ -313,6 +245,10 @@
     line-height: 28px;
     z-index: 5;
     border-radius: 0;
+}
+
+.breakTime{
+    color: #FF5D18;
 }
 
 .week{
@@ -327,16 +263,22 @@
     top: 0px;
     height: 20px;
     width: 140px;
-    padding-left: 15px;
-
+    border: 0.2px solid #232323;
     font-size: 16px;
+    color: #323232;
 }
-.weekOperTime::placeholder{
+
+/* '휴무'가 입력되었을 때의 스타일 */
+.weekOperTime[data-status="휴무"] {
+    color: #FF5D18;
+}
+
+.weekOperTime::placeholder {
     color: #E3E3E3;
     visibility: visible;
 }
 
-#breakTime{
+.breakTime {
     color: #FF5D18;
 }
 
@@ -354,7 +296,8 @@
     width: 140px;
     height: 40px;
     margin-right: 20px;
-    background: #FFF3A7;
+    background: #FFFFFF;
+    border: 1px solid #FF6B87;
     border-radius: 50px;
     
     font-family: 'Pretendard Variable';
@@ -372,7 +315,7 @@
     height: 35px;
     left: 0px;
     top: 0px;
-    background: #FFF3A7;
+    background: #FFFFFF;
     border: 0.2px solid #232323;
     border-radius: 5px;
     padding-left: 0px;
@@ -450,6 +393,10 @@
     color: #1E1E1E;
 }
 
+#posNumberInput:hover {
+    border: 3px solid #FF6B87;
+}
+
 #storeEditCancleBtn{
     /* Rectangle 166 */
     position: absolute;
@@ -503,4 +450,93 @@
 }
 #storeEditOkBtn:hover {
     background: #FF6B87;
+}
+
+.storeCoordinate{
+    position: absolute;
+    width: 200px;
+    left: 661px;
+    top: 520px;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: right;
+    color: #1E1E1E;
+}
+
+/* 주소 변환 버튼 스타일 */
+.addressConvertBtn {
+    position: absolute;
+    width: 110px;
+    height: 30px;
+    left: 871px;  /* storeAddress(left: 61px + width: 800px) + 10px */
+    top: 480px;   /* storeAddress의 top과 동일선상 */
+    
+    background: #FFF3A7;
+    border: none;
+    border-radius: 10px;
+    
+    font-family: 'Pretendard Variable';
+    font-size: 16px;
+    font-weight: 700;
+    color: #232323;
+    
+    cursor: pointer;
+    opacity: 0.5;  /* 비활성화 상태 */
+    pointer-events: none;  /* 클릭 불가능 상태 */
+}
+
+.addressConvertBtn.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.addressConvertBtn:hover {
+    background: #FFE970;
+}
+
+/* 좌표 변환 실패 메시지 */
+.coordinateError {
+    position: absolute;
+    width: 200px;
+    left: 671px;
+    top: 485px;
+    
+    font-family: 'Pretendard Variable';
+    font-size: 16px;
+    color: #FF5D18;
+    
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.coordinateError.visible {
+    opacity: 1;
+}
+
+/* 카테고리 선택 스타일 추가 */
+#categorySelect {
+    position: absolute;
+    left: 581px;
+    top: 360px;
+    width: 130px;
+    text-align: center;
+    
+    border: 1px solid #FF8AA3;
+    border-radius: 20px;
+    
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #1E1E1E;
+    background: #FFFFFF; /* 기본 배경색 */
+    cursor: pointer;
+}
+
+/* 호버 효과 추가 */
+#categorySelect:hover {
+    border: 3px solid #FF6B87; /* 호버 시 테두리 색상 변경 */
+    background: #FFE0E6; /* 호버 시 배경색 변경 */
 }

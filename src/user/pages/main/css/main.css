@@ -570,21 +570,18 @@ div .location label:nth-of-type(2) {
 div .location button {
   position: absolute;
   width: 10vw;
-  height: 1.8vw;
-  left: 55vw;
-  top: 22vw;
+  height: 2.5vw;
+  left: 63vw;
+  top: 9vw;
   background: #FF8AA3;
   border-radius: 50px;
   border: none;
   color: #232323;
   font-weight: 700;
   font-family: "Pretendard Variable";
-  font-size: 0.8vw;
+  font-size: 1.2rem;
   z-index: 10;
-}
-div .location button:nth-of-type(2) {
-  left: 67vw;
-  background-color: #FFA8B8;
+  left: 75vw;
 }
 div .location img:nth-of-type(2) {
   position: absolute;
@@ -603,6 +600,19 @@ div .location > div {
   top: 35vw;
   border: 2px solid #fff;
   box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+}
+div .location > div > div {
+  width: 10vw;
+  position: relative;
+}
+div .location > div > div p {
+  position: absolute;
+  font-size: 2rem !important;
+  z-index: 10;
+  left: 37vw !important;
+  top: 1vw !important;
+  color: #999999;
+  user-select: none;
 }
 div .talk img:nth-of-type(1) {
   position: absolute;

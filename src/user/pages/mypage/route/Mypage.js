@@ -1,19 +1,27 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import React from "react";
-import Review from "../pages/Reservation"
-// import Inquiry from "../pages/Inquiry"
-// import Profile from "../pages/Profile"
+import Reservation from "../pages/Reservation";
+import Review from "../pages/Review";
+import Inquiry from "../pages/Inquiry"
+import styles from "../css/Mypage.module.css";
+import Header from '../../../../common/header/components/Header';
+import MyProfile from "../component/MyProfile";
 
 function Mypage() {
     return (
-
-    <Routes>
-        <Route>
-            <Route path="user/mypage/review" element={<Review />} />
-            {/*<Route path="user/mypage/inquiry" element={<Inquiry />}/>*/}
-            {/*<Route path="user/mypage/profile" element={<Profile />}/>*/}
-        </Route>
-    </Routes>
+        <div className={styles.mypage}>
+            <Header />
+            <div className={styles.contentList}>
+                <Routes>
+                    <Route path="/" element={<Navigate to="reservation" />} />
+                    <Route path="reservation" element={<Reservation />} />
+                    <Route path="review" element={<Review />} />
+                    <Route path="Inquiry" element={<Inquiry />} />
+                    <Route path="*" element={<Navigate to="reservation" />} />
+                </Routes>
+            </div>
+            <MyProfile />
+        </div>
     );
 }
 

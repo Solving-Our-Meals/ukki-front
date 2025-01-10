@@ -6,40 +6,48 @@ import triangleBtn from '../css/images/inverted_triangle.png';
 import Banner from '../components/Banner';
 import Profile from '../components/Profile';
 import Menu from '../components/Menu';
+import AdminAgreementModal from '../../../components/AdminAgreementModal';
+import AdminResultModal from '../../../components/AdminResultModal';
 
 function StoreInfo() {
     const { storeNo } = useParams();
     const navigate = useNavigate();
-    const [colorMonday, setColorMonday] = useState("");
-    const [colorTuesday, setColorTuesday] = useState("");
-    const [colorWednesday, setColorWednesday] = useState("");
-    const [colorThursday, setColorThursday] = useState("");
-    const [colorFriday, setColorFriday] = useState("");
-    const [colorSaturday, setColorSaturday] = useState("");
-    const [colorSunday, setColorSunday] = useState("");
-
     const [isNone, setIsNone] = useState(true);
+    const [currentDay, setCurrentDay] = useState('');
+    const [categoryName, setCategoryName] = useState('');
        
     const [storeInfo, setStoreInfo] = useState({
         storeNo: 0,
         storeName: "가게 이름",
         storeDes: "가게 소개글",
         storeAddress: "가게 주소",
+        storeCategoryNo: 0,
+        storeCategory: {},
         storeKeyword: [],
-        operation: [],
         operationTime: ""
     });
+    const [showAgreementModal, setShowAgreementModal] = useState(false);
+    const [showResultModal, setShowResultModal] = useState(false);
+    const [resultMessage , setResultMessage] = useState('');
+    const [agreeMessage , setAgreeMessage] = useState('');
 
     useEffect(
         () => {
-            fetch(`/admin/stores/info/${storeNo}`)  //검색 페이지 만들어지면 pathvariable로 변경하기
+            fetch(`/admin/stores/info/${storeNo}`)
             .then(res => res.json())
             .then(data => {
                 setStoreInfo(data)
+                // 카테고리 이름 설정
+                const matchingCategory = data.storeCategory.find(
+                    category => category.categoryNo === data.storeCategoryNo
+                );
+                if (matchingCategory) {
+                    setCategoryName(matchingCategory.categoryName);
+                }
                 console.log("가게 정보 :",data)
             })
             .catch(error => console.log(error));
-        }, []
+        }, [storeNo]
     );
 
     useEffect(() => {
@@ -74,54 +82,48 @@ function StoreInfo() {
     }, [storeInfo.operationTime]);
 
     useEffect(() => {
-        if (storeInfo.operationTime.monday === "휴무") {
-            setColorMonday("#FF5D18");
-        } else {
-            setColorMonday("#323232");
-        }
-        if (storeInfo.operationTime.tuesday === "휴무") {
-            setColorTuesday("#FF5D18");
-        } else {
-            setColorTuesday("#323232");
-        }
-        if (storeInfo.operationTime.wednesday === "휴무") {
-            setColorWednesday("#FF5D18");
-        } else {
-            setColorWednesday("#323232");
-        }
-        if (storeInfo.operationTime.thursday === "휴무") {
-            setColorThursday("#FF5D18");
-        } else {
-            setColorThursday("#323232");
-        }
-        if (storeInfo.operationTime.friday === "휴무") {
-            setColorFriday("#FF5D18");
-        } else {
-            setColorFriday("#323232");
-        }
-        if (storeInfo.operationTime.saturday === "휴무") {
-            setColorSaturday("#FF5D18");
-        } else {
-            setColorSaturday("#323232");
-        }
-        if (storeInfo.operationTime.sunday === "휴무") {
-            setColorSunday("#FF5D18");
-        } else {
-            setColorSunday("#323232");
-        }
-    }, [storeInfo]);  
+        const date = new Date();
+        const day = date.getDay();
+        const dayMap = {
+            0: 'sunday',
+            1: 'monday',
+            2: 'tuesday',
+            3: 'wednesday',
+            4: 'thursday',
+            5: 'friday',
+            6: 'saturday'
+        };
+        setCurrentDay(dayMap[day]);
+    }, []);
 
     const onClickHandler = (e) => {
         setIsNone(prevState => !prevState);
     } 
-    
-    console.log("요일 별 운영시간 : " , storeInfo.operationTime);
-    console.log("오늘 운영 시간 : ", storeInfo.currentOperationTime);
-    console.log("브레이크 타임 : ", storeInfo.operationTime.breakTime);
 
+    function deleteHandler(){
+        setShowAgreementModal(true);
+        setAgreeMessage('정말로 삭제하시겠습니까?');
+    }
 
-    // StoreDetail.js의 나머지 useEffect와 함수들 복사
-
+    // 삭제 확인 모달 표시
+    function deleteConfirm(){
+        fetch(`/admin/stores/info/${storeNo}/delete`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.ok){
+                setShowResultModal(true);
+                setResultMessage('삭제되었습니다.');
+            }else{
+                setShowResultModal(true);
+                setResultMessage('삭제에 실패했습니다.');
+            }
+        })
+        .catch(error => console.log(error));
+        setShowResultModal(true);
+        setResultMessage('삭제에 실패했습니다.');
+    }
 
     return(
         <div className={styles.storeDetail}>
@@ -129,22 +131,44 @@ function StoreInfo() {
             <div><Banner/>
                 <div><Profile/></div>
             </div>
-            <p id={styles.storeName}>{storeInfo.storeName}</p>
+            <div className={styles.storeHeader}>
+                <p id={styles.storeName}>{storeInfo.storeName}</p>
+                <p id={styles.storeCategory}>{categoryName}</p>
+            </div>
             <p id={styles.storeDes}>{storeInfo.storeDes}</p>
             <p id={styles.storeAddress}>{storeInfo.storeAddress}</p>
             <p id={styles.operTime} onClick={onClickHandler}>
                 {`영업 시간(오늘) : ${storeInfo.currentOperationTime}`}
                 <img src={triangleBtn} id={styles.triangle} alt ="영업시간 더보기 버튼"/>
             </p>
-            <div id={styles.tatolOperTime} style={{ display : isNone ? "none" : "block" }}>
-                <p className={styles.week}>(월)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorMonday }}>{storeInfo.operationTime.monday}</p> <br/>
-                <p className={styles.week}>(화)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorTuesday }}>{storeInfo.operationTime.tuesday}</p> <br/>
-                <p className={styles.week}>(수)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorWednesday }}>{storeInfo.operationTime.wednesday}</p> <br/>
-                <p className={styles.week}>(목)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorThursday }}>{storeInfo.operationTime.thursday}</p> <br/>
-                <p className={styles.week}>(금)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorFriday }}>{storeInfo.operationTime.friday}</p> <br/>
-                <p className={styles.week}>(토)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorSaturday }}>{storeInfo.operationTime.saturday}</p> <br/>
-                <p className={styles.week}>(일)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorSunday }}>{storeInfo.operationTime.sunday}</p> <br/>
-                <p id={styles.breakTime}>{`*브레이크 타임 : ${storeInfo.operationTime.breakTime}`}</p> <br/>
+            <div id={styles.tatolOperTime} style={{ display: isNone ? "none" : "block" }}>
+                {[
+                    { day: '월', field: 'monday' },
+                    { day: '화', field: 'tuesday' },
+                    { day: '수', field: 'wednesday' },
+                    { day: '목', field: 'thursday' },
+                    { day: '금', field: 'friday' },
+                    { day: '토', field: 'saturday' },
+                    { day: '일', field: 'sunday' }
+                ].map(({ day, field }) => (
+                    <div key={day}>
+                        <p 
+                            className={styles.week}
+                            data-current={currentDay === field}
+                        >
+                            ({day})
+                        </p>
+                        <p 
+                            className={styles.weekOperTime}
+                            data-status={storeInfo.operationTime[field]}
+                            data-current={currentDay === field}
+                        >
+                            {storeInfo.operationTime[field]}
+                        </p>
+                        <br/>
+                    </div>
+                ))}
+                <p id={styles.breakTime}>{`*브레이크 타임 : ${storeInfo.operationTime.breakTime}`}</p>
             </div>
             <Menu/>
             {/* <div id={styles.mapArea}><KakaoMap/></div> */}
@@ -166,7 +190,26 @@ function StoreInfo() {
             >
                 수정
             </button>
-            <button id={styles.storeInfoDeleteBtn}>삭제</button>
+            <button id={styles.storeInfoDeleteBtn} onClick={deleteHandler}>삭제</button>
+            {showAgreementModal && (
+                    <AdminAgreementModal
+                        message={agreeMessage}
+                        onConfirm={() => {
+                            setShowAgreementModal(false);
+                            deleteConfirm();
+                        }}
+                        onCancel={() => setShowAgreementModal(false)}
+                    />
+                )}
+                {showResultModal && (
+                    <AdminResultModal 
+                        message={resultMessage} 
+                        close={() => {
+                            setShowResultModal(false);
+                            navigate(`/admin/stores/list`);
+                        }}
+                    />
+                )}
         </div>
     );
 }

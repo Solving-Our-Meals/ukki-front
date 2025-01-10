@@ -65,6 +65,10 @@ const Main = () => {
     const [isThreeImgClicked, setIsThreeImgClicked] = useState(false); // 추가된 상태 정의
     const [isFourImgClicked, setIsFourImgClicked] = useState(false); // 추가된 상태 정의
     const [isLastImgClicked, setIsLastImgClicked] = useState(false); // 추가된 상태 정의
+    const [isMarkerClicked, setIsMarkerClicked] = useState(false);
+    const [clickedStoreId, setClickedStoreId] = useState(null); // 클릭된 가게의 ID 상태
+
+
 
 
     const locationRef = useRef(null);
@@ -80,27 +84,18 @@ const Main = () => {
         }
     },
         []);
-    const requestDirections = async () => {
-        if (currentPosition && storeInfo.storeAddress) {
-            const directionsResponse = await fetch('/main/directions',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        origin: currentPosition,
-                        destination: {
-                            x: storeInfo.storeAddress.longitude,
-                            y: storeInfo.storeAddress.latitude
-                        },
-                        waypoints: []
-                    })
-                });
-            const directionsData = await directionsResponse.json();
-            console.log('Directions:', directionsData);
-        }
-    };
+
+        
+        const requestDirections = (store) => {
+            if (currentPosition && store) {
+                console.log('Requesting directions from:', currentPosition, 'to:', store);
+                // 현재 위치(currentPosition)와 선택된 가게(store)의 경로 요청 로직 추가
+            } else {
+                alert('경로를 요청할 수 없습니다.');
+            }
+        };
+       
+        
 
     useEffect(() => {
         const fImg = document.querySelector('.category>div');
@@ -213,6 +208,7 @@ const Main = () => {
         setStoreInfo({
             storeName, storeDes, storeMenu, storeProfile, storeAddress
         });
+        setIsMarkerClicked(true);
     };
 
     const handleKeyPress = (event) => {
@@ -393,6 +389,7 @@ const Main = () => {
         fetchStoresLocation(index + 1); // 카테고리 코드를 +1 해서 전달
     };
 
+    
 
 
 
@@ -479,7 +476,16 @@ const Main = () => {
                         {selectedCategory === 5 ? '너로 정했다!' : '흠..별로?'}</span> */}
                 </div>
                 <div className='location' ref={locationRef}>
-                <Map address={address} setAddress={setAddress} defaultValue={defaultValue} selectedCategory={selectedCategory} onMarkerClick={handleMarkerClick} requestDirections={requestDirections} currentPosition={currentPosition} />
+                    <Map
+                        address={address}
+                        setAddress={setAddress}
+                        defaultValue={defaultValue}
+                        selectedCategory={selectedCategory}
+                        onMarkerClick={handleMarkerClick}
+                        requestDirections={requestDirections}
+                        currentPosition={currentPosition}
+                        toggleIsMarkerClicked={setIsMarkerClicked}
+                    />
 
 
                     <h3>
@@ -490,16 +496,26 @@ const Main = () => {
                                         selectedCategory === 5 ? '내 주변 기타 혼밥 리스트' :
                                             '내 주변 한식 혼밥 리스트'}
                     </h3>
+                    {isMarkerClicked && (
+                        <>
+                            <p>가게 이름 : <span>{storeInfo.storeName}</span></p>
+                            <p>가게 설명 : <span>{storeInfo.storeDes}</span></p>
+                            <img src={storeInfo.storeProfile} alt="store" />
+                            <img src={ukki} alt="ukki" />
+                            <input onKeyPress={handleKeyPress} defaultValue={defaultValue}></input>
+                            <label>현재 위치 : </label>
+                            <input defaultValue={storeInfo.storeAddress}></input>
+                            <label>가게 위치 : </label>
+                            <button>예약하기</button>
+                            
+                            <div>
+                                <div>
+                                <p onClick={() => setIsMarkerClicked(false)}>x</p>
+                                    </div>
+                            </div>
+                        </>
+                    )}
 
-                    <p>가게 이름 : <span>{storeInfo.storeName}</span></p>
-                    <p>가게 설명 : <span>{storeInfo.storeDes}</span></p>
-                    <img src={storeInfo.storeProfile} alt="store" />
-                    <img src={ukki} alt="ukki" />
-                    <input onKeyPress={handleKeyPress} defaultValue={defaultValue}></input><label>현재 위치 : </label>
-                    <input defaultValue={storeInfo.storeAddress}></input><label>가게 위치 : </label>
-                    <button>예약하기</button>
-                    <button onClick={requestDirections}>길안내</button>
-                    <div></div>
                 </div>
 
                 <div className='talk'>

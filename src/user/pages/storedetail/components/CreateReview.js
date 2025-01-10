@@ -36,8 +36,10 @@ function CreateReview(){
         reviewDate : today,
         reviewContent : "",
         reviewImage : {},
-        storeNo : "5",
-        userNo : "1"
+        reviewScope : "",
+        storeNo : "",
+        userNo : "",
+        resNo : ""
     });
 
     const onChangeHandler = (e) => {
@@ -65,6 +67,7 @@ function CreateReview(){
         setReview((prevState) => ({
             ...prevState,
             reviewContent : "",
+            reviewScope : "",
         }));
         setUploadedInfo(null);
         setImageUrl(null);
@@ -104,16 +107,23 @@ function CreateReview(){
         reader.readAsDataURL(file);
     }
 
-    // 파일 업로드 족같네
     const submitHandler = () => {
         const formData = new FormData();
         formData.append('params', JSON.stringify({
             reviewDate: review.reviewDate,
             reviewContent: review.reviewContent,
+            reviewScope : review.reviewScope,
             storeNo: review.storeNo,
-            userNo: review.userNo
+            userNo: review.userNo,
+            resNo : review.resNo,
         }));
         formData.append('reviewImage', review.reviewImage); // 파일 객체 추가
+
+        // 이미지가 있을 경우에만 이미지 파일 추가
+        // if (review.reviewImage && Object.keys(review.reviewImage).length > 0) {
+        //     formData.append('reviewImage', review.reviewImage);
+        //     reviewData.reviewImage = review.reviewImage.name;  // 이미지 파일명만 데이터에 포함
+        // }
 
         fetch('/store/5/review', {
             method: 'POST',
@@ -195,6 +205,10 @@ function CreateReview(){
     useEffect(() => {
         if(location.state){
             setStoreInfo(location.state);
+            setReview(prevReview => ({
+                ...prevReview,
+                storeNo : location.state.storeNo.toString()
+            }))
         }
     }, [location.state])
 
@@ -205,14 +219,16 @@ function CreateReview(){
             .then(data => {
                 setUserInfo(data);
                 //console.log('유저정보', data);
+                setReview(prevReview => ({
+                    ...prevReview,
+                    userNo : data.userNo.toString()
+                }))
             })
             .then(error => console.log(error));
         }, []
     );
 
     //  리뷰 작성하기 버튼 권한 주기
-    const [reviewList, setReviewList] = useState([]);
-    
     // useEffect(() => {
     //     if (userInfo.userId && storeInfo.storeNo) {  
     //         fetch(`/store/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
@@ -226,7 +242,7 @@ function CreateReview(){
     //                     const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
     //                     return dayDifference <= 3;
     //                 }
-    //                 console.log('리뷰 리스트 : ', data)
+    //                 console.log('예약 리스트 : ', data)
     //                 for(let i = 0; i < data.length; i++){
     //                     // const result = isWithinThreeDays(data[i].resDate);
     //                     const result = isWithinThreeDays('2025-01-10');
@@ -263,38 +279,357 @@ function CreateReview(){
                         return dayDifference >= 0 && dayDifference <= 3;
                     }
     
-                    console.log('리뷰 리스트 : ', data);
                     for (let i = 0; i < data.length; i++) {
-                        // const result = isWithinThreeDays(data[i].resDate);
-                        const result = isWithinThreeDays('2025-01-05');
-                        console.log('result : ', result);
+                        const result = isWithinThreeDays(data[i].resDate);
                         if (result) {
-                            console.log('성공');
-                        } else {
-                            console.log('실패');
-                        }
+                            console.log('날짜 성공');
+    
+                            // 날짜가 오늘인 경우 시간 비교
+                            const reservDate = new Date(data[i].resDate);
+                            const currentDate = new Date();
+                            if(reservDate.toDateString() === currentDate.toDateString()){
+    
+                                // 현재 시간이 예약 시간보다 지나간 경우 true, 그렇지 않으면 false
+                                const [hours, minutes, seconds] = data[i].resDate.split(':').map(Number);
+                                const targetDate = new Date();
+                                targetDate.setHours(hours, minutes, seconds, 0);
+    
+                                if(currentDate > targetDate){
+                                    console.log('오늘 시간 성공')
+                                    // 예약이 노쇼인지의 여부 확인
+                                    if(data[i].qrConfirm === 1){
+                                        console.log('예약 확인 성공 -> 예약 번호 확인')
+                                        setReview(prevReview => ({
+                                            ...prevReview,
+                                            resNo : data[i].resNo.toString()
+                                        }))
+                                        fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+                                            .then(res => res.json())
+                                            .then(data => {
+                                                console.log('예약 번호 성공');
+                                                console.log('data1', data);
+                                                if(data === true ){
+                                                    setWriteReview(true);
+                                                } 
+                                            })
+                                            .catch(error => console.log(error));
+                                    } 
+                                } 
+                            } else {
+                                console.log('이미 오늘 이전 날짜 : 성공 -> 예약 번호 확인')
+                                console.log('reservDate', reservDate.toDateString());
+                                // 예약이 노쇼인지의 여부 확인
+                                if(data[i].qrConfirm === 1){
+                                    console.log('예약 확인 성공 -> 예약 번호 확인')
+                                    setReview(prevReview => ({
+                                        ...prevReview,
+                                        resNo : data[i].resNo.toString()
+                                    }))
+                                    fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            console.log('예약 번호 성공');
+                                            console.log('data2', data);
+                                            if(data === true){
+                                                setWriteReview(true);
+                                            } 
+                                        })
+                                        .catch(error => console.log(error));
+                                } 
+                            }
+                        } 
                     }
                 })
                 .catch(error => console.error('error', error));
         }
     }, [userInfo, storeInfo.storeNo]);
+
+    // useEffect(() => {
+    //     if (userInfo.userId && storeInfo.storeNo) {  
+    //         fetch(`/store/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 function isWithinThreeDays(resDate) {
+    //                     const reservedDate = new Date(resDate);
+    //                     const currentDate = new Date();
     
+    //                     // 현재 날짜의 시간을 제거하여 비교하기 쉽게 함
+    //                     currentDate.setHours(0, 0, 0, 0);
+    //                     reservedDate.setHours(0, 0, 0, 0);
+    
+    //                     const timeDifference = currentDate - reservedDate;
+    //                     const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
+    
+    //                     // reservedDate가 현재 날짜와 같거나 3일 이전인지 확인
+    //                     return dayDifference >= 0 && dayDifference <= 3;
+    //                 }
+    
+    //                 let shouldWriteReview = false;
+
+    //                 for (let i = 0; i < data.length; i++) {
+    //                     const result = isWithinThreeDays(data[i].resDate);
+    //                     if (result) {
+    //                         console.log('날짜 성공');
+    
+    //                         // 날짜가 오늘인 경우 시간 비교
+    //                         const reservDate = new Date(data[i].resDate);
+    //                         const currentDate = new Date();
+    //                         if(reservDate.toDateString() === currentDate.toDateString()){
+    
+    //                             // 현재 시간이 예약 시간보다 지나간 경우 true, 그렇지 않으면 false
+    //                             const [hours, minutes, seconds] = data[i].resDate.split(':').map(Number);
+    //                             const targetDate = new Date();
+    //                             targetDate.setHours(hours, minutes, seconds, 0);
+    
+    //                             if(currentDate > targetDate){
+    //                                 console.log('오늘 시간 성공')
+    //                                 // 예약이 노쇼인지의 여부 확인
+    //                                 if(data[i].qrConfirm === 1){
+    //                                     console.log('예약 확인 성공 -> 예약 번호 확인')
+    //                                     fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+    //                                         .then(res => res.json())
+    //                                         .then(data => {
+    //                                             console.log('예약 번호 성공');
+    //                                             console.log('data1', data);
+    //                                             if(data){
+    //                                                 shouldWriteReview = true;
+    //                                             } else {
+    //                                                 setWriteReview(false);
+    //                                             }
+    //                                         })
+    //                                         .catch(error => console.log(error));
+    //                                 } else {
+    //                                     console.log('예약 확인 실패 -> 노쇼')
+    //                                     setWriteReview(false);
+    //                                 }
+    //                             } else {
+    //                                 console.log('오늘 시간 실패')
+    //                                 setWriteReview(false);
+    //                             }
+    //                         } else {
+    //                             console.log('이미 오늘 이전 날짜 : 성공 -> 예약 번호 확인')
+    //                             console.log('reservDate', reservDate.toDateString());
+    //                             // 예약이 노쇼인지의 여부 확인
+    //                             if(data[i].qrConfirm === 1){
+    //                                 console.log('예약 확인 성공 -> 예약 번호 확인')
+    //                                 fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+    //                                     .then(res => res.json())
+    //                                     .then(data => {
+    //                                         console.log('예약 번호 성공');
+    //                                         console.log('data2', data);
+    //                                         if(data){
+    //                                             shouldWriteReview = true;
+    //                                         } else {
+    //                                             setWriteReview(false);
+    //                                         }
+    //                                     })
+    //                                     .catch(error => console.log(error));
+    //                             } else {
+    //                                 console.log('예약 확인 실패 -> 노쇼')
+    //                                 setWriteReview(false);
+    //                             }
+    //                         }
+    //                     } else {
+    //                         console.log('날짜 실패');
+    //                         setWriteReview(false);
+    //                     }
+    //                 }
+    //                  // 모든 검사가 끝난 후 최종 결과 설정
+    //                  if (shouldWriteReview) {
+    //                     setWriteReview(true);
+    //                 }
+    //             })
+    //             .catch(error => console.error('error', error));
+    //     }
+    // }, [userInfo, storeInfo.storeNo]);
+
+//     useEffect(() => {
+//     if (userInfo.userId && storeInfo.storeNo) {  
+//         fetch(`/store/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
+//             .then(res => res.json())
+//             .then(data => {
+//                 function isWithinThreeDays(resDate) {
+//                     const reservedDate = new Date(resDate);
+//                     const currentDate = new Date();
+
+//                     // 현재 날짜의 시간을 제거하여 비교하기 쉽게 함
+//                     currentDate.setHours(0, 0, 0, 0);
+//                     reservedDate.setHours(0, 0, 0, 0);
+
+//                     const timeDifference = currentDate - reservedDate;
+//                     const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
+
+//                     // reservedDate가 현재 날짜와 같거나 3일 이전인지 확인
+//                     return dayDifference >= 0 && dayDifference <= 3;
+//                 }
+
+//                 let shouldWriteReview = false; // 추가 변수
+
+//                 for (let i = 0; i < data.length; i++) {
+//                     const result = isWithinThreeDays(data[i].resDate);
+//                     if (result) {
+//                         console.log('날짜 성공');
+
+//                         // 날짜가 오늘인 경우 시간 비교
+//                         const reservDate = new Date(data[i].resDate);
+//                         const currentDate = new Date();
+//                         if(reservDate.toDateString() === currentDate.toDateString()){
+
+//                             // 현재 시간이 예약 시간보다 지나간 경우 true, 그렇지 않으면 false
+//                             const [hours, minutes, seconds] = data[i].resDate.split(':').map(Number);
+//                             const targetDate = new Date();
+//                             targetDate.setHours(hours, minutes, seconds, 0);
+
+//                             if(currentDate > targetDate){
+//                                 console.log('오늘 시간 성공')
+//                                 // 예약이 노쇼인지의 여부 확인
+//                                 if(data[i].qrConfirm === 1){
+//                                     console.log('예약 확인 성공 -> 예약 번호 확인')
+//                                     fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+//                                         .then(res => res.json())
+//                                         .then(data => {
+//                                             console.log('예약 번호 성공');
+//                                             console.log('data1', data);
+//                                             if(data === true){
+//                                                 shouldWriteReview = true;
+//                                             }
+//                                         })
+//                                         .catch(error => console.log(error));
+//                                 } else {
+//                                     console.log('예약 확인 실패 -> 노쇼')
+//                                     setWriteReview(false);
+//                                 }
+//                             } else {
+//                                 console.log('오늘 시간 실패')
+//                                 setWriteReview(false);
+//                             }
+//                         } else {
+//                             console.log('이미 오늘 이전 날짜 : 성공 -> 예약 번호 확인')
+//                             console.log('reservDate', reservDate.toDateString());
+//                             // 예약이 노쇼인지의 여부 확인
+//                             if(data[i].qrConfirm === 1){
+//                                 console.log('예약 확인 성공 -> 예약 번호 확인')
+//                                 fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+//                                     .then(res => res.json())
+//                                     .then(data => {
+//                                         console.log('예약 번호 성공');
+//                                         console.log('data2', data);
+//                                         if(data === true){
+//                                             shouldWriteReview = true;
+//                                         }
+//                                     })
+//                                     .catch(error => console.log(error));
+//                             } else {
+//                                 console.log('예약 확인 실패 -> 노쇼')
+//                                 setWriteReview(false);
+//                             }
+//                         }
+//                     } else {
+//                         console.log('날짜 실패');
+//                         setWriteReview(false);
+//                     }
+//                 }
+
+//                 // 모든 검사가 끝난 후 최종 결과 설정
+//                 if (shouldWriteReview) {
+//                     setWriteReview(true);
+//                 }
+//             })
+//             .catch(error => console.error('error', error));
+//     }
+// }, [userInfo, storeInfo.storeNo]);
+
+    
+    console.log('writeReview', writeReview);
+
+    // 버튼 활성화 여부를 확인하는 함수 추가
+    const isSubmitDisabled = !review.reviewContent.trim() || !review.reviewScope;
+
     return(
         <>
             <button 
                 type='button' 
                 id={styles.btnWriteReview} 
                 style={{
-                    backgroundColor : writeReview ? "" : "#FFC9D4",
-                    color : writeReview ? "" : "#999999",
-                    pointerEvents : writeReview ? "" : "none"
+                    backgroundColor: writeReview ? "" : "#FFC9D4",
+                    color: writeReview ? "" : "#999999",
+                    cursor: writeReview ? '' : 'not-allowed',
                 }} 
-                onClick={() => createReviewHandler()}>리뷰 작성하기</button>
+                disabled={!writeReview}
+                onClick={() => createReviewHandler()}
+            >
+                리뷰 작성하기
+            </button>
             <div className={getOverlayClass()}></div>
             <div className={styles.createReview} style={{display : isDisplay ? "" : "none"}} >
                 <div id={styles.strReview}>리뷰하기</div>
+                <div className={styles.reviewScope}>
+                    <div className={styles.starRatingContainer}>
+                        <label className={styles.starLabel}>
+                            <input 
+                                type="radio" 
+                                name="reviewScope" 
+                                value="1"
+                                onChange={(e) => onChangeHandler(e)}
+                                checked={review.reviewScope === "1"}
+                                className={styles.starRadio}
+                            />
+                            <span>1점</span>
+                        </label>
+                        <label className={styles.starLabel}>
+                            <input 
+                                type="radio" 
+                                name="reviewScope" 
+                                value="2"
+                                onChange={(e) => onChangeHandler(e)}
+                                checked={review.reviewScope === "2"}
+                                className={styles.starRadio}
+                            />
+                            <span>2점</span>
+                        </label>
+                        <label className={styles.starLabel}>
+                            <input 
+                                type="radio" 
+                                name="reviewScope" 
+                                value="3"
+                                onChange={(e) => onChangeHandler(e)}
+                                checked={review.reviewScope === "3"}
+                                className={styles.starRadio}
+                            />
+                            <span>3점</span>
+                        </label>
+                        <label className={styles.starLabel}>
+                            <input 
+                                type="radio" 
+                                name="reviewScope" 
+                                value="4"
+                                onChange={(e) => onChangeHandler(e)}
+                                checked={review.reviewScope === "4"}
+                                className={styles.starRadio}
+                            />
+                            <span>4점</span>
+                        </label>
+                        <label className={styles.starLabel}>
+                            <input 
+                                type="radio" 
+                                name="reviewScope" 
+                                value="5"
+                                onChange={(e) => onChangeHandler(e)}
+                                checked={review.reviewScope === "5"}
+                                className={styles.starRadio}
+                            />
+                            <span>5점</span>
+                        </label>
+                    </div>
+                </div>
                 <img src={writeArea} id={styles.writeReviewArea} alt='리뷰 작성란'/>
-                <textarea id={styles.inputReview} name='reviewContent' onChange={(e) => onChangeHandler(e)} placeholder='리뷰를 작성하세요.'/>
+                <textarea 
+                    id={styles.inputReview} 
+                    name='reviewContent' 
+                    value={review.reviewContent}
+                    onChange={(e) => onChangeHandler(e)} 
+                    placeholder='리뷰를 작성하세요.'
+                />
                 <div 
                     id={styles.addFile} 
                     onClick={() => addFileBtnClickHandler()}
@@ -319,7 +654,19 @@ function CreateReview(){
                     <img ref={previewRef} src={addPhoto} id={styles.addPhoto} name='addphoto' alt='사진 추가하기 버튼'/> )} 
                 </div>
                 <button type='button' id={styles.cancle} onClick={(e) => cancleHandler(e)}>취소</button>
-                <button type='button' id={styles.submit} onClick={() => setDoWriteReview(true)}>확인</button>
+                <button 
+                    type='button' 
+                    id={styles.submit} 
+                    onClick={() => setDoWriteReview(true)}
+                    disabled={isSubmitDisabled}
+                    style={{
+                        backgroundColor: isSubmitDisabled ? '#FFC9D4' : '',
+                        color : isSubmitDisabled ? "#999999" : "",
+                        cursor: isSubmitDisabled ? 'not-allowed' : 'pointer'
+                    }}
+                >
+                    확인
+                </button>
             </div>
             <div id={styles.finalConfirmReview} style={{display : doWriteReview ? "" : "none"}}>
                 <p id={styles.reallyWriteReview}>리뷰를 작성하시겠습니까?</p>
