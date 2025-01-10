@@ -67,11 +67,11 @@ function Reservation() {
     return (
         <div className={styles.mypageReservation}>
             <div className={styles.allTabs}>
-                <Link to="/user/mypage/reservation">
-                    <div className={styles.tab1}>예약리스트</div>
-                </Link>
                 <Link to="/user/mypage/review">
-                    <div className={styles.tab2}>작성된 리뷰</div>
+                    <div className={styles.tab1}>작성된 리뷰</div>
+                </Link>
+                <Link to="/user/mypage/reservation">
+                    <div className={styles.tab2}>예약리스트</div>
                 </Link>
                 <div className={styles.line1}>|</div>
                 <Link to="/user/mypage/inquiry">
