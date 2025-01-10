@@ -12,6 +12,13 @@ function Review() {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [totalPages, setTotalPages] = useState(0);
 
+    // 삭제용 모달
+    const [showModal, setShowModal] = useState(false);
+    const [selectedReview, setSelectedReview] = useState(null);
+
+    // 삭제 후 상태 표시 모달
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    
     useEffect(() => {
         fetchUserInfo();
     }, []);
@@ -40,6 +47,11 @@ function Review() {
         }
     };
 
+    const handleDeleteClick = (reviewNo) => {
+        setSelectedReview(reviewNo);
+        setShowModal(true);
+    };
+
     const deleteReview = async (reviewNo) => {
         try {
             const response = await fetch('/user/review/delete', {
@@ -53,13 +65,21 @@ function Review() {
 
             if (response.ok) {
                 setUserInfo(prevState => prevState.filter(review => review.reviewNo !== reviewNo));
-                window.location.reload();
+                setShowModal(false);
+                setShowSuccessModal(true);
+                setTimeout(() => setShowSuccessModal(false), 2000);
             } else {
                 setError('리뷰 삭제에 실패했습니다.');
+                setShowModal(false);
             }
         } catch (error) {
             setError('에러 발생: ' + error.message);
+            setShowModal(false);
         }
+    };
+
+    const cancelDelete = () => {
+        setShowModal(false);
     };
 
 
@@ -102,6 +122,34 @@ function Review() {
 
     const handleReviewClick = (storeNo) => {
         navigate(`/store/${storeNo}`);
+    };
+
+    const ConfirmModal = ({ reviewNo, onConfirm, onCancel }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>정말 삭제하시겠습니까?</h3>
+                    <h3 className={styles.modalSubText}>삭제한 리뷰는 복구가 불가합니다.</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton1} onClick={() => onConfirm(reviewNo)}>예</button>
+                        <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const SuccessModal = ({ onClose }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText2}>삭제가 완료되었습니다!</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                    </div>
+                </div>
+            </div>
+        );
     };
 
     return (
@@ -154,7 +202,7 @@ function Review() {
                                 className={styles.deleteButton}
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    deleteReview(review.reviewNo);
+                                    handleDeleteClick(review.reviewNo);
                                 }}
                             >
                                 삭제
@@ -189,6 +237,22 @@ function Review() {
                     </div>
                 </div>
             </div>
+
+            {/* 삭제 확인 모달 */}
+            {showModal && (
+                <ConfirmModal
+                    reviewNo={selectedReview}
+                    onConfirm={deleteReview}
+                    onCancel={cancelDelete}
+                />
+            )}
+
+            {/* 삭제 완료 모달 */}
+            {showSuccessModal && (
+                <SuccessModal onClose={() => setShowSuccessModal(false)} />
+            )}
+
+
         </div>
     );
 }
