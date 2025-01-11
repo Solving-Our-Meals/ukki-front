@@ -48,6 +48,9 @@ function Calendar() {
     const [afternoonArray, setAfternoonArray] = useState([]);  
     const [isOper, setIsOper] = useState(true);
 
+    const [resPosNumber, setResPosNumber] = useState(null);
+    const [changedResPosNum, setChangedResPosNum] = useState(null);
+
     useEffect(() => {
         switch(day){
             case 0:
@@ -99,14 +102,13 @@ function Calendar() {
         operationTime : ""
     });
 
-    useEffect(
-        () => {
-            fetch('/store/getInfo')  //검색 페이지 만들어지면 pathvariable로 변경하기
+    useEffect(() => {
+        fetch('/store/getInfo')
             .then(res => res.json())
             .then(data => {
-                setOperation(data.operationTime)
-                //console.log("가게 정보22222 : ",data.operationTime);
+                setOperation(data.operationTime);
                 setStoreInfo(data);
+                //console.log("가게 정보22222 : ",data.operationTime);
                 //console.log('뱌얍야뱌야뱌ㅑㅇ뱌야 ',data)
 
                 const today = new Date().getDay();
@@ -157,11 +159,6 @@ function Calendar() {
                         const endTime = new Date();
                         endTime.setHours(parseInt(strEndHour));
                         endTime.setMinutes(parseInt(strEndMinute));
-
-                        //console.log('Start Time:', startTime);
-                        //console.log('Break Start Time:', startBreakTime);
-                        //console.log('Break End Time:', endBreakTime);
-                        //console.log('End Time:', endTime);
 
                         const addTimeSlots = (arr, start, end) => {
                             for (let i = start.getHours(); i <= end.getHours(); i++) {
@@ -215,13 +212,6 @@ function Calendar() {
                                 return !(currentTime >= startBreakTime && currentTime < endBreakTime);
                             });
                         }
-
-                        //console.log('morningArr:', morningArr);
-                        //console.log('afternoonArr:', afternoonArr);
-
-                        // setMorningArray(morningArr);
-                        // setAfternoonArray(afternoonArr);
-
                     // 2-2. 휴무인 날    
                     } else {
                         setIsOper(false);
@@ -252,7 +242,6 @@ function Calendar() {
 
                         // 3-1. 오전 시작 : 장사 시작 시간이 8시 미만일 경우
                         if(startTime.getHours() < 8){
-                            //console.log('1111');
                             // 4-1. 마감 시간이 23시 이전인 경우
                             if(endTime.getHours() <= 23){
                                 for(let i = 8; i < 12; i++){
@@ -284,7 +273,6 @@ function Calendar() {
                             }
                         // 3-2.오전 시작 : 장사 시작 시간이 8시 초과   
                         } else if(8 <= startTime.getHours() && startTime.getHours() < 12){
-                            //console.log('2222');
                             // 4-1. 마감 시간이 23시 이전인 경우
                             if(endTime.getHours() <= 23){
                                 for(let i = startTime.getHours(); i < 12; i++){
@@ -330,7 +318,6 @@ function Calendar() {
                             }
                         // 3-3. 오후 시작    
                         } else if(startTime.getHours() >= 12){
-                            //console.log('3333');
                             // 4-1. 마감 시간이 23시 이전인 경우 -> 새벽 마감인 경우에도 23 이하이므로 8 초과라는 조건을 더 줌줌
                             if(endTime.getHours() <= 23 && endTime.getHours() > 8){
                                 for(let i = startTime.getHours(); i < endTime.getHours(); i++){
@@ -365,7 +352,6 @@ function Calendar() {
                                 afternoonArr.push('23:00');
                             }
                         } 
-                        //console.log('4444');
                     // 2-2. 휴무인 날    
                     } else {
                         setIsOper(false);
@@ -376,10 +362,22 @@ function Calendar() {
                 }
                 setMorningArray(morningArr);
                 setAfternoonArray(afternoonArr);
+
+                // 첫 번째 fetch의 data를 리턴하여 다음 then으로 전달
+                return data;
             })
-            .catch(error => console.log(error));
-        }, []
-    ); 
+            .then(storeData => {
+                // 두 번째 fetch 실행
+                return fetch(`/store/resPosNumber?storeNo=${storeData.storeNo}&day=${day}`);                
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('예약가능인원 : ', data);
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
+    }, []);
 
     const handlePrevMonth = () => {
         setCurrentDate(new Date(year, month - 1, 1));
@@ -457,7 +455,6 @@ function Calendar() {
         //console.log("선택한 날짜의 운영 시간",operation[dayOfWeek])
 
         // 운영 시간 배열에 담기
-        // let operArr = [];
         let morningArr = [];
         let afternoonArr = [];
 
@@ -575,7 +572,6 @@ function Calendar() {
 
                 // 3-1. 오전 시작 : 장사 시작 시간이 8시 미만일 경우
                 if(startTime.getHours() < 8){
-                    //console.log('1111');
                     // 4-1. 마감 시간이 23시 이전인 경우
                     if(endTime.getHours() <= 23){
                         for(let i = 8; i < 12; i++){
@@ -607,7 +603,6 @@ function Calendar() {
                     }
                 // 3-2.오전 시작 : 장사 시작 시간이 8시 초과   
                 } else if(8 <= startTime.getHours() && startTime.getHours() < 12){
-                    //console.log('2222');
                     // 4-1. 마감 시간이 23시 이전인 경우
                     if(endTime.getHours() <= 23){
                         for(let i = startTime.getHours(); i < 12; i++){
@@ -653,7 +648,6 @@ function Calendar() {
                     }
                 // 3-3. 오후 시작    
                 } else if(startTime.getHours() >= 12){
-                    //console.log('3333');
                     // 4-1. 마감 시간이 23시 이전인 경우 -> 새벽 마감인 경우에도 23 이하이므로 8 초과라는 조건을 더 줌줌
                     if(endTime.getHours() <= 23 && endTime.getHours() > 8){
                         for(let i = startTime.getHours(); i < endTime.getHours(); i++){
@@ -704,6 +698,8 @@ function Calendar() {
     // 시간 클릭 시 예약 페이지로 정보 넘기기
     const navigate = useNavigate();
 
+    const [firstModalActive, setFirstModalActive] = useState(false);
+
     const selectedMorningTime = (index) => {
         setSelectedAfternoonTimeIndex(null);
         if(selectedMorningTimeIndex === index){
@@ -712,17 +708,44 @@ function Calendar() {
             setSelectedMorningTimeIndex(index);
         }
 
-        navigate('/reservation',{
-            state:{
-                date1 :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
-                date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
-                time : morningArray[index],
-                storeName : storeInfo.storeName,
-                storeNo : storeInfo.storeNo,
-                latitude : storeInfo.latitude,
-                longitude : storeInfo.longitude
-            },
-        });
+        console.log('morningArray[index] : ', morningArray[index], 'typeof(morningArray[index]) : ', typeof(morningArray[index]));
+        
+        // 선택한 시간과 현재 시간 비교
+        const [hours, minutes] = morningArray[index].split(':').map(Number);
+        const selectedTime = new Date();
+        selectedTime.setHours(hours, minutes, 0);
+
+        const currentTime = new Date();
+
+        // 선택한 시간이 현재 시간보다 미래일 때만 예약 페이지로 넘어가기기
+        if(selectedTime > currentTime){
+            navigate('/reservation',{
+                state:{
+                    date1 :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
+                    date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
+                    time : morningArray[index],
+                    storeName : storeInfo.storeName,
+                    storeNo : storeInfo.storeNo,
+                    latitude : storeInfo.latitude,
+                    longitude : storeInfo.longitude
+                },
+            });
+        } else {
+            setFirstModalActive(true); // 현재 시간 이전의 시간을 선택했을 때 모달 표시시
+        }
+
+
+        // navigate('/reservation',{
+        //     state:{
+        //         date1 :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
+        //         date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
+        //         time : morningArray[index],
+        //         storeName : storeInfo.storeName,
+        //         storeNo : storeInfo.storeNo,
+        //         latitude : storeInfo.latitude,
+        //         longitude : storeInfo.longitude
+        //     },
+        // });
     };
 
     const selectedAfternoonTime = (index) => {
@@ -733,17 +756,42 @@ function Calendar() {
             setSelectedAfternoonTimeIndex(index);
         }
 
-        navigate('/reservation',{
-            state:{
-                date1 : `${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
-                date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
-                time : afternoonArray[index],
-                storeName : storeInfo.storeName,
-                storeNo : storeInfo.storeNo,
-                latitude : storeInfo.latitude,
-                longitude : storeInfo.longitude
-            },
-        });
+        // 선택한 시간과 현재 시간 비교
+        const [hours, minutes] = afternoonArray[index].split(':').map(Number);
+        const selectedTime = new Date();
+        selectedTime.setHours(hours, minutes, 0);
+
+        const currentTime = new Date();
+
+        // 선택한 시간이 현재 시간보다 미래일 때만 예약 페이지로 넘어가기기
+        if(selectedTime > currentTime){
+            navigate('/reservation',{
+                state:{
+                    date1 :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
+                    date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
+                    time : afternoonArray[index],
+                    storeName : storeInfo.storeName,
+                    storeNo : storeInfo.storeNo,
+                    latitude : storeInfo.latitude,
+                    longitude : storeInfo.longitude
+                },
+            });
+        } else {
+            setFirstModalActive(true); // 현재 시간 이전의 시간을 선택했을 때 모달 표시시
+        }
+
+
+        // navigate('/reservation',{
+        //     state:{
+        //         date1 : `${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
+        //         date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
+        //         time : afternoonArray[index],
+        //         storeName : storeInfo.storeName,
+        //         storeNo : storeInfo.storeNo,
+        //         latitude : storeInfo.latitude,
+        //         longitude : storeInfo.longitude
+        //     },
+        // });
     }
 
 
@@ -806,22 +854,6 @@ function Calendar() {
                     {`${selectedTotalDate.selectedYear}.${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}.${selectedTotalDate.selectedDate.toString().padStart(2,'0')}(${selectedTotalDate.selectedDay})`}
                 </div>
                 <div className={styles.instructionTime}>시간을 선택해주세요.</div>
-                {/* <div className={styles.morningArray}>
-                    <div id={styles.strMoring}>오전</div>
-                    {morningArray.map((morningArr, morningIndex) => (
-                        <div 
-                            key={morningIndex} 
-                            className={styles.morningArr} 
-                            style={{backgroundColor : isOper ? (selectedMorningTimeIndex === morningIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
-                                    color : isOper ? '' : '#BDBEBF', 
-                                    cursor : isOper ? '' : 'default'
-                            }}
-                            onClick={() => {selectedMorningTime(morningIndex)}}
-                        >
-                        {morningArr}
-                        </div>
-                    ))}
-                </div> */}
                 <div className={styles.morningArray}>
                     <div id={styles.strMoring} style={{display : morningArray.length == 0 ? "none" : "" }}>오전</div>
                     {morningArray.map((morningArr, morningIndex) => {
@@ -870,23 +902,6 @@ function Calendar() {
                         );
                     })}
                 </div>
-
-                {/* <div className={styles.afternoonArray}>
-                    <div id={styles.strAfternoon}>오후</div>
-                    {afternoonArray.map((afternoonArr, afternoonIndex) => (
-                        <div 
-                            key={afternoonIndex} 
-                            className={styles.afternoonArr} 
-                            style={{backgroundColor : isOper ? (selectedAfternoonTimeIndex === afternoonIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
-                                    color : isOper ? '' : '#BDBEBF', 
-                                    cursor : isOper ? '' : 'default'
-                            }}
-                            onClick={() => {selectedAfternoonTime(afternoonIndex)}}
-                        >
-                        {afternoonArr}
-                        </div>
-                    ))}
-                </div> */}
                 <div className={styles.afternoonArray}>
                     <div id={styles.strAfternoon} style={{display : afternoonArray.length == 0 ? "none" : "" }}>오후</div>
                     {afternoonArray.map((afternoonArr, afternoonIndex) => {
@@ -934,7 +949,20 @@ function Calendar() {
                     })}
                 </div>
             </div>
-        </>
+            <div id={styles.timeConfirm} style={{display : firstModalActive ? "" : "none"}}>
+                <p id={styles.chooseOtherTime}>예약 가능한 시간이 아닙니다. <br/> 시간을 다시 선택해주세요.</p>
+                <button 
+                    type='button' 
+                    id={styles.chooseAgainTime} 
+                    onClick={() => {
+                        setFirstModalActive(false);
+                        window.location.reload();
+                    }}
+                >
+                    확인
+                </button>
+            </div>
+</>
     );
 }
 
