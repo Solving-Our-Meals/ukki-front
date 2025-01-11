@@ -40,7 +40,7 @@ function CreateReview(){
         reviewScope : "",
         storeNo : "",
         userNo : "",
-        resNo : ""
+        resNo : "9999"
     });
 
     const onChangeHandler = (e) => {
@@ -153,6 +153,7 @@ function CreateReview(){
 
     const uploadHandler = ({target}) => {
         const file = target.files[0];
+        if(!file) return; // 파일이 없으면 함수 종료
         setFileInfo(file);
     }
 
@@ -542,6 +543,15 @@ function CreateReview(){
     // 버튼 활성화 여부를 확인하는 함수 추가
     const isSubmitDisabled = !review.reviewContent.trim() || !review.reviewScope;
 
+    const removeImageHandler = (e) => {
+        e.stopPropagation(); // 이벤트 전달 중단단
+        setUploadedInfo(null);
+        setImageUrl(null);
+        if(previewRef.current){
+            previewRef.current.src = addPhoto;
+        }
+    };
+
     return(
         <>
             <button 
@@ -646,10 +656,20 @@ function CreateReview(){
                             id={styles.reviewImage}
                             onChange={(e) => uploadHandler(e)}
                         />
+                        {imageUrl && (
+                            <button 
+                                type="button" 
+                                className={styles.removeImageBtn} 
+                                onClick={(e) => removeImageHandler(e)}
+                            >
+                                ×
+                            </button>
+                        )}
                         {imageUrl ? ( 
                             <img ref={previewRef} src={imageUrl} id={styles.preview} name='addphoto' alt='업로드된 이미지 미리보기'/> 
                         ) : ( 
-                        <img ref={previewRef} src={addPhoto} id={styles.addPhoto} name='addphoto' alt='사진 추가하기 버튼'/> )} 
+                            <img ref={previewRef} src={addPhoto} id={styles.addPhoto} name='addphoto' alt='사진 추가하기 버튼'/> 
+                        )}
                     </div>
                 </div>
                 <button type='button' id={styles.cancle} onClick={(e) => cancleHandler(e)}>취소</button>

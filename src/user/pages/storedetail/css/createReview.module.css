@@ -351,8 +351,8 @@ a:active {
   display: none;
 }
 .createReview #addFile #preview {
-  width: 468px;
-  height: 367px;
+  width: 530px;
+  height: 400px;
 }
 .createReview #addFile #addPhoto {
   position: absolute;
@@ -360,6 +360,26 @@ a:active {
   top: 140px;
   width: 113px;
   height: 113px;
+}
+.createReview #addFile .removeImageBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.createReview #addFile .removeImageBtn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .createReview #cancle {
   position: absolute;
@@ -624,6 +644,26 @@ a:active {
     top: 80px;
     width: 60px;
     height: 60px;
+  }
+  .createReview #addFile .removeImageBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  .createReview #addFile .removeImageBtn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
   }
   .createReview #cancle {
     position: absolute;
