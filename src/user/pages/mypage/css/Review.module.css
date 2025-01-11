@@ -63,26 +63,15 @@
 }
 
 /* 가운데 정렬 */
-/*.mypageReservationMain {
+.mypageReservationMain {
     transform: translate(-30px, 150px);
 }
 
 /* 가운데 정렬 2 */
-/*.headerItem {
+.headerItem {
     width:325px;
     background: none;
     text-align: center;
-}*/
-
-/* 좌측 정렬 */
-.mypageReservationMain {
-    transform: translate(100px, 150px);
-}
-
-/* 좌측 정렬 2 */
-.headerItem {
-    width:250px;
-    background: none;
 }
 
 /* 예약 항목 */
@@ -105,7 +94,6 @@
     justify-content: center;
     margin-top: 20px;
     gap: 10px;
-    transform: translateX(-110px);
 }
 
 .pagination button {
@@ -155,7 +143,7 @@
 }
 
 /* 선 2 (가운데 정렬) */
-/*.headerRow::before, .reservationItem::before {
+.headerRow::before, .reservationItem::before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -164,11 +152,11 @@
     height: 2px;
     background-color: #ccc;
     transform: translateX(-50%);
-}*/
+}
 
 
 /* 선 2 (좌측 정렬) */
-.headerRow::before, .reservationItem::before {
+/*.headerRow::before, .reservationItem::before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -177,7 +165,7 @@
     height: 2px;
     background-color: #ccc;
     transform: translateX(-50%);
-}
+}*/
 
 .loadingContainer {
     position: absolute;
@@ -376,3 +364,7 @@
     transition: background-color 0.3s ease, box-shadow 0.2s ease;
 }
 
+.paginationButton.active {
+    background-color: #FF8AA3;
+    color:white;
+}
