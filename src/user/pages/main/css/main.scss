@@ -454,7 +454,7 @@ div {
         }
 
         p:nth-of-type(1) span {
-            left: 6vw;
+            left: 4.5vw;
             top: 0vw;
             width: 18vw;
             line-height: 130%;
@@ -508,8 +508,8 @@ div {
 
         label:nth-of-type(1) {
             position: absolute;
-            left: 66.7vw;
-            top: 47.6vw;
+            left: 67vw;
+            top: 47.8vw;
             font-family: 'Pretendard Variable';
             font-weight: 600;
             font-size: 1rem;
@@ -521,11 +521,11 @@ div {
 
         label:nth-of-type(2) {
             position: absolute;
-            left: 66.7vw;
-            top: 50.8vw;
+            left: 67vw;
+            top: 51vw;
             font-family: 'Pretendard Variable';
             font-weight: 600;
-            font-size: 1vw;
+            font-size: 1rem;
             color: $textStrong;
             width: 10vw;
             background-color: transparent;
@@ -590,21 +590,21 @@ div {
         img:nth-of-type(1) {
             position: absolute;
             width: 80vw;
-            top: 148vw;
+            top: 188vw;
             left: 10vw;
         }
 
         img:nth-of-type(2) {
             position: absolute;
             width: 75vw;
-            top: 140vw;
+            top: 180vw;
             left: 10vw;
         }
 
         img:nth-of-type(3) {
             position: absolute;
             width: 50vw;
-            top: 142vw;
+            top: 182vw;
             left: 25vw;
         }
 
@@ -628,7 +628,7 @@ div {
         h3 {
             position: absolute;
             left: 15vw;
-            top: 175vw;
+            top: 215vw;
             font-family: 'Bobaesum Jindo TTF';
             font-weight: 400;
             font-size: 3vw;
@@ -643,7 +643,7 @@ div {
         p:nth-of-type(1) {
             position: absolute;
             left: 15vw;
-            top: 184vw;
+            top: 224vw;
             font-family: 'Pretendard Variable';
             font-style: normal;
             font-weight: 600;
@@ -654,7 +654,7 @@ div {
         p:nth-of-type(2) {
             position: absolute;
             left: 15vw;
-            top: 187vw;
+            top: 227vw;
             font-family: 'Pretendard Variable';
             font-style: normal;
             font-weight: 500;
@@ -666,7 +666,7 @@ div {
         &>span {
             position: absolute;
             left: 15vw;
-            top: 193vw;
+            top: 233vw;
             font-family: 'Pretendard Variable';
             font-style: normal;
             font-weight: 500;
@@ -680,7 +680,7 @@ div {
             width: 9vw;
             height: 2vw;
             left: 19vw;
-            top: 201vw;
+            top: 241vw;
             background: $secondary;
             border-radius: 30px;
             color: $textStrong;
@@ -697,7 +697,7 @@ div {
             position: absolute;
             width: 4vw;
             left: 14.5vw;
-            top: 200vw;
+            top: 240vw;
             opacity: 0.6;
         }
 
@@ -705,7 +705,7 @@ div {
             position: absolute;
             width: 4vw;
             left: 28.5vw;
-            top: 200vw;
+            top: 240vw;
             opacity: 0.6;
         }
 
@@ -718,8 +718,8 @@ div {
 
         .rouletter-bg {
             position: absolute;
-            top: 113vw;
-            left: 65vw;
+            top: 126vw;
+            left: 67vw;
             transform: translate(-50%, -50%);
             width: 28vw;
             height: 28vw;
@@ -744,8 +744,8 @@ div {
         .rouletter-arrow {
 
             position: absolute;
-            top: 98vw;
-            left: 64vw;
+            top: 111vw;
+            left: 66vw;
             z-index: 9;
 
             img {
@@ -759,8 +759,8 @@ div {
             position: absolute;
             width: 4vw;
             height: 4vw;
-            top: 111vw;
-            left: 63vw;
+            top: 124vw;
+            left: 65vw;
             border-radius: 50%;
             border: none;
             background-color: $primary;
