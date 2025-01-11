@@ -101,7 +101,7 @@ function Calendar() {
 
     useEffect(
         () => {
-            fetch('/store/test')  //검색 페이지 만들어지면 pathvariable로 변경하기
+            fetch('/store/getInfo')  //검색 페이지 만들어지면 pathvariable로 변경하기
             .then(res => res.json())
             .then(data => {
                 setOperation(data.operationTime)

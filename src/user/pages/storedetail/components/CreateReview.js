@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styles from '../css/createReview.module.css';
 import writeArea from '../images/writeReviewArea.png';
 import addPhoto from '../images/addPhoto.png';
+import nontReviewPhoto from '../images/nonePhotoReview.png';
 
 const FileInfo = ({uploadedInfo}) => (
     <ul className={styles.previewInfo}>
@@ -112,30 +113,26 @@ function CreateReview(){
         formData.append('params', JSON.stringify({
             reviewDate: review.reviewDate,
             reviewContent: review.reviewContent,
-            reviewScope : review.reviewScope,
+            reviewScope: review.reviewScope,
             storeNo: review.storeNo,
             userNo: review.userNo,
-            resNo : review.resNo,
+            resNo: review.resNo,
         }));
-        formData.append('reviewImage', review.reviewImage); // 파일 객체 추가
 
-        // 이미지가 있을 경우에만 이미지 파일 추가
-        // if (review.reviewImage && Object.keys(review.reviewImage).length > 0) {
-        //     formData.append('reviewImage', review.reviewImage);
-        //     reviewData.reviewImage = review.reviewImage.name;  // 이미지 파일명만 데이터에 포함
-        // }
+        // 이미지가 있을 때만 formData에 추가
+        if (review.reviewImage && Object.keys(review.reviewImage).length > 0) {
+            formData.append('reviewImage', review.reviewImage);
+        }
 
         fetch('/store/5/review', {
             method: 'POST',
             body: formData,
-
         })
         .then((res) => {
             if (res.ok) {
                 setIsDisplay(false);
                 setDoWriteReview(false);
                 setIsCompletedReview(true);
-                //console.log("Review submitted successfully");
             } else {
                 console.error("Failed to submit review", res.statusText);
             }
@@ -190,7 +187,7 @@ function CreateReview(){
     }
 
     // 리뷰 작성하기 버튼 활성화 여부
-    const [writeReview, setWriteReview] = useState(false);
+    const [writeReview, setWriteReview] = useState(true);
 
     // DB에 유저 넘버와 가게 번호 넘기기
     // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기
@@ -622,36 +619,38 @@ function CreateReview(){
                         </label>
                     </div>
                 </div>
-                <img src={writeArea} id={styles.writeReviewArea} alt='리뷰 작성란'/>
-                <textarea 
-                    id={styles.inputReview} 
-                    name='reviewContent' 
-                    value={review.reviewContent}
-                    onChange={(e) => onChangeHandler(e)} 
-                    placeholder='리뷰를 작성하세요.'
-                />
-                <div 
-                    id={styles.addFile} 
-                    onClick={() => addFileBtnClickHandler()}
-                    className={`preview${isActive ? ' active ' : ''}`} // isActive 값에 따라 className 제어
-                    style={{backgroundColor : isActive ? '#EFEEF3' : ""}}
-                    onDragEnter={() => dragStartHandler()} // dragStart 핸들러 추가
-                    onDragLeave={() => dragEndHandler()}  // dragEnd 핸들러 추가
-                    onDrop={(e) => dropHandler(e)} // drop 핸들러 추가
-                    onDragOver={(e) => dragOverHandler(e)}
-                >
-                    <input 
-                        ref={fileUploadRef}
-                        type='file' 
-                        accept='.jpg, .png'
-                        name='reviewImage' 
-                        id={styles.reviewImage}
-                        onChange={(e) => uploadHandler(e)}
+                {/* <img src={writeArea} id={styles.writeReviewArea} alt='리뷰 작성란'/> */}
+                <div className={styles.writeReviewArea}>
+                    <textarea 
+                        id={styles.inputReview} 
+                        name='reviewContent' 
+                        value={review.reviewContent}
+                        onChange={(e) => onChangeHandler(e)} 
+                        placeholder='리뷰를 작성하세요.'
                     />
-                    {imageUrl ? ( 
-                        <img ref={previewRef} src={imageUrl} id={styles.preview} name='addphoto' alt='업로드된 이미지 미리보기'/> 
-                    ) : ( 
-                    <img ref={previewRef} src={addPhoto} id={styles.addPhoto} name='addphoto' alt='사진 추가하기 버튼'/> )} 
+                    <div 
+                        id={styles.addFile} 
+                        onClick={() => addFileBtnClickHandler()}
+                        className={`preview${isActive ? ' active ' : ''}`} // isActive 값에 따라 className 제어
+                        style={{backgroundColor : isActive ? '#EFEEF3' : ""}}
+                        onDragEnter={() => dragStartHandler()} // dragStart 핸들러 추가
+                        onDragLeave={() => dragEndHandler()}  // dragEnd 핸들러 추가
+                        onDrop={(e) => dropHandler(e)} // drop 핸들러 추가
+                        onDragOver={(e) => dragOverHandler(e)}
+                    >
+                        <input 
+                            ref={fileUploadRef}
+                            type='file' 
+                            accept='.jpg, .png'
+                            name='reviewImage' 
+                            id={styles.reviewImage}
+                            onChange={(e) => uploadHandler(e)}
+                        />
+                        {imageUrl ? ( 
+                            <img ref={previewRef} src={imageUrl} id={styles.preview} name='addphoto' alt='업로드된 이미지 미리보기'/> 
+                        ) : ( 
+                        <img ref={previewRef} src={addPhoto} id={styles.addPhoto} name='addphoto' alt='사진 추가하기 버튼'/> )} 
+                    </div>
                 </div>
                 <button type='button' id={styles.cancle} onClick={(e) => cancleHandler(e)}>취소</button>
                 <button 

@@ -1,3 +1,4 @@
+
 @import "../../../../common/reset/reset.scss";
 
 .reviewStyle{
@@ -56,7 +57,8 @@
     .reviewArea{
         cursor: default;
         position: absolute;
-        left: 163px;
+        // left: 163px;
+        left: 198px;
         top : 2135px;
         display: flex;
         flex-direction: column;
@@ -73,6 +75,10 @@
                 position: relative;
                 display: flex;
                 flex-direction: column;
+                width: 1485px;
+                height : 450px;
+                border: 4px solid $primary;
+
 
                 .userInfoContainer {
                     display: flex;
@@ -81,15 +87,6 @@
 
                     .userName {
                         display: inline-block;
-                    }
-
-                    .starRating {
-                        display: inline-flex;
-                        margin-left: 20px;
-                        
-                        img {
-                            height: 20px;
-                        }
                     }
                 }
 
@@ -110,19 +107,11 @@
                 position: relative;
                 display: inline-block;
                 margin-top: 30px;
-                margin-left: -35px;
-
-                #reviewImg{
-                    display: block;
-                    top : 10px;
-                    width: 1532px;
-                    height : 475.5px;
-                    z-index: 1;
-                }
+                // margin-left: -35px;
 
                 #userProfile{
-                    position: absolute;
-                    left : 97px;
+                    position: relative;
+                    margin-left : 50px;
                     top : 50px;
                     width : 114px;
                     height : 108px;
@@ -138,7 +127,7 @@
                 }
     
                 div:nth-of-type(1){
-                    left: 230px;
+                    left: 190px;
                     top : 63px;
                     width: max-content;
                     font-family: 'Bobaesum Jindo TTF';
@@ -149,12 +138,18 @@
                     z-index: 5;
 
                     span{
-                        margin-right: 15px;
+                        margin-right: 8px;
+                    }
+
+                    .star {
+                        font-size: 25px;
+                        margin-right: -5px;
+                        display: inline-block;
                     }
                 }
     
                 div:nth-of-type(2){
-                   left : 230px;
+                   left : 190px;
                    top : 107px;
                    width: max-content;
                    font-family: 'Pretendard Variable';
@@ -166,10 +161,10 @@
                 }
 
                 div:nth-of-type(3){
-                    left : 107px;
-                    top : 173px;
-                    width: 802px;
-                    height: 217px;
+                    left : 50px;
+                    top : 180px;
+                    width: 850px;
+                    height: 223px;
                     background-color: #FFF9D3;
                     padding-left: 15px;
                     padding-top: 10px;
@@ -185,7 +180,7 @@
     
                 #reviewPhoto{
                     position: absolute;
-                    left : 1022px;
+                    left : 960px;
                     top : 37px;
                     width: 468px;
                     height: 367px;
@@ -198,19 +193,11 @@
                 position: relative;
                 display: inline-block;
                 margin-top: 30px;
-                margin-left: 70px;
-
-                #reviewImg{
-                    display: block;
-                    top : 10px;
-                    width: 1532px;
-                    height : 475.5px;
-                    z-index: 1;
-                }
+                // margin-left: 70px;
 
                 #userProfile{
-                    position: absolute;
-                    left : 613px;
+                    position: relative;
+                    margin-left : 570px;
                     top : 53px;
                     width : 114px;
                     height : 108px;
@@ -226,7 +213,7 @@
                 }
     
                 div:nth-of-type(1){
-                    left: 744px;
+                    left: 710px;
                     top : 70px;
                     width: max-content;
                     font-family: 'Bobaesum Jindo TTF';
@@ -237,13 +224,19 @@
                     z-index: 5;
                     
                     span{
-                        margin-right: 15px;
+                        margin-right: 8px;
+                    }
+
+                    .star {
+                        font-size: 25px;
+                        margin-right: -5px;
+                        display: inline-block;
                     }
 
                 }
     
                 div:nth-of-type(2){
-                   left : 744px;
+                   left : 710px;
                    top : 111px;
                    width: max-content;
                    font-family: 'Pretendard Variable';
@@ -255,10 +248,10 @@
                 }
     
                 div:nth-of-type(3){
-                    left : 624px;
-                    top : 176px;
-                    width: 802px;
-                    height: 217px;
+                    left : 570px;
+                    top : 183px;
+                    width: 850px;
+                    height: 223px;
                     background-color: #FFF9D3;
                     padding-left: 15px;
                     padding-top: 10px;
@@ -445,6 +438,12 @@
                         span{
                             margin-right: 10px;
                         }
+
+                        .star {
+                            font-size: 25px;
+                            margin-right: -2px;
+                            display: inline-block;
+                        }
                     }
         
                     div:nth-of-type(2){
@@ -532,6 +531,12 @@
 
                         span{
                             margin-right: 10px;
+                        }
+
+                        .star {
+                            font-size: 25px;
+                            margin-right: -2px;
+                            display: inline-block;
                         }
                     }
         
@@ -702,6 +707,12 @@
                         span{
                             margin-right: 8px;
                         }
+
+                        .star {
+                            font-size: 25px;
+                            margin-right: -2px;
+                            display: inline-block;
+                        }
                     }
         
                     div:nth-of-type(2){
@@ -798,6 +809,12 @@
 
                         span{
                             margin-right: 8px;
+                        }
+
+                        .star {
+                            font-size: 25px;
+                            margin-right: -2px;
+                            display: inline-block;
                         }
                     }
         

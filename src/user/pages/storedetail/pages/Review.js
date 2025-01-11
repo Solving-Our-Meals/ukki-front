@@ -69,6 +69,15 @@ function Review(){
         })
         .catch(error => console.log(error));
     }
+
+    const renderStars = (reviewScope) => {
+        let stars = [];
+        for (let i = 0; i < reviewScope; i++) {
+            stars.push(<span key={i} className={styles.star}>⭐</span>);
+        }
+        return stars;
+    };
+
     
     return(
         <div className={styles.reviewStyle}>
@@ -87,7 +96,6 @@ function Review(){
                             style={{ 
                                 display : isMoreReview || index <= 2 ? "" : "none" }}
                         >
-                            <img src={reviewImg} id={styles.reviewImg} style={{ transform : index % 2 !== 0 ? 'scaleX(-1)' : "" }} alt='리뷰 백그라운드'/>
                             <img 
                                 src={review.userProfile === null ? '/store/api/userProfile?userProfileName=PROFILE_BASIC' : `/store/api/userProfile?userProfileName=${review.userProfile}`} 
                                 id={styles.userProfile} 
@@ -101,9 +109,10 @@ function Review(){
                                     .map((_, i) => ...) : 첫 번째 매개변수 _는 요소 값(여기서는 사용하지 않음)을 나타내며, 두 번째 매개변수 i는 인덱스를 나타냄.
 
                                 */}
-                                {Array(review.reviewScope).fill().map((_, i) => (
+                                {/* {Array(review.reviewScope).fill().map((_, i) => (
                                     <img key={i} src={starFilled} alt='별점'/>
-                                ))}
+                                ))} */}
+                                {renderStars(review.reviewScope)}
                             </div>
                             <div>{review.reviewDate}</div>
                             <div>{review.reviewContent}</div>
