@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/storedetail.module.css';
 import mapIcon from '../images/mapMarker-logo.png';
@@ -10,6 +11,8 @@ import Menu from '../components/Menu';
 
 function StoreDetail({reservationHandler}){
 
+    const { storeNo } = useParams();
+    
     const [colorMonday, setColorMonday] = useState("");
     const [colorTuesday, setColorTuesday] = useState("");
     const [colorWednesday, setColorWednesday] = useState("");
@@ -34,11 +37,12 @@ function StoreDetail({reservationHandler}){
 
     useEffect(
         () => {
-            fetch('/store/getInfo')  //검색 페이지 만들어지면 pathvariable로 변경하기
+            console.log('sshshshshshshshshsh');
+            fetch(`/store/${storeNo}/getInfo`)  //검색 페이지 만들어지면 pathvariable로 변경하기
             .then(res => res.json())
             .then(data => {
                 setStoreInfo(data)
-                navigate('/store',{
+                navigate(`/store/${storeNo}`,{
                     state:{
                         source : 'storedetail',
                         storeName : data.storeName,

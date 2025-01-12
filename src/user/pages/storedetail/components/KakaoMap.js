@@ -129,10 +129,12 @@
 
 import { CustomOverlayMap, Map, MapMarker } from "react-kakao-maps-sdk";
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from '../css/kakaoMap.module.css'
 import mapMarker from '../images/smallMapMarker-logo.png';
 
 function KakaoMap(){
+    const { storeNo } = useParams();
     const [ storeLatitude, setStoreLatitude ] = useState("")
     const [ storeLongitude, setStoreLongitude ] = useState("")
     const [ storeName, setStoreName ] = useState("")
@@ -141,7 +143,7 @@ function KakaoMap(){
     const mapLink  = `https://map.kakao.com/link/map/${storeName},${storeLatitude},${storeLongitude}`
 
     useEffect(() => {
-        fetch('/store/getInfo')
+        fetch(`/store/${storeNo}/getInfo`)
         .then(res => res.json())
         .then(data => {
             setStoreLatitude(data.latitude);

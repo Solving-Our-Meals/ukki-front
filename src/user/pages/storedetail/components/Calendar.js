@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/reservation.module.css';
 import prevBtn from '../images/prev-or-next-icon.png';
@@ -29,6 +30,8 @@ const getCalendarDates = (year, month) => {
 
 function Calendar() {
 
+    const { storeNo } = useParams();
+
     const [storeInfo, setStoreInfo] = useState({});
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedMorningTimeIndex, setSelectedMorningTimeIndex] = useState(null);
@@ -48,8 +51,13 @@ function Calendar() {
     const [afternoonArray, setAfternoonArray] = useState([]);  
     const [isOper, setIsOper] = useState(true);
 
-    const [resPosNumber, setResPosNumber] = useState(null);
-    const [changedResPosNum, setChangedResPosNum] = useState(null);
+    const [resPosNumber, setResPosNumber] = useState({});
+    const [cantReservation, setCantReservation] = useState(false);
+    const [operTimeArray, setOperTimeArray] = useState([]);
+    const [allTimeArray, setAllTimeArray] = useState([]);
+
+    // 새로운 state 추가
+    const [disabledTimes, setDisabledTimes] = useState([]);
 
     useEffect(() => {
         switch(day){
@@ -103,13 +111,14 @@ function Calendar() {
     });
 
     useEffect(() => {
-        fetch('/store/getInfo')
+        let morningArr = [];
+        let afternoonArr = [];
+
+        fetch(`/store/${storeNo}/getInfo`)
             .then(res => res.json())
             .then(data => {
                 setOperation(data.operationTime);
                 setStoreInfo(data);
-                //console.log("가게 정보22222 : ",data.operationTime);
-                //console.log('뱌얍야뱌야뱌ㅑㅇ뱌야 ',data)
 
                 const today = new Date().getDay();
 
@@ -125,9 +134,6 @@ function Calendar() {
 
                 const dayOfWeek = dayOfWeekMap[today];
 
-                let morningArr = [];
-                let afternoonArr = [];
-                
                 // 1-1. 브레이크 타임 있을 경우
                 if (data.operationTime.breakTime !== null) {
                     // 2-1. 휴무 아닌 날
@@ -363,16 +369,62 @@ function Calendar() {
                 setMorningArray(morningArr);
                 setAfternoonArray(afternoonArr);
 
+                const combinedTimeArray = [...morningArr, ...afternoonArr];
+                setAllTimeArray(combinedTimeArray);
+
+                const returnData = {
+                    allTimeArray : combinedTimeArray
+                };
+
                 // 첫 번째 fetch의 data를 리턴하여 다음 then으로 전달
-                return data;
+                return returnData;
             })
-            .then(storeData => {
+            .then(returnData => {
                 // 두 번째 fetch 실행
-                return fetch(`/store/resPosNumber?storeNo=${storeData.storeNo}&day=${day}`);                
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log('예약가능인원 : ', data);
+                const today = new Date();
+                const day = today.getDay();
+
+                let todayFormat = today.getFullYear() +
+                '-' + ( (today.getMonth()+1) < 9 ? "0" + (today.getMonth()+1) : (today.getMonth()+1))+
+                '-' + ( (today.getDate()) < 9 ? "0" + (today.getDate()) : (today.getDate()));
+                
+                return fetch(`/store/${storeNo}/resPosNumber?storeNo=${storeNo}&day=${day}&date=${todayFormat}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log('예약가능인원 : ', data);
+                    const operTimeArray = data.listDayResPosNumDTO;
+                    setResPosNumber(data);
+                    setOperTimeArray(operTimeArray);
+                    console.log('ssssssss', returnData.allTimeArray);
+                    
+
+                    const disabledTimesList = [];
+
+                    // for( let i = 0; i < operTimeArray.length; i++){
+                    //     if(operTimeArray[i].operTime === allTimeArray[i]){
+                    //         if(operTimeArray[i].resPosNum === 0){
+                    //             disabledTimesList.push(returnData.allTimeArray[i]);
+                    //             console.log('왜 안되냐고 : ', returnData.allTimeArray[i]);
+                    //         }
+                    //     }
+                    // }
+
+                    operTimeArray.forEach(slot => {
+                        if (slot.resPosNum === 0) {
+                            // allTimeArray에서 해당 시간이 존재하는지 확인
+                            if (returnData.allTimeArray.includes(slot.operTime)) {
+                                disabledTimesList.push(slot.operTime);
+                                console.log('비활성화될 시간:', slot.operTime);
+                            }
+                        }
+                    });
+                    setDisabledTimes(disabledTimesList);
+
+                    // 디버깅을 위한 로그
+                    console.log('operTimeArray:', operTimeArray);
+                    console.log('allTimeArray:', returnData.allTimeArray);
+                    console.log('disabledTimesList:', disabledTimesList);
+                })
             })
             .catch(error => {
                 console.log('Error:', error);
@@ -693,6 +745,47 @@ function Calendar() {
         setMorningArray(morningArr);
         setAfternoonArray(afternoonArr);
 
+         // 3. 선택한 날짜 포맷팅 (YYYY-MM-DD)
+        const selectedDateFormat = `${selectDate.getFullYear()}-${
+                (selectDate.getMonth()+1).toString().padStart(2, '0')}-${
+                selectDate.getDate().toString().padStart(2, '0')}`;
+
+        // 4. 예약 가능 인원 조회
+        fetch(`/store/${storeNo}/resPosNumber?storeNo=${storeNo}&day=${day}&date=${selectedDateFormat}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log('선택한 날짜의 예약가능인원:', data);
+                const operTimeArray = data.listDayResPosNumDTO;
+                setOperTimeArray(operTimeArray);
+
+                const disabledTimesList = [];
+
+                // 5. 예약 불가능한 시간 체크
+                operTimeArray.forEach(slot => {
+                    if (slot.resPosNum === 0) {
+                        const timeStr = slot.operTime;
+                        // 방금 생성한 morningArr, afternoonArr 배열에서 체크
+                        if (morningArr.includes(timeStr) || afternoonArr.includes(timeStr)) {
+                            disabledTimesList.push(timeStr);
+                            console.log('예약 불가능 시간:', timeStr);
+                        }
+                    }
+                });
+
+                setDisabledTimes(disabledTimesList);
+
+                // 디버깅용 로그
+                console.log({
+                    selectedDate: selectedDateFormat,
+                    operationTimes: operTimeArray,
+                    morningTimes: morningArr,
+                    afternoonTimes: afternoonArr,
+                    disabledTimes: disabledTimesList
+                });
+            })
+            .catch(error => {
+                console.error('예약 가능 인원 조회 실패:', error);
+            });
     }
 
     // 시간 클릭 시 예약 페이지로 정보 넘기기
@@ -712,12 +805,17 @@ function Calendar() {
         
         // 선택한 시간과 현재 시간 비교
         const [hours, minutes] = morningArray[index].split(':').map(Number);
-        const selectedTime = new Date();
-        selectedTime.setHours(hours, minutes, 0);
-
+        const selectedTime = new Date(
+            selectedTotalDate.selectedYear,
+            selectedTotalDate.selectedMonth -1,
+            selectedTotalDate.selectedDate,
+            hours,
+            minutes,
+            0
+        );
         const currentTime = new Date();
 
-        // 선택한 시간이 현재 시간보다 미래일 때만 예약 페이지로 넘어가기기
+        // 선택한 시간이 현재 시간보다 미래일 때만 예약 페이지로 넘어가기
         if(selectedTime > currentTime){
             navigate('/reservation',{
                 state:{
@@ -749,6 +847,7 @@ function Calendar() {
     };
 
     const selectedAfternoonTime = (index) => {
+
         setSelectedMorningTimeIndex(null);
         if(selectedAfternoonTimeIndex === index){
             setSelectedAfternoonTimeIndex(null);
@@ -758,12 +857,17 @@ function Calendar() {
 
         // 선택한 시간과 현재 시간 비교
         const [hours, minutes] = afternoonArray[index].split(':').map(Number);
-        const selectedTime = new Date();
-        selectedTime.setHours(hours, minutes, 0);
-
+        const selectedTime = new Date(
+            selectedTotalDate.selectedYear,
+            selectedTotalDate.selectedMonth -1,
+            selectedTotalDate.selectedDate,
+            hours,
+            minutes,
+            0
+        );
         const currentTime = new Date();
 
-        // 선택한 시간이 현재 시간보다 미래일 때만 예약 페이지로 넘어가기기
+        // 선택한 시간이 현재 시간보다 미래일 때만 예약 페이지로 넘어가기
         if(selectedTime > currentTime){
             navigate('/reservation',{
                 state:{
@@ -812,6 +916,7 @@ function Calendar() {
                 </div>
                 <div className={styles.calendarGrid}>
                     {calendarDates.map((date, index) => {
+
                         // 오늘 날짜를 비교하기 위해 시간 값을 0으로 설정
                         const todayWithoutTime = new Date(today).setHours(0, 0, 0, 0);
                         const dateWithoutTime = new Date(date).setHours(0, 0, 0, 0);
@@ -856,99 +961,62 @@ function Calendar() {
                 <div className={styles.instructionTime}>시간을 선택해주세요.</div>
                 <div className={styles.morningArray}>
                     <div id={styles.strMoring} style={{display : morningArray.length == 0 ? "none" : "" }}>오전</div>
-                    {morningArray.map((morningArr, morningIndex) => {
-                        // 현재 날짜와 시간을 얻는다
-                        const now = new Date();
-                        const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
-                        const todayWithoutTime = new Date(now).setHours(0, 0, 0, 0);
-                        const selectedDateWithoutTime = new Date(selectedTotalDate.selectedYear, selectedTotalDate.selectedMonth - 1, selectedTotalDate.selectedDate).setHours(0, 0, 0, 0);
-
-                        // morningArr의 시간을 분리하여 비교
-                        const [morningHours, morningMinutes] = morningArr.split(":").map(Number);
-
-                        // 비교를 위한 Date 객체 생성
-                        const currentDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), currentHours, currentMinutes);
-                        const morningDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), morningHours, morningMinutes);
-
-                        // 클릭 가능 여부 결정
-                        const isToday = todayWithoutTime === selectedDateWithoutTime;
-                        const isClickable = (isToday && morningDateTime > currentDateTime) || (!isToday && isOper);
-
-                        // 클릭 이벤트 핸들러
-                        const handleClick = () => {
-                            if (isClickable) {
-                                selectedMorningTime(morningIndex);
-                            }
-                        };
-
-                        return (
-                            <div 
-                                key={morningIndex} 
-                                className={styles.morningArr} 
-                                style={{
-                                    backgroundColor: isClickable
-                                        ? (selectedMorningTimeIndex === morningIndex ? '#FF8AA3' : '#FEDA00')
-                                        : '#FFF3A7', 
-                                    color: isClickable
-                                        ? (selectedMorningTimeIndex === morningIndex ? '#000000' : '#000000')
-                                        : '#BDBEBF', 
-                                    cursor: isOper && isClickable ? 'pointer' : 'default',
-                                    pointerEvents: isClickable ? 'auto' : 'none'
-                                }}
-                                onClick={handleClick}
-                            >
-                            {morningArr}
-                            </div>
-                        );
-                    })}
+                    {morningArray.map((timeObj, index) => (
+                        <div 
+                            key={index} 
+                            className={styles.morningArr} 
+                            style={{
+                                backgroundColor: !disabledTimes.includes(timeObj) && isOper
+                                    ? (selectedMorningTimeIndex === index ? '#FF8AA3' : '#FEDA00')
+                                    : '#FFF3A7', 
+                                color: !disabledTimes.includes(timeObj) && isOper ? '#000000' : '#BDBEBF', 
+                                cursor: !disabledTimes.includes(timeObj) && isOper? 'pointer' : 'default',
+                                pointerEvents: !disabledTimes.includes(timeObj) && isOper ? 'auto' : 'none'
+                            }}
+                            onClick={() => {
+                                if (!disabledTimes.includes(timeObj)) {
+                                    selectedMorningTime(index);
+                                }
+                            }}
+                        >
+                            {timeObj}
+                        </div>
+                    ))}
                 </div>
                 <div className={styles.afternoonArray}>
                     <div id={styles.strAfternoon} style={{display : afternoonArray.length == 0 ? "none" : "" }}>오후</div>
-                    {afternoonArray.map((afternoonArr, afternoonIndex) => {
-                        // 마지막 인덱스는 건너뛰기
-                        if(afternoonIndex === afternoonArray.length - 1) return null;
-                        // 현재 날짜와 시간을 얻는다
-                        const now = new Date();
-                        const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
-                        const todayWithoutTime = new Date(now).setHours(0, 0, 0, 0);
-                        const selectedDateWithoutTime = new Date(selectedTotalDate.selectedYear, selectedTotalDate.selectedMonth - 1, selectedTotalDate.selectedDate).setHours(0, 0, 0, 0);
+                    {afternoonArray.map((timeObj, index) => {
+                        // 마지막 인덱스 건너뛰기
+                        if(index === afternoonArray.length - 1) {
+                            return null;}
 
-                        // morningArr의 시간을 분리하여 비교
-                        const [afternoonHours, afternoonMinutes] = afternoonArr.split(":").map(Number);
+                        // 마지마 인덱스가 아닐 경우 반환
+                        return(
 
-                        // 비교를 위한 Date 객체 생성
-                        const currentDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), currentHours, currentMinutes);
-                        const afternoonDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), afternoonHours, afternoonMinutes);
-
-                        // 클릭 가능 여부 결정
-                        const isToday = todayWithoutTime === selectedDateWithoutTime;
-                        const isClickable = (isToday && afternoonDateTime > currentDateTime) || (!isToday && isOper);
-
-                        // 클릭 이벤트 핸들러
-                        const handleClick = () => {
-                            if (isClickable) {
-                                selectedAfternoonTime(afternoonIndex);
-                            }
-                        };
-
-                        return (
                             <div 
-                                key={afternoonIndex} 
+                                key={index} 
                                 className={styles.afternoonArr} 
                                 style={{
-                                    backgroundColor: isClickable ? (selectedAfternoonTimeIndex === afternoonIndex ? '#FF8AA3' : '#FEDA00') : '#FFF3A7', 
-                                    color: isClickable ? '' : '#BDBEBF', 
-                                    cursor: isOper ? (isClickable ? 'pointer' : 'default') : 'default',
-                                    pointerEvents: isClickable ? 'auto' : 'none'
+                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper
+                                        ? (selectedAfternoonTimeIndex === index ? '#FF8AA3' : '#FEDA00')
+                                        : '#FFF3A7',
+                                    color: !disabledTimes.includes(timeObj) && isOper ? '#000000' : '#BDBEBF',
+                                    cursor: !disabledTimes.includes(timeObj) && isOper ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper ? 'auto' : 'none'
                                 }}
-                                onClick={() => handleClick()}
+                                onClick={() => {
+                                    if (!disabledTimes.includes(timeObj)) {
+                                        selectedAfternoonTime(index);
+                                    }
+                                }}
                             >
-                            {afternoonArr}
+                                {timeObj}
                             </div>
                         );
                     })}
                 </div>
             </div>
+            <div className={styles.modalOverlay} style={{display : firstModalActive ? "" : "none"}}/>
             <div id={styles.timeConfirm} style={{display : firstModalActive ? "" : "none"}}>
                 <p id={styles.chooseOtherTime}>예약 가능한 시간이 아닙니다. <br/> 시간을 다시 선택해주세요.</p>
                 <button 
@@ -962,7 +1030,7 @@ function Calendar() {
                     확인
                 </button>
             </div>
-</>
+        </>
     );
 }
 
