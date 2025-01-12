@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import styles from "../css/StoreList.module.css"
 import "../css/reset.css"
 import { StoreListAPI } from "../api/StoreListAPI"
+import { fetchGraphData2 } from "../../dashboard/api/DashboardAPI"
 
 function StoreList(){
     const [list, setList] = useState([])
@@ -13,6 +14,13 @@ function StoreList(){
     const [searchSuccess, setSearchSuccess] = useState(false);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+    const [graphData, setGraphData] = useState(null);
+
+        const fetchGraphData = async () => {
+            const data = await fetchGraphData2();
+            const totalStoreCount = Object.values(data)[0];
+            setGraphData(totalStoreCount);
+        }
 
     const fetchList = useCallback(async (category, word) => {
         try{
@@ -30,6 +38,7 @@ function StoreList(){
 
     useEffect(()=>{
         fetchList(searchParams.get("category"), searchParams.get("word"));
+        fetchGraphData();
     },[searchParams, fetchList])
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -94,6 +103,7 @@ function StoreList(){
     return(
     <>
         <div className={styles.storeListText}>가게리스트</div>
+        <div className={styles.totalStoreCount}>총 {graphData}개의 가게가 등록되어 있습니다.</div>
         <select className={styles.storeListSelection} onChange={categoryChangeHandler}>
             <option className={styles.storeListOption} value="none" selected>검색 기준</option>
             <option className={styles.storeListOption} value="CATEGORY">카테고리</option>

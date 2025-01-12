@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import styles from "../css/UserList.module.css"
 import "../css/reset.css"
 import { UserListAPI } from "../api/UserListAPI"
+import { TotalUserAPI } from "../api/TotalUserAPI"
 
 function UserList(){
 
@@ -14,6 +15,14 @@ function UserList(){
     const [searchSuccess, setSearchSuccess] = useState(false);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+    const [totalUser, setTotalUser] = useState(0);
+
+    const fetchTotalUser = useCallback(async () => {
+        const data = await TotalUserAPI();
+        console.log(data)
+        const totalUserCount = Object.values(data)[0];
+        setTotalUser(totalUserCount);
+    }, [])
 
     const fetchList = useCallback(async (category, word) => {
             console.log(category+"fetchlist")
@@ -35,6 +44,7 @@ function UserList(){
 
     useEffect(()=>{
         fetchList(searchParams.get("category"), searchParams.get("word"));
+        fetchTotalUser();
     },[searchParams, fetchList])
 
     
@@ -101,6 +111,7 @@ function UserList(){
     return(
     <>
         <div className={styles.userListText}>회원리스트</div>
+        <div className={styles.totalUserCount}>총 {totalUser}명의 회원이 가입되어 있습니다.</div>
         <select className={styles.userListSelection} onChange={categoryChangeHandler}>
             <option className={styles.userListOption} value="none" selected>검색 기준</option>
             <option className={styles.userListOption} value="USER_ID">아이디</option>

@@ -22,7 +22,7 @@ function StoreInfoRegist() {
         latitude: 0,
         longitude: 0,
         operationTime: "",
-        storeCategoryNo: 0,
+        storeCategoryNo: 1,
         storeRegistDate : '',
         posNumber : 0
     });
@@ -40,6 +40,7 @@ function StoreInfoRegist() {
     const [agreeMessage , setAgreeMessage] = useState('');
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isRegist, setIsRegist] = useState(false);
 
     const today = new Date().toISOString().split('T')[0];
 
@@ -114,11 +115,13 @@ function StoreInfoRegist() {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
+                console.log(reader.result);
                 setBannerImages(prev => {
                     const newBannerImages = [...prev];
                     newBannerImages[index] = reader.result;
                     return newBannerImages;
                 });
+                console.log(bannerImages);
             };
             reader.readAsDataURL(file);
         }
@@ -133,6 +136,7 @@ function StoreInfoRegist() {
             newBannerImages[newBannerImages.length - 1] = '';
             return newBannerImages;
         });
+        console.log(bannerImages);
     }, []);
 
     const handleMenuUpload = useCallback((e) => {
@@ -182,6 +186,10 @@ function StoreInfoRegist() {
 
     // 수정 요청 처리 함수 수정
     const handleSubmit = async () => {
+        setStoreInfo(prev => ({
+            ...prev,
+            storeRegistDate : today
+        }));
         console.log(userInfo);
         if(storeInfo.storeName ===''){
             setResultMessage('가게 이름은 필수입니다.');
@@ -259,7 +267,7 @@ function StoreInfoRegist() {
                         }
                         return r.blob();
                     });
-                    formData.append(`banner${index}`, imageBlob); // 인덱스를 사용하여 키를 정의
+                    formData.append(`banner${index+1}`, imageBlob); // 인덱스를 사용하여 키를 정의
                 }
             });
                 const menuBlob = await fetch(menuImage).then(r => r.blob());
@@ -282,9 +290,9 @@ function StoreInfoRegist() {
                 return; // 함수 종료
             }
 
+            setIsRegist(true);
             setResultMessage('성공적으로 등록되었습니다.');
             setShowResultModal(true);
-            navigate(`/admin/stores/list`);
 
         } catch (error) {
             console.log(error);
@@ -295,7 +303,7 @@ function StoreInfoRegist() {
 
     const handleCancel = async () => {
         try {
-            const response = await fetch('/cancel/user-registration', {
+            const response = await fetch('/admin/stores/cancel/user', {
                 method: 'POST',
             });
             if (response.ok) {
@@ -546,6 +554,10 @@ function StoreInfoRegist() {
                         close={() => {
                             setShowResultModal(false);
                             setResultMessage('');
+                            if(isRegist){
+                                navigate(`/admin/stores/list`);
+                                setIsRegist(false);
+                            }
                         }}
                     />
                 )}
