@@ -201,7 +201,7 @@
 
 .pageNation{
     position: absolute;
-    width: 370px;
+    width: 350px;
     height: 28px;
     left: 620px;
     top: 700px;
@@ -262,4 +262,28 @@
     text-align: center;
 
     color: #1E1E1E;
+}
+
+.pageNationBackBtn {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    left: 646px;
+    top: 689px;
+    background-color: #FFFFFF;
+    border: none;
+    color: #FF8AA3;
+    cursor: pointer;
+}
+
+.pageNationForwordBtn {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    left: 900px;
+    top: 689px;
+    background-color: #FFFFFF;
+    border: none;
+    color: #FF8AA3;
+    cursor: pointer;
 }

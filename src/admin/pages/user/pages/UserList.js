@@ -149,17 +149,16 @@ function UserList(){
             }) : <div className={styles.userListBody}>해당 결과가 존재하지 않습니다.</div>
             }
         </div>
-
         <div className={styles.pageNation}>
-            <button onClick={()=>paginate(currentPage-1)} disabled={currentPage === 1}>◀</button>
             {visiblePageNum().map((pageNum)=>(
                 <button key={pageNum} onClick={() => paginate(pageNum)}
                 className={pageNum === currentPage ? styles.active :''}>
                     {pageNum}
                 </button>
             ))}
-            <button onClick={()=>paginate(currentPage+1)}>▶</button>
         </div>
+        <button className={styles.pageNationBackBtn} onClick={()=>paginate(currentPage-1)} hidden={currentPage === 1}>◀</button>
+        <button className={styles.pageNationForwordBtn} onClick={()=>paginate(currentPage+1)} hidden={currentPage === totalPages}>▶</button>
     </>
     )   
 

@@ -1,0 +1,86 @@
+.popup-calendar {
+    position: relative;
+    display: inline-block;
+}
+
+.popupCalendarInput {
+    position: absolute;
+    left: 500px;
+    top: 60px;
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.calendar {
+    position: absolute;
+    left: 500px;
+    top: 85px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000; /* 다른 요소 위에 표시되도록 */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    align-content: center;
+}
+
+.header button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    color: #232323;
+}
+
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    align-content: center;
+    gap: 5px;
+}
+
+.day, .day-name {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.day:hover {
+    background-color: #f0f0f0;
+}
+
+.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+.empty {
+    width: 40px;
+    height: 40px;
+}

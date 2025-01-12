@@ -3,7 +3,6 @@ import AdminLayout from "../layouts/AdminLayout";
 import AdminDashboard from "../pages/dashboard/pages/AdminDashboard";
 import AdminReview from "../pages/review/pages/AdminReview";
 import AdminNotice from "../pages/notice/pages/AdminNotice";
-import AdminReservation from "../pages/reservation/pages/AdminReservation";
 import AdminInquiry from "../pages/inquiry/pages/AdminInquiry";
 import UserList from "../pages/user/pages/UserList";
 import UserInfo from "../pages/user/pages/UserInfo";
@@ -12,7 +11,7 @@ import StoreInfo from "../pages/store/pages/StoreInfo";
 import StoreEdit from "../pages/store/pages/StoreEdit";
 import StoreUserRegist from "../pages/store/pages/StoreUserRegist";
 import StoreInfoRegist from "../pages/store/pages/StoreInfoRegist";
-
+import ReservationList from "../pages/reservation/pages/ReservationList";
 
 function AdminRoutes(){
     return(
@@ -33,7 +32,10 @@ function AdminRoutes(){
                     <Route path="regist/user" element={<StoreUserRegist/>}/>
                     <Route path="regist/store" element={<StoreInfoRegist/>}/>
                 </Route>
-                <Route path="/reservations" element={<AdminReservation/>}/>
+                <Route path="/reservations">
+                    <Route index element={<Navigate to="list" replace/>}/>
+                    <Route path="list" element={<ReservationList/>}/>
+                </Route>
                 <Route path="/reviews" element={<AdminReview/>}/>
                 <Route path="/inquiries" element={<AdminInquiry/>}/>
                 <Route path="/notices" element={<AdminNotice/>}/>
