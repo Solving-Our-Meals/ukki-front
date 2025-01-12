@@ -1,63 +1,123 @@
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../../../common/header/css/reset.css';
 import style from './css/search.module.css';
 import search from '../main/image/Search.png';
-import banner from './image/banner.png';
-import one from './image/image.png';
-import two from './image/image-1.png';
-import three from './image/image-2.png';
-import ghdqh from './image/image3.png';
-import rkrp from '../main/image/name-bg.png';
-function Search() {
 
-    return (
-        <><div id={style.search}>
-            <div className={style.input}>
-                <div>
-                    <input className={style.dlsvnt} type="search" defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색어를 입력하세요" />
-                    <img src={search} />
-                </div>
-                <p>최근 검색어</p>
-                <div className={style.boxs}>
-                    <span>피자</span>
-                    <span>치킨</span>
-                    <span>파스타</span>
-                    <span>족발</span>
-                    <span>떡볶이</span>
-                    <span>그릭요거트</span>
-                </div>
-                <p>실시간 인기 검색어</p>
-                <div className={style.dlsrl}></div>
-            </div>
-            <div className={style.banner}>
-                <p>우끼 광고 및 제휴 문의</p>
-                <span>배너 광고와 가게 제휴등의 문의는 문의하기로 부탁드립니다!</span>
-                <img src={banner} />
-            </div>
-            <div className={style.today}>
-                <h3>오늘은 여기 어때요?</h3>
-                <span>ⓘ 광고</span>
-                <img src={one} />
-                <span>내가 싫어하는거 총집합</span>
-                <p>(32)</p>
-                <img src={two} />
-                <span>나 제육볶음 진짜 잘함</span>
-                <img src={three} />
-                <p>(48)</p>
-                <span>떡튀순인가 김떡순인가</span>
-                <p>(25)</p>
-            </div>
-            <div className={style.rhkdrh}>
-                <img src={ghdqh} />
-                <img src={rkrp} />
-                <h3>광고 가게 이름</h3>
-                <p>광고 가게 위치</p>
-                <span>가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명<br />
-                    가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명</span>
-            </div>
+function Search() {
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어
+  const [storeList, setStoreList] = useState([]); // 검색된 가게 목록
+  const [recentSearches, setRecentSearches] = useState(
+    JSON.parse(localStorage.getItem('recentSearches')) || []
+  ); // 최근 검색어
+  const [popularSearches, setPopularSearches] = useState([ // 실시간 인기 검색어
+    
+  ]);
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태
+
+  // 검색어 입력 시 자동완성 리스트 업데이트
+  const updateSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+  };
+
+  const searchStores = (storeName) => {
+    setIsLoading(true); // 로딩 시작
+    axios.get(`/api/store/search?name=${storeName}`)
+      .then((response) => {
+        setStoreList(response.data); // 검색된 가게 목록을 상태에 저장
+        setIsLoading(false); // 로딩 종료
+      })
+      .catch((error) => {
+        console.error('검색 오류:', error);
+        setIsLoading(false); // 로딩 종료
+      });
+  };
+
+  // 최근 검색어 처리
+  const handleSearch = () => {
+    if (searchTerm && !recentSearches.includes(searchTerm)) {
+      const updatedRecentSearches = [searchTerm, ...recentSearches].slice(0, 5); // 최근 5개만 저장
+      setRecentSearches(updatedRecentSearches);
+      localStorage.setItem('recentSearches', JSON.stringify(updatedRecentSearches)); // 로컬 스토리지에 저장
+    }
+
+    // 검색 실행
+    searchStores(searchTerm);
+  };
+
+  // 엔터키나 서치 아이콘 클릭 시 검색 처리
+  const handleSearchTrigger = (e) => {
+    if (e.key === 'Enter' || e.type === 'click') {
+      handleSearch();
+    }
+  };
+
+  useEffect(() => {
+    // 실시간 인기 검색어 API 호출 예시
+    axios
+      .get('/api/popular-searches')
+      .then((response) => {
+        setPopularSearches(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching popular searches:', error);
+      });
+  }, []);
+
+  return (
+    <div id={style.search}>
+      <div className={style.input}>
+        <div>
+          <input
+            className={style.dlsvnt}
+            type="search"
+            value={searchTerm}
+            onChange={updateSearch}
+            onKeyDown={handleSearchTrigger}
+            placeholder="검색어를 입력하세요"
+          />
+          <img
+            src={search}
+            alt="search"
+            onClick={handleSearchTrigger}
+          />
         </div>
-        </>
-    )
+
+        <p>최근 검색어</p>
+        <div className={style.boxs}>
+          {recentSearches.map((term, index) => (
+            <span key={index}>{term}</span>
+          ))}
+        </div>
+
+        <p>실시간 인기 검색어</p>
+        <div className={style.boxs}>
+          {popularSearches.map((term, index) => (
+            <span key={index}>{term}</span>
+          ))}
+        </div>
+
+        <div className={style.dlsrl}></div>
+      </div>
+
+      <div className={style.storeList}>
+        {isLoading ? (
+          <p>로딩 중...</p>
+        ) : storeList.length > 0 ? (
+          storeList.map((store) => (
+            <div key={store.STORE_NO} className={style.storeItem}>
+              <p>{store.STORE_NAME}</p>
+              <p>{store.STORE_ADDRESS}</p>
+              <p>{store.STORE_DES}</p>
+            </div>
+          ))
+        ) : (
+          <p>검색 결과가 없습니다.</p>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default Search;
