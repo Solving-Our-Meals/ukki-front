@@ -50,13 +50,13 @@
 .mypageReservationMain .headerRow {
     display: grid;
     grid-template-columns:  2fr 5fr 3fr 3fr;;
-    padding: 10px 0;
+    padding: 0px 0;
 
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 30px;
 
     /* text/strong */
     color: #232323;
@@ -64,7 +64,12 @@
 
 /* 가운데 정렬 */
 .mypageReservationMain {
-    transform: translate(-30px, 150px);
+    transform: translateY(-50px);
+    margin-top: 150px;
+}
+
+.headerRow {
+    margin-top: 10px;
 }
 
 /* 가운데 정렬 2 */
@@ -72,6 +77,10 @@
     width:325px;
     background: none;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
 }
 
 /*
@@ -96,8 +105,12 @@
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 30px;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    height: 95px;
 }
 
 
@@ -105,8 +118,8 @@
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    gap: 10px;
+    margin-top: 35px;
+    gap: 40px;
 }
 
 .pagination button {
@@ -142,17 +155,23 @@
     font-size: 25px;
     line-height: 28px;
     cursor: pointer;
-    color: #FF8AA3;
+    color: #232323;
+    opacity: 50%;
 }
 
 .paginationButton.disabled {
     visibility: hidden;
 }
 
+.paginationButton.arrow {
+    color:#FF8AA3;
+    opacity: 1;
+}
+
 /* 선 */
 .headerRow, .reservationItem {
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 55px;
 }
 
 /* 선 2 (가운데 정렬) */
@@ -161,26 +180,44 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 90%;
+    width: 95%;
     height: 2px;
     background-color: #ccc;
     transform: translateX(-50%);
 }
 
+.mypageReservationMain .headerRow {
+    display: grid;
+    grid-template-columns: 2fr 5fr 12fr 15fr;
+    padding: 0px 0;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #232323;
+    position: relative;
+}
 
-/* 선 2 (좌측 정렬) */
-/*
-.headerRow::before, .reservationItem::before {
+.headerRow::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 95%;
+    height: 5px;
+    transform: translateX(-50%);
+}
+
+.reservationItem::before {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 40%;
-    width: 90%;
+    left: 50%;
+    width: 95%;
     height: 2px;
     background-color: #ccc;
     transform: translateX(-50%);
 }
-*/
 
 .loadingContainer {
     position: absolute;
@@ -201,6 +238,6 @@
 }
 
 .paginationButton.active {
-    background-color: #FF8AA3;
-    color:white;
+    color:#232323;
+    opacity: 1;
 }

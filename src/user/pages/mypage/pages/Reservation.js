@@ -145,13 +145,12 @@ function Reservation() {
                 {/* 페이지네이션 */}
                 <div className={styles.pagination}>
                     <div
-                        className={`${styles.paginationButton} ${currentPage === 1 ? styles.disabled : ''}`}
+                        className={`${styles.paginationButton} ${styles.arrow} ${currentPage === 1 ? styles.disabled : ''}`}
                         onClick={handlePrevClick}
                     >
                         ◀
                     </div>
 
-                    {/* 페이지 번호 버튼 */}
                     {pageNumbersToDisplay.map(number => (
                         <div
                             key={number}
@@ -163,12 +162,13 @@ function Reservation() {
                     ))}
 
                     <div
-                        className={`${styles.paginationButton} ${currentPage === totalPages || totalPages === 0 ? styles.disabled : ''}`}
+                        className={`${styles.paginationButton} ${styles.arrow} ${currentPage === totalPages || totalPages === 0 ? styles.disabled : ''}`}
                         onClick={handleNextClick}
                     >
                         ▶
                     </div>
                 </div>
+
             </div>
         </div>
     );
