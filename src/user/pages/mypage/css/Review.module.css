@@ -11,11 +11,11 @@
 
 .tab2, .tab3, .tab4 {
     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
-    font-weight: 900;
-    margin-left: 30px;
+    font-weight: 400;
+    margin-left: 10px;
     cursor: pointer;
     color : #BDBEBF;
 }
@@ -26,17 +26,17 @@
 
 .line1, .line2 {
     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
     font-weight: 900;
-    margin-left: 20px;
+    margin-left: 5px;
     color : #BDBEBF;
 }
 
 .tab1 {
     display: inline-block;
-    font-family: 'Bobaesum Jindo TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-weight: 400;
     font-size: 45px;
