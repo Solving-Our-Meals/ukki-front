@@ -16,7 +16,7 @@ function KakaoMap(){
     const mapLink  = `https://map.kakao.com/link/map/${storeName},${storeLatitude},${storeLongitude}`
 
     // useEffect(() => {
-    //     fetch('/store/test')
+    //     fetch('/store/getInfo')
     //     .then(res => res.json())
     //     .then(data => {
     //         setStoreLatitude(data.latitude);
