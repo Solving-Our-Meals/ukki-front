@@ -1,5 +1,8 @@
 .mypageReservation {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
 }
 
 .allTabs {
@@ -24,15 +27,15 @@
     color : #232323;
 }
 
- .line1, .line2 {
-     display: inline-block;
-     font-family: 'BobaesumJindoTTF';
-     font-style: normal;
-     font-size: 20px;
-     font-weight: 900;
-     margin-left: 7px;
-     color : #BDBEBF;
- }
+.line1, .line2 {
+    display: inline-block;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 7px;
+    color : #BDBEBF;
+}
 
 .tab1 {
     display: inline-block;
@@ -49,23 +52,26 @@
 /* 예약 리스트 CSS */
 .mypageReservationMain .headerRow {
     display: grid;
-    grid-template-columns:  2fr 5fr 3fr 3fr;;
+    grid-template-columns:  2fr 12fr 12fr 15fr 15fr;
     padding: 0px 0;
-
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
 
-    /* text/strong */
     color: #232323;
 }
 
 /* 가운데 정렬 */
 .mypageReservationMain {
     transform: translateY(-50px);
-    margin-top: 150px;
+    margin-top: 160px;
+
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+    height: 565px;
 }
 
 .headerRow {
@@ -74,7 +80,7 @@
 
 /* 가운데 정렬 2 */
 .headerItem {
-    width:325px;
+    width:300px;
     background: none;
     text-align: center;
     display: flex;
@@ -83,25 +89,11 @@
     height: 75px;
 }
 
-/*
-!* 좌측 정렬 *!
-.mypageReservationMain {
-    transform: translate(100px, 150px);
-}
-
-!* 좌측 정렬 2 *!
-.headerItem {
-    width:325px;
-    background: none;
-}
-*/
-
 /* 예약 항목 */
 .reservationItem {
     display: grid;
-    grid-template-columns:  2fr 5fr 3fr 3fr;;
+    grid-template-columns:  2fr 12fr 12fr 15fr 15fr;
     padding: 10px 0;
-
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 600;
@@ -118,20 +110,25 @@
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 35px;
     gap: 40px;
+    position: fixed;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0;
 }
 
-.pagination button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+/* 페이지네이션 내부 숫자 */
+.paginationButton {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 28px;
     cursor: pointer;
-    font-size: 14px;
+    color: #232323;
+    opacity: 50%;
 }
-
 .pagination button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
@@ -162,7 +159,6 @@
 .paginationButton.disabled {
     visibility: hidden;
 }
-
 .paginationButton.arrow {
     color:#FF8AA3;
     opacity: 1;
@@ -188,7 +184,6 @@
 
 .mypageReservationMain .headerRow {
     display: grid;
-    grid-template-columns: 2fr 5fr 12fr 15fr;
     padding: 0px 0;
     font-family: 'Pretendard-Regular';
     font-style: normal;
