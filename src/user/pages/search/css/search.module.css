@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
  v2.0 | 20110126
  License: none (public domain)
@@ -173,6 +174,9 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
+#search .storeList {
+  display: block; /* 요소가 화면에 나타나도록 확인 */
+}
 #search .input div {
   position: relative;
   width: 100vw;
@@ -185,7 +189,7 @@ a:active {
   left: 22vw;
   top: 8vw;
   border-radius: 50px;
-  border: #FF8AA3 0.3vw solid;
+  border: #FF8AA3 3px solid;
   background-color: #FFF3A7;
   color: #FEBA00;
   font-family: "Pretendard Variable";
@@ -228,12 +232,30 @@ a:active {
 }
 #search .input .boxs span {
   padding: 0.6vw 3vw;
-  background-color: #fff9d6;
+  background-color: #f0f0f0;
   border-radius: 50px;
-  color: #FEBA00;
+  color: #808080;
   font-size: 1vw;
   font-weight: 700;
   font-family: "Pretendard Variable";
+}
+#search .input .box {
+  position: absolute;
+  top: 25vw;
+  left: 13.5vw;
+  display: flex;
+  gap: 4.5vw;
+  z-index: 9;
+}
+#search .input .box span {
+  padding: 0.6vw 3vw;
+  background-color: #f0f0f0;
+  border-radius: 50px;
+  color: #000000;
+  font-size: 1vw;
+  font-weight: 700;
+  font-family: "Pretendard Variable";
+  z-index: 9;
 }
 #search .input .dlsrl {
   position: absolute;
@@ -795,4 +817,4 @@ a:active {
     line-height: 150%;
     color: #232323;
   }
-}
+}/*# sourceMappingURL=search.module.css.map */

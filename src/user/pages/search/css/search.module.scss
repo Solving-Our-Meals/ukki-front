@@ -1,6 +1,10 @@
 @import '../../../../common/header/css/reset.scss';
 
 #search {
+    .storeList {
+        display: block; /* 요소가 화면에 나타나도록 확인 */
+      }
+      
     .input {
         div {
             position: relative;
@@ -13,7 +17,7 @@
                 left: 22vw;
                 top: 8vw;
                 border-radius: 50px;
-                border: $primary 0.3vw solid;
+                border: $primary 3px solid;
                 background-color: $secondary2;
                 color: #FEBA00;
                 font-family: 'Pretendard Variable';
@@ -62,12 +66,32 @@
 
             span {
                 padding: 0.6vw 3vw;
-                background-color: #fff9d6;
+                background-color: #f0f0f0;
                 border-radius: 50px;
-                color: #FEBA00;
+                color: #808080;
                 font-size: 1vw;
                 font-weight: 700;
                 font-family: 'Pretendard Variable';
+            }
+        }
+
+        .box{
+            position: absolute;
+            top: 25vw;
+            left: 13.5vw;
+            display: flex;
+            gap: 4.5vw;
+            z-index: 9;
+
+            span {
+                padding: 0.6vw 3vw;
+                background-color: #f0f0f0;
+                border-radius: 50px;
+                color: #000000;
+                font-size: 1vw;
+                font-weight: 700;
+                font-family: 'Pretendard Variable';
+                z-index: 9;
             }
         }
 
