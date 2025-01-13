@@ -329,6 +329,30 @@ a:active {
   border-radius: 0;
   z-index: 5;
 }
+.reviewStyle .reviewArea .reviewContainer .review #deleteReview {
+  position: absolute;
+  top: 50px;
+  left: 800px;
+  width: 120px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #FFBDC9;
+  color: #232323;
+  border: none;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: "Pretendard Variable";
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.reviewStyle .reviewArea .reviewContainer .review #deleteReview:hover {
+  background-color: #FF8AA3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
 .reviewStyle .reviewArea .reviewContainer .review #reviewPhoto {
   position: absolute;
   left: 960px;
@@ -337,6 +361,104 @@ a:active {
   height: 367px;
   border-radius: 0;
   z-index: 5;
+}
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck {
+  position: absolute;
+  left: 521px;
+  top: 2371px;
+  width: 879px;
+  height: 316px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck #reallyDeleteReview {
+  width: max-content;
+  margin-top: 5px;
+  height: 44px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  color: #232323;
+}
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck #notice {
+  width: max-content;
+  margin-top: 40px;
+  height: 36px;
+  font-family: "Pretendard Variable";
+  font-size: 30px;
+  font-weight: 500;
+  color: #FF5D18;
+}
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck #cancleDeleteReview {
+  margin-top: 40px;
+  margin-left: -220px;
+  width: 171px;
+  height: 44px;
+  background-color: #FEDA00;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
+}
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck #confirmDeleteReview {
+  margin-top: -44px;
+  margin-left: 220px;
+  width: 171px;
+  height: 44px;
+  background-color: #FF8AA3;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
+}
+.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview {
+  position: absolute;
+  left: 521px;
+  top: 2371px;
+  width: 879px;
+  height: 316px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview #completedDeletteMessage {
+  width: max-content;
+  margin-top: 5px;
+  height: 44px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  color: #232323;
+}
+.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview #completeBtn {
+  margin-top: 40px;
+  width: 171px;
+  height: 44px;
+  background-color: #FEDA00;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
 }
 .reviewStyle .reviewArea #moreReview {
   margin-top: 50px;

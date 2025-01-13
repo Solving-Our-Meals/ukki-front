@@ -177,6 +177,32 @@
                     border-radius: 0;
                     z-index: 5;
                 }
+
+                #deleteReview {
+                    position: absolute;
+                    top: 50px;
+                    left : 800px;
+                    width: 120px;
+                    height: 50px;
+                    border-radius: 20px;
+                    background-color: #FFBDC9;
+                    color: $textStrong;
+                    border: none;
+                    font-size: 25px;
+                    font-weight: 600;
+                    font-family: 'Pretendard Variable';
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1;
+                    
+                    &:hover {
+                        background-color: #FF8AA3;
+                        transform: scale(1.05);
+                        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+                    }
+                }
     
                 #reviewPhoto{
                     position: absolute;
@@ -187,94 +213,114 @@
                     border-radius: 0;
                     z-index: 5;
                 }
+
+                #finalCheck{
+                    position : absolute;
+                    left : 521px;
+                    top : 2371px;
+                    width : 879px;
+                    height : 316px;
+                    border: 5px solid $primary;
+                    border-radius: 50px;
+                    z-index: 20;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #FFFFFF;
+                
+                    #reallyDeleteReview{
+                        width: max-content;
+                        margin-top: 5px;
+                        height : 44px;
+                        font-family: 'Bobaesum Jindo TTF';
+                        font-size: 40px;
+                        font-weight: 500;
+                        color: $textStrong;
+                    }
+                
+                    #notice{
+                        width: max-content;
+                        margin-top: 40px;
+                        height : 36px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 30px;
+                        font-weight: 500;
+                        color: $danger;
+                    }
+                
+                    #cancleDeleteReview{
+                        margin-top: 40px;
+                        margin-left: -220px;
+                        width: 171px;
+                        height : 44px;
+                        background-color: $secondary;
+                        border: none;
+                        border-radius: 25px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 25px;
+                        font-weight: 500;
+                        color: $textStrong;
+                        cursor: pointer;
+                    }
+                
+                    #confirmDeleteReview{
+                        margin-top: -44px;
+                        margin-left: 220px;
+                        width: 171px;
+                        height : 44px;
+                        background-color: $primary;
+                        border: none;
+                        border-radius: 25px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 25px;
+                        font-weight: 500;
+                        color: $textStrong;
+                        cursor: pointer;
+                    }
+                }
+
+                #completeDeleteReview{
+                    position : absolute;
+                    left : 521px;
+                    top : 2371px;
+                    width : 879px;
+                    height : 316px;
+                    border: 5px solid $primary;
+                    border-radius: 50px;
+                    z-index: 20;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #FFFFFF;
+                
+                    #completedDeletteMessage{
+                        width: max-content;
+                        margin-top: 5px;
+                        height : 44px;
+                        font-family: 'Bobaesum Jindo TTF';
+                        font-size: 40px;
+                        font-weight: 500;
+                        color: $textStrong;
+                    }
+                
+                    #completeBtn{
+                        margin-top: 40px;
+                        width: 171px;
+                        height : 44px;
+                        background-color: $secondary;
+                        border: none;
+                        border-radius: 25px;
+                        font-family: 'Pretendard Variable';
+                        font-size: 25px;
+                        font-weight: 500;
+                        color: $textStrong;
+                        cursor: pointer;
+                    }
+                }
+
             }
-
-            // .transformReview{
-            //     position: relative;
-            //     display: inline-block;
-            //     margin-top: 30px;
-            //     // margin-left: 70px;
-
-            //     #userProfile{
-            //         position: relative;
-            //         margin-left : 570px;
-            //         top : 53px;
-            //         width : 114px;
-            //         height : 108px;
-            //         z-index: 5;
-            //         border-radius: 0;
-            //     }
-        
-            //     div{
-            //         position: absolute;
-            //         width : max-content;
-            //         cursor: default;
-            //         z-index: 2;
-            //     }
-    
-            //     div:nth-of-type(1){
-            //         left: 710px;
-            //         top : 70px;
-            //         width: max-content;
-            //         font-family: 'Bobaesum Jindo TTF';
-            //         font-size: 30px;
-            //         font-weight: 500;
-            //         font-style: normal;
-            //         color: $textStrong;
-            //         z-index: 5;
-                    
-            //         span{
-            //             margin-right: 8px;
-            //         }
-
-            //         .star {
-            //             font-size: 25px;
-            //             margin-right: -5px;
-            //             display: inline-block;
-            //         }
-
-            //     }
-    
-            //     div:nth-of-type(2){
-            //        left : 710px;
-            //        top : 111px;
-            //        width: max-content;
-            //        font-family: 'Pretendard Variable';
-            //        font-size: 20px;
-            //        font-weight: 400;
-            //        font-style: normal;
-            //        color: $textStrong;
-            //        z-index: 5;
-            //     }
-    
-            //     div:nth-of-type(3){
-            //         left : 570px;
-            //         top : 183px;
-            //         width: 850px;
-            //         height: 223px;
-            //         background-color: #FFF9D3;
-            //         padding-left: 15px;
-            //         padding-top: 10px;
-            //         font-family: 'Pretendard Variable';
-            //         font-size: 20px;
-            //         font-weight: 500;
-            //         font-style: normal; 
-            //         color: $textStrong;
-            //         line-height: 160%;
-            //         border-radius: 0;
-            //         z-index: 5;
-            //     }
-    
-            //     #reviewPhoto{
-            //         position: absolute;
-            //         left : 43px;
-            //         top : 38px;
-            //         width: 468px;
-            //         height: 367px;
-            //         border-radius: 0;
-            //         z-index: 5;
-            //     }
-            // }
         }
 
         #moreReview{
