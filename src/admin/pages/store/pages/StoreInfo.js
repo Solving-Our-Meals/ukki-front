@@ -30,7 +30,7 @@ function StoreInfo() {
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultMessage , setResultMessage] = useState('');
     const [agreeMessage , setAgreeMessage] = useState('');
-
+    const [loading, setLoading] = useState(true);
     useEffect(
         () => {
             fetch(`/admin/stores/info/${storeNo}`)
@@ -46,7 +46,10 @@ function StoreInfo() {
                 }
                 console.log("가게 정보 :",data)
             })
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
+            .finally(() => {
+                setLoading(false);
+            });
         }, [storeNo]
     );
 
@@ -112,17 +115,19 @@ function StoreInfo() {
         })
         .then(res => res.json())
         .then(data => {
-            if(data.ok){
                 setShowResultModal(true);
-                setResultMessage('삭제되었습니다.');
-            }else{
-                setShowResultModal(true);
-                setResultMessage('삭제에 실패했습니다.');
-            }
+                setResultMessage('삭제에 성공했습니다.');
         })
-        .catch(error => console.log(error));
-        setShowResultModal(true);
-        setResultMessage('삭제에 실패했습니다.');
+        .catch(error => {
+            console.log(error)
+            setShowResultModal(true);
+            setResultMessage('삭제에 실패했습니다.');
+        });
+        
+    }
+
+    if(loading){
+        return <div>로딩중...</div>;
     }
 
     return(
@@ -206,6 +211,7 @@ function StoreInfo() {
                         message={resultMessage} 
                         close={() => {
                             setShowResultModal(false);
+                            setResultMessage('');
                             navigate(`/admin/stores/list`);
                         }}
                     />

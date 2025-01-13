@@ -41,6 +41,7 @@ function StoreEdit() {
     const [resultMessage , setResultMessage] = useState('');
     const [agreeMessage , setAgreeMessage] = useState('');
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchStoreData = async () => {
@@ -76,7 +77,10 @@ function StoreEdit() {
             } catch (error) {
                 setResultMessage('데이터 로딩 중 오류가 발생했습니다.');
                 setShowResultModal(true);
+            }finally{
+                setLoading(false);
             }
+
         };
 
         fetchStoreData();
@@ -362,6 +366,9 @@ function StoreEdit() {
         }
     };
 
+    if(loading){
+        return <div>로딩중...</div>;
+    }
     return(
         <div className={styles.storeEdit}>
             <div id={styles.storeEditText}>가게 수정</div>
