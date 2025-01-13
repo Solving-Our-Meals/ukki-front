@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import AdminLayout from "../layouts/AdminLayout";
 import AdminDashboard from "../pages/dashboard/pages/AdminDashboard";
-import AdminReview from "../pages/review/pages/AdminReview";
 import AdminNotice from "../pages/notice/pages/AdminNotice";
 import AdminInquiry from "../pages/inquiry/pages/AdminInquiry";
 import UserList from "../pages/user/pages/UserList";
@@ -14,6 +13,7 @@ import StoreInfoRegist from "../pages/store/pages/StoreInfoRegist";
 import ReservationList from "../pages/reservation/pages/ReservationList";
 import ReservationTodayInfo from "../pages/reservation/pages/ReservationTodayInfo";
 import ReservationEndInfo from "../pages/reservation/pages/ReservationEndInfo";
+import ReviewList from "../pages/review/pages/ReviewList";
 
 function AdminRoutes(){
     return(
@@ -40,7 +40,10 @@ function AdminRoutes(){
                     <Route path="info/today/:reservationNo" element={<ReservationTodayInfo/>}/>
                     <Route path="info/end/:reservationNo" element={<ReservationEndInfo/>}/>
                 </Route>
-                <Route path="/reviews" element={<AdminReview/>}/>
+                <Route path="/reviews">
+                    <Route index element={<Navigate to="list" replace/>}/>
+                    <Route path="list" element={<ReviewList/>}/>
+                </Route>
                 <Route path="/inquiries" element={<AdminInquiry/>}/>
                 <Route path="/notices" element={<AdminNotice/>}/>
             </Route>
