@@ -189,92 +189,92 @@
                 }
             }
 
-            .transformReview{
-                position: relative;
-                display: inline-block;
-                margin-top: 30px;
-                // margin-left: 70px;
+            // .transformReview{
+            //     position: relative;
+            //     display: inline-block;
+            //     margin-top: 30px;
+            //     // margin-left: 70px;
 
-                #userProfile{
-                    position: relative;
-                    margin-left : 570px;
-                    top : 53px;
-                    width : 114px;
-                    height : 108px;
-                    z-index: 5;
-                    border-radius: 0;
-                }
+            //     #userProfile{
+            //         position: relative;
+            //         margin-left : 570px;
+            //         top : 53px;
+            //         width : 114px;
+            //         height : 108px;
+            //         z-index: 5;
+            //         border-radius: 0;
+            //     }
         
-                div{
-                    position: absolute;
-                    width : max-content;
-                    cursor: default;
-                    z-index: 2;
-                }
+            //     div{
+            //         position: absolute;
+            //         width : max-content;
+            //         cursor: default;
+            //         z-index: 2;
+            //     }
     
-                div:nth-of-type(1){
-                    left: 710px;
-                    top : 70px;
-                    width: max-content;
-                    font-family: 'Bobaesum Jindo TTF';
-                    font-size: 30px;
-                    font-weight: 500;
-                    font-style: normal;
-                    color: $textStrong;
-                    z-index: 5;
+            //     div:nth-of-type(1){
+            //         left: 710px;
+            //         top : 70px;
+            //         width: max-content;
+            //         font-family: 'Bobaesum Jindo TTF';
+            //         font-size: 30px;
+            //         font-weight: 500;
+            //         font-style: normal;
+            //         color: $textStrong;
+            //         z-index: 5;
                     
-                    span{
-                        margin-right: 8px;
-                    }
+            //         span{
+            //             margin-right: 8px;
+            //         }
 
-                    .star {
-                        font-size: 25px;
-                        margin-right: -5px;
-                        display: inline-block;
-                    }
+            //         .star {
+            //             font-size: 25px;
+            //             margin-right: -5px;
+            //             display: inline-block;
+            //         }
 
-                }
+            //     }
     
-                div:nth-of-type(2){
-                   left : 710px;
-                   top : 111px;
-                   width: max-content;
-                   font-family: 'Pretendard Variable';
-                   font-size: 20px;
-                   font-weight: 400;
-                   font-style: normal;
-                   color: $textStrong;
-                   z-index: 5;
-                }
+            //     div:nth-of-type(2){
+            //        left : 710px;
+            //        top : 111px;
+            //        width: max-content;
+            //        font-family: 'Pretendard Variable';
+            //        font-size: 20px;
+            //        font-weight: 400;
+            //        font-style: normal;
+            //        color: $textStrong;
+            //        z-index: 5;
+            //     }
     
-                div:nth-of-type(3){
-                    left : 570px;
-                    top : 183px;
-                    width: 850px;
-                    height: 223px;
-                    background-color: #FFF9D3;
-                    padding-left: 15px;
-                    padding-top: 10px;
-                    font-family: 'Pretendard Variable';
-                    font-size: 20px;
-                    font-weight: 500;
-                    font-style: normal; 
-                    color: $textStrong;
-                    line-height: 160%;
-                    border-radius: 0;
-                    z-index: 5;
-                }
+            //     div:nth-of-type(3){
+            //         left : 570px;
+            //         top : 183px;
+            //         width: 850px;
+            //         height: 223px;
+            //         background-color: #FFF9D3;
+            //         padding-left: 15px;
+            //         padding-top: 10px;
+            //         font-family: 'Pretendard Variable';
+            //         font-size: 20px;
+            //         font-weight: 500;
+            //         font-style: normal; 
+            //         color: $textStrong;
+            //         line-height: 160%;
+            //         border-radius: 0;
+            //         z-index: 5;
+            //     }
     
-                #reviewPhoto{
-                    position: absolute;
-                    left : 43px;
-                    top : 38px;
-                    width: 468px;
-                    height: 367px;
-                    border-radius: 0;
-                    z-index: 5;
-                }
-            }
+            //     #reviewPhoto{
+            //         position: absolute;
+            //         left : 43px;
+            //         top : 38px;
+            //         width: 468px;
+            //         height: 367px;
+            //         border-radius: 0;
+            //         z-index: 5;
+            //     }
+            // }
         }
 
         #moreReview{
@@ -487,99 +487,99 @@
                     }
                 }
 
-                .transformReview{
-                    position: relative;
-                    display: inline-block;
-                    margin-top: 30px;
-                    margin-left: 40px;
+                // .transformReview{
+                //     position: relative;
+                //     display: inline-block;
+                //     margin-top: 30px;
+                //     margin-left: 40px;
 
-                    #reviewImg{
-                        display: block;
-                        top : 5px;
-                        width: 831px;
-                        height : 258px;
-                        z-index: 1;
-                    }
+                //     #reviewImg{
+                //         display: block;
+                //         top : 5px;
+                //         width: 831px;
+                //         height : 258px;
+                //         z-index: 1;
+                //     }
     
-                    #userProfile{
-                        position: absolute;
-                        left : 333px;
-                        top : 28px;
-                        width : 62px;
-                        height : 59px;
-                        z-index: 5;
-                        border-radius: 0;
-                    }
+                //     #userProfile{
+                //         position: absolute;
+                //         left : 333px;
+                //         top : 28px;
+                //         width : 62px;
+                //         height : 59px;
+                //         z-index: 5;
+                //         border-radius: 0;
+                //     }
             
-                    div{
-                        position: absolute;
-                        width : max-content;
-                        cursor: default;
-                        z-index: 2;
-                    }
+                //     div{
+                //         position: absolute;
+                //         width : max-content;
+                //         cursor: default;
+                //         z-index: 2;
+                //     }
         
-                    div:nth-of-type(1){
-                        left: 403px;
-                        top : 34px;
-                        width: max-content;
-                        font-family: 'Bobaesum Jindo TTF';
-                        font-size: 20px;
-                        font-weight: 500;
-                        font-style: normal;
-                        color: $textStrong;
-                        z-index: 5;
+                //     div:nth-of-type(1){
+                //         left: 403px;
+                //         top : 34px;
+                //         width: max-content;
+                //         font-family: 'Bobaesum Jindo TTF';
+                //         font-size: 20px;
+                //         font-weight: 500;
+                //         font-style: normal;
+                //         color: $textStrong;
+                //         z-index: 5;
 
-                        span{
-                            margin-right: 10px;
-                        }
+                //         span{
+                //             margin-right: 10px;
+                //         }
 
-                        .star {
-                            font-size: 25px;
-                            margin-right: -2px;
-                            display: inline-block;
-                        }
-                    }
+                //         .star {
+                //             font-size: 25px;
+                //             margin-right: -2px;
+                //             display: inline-block;
+                //         }
+                //     }
         
-                    div:nth-of-type(2){
-                       left : 403px;
-                       top : 61px;
-                       width: max-content;
-                       font-family: 'Pretendard Variable';
-                       font-size: 15px;
-                       font-weight: 400;
-                       font-style: normal;
-                       color: $textStrong;
-                       z-index: 5;
-                    }
+                //     div:nth-of-type(2){
+                //        left : 403px;
+                //        top : 61px;
+                //        width: max-content;
+                //        font-family: 'Pretendard Variable';
+                //        font-size: 15px;
+                //        font-weight: 400;
+                //        font-style: normal;
+                //        color: $textStrong;
+                //        z-index: 5;
+                //     }
         
-                    div:nth-of-type(3){
-                        left : 338px;
-                        top : 95px;
-                        width: 436px;
-                        height: 117px;
-                        background-color: #FFF9D3;
-                        padding-left: 7px;
-                        padding-top: 5px;
-                        font-family: 'Pretendard Variable';
-                        font-size: 13px;
-                        font-weight: 500;
-                        font-style: normal; 
-                        color: $textStrong;
-                        line-height: 160%;
-                        border-radius: 0;
-                        z-index: 5;
-                    }
+                //     div:nth-of-type(3){
+                //         left : 338px;
+                //         top : 95px;
+                //         width: 436px;
+                //         height: 117px;
+                //         background-color: #FFF9D3;
+                //         padding-left: 7px;
+                //         padding-top: 5px;
+                //         font-family: 'Pretendard Variable';
+                //         font-size: 13px;
+                //         font-weight: 500;
+                //         font-style: normal; 
+                //         color: $textStrong;
+                //         line-height: 160%;
+                //         border-radius: 0;
+                //         z-index: 5;
+                //     }
         
-                    #reviewPhoto{
-                        position: absolute;
-                        left : 20px;
-                        top : 17px;
-                        width: 263px;
-                        height: 206px;
-                        border-radius: 0;
-                        z-index: 5;
-                    }
-                }
+                //     #reviewPhoto{
+                //         position: absolute;
+                //         left : 20px;
+                //         top : 17px;
+                //         width: 263px;
+                //         height: 206px;
+                //         border-radius: 0;
+                //         z-index: 5;
+                //     }
+                // }
             }
     
             #moreReview{
