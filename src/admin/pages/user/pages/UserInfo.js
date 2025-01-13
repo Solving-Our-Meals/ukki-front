@@ -19,11 +19,13 @@ function UserInfo(){
     const [deleteUser, setDeleteUser] = useState(false);
     const [editUser, setEditUser] = useState(false);
     const navigate = useNavigate();
+    const defaultProfile = '/images/mypage/profile/default.png';
 
     const fetchInfo = useCallback(async (no) => {
         try{
             const userInfo = await UserInfoAPI(no);
             if (userInfo){
+                console.log(userInfo)
                 setIsInfo(true)
                 setUserInfo(userInfo)
             }else{
@@ -100,7 +102,7 @@ function UserInfo(){
         <>
         <div id={styles.userInfoText}>회원 상세정보</div>
         <div className={styles.horizon1}></div>
-        <div id={styles.userInfoProfile}>프로필 정리되면 불러올 예정{userInfo.profile}</div>
+        <div id={styles.userInfoProfile}><img src={userInfo.profileImage? userInfo.profileImage : defaultProfile} alt="프로필 이미지" /></div>
         <div id={styles.userInfoContentText}>회원정보</div>
         <div id={styles.userInfoId}><p>아이디 : </p> {userInfo.userId}</div>
         <div id={styles.userInfoName}><p>닉네임 : </p> {userInfo.userName} <button id={styles.userInfoNameChangeBtn} onClick={handleEditUser}>닉네임 변경</button></div>
@@ -109,13 +111,12 @@ function UserInfo(){
         <div id={styles.badgeArea}>
             <div id={styles.badgeAreaText}>뱃지</div>
             <div id={styles.badgeImgArea}>
-                <div className={styles.badge}>뱃지1</div>
-                <div className={styles.badge}>뱃지2</div>
-                <div className={styles.badge}>뱃지3</div>
-                <div className={styles.badge}>뱃지4</div>
-                <div className={styles.badge}>뱃지5</div>
-                <div className={styles.badge}>뱃지6</div>
-                <div className={styles.badge}>뱃지7</div>
+                <div className={styles.badge}><img src="/images/badge/badge1.png" alt="뱃지1" className={userInfo.resCount >= 10 ? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/images/badge/badge2.png" alt="뱃지2" className={userInfo.reviewCount >= 10 ? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/images/badge/badge3.png" alt="뱃지3" className={userInfo.resCount >= 25 ? '' : styles.badgeNotAchieved} /></div>   
+                <div className={styles.badge}><img src="/images/badge/badge4.png" alt="뱃지4" className={userInfo.randomCount >= 3 ? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/images/badge/badge5.png" alt="뱃지5" className={userInfo.reviewCount >= 20? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/images/badge/badge6.png" alt="뱃지6" className={userInfo.resCount >= 50 && userInfo.reviewCount >= 30 && userInfo.randomCount >= 7 ? '' : styles.badgeNotAchieved} /></div>
             </div>
         </div>
         <div id={styles.reservationCount}>
