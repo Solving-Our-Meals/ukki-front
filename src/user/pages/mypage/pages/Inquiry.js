@@ -99,19 +99,19 @@ function Inquiry() {
         return (
             <div className={styles.mypageReservation}>
                 <div className={styles.allTabs}>
-                    <Link to="/user/mypage/review">
+                    <Link to="/user/mypage/inquiry">
                         <div className={styles.tab1}>문의 내역</div>
                     </Link>
-                    <Link to="/user/mypage/reservation">
-                        <div className={styles.tab2}>예약리스트</div>
+                    <Link to="/user/mypage/profile">
+                        <div className={styles.tab2}>회원 정보수정</div>
                     </Link>
                     <div className={styles.line1}>|</div>
-                    <Link to="/user/mypage/inquiry">
-                        <div className={styles.tab3}>작성된 리뷰</div>
+                    <Link to="/user/mypage/reservation">
+                        <div className={styles.tab3}>예약리스트</div>
                     </Link>
                     <div className={styles.line2}>|</div>
-                    <Link to="/user/mypage/profile">
-                        <div className={styles.tab4}>회원 정보수정</div>
+                    <Link to="/user/mypage/review">
+                        <div className={styles.tab4}>작성리뷰</div>
                     </Link>
                 </div>
 
@@ -171,16 +171,8 @@ function Inquiry() {
         return reviewText;
     };
 
-    const renderStars = (rating) => {
-        let stars = '';
-        for (let i = 0; i < rating; i++) {
-            stars += '⭐';
-        }
-        return stars;
-    };
-
-    const handleReviewClick = (storeNo) => {
-        navigate(`/store/${storeNo}`);
+    const handleInquiryClick = (inquiryNo) => {
+        navigate(`/user/mypage/inquiry/${inquiryNo}`);
     };
 
     const ConfirmModal = ({ reviewNo, onConfirm, onCancel }) => {
@@ -188,7 +180,7 @@ function Inquiry() {
             <div className={styles.modalOverlay}>
                 <div className={styles.modal}>
                     <h3 className={styles.modalMainText}>정말 삭제하시겠습니까?</h3>
-                    <h3 className={styles.modalSubText}>삭제한 리뷰는 복구가 불가합니다.</h3>
+                    <h3 className={styles.modalSubText}>삭제한 문의는 복구가 불가합니다.</h3>
                     <div className={styles.modalButtons}>
                         <button className={styles.modalButton1} onClick={() => onConfirm(reviewNo)}>예</button>
                         <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
@@ -270,7 +262,7 @@ function Inquiry() {
                         <div
                             key={index}
                             className={styles.reservationItem}
-                            onClick={() => handleReviewClick(inquiry.store)}
+                            onClick={() => handleInquiryClick(inquiry.inquiryNo)}
                         >
                             <div className={styles.headerItem}>{getInquiryStateLabel(inquiry.inquiryState)}</div>
                             <div className={styles.headerItem}>

@@ -10,6 +10,7 @@
     top:50px;
     left:50px;
     display: inline-block;
+    z-index: 999;
 }
 
 .tab2, .tab3, .tab4 {
@@ -416,4 +417,193 @@
 
 .modalButton1, .modalButton2, .modalButton3 {
     transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.main {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+.Title {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(60px, 140px);
+    display: inline-block;
+}
+
+.inquiryTitle {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.Date {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(500px, 140px);
+    display: inline-block;
+}
+
+.inquiryDate {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.inquiryText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1153px;
+    height: 207px;
+    transform: translate(50px, 160px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 15px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+}
+
+.inquiryTextExpanded {
+    width: 1153px;
+    transform: translate(50px, 160px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 15px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+    display: block;
+    height: 500px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 999;
+}
+
+.button1 {
+    width:90px;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 170px;
+    margin-left: 1100px;
+    font-family: 'Pretendard-Regular';
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFF;
+    background-color: #FF6F61;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    z-index: 999;
+}
+
+.button1:hover {
+    background-color: #E55A50;
+}
+
+.AnswerTitle {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(60px, 200px);
+    display: inline-block;
+}
+
+.AnswerDate {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(500px, 200px);
+    display: inline-block;
+}
+
+.main2 {
+    top:270px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+.inquiryText2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1153px;
+    height: 207px;
+    transform: translate(50px, 220px);
+    background: #FFF3A7;
+    border-radius: 30px;
+    padding: 15px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+}
+
+.inquiryTextExpanded2 {
+    width: 1153px;
+    transform: translate(50px, 180px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 15px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+    display: block;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.button2 {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 170px;
+    margin-left: 1100px;
+    font-family: 'Pretendard-Regular';
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFF;
+    background-color: #FF6F61;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    z-index: 999;
+}
+
+.button2:hover {
+    background-color: #E55A50;
 }
