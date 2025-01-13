@@ -53,7 +53,11 @@ function Inquiry() {
     }
 
     if (!userInfo) {
-        return <div>유저 정보를 찾을 수 없습니다.</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src="/images/mypage/profile/notInfo.png" alt="없는 정보"/>
+            </div>
+        )
     }
 
     const indexOfLastItem = currentPage * itemsPerPage;

@@ -6,6 +6,8 @@
     height: 221px;
     text-align: center;
     z-index: 99;
+    object-fit: cover;
+    border-radius: 35px;
 }
 
 @media screen and (min-width : 769px) and (max-width : 1024px) {
@@ -17,6 +19,8 @@
         height: 110px;
         text-align: center;
         z-index: 99;
+        object-fit: cover;
+        border-radius: 35px;
     }
 }
 
@@ -29,6 +33,8 @@
         height: 42px;
         text-align: center;
         z-index: 99;
+        object-fit: cover;
+        border-radius: 35px;
     }
 }
     

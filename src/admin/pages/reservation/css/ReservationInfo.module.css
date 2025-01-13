@@ -1,4 +1,4 @@
-#userInfoText{
+#reservationInfoText{
     /* 회원번호 4 */
 
     position: absolute;
@@ -17,33 +17,15 @@
     color: #1E1E1E;
 
 }
-#userInfoProfile{
-    /* image 4 */
 
-    position: absolute;
-    width: 254px;
-    height: 254px;
-    left: 56px;
-    top: 203px;
-    /* secondary1 */
-    border: 3px solid #FEDA00;
-    border-radius: 500px;
-
-}
-
-#userInfoProfile img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-#userInfoContentText{
+#reservationInfoContentText{
     /* 회원정보 */
 
     position: absolute;
     width: 129px;
     height: 39px;
-    left: 409px;
-    top: 232px;
+    left: 161px;
+    top: 202px;
 
     font-family: 'Bobaesum Jindo TTF';
     font-style: normal;
@@ -55,25 +37,28 @@
     /* text/title */
     color: #1E1E1E;
 }
-#userInfoId{
+#reservationInfoId{
     /* 아이디 : gh_wns123 */
 
     position: absolute;
-    height: 36px;
-    left: 409px;
-    top: 292px;
+    height: 50px;
+    left: 161px;
+    top: 300px;
 
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 400;
     font-size: 30px;
-    line-height: 36px;
     /* text/title */
     color: #1E1E1E;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     user-select: text;
 }
 
-#userInfoId > p{
+#reservationInfoId > p{
     display: inline-block;
 
     font-family: 'Bobaesum Jindo TTF';
@@ -84,12 +69,12 @@
     user-select: text;
 }
 
-#userInfoName{
+#reservationInfoStoreName{
 
     position: absolute;
     height: 40px;
-    left: 409px;
-    top: 351px;
+    left: 161px;
+    top: 360px;
 
     font-family: 'Pretendard Variable';
     font-style: normal;
@@ -106,7 +91,7 @@
     user-select: text;
 
 }
-#userInfoName > p{
+#reservationInfoStoreName > p{
     display: inline-block;
 
     font-family: 'Bobaesum Jindo TTF';
@@ -116,12 +101,12 @@
     line-height: 33px;
     user-select: text;
 }
-#userInfoEmail{
+#reservationInfoDate{
 
     position: absolute;
     height: 36px;
-    left: 409px;
-    top: 410px;
+    left: 161px;
+    top: 420px;
 
     font-family: 'Pretendard Variable';
     font-style: normal;
@@ -137,7 +122,7 @@
     user-select: text;
 
 }
-#userInfoEmail > p{    
+#reservationInfoDate > p{    
     display: inline-block;
 
     font-family: 'Bobaesum Jindo TTF';
@@ -147,16 +132,82 @@
     line-height: 33px;
     user-select: text;
 }
-#userInfoNameChangeBtn{
+
+#reservationInfoTime{
+    /* 아이디 : gh_wns123 */
+
+    position: absolute;
+    height: 50px;
+    left: 161px;
+    top: 480px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    /* text/title */
+    color: #1E1E1E;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    user-select: text;
+}
+
+#reservationInfoTime > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#reservationInfoStatus{
+    /* 아이디 : gh_wns123 */
+
+    position: absolute;
+    height: 50px;
+    left: 161px;
+    top: 540px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    /* text/title */
+    color: #1E1E1E;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    user-select: text;
+}
+
+#reservationInfoStatus > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#toUserInfo{
     /* Rectangle 166 */
 
     margin-left: 20px;
-
+    
     width: 169px;
     height: 41px;
     
     /* secondary2 */
-    background: #FFF3A7;
+    background-color: transparent;
+    border: 1px solid #FF6B87;
     border-radius: 50px;
 
     font-family: 'Bobaesum Jindo TTF';
@@ -165,18 +216,39 @@
     font-size: 20px;
 
     /* system/danger */
-    color: #FF5D18;
+    color: #232323;
 
     text-align: center;
-    align-content: center;
 
-    border: none;
     cursor: pointer;
 }
-#userInfoNameChangeBtn:hover {
-    background: #FFE970;
+
+#toStoreInfo{
+    /* Rectangle 166 */
+
+    margin-left: 20px;
+    
+    width: 169px;
+    height: 41px;
+    
+    /* secondary2 */
+    background-color: transparent;
+    border: 1px solid #FF6B87;
+    border-radius: 50px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    /* system/danger */
+    color: #232323;
+
+    text-align: center;
+
+    cursor: pointer;
 }
-#userInfoDeleteBtn{
+#reservationInfoDeleteBtn{
 
     position: absolute;
     width: 110px;
@@ -199,63 +271,8 @@
     border: none;
     cursor: pointer;
 }
-#userInfoDeleteBtn:hover {
+#reservationInfoDeleteBtn:hover {
     background: #FF6B87;
-}
-#reservationCount{
-
-    position: absolute;
-    width: 90px;
-    height: 147px;
-    left: 246px;
-    top: 556px;
-
-}
-#reviewCount{
-    position: absolute;
-    width: 90px;
-    height: 147px;
-    left: 735px;
-    top: 556px;
-}
-#noshowCount{
-    position: absolute;
-    width: 140px;
-    height: 147px;
-    left: 1241px;
-    top: 556px;
-    text-align: center;
-}
-.userActInfoText{
-    position: absolute;
-    width: 140px;
-    text-align: center;
-    font-family: 'Bobaesum Jindo TTF';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-
-    /* text/title */
-    color: #1E1E1E;
-
-    user-select: text;
-
-}
-.userActInfoCount{
-    position: absolute;
-    width: 140px;
-    top: 100px;
-    text-align: center;
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 50px;
-
-    /* text/title */
-    color: #1E1E1E;
-
-    user-select: text;
-
 }
 
 .horizon1{
@@ -278,71 +295,11 @@
     background: #E3E3E3;
 }
 
-#badgeArea{
-    /* Rectangle 154 */
-
+#qrInfo{
     position: absolute;
-    width: 607px;
-    height: 254px;
-    left: 937px;
-    top: 203px;
-
-    /* background */
-    background: #FFFFFF;
-    /* primary */
-    border: 3px solid #FF8AA3;
-    border-radius: 42px;
-
-}
-
-#badgeAreaText{
-    /* 뱃지 */
-
-    position: absolute;
-    width: 70px;
-    height: 36px;
-    left: 25px;
-    top: 20px;
-
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-    align-items: center;
-
-    /* text/title */
-    color: #1E1E1E;
-}
-
-#badgeImgArea{
-    position: absolute;
-    width: 583px;
-    height: 150px;
-    left: 0px;
-    top: 70px;
-    border-radius: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    flex-wrap: nowrap;
-}
-
-.badge{
-    width: 90px;
-    height: 100px;
-    margin: 0;
-    background-color: transparent;
-    flex-shrink: 0;
-}
-
-.badge img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.badgeNotAchieved{
-    filter: grayscale(100%);
+    width: 300px;
+    height: 300px;
+    border: 1px solid #E3E3E3;
+    left: 986px;
+    top: 202px;
 }

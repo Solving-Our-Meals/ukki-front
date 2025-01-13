@@ -65,6 +65,19 @@
     border-radius: 50px;
 }
 
+.reservationListStatusSelection{
+    position: absolute;
+    width: 740px;
+    height: 64px;
+    left: 695px;
+    top: 36px;
+
+    padding-left: 20px;
+    background: #FFFFFF;
+    border: 3px solid #FF8AA3;
+    border-radius: 50px;
+}
+
 .reservationListSearchBtn {
     position: absolute;
     width: 52px;
@@ -150,55 +163,80 @@
     background-color: #f5f5f5;
 }
 
+
 .pageNation {
     position: absolute;
-    width: 350px;
+    justify-content: center;
     height: 28px;
+    /* width: 300px; */
     left: 620px;
     top: 700px;
-
-    text-align: center;
+    display: flex;
+    /* text-align: center; */
     align-content: center;
 }
 
-.pageNation button {
+.pageNumArea{
+    display: flex;
+    justify-content: center;
+    width: 200px;
+}
+
+.pageNumBtn{
+    text-align: center;
     background-color: white;
     border: none;
-    font-size: 20px;
-    color: #FF8AA3;
-    margin-left: 10px;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    color: #232323;
+    opacity: 50%;
+    width: 38px;
+    border: none;
     cursor: pointer;
 }
 
-.pageNation button.active {
-    background-color: #FF8AA3;
-    color: white;
+.pageNumBtn.active {
+    color: #232323;
+    opacity: 100%;
 }
 
-.pageNation button:hover:not(.active) {
-    background-color: #FFE0E6;
-}
 
-.pageNationBackBtn {
-    position: absolute;
-    width: 52px;
-    height: 52px;
-    left: 646px;
-    top: 689px;
+.pageNationBackBtn{
+    display: inline-block;
+    text-align: start;
+    width: 40px;
     background-color: #FFFFFF;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    color: #232323;
     border: none;
     color: #FF8AA3;
     cursor: pointer;
 }
 
-.pageNationForwordBtn {
-    position: absolute;
-    width: 52px;
-    height: 52px;
-    left: 900px;
-    top: 689px;
+.pageNationForwordBtn{
+    display: inline-block  ;
+    text-align: end;
+    width: 40px;
     background-color: #FFFFFF;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    color: #232323;
     border: none;
     color: #FF8AA3;
     cursor: pointer;
 }
+
+.pageNationBackBtn.disabled, .pageNationForwordBtn.disabled {
+    visibility: hidden;
+}
+

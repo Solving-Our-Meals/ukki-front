@@ -34,6 +34,7 @@ function UserList(){
                     ){
                     setSearchSuccess(true)
                     setList(userList)
+                    setCurrentPage(1);
                  }else{
                     setSearchSuccess(false)
                  }
@@ -48,35 +49,24 @@ function UserList(){
     },[searchParams, fetchList])
 
     
-        const indexOfLastItem = currentPage * itemsPerPage;
-        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-        const currentItem = useMemo(()=> {return list.slice(indexOfFirstItem, indexOfLastItem)},[list, indexOfFirstItem, indexOfLastItem]);
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItem = list.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = useMemo(() => Math.ceil(list.length / itemsPerPage), [list.length, itemsPerPage]);
+
     
-        const totalPages = useMemo(()=>Math.ceil(list.length/itemsPerPage),[list.length, itemsPerPage]);
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
     
-        const visiblePageNum = useCallback(()=>{
-            let startPage = Math.max(currentPage-2, 1);
-            let endPage = Math.min(currentPage+2, totalPages);
-    
-            if(currentPage === 1){
-                endPage = Math.min(5, totalPages);
-            }else if(currentPage === 2){
-                endPage = Math.min(5, totalPages);
-            }else if(currentPage===totalPages-1){
-                startPage = Math.max(totalPages-4, 1)
-            }else if(currentPage===totalPages)(
-                startPage = Math.max(totalPages-4, 1)
-            )
-    
-            let pageNumbers = []
-    
-            for(var i = startPage; i <= endPage; i++){
-                pageNumbers.push(i)
-            }
-    
-            return pageNumbers;
-        },[currentPage, totalPages])
-    
+    const currentRangeStart = Math.floor((currentPage - 1) / 5) * 5 + 1;
+    const currentRangeEnd = Math.min(currentRangeStart + 4, totalPages);
+
+    const pageNumbersToDisplay = pageNumbers.slice(currentRangeStart - 1, currentRangeEnd);
+
+
         const paginate = useCallback( (no) => {
             console.log(no)
             if(0<no && no<=totalPages){setCurrentPage(no)}
@@ -149,16 +139,18 @@ function UserList(){
             }) : <div className={styles.userListBody}>해당 결과가 존재하지 않습니다.</div>
             }
         </div>
+        
         <div className={styles.pageNation}>
-            {visiblePageNum().map((pageNum)=>(
-                <button key={pageNum} onClick={() => paginate(pageNum)}
-                className={pageNum === currentPage ? styles.active :''}>
-                    {pageNum}
-                </button>
-            ))}
-        </div>
-        <button className={styles.pageNationBackBtn} onClick={()=>paginate(currentPage-1)} hidden={currentPage === 1}>◀</button>
-        <button className={styles.pageNationForwordBtn} onClick={()=>paginate(currentPage+1)} hidden={currentPage === totalPages}>▶</button>
+            <div className={`${styles.pageNationBackBtn} ${currentPage === 1 ? styles.disabled : ''}`} onClick={() => paginate(currentPage - 1)} hidden={currentPage === 1}>◀</div>
+            <div className={styles.pageNumArea}>
+                {pageNumbersToDisplay.map((pageNum) => (
+                    <div key={pageNum} onClick={() => paginate(pageNum)} className={`${styles.pageNumBtn} ${pageNum === currentPage ? styles.active : ''}`}>
+                        {pageNum}
+                    </div>
+                ))}
+                </div>
+            <div className={`${styles.pageNationForwordBtn} ${currentPage === totalPages? styles.disabled : ''}`} onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>▶</div>
+            </div>
     </>
     )   
 

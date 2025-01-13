@@ -18,7 +18,8 @@ function Review() {
 
     // 삭제 후 상태 표시 모달
     const [showSuccessModal, setShowSuccessModal] = useState(false);
-    
+    const [showFailModal, setShowFailModal] = useState(false);
+
     useEffect(() => {
         fetchUserInfo();
     }, []);
@@ -71,6 +72,9 @@ function Review() {
             } else {
                 setError('리뷰 삭제에 실패했습니다.');
                 setShowModal(false);
+                setShowFailModal(true);
+                setTimeout(() => setShowFailModal(false), 2000);
+
             }
         } catch (error) {
             setError('에러 발생: ' + error.message);
@@ -91,12 +95,47 @@ function Review() {
         )
     }
 
-    if (error) {
-        return <div>{error}</div>;
-    }
 
-    if (!userInfo) {
-        return <div>유저 정보를 찾을 수 없습니다.</div>;
+    if (!userInfo || userInfo.length === 0) {
+        return (
+            <div className={styles.mypageReservation}>
+                <div className={styles.allTabs}>
+                    <Link to="/user/mypage/review">
+                        <div className={styles.tab1}>작성된 리뷰</div>
+                    </Link>
+                    <Link to="/user/mypage/reservation">
+                        <div className={styles.tab2}>예약리스트</div>
+                    </Link>
+                    <div className={styles.line1}>|</div>
+                    <Link to="/user/mypage/inquiry">
+                        <div className={styles.tab3}>문의 내역</div>
+                    </Link>
+                    <div className={styles.line2}>|</div>
+                    <Link to="/user/mypage/profile">
+                        <div className={styles.tab4}>회원 정보수정</div>
+                    </Link>
+                </div>
+
+                <div className={styles.mypageReservationMain}>
+                    {/* 상단 제목 */}
+                    <div className={styles.headerRow}>
+                        <div className={styles.headerItem}>가게명</div>
+                        <div className={styles.headerItem}>리뷰 작성 날짜</div>
+                        <div className={styles.headerItem}>리뷰 내용</div>
+                        <div className={styles.headerItem}>별점</div>
+                    </div>
+
+                    {/* 리뷰 항목이 없을 경우 */}
+                    <div className={styles.reservationItem}>
+                        <div className={styles.headerItem}>-</div>
+                        <div className={styles.headerItem}>-</div>
+                        <div className={styles.headerItem}>-</div>
+                        <div className={styles.headerItem}>-</div>
+                    </div>
+
+                </div>
+            </div>
+        );
     }
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -167,6 +206,19 @@ function Review() {
             <div className={styles.modalOverlay}>
                 <div className={styles.modal}>
                     <h3 className={styles.modalMainText2}>삭제가 완료되었습니다!</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const FailModal = ({ onClose }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText2}>삭제에 실패했습니다!</h3>
                     <div className={styles.modalButtons}>
                         <button className={styles.modalButton3} onClick={onClose}>확인</button>
                     </div>
@@ -284,6 +336,10 @@ function Review() {
             {/* 삭제 완료 모달 */}
             {showSuccessModal && (
                 <SuccessModal onClose={() => setShowSuccessModal(false)}/>
+            )}
+
+            {showFailModal && (
+                <FailModal onClose={() => setShowFailModal(false)}/>
             )}
 
 

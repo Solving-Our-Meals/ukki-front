@@ -28,6 +28,7 @@ function StoreList(){
             if (storeList && storeList.length > 0){
                 setSearchSuccess(true)
                 setList(storeList)
+                setCurrentPage(1);
             }else{
                 setSearchSuccess(false)
             }
@@ -43,34 +44,22 @@ function StoreList(){
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItem = useMemo(()=> {
-        return list.slice(indexOfFirstItem, indexOfLastItem)
-    },[list, indexOfFirstItem, indexOfLastItem]);
+    const currentItem = list.slice(indexOfFirstItem, indexOfLastItem);
 
-    const totalPages = useMemo(()=>
-        Math.ceil(list.length/itemsPerPage)
-    ,[list.length, itemsPerPage]);
+    const totalPages = useMemo(() => Math.ceil(list.length / itemsPerPage), [list.length, itemsPerPage]);
 
-    const visiblePageNum = useCallback(()=>{
-        let startPage = Math.max(currentPage-2, 1);
-        let endPage = Math.min(currentPage+2, totalPages);
+    
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+    
+    const currentRangeStart = Math.floor((currentPage - 1) / 5) * 5 + 1;
+    const currentRangeEnd = Math.min(currentRangeStart + 4, totalPages);
 
-        if(currentPage === 1){
-            endPage = Math.min(5, totalPages);
-        }else if(currentPage === 2){
-            endPage = Math.min(5, totalPages);
-        }else if(currentPage===totalPages-1){
-            startPage = Math.max(totalPages-4, 1)
-        }else if(currentPage===totalPages){
-            startPage = Math.max(totalPages-4, 1)
-        }
+    const pageNumbersToDisplay = pageNumbers.slice(currentRangeStart - 1, currentRangeEnd);
 
-        let pageNumbers = []
-        for(var i = startPage; i <= endPage; i++){
-            pageNumbers.push(i)
-        }
-        return pageNumbers;
-    },[currentPage, totalPages])
+
 
     const paginate = useCallback((no) => {
         if(0<no && no<=totalPages){setCurrentPage(no)}
@@ -144,15 +133,16 @@ function StoreList(){
         </div>
 
         <div className={styles.pageNation}>
-            {visiblePageNum().map((pageNum)=>(
-                <button key={pageNum} onClick={() => paginate(pageNum)}
-                className={pageNum === currentPage ? styles.active :''}>
-                    {pageNum}
-                </button>
-            ))}
-        </div>
-        <button className={styles.pageNationBackBtn} onClick={()=>paginate(currentPage-1)} hidden={currentPage === 1}>◀</button>
-        <button className={styles.pageNationForwordBtn} onClick={()=>paginate(currentPage+1)} hidden={currentPage === totalPages}>▶</button>
+            <div className={`${styles.pageNationBackBtn} ${currentPage === 1 ? styles.disabled : ''}`} onClick={() => paginate(currentPage - 1)} hidden={currentPage === 1}>◀</div>
+            <div className={styles.pageNumArea}>
+                {pageNumbersToDisplay.map((pageNum) => (
+                    <div key={pageNum} onClick={() => paginate(pageNum)} className={`${styles.pageNumBtn} ${pageNum === currentPage ? styles.active : ''}`}>
+                        {pageNum}
+                    </div>
+                ))}
+                </div>
+            <div className={`${styles.pageNationForwordBtn} ${currentPage === totalPages? styles.disabled : ''}`} onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>▶</div>
+            </div>
         <button id={styles.storeUserRegist} type="button" onClick={()=>navigate('/admin/stores/regist/user')}>가게 등록하기</button>
     </>
     )   

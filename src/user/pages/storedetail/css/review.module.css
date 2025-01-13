@@ -329,6 +329,30 @@ a:active {
   border-radius: 0;
   z-index: 5;
 }
+.reviewStyle .reviewArea .reviewContainer .review #deleteReview {
+  position: absolute;
+  top: 50px;
+  left: 800px;
+  width: 120px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #FFBDC9;
+  color: #232323;
+  border: none;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: "Pretendard Variable";
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.reviewStyle .reviewArea .reviewContainer .review #deleteReview:hover {
+  background-color: #FF8AA3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
 .reviewStyle .reviewArea .reviewContainer .review #reviewPhoto {
   position: absolute;
   left: 960px;
@@ -338,81 +362,103 @@ a:active {
   border-radius: 0;
   z-index: 5;
 }
-.reviewStyle .reviewArea .reviewContainer .transformReview {
-  position: relative;
-  display: inline-block;
-  margin-top: 30px;
-}
-.reviewStyle .reviewArea .reviewContainer .transformReview #userProfile {
-  position: relative;
-  margin-left: 570px;
-  top: 53px;
-  width: 114px;
-  height: 108px;
-  z-index: 5;
-  border-radius: 0;
-}
-.reviewStyle .reviewArea .reviewContainer .transformReview div {
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck {
   position: absolute;
-  width: max-content;
-  cursor: default;
-  z-index: 2;
+  left: 521px;
+  top: 2371px;
+  width: 879px;
+  height: 316px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
 }
-.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) {
-  left: 710px;
-  top: 70px;
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck #reallyDeleteReview {
   width: max-content;
+  margin-top: 5px;
+  height: 44px;
   font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  color: #232323;
+}
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck #notice {
+  width: max-content;
+  margin-top: 40px;
+  height: 36px;
+  font-family: "Pretendard Variable";
   font-size: 30px;
   font-weight: 500;
-  font-style: normal;
-  color: #232323;
-  z-index: 5;
+  color: #FF5D18;
 }
-.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) span {
-  margin-right: 8px;
-}
-.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) .star {
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck #cancleDeleteReview {
+  margin-top: 40px;
+  margin-left: -220px;
+  width: 171px;
+  height: 44px;
+  background-color: #FEDA00;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
   font-size: 25px;
-  margin-right: -5px;
-  display: inline-block;
-}
-.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
-  left: 710px;
-  top: 111px;
-  width: max-content;
-  font-family: "Pretendard Variable";
-  font-size: 20px;
-  font-weight: 400;
-  font-style: normal;
-  color: #232323;
-  z-index: 5;
-}
-.reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(3) {
-  left: 570px;
-  top: 183px;
-  width: 850px;
-  height: 223px;
-  background-color: #FFF9D3;
-  padding-left: 15px;
-  padding-top: 10px;
-  font-family: "Pretendard Variable";
-  font-size: 20px;
   font-weight: 500;
-  font-style: normal;
   color: #232323;
-  line-height: 160%;
-  border-radius: 0;
-  z-index: 5;
+  cursor: pointer;
 }
-.reviewStyle .reviewArea .reviewContainer .transformReview #reviewPhoto {
+.reviewStyle .reviewArea .reviewContainer .review #finalCheck #confirmDeleteReview {
+  margin-top: -44px;
+  margin-left: 220px;
+  width: 171px;
+  height: 44px;
+  background-color: #FF8AA3;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
+}
+.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview {
   position: absolute;
-  left: 43px;
-  top: 38px;
-  width: 468px;
-  height: 367px;
-  border-radius: 0;
-  z-index: 5;
+  left: 521px;
+  top: 2371px;
+  width: 879px;
+  height: 316px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview #completedDeletteMessage {
+  width: max-content;
+  margin-top: 5px;
+  height: 44px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  color: #232323;
+}
+.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview #completeBtn {
+  margin-top: 40px;
+  width: 171px;
+  height: 44px;
+  background-color: #FEDA00;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
+  cursor: pointer;
 }
 .reviewStyle .reviewArea #moreReview {
   margin-top: 50px;
@@ -592,90 +638,6 @@ a:active {
   .reviewStyle .reviewArea .reviewContainer .review #reviewPhoto {
     position: absolute;
     left: 550px;
-    top: 17px;
-    width: 263px;
-    height: 206px;
-    border-radius: 0;
-    z-index: 5;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview {
-    position: relative;
-    display: inline-block;
-    margin-top: 30px;
-    margin-left: 40px;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview #reviewImg {
-    display: block;
-    top: 5px;
-    width: 831px;
-    height: 258px;
-    z-index: 1;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview #userProfile {
-    position: absolute;
-    left: 333px;
-    top: 28px;
-    width: 62px;
-    height: 59px;
-    z-index: 5;
-    border-radius: 0;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div {
-    position: absolute;
-    width: max-content;
-    cursor: default;
-    z-index: 2;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) {
-    left: 403px;
-    top: 34px;
-    width: max-content;
-    font-family: "Bobaesum Jindo TTF";
-    font-size: 20px;
-    font-weight: 500;
-    font-style: normal;
-    color: #232323;
-    z-index: 5;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) span {
-    margin-right: 10px;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) .star {
-    font-size: 25px;
-    margin-right: -2px;
-    display: inline-block;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
-    left: 403px;
-    top: 61px;
-    width: max-content;
-    font-family: "Pretendard Variable";
-    font-size: 15px;
-    font-weight: 400;
-    font-style: normal;
-    color: #232323;
-    z-index: 5;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(3) {
-    left: 338px;
-    top: 95px;
-    width: 436px;
-    height: 117px;
-    background-color: #FFF9D3;
-    padding-left: 7px;
-    padding-top: 5px;
-    font-family: "Pretendard Variable";
-    font-size: 13px;
-    font-weight: 500;
-    font-style: normal;
-    color: #232323;
-    line-height: 160%;
-    border-radius: 0;
-    z-index: 5;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview #reviewPhoto {
-    position: absolute;
-    left: 20px;
     top: 17px;
     width: 263px;
     height: 206px;
