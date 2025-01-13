@@ -36,7 +36,7 @@ function App() {
                     <Route path="user/mypage/*" element={<PrivateRoute element={<Mypage />} />} />
                     <Route path="/" element={<UserLayout />}>
                         <Route path="search" element={<PrivateRoute element={<Search />} />} />
-                        <Route path="store" element={<PrivateRoute element={<UserStorePage />} />} />
+                        <Route path="store/:storeNo" element={<PrivateRoute element={<UserStorePage />} />} />
                         <Route path="reservation" element={<PrivateRoute element={<Reservation />} />} />
                         <Route path="sinquiries" element={<PrivateRoute element={<InquiryEnter />} />} />
                     </Route>

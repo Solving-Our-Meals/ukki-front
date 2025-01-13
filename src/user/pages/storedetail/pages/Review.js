@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import styles from '../css/review.module.css';
-import reviewImg from '../images/reviewBackground.png';
+import { useParams } from 'react-router-dom';
 import CreateReview from '../components/CreateReview';
-import starFilled from '../images/Star Filled.png';
 
 function Review(){
+
+    const { storeNo } = useParams();
 
     const [reviews, setReviews] = useState([]);
     const [reviewContent, setReviewContent] = useState({
@@ -18,7 +19,7 @@ function Review(){
 
     useEffect(
         () => {
-            fetch('/store/review')
+            fetch(`/store/${storeNo}/review`)
             .then(res => res.json())
             .then(data => {
                 console.log('리뷰 정보 : ', data);
@@ -47,7 +48,7 @@ function Review(){
     }
 
     const reviewLatest = () => {
-        fetch('/store/review')
+        fetch(`/store/${storeNo}/review`)
         .then(res => res.json())
         .then(data => {
             console.log('리뷰 정보 : ', data);
@@ -59,7 +60,7 @@ function Review(){
     }
 
     const reviewScope = () => {
-        fetch('/store/reviewscope')
+        fetch(`/store/${storeNo}/reviewscope`)
         .then(res => res.json())
         .then(data => {
             console.log('리뷰 정보 : ', data);
@@ -97,7 +98,7 @@ function Review(){
                                 display : isMoreReview || index <= 2 ? "" : "none" }}
                         >
                             <img 
-                                src={review.userProfile === null ? '/store/api/userProfile?userProfileName=PROFILE_BASIC' : `/store/api/userProfile?userProfileName=${review.userProfile}`} 
+                                src={review.userProfile === null ? `/store/${storeNo}/api/userProfile?userProfileName=PROFILE_BASIC` : `/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
                                 id={styles.userProfile} 
                                 alt='프로필 이미지'
                                 />
@@ -116,7 +117,7 @@ function Review(){
                             </div>
                             <div>{review.reviewDate}</div>
                             <div>{review.reviewContent}</div>
-                            <img src={`/store/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
+                            <img src={`/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
                         </div>
                     ))}
                 </div>

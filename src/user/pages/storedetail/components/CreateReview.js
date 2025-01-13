@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import styles from '../css/createReview.module.css';
-import writeArea from '../images/writeReviewArea.png';
 import addPhoto from '../images/addPhoto.png';
-import nontReviewPhoto from '../images/nonePhotoReview.png';
 
 const FileInfo = ({uploadedInfo}) => (
     <ul className={styles.previewInfo}>
@@ -17,6 +16,7 @@ const FileInfo = ({uploadedInfo}) => (
 );
 
 function CreateReview(){
+    const { storeNo } = useParams();
     const year = new Date().getFullYear();
     const month = new Date().getMonth()+1
     const date = new Date().getDate()
@@ -124,7 +124,7 @@ function CreateReview(){
             formData.append('reviewImage', review.reviewImage);
         }
 
-        fetch('/store/5/review', {
+        fetch(`/store/${storeNo}/review`, {
             method: 'POST',
             body: formData,
         })
@@ -212,7 +212,7 @@ function CreateReview(){
 
     useEffect(
         () => {
-            fetch('user/info')
+            fetch('/user/info')
             .then(res => res.json())
             .then(data => {
                 setUserInfo(data);
@@ -259,7 +259,7 @@ function CreateReview(){
 
     useEffect(() => {
         if (userInfo.userId && storeInfo.storeNo) {  
-            fetch(`/store/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
+            fetch(`/store/${storeNo}/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
                 .then(res => res.json())
                 .then(data => {
                     function isWithinThreeDays(resDate) {
@@ -301,7 +301,7 @@ function CreateReview(){
                                             ...prevReview,
                                             resNo : data[i].resNo.toString()
                                         }))
-                                        fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+                                        fetch(`/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`)
                                             .then(res => res.json())
                                             .then(data => {
                                                 console.log('예약 번호 성공');
@@ -323,7 +323,7 @@ function CreateReview(){
                                         ...prevReview,
                                         resNo : data[i].resNo.toString()
                                     }))
-                                    fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+                                    fetch(`/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`)
                                         .then(res => res.json())
                                         .then(data => {
                                             console.log('예약 번호 성공');

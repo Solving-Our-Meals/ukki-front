@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from '../css/menu.module.css';
-import xButton from '../images/xBtn.png';
 
 function Menu(){
-
+    const { storeNo } = useParams();
     const [menu, setMenu] = useState("");
     const [none, setIsNone] = useState(true);
 
     useEffect(() => {
-        fetch('/store/storeMenu/5')
+        fetch(`/store/${storeNo}/storeMenu`)
         .then(res => res.text())
         .then(data => {
-            const menuUrl = `/store/api/menu?menuName=${data}`
+            const menuUrl = `/store/${storeNo}/api/menu?menuName=${data}`
             setMenu(menuUrl);
         })
     }, [])
 
-    const onClickHandler = () => {
-        setIsNone(prevState => !prevState);
-    }
+    // const onClickHandler = () => {
+    //     setIsNone(prevState => !prevState);
+    // }
 
     return(
         <>
