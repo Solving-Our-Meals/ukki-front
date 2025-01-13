@@ -231,18 +231,18 @@ function Review() {
         <div className={styles.mypageReservation}>
             <div className={styles.allTabs}>
                 <Link to="/user/mypage/review">
-                    <div className={styles.tab1}>작성된 리뷰</div>
+                    <div className={styles.tab1}>작성리뷰</div>
                 </Link>
                 <Link to="/user/mypage/reservation">
-                    <div className={styles.tab2}>예약리스트</div>
+                    <div className={styles.tab2}>문의 내역</div>
                 </Link>
                 <div className={styles.line1}>|</div>
-                <Link to="/user/mypage/inquiry">
-                    <div className={styles.tab3}>문의 내역</div>
+                <Link to="/user/mypage/profile">
+                    <div className={styles.tab3}>회원 정보수정</div>
                 </Link>
                 <div className={styles.line2}>|</div>
-                <Link to="/user/mypage/profile">
-                    <div className={styles.tab4}>회원 정보수정</div>
+                <Link to="/user/mypage/reservation">
+                    <div className={styles.tab4}>예약리스트</div>
                 </Link>
             </div>
 

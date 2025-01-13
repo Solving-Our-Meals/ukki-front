@@ -1,5 +1,8 @@
 .mypageReservation {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
 }
 
 .allTabs {
@@ -7,15 +10,16 @@
     top:50px;
     left:50px;
     display: inline-block;
+    z-index: 999;
 }
 
 .tab2, .tab3, .tab4 {
     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
-    font-weight: 900;
-    margin-left: 30px;
+    font-weight: 400;
+    margin-left: 10px;
     cursor: pointer;
     color : #BDBEBF;
 }
@@ -26,17 +30,17 @@
 
 .line1, .line2 {
     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
     font-weight: 900;
-    margin-left: 20px;
+    margin-left: 7px;
     color : #BDBEBF;
 }
 
 .tab1 {
     display: inline-block;
-    font-family: 'Bobaesum Jindo TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-weight: 400;
     font-size: 45px;
@@ -49,53 +53,57 @@
 /* 예약 리스트 CSS */
 .mypageReservationMain .headerRow {
     display: grid;
-    grid-template-columns:  2fr 5fr 3fr 3fr;;
-    padding: 10px 0;
-
+    grid-template-columns:  2fr 12fr 12fr 15fr;
+    padding: 0px 0;
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 30px;
 
-    /* text/strong */
     color: #232323;
 }
 
 /* 가운데 정렬 */
-/*.mypageReservationMain {
-    transform: translate(-30px, 150px);
+.mypageReservationMain {
+    transform: translateY(-50px);
+    margin-top: 160px;
+
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+    height: 565px;
+}
+
+.headerRow {
+    margin-top: 10px;
 }
 
 /* 가운데 정렬 2 */
-/*.headerItem {
-    width:325px;
+.headerItem {
+    width:400px;
     background: none;
     text-align: center;
-}*/
-
-/* 좌측 정렬 */
-.mypageReservationMain {
-    transform: translate(100px, 150px);
-}
-
-/* 좌측 정렬 2 */
-.headerItem {
-    width:325px;
-    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
 }
 
 /* 예약 항목 */
 .reservationItem {
     display: grid;
-    grid-template-columns:  2fr 5fr 3fr 3fr;;
+    grid-template-columns:  2fr 12fr 12fr 15fr;
     padding: 10px 0;
-
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 30px;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    height: 95px;
 }
 
 
@@ -103,21 +111,25 @@
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    gap: 10px;
-    transform: translateX(-110px);
+    gap: 40px;
+    position: fixed;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0;
 }
 
-.pagination button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+/* 페이지네이션 내부 숫자 */
+.paginationButton {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 28px;
     cursor: pointer;
-    font-size: 14px;
+    color: #232323;
+    opacity: 50%;
 }
-
 .pagination button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
@@ -141,39 +153,63 @@
     font-size: 25px;
     line-height: 28px;
     cursor: pointer;
-    color: #FF8AA3;
+    color: #232323;
+    opacity: 50%;
 }
 
 .paginationButton.disabled {
     visibility: hidden;
 }
+.paginationButton.arrow {
+    color:#FF8AA3;
+    opacity: 1;
+}
 
 /* 선 */
 .headerRow, .reservationItem {
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 55px;
 }
 
 /* 선 2 (가운데 정렬) */
-/*.headerRow::before, .reservationItem::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 90%;
-    height: 2px;
-    background-color: #ccc;
-    transform: translateX(-50%);
-}*/
-
-
-/* 선 2 (좌측 정렬) */
 .headerRow::before, .reservationItem::before {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 40%;
-    width: 90%;
+    left: 50%;
+    width: 95%;
+    height: 2px;
+    background-color: #ccc;
+    transform: translateX(-50%);
+}
+
+.mypageReservationMain .headerRow {
+    display: grid;
+    padding: 0px 0;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #232323;
+    position: relative;
+}
+
+.headerRow::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 95%;
+    height: 5px;
+    transform: translateX(-50%);
+}
+
+.reservationItem::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 95%;
     height: 2px;
     background-color: #ccc;
     transform: translateX(-50%);
@@ -195,4 +231,379 @@
 .loadingContainer img {
     max-width: 100%;
     height: auto;
+}
+
+.paginationButton.active {
+    color:#232323;
+    opacity: 1;
+}
+
+.deleteButton {
+    width: 80px;
+    height: 35px;
+
+    position: absolute;
+    left: 1160px;
+    top: 30px;
+    border: none;
+
+    background: #FFBDC9;
+    border-radius: 50px;
+
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    /*display: none;*/
+    font-family: 'Pretendard-Regular';
+    color: #232323;
+}
+
+/*.reservationItem:hover .deleteButton {*/
+/*    display: block;*/
+/*}*/
+
+.deleteButton:hover {
+    background-color: #FF8AA3;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.deleteButton:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.deleteButton:focus {
+    outline: none;
+}
+
+/* 모달 */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    position: absolute;
+    width: 879px;
+    height: 316px;
+    left: 520px;
+    top: 318px;
+
+    background: #FFFFFF;
+    border: 5px solid #FF8AA3;
+    border-radius: 50px;
+
+}
+
+.modalButtons {
+    margin-top: 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+
+    color: #232323;
+}
+
+.modalButton1 {
+    transform: translate(200px, 110px);
+    width: 171px;
+    height: 44px;
+    background: #FEDA00;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+.modalButton2 {
+    transform: translate(300px, 110px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FF8AA3;
+    border-radius: 25px;
+
+
+    cursor: pointer;
+}
+
+.modalButton3 {
+    transform: translate(350px, 130px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FF8AA3;
+    border-radius: 25px;
+
+
+    cursor: pointer;
+}
+
+.modalButton:hover {
+    background-color: #FF2B2B;
+}
+
+.modalMainText {
+    transform: translateY(60px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalMainText2 {
+    transform: translateY(90px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalSubText {
+    transform: translateY(90px);
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+
+    /* system/danger */
+    color: #FF5D18;
+}
+
+.modalButton1:hover {
+    background: #fbc700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalButton1:active {
+    background: #fbc700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 모달 두 번째 버튼 */
+.modalButton2:hover, .modalButton3:hover {
+    background: #ff7a8e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalButton2:active .modalButton3:active {
+    background: #ff7a8e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modalButton1, .modalButton2, .modalButton3 {
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.main {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+.Title {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(60px, 140px);
+    display: inline-block;
+}
+
+.inquiryTitle {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.Date {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(500px, 140px);
+    display: inline-block;
+}
+
+.inquiryDate {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.inquiryText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1153px;
+    height: 207px;
+    transform: translate(50px, 160px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 15px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+}
+
+.inquiryTextExpanded {
+    width: 1153px;
+    transform: translate(50px, 160px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 15px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+    display: block;
+    height: 500px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 999;
+}
+
+.button1 {
+    width:90px;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 170px;
+    margin-left: 1100px;
+    font-family: 'Pretendard-Regular';
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFF;
+    background-color: #FF6F61;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    z-index: 999;
+}
+
+.button1:hover {
+    background-color: #E55A50;
+}
+
+.AnswerTitle {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(60px, 200px);
+    display: inline-block;
+}
+
+.AnswerDate {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(500px, 200px);
+    display: inline-block;
+}
+
+.main2 {
+    top:270px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+.inquiryText2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1153px;
+    height: 207px;
+    transform: translate(50px, 220px);
+    background: #FFF3A7;
+    border-radius: 30px;
+    padding: 15px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+}
+
+.inquiryTextExpanded2 {
+    width: 1153px;
+    transform: translate(50px, 180px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 15px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+    display: block;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.button2 {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 170px;
+    margin-left: 1100px;
+    font-family: 'Pretendard-Regular';
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFF;
+    background-color: #FF6F61;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    z-index: 999;
+}
+
+.button2:hover {
+    background-color: #E55A50;
 }
