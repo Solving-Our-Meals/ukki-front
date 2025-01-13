@@ -1,0 +1,305 @@
+#reservationInfoText{
+    /* 회원번호 4 */
+
+    position: absolute;
+    
+    height: 55px;
+    left: 61px;
+    top: 47px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 55px;
+
+    /* text/title */
+    color: #1E1E1E;
+
+}
+
+#reservationInfoContentText{
+    /* 회원정보 */
+
+    position: absolute;
+    width: 129px;
+    height: 39px;
+    left: 161px;
+    top: 202px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 39px;
+    /* identical to box height */
+
+    /* text/title */
+    color: #1E1E1E;
+}
+#reservationInfoId{
+    /* 아이디 : gh_wns123 */
+
+    position: absolute;
+    height: 50px;
+    left: 161px;
+    top: 300px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    /* text/title */
+    color: #1E1E1E;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    user-select: text;
+}
+
+#reservationInfoId > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#reservationInfoStoreName{
+
+    position: absolute;
+    height: 40px;
+    left: 161px;
+    top: 360px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    /* text/title */
+    color: #1E1E1E;
+
+    /* text/title */
+    color: #1E1E1E;
+
+    align-content: center;
+    user-select: text;
+
+}
+#reservationInfoStoreName > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+#reservationInfoDate{
+
+    position: absolute;
+    height: 36px;
+    left: 161px;
+    top: 420px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    /* text/title */
+    color: #1E1E1E;
+
+    /* text/title */
+    color: #1E1E1E;
+
+    user-select: text;
+
+}
+#reservationInfoDate > p{    
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#reservationInfoTime{
+    /* 아이디 : gh_wns123 */
+
+    position: absolute;
+    height: 50px;
+    left: 161px;
+    top: 480px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    /* text/title */
+    color: #1E1E1E;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    user-select: text;
+}
+
+#reservationInfoTime > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#reservationInfoStatus{
+    /* 아이디 : gh_wns123 */
+
+    position: absolute;
+    height: 50px;
+    left: 161px;
+    top: 540px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    /* text/title */
+    color: #1E1E1E;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    user-select: text;
+}
+
+#reservationInfoStatus > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#toUserInfo{
+    /* Rectangle 166 */
+
+    margin-left: 20px;
+    
+    width: 169px;
+    height: 41px;
+    
+    /* secondary2 */
+    background-color: transparent;
+    border: 1px solid #FF6B87;
+    border-radius: 50px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    /* system/danger */
+    color: #232323;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+#toStoreInfo{
+    /* Rectangle 166 */
+
+    margin-left: 20px;
+    
+    width: 169px;
+    height: 41px;
+    
+    /* secondary2 */
+    background-color: transparent;
+    border: 1px solid #FF6B87;
+    border-radius: 50px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    /* system/danger */
+    color: #232323;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+#reservationInfoDeleteBtn{
+
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    left: 1405px;
+    top: 43px;
+
+    background: #FF8AA3;
+    border-radius: 40px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    align-items: center;
+
+    /* text/strong */
+    color: #232323;
+
+    border: none;
+    cursor: pointer;
+}
+#reservationInfoDeleteBtn:hover {
+    background: #FF6B87;
+}
+
+.horizon1{
+    position: absolute;
+    width: 1488px;
+    height: 2px;
+    left: 56px;
+    top: 156px;
+
+    background: #E3E3E3;
+}
+
+.horizon2{
+    position: absolute;
+    width: 1488px;
+    height: 2px;
+    left: 56px;
+    top: 502px;
+
+    background: #E3E3E3;
+}
+
+#qrInfo{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #E3E3E3;
+    left: 986px;
+    top: 202px;
+}
