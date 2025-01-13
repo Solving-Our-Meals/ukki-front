@@ -356,6 +356,13 @@ a:active {
   align-items: center;
   cursor: pointer;
 }
+.createReview #submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.createReview #submit:disabled:hover {
+  background-color: #ccc;
+}
 
 #finalConfirmReview {
   position: absolute;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import banner1 from './image/main-banner1.png';
 import banner2 from './image/main-banner2.png';
 import banner3 from './image/main-banner3.png';
@@ -70,8 +70,10 @@ const Main = () => {
 
 
 
-
+    const navigate = useNavigate(null);
     const locationRef = useRef(null);
+
+
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -80,22 +82,23 @@ const Main = () => {
                     x: position.coords.longitude,
                     y: position.coords.latitude
                 });
+            }, error => {
+                alert('위치 정보를 가져올 수 없습니다.');
             });
+        } else {
+            alert('Geolocation을 사용할 수 없습니다.');
         }
-    },
-        []);
+    }, []);
 
-        
-        const requestDirections = (store) => {
-            if (currentPosition && store) {
-                console.log('Requesting directions from:', currentPosition, 'to:', store);
-                // 현재 위치(currentPosition)와 선택된 가게(store)의 경로 요청 로직 추가
-            } else {
-                alert('경로를 요청할 수 없습니다.');
-            }
-        };
-       
-        
+    const requestDirections = (store) => {
+        if (currentPosition && store) {
+            console.log('Requesting directions from:', currentPosition, 'to:', store);
+        } else {
+            alert('경로를 요청할 수 없습니다.');
+        }
+    };
+
+
 
     useEffect(() => {
         const fImg = document.querySelector('.category>div');
@@ -200,13 +203,34 @@ const Main = () => {
         storeDes: '',
         storeAddress: '',
         storeProfile: '',
+        storeNo: '',
         storeMenu: ''
 
     });
 
-    const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress) => {
+
+    const StoreSelection = () => {
+        const [storeNo, setStoreNo] = useState(null);
+
+
+   const handleStoreSelect = (storeNo) => {
+        setStoreNo(storeNo);
+    };
+
+    };
+  
+
+    const handleReservationClick = () => {
+        if (storeInfo.storeNo) {
+            // Use navigate to redirect to the store's page
+            navigate(`/store/${storeInfo.storeNo}`);
+        } else {
+            alert("가게를 선택해주세요.");
+        }
+    };
+    const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo) => {
         setStoreInfo({
-            storeName, storeDes, storeMenu, storeProfile, storeAddress
+            storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo
         });
         setIsMarkerClicked(true);
     };
@@ -218,6 +242,7 @@ const Main = () => {
             }
         }
     };
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -389,7 +414,7 @@ const Main = () => {
         fetchStoresLocation(index + 1); // 카테고리 코드를 +1 해서 전달
     };
 
-    
+
 
 
 
@@ -421,26 +446,7 @@ const Main = () => {
                     </div>
                     <div className="leftbtn btn" onClick={handlePrev}>&lt;</div>
                     <div className="rightbtn btn" onClick={handleNext}>&gt;</div>
-                    {/* <div className="pagination">
-                        <ul>
-                            {banners.map((_, index) => (
-                                <li
-                                    key={index}
-                                    className={currentSlide === index ? 'act' : ''}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handlePaginationClick(index);
-                                    }}
-                                >
-                                </li>
-                            ))}
-                        </ul>
-                    </div> */}
                 </div>
-                {/* <div className='search'>
-                    <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" />
-                    <NavLink to="/search"><img src={search} alt="search" /></NavLink>
-                </div> */}
                 <div className='category'>
                     <h3>지금 끌리는 메뉴는?</h3>
                     <p>카테고리 별로 근처 식당을 추천해드려요!</p>
@@ -448,32 +454,22 @@ const Main = () => {
                         <p>한식</p>
                     </div>
                     <img src={gkstlr} onClick={() => { handleFirstImgClick(); handleCategoryClick(0); }} className={selectedCategory === 1 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 1 ? 'selected-span' : ''}>
-                        {selectedCategory === 1 ? '너로 정했다!' : '흠..별로?'}</span> */}
                     <div onClick={() => { handleSecondImgClick(); handleCategoryClick(1) }}>
                         <p>중식</p>
                     </div>
                     <img src={dlftlr} onClick={() => { handleSecondImgClick(); handleCategoryClick(1) }} className={selectedCategory === 2 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 2 ? 'selected-span' : ''}>
-                        {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span> */}
                     <div onClick={() => { handleThreeImgClick(); handleCategoryClick(2) }}>
                         <p>일식</p>
                     </div>
                     <img src={wndtlr} onClick={() => { handleThreeImgClick(); handleCategoryClick(2) }} className={selectedCategory === 3 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 3 ? 'selected-span' : ''}>
-                        {selectedCategory === 3 ? '너로 정했다!' : '흠..별로?'}</span> */}
                     <div onClick={() => { handleFourImgClick(); handleCategoryClick(3) }}>
                         <p>양식</p>
                     </div>
                     <img src={didtlr} onClick={() => { handleFourImgClick(); handleCategoryClick(3) }} className={selectedCategory === 4 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 4 ? 'selected-span' : ''}>
-                        {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span> */}
                     <div onClick={() => { handleLastImgClick(); handleCategoryClick(4) }}>
                         <p>기타</p>
                     </div>
                     <img src={rlxk} onClick={() => { handleLastImgClick(); handleCategoryClick(4) }} className={selectedCategory === 5 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 5 ? 'selected-span' : ''}>
-                        {selectedCategory === 5 ? '너로 정했다!' : '흠..별로?'}</span> */}
                 </div>
                 <div className='location' ref={locationRef}>
                     <Map
@@ -506,12 +502,12 @@ const Main = () => {
                             <label>현재 위치 : </label>
                             <input defaultValue={storeInfo.storeAddress}></input>
                             <label>가게 위치 : </label>
-                            <button>예약하기</button>
-                            
+                            <button onClick={handleReservationClick}>예약하기</button>
+
                             <div>
                                 <div>
-                                <p onClick={() => setIsMarkerClicked(false)}>x</p>
-                                    </div>
+                                    <p onClick={() => setIsMarkerClicked(false)}>x</p>
+                                </div>
                             </div>
                         </>
                     )}
