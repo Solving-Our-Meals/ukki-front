@@ -10,22 +10,44 @@ function Search() {
   const [recentSearches, setRecentSearches] = useState(
     JSON.parse(localStorage.getItem('recentSearches')) || []
   ); // 최근 검색어
-  const [popularSearches, setPopularSearches] = useState([ // 실시간 인기 검색어
-    
-  ]);
+  const [popularSearches, setPopularSearches] = useState([]); // 실시간 인기 검색어
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태
 
   // 검색어 입력 시 자동완성 리스트 업데이트
   const updateSearch = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
+
+    if (value.trim()) {
+      // 부분 검색어로 실시간 검색 결과를 업데이트
+      searchStores(value);
+    } else {
+      setStoreList([]); // 검색어가 비어있으면 결과를 초기화
+    }
   };
 
+  // 검색 함수
   const searchStores = (storeName) => {
+    const trimmedName = storeName.trim();
+
+    if (!trimmedName) {
+      setStoreList([]);
+      return;
+    }
+
     setIsLoading(true); // 로딩 시작
-    axios.get(`/api/store/search?name=${storeName}`)
+
+    // 검색어 인코딩
+    const encodedName = encodeURIComponent(trimmedName);
+
+    // 수정된 URL 경로 (storeName을 쿼리 파라미터로 전달)
+    axios.get(`/store/search?name=${encodedName}`)
       .then((response) => {
-        setStoreList(response.data); // 검색된 가게 목록을 상태에 저장
+        if (response.data && response.data.length) {
+          setStoreList(response.data); // 검색된 가게 목록을 상태에 저장
+        } else {
+          setStoreList([]); // 검색 결과가 없을 경우 빈 배열 설정
+        }
         setIsLoading(false); // 로딩 종료
       })
       .catch((error) => {
@@ -34,35 +56,48 @@ function Search() {
       });
   };
 
-  // 최근 검색어 처리
   const handleSearch = () => {
-    if (searchTerm && !recentSearches.includes(searchTerm)) {
-      const updatedRecentSearches = [searchTerm, ...recentSearches].slice(0, 5); // 최근 5개만 저장
-      setRecentSearches(updatedRecentSearches);
-      localStorage.setItem('recentSearches', JSON.stringify(updatedRecentSearches)); // 로컬 스토리지에 저장
-    }
+    if (searchTerm.trim()) {
+      if (!recentSearches.includes(searchTerm)) {
+        const updatedRecentSearches = [searchTerm, ...recentSearches].slice(0, 5); // 최근 5개만 저장
+        setRecentSearches(updatedRecentSearches);
+        localStorage.setItem('recentSearches', JSON.stringify(updatedRecentSearches)); // 로컬 스토리지에 저장
+      }
 
-    // 검색 실행
-    searchStores(searchTerm);
+      // 서버에 검색어 기록 (엔터키 눌렀을 때만)
+      axios.post('/store/insertOrUpdateSearch', { storeName: searchTerm })
+        .then(() => {
+          // 인기 검색어 갱신 후 다시 가져오기
+          fetchPopularSearches();
+        })
+        .catch((error) => {
+          console.error('검색어 기록 오류:', error);
+        });
+    }
   };
 
-  // 엔터키나 서치 아이콘 클릭 시 검색 처리
-  const handleSearchTrigger = (e) => {
-    if (e.key === 'Enter' || e.type === 'click') {
-      handleSearch();
-    }
-  };
-
-  useEffect(() => {
-    // 실시간 인기 검색어 API 호출 예시
+  // 실시간 인기 검색어 API 호출
+  const fetchPopularSearches = () => {
+    setIsLoading(true); // 데이터를 가져오기 전에 로딩 상태 설정
     axios
-      .get('/api/popular-searches')
+      .get('/store/popular-searches')
       .then((response) => {
-        setPopularSearches(response.data);
+        console.log('Popular Search Response:', response.data); // 응답 데이터 확인
+        if (Array.isArray(response.data)) {
+          setPopularSearches(response.data); // 인기 검색어 상태 업데이트
+        } else {
+          console.error("Invalid data format for popular searches:", response.data);
+        }
+        setIsLoading(false); // 로딩 종료
       })
       .catch((error) => {
         console.error('Error fetching popular searches:', error);
+        setIsLoading(false); // 로딩 종료
       });
+  };
+
+  useEffect(() => {
+    fetchPopularSearches();  // 컴포넌트가 마운트될 때 인기 검색어 불러오기
   }, []);
 
   return (
@@ -74,47 +109,44 @@ function Search() {
             type="search"
             value={searchTerm}
             onChange={updateSearch}
-            onKeyDown={handleSearchTrigger}
             placeholder="검색어를 입력하세요"
           />
           <img
             src={search}
             alt="search"
-            onClick={handleSearchTrigger}
+            onClick={handleSearch}  // 아이콘 클릭 시 검색 처리
           />
         </div>
 
         <p>최근 검색어</p>
         <div className={style.boxs}>
           {recentSearches.map((term, index) => (
-            <span key={index}>{term}</span>
+            <span key={term + index}>{term}</span>
           ))}
         </div>
 
         <p>실시간 인기 검색어</p>
-        <div className={style.boxs}>
-          {popularSearches.map((term, index) => (
-            <span key={index}>{term}</span>
-          ))}
+        <div className={style.box}>
+          {popularSearches.length > 0 ? (
+            popularSearches.map((search, index) => (
+              <span key={index}>{search}</span> // 바로 문자열을 출력
+            ))
+          ) : (
+            <p>인기 검색어가 없습니다.</p>
+          )}
         </div>
 
         <div className={style.dlsrl}></div>
       </div>
 
       <div className={style.storeList}>
-        {isLoading ? (
-          <p>로딩 중...</p>
-        ) : storeList.length > 0 ? (
-          storeList.map((store) => (
-            <div key={store.STORE_NO} className={style.storeItem}>
-              <p>{store.STORE_NAME}</p>
-              <p>{store.STORE_ADDRESS}</p>
-              <p>{store.STORE_DES}</p>
-            </div>
-          ))
-        ) : (
-          <p>검색 결과가 없습니다.</p>
-        )}
+        {storeList.map((store) => (
+          <div key={store.storeNo}>
+            <p>{store.storeName}</p>
+            <p>{store.storeAddress}</p>
+            <p>{store.storeDes}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
