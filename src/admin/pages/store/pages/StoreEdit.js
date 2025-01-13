@@ -370,8 +370,8 @@ function StoreInfoRegist() {
         return <div>로딩중...</div>;
     }
     return(
-        <div className={styles.storeRegist}>
-            <div id={styles.storeRegistText}>가게 수정</div>
+        <div className={styles.storeEdit}>
+            <div id={styles.storeEditText}>가게 수정</div>
             
                 <input 
                     type='text' 
@@ -571,11 +571,11 @@ function StoreInfoRegist() {
                     placeholder="예약 가능 인원"
                 />
             </div>
-            <button id={styles.storeRegistCancleBtn} onClick={() => navigate(`/admin/stores/info/${storeNo}`)}>
+            <button id={styles.storeEditCancleBtn} onClick={() => navigate(`/admin/stores/info/${storeNo}`)}>
                     취소
                 </button>
                 <button 
-                    id={styles.storeRegistOkBtn} 
+                    id={styles.storeEditOkBtn} 
                     onClick={handleSubmit}
                 >
                     확인

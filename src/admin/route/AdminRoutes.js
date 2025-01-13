@@ -12,6 +12,8 @@ import StoreEdit from "../pages/store/pages/StoreEdit";
 import StoreUserRegist from "../pages/store/pages/StoreUserRegist";
 import StoreInfoRegist from "../pages/store/pages/StoreInfoRegist";
 import ReservationList from "../pages/reservation/pages/ReservationList";
+import ReservationTodayInfo from "../pages/reservation/pages/ReservationTodayInfo";
+import ReservationEndInfo from "../pages/reservation/pages/ReservationEndInfo";
 
 function AdminRoutes(){
     return(
@@ -35,6 +37,8 @@ function AdminRoutes(){
                 <Route path="/reservations">
                     <Route index element={<Navigate to="list" replace/>}/>
                     <Route path="list" element={<ReservationList/>}/>
+                    <Route path="info/today/:reservationNo" element={<ReservationTodayInfo/>}/>
+                    <Route path="info/end/:reservationNo" element={<ReservationEndInfo/>}/>
                 </Route>
                 <Route path="/reviews" element={<AdminReview/>}/>
                 <Route path="/inquiries" element={<AdminInquiry/>}/>

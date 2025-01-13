@@ -17,6 +17,8 @@ function ReservationList() {
     const [searchParams] = useSearchParams();
     const [totalReservations, setTotalReservations] = useState(0);
     const [selectedDate, setSelectedDate] = useState("");
+    const [isStatus, setIsStatus] = useState(false);
+    const [selectedStatus, setSelectedStatus] = useState("none");
 
     const fetchTotalReservations = useCallback(async () => {
         const data = await TotalReservationAPI();
@@ -30,6 +32,8 @@ function ReservationList() {
             if (reservationList && reservationList.length > 0) {
                 setList(reservationList);
                 setSearchSuccess(true);
+                setIsStatus(false);
+                setCurrentPage(1);
             } else {
                 setSearchSuccess(false);
             }
@@ -45,31 +49,21 @@ function ReservationList() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItem = useMemo(() => list.slice(indexOfFirstItem, indexOfLastItem), [list, indexOfFirstItem, indexOfLastItem]);
+    const currentItem = list.slice(indexOfFirstItem, indexOfLastItem);
 
     const totalPages = useMemo(() => Math.ceil(list.length / itemsPerPage), [list.length, itemsPerPage]);
 
-    const visiblePageNum = useCallback(() => {
-        let startPage = Math.max(currentPage - 2, 1);
-        let endPage = Math.min(currentPage + 2, totalPages);
+    
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+    
+    const currentRangeStart = Math.floor((currentPage - 1) / 5) * 5 + 1;
+    const currentRangeEnd = Math.min(currentRangeStart + 4, totalPages);
 
-        if (currentPage === 1) {
-            endPage = Math.min(5, totalPages);
-        } else if (currentPage === 2) {
-            endPage = Math.min(5, totalPages);
-        } else if (currentPage === totalPages - 1) {
-            startPage = Math.max(totalPages - 4, 1);
-        } else if (currentPage === totalPages) {
-            startPage = Math.max(totalPages - 4, 1);
-        }
+    const pageNumbersToDisplay = pageNumbers.slice(currentRangeStart - 1, currentRangeEnd);
 
-        let pageNumbers = [];
-        for (var i = startPage; i <= endPage; i++) {
-            pageNumbers.push(i);
-        }
-
-        return pageNumbers;
-    }, [currentPage, totalPages]);
 
     const paginate = useCallback((no) => {
         console.log(no);
@@ -79,21 +73,38 @@ function ReservationList() {
     }, [totalPages]);
 
     function categoryChangeHandler(e) {
-        setSearchCategory(e.target.value);
+        if(e.target.value === "QR_CONFIRM"){
+            setIsStatus(true);
+            setSearchCategory(e.target.value);
+        }else{
+            setIsStatus(false);
+            setSearchCategory(e.target.value);
+        }
     }
 
     function searchChangeHandler(e) {
-        setSearchWord(e.target.value);
+        if(isStatus){
+            setSelectedStatus(e.target.value);
+        }else{
+            setSearchWord(e.target.value);
+        }
     }
 
     function searchClickHandler() {
-        const url = `?category=${searchCategory}&word=${searchWord}`;
+        let url = "";
+        if(isStatus){
+            url = `?category=${searchCategory}&word=${selectedStatus}`;
+            setIsStatus(false);
+        }else{
+            url = `?category=${searchCategory}&word=${searchWord}`;
+        }
         navigate(url);
     }
 
     function handlerReservationInfo(no, isToday) {
         let url = "";
-        if (isToday) {
+        console.log(isToday);
+        if (isToday === "Y") {
             url = `/admin/reservations/info/today/${no}`;
         } else {
             url = `/admin/reservations/info/end/${no}`;
@@ -120,6 +131,13 @@ function ReservationList() {
                 <option className={styles.reservationListOption} value="RES_DATE">예약 시간</option>
                 <option className={styles.reservationListOption} value="QR_CONFIRM">예약 상태</option>
             </select>
+            {isStatus ? <select className={styles.reservationListStatusSelection} onChange={searchChangeHandler}>
+                <option className={styles.reservationListOption} value="none" selected>예약 상태</option>
+                <option className={styles.reservationListOption} value="예약대기중">예약대기중</option>
+                <option className={styles.reservationListOption} value="예약확인">예약확인</option>
+                <option className={styles.reservationListOption} value="노쇼">노쇼</option>
+            </select>
+            :
             <input
                 type="text"
                 className={styles.reservationListSearchInput}
@@ -127,6 +145,7 @@ function ReservationList() {
                 onChange={searchChangeHandler}
                 onKeyPress={handleKeyPress}
             />
+            }
             <button type="button" onClick={searchClickHandler} className={styles.reservationListSearchBtn}></button>
             <table className={styles.reservationList}>
                 <thead className={styles.reservationListHeader}>
@@ -151,14 +170,16 @@ function ReservationList() {
                 )) : <div className={styles.reservationListBody}>해당 결과가 존재하지 않습니다.</div>}
             </div>
             <div className={styles.pageNation}>
-                {visiblePageNum().map((pageNum) => (
-                    <button key={pageNum} onClick={() => paginate(pageNum)} className={pageNum === currentPage ? styles.active : ''}>
+            <div className={`${styles.pageNationBackBtn} ${currentPage === 1 ? styles.disabled : ''}`} onClick={() => paginate(currentPage - 1)} hidden={currentPage === 1}>◀</div>
+            <div className={styles.pageNumArea}>
+                {pageNumbersToDisplay.map((pageNum) => (
+                    <div key={pageNum} onClick={() => paginate(pageNum)} className={`${styles.pageNumBtn} ${pageNum === currentPage ? styles.active : ''}`}>
                         {pageNum}
-                    </button>
+                    </div>
                 ))}
+                </div>
+            <div className={`${styles.pageNationForwordBtn} ${currentPage === totalPages? styles.disabled : ''}`} onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>▶</div>
             </div>
-            <button className={styles.pageNationBackBtn} onClick={() => paginate(currentPage - 1)} hidden={currentPage === 1}>◀</button>
-            <button className={styles.pageNationForwordBtn} onClick={() => paginate(currentPage + 1)} hidden={currentPage === totalPages}>▶</button>
         </>
     );
 }
