@@ -362,22 +362,39 @@ a:active {
   border-radius: 0;
   z-index: 5;
 }
-.reviewStyle .reviewArea .reviewContainer .review #finalCheck {
-  position: absolute;
-  left: 521px;
-  top: 2371px;
+.reviewStyle .reviewArea #moreReview {
+  margin-top: 50px;
+  font-family: "Pretendard Variable";
+  font-size: 40px;
+  font-weight: 700;
+  color: #232323;
+  cursor: pointer;
+}
+.reviewStyle .modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.reviewStyle #finalCheck {
   width: 879px;
   height: 316px;
   border: 5px solid #FF8AA3;
   border-radius: 50px;
-  z-index: 20;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  z-index: 20;
 }
-.reviewStyle .reviewArea .reviewContainer .review #finalCheck #reallyDeleteReview {
+.reviewStyle #finalCheck #reallyDeleteReview {
   width: max-content;
   margin-top: 5px;
   height: 44px;
@@ -386,7 +403,7 @@ a:active {
   font-weight: 500;
   color: #232323;
 }
-.reviewStyle .reviewArea .reviewContainer .review #finalCheck #notice {
+.reviewStyle #finalCheck #notice {
   width: max-content;
   margin-top: 40px;
   height: 36px;
@@ -395,7 +412,7 @@ a:active {
   font-weight: 500;
   color: #FF5D18;
 }
-.reviewStyle .reviewArea .reviewContainer .review #finalCheck #cancleDeleteReview {
+.reviewStyle #finalCheck #cancleDeleteReview {
   margin-top: 40px;
   margin-left: -220px;
   width: 171px;
@@ -409,7 +426,7 @@ a:active {
   color: #232323;
   cursor: pointer;
 }
-.reviewStyle .reviewArea .reviewContainer .review #finalCheck #confirmDeleteReview {
+.reviewStyle #finalCheck #confirmDeleteReview {
   margin-top: -44px;
   margin-left: 220px;
   width: 171px;
@@ -423,22 +440,19 @@ a:active {
   color: #232323;
   cursor: pointer;
 }
-.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview {
-  position: absolute;
-  left: 521px;
-  top: 2371px;
+.reviewStyle #completeDeleteReview {
   width: 879px;
   height: 316px;
   border: 5px solid #FF8AA3;
   border-radius: 50px;
-  z-index: 20;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  z-index: 20;
 }
-.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview #completedDeletteMessage {
+.reviewStyle #completeDeleteReview #completedDeletteMessage {
   width: max-content;
   margin-top: 5px;
   height: 44px;
@@ -447,7 +461,7 @@ a:active {
   font-weight: 500;
   color: #232323;
 }
-.reviewStyle .reviewArea .reviewContainer .review #completeDeleteReview #completeBtn {
+.reviewStyle #completeDeleteReview #completeBtn {
   margin-top: 40px;
   width: 171px;
   height: 44px;
@@ -457,14 +471,6 @@ a:active {
   font-family: "Pretendard Variable";
   font-size: 25px;
   font-weight: 500;
-  color: #232323;
-  cursor: pointer;
-}
-.reviewStyle .reviewArea #moreReview {
-  margin-top: 50px;
-  font-family: "Pretendard Variable";
-  font-size: 40px;
-  font-weight: 700;
   color: #232323;
   cursor: pointer;
 }
@@ -531,33 +537,33 @@ a:active {
     width: 850px;
     height: max-content;
   }
-  .reviewStyle .reviewArea .reviewContainer .review, .reviewStyle .reviewArea .reviewContainer .transformReview {
+  .reviewStyle .reviewArea .reviewContainer .review {
     position: relative;
     display: flex;
     flex-direction: column;
   }
-  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer {
+  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer {
     display: flex;
     align-items: center;
     order: 1;
   }
-  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .userName, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .userName {
+  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .userName {
     display: inline-block;
   }
-  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .starRating, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .starRating {
+  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .starRating {
     display: inline-flex;
     margin-left: 20px;
   }
-  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .starRating img, .reviewStyle .reviewArea .reviewContainer .transformReview .userInfoContainer .starRating img {
+  .reviewStyle .reviewArea .reviewContainer .review .userInfoContainer .starRating img {
     height: 20px;
   }
-  .reviewStyle .reviewArea .reviewContainer .review > div, .reviewStyle .reviewArea .reviewContainer .transformReview > div {
+  .reviewStyle .reviewArea .reviewContainer .review > div {
     margin-bottom: 8px;
   }
-  .reviewStyle .reviewArea .reviewContainer .review > div:nth-child(4), .reviewStyle .reviewArea .reviewContainer .transformReview > div:nth-child(4) {
+  .reviewStyle .reviewArea .reviewContainer .review > div:nth-child(4) {
     order: 2;
   }
-  .reviewStyle .reviewArea .reviewContainer .review > div:nth-child(6), .reviewStyle .reviewArea .reviewContainer .transformReview > div:nth-child(6) {
+  .reviewStyle .reviewArea .reviewContainer .review > div:nth-child(6) {
     order: 3;
   }
   .reviewStyle .reviewArea .reviewContainer .review {
@@ -651,6 +657,50 @@ a:active {
     font-weight: 700;
     color: #232323;
     cursor: pointer;
+  }
+  .reviewStyle #finalCheck {
+    width: 600px;
+    height: 250px;
+    border: 4px solid #FF8AA3;
+    border-radius: 40px;
+  }
+  .reviewStyle #finalCheck #reallyDeleteReview {
+    font-size: 32px;
+    height: 36px;
+  }
+  .reviewStyle #finalCheck #notice {
+    font-size: 24px;
+    margin-top: 30px;
+    height: 30px;
+  }
+  .reviewStyle #finalCheck #cancleDeleteReview, .reviewStyle #finalCheck #confirmDeleteReview {
+    width: 140px;
+    height: 38px;
+    font-size: 20px;
+    margin-top: 30px;
+  }
+  .reviewStyle #finalCheck #cancleDeleteReview {
+    margin-left: -160px;
+  }
+  .reviewStyle #finalCheck #confirmDeleteReview {
+    margin-left: 160px;
+    margin-top: -38px;
+  }
+  .reviewStyle #completeDeleteReview {
+    width: 600px;
+    height: 250px;
+    border: 4px solid #FF8AA3;
+    border-radius: 40px;
+  }
+  .reviewStyle #completeDeleteReview #completedDeletteMessage {
+    font-size: 32px;
+    height: 36px;
+  }
+  .reviewStyle #completeDeleteReview #completeBtn {
+    width: 140px;
+    height: 38px;
+    font-size: 20px;
+    margin-top: 30px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -805,90 +855,6 @@ a:active {
     border-radius: 0;
     z-index: 5;
   }
-  .reviewStyle .reviewArea .reviewContainer .transformReview {
-    position: relative;
-    display: inline-block;
-    margin-top: 30px;
-    margin-left: -5px;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview #reviewImg {
-    display: block;
-    top: 5px;
-    width: 450px;
-    height: 158px;
-    z-index: 1;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview #userProfile {
-    position: absolute;
-    left: 180px;
-    top: 15px;
-    width: 33px;
-    height: 34px;
-    z-index: 5;
-    border-radius: 0;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div {
-    position: absolute;
-    width: max-content;
-    cursor: default;
-    z-index: 2;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) {
-    left: 222px;
-    top: 17px;
-    width: max-content;
-    font-family: "Bobaesum Jindo TTF";
-    font-size: 12px;
-    font-weight: 500;
-    font-style: normal;
-    color: #232323;
-    z-index: 5;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) span {
-    margin-right: 8px;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(1) .star {
-    font-size: 25px;
-    margin-right: -2px;
-    display: inline-block;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(2) {
-    left: 222px;
-    top: 32px;
-    width: max-content;
-    font-family: "Pretendard Variable";
-    font-size: 11px;
-    font-weight: 400;
-    font-style: normal;
-    color: #232323;
-    z-index: 5;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview div:nth-of-type(3) {
-    left: 175px;
-    top: 55px;
-    width: 255px;
-    height: 75px;
-    background-color: #FFF9D3;
-    padding-left: 7px;
-    padding-top: 5px;
-    font-family: "Pretendard Variable";
-    font-size: 10px;
-    font-weight: 500;
-    font-style: normal;
-    color: #232323;
-    line-height: 150%;
-    border-radius: 0;
-    z-index: 5;
-  }
-  .reviewStyle .reviewArea .reviewContainer .transformReview #reviewPhoto {
-    position: absolute;
-    left: 8px;
-    top: 10px;
-    width: 147px;
-    height: 128px;
-    border-radius: 0;
-    z-index: 5;
-  }
   .reviewStyle .reviewArea #moreReview {
     margin-top: 30px;
     font-family: "Pretendard Variable";
@@ -897,4 +863,52 @@ a:active {
     color: #232323;
     cursor: pointer;
   }
-}/*# sourceMappingURL=review.module.css.map */
+  .reviewStyle #finalCheck {
+    width: 300px;
+    height: 180px;
+    border: 3px solid #FF8AA3;
+    border-radius: 25px;
+  }
+  .reviewStyle #finalCheck #reallyDeleteReview {
+    font-size: 20px;
+    height: 24px;
+    margin-top: 3px;
+  }
+  .reviewStyle #finalCheck #notice {
+    font-size: 15px;
+    margin-top: 20px;
+    height: 20px;
+  }
+  .reviewStyle #finalCheck #cancleDeleteReview, .reviewStyle #finalCheck #confirmDeleteReview {
+    width: 80px;
+    height: 30px;
+    font-size: 15px;
+    margin-top: 20px;
+    border-radius: 15px;
+  }
+  .reviewStyle #finalCheck #cancleDeleteReview {
+    margin-left: -90px;
+  }
+  .reviewStyle #finalCheck #confirmDeleteReview {
+    margin-left: 90px;
+    margin-top: -30px;
+  }
+  .reviewStyle #completeDeleteReview {
+    width: 300px;
+    height: 180px;
+    border: 3px solid #FF8AA3;
+    border-radius: 25px;
+  }
+  .reviewStyle #completeDeleteReview #completedDeletteMessage {
+    font-size: 20px;
+    height: 24px;
+    margin-top: 3px;
+  }
+  .reviewStyle #completeDeleteReview #completeBtn {
+    width: 80px;
+    height: 30px;
+    font-size: 15px;
+    margin-top: 20px;
+    border-radius: 15px;
+  }
+}
