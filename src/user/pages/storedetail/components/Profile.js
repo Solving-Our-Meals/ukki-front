@@ -12,8 +12,30 @@ function Profile() {
         .then(res => res.text())
         .then(data => {
             // 프로필 이름을 기반으로 실제 이미지 URL 가져오기
-            const profileUrl = `/store/${storeNo}/api/profile?profileName=${data}`
-            setProfile(profileUrl);
+            // if(data.userProfile !== null){
+            //     const profileUrl = `/store/${storeNo}/api/profile?profileName=${data}`
+            //     setProfile(profileUrl);
+            // } else {
+            //     fetch(`/store/${storeNo}/storebanner`)
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         const profileUrl = `/store/${storeNo}/api/files?filename=${data[0]}`;
+            //         setProfile(profileUrl);
+            //     });
+            // }
+            
+            // userProfile이 DB에서 null일 때 해당 가게의 배너1번 사진 가져오기
+            if(data === ""){
+                fetch(`/store/${storeNo}/storebanner`)
+                .then(res => res.json())
+                .then(data => {
+                    const profileUrl = `/store/${storeNo}/api/files?filename=${data[0]}`;
+                    setProfile(profileUrl);
+                });
+            } else {
+                const profileUrl = `/store/${storeNo}/api/profile?profileName=${data}`
+                setProfile(profileUrl);
+            }
         });
     }, []);
 

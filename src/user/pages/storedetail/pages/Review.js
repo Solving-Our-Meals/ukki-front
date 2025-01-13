@@ -93,7 +93,7 @@ function Review(){
                     {reviews.map((review, index) => (
                         <div 
                             key={index} 
-                            className={index % 2 !== 0 ? styles.transformReview : styles.review} 
+                            className={styles.review} 
                             style={{ 
                                 display : isMoreReview || index <= 2 ? "" : "none" }}
                         >
