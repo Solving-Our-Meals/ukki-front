@@ -1,4 +1,4 @@
-.storeListText{
+.reservationListText {
     position: absolute;
     width: 230px;
     height: 55px;
@@ -14,7 +14,24 @@
     color: #1E1E1E;
 }
 
-.storeListSelection{
+.totalReservationCount {
+    position: absolute;
+    height: 55px;
+    left: 61px;
+    top: 108px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+
+    color: #1E1E1E;
+}
+
+.reservationListSelection {
     position: absolute;
     width: 167px;
     height: 43px;
@@ -35,18 +52,7 @@
     cursor: pointer;
 }
 
-.storeListOption{
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    text-align: center;
-
-    color: #1E1E1E;
-}
-
-.storeListSearchInput{
+.reservationListSearchInput {
     position: absolute;
     width: 840px;
     height: 64px;
@@ -59,7 +65,7 @@
     border-radius: 50px;
 }
 
-.storeListSearchBtn{
+.reservationListSearchBtn {
     position: absolute;
     width: 52px;
     height: 52px;
@@ -67,18 +73,16 @@
     top: 42px;
 
     border: none;
-
     background-color: #FFFFFF;
     background-image: url('images/Search.png');
-
     cursor: pointer;
 }
 
-.storeListSearchBtn:hover {
+.reservationListSearchBtn:hover {
     opacity: 0.8;
 }
 
-.storeList{
+.reservationList {
     position: absolute;
     width: 1489px;
     height: 71px;
@@ -91,10 +95,10 @@
     overflow: hidden;
 }
 
-.storeListHeader{
+.reservationListHeader {
     height: 71px;
     background-color: #7BD5FF;
-        
+
     font-family: 'Bobaesum Jindo TTF';
     font-style: normal;
     font-weight: 400;
@@ -106,19 +110,19 @@
     color: #232323;
 }
 
-.storeListHeader th { 
+.reservationListHeader th { 
     text-align: center; 
     vertical-align: middle;
     padding: 0;
 }
 
-#storeListBodyPosition{
+#reservationListBodyPosition {
     position: absolute;
     left: 61px;
     top: 221px;
 }
 
-.storeListBody {
+.reservationListBody {
     width: 1489px;
     height: 71px;
     font-family: 'Pretendard Variable';
@@ -136,25 +140,17 @@
     user-select: text;
 }
 
-.storeListBody > div {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
+.reservationListBody > div {
+    display: inline-block;
+    user-select: text;
 }
 
-.storeListBody > div > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
 
-.storeListBody > div:hover {
+.reservationListBody:hover {
     background-color: #f5f5f5;
 }
 
-.pageNation{
+.pageNation {
     position: absolute;
     width: 350px;
     height: 28px;
@@ -165,7 +161,7 @@
     align-content: center;
 }
 
-.pageNation button{
+.pageNation button {
     background-color: white;
     border: none;
     font-size: 20px;
@@ -174,58 +170,13 @@
     cursor: pointer;
 }
 
-.pageNation button.active{
+.pageNation button.active {
     background-color: #FF8AA3;
     color: white;
 }
 
 .pageNation button:hover:not(.active) {
     background-color: #FFE0E6;
-}
-
-#storeUserRegist {
-    position: absolute;
-    width: 222px;
-    height: 47px;
-    left: 1328px;
-    top: 690px;
-
-    background: #FFF3A7;
-    border: 3px solid #FF8AA3;
-    border-radius: 50px;
-
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
-    align-items: center;
-    text-align: center;
-
-    color: #1E1E1E;
-
-    cursor: pointer;
-}
-
-#storeUserRegist:hover {
-    background: #FFE970;
-} 
-
-.totalStoreCount{
-    position: absolute;
-    height: 55px;
-    left: 61px;
-    top: 108px;
- 
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
-    align-items: center;
-    text-align: center;
-
-    color: #1E1E1E;
 }
 
 .pageNationBackBtn {
