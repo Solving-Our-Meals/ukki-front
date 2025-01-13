@@ -22,6 +22,7 @@ function Review(){
     const [completeOrFailDeleteMessage, setCompleteOrFailDeleteMessage] = useState("");
     // 선택된 리뷰 번호
     const [selectedReviewNo, setSelectedReviewNo] = useState(null);
+    const [selectedUserNo, setSelectedUserNo] = useState(null);
 
 
     useEffect(() => {
@@ -84,14 +85,15 @@ function Review(){
     const renderStars = (reviewScope) => {
         let stars = [];
         for (let i = 0; i < reviewScope; i++) {
-            stars.push(<span key={i} className={styles.star}>⭐</span>);
+            // stars.push(<span key={i} className={styles.star}>⭐</span>);
+            stars.push(<span key={i} className={styles.star}>&#x2B50;</span>);
         }
         return stars;
     };
 
     // 리뷰 삭제
-    const deleteReview = (reviewNo) => {
-        fetch(`/store/${storeNo}/deletereview?reviewNo=${reviewNo}`,{
+    const deleteReview = (reviewNo, userNo) => {
+        fetch(`/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`,{
             method : "DELETE",         
         })
         .then((res) => {
@@ -147,6 +149,7 @@ function Review(){
                                 onClick={() => {
                                     setRealDeleteReview(true);
                                     setSelectedReviewNo(review.reviewNo);
+                                    setSelectedUserNo(review.userNo);
                                 }}
                             >
                                 리뷰 삭제
@@ -191,7 +194,7 @@ function Review(){
                         <p id={styles.reallyDeleteReview}>리뷰를 삭제하시겠습니까?</p>
                         <p id={styles.notice}>해당 리뷰가 게시물에서 완전히 삭제됩니다.</p>
                         <button type='button' id={styles.cancleDeleteReview} onClick={() => setRealDeleteReview(false)}>취소</button>
-                        <button type='submit' id={styles.confirmDeleteReview} onClick={() => deleteReview(selectedReviewNo)}>확인</button>
+                        <button type='submit' id={styles.confirmDeleteReview} onClick={() => deleteReview(selectedReviewNo, selectedUserNo)}>확인</button>
                     </div>
                 </div>
             )}
