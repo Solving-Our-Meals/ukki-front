@@ -11,11 +11,11 @@
 
 .tab2, .tab3, .tab4 {
     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
-    font-weight: 900;
-    margin-left: 30px;
+    font-weight: 400;
+    margin-left: 10px;
     cursor: pointer;
     color : #BDBEBF;
 }
@@ -26,17 +26,17 @@
 
 .line1, .line2 {
     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
     font-weight: 900;
-    margin-left: 20px;
+    margin-left: 5px;
     color : #BDBEBF;
 }
 
 .tab1 {
     display: inline-block;
-    font-family: 'Bobaesum Jindo TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-weight: 400;
     font-size: 45px;
@@ -49,53 +49,52 @@
 /* 예약 리스트 CSS */
 .mypageReservationMain .headerRow {
     display: grid;
-    grid-template-columns:  2fr 5fr 12fr 15fr;;
-    padding: 10px 0;
-
+    grid-template-columns:  2fr 12fr 12fr 15fr 15fr;
+    padding: 0px 0;
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 30px;
 
-    /* text/strong */
     color: #232323;
 }
 
 /* 가운데 정렬 */
-/*.mypageReservationMain {
-    transform: translate(-30px, 150px);
+.mypageReservationMain {
+    transform: translateY(-50px);
+    margin-top: 150px;
+}
+
+.headerRow {
+    margin-top: 10px;
 }
 
 /* 가운데 정렬 2 */
-/*.headerItem {
-    width:325px;
+.headerItem {
+    width:300px;
     background: none;
     text-align: center;
-}*/
-
-/* 좌측 정렬 */
-.mypageReservationMain {
-    transform: translate(100px, 150px);
-}
-
-/* 좌측 정렬 2 */
-.headerItem {
-    width:250px;
-    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
 }
 
 /* 예약 항목 */
 .reservationItem {
     display: grid;
-    grid-template-columns:  2fr 5fr 12fr 15fr;
+    grid-template-columns:  2fr 12fr 12fr 15fr 15fr;
     padding: 10px 0;
-
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 30px;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    height: 95px;
 }
 
 
@@ -103,9 +102,8 @@
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    gap: 10px;
-    transform: translateX(-110px);
+    margin-top: 35px;
+    gap: 40px;
 }
 
 .pagination button {
@@ -141,39 +139,63 @@
     font-size: 25px;
     line-height: 28px;
     cursor: pointer;
-    color: #FF8AA3;
+    color: #232323;
+    opacity: 50%;
 }
 
 .paginationButton.disabled {
     visibility: hidden;
 }
+.paginationButton.arrow {
+    color:#FF8AA3;
+    opacity: 1;
+}
 
 /* 선 */
 .headerRow, .reservationItem {
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 55px;
 }
 
 /* 선 2 (가운데 정렬) */
-/*.headerRow::before, .reservationItem::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 90%;
-    height: 2px;
-    background-color: #ccc;
-    transform: translateX(-50%);
-}*/
-
-
-/* 선 2 (좌측 정렬) */
 .headerRow::before, .reservationItem::before {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 40%;
-    width: 90%;
+    left: 50%;
+    width: 95%;
+    height: 2px;
+    background-color: #ccc;
+    transform: translateX(-50%);
+}
+
+.mypageReservationMain .headerRow {
+    display: grid;
+    padding: 0px 0;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #232323;
+    position: relative;
+}
+
+.headerRow::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 95%;
+    height: 5px;
+    transform: translateX(-50%);
+}
+
+.reservationItem::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 95%;
     height: 2px;
     background-color: #ccc;
     transform: translateX(-50%);
@@ -199,30 +221,33 @@
 
 
 .deleteButton {
+    width: 80px;
+    height: 35px;
+
     position: absolute;
-    left: 1020px;
-    top: 10px;
-    background-color: #ff4c4c;
-    color: white;
+    left: 1160px;
+    top: 30px;
     border: none;
-    border-radius: 20px;
-    padding: 8px 20px;
+
+    background: #FFBDC9;
+    border-radius: 50px;
+
     font-size: 14px;
     font-weight: bold;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
-    display: none;
+    /*display: none;*/
     font-family: 'Pretendard-Regular';
     color: #232323;
 }
 
-.reservationItem:hover .deleteButton {
-    display: block;
-}
+/*.reservationItem:hover .deleteButton {*/
+/*    display: block;*/
+/*}*/
 
 .deleteButton:hover {
-    background-color: #ff2b2b;
+    background-color: #FF8AA3;
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
@@ -266,7 +291,7 @@
 
 .modalButtons {
     margin-top: 20px;
-    font-family: 'Pretendard Variable';
+    font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
@@ -376,3 +401,7 @@
     transition: background-color 0.3s ease, box-shadow 0.2s ease;
 }
 
+.paginationButton.active {
+    color:#232323;
+    opacity: 1;
+}

@@ -9,7 +9,7 @@ function Reservation() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
@@ -68,6 +68,28 @@ function Reservation() {
         return currentTime < reservationDate ? "예약 중" : "예약 만료";
     };
 
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
+    const currentRangeStart = Math.floor((currentPage - 1) / 5) * 5 + 1;
+    const currentRangeEnd = Math.min(currentRangeStart + 4, totalPages);
+
+    const pageNumbersToDisplay = pageNumbers.slice(currentRangeStart - 1, currentRangeEnd);
+
+    const handlePrevClick = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handleNextClick = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
     return (
         <div className={styles.mypageReservation}>
             <div className={styles.allTabs}>
@@ -123,19 +145,30 @@ function Reservation() {
                 {/* 페이지네이션 */}
                 <div className={styles.pagination}>
                     <div
-                        className={`${styles.paginationButton} ${currentPage === 1 ? styles.disabled : ''}`}
-                        onClick={() => paginate(currentPage - 1)}
+                        className={`${styles.paginationButton} ${styles.arrow} ${currentPage === 1 ? styles.disabled : ''}`}
+                        onClick={handlePrevClick}
                     >
                         ◀
                     </div>
-                    <span>{currentPage} / {totalPages}</span>
+
+                    {pageNumbersToDisplay.map(number => (
+                        <div
+                            key={number}
+                            className={`${styles.paginationButton} ${currentPage === number ? styles.active : ''}`}
+                            onClick={() => paginate(number)}
+                        >
+                            {number}
+                        </div>
+                    ))}
+
                     <div
-                        className={`${styles.paginationButton} ${currentPage === totalPages || totalPages === 0 ? styles.disabled : ''}`}
-                        onClick={() => paginate(currentPage + 1)}
+                        className={`${styles.paginationButton} ${styles.arrow} ${currentPage === totalPages || totalPages === 0 ? styles.disabled : ''}`}
+                        onClick={handleNextClick}
                     >
                         ▶
                     </div>
                 </div>
+
             </div>
         </div>
     );
