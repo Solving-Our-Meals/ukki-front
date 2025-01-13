@@ -1,10 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../css/reset.css';
-import styles from '../css/StoreInfoRegist.module.css';
-import { GetProfileAPI } from '../api/GetProfileAPI';
-import { GetMenuAPI } from '../api/GetMenuAPI';
-import { GetBannerAPI } from '../api/GetBannerAPI';
+import styles from '../css/StoreEdit.module.css';
 import triangleBtn from '../css/images/inverted_triangle.png';
 import xBtn from '../css/images/xBtn.png';
 import plusBtn from '../css/images/plusBtn.png';
@@ -15,27 +12,28 @@ import AdminResultModal from '../../../components/AdminResultModal';
 function StoreInfoRegist() {
     const { storeNo } = useParams();
     const navigate = useNavigate();
+    const [userInfo, setUserInfo] = useState({});
     const [storeInfo, setStoreInfo] = useState({
         storeNo: 0,
-        storeName: "가게 이름",
-        storeDes: "가게 소개글",
-        storeAddress: "가게 주소",
-        storeKeyword: [],
-        storeCoordinate: {
-            latitude: 0,
-            longitude: 0
-        },
+        storeName: "",
+        storeDes: "",
+        storeAddress: "",
+        storeKeyword: {},
+        latitude: 0,
+        longitude: 0,
         operationTime: "",
         storeCategoryNo: 0,
-        storeCategory: []
+        storeRegistDate : '',
+        posNumber : 0
     });
     const [isAddressChanged, setIsAddressChanged] = useState(false);
+    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState(0);
     const [coordError, setCoordError] = useState('');
     const [isNone, setIsNone] = useState(true);
     const [menuImage, setMenuImage] = useState('');
     const [profileImage, setProfileImage] = useState('');
     const [bannerImages, setBannerImages] = useState(Array(5).fill(''));
-    const [initialData, setInitialData] = useState(null);
     const [showAgreementModal, setShowAgreementModal] = useState(false);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultMessage , setResultMessage] = useState('');
@@ -43,73 +41,31 @@ function StoreInfoRegist() {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const today = new Date().toISOString().split('T')[0];
+
     useEffect(() => {
         const fetchStoreData = async () => {
             try {
-                const storeResponse = await fetch(`/admin/stores/info/${storeNo}`);
-                const storeData = await storeResponse.json();
-                
-                const [menuUrl, profileUrl, bannerImages] = await Promise.all([
-                    GetMenuAPI(storeNo),
-                    GetProfileAPI(storeNo),
-                    GetBannerAPI(storeNo)
-                ]);
-
-                const initialStoreData = {
-                    ...storeData,
-                    storeCoordinate: {
-                        latitude: storeData.latitude,
-                        longitude: storeData.longitude
-                    },
-                    operationTime: {
-                        ...storeData.operationTime,
-                        breakTime: storeData.operationTime?.breakTime ?? '없음'
-                    }
-                };
-
-                setInitialData(initialStoreData);
-                setStoreInfo(initialStoreData);
-                setCategories(storeData.storeCategory);
-                setMenuImage(menuUrl);
-                setProfileImage(profileUrl);
-                setBannerImages(bannerImages);
-
+                const response = await fetch(`/admin/stores/regist/store`);
+                const data = await response.json();
+                console.log(data);
+                setUserInfo({
+                    userId : data.userDTO.userId,
+                    userPassword : data.userDTO.userPassword,
+                    userName : data.userDTO.userName,
+                    email : data.userDTO.email
+                });
+                setCategories(data.categoryDTO);
             } catch (error) {
                 setResultMessage('데이터 로딩 중 오류가 발생했습니다.');
                 setShowResultModal(true);
             }finally{
                 setLoading(false);
             }
-
         };
 
         fetchStoreData();
     }, [storeNo]);
-
-    useEffect(() => {
-        if (!storeInfo.operationTime) return;
-
-        const date = new Date();
-        const day = date.getDay();
-        const dayOfWeekMap = {
-            0: "sunday",
-            1: "monday",
-            2: "tuesday",
-            3: "wednesday",
-            4: "thursday",
-            5: "friday",
-            6: "saturday"
-        };
-
-        const dayOfWeek = dayOfWeekMap[day];
-        const currentOperationTime = storeInfo.operationTime[dayOfWeek];
-
-        setStoreInfo(prev => ({
-            ...prev,
-            currentOperationTime
-        }));
-
-    }, [storeInfo.operationTime]);
 
     const handleInputChange = useCallback((e) => {
         const { id, value } = e.target;
@@ -119,12 +75,14 @@ function StoreInfoRegist() {
             .replace(styles.posNumberInput, 'posNumber')
             .replace(styles.categorySelect, 'storeCategoryNo');
 
+        console.log(fieldName);
+        console.log(value);
+
         setStoreInfo(prev => ({
             ...prev,
             [fieldName]: value
         }));
 
-        // storeAddress가 변경되었을 때 플래그 설정
         if (fieldName === 'storeAddress') {
             setIsAddressChanged(true);
             setCoordError(''); // 에러 메시지 초기화
@@ -209,12 +167,9 @@ function StoreInfoRegist() {
                 const [latitude, longitude] = coordinates;
                 setStoreInfo(prev => ({
                     ...prev,
-                    storeCoordinate: {
-                        latitude,
-                        longitude
-                    }
+                    latitude,
+                    longitude
                 }));
-                setIsAddressChanged(false); // 변환 완료 후 버튼 비활성화
                 setCoordError('');
             } else {
                 setCoordError('주소를 찾을 수 없습니다.');
@@ -224,145 +179,130 @@ function StoreInfoRegist() {
         }
     }, [storeInfo.storeAddress]);
 
-    // 변경된 데이터만 추출하는 함수
-    const getChangedData = useCallback(() => {
-        if (!initialData) return null;
-
-        const changes = {};
-        
-        // 기본 필드 비교
-        ['storeName', 'storeDes', 'storeAddress', 'posNumber', 'storeCategoryNo'].forEach(field => {
-            if (storeInfo[field] !== initialData[field]) {
-                changes[field] = storeInfo[field];
-            }
-        });
-
-        // 좌표 비교
-        if (storeInfo.storeCoordinate.latitude !== initialData.storeCoordinate.latitude ||
-            storeInfo.storeCoordinate.longitude !== initialData.storeCoordinate.longitude) {
-            changes.storeCoordinate = storeInfo.storeCoordinate;
-        }
-
-        // 영업시간 비교
-        const operationTimeChanged = JSON.stringify(storeInfo.operationTime) !== JSON.stringify(initialData.operationTime);
-        if (operationTimeChanged) {
-            changes.operationTime = storeInfo.operationTime;
-        }
-
-        // 키워드 비교
-        const keywordsChanged = JSON.stringify(storeInfo.storeKeyword) !== JSON.stringify(initialData.storeKeyword);
-        if (keywordsChanged) {
-            changes.storeKeyword = storeInfo.storeKeyword;
-        }
-
-        // 카테고리 번호 비교
-        // if (selectedCategory !== initialData.storeCategoryNo) {
-        //     changes.storeCategoryNo = selectedCategory;
-        // }
-
-        return Object.keys(changes).length > 0 ? changes : null;
-    }, [initialData, storeInfo]);
-
-    // 이미지 변경 여부를 확인하는 함수 수정
-    const getChangedImages = useCallback(() => {
-        const changes = {};
-        
-        // 현재 배너 이미지들을 모두 전송
-        const currentBanners = bannerImages.reduce((acc, img, index) => {
-            if (img) {
-                acc[`banner${index + 1}`] = img.startsWith('data:') ? img : null; // base64는 그대로, 기존 URL은 null로
-            }
-            return acc;
-        }, {});
-
-        changes.bannerStatus = bannerImages;
-
-        changes.bannerImages = currentBanners;
-
-        if (menuImage && menuImage.startsWith('data:')) {
-            changes.menuImage = menuImage;
-        }
-
-        if (profileImage && profileImage.startsWith('data:')) {
-            changes.profileImage = profileImage;
-        }
-
-        return changes;  // 항상 changes 객체 반환
-    }, [bannerImages, menuImage, profileImage]);
 
     // 수정 요청 처리 함수 수정
     const handleSubmit = async () => {
-
-        const changedData = getChangedData();
-        const changedImages = getChangedImages();
-
-        if (!changedData && !changedImages) {
-            setResultMessage('변경된 내용이 없습니다.');
+        console.log(userInfo);
+        if(storeInfo.storeName ===''){
+            setResultMessage('가게 이름은 필수입니다.');
             setShowResultModal(true);
             return;
         }
-
-        setAgreeMessage('수정하시겠습니까?');
+        if(storeInfo.storeDes === ''){
+            setResultMessage('가게 소개글은 필수입니다.');
+            setShowResultModal(true);
+            return;
+        }
+        if(storeInfo.storeCategoryNo === ''){
+            setResultMessage('카테고리는 필수입니다.');
+            setShowResultModal(true);
+            return;
+        }
+        if(bannerImages.every(image => image === '')){
+            setResultMessage('배너 이미지는 최소 1개 이상 있어야합니다.');
+            setShowResultModal(true);
+            return;
+        }
+        if(menuImage === ''){
+            setResultMessage('메뉴 이미지는 필수입니다.');
+            setShowResultModal(true);
+            return;
+        }
+        if(profileImage === ''){
+            setResultMessage('프로필 이미지는 필수입니다.');
+            setShowResultModal(true);
+            return;
+        }
+        console.log(storeInfo.storeKeyword);
+        console.log(Object.values(storeInfo.storeKeyword));
+        if(Object.values(storeInfo.storeKeyword).every(keyword => keyword === '')){
+            setResultMessage('키워드는 필수입니다.');
+            setShowResultModal(true);
+            return;
+        }
+        if(storeInfo.storeAddress === ''){
+            setResultMessage('주소를 입력해주세요.');
+            setShowResultModal(true);
+            return;
+        }else if(storeInfo.latitude === 0 || storeInfo.longitude === 0){
+            setResultMessage('좌표를 변환해주세요.');
+            setShowResultModal(true);
+            return;
+        }
+        if(Object.values(storeInfo.operationTime).every(time => time === '')){
+            setResultMessage('영업 시간은 필수입니다.');
+            setShowResultModal(true);
+            return;
+        }
+        if(storeInfo.posNumber === ''){
+            setResultMessage('기본 예약 가능 인원은 필수입니다.');
+            setShowResultModal(true);
+            return;
+        }
+        
+        setAgreeMessage('등록하시겠습니까?');
         setShowAgreementModal(true);
     };
 
-    // 수정 확인 함수 추가
     const registConfirm = async () => {
         try {
-            const changedData = getChangedData();
-            const imageData = getChangedImages();
             const formData = new FormData();
 
-            if (changedData) {
-                changedData.storeNo = storeNo;
-                formData.append('storeData', JSON.stringify(changedData));
-            }
-
-            // 배너 이미지 처리
-            if (imageData.bannerImages) {
-                // 현재 배너 상태 전송
-                const isBannerStatusEmpty = imageData.bannerStatus.every(status => status === "");
-                if(isBannerStatusEmpty) {
-                    setResultMessage('배너 이미지는 최소 1개 이상 있어야합니다.');
-                    setShowResultModal(true);
-                    return;
-                };
-                formData.append('bannerStatus', JSON.stringify(
-                    imageData.bannerStatus
-                ));
-
-                // 새로운 이미지만 전송
-                for (const [key, value] of Object.entries(imageData.bannerImages)) {
-                    if (value?.startsWith('data:')) {
-                        const imageBlob = await fetch(value).then(r => r.blob());
-                        formData.append(key, imageBlob);
-                    }
+            formData.append('storeData', JSON.stringify(storeInfo));
+            formData.append('userData', JSON.stringify(userInfo));
+            console.log(bannerImages);
+            bannerImages.forEach(async (value, index) => {
+                if (value) { // value가 유효한 경우에만 처리
+                    const imageBlob = await fetch(value).then(r => {
+                        if (!r.ok) {
+                            throw new Error('이미지 로드 실패');
+                        }
+                        return r.blob();
+                    });
+                    formData.append(`banner${index}`, imageBlob); // 인덱스를 사용하여 키를 정의
                 }
-            }
-            
-            // 메뉴, 프로필 이미지 처리
-            if (imageData.menuImage) {
-                const menuBlob = await fetch(imageData.menuImage).then(r => r.blob());
+            });
+                const menuBlob = await fetch(menuImage).then(r => r.blob());
                 formData.append('menu', menuBlob);
-            }
             
-            if (imageData.profileImage) {
-                const profileBlob = await fetch(imageData.profileImage).then(r => r.blob());
-                formData.append('profile', profileBlob);
-            }
+            
+            const profileBlob = await fetch(profileImage).then(r => r.blob());
+            formData.append('profile', profileBlob);
+            
 
             const response = await fetch(`/admin/stores/regist/store`, {
-                method: 'PUT',
+                method: 'POST',
                 body: formData
             });
+            if (!response.ok) {
+                const errorMessage = await response.text(); // 오류 메시지 가져오기
+                console.log(errorMessage);
+                setResultMessage("등록 중 오류가 발생했습니다."); // 오류 메시지 상태 업데이트
+                setShowResultModal(true);
+                return; // 함수 종료
+            }
 
-            if (!response.ok) throw new Error('수정 요청이 실패했습니다.');
-
-            setResultMessage('성공적으로 수정되었습니다.');
+            setResultMessage('성공적으로 등록되었습니다.');
             setShowResultModal(true);
+            navigate(`/admin/stores/list`);
+
         } catch (error) {
-            setResultMessage('수정 중 오류가 발생했습니다.');
+            console.log(error);
+            setResultMessage('등록 중 오류가 발생했습니다.');
             setShowResultModal(true);
+        }
+    };
+
+    const handleCancel = async () => {
+        try {
+            const response = await fetch('/cancel/user-registration', {
+                method: 'POST',
+            });
+            if (response.ok) {
+                navigate(`/admin/stores/regist/user`);
+            }
+        } catch (error) {
+            navigate(`/admin/stores/regist/user`);
         }
     };
 
@@ -370,14 +310,16 @@ function StoreInfoRegist() {
         return <div>로딩중...</div>;
     }
     return(
-        <div className={styles.storeRegist}>
-            <div id={styles.storeRegistText}>가게 수정</div>
+        <div className={styles.storeEdit}>
+            <div id={styles.storeEditText}>가게 등록</div>
             
                 <input 
                     type='text' 
                     id={styles.storeName} 
                     value={storeInfo.storeName} 
                     onChange={handleInputChange}
+                    placeholder='가게 이름'
+                    className={styles.inputField}
                 />
                 <select 
                     id={styles.categorySelect}
@@ -424,15 +366,19 @@ function StoreInfoRegist() {
             </div>
             
             <div className={styles.menuUploadBox}>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleMenuUpload}
-                    style={{display: 'none'}}
-                    id="menu-upload"
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e)=>handleMenuUpload(e)}
+                        style={{display: 'none'}}
+                        id="menu-Regist-upload"
                 />
-                <label htmlFor="menu-upload" className={styles.uploadLabel}>
-                            <img src={menuImage} alt="메뉴" className={styles.uploadImage}/>
+                <label htmlFor="menu-Regist-upload" className={styles.uploadLabel}>
+                {menuImage ? (
+                    <img src={menuImage} alt="메뉴" className={styles.uploadImage}/>
+                ) : (
+                    <img src={plusBtn} alt="업로드" className={styles.plusButton}/>
+                )}
                 </label>
             </div>
 
@@ -440,17 +386,21 @@ function StoreInfoRegist() {
                 <input
                     type="file"
                     accept="image/*"
-                    onChange={handleProfileUpload}
+                    onChange={(e)=>handleProfileUpload(e)}
                     style={{display: 'none'}}
-                    id="profile-upload"
+                    id="profile-Regist-upload"
                 />
-                <label htmlFor="profile-upload" className={styles.uploadLabel}>
-                            <img src={profileImage} alt="프로필" className={styles.uploadImage}/>
+                <label htmlFor="profile-Regist-upload" className={styles.uploadLabel}>
+                {profileImage ? (
+                    <img src={profileImage} alt="프로필" className={styles.uploadImage}/>
+                ) : (
+                    <img src={plusBtn} alt="업로드" className={styles.plusButton}/>
+                )}
                 </label>
             </div>
             
-            <input type='text' id={styles.storeDes} value={storeInfo.storeDes} onChange={handleInputChange}/>
-            <input type='text' id={styles.storeAddress} value={storeInfo.storeAddress} onChange={handleInputChange}/>
+            <input type='text' id={styles.storeDes} value={storeInfo.storeDes} onChange={handleInputChange} placeholder='가게 소개글'/>
+            <input type='text' id={styles.storeAddress} value={storeInfo.storeAddress} onChange={handleInputChange} placeholder='가게 주소'/>
             <button 
                 className={`${styles.addressConvertBtn} ${isAddressChanged ? styles.active : ''}`}
                 onClick={handleAddressConvert}
@@ -463,8 +413,8 @@ function StoreInfoRegist() {
                 </div>
             )}
             <div className={styles.storeCoordinate}>
-                <p>위도 : {storeInfo.storeCoordinate.latitude}</p>
-                <p>경도 : {storeInfo.storeCoordinate.longitude}</p>
+                <p>위도 : {storeInfo.latitude}</p>
+                <p>경도 : {storeInfo.longitude}</p>
             </div>
             <p id={styles.operTime} onClick={onClickHandler}>
                 영업 시간 설정
@@ -560,7 +510,7 @@ function StoreInfoRegist() {
 </div>
             <hr className={styles.hr1}></hr>
             <hr className={styles.hr2}></hr>
-            <div id={styles.storeRegistDate}>등록 일자 : {storeInfo.storeRegistDate}</div>
+            <div id={styles.storeRegistDate}>등록 일자 : {today}</div>
             <div id={styles.posNumber}>기본 예약 가능 인원 :     
                 <input 
                     type="number"
@@ -568,14 +518,13 @@ function StoreInfoRegist() {
                     value={storeInfo.posNumber || ''}
                     onChange={handleInputChange}
                     min="0"
-                    placeholder="예약 가능 인원"
                 />
             </div>
-            <button id={styles.storeRegistCancleBtn} onClick={() => navigate(`/admin/stores/info/${storeNo}`)}>
+            <button id={styles.storeEditCancleBtn} onClick={handleCancel}>
                     취소
                 </button>
                 <button 
-                    id={styles.storeRegistOkBtn} 
+                    id={styles.storeEditOkBtn} 
                     onClick={handleSubmit}
                 >
                     확인
@@ -587,12 +536,8 @@ function StoreInfoRegist() {
                         onConfirm={() => {
                             setShowAgreementModal(false);
                             registConfirm();
-                            setAgreeMessage('');
                         }}
-                        onCancel={() => {
-                            setShowAgreementModal(false);
-                             setAgreeMessage('');
-                            }}
+                        onCancel={() => setShowAgreementModal(false)}
                     />
                 )}
                 {showResultModal && (
@@ -600,11 +545,6 @@ function StoreInfoRegist() {
                         message={resultMessage} 
                         close={() => {
                             setShowResultModal(false);
-                            if (resultMessage !== '배너 이미지는 최소 1개 이상 있어야합니다.' || resultMessage !== '변경된 내용이 없습니다.') {
-                                navigate(`/admin/stores/info/${storeNo}`);
-                            }else if(resultMessage === '데이터 로딩 중 오류가 발생했습니다.'){
-                                navigate(`/admin/stores/list`);
-                            }
                             setResultMessage('');
                         }}
                     />

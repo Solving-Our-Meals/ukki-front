@@ -143,7 +143,7 @@ function StoreList(){
             ))}
             <button onClick={()=>paginate(currentPage+1)}>▶</button>
         </div>
-        <button id={styles.storeUserRegist} type="button">가게 등록하기</button>
+        <button id={styles.storeUserRegist} type="button" onClick={()=>navigate('/admin/stores/regist/user')}>가게 등록하기</button>
     </>
     )   
 }
