@@ -17,6 +17,8 @@ import Search from './user/pages/search/Search';
 import Reservation from './user/pages/reservation/pages/ReservationPage';
 import PrivateRoute from './common/authContext/PrivateRoute';
 import UserNotice from './user/pages/announcement/pages/UserNotice';
+import BossLayout from './store/layouts/BossLayout';
+import BossTotalNotice from './store/pages/bossNotice/components/BossTotalNotice';
 
 function App() {
     return (
@@ -41,6 +43,9 @@ function App() {
                         <Route path="reservation" element={<PrivateRoute element={<Reservation />} />} />
                         <Route path="sinquiries" element={<PrivateRoute element={<InquiryEnter />} />} />
                         <Route path="notice" element={<PrivateRoute element={<UserNotice/>}/>}/> 
+                    </Route>
+                    <Route path="/boss" element={<BossLayout />}>
+                        <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
                     </Route>
 
                     {/* QR 관련 및 관리자 관련 라우팅 */}

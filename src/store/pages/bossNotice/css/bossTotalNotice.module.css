@@ -186,6 +186,7 @@ a:active {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 #background #noticeArea {
   position: absolute;
@@ -199,6 +200,7 @@ a:active {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 #background #noticeArea .dots {
   box-sizing: border-box;
@@ -383,4 +385,4 @@ a:active {
 #background #noticeArea .pagination .arrow.disabled {
   visibility: hidden;
   cursor: default;
-}/*# sourceMappingURL=totalNotice.module.css.map */
+}/*# sourceMappingURL=bossTotalNotice.module.css.map */

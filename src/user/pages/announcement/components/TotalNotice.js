@@ -71,8 +71,6 @@ function TotalNotice(){
         .catch(error => console.log(error));
     }, [])
 
-    
-
 
     return(
         <>
@@ -94,7 +92,6 @@ function TotalNotice(){
                             switch(notice.categoryNo){
                                 case 1: categoryName = '안내'; break;
                                 case 2: categoryName = '소개'; break;
-                                case 3: categoryName = '가게'; break;
                             }
                             return (
                                 <div
