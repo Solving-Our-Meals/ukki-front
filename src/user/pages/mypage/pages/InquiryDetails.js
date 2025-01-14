@@ -24,8 +24,8 @@ function InquiryDetail({ userInfo }) {
         if (currentInquiry) {
             setInquiry(currentInquiry);
 
-            if (currentInquiry.answerDate && currentInquiry.status !== 'read') {
-                updateInquiryStatus('read');
+            if (currentInquiry.answerDate && currentInquiry.status !== 'CHECK') {
+                updateInquiryStatus('CHECK');
             }
         }
     }, [userInfo, inquiryNo]);
@@ -62,6 +62,7 @@ function InquiryDetail({ userInfo }) {
                 },
                 body: JSON.stringify({ status }),
             });
+            console.log(status)
 
             if (!response.ok) {
                 throw new Error('Failed to update status');
@@ -124,12 +125,6 @@ function InquiryDetail({ userInfo }) {
             console.error('수정 오류:', error);
         }
     };
-
-
-
-
-
-
 
     const handleCancel = () => {
         setEditedText(inquiry.text);
