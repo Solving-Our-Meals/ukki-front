@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useParams, Navigate, useNavigate} from 'react-router-dom';
 import styles from '../css/Inquiry.module.css';
 
 function InquiryDetail({ userInfo }) {
@@ -16,6 +16,8 @@ function InquiryDetail({ userInfo }) {
     const [editedTitle, setEditedTitle] = useState('');
 
     const textareaRef = useRef(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!userInfo) return;
@@ -121,6 +123,7 @@ function InquiryDetail({ userInfo }) {
             }));
 
             setIsEditing(false);
+            navigate(0);
         } catch (error) {
             console.error('수정 오류:', error);
         }
