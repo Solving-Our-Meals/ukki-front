@@ -73,8 +73,8 @@ function InquiryDetail({ userInfo }) {
                     <div className={styles.answer}>
                         <p className={styles.AnswerTitle}>답변 제목 : <span
                             className={styles.inquiryTitle}>{inquiry.answerTitle}</span></p>
-                        <p className={styles.AnswerDate2}>답변 일자 : <span
-                            className={styles.inquiryDate}>{inquiry.inquiryDate}</span></p>
+                        <p className={styles.AnswerDate}>답변 일자 : <span
+                            className={styles.inquiryDate}>{inquiry.answerDate}</span></p>
                         <div className={styles.Text}>
                             <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2}>
                                 {inquiry.answerContent}

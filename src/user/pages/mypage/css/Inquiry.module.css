@@ -446,26 +446,11 @@
     display: inline-block;
 }
 
-.inquiryTitle {
+.inquiryTitle, .inquiryDate {
     font-size: 25px;
     font-weight: 500;
 }
 
-.Date {
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-
-    transform: translate(500px, 140px);
-    display: inline-block;
-}
-
-.inquiryDate {
-    font-size: 25px;
-    font-weight: 500;
-}
 
 .inquiryText {
     display: -webkit-box;
@@ -546,17 +531,6 @@
     display: inline-block;
 }
 
-.AnswerDate {
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-
-    transform: translate(500px, 200px);
-    display: inline-block;
-}
-
 .main2 {
     top:245px;
     position: absolute;
@@ -565,18 +539,6 @@
     justify-content: center;
     display: inline-block;
 }
-
-.AnswerDate2 {
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-
-    transform: translate(380px, 200px);
-    display: inline-block;
-}
-
 
 .inquiryText2 {
     display: -webkit-box;
@@ -646,6 +608,28 @@
 
 .button2:hover {
     background-color: #E55A50;
+}
+
+.Date, .AnswerDate {
+    position: absolute;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: #232323;
+
+
+    left:790px;
+}
+
+.Date {
+    top:140px;
+}
+
+.AnswerDate {
+    top:200px;
 }
 
 .overlay {
