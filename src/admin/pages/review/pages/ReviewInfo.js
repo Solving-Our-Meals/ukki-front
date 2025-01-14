@@ -59,6 +59,9 @@ function ReviewInfo(){
     function deleteConfirm(){
         fetch(`/admin/reviews/info/${reviewNo}`, {
             method: 'DELETE',
+            body: JSON.stringify({
+                reviewImg: reviewInfo.reviewImage
+            })
         }).then((res) => {
             return res.json();
         }).then((data)=>{
