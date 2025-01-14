@@ -175,7 +175,8 @@ a:active {
   font-style: normal;
 }
 #search .storeList {
-  display: block; /* 요소가 화면에 나타나도록 확인 */
+  display: block;
+  /* 요소가 화면에 나타나도록 확인 */
 }
 #search .input div {
   position: relative;
@@ -185,86 +186,201 @@ a:active {
 #search .input div input {
   position: absolute;
   width: 50vw;
-  height: 4vw;
-  left: 22vw;
+  height: 3vw;
+  left: 27vw;
   top: 8vw;
   border-radius: 50px;
-  border: #FF8AA3 3px solid;
-  background-color: #FFF3A7;
-  color: #FEBA00;
+  border: 2px solid #d6d6d6;
+  background-color: white;
+  margin: 0;
+  z-index: 10;
+  color: #232323;
   font-family: "Pretendard Variable";
   font-weight: 700;
-  font-size: 1.3vw;
-  margin: 0;
+  font-size: 1.2rem;
+  box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+  padding: 0vw 2vw;
+}
+#search .input div input::placeholder {
+  color: #888888;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 1.2rem;
+  z-index: 11;
 }
 #search .input div img {
   position: absolute;
-  width: 4vw;
+  width: 3vw;
   top: 8vw;
-  left: 73vw;
+  left: 78vw;
 }
 #search .input p {
   position: absolute;
-  left: 14vw;
+  left: 27vw;
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 700;
-  font-size: 1.2vw;
+  font-size: 1.4rem;
   color: #232323;
   z-index: 2;
 }
 #search .input p:nth-of-type(1) {
-  top: 14vw;
+  top: 13vw;
 }
 #search .input p:nth-of-type(2) {
-  top: 22vw;
-  left: 13vw;
+  position: fixed;
+  top: 13vw;
+  left: 7vw;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
 }
 #search .input .boxs {
   position: absolute;
-  top: 16vw;
-  left: 13.5vw;
+  top: 15.5vw;
+  left: 26vw;
   display: flex;
-  gap: 4.5vw;
+  gap: 4vw;
+  user-select: none;
 }
 #search .input .boxs span {
   padding: 0.6vw 3vw;
   background-color: #f0f0f0;
   border-radius: 50px;
-  color: #808080;
-  font-size: 1vw;
+  color: #999999;
+  font-size: 1.1rem;
   font-weight: 700;
   font-family: "Pretendard Variable";
+  cursor: pointer;
 }
 #search .input .box {
-  position: absolute;
-  top: 25vw;
-  left: 13.5vw;
+  position: fixed;
+  top: 17vw;
+  left: 5vw;
   display: flex;
-  gap: 4.5vw;
+  flex-direction: column;
+  gap: 0.5vw;
   z-index: 9;
+  width: inherit;
+  justify-content: start;
 }
 #search .input .box span {
-  padding: 0.6vw 3vw;
-  background-color: #f0f0f0;
+  padding: 0.6vw 2vw;
   border-radius: 50px;
-  color: #000000;
-  font-size: 1vw;
+  color: #232323;
+  font-size: 1rem;
   font-weight: 700;
   font-family: "Pretendard Variable";
   z-index: 9;
 }
 #search .input .dlsrl {
-  position: absolute;
-  width: 75vw;
-  height: 3.5vw;
-  left: 12vw;
-  top: 24vw;
-  background: #FFF9D3;
+  position: fixed;
+  width: 12vw;
+  height: 28vw;
+  left: 5.5vw;
+  top: 15.5vw;
+  background: rgba(255, 233, 138, 0.3960784314);
   border-radius: 15px;
+  display: sticky;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  outline: #fff 5px solid;
+}
+#search .input .dlsrl + div {
+  position: absolute;
+  width: 55vw;
+  height: 2px;
+  background: #cecece;
+  position: relative;
+  top: 20vw;
+  left: 25vw;
+}
+#search .storeList div {
+  position: relative;
+  margin-bottom: 15vw;
+}
+#search .storeList div img {
+  width: 10vw;
+  height: 12vw;
+  z-index: 9;
+  position: absolute;
+  left: 27vw;
+  top: 23vw;
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  border-radius: 30px;
+}
+#search .storeList div h3 {
+  position: absolute;
+  left: 40vw;
+  top: 24vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-size: 1.5rem;
+  color: #232323;
+}
+#search .storeList div p:nth-of-type(1) {
+  position: absolute;
+  left: 40vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #232323;
+  top: 26vw;
+}
+#search .storeList div p:nth-of-type(2) {
+  position: relative;
+  left: 40vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #232323;
+  top: 28vw;
+  width: 40vw;
+  height: 5vw;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 140%;
+  max-height: 1.4em;
+}
+#search .storeList div button {
+  position: relative;
+  left: 71.5vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #232323;
+  top: 22vw;
+  padding: 0.5vw 2.5vw;
+  background-color: #FF8AA3;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+#search .storeList div span {
+  position: relative;
+  left: 31.5vw;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #232323;
+  top: 29vw;
+}
+#search .storeList div hr {
+  position: relative;
+  width: 55vw;
+  height: 2px;
+  background: #cecece;
+  top: 34.5vw;
+  left: 3vw;
+  border: none;
 }
 #search .banner p {
   position: absolute;
@@ -817,4 +933,4 @@ a:active {
     line-height: 150%;
     color: #232323;
   }
-}
+}/*# sourceMappingURL=search.module.css.map */

@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../../common/header/css/reset.css';
 import style from './css/search.module.css';
 import search from '../main/image/Search.png';
+import Profile from '../storedetail/components/Profile';
 
 function Search() {
+  const {storeNo} = useParams();
   const [searchTerm, setSearchTerm] = useState(''); // 검색어
   const [storeList, setStoreList] = useState([]); // 검색된 가게 목록
-  const [recentSearches, setRecentSearches] = useState(
-    JSON.parse(localStorage.getItem('recentSearches')) || []
-  ); // 최근 검색어
+  const navigate = useNavigate();
+
+  const [recentSearches, setRecentSearches] = useState([]); // 최근 검색어
+
+  // 최근 검색어 로드
+  useEffect(() => {
+    const storedSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+    setRecentSearches(storedSearches);
+  }, []); 
+  
+  // 최근 검색어
   const [popularSearches, setPopularSearches] = useState([]); // 실시간 인기 검색어
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태
 
@@ -100,6 +111,24 @@ function Search() {
     fetchPopularSearches();  // 컴포넌트가 마운트될 때 인기 검색어 불러오기
   }, []);
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();  // 엔터키 눌렀을 때 검색어 처리
+    }
+  };
+
+
+    // 예약하기 버튼 클릭 시 해당 storeNo 페이지로 이동
+    const handleReservation = (storeNo) => {
+      navigate(`/store/${storeNo}`); // storeNo에 해당하는 페이지로 이동
+    };
+
+
+    const handleRecentSearch = (term) => {
+      setSearchTerm(term); // 검색어 상태 업데이트
+      searchStores(term);   // 해당 검색어로 검색 실행
+    };
+
   return (
     <div id={style.search}>
       <div className={style.input}>
@@ -109,6 +138,7 @@ function Search() {
             type="search"
             value={searchTerm}
             onChange={updateSearch}
+            onKeyPress={handleKeyPress}  // 엔터키 눌렀을 때 검색 처리
             placeholder="검색어를 입력하세요"
           />
           <img
@@ -121,7 +151,7 @@ function Search() {
         <p>최근 검색어</p>
         <div className={style.boxs}>
           {recentSearches.map((term, index) => (
-            <span key={term + index}>{term}</span>
+            <span key={term + index}  onClick={() => handleRecentSearch(term)}>{term}</span>
           ))}
         </div>
 
@@ -129,22 +159,29 @@ function Search() {
         <div className={style.box}>
           {popularSearches.length > 0 ? (
             popularSearches.map((search, index) => (
-              <span key={index}>{search}</span> // 바로 문자열을 출력
+              <span key={index}>{index +1+'. ' }{search}</span> // 바로 문자열을 출력
             ))
           ) : (
             <p>인기 검색어가 없습니다.</p>
           )}
         </div>
 
-        <div className={style.dlsrl}></div>
+        <div className={style.dlsrl}>
+         
+        </div>
+         <div></div>
       </div>
 
       <div className={style.storeList}>
         {storeList.map((store) => (
           <div key={store.storeNo}>
-            <p>{store.storeName}</p>
+           <Profile/>
+            <h3>{store.storeName}</h3>
             <p>{store.storeAddress}</p>
             <p>{store.storeDes}</p>
+          <button onClick={() => handleReservation(store.storeNo)}>예약하기</button>
+            <span>현재 예약 가능 시간대</span>
+            <hr/>
           </div>
         ))}
       </div>
