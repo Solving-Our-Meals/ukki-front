@@ -26,10 +26,20 @@ function ReviewList() {
         setTotalReviews(totalReviewCount);
     }, []);
 
+    const renderStars = (reviewScope) => {
+        let stars = [];
+        for (let i = 0; i < reviewScope; i++) {
+            // stars.push(<span key={i} className={styles.star}>⭐</span>);
+            stars.push(<span key={i} className={styles.star}>&#x2B50;</span>);
+        }
+        return stars;
+    };
+
     const fetchList = useCallback(async (category, word) => {
         try {
             const reviewList = await ReviewListAPI(category, word);
             if (reviewList && reviewList.length > 0) {
+                console.log(reviewList);
                 setList(reviewList);
                 setSearchSuccess(true);
                 setIsScope(false);
@@ -153,10 +163,10 @@ function ReviewList() {
                 {searchSuccess ? currentItem.map((item, index) => (
                     <div className={styles.reviewListBody} key={index} onClick={() => handlerReviewInfo(item.reviewNo)}>
                         <div style={{ width: '178px' }}>{item.reviewDate}</div>
-                        <div style={{ width: '325px' }}>{item.userId ? item.userId : "삭제된 회원"}</div>
-                        <div style={{ width: '325px' }}>{item.storeName ? item.storeName : "삭제된 가게"}</div>
+                        <div style={{ width: '325px' }}>{item.reviewUserId ? item.reviewUserId : "삭제된 회원"}</div>
+                        <div style={{ width: '325px' }}>{item.reviewStoreName ? item.reviewStoreName : "삭제된 가게"}</div>
                         <div style={{ width: '480px' }}>{item.reviewContent}</div>
-                        <div style={{ width: '158px' }}>{item.reviewScope}</div>
+                        <div style={{ width: '158px' }}>{renderStars(item.reviewScope)}</div>
                     </div>
                 )) : <div className={styles.reviewListBody}>해당 결과가 존재하지 않습니다.</div>}
             </div>

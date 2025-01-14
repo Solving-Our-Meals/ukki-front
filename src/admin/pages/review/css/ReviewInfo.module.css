@@ -1,0 +1,225 @@
+#reviewInfoText {
+    position: absolute;
+    
+    height: 55px;
+    left: 61px;
+    top: 47px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 55px;
+
+    /* text/title */
+    color: #1E1E1E;
+}
+
+.horizon1 {
+    position: absolute;
+    width: 1488px;
+    height: 2px;
+    left: 56px;
+    top: 136px;
+
+    background: #E3E3E3;
+}
+
+#reviewInfoId {
+    position: absolute;
+    height: 50px;
+    left: 61px;
+    top: 210px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    /* text/title */
+    color: #1E1E1E;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    user-select: text;
+}
+
+#reviewInfoId > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#reviewInfoStoreName {
+    position: absolute;
+    height: 40px;
+    left: 61px;
+    top: 160px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    /* text/title */
+    color: #1E1E1E;
+
+    /* text/title */
+    color: #1E1E1E;
+
+    align-content: center;
+    user-select: text;
+}
+#reviewInfoStoreName > p{
+    display: inline-block;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+}
+
+#reviewInfoReport {
+    position: absolute;
+    left: 1261px;
+    top: 220px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+  
+}
+
+#reviewInfoDeleteBtn{
+
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    left: 1405px;
+    top: 43px;
+
+    background: #FF8AA3;
+    border-radius: 40px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    align-items: center;
+
+    /* text/strong */
+    color: #232323;
+
+    border: none;
+    cursor: pointer;
+}
+#reviewInfoDeleteBtn:hover {
+    background: #FF6B87;
+}
+
+
+.reviewArea {
+    position: absolute;
+    width: 1485px;
+    height: 450px;
+    left: 56px;
+    top: 270px;
+    border: 3px solid#FF8AA3;
+}
+
+#userProfile {
+    position: absolute;
+    width: 114px;
+    height: 108px;
+    left: 50px;
+    top: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+#reviewPhoto {
+    position: absolute;
+    left: 960px;
+    top: 37px;
+    width: 468px;
+    height: 367px;
+    object-fit: cover;
+}
+
+.reviewInfoScope {
+    position: absolute;
+    left: 190px;
+    top: 63px;
+
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 30px;
+    font-weight: 500;
+    font-style: normal;
+    color: #232323;
+}
+
+.reviewInfoScopeStars{
+    margin-left: 8px;
+}
+
+.reviewInfoDate {
+    position: absolute;
+    left: 190px;
+    top: 107px;
+    width: max-content;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    color: #232323;
+}
+
+.reviewInfoContent {
+    position: absolute;
+    left: 50px;
+    top: 180px;
+    width: 850px;
+    height: 223px;
+    background-color: #FFF9D3;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-family: "Pretendard Variable";
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    color: #232323;
+}
+
+.toBtn{
+    margin-left: 10px;
+    
+    width: 169px;
+    height: 41px;
+    
+    /* secondary2 */
+    background-color: transparent;
+    border: 1px solid #FF6B87;
+    border-radius: 50px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    /* system/danger */
+    color: #232323;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
