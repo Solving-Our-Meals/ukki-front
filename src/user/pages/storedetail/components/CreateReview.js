@@ -24,9 +24,11 @@ function CreateReview(){
     
     const fileUploadRef = useRef(null); 
 
-    const [uploadedInfo, setUploadedInfo] = useState(null);
-    const previewRef = useRef(null);
-    const [imageUrl, setImageUrl] = useState(null);
+    const [fileInformation, setFileInformation] = useState(null);
+    const [uploadedFile, setUploadedFile] = useState(null);
+    const [uploadedInfo, setUploadedInfo] = useState(null);  // 업로드된 파일 정보 상태
+    const previewRef = useRef(null);  // 이미지 미리보기 참조
+    const [imageUrl, setImageUrl] = useState(null);  // 이미지 URL
 
     const [isDisplay, setIsDisplay] = useState(false);
 
@@ -87,9 +89,13 @@ function CreateReview(){
         //console.log('updatedInfo : ' , updatedInfo);
 
         if(!isImage){
-           setUploadedInfo(updatedInfo); // name, size, type 정보를 uploadedInfo에 저장
+           alert("이미지 파일만 업로드 가능합니다.") // name, size, type 정보를 uploadedInfo에 저장
             return;
         }
+
+        setUploadedInfo(file);
+        setUploadedFile(file);
+        setImageUrl(URL.createObjectURL(file));
         // FileReader 객체의 readAsDataURL 메소드를 이용하여 인자로 전달받은 file 객체를 base64 형태의 문자열로 변환
         // 변환된 문자열은 img 태그의 src 혹은 다른 html 태그의 background-image url 값으로 사용할 수 있다.
         const reader = new FileReader();
@@ -120,8 +126,12 @@ function CreateReview(){
         }));
 
         // 이미지가 있을 때만 formData에 추가
-        if (review.reviewImage && Object.keys(review.reviewImage).length > 0) {
-            formData.append('reviewImage', review.reviewImage);
+        // if (review.reviewImage && Object.keys(review.reviewImage).length > 0) {
+        //     formData.append('reviewImage', review.reviewImage);
+        // }
+
+        if(uploadedFile){
+            formData.append("reviewImage", uploadedFile);
         }
 
         fetch(`/store/${storeNo}/review`, {
@@ -155,6 +165,12 @@ function CreateReview(){
         const file = target.files[0];
         if(!file) return; // 파일이 없으면 함수 종료
         setFileInfo(file);
+        setImageUrl(URL.createObjectURL(file));
+
+        setReview(prevReview => ({
+            ...prevReview,
+            reviewImage : file.name
+        }));
     }
 
     // 파일 드래그 앤 드롭 
@@ -545,7 +561,7 @@ function CreateReview(){
 
     const removeImageHandler = (e) => {
         e.stopPropagation(); // 이벤트 전달 중단단
-        setUploadedInfo(null);
+        setUploadedFile(null);
         setImageUrl(null);
         if(previewRef.current){
             previewRef.current.src = addPhoto;
