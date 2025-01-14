@@ -40,17 +40,23 @@ function TotalNotice(){
     // 페이지네이션 로직 6 : 이전/다음 그룹 이동 핸들러
     // 이전 페이지 그룹으로 이동
     const handlePrevGroup = () => {
-        if (currentPageGroup > 1) { // 첫 번째 그룹이 아닐 떄만
-            setCurrentPageGroup(prev => prev - 1); // 그룹 번호 감소
-            setCurrentPage((currentPageGroup - 2) * pagesPerGroup + 1); // 이전 그룹의 첫 페이지로 이동
+        if (currentPage > 1) { // 첫 번째 페이지가 아닐 때만
+            // 현재 페이지가 현재 그룹의 첫 페이지인 경우
+            if ((currentPage - 1) % pagesPerGroup === 0) {
+                setCurrentPageGroup(prev => prev - 1);  // 이전 그룹으로 이동
+            }
+            setCurrentPage(currentPage - 1); // 이전 페이지로 이동
         }
     };
 
     // 다음 페이지 그룹으로 이동
     const handleNextGroup = () => {
-        if (currentPageGroup < totalGroups) {  // 마지막 그룹이 아닐 때만
-            setCurrentPageGroup(prev => prev + 1);  // 그룹 번호 증가
-            setCurrentPage(currentPageGroup * pagesPerGroup + 1); // 다음 그룹의 첫 페이지로 이동
+        if (currentPage < totalPages) {  // 마지막 페이지가 아닐 때만
+            // 현재 페이지가 현재 그룹의 마지막 페이지인 경우
+            if (currentPage % pagesPerGroup === 0) {
+                setCurrentPageGroup(prev => prev + 1);  // 다음 그룹으로 이동
+            }
+            setCurrentPage(currentPage + 1); // 다음 페이지로 이동
         }
     };
 
