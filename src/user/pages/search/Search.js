@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../../../common/header/css/reset.css';
 import style from './css/search.module.css';
 import search from '../main/image/Search.png';
-import Profile from '../storedetail/components/Profile';
+import Profile from '../search/components/Profile';
 
 function Search() {
   const {storeNo} = useParams();
@@ -175,7 +175,7 @@ function Search() {
       <div className={style.storeList}>
         {storeList.map((store) => (
           <div key={store.storeNo}>
-           <Profile/>
+           <Profile storeNo={store.storeNo}/>
             <h3>{store.storeName}</h3>
             <p>{store.storeAddress}</p>
             <p>{store.storeDes}</p>
