@@ -71,6 +71,7 @@ function TotalNotice(){
         .catch(error => console.log(error));
     }, [])
 
+
     return(
         <>
             <div id={styles.background}>

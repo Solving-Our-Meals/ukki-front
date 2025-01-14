@@ -1,0 +1,32 @@
+
+/* .wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+} */
+
+.layoutModalStyle {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    filter: blur(3px);
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  
+
+  .header {
+    flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
+  }
+  
+  .main {
+    flex: 1; /* 메인 콘텐츠 영역이 남은 공간을 차지하도록 */
+    margin: 0;
+  }
+  
+  .mainModalStyle{
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  
