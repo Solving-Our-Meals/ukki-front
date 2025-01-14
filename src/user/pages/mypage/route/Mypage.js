@@ -7,7 +7,6 @@ import styles from "../css/Mypage.module.css";
 import Header from '../../../../common/header/components/Header';
 import MyProfile from "../component/MyProfile";
 import InquiryDetail from "../pages/InquiryDetails";
-import { getUserInfo } from '../api/getUserInfo';
 
 function Mypage() {
 
@@ -15,25 +14,22 @@ function Mypage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        getUserInfo()
-            .then(data => {
-                setUserInfo(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                setError(err.message);
-                setLoading(false);
+    const getUserInfo = async () => {
+        try {
+            const response = await fetch('/user/mypage/inquiry', {
+                method: 'GET',
+                credentials: 'include',
             });
-    }, []);
 
-    if (loading) {
-        return <div>로딩 중...</div>;
-    }
+            if (!response.ok) {
+                throw new Error('유저 정보를 가져오는 데 실패했습니다.');
+            }
 
-    if (error) {
-        return <div>{error}</div>;
-    }
+            return await response.json();
+        } catch (error) {
+            throw error;
+        }
+    };
 
     return (
         <div className={styles.mypage}>
