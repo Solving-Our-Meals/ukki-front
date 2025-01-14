@@ -1,0 +1,236 @@
+@import "../../../../common/reset/reset.scss";
+
+#background{
+    position : absolute;
+    left : 0px;
+    right : 0px;
+    top : 0px;
+    bottom : 0px;
+    width : 100%;
+    height : 100%;
+    background-color: $secondary2;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #noticeArea{
+        position: absolute;
+        margin-top: 75px;
+        width : 1805px;
+        height : 783px;
+        background-color: #FFFFFF;
+        border: none;
+        border-radius: 50px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .dots{
+            box-sizing: border-box;
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            background: #B3E7FF;
+            border: 3px solid #BDBEBF;
+        }
+
+        #dot1{
+            left: 50px;
+            top: 50px;
+        }
+
+        #dot2{
+            right: 50px;
+            top: 50px;
+        }
+
+        #dot3{
+            left: 50px;
+            bottom: 50px;
+        }
+
+        #dot4{
+            right: 50px;
+            bottom: 50px;
+        }
+
+        .strArea{
+            position: absolute;
+            width: 1550px;
+            height: 80px;
+            top : 80px;
+            border-bottom: 5px solid #BDBEBF;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0;
+
+            #strNotice, #imgPin, #strTitle, #strDate {
+                position: relative;
+            }
+
+            #strNotice{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                left : 100px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 50px;
+                line-height: 55px;
+                color: #FF8AA3;
+            }
+    
+            #imgPin{
+                position: absolute;
+                width: 40px;
+                height: 40x;
+                margin-top : -8px;
+                left: 290px;
+            }
+    
+            #strTitle{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                left : 498px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 40px;
+                line-height: 130%;
+                color: $textStrong;
+            }
+    
+            #strDate{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                right : 213px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 40px;
+                line-height: 130%;
+                color: $textStrong;
+            }
+        }
+
+        .noticeContainer {
+            position: absolute;
+            width: 1550px;
+            height: 430px;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            .notice {
+                position: relative;
+                width: 1480px;
+                height: 80px;
+                left : 35px;
+                border-bottom: 2px solid #D9D9D9;
+                border-radius: 0;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+                display: flex;
+                flex-direction: right;
+                justify-content: center;
+                align-items: center;
+
+                #categoryName {
+                    position: relative;
+                    left : 85px;
+                    width : 97px;
+                    height : 38px;
+                    border-radius: 25px;
+                    font-family: 'Pretendard Variable';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 25px;
+                    color: $textStrong; 
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                #noticeTitle {
+                    position: relative;
+                    left : 345px;
+                    flex: 1;
+                    font-family: 'Pretendard Variable';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 25px;
+                    line-height: 30px;
+                    color: $textStrong;
+                    text-align: left;
+                }
+
+                #noticeDate {
+                    position: relative;
+                    width : 150px;
+                    left : -80px;
+                    font-family: 'Pretendard Variable';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 25px;
+                    line-height: 30px;
+                    color: $textStrong;
+                    text-align: left;
+                }
+            }
+        }
+
+        hr{
+            position: absolute;
+            width: 1550px;
+            border: 3px solid #BDBEBF;
+            bottom : 125px
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 0;
+
+            .paginationButton {
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 25px;
+                line-height: 28px;
+                cursor: pointer;
+                color: $textStrong;
+                opacity: 50%;
+
+                &.active {
+                    color: $textStrong;
+                    opacity: 100%;
+                    font-weight: bold;
+                }
+            }
+
+            .arrow {
+                color: $primary;
+                opacity: 100%;
+
+                &.disabled {
+                    visibility: hidden;
+                    cursor: default;
+                }
+            }
+        }
+    }
+}
