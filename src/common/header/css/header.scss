@@ -23,6 +23,7 @@ header {
         top: 15.5%;
         bottom: 21.25%;
         width: 110px;
+        z-index: 100;
     }
 
     .menu {
@@ -125,6 +126,7 @@ header {
         img {
             width: 80px;
             left: 5%;
+            z-index: 100;
         }
 
         .menu-button {
@@ -215,6 +217,7 @@ header {
             top: 13.5%;
             bottom: 18%;
             width: 90px;
+            z-index: 100;
         }
 
         .menu {

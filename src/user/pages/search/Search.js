@@ -162,7 +162,7 @@ function Search() {
               <span key={index}>{index +1+'. ' }{search}</span> // 바로 문자열을 출력
             ))
           ) : (
-            <p>인기 검색어가 없습니다.</p>
+            <p></p>
           )}
         </div>
 
@@ -181,6 +181,7 @@ function Search() {
             <p>{store.storeDes}</p>
           <button onClick={() => handleReservation(store.storeNo)}>예약하기</button>
             <span>현재 예약 가능 시간대</span>
+            
             <hr/>
           </div>
         ))}
