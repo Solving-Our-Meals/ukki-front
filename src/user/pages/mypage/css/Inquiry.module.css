@@ -455,7 +455,7 @@
 .inquiryText {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 1153px;
@@ -497,11 +497,12 @@
 }
 
 .button1 {
-    width:90px;
+    width:70px;
+    height: 30px;
+    line-height: 30px;
     display: inline-block;
-    padding: 10px 20px;
     margin-top: 170px;
-    margin-left: 1100px;
+    margin-left: 1110px;
     font-family: 'Pretendard-Regular';
     font-size: 18px;
     font-weight: 600;
@@ -543,7 +544,7 @@
 .inquiryText2 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 1153px;
@@ -586,11 +587,11 @@
 }
 
 .button2 {
-    width:90px;
-    display: flex;
-    padding: 10px 20px;
+    width:70px;
+    height: 30px;
+    line-height: 30px;
     top: 854px;
-    left: 1151px;
+    left: 1160px;
     font-family: 'Pretendard-Regular';
     font-size: 18px;
     font-weight: 600;

@@ -58,7 +58,7 @@ function InquiryDetail({ userInfo }) {
                     <p className={showMore ? styles.inquiryTextExpanded : styles.inquiryText}>
                         {inquiry.text}
                     </p>
-                    {inquiry.text.length > 100 && (
+                    {inquiry.text.length > 322 && (
                         <div className={styles.button1}
                              onClick={handleShowMore}
                              style={{ zIndex: showMore ? 1000 : 1 }}
@@ -79,7 +79,7 @@ function InquiryDetail({ userInfo }) {
                             <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2}>
                                 {inquiry.answerContent}
                             </p>
-                            {inquiry.answerContent.length > 100 && (
+                            {inquiry.answerContent.length > 322 && (
                                 <div className={styles.button2}
                                      onClick={handleShowMore2}
                                      style={{ zIndex: showMore2 ? 1000 : 1 }}
