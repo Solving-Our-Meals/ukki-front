@@ -36,6 +36,13 @@ function InquiryDetail({ userInfo }) {
         }
     }, [isEditing]);
 
+    useEffect(() => {
+        if (inquiry) {
+            setEditedTitle(inquiry.title);
+            setEditedText(inquiry.text);
+        }
+    }, [inquiry]);
+
     const handleShowMore = () => {
         setShowMore(!showMore);
         setShowOverlay(!showOverlay);
@@ -106,18 +113,23 @@ function InquiryDetail({ userInfo }) {
             const data = await response.json();
             console.log(data.message);
 
-            setInquiry({
-                ...inquiry,
+            setInquiry((prevInquiry) => ({
+                ...prevInquiry,
                 title: editedTitle,
                 text: editedText,
-            });
+            }));
 
             setIsEditing(false);
         } catch (error) {
             console.error('수정 오류:', error);
-            alert(error.message);
         }
     };
+
+
+
+
+
+
 
     const handleCancel = () => {
         setEditedText(inquiry.text);
@@ -137,7 +149,7 @@ function InquiryDetail({ userInfo }) {
                 throw new Error('문의 삭제에 실패했습니다.');
             }
         } catch (error) {
-            alert(error.message);
+            console.log(error.message);
         }
     };
 
@@ -242,11 +254,11 @@ function InquiryDetail({ userInfo }) {
                         <button className={styles.editButton} onClick={handleEditClick}>
                             수정
                         </button>
-                        <button className={styles.delButton} onClick={handleDeleteInquiry}>
-                            삭제
-                        </button>
                     </>
                 )}
+                <button className={styles.delButton} onClick={handleDeleteInquiry}>
+                    삭제
+                </button>
             </div>
         </div>
     );
