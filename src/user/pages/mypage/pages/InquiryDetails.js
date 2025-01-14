@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {Link, useParams} from 'react-router-dom';
 import styles from '../css/Inquiry.module.css';
 
@@ -11,7 +11,11 @@ function InquiryDetail({ userInfo }) {
     const [showOverlay2, setShowOverlay2] = useState(false);
 
     const [inquiry, setInquiry] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedText, setEditedText] = useState('');
+    const [editedTitle, setEditedTitle] = useState('');
 
+    const textareaRef = useRef(null);
 
     useEffect(() => {
         if (!userInfo) return;
@@ -25,6 +29,12 @@ function InquiryDetail({ userInfo }) {
             }
         }
     }, [userInfo, inquiryNo]);
+
+    useEffect(() => {
+        if (isEditing && textareaRef.current) {
+            textareaRef.current.focus();
+        }
+    }, [isEditing]);
 
     const handleShowMore = () => {
         setShowMore(!showMore);
@@ -60,11 +70,82 @@ function InquiryDetail({ userInfo }) {
         return <div className={styles.error}>해당 문의를 찾을 수 없습니다.</div>;
     }
 
+    const handleEditClick = () => {
+        setIsEditing(true);
+        setEditedText(inquiry.text);
+        setEditedTitle(inquiry.title);
+    };
+
+    const handleTextChange = (event) => {
+        setEditedText(event.target.value);
+    };
+
+    const handleTitleChange = (event) => {
+        setEditedTitle(event.target.value);
+    };
+
+    const handleSave = async () => {
+        try {
+            const updatedInquiry = {
+                title: editedTitle,
+                text: editedText,
+            };
+
+            const response = await fetch(`/user/mypage/inquiry/${inquiryNo}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedInquiry),
+            });
+
+            if (!response.ok) {
+                throw new Error('수정에 실패했습니다.');
+            }
+
+            const data = await response.json();
+            console.log(data.message);
+
+            setInquiry({
+                ...inquiry,
+                title: editedTitle,
+                text: editedText,
+            });
+
+            setIsEditing(false);
+        } catch (error) {
+            console.error('수정 오류:', error);
+            alert(error.message);
+        }
+    };
+
+    const handleCancel = () => {
+        setEditedText(inquiry.text);
+        setEditedTitle(inquiry.title);
+        setIsEditing(false);
+    };
+
+    const handleDeleteInquiry = async () => {
+        try {
+            const response = await fetch(`/user/mypage/inquiry/${inquiryNo}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                window.location.href = '/user/mypage/inquiry';
+            } else {
+                throw new Error('문의 삭제에 실패했습니다.');
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+
 
     return (
         <div className={styles.inquiryDetailContainer}>
-            {showOverlay && <div className={styles.overlay} onClick={handleShowMore} />}
-            {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2} />}
+            {showOverlay && <div className={styles.overlay} onClick={handleShowMore}/>}
+            {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2}/>}
 
             <div className={styles.allTabs}>
                 <Link to="/user/mypage/inquiry">
@@ -83,16 +164,44 @@ function InquiryDetail({ userInfo }) {
                 </Link>
             </div>
             <div className={styles.main}>
-                <p className={styles.Title}>문의 제목 : <span className={styles.inquiryTitle}>{inquiry.title}</span></p>
+                {isEditing ? (
+                    <div>
+                        <p className={styles.Title}> 문의 제목 : &nbsp;</p><input
+                            type="text"
+                            value={editedTitle}
+                            onChange={handleTitleChange}
+                            className={styles.inquiryTitleEditable}
+                        />
+                    </div>
+                ) : (
+                    <p className={styles.Title}>
+                        문의 제목 : <span className={styles.inquiryTitle}>{inquiry.title}</span>
+                    </p>
+                )}
                 <p className={styles.Date}>문의 일자 : <span className={styles.inquiryDate}>{inquiry.inquiryDate}</span></p>
                 <div className={styles.Text}>
-                    <p className={showMore ? styles.inquiryTextExpanded : styles.inquiryText}>
-                        {inquiry.text}
-                    </p>
+                    {isEditing ? (
+                        <div>
+                            <textarea
+                                ref={textareaRef}
+                                value={editedText}
+                                onChange={handleTextChange}
+                                className={styles.inquiryTextEditable}
+                            />
+                            <div className={styles.CDButtons}>
+                                <button onClick={handleSave} className={styles.editConfirm}>확인</button>
+                                <button onClick={handleCancel} className={styles.delCancel}>취소</button>
+                            </div>
+                        </div>
+                    ) : (
+                        <p className={showMore ? styles.inquiryTextExpanded : styles.inquiryText}>
+                            {inquiry.text}
+                        </p>
+                    )}
                     {inquiry.text.length > 322 && (
                         <div className={styles.button1}
                              onClick={handleShowMore}
-                             style={{ zIndex: showMore ? 1000 : 1 }}
+                             style={{zIndex: showMore ? 1000 : 1}}
                         >
                             {showMore ? '줄이기' : '더보기'}
                         </div>
@@ -113,7 +222,7 @@ function InquiryDetail({ userInfo }) {
                             {inquiry.answerContent.length > 322 && (
                                 <div className={styles.button2}
                                      onClick={handleShowMore2}
-                                     style={{ zIndex: showMore2 ? 1000 : 1 }}
+                                     style={{zIndex: showMore2 ? 1000 : 1}}
                                 >
                                     {showMore2 ? '줄이기' : '더보기'}
                                 </div>
@@ -122,12 +231,23 @@ function InquiryDetail({ userInfo }) {
                     </div>
                 ) : (
                     <div className={styles.notAnswer}>
-                        <img src="/images/common/logo.png" alt="문의 관리자 로고" className={styles.logo} />
+                        <img src="/images/common/logo.png" alt="문의 관리자 로고" className={styles.logo}/>
                         <p>문의를 접수하는중 입니다! 관리자의 답변을 기다려 주세요</p>
                     </div>
                 )}
             </div>
-
+            <div className={styles.editDeleteButtons}>
+                {inquiry.answerDate === null && !isEditing && (
+                    <>
+                        <button className={styles.editButton} onClick={handleEditClick}>
+                            수정
+                        </button>
+                        <button className={styles.delButton} onClick={handleDeleteInquiry}>
+                            삭제
+                        </button>
+                    </>
+                )}
+            </div>
         </div>
     );
 }
