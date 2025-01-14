@@ -25,11 +25,34 @@ function Mypage() {
                 throw new Error('유저 정보를 가져오는 데 실패했습니다.');
             }
 
-            return await response.json();
+            const data = await response.json();
+            setUserInfo(data);  // 유저 정보 상태 업데이트
         } catch (error) {
-            throw error;
+            setError(error.message);  // 에러 발생 시 상태 업데이트
+        } finally {
+            setLoading(false);  // 로딩 종료
         }
     };
+
+    useEffect(() => {
+        getUserInfo();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className={styles.loadingContainer}>
+                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div className={styles.loadingContainer}>
+                <img src="/images/mypage/profile/notInfo.png" alt="없는 정보"/>
+            </div>
+        )
+    }
 
     return (
         <div className={styles.mypage}>

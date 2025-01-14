@@ -16,12 +16,10 @@ function InquiryDetail({ userInfo }) {
     useEffect(() => {
         if (!userInfo) return;
 
-        // 문의를 찾고, 상태 업데이트를 위한 로직
         const currentInquiry = userInfo.find(item => item.inquiryNo === parseInt(inquiryNo));
         if (currentInquiry) {
             setInquiry(currentInquiry);
 
-            // 답변이 있는 경우에만 상태를 '읽음'으로 변경
             if (currentInquiry.answerDate && currentInquiry.status !== 'read') {
                 updateInquiryStatus('read');
             }

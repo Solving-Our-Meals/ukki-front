@@ -47,7 +47,11 @@ function MyProfile() {
     }
 
     if (error) {
-        return <div>{error}</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src="/images/mypage/profile/notInfo.png" alt="없는 정보"/>
+            </div>
+        )
     }
 
     if (!userInfo) {
