@@ -20,6 +20,9 @@ function Review(){
     const [realDeleteReview, setRealDeleteReview] = useState(false);
     const [isCompleteDeleteReview, setIsCompleteDeleteReview] = useState(false);
     const [completeOrFailDeleteMessage, setCompleteOrFailDeleteMessage] = useState("");
+    // 선택된 리뷰 번호
+    const [selectedReviewNo, setSelectedReviewNo] = useState(null);
+    const [selectedUserNo, setSelectedUserNo] = useState(null);
 
 
     useEffect(() => {
@@ -82,23 +85,24 @@ function Review(){
     const renderStars = (reviewScope) => {
         let stars = [];
         for (let i = 0; i < reviewScope; i++) {
-            stars.push(<span key={i} className={styles.star}>⭐</span>);
+            // stars.push(<span key={i} className={styles.star}>⭐</span>);
+            stars.push(<span key={i} className={styles.star}>&#x2B50;</span>);
         }
         return stars;
     };
 
     // 리뷰 삭제
-    const deleteReview = (reviewNo) => {
-        //    ---------------
-        fetch(`/store/${storeNo}/deletereview?reviewNo=${reviewNo}`,{
+    const deleteReview = (reviewNo, userNo) => {
+        fetch(`/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`,{
             method : "DELETE",         
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
+        .then((res) => {
+            if(res.ok){
+                setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
                 setCompleteOrFailDeleteMessage("해당 리뷰가 삭제되었습니다.");
             } else {
+                setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
                 setCompleteOrFailDeleteMessage("리뷰 삭제를 실패했습니다.");
             }
@@ -135,15 +139,6 @@ function Review(){
                                 />
                             <div>
                                 <span>{review.userName}</span>
-                                {/* 
-                                    Array(review.reviewScope) : review.reviewScope의 길이만큼의 배열을 생성한다.
-                                    .fill() : 배열을 비어있는 값으로 채운다.
-                                    .map((_, i) => ...) : 첫 번째 매개변수 _는 요소 값(여기서는 사용하지 않음)을 나타내며, 두 번째 매개변수 i는 인덱스를 나타냄.
-
-                                */}
-                                {/* {Array(review.reviewScope).fill().map((_, i) => (
-                                    <img key={i} src={starFilled} alt='별점'/>
-                                ))} */}
                                 {renderStars(review.reviewScope)}
                             </div>
                             <div>{review.reviewDate}</div>
@@ -151,23 +146,16 @@ function Review(){
                                 type="button" 
                                 style={{display : review.userName === currentUserName ? "" : "none"}}
                                 id={styles.deleteReview} 
-                                onClick={() => setRealDeleteReview(true)}
+                                onClick={() => {
+                                    setRealDeleteReview(true);
+                                    setSelectedReviewNo(review.reviewNo);
+                                    setSelectedUserNo(review.userNo);
+                                }}
                             >
                                 리뷰 삭제
                             </button>
                             <div>{review.reviewContent}</div>
                             <img src={`/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
-                            {/* -------------------------------------------------------- */}
-                            <div id={styles.finalCheck} style={{display : realDeleteReview ? "" : "none"}}>
-                                <p id={styles.reallyDeleteReview}>리뷰를 삭제하시겠습니까?</p>
-                                <p id={styles.notice}>해당 리뷰가 게시물에서 완전히 삭제됩니다.</p>
-                                <button type='button' id={styles.cancleDeleteReview} onClick={() => setRealDeleteReview(false)}>취소</button>
-                                <button type='submit' id={styles.confirmDeleteReview} onClick={() => deleteReview(review.reviewNo)}>확인</button>
-                            </div>
-                            <div id={styles.completeDeleteReview} style={{display : isCompleteDeleteReview ? "" : "none"}}>
-                                <p id={styles.completedDeletteMessage}>{completeOrFailDeleteMessage}</p>
-                                <button type='button' id={styles.completeBtn} onClick={() => completeHandler()}>확인</button>        
-                            </div>
                         </div>
                     ))}
                 </div>
@@ -178,6 +166,69 @@ function Review(){
                     {hiddenWord ? "리뷰 더보기 > " : "리뷰 닫기"} 
                 </div>
             </div>
+            {realDeleteReview && (
+                <div 
+                    id={styles.modalOverlay}
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        zIndex: 1000
+                    }}
+                >
+                    <div 
+                        id={styles.finalCheck}
+                        style={{
+                            backgroundColor: '#FFFFFF',
+                            padding: '20px',
+                            borderRadius: '30px',
+                            position: 'relative'
+                        }}
+                    >
+                        <p id={styles.reallyDeleteReview}>리뷰를 삭제하시겠습니까?</p>
+                        <p id={styles.notice}>해당 리뷰가 게시물에서 완전히 삭제됩니다.</p>
+                        <button type='button' id={styles.cancleDeleteReview} onClick={() => setRealDeleteReview(false)}>취소</button>
+                        <button type='submit' id={styles.confirmDeleteReview} onClick={() => deleteReview(selectedReviewNo, selectedUserNo)}>확인</button>
+                    </div>
+                </div>
+            )}
+
+            {isCompleteDeleteReview && (
+                <div 
+                    id={styles.modalOverlay}
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        zIndex: 1000
+                    }}
+                >
+                    <div 
+                        id={styles.completeDeleteReview}
+                        style={{
+                            backgroundColor: '#FFFFFF',
+                            padding: '20px',
+                            borderRadius: '30px',
+                            position: 'relative'
+                        }}
+                    >
+                        <p id={styles.completedDeletteMessage}>{completeOrFailDeleteMessage}</p>
+                        <button type='button' id={styles.completeBtn} onClick={() => completeHandler()}>확인</button>
+                    </div>
+                </div>
+            )}
             <CreateReview/>
         </div>
     );
