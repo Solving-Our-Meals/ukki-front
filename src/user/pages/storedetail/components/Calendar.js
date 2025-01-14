@@ -961,53 +961,104 @@ function Calendar() {
                 <div className={styles.instructionTime}>시간을 선택해주세요.</div>
                 <div className={styles.morningArray}>
                     <div id={styles.strMoring} style={{display : morningArray.length == 0 ? "none" : "" }}>오전</div>
-                    {morningArray.map((timeObj, index) => (
-                        <div 
-                            key={index} 
-                            className={styles.morningArr} 
-                            style={{
-                                backgroundColor: !disabledTimes.includes(timeObj) && isOper
-                                    ? (selectedMorningTimeIndex === index ? '#FF8AA3' : '#FEDA00')
-                                    : '#FFF3A7', 
-                                color: !disabledTimes.includes(timeObj) && isOper ? '#000000' : '#BDBEBF', 
-                                cursor: !disabledTimes.includes(timeObj) && isOper? 'pointer' : 'default',
-                                pointerEvents: !disabledTimes.includes(timeObj) && isOper ? 'auto' : 'none'
-                            }}
-                            onClick={() => {
-                                if (!disabledTimes.includes(timeObj)) {
-                                    selectedMorningTime(index);
-                                }
-                            }}
-                        >
-                            {timeObj}
-                        </div>
-                    ))}
+                    {morningArray.map((timeObj, index) => {
+                         // 현재 날짜와 시간을 얻는다
+                         const now = new Date();
+                         const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
+                         const todayWithoutTime = new Date(now).setHours(0, 0, 0, 0);
+                         const selectedDateWithoutTime = new Date(selectedTotalDate.selectedYear, selectedTotalDate.selectedMonth - 1, selectedTotalDate.selectedDate).setHours(0, 0, 0, 0);
+ 
+                         // morningArr의 시간을 분리하여 비교
+                         const [morningHours, morningMinutes] = timeObj.split(":").map(Number);
+ 
+                         // 비교를 위한 Date 객체 생성
+                         const currentDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), currentHours, currentMinutes);
+                         const morningDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), morningHours, morningMinutes);
+ 
+                         // 클릭 가능 여부 결정
+                         const isToday = todayWithoutTime === selectedDateWithoutTime;
+                         const isNotPast = morningDateTime > currentDateTime;
+ 
+                         // 클릭 이벤트 핸들러
+                         const handleClick = () => {
+                             if (isNotPast) {
+                                 selectedMorningTime(index);
+                             }
+                         };
+                         return (
+                            <div 
+                                key={index} 
+                                className={styles.morningArr} 
+                                style={{
+                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
+                                        ? (selectedMorningTimeIndex === index ? '#FF8AA3' : '#FEDA00')
+                                        : '#FFF3A7', 
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF', 
+                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
+                                }}
+                                onClick={() => {
+                                    if (!disabledTimes.includes(timeObj)) {
+                                        selectedMorningTime(index);
+                                    }
+                                    handleClick()
+                                }}
+                            >
+                                {timeObj}
+                            </div>
+                         );
+                    })}
                 </div>
                 <div className={styles.afternoonArray}>
                     <div id={styles.strAfternoon} style={{display : afternoonArray.length == 0 ? "none" : "" }}>오후</div>
                     {afternoonArray.map((timeObj, index) => {
+
+                        // 현재 날짜와 시간을 얻는다
+                        const now = new Date();
+                        const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
+                        const todayWithoutTime = new Date(now).setHours(0, 0, 0, 0);
+                        const selectedDateWithoutTime = new Date(selectedTotalDate.selectedYear, selectedTotalDate.selectedMonth - 1, selectedTotalDate.selectedDate).setHours(0, 0, 0, 0);
+
+                        // morningArr의 시간을 분리하여 비교
+                        const [morningHours, morningMinutes] = timeObj.split(":").map(Number);
+
+                        // 비교를 위한 Date 객체 생성
+                        const currentDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), currentHours, currentMinutes);
+                        const morningDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), morningHours, morningMinutes);
+
+                        // 클릭 가능 여부 결정
+                        const isToday = todayWithoutTime === selectedDateWithoutTime;
+                        const isNotPast = morningDateTime > currentDateTime;
+
+                        // 클릭 이벤트 핸들러
+                        const handleClick = () => {
+                            if (isNotPast) {
+                                selectedMorningTime(index);
+                            }
+                        }
+
                         // 마지막 인덱스 건너뛰기
                         if(index === afternoonArray.length - 1) {
                             return null;}
 
                         // 마지마 인덱스가 아닐 경우 반환
                         return(
-
                             <div 
                                 key={index} 
                                 className={styles.afternoonArr} 
                                 style={{
-                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper
+                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
                                         ? (selectedAfternoonTimeIndex === index ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7',
-                                    color: !disabledTimes.includes(timeObj) && isOper ? '#000000' : '#BDBEBF',
-                                    cursor: !disabledTimes.includes(timeObj) && isOper ? 'pointer' : 'default',
-                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper ? 'auto' : 'none'
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF',
+                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
                                 }}
                                 onClick={() => {
                                     if (!disabledTimes.includes(timeObj)) {
                                         selectedAfternoonTime(index);
                                     }
+                                    handleClick()
                                 }}
                             >
                                 {timeObj}
