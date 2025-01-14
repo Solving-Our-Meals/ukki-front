@@ -7,26 +7,67 @@ function InquiryDetail({ userInfo }) {
     const [showMore, setShowMore] = useState(false);
     const [showMore2, setShowMore2] = useState(false);
 
+    const [showOverlay, setShowOverlay] = useState(false);
+    const [showOverlay2, setShowOverlay2] = useState(false);
 
-    if (!userInfo) {
-        return <div className={styles.loading}>정보를 불러오는 중...</div>;
-    }
+    const [inquiry, setInquiry] = useState(null);
 
-    const inquiry = userInfo.find(item => item.inquiryNo === parseInt(inquiryNo));
+
+    useEffect(() => {
+        if (!userInfo) return;
+
+        // 문의를 찾고, 상태 업데이트를 위한 로직
+        const currentInquiry = userInfo.find(item => item.inquiryNo === parseInt(inquiryNo));
+        if (currentInquiry) {
+            setInquiry(currentInquiry);
+
+            // 답변이 있는 경우에만 상태를 '읽음'으로 변경
+            if (currentInquiry.answerDate && currentInquiry.status !== 'read') {
+                updateInquiryStatus('read');
+            }
+        }
+    }, [userInfo, inquiryNo]);
+
+    const handleShowMore = () => {
+        setShowMore(!showMore);
+        setShowOverlay(!showOverlay);
+    };
+
+    const handleShowMore2 = () => {
+        setShowMore2(!showMore2);
+        setShowOverlay2(!showOverlay2);
+    };
+
+    const updateInquiryStatus = async (status) => {
+        try {
+            const response = await fetch(`/user/mypage/inquiry/${inquiryNo}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update status');
+            }
+            const data = await response.json();
+            console.log(data.message);
+        } catch (error) {
+            console.error('Error updating status:', error);
+        }
+    };
 
     if (!inquiry) {
         return <div className={styles.error}>해당 문의를 찾을 수 없습니다.</div>;
     }
 
-    const handleShowMore = () => {
-        setShowMore(!showMore);
-    }
-    const handleShowMore2 = () => {
-        setShowMore2(!showMore2);
-    }
 
     return (
         <div className={styles.inquiryDetailContainer}>
+            {showOverlay && <div className={styles.overlay} onClick={handleShowMore} />}
+            {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2} />}
+
             <div className={styles.allTabs}>
                 <Link to="/user/mypage/inquiry">
                     <div className={styles.tab1}>문의 내역</div>
@@ -46,39 +87,46 @@ function InquiryDetail({ userInfo }) {
             <div className={styles.main}>
                 <p className={styles.Title}>문의 제목 : <span className={styles.inquiryTitle}>{inquiry.title}</span></p>
                 <p className={styles.Date}>문의 일자 : <span className={styles.inquiryDate}>{inquiry.inquiryDate}</span></p>
-                <p className={styles.Text}>
+                <div className={styles.Text}>
                     <p className={showMore ? styles.inquiryTextExpanded : styles.inquiryText}>
                         {inquiry.text}
                     </p>
-                    {inquiry.text.length > 100 && (
-                        <div className={styles.button1} onClick={handleShowMore}>
+                    {inquiry.text.length > 322 && (
+                        <div className={styles.button1}
+                             onClick={handleShowMore}
+                             style={{ zIndex: showMore ? 1000 : 1 }}
+                        >
                             {showMore ? '줄이기' : '더보기'}
                         </div>
                     )}
-                </p>
+                </div>
             </div>
             <div className={styles.main2}>
-                {inquiry.inquiryDate ? (
+                {inquiry.answerDate ? (
                     <div className={styles.answer}>
                         <p className={styles.AnswerTitle}>답변 제목 : <span
                             className={styles.inquiryTitle}>{inquiry.answerTitle}</span></p>
                         <p className={styles.AnswerDate}>답변 일자 : <span
-                            className={styles.inquiryDate}>{inquiry.inquiryDate}</span></p>
-                        <p className={styles.Text}>
+                            className={styles.inquiryDate}>{inquiry.answerDate}</span></p>
+                        <div className={styles.Text}>
                             <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2}>
                                 {inquiry.answerContent}
                             </p>
-                            {inquiry.answerContent.length > 100 && (
-                                <div className={styles.button2} onClick={handleShowMore2}>
+                            {inquiry.answerContent.length > 322 && (
+                                <div className={styles.button2}
+                                     onClick={handleShowMore2}
+                                     style={{ zIndex: showMore2 ? 1000 : 1 }}
+                                >
                                     {showMore2 ? '줄이기' : '더보기'}
                                 </div>
                             )}
-                        </p>
+                        </div>
                     </div>
                 ) : (
-                    <p className={styles.inquiryItem}>
-                        <strong>답변:</strong> 답변이 아직 제공되지 않았습니다.
-                    </p>
+                    <div className={styles.notAnswer}>
+                        <img src="/images/common/logo.png" alt="문의 관리자 로고" className={styles.logo} />
+                        <p>문의를 접수하는중 입니다! 관리자의 답변을 기다려 주세요</p>
+                    </div>
                 )}
             </div>
 

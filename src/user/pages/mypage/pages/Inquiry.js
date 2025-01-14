@@ -26,7 +26,7 @@ function Inquiry() {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/inquiry', {
+            const response = await fetch('/user/mypage/inquiry', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -55,7 +55,7 @@ function Inquiry() {
 
     const deleteReview = async (reviewNo) => {
         try {
-            const response = await fetch('/user/review/delete', {
+            const response = await fetch('/user/mypage/review/delete', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -216,6 +216,8 @@ function Inquiry() {
         )
     };
 
+    console.log(userInfo)
+
     const getInquiryStateLabel = (state) => {
         switch (state) {
             case 'CHECK':
@@ -232,19 +234,19 @@ function Inquiry() {
     return (
         <div className={styles.mypageReservation}>
             <div className={styles.allTabs}>
-                <Link to="/user/mypage/review">
+                <Link to="/user/mypage/inquiry">
                     <div className={styles.tab1}>문의 내역</div>
                 </Link>
-                <Link to="/user/mypage/reservation">
+                <Link to="/user/mypage/profile">
                     <div className={styles.tab2}>회원 정보수정</div>
                 </Link>
                 <div className={styles.line1}>|</div>
-                <Link to="/user/mypage/inquiry">
+                <Link to="/user/mypage/reservation">
                     <div className={styles.tab3}>예약리스트</div>
                 </Link>
                 <div className={styles.line2}>|</div>
-                <Link to="/user/mypage/profile">
-                    <div className={styles.tab4}>작성한 리뷰</div>
+                <Link to="/user/mypage/review">
+                    <div className={styles.tab4}>작성리뷰</div>
                 </Link>
             </div>
 
