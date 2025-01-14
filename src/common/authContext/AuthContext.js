@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import styles from "../../user/pages/mypage/css/Mypage.module.css";
 
 const AuthContext = createContext();
 
@@ -63,7 +64,11 @@ export const AuthProvider = ({ children }) => {
     }, [navigate]);
 
     if (loading) {
-        return <div>로딩 만들고 넣을것</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+            </div>
+        )
     }
 
     return (
