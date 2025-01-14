@@ -1,0 +1,386 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+#background {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #FFF3A7;
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background #noticeArea {
+  position: absolute;
+  margin-top: 75px;
+  width: 1805px;
+  height: 783px;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background #noticeArea .dots {
+  box-sizing: border-box;
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  background: #B3E7FF;
+  border: 3px solid #BDBEBF;
+}
+#background #noticeArea #dot1 {
+  left: 50px;
+  top: 50px;
+}
+#background #noticeArea #dot2 {
+  right: 50px;
+  top: 50px;
+}
+#background #noticeArea #dot3 {
+  left: 50px;
+  bottom: 50px;
+}
+#background #noticeArea #dot4 {
+  right: 50px;
+  bottom: 50px;
+}
+#background #noticeArea .strArea {
+  position: absolute;
+  width: 1550px;
+  height: 80px;
+  top: 80px;
+  border-bottom: 5px solid #BDBEBF;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
+#background #noticeArea .strArea #strNotice, #background #noticeArea .strArea #imgPin, #background #noticeArea .strArea #strTitle, #background #noticeArea .strArea #strDate {
+  position: relative;
+}
+#background #noticeArea .strArea #strNotice {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 100px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 55px;
+  color: #FF8AA3;
+}
+#background #noticeArea .strArea #imgPin {
+  position: absolute;
+  width: 40px;
+  height: 40x;
+  margin-top: -8px;
+  left: 290px;
+}
+#background #noticeArea .strArea #strTitle {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 498px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 130%;
+  color: #232323;
+}
+#background #noticeArea .strArea #strDate {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  right: 213px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 130%;
+  color: #232323;
+}
+#background #noticeArea .noticeContainer {
+  position: absolute;
+  width: 1550px;
+  height: 430px;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#background #noticeArea .noticeContainer .notice {
+  position: relative;
+  width: 1480px;
+  height: 80px;
+  left: 35px;
+  border-bottom: 2px solid #D9D9D9;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: right;
+  justify-content: center;
+  align-items: center;
+}
+#background #noticeArea .noticeContainer .notice #categoryName {
+  position: relative;
+  left: 85px;
+  width: 97px;
+  height: 38px;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  color: #232323;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background #noticeArea .noticeContainer .notice #noticeTitle {
+  position: relative;
+  left: 345px;
+  flex: 1;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  color: #232323;
+  text-align: left;
+}
+#background #noticeArea .noticeContainer .notice #noticeDate {
+  position: relative;
+  width: 150px;
+  left: -80px;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  color: #232323;
+  text-align: left;
+}
+#background #noticeArea hr {
+  position: absolute;
+  width: 1550px;
+  border: 3px solid #BDBEBF;
+  bottom: 125px;
+}
+#background #noticeArea .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 0;
+}
+#background #noticeArea .pagination .paginationButton {
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 28px;
+  cursor: pointer;
+  color: #232323;
+  opacity: 50%;
+}
+#background #noticeArea .pagination .paginationButton.active {
+  color: #232323;
+  opacity: 100%;
+  font-weight: bold;
+}
+#background #noticeArea .pagination .arrow {
+  color: #FF8AA3;
+  opacity: 100%;
+}
+#background #noticeArea .pagination .arrow.disabled {
+  visibility: hidden;
+  cursor: default;
+}/*# sourceMappingURL=bossTotalNotice.module.css.map */
