@@ -69,7 +69,7 @@ function InquiryDetail({ userInfo }) {
                 </div>
             </div>
             <div className={styles.main2}>
-                {inquiry.inquiryDate ? (
+                {inquiry.answerDate ? (
                     <div className={styles.answer}>
                         <p className={styles.AnswerTitle}>답변 제목 : <span
                             className={styles.inquiryTitle}>{inquiry.answerTitle}</span></p>
@@ -90,9 +90,10 @@ function InquiryDetail({ userInfo }) {
                         </div>
                     </div>
                 ) : (
-                    <p className={styles.inquiryItem}>
-                        <strong>답변:</strong> 답변이 아직 제공되지 않았습니다.
-                    </p>
+                    <div className={styles.notAnswer}>
+                        <img src="/images/common/logo.png" alt="문의 관리자 로고" className={styles.logo} />
+                        <p>문의를 접수하는중 입니다! 관리자의 답변을 기다려 주세요</p>
+                    </div>
                 )}
             </div>
 
