@@ -54,7 +54,7 @@ function InquiryDetail({ userInfo }) {
             <div className={styles.main}>
                 <p className={styles.Title}>문의 제목 : <span className={styles.inquiryTitle}>{inquiry.title}</span></p>
                 <p className={styles.Date}>문의 일자 : <span className={styles.inquiryDate}>{inquiry.inquiryDate}</span></p>
-                <p className={styles.Text}>
+                <div className={styles.Text}>
                     <p className={showMore ? styles.inquiryTextExpanded : styles.inquiryText}>
                         {inquiry.text}
                     </p>
@@ -66,7 +66,7 @@ function InquiryDetail({ userInfo }) {
                             {showMore ? '줄이기' : '더보기'}
                         </div>
                     )}
-                </p>
+                </div>
             </div>
             <div className={styles.main2}>
                 {inquiry.inquiryDate ? (
@@ -75,7 +75,7 @@ function InquiryDetail({ userInfo }) {
                             className={styles.inquiryTitle}>{inquiry.answerTitle}</span></p>
                         <p className={styles.AnswerDate2}>답변 일자 : <span
                             className={styles.inquiryDate}>{inquiry.inquiryDate}</span></p>
-                        <p className={styles.Text}>
+                        <div className={styles.Text}>
                             <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2}>
                                 {inquiry.answerContent}
                             </p>
@@ -87,7 +87,7 @@ function InquiryDetail({ userInfo }) {
                                     {showMore2 ? '줄이기' : '더보기'}
                                 </div>
                             )}
-                        </p>
+                        </div>
                     </div>
                 ) : (
                     <p className={styles.inquiryItem}>

@@ -216,6 +216,8 @@ function Inquiry() {
         )
     };
 
+    console.log(userInfo)
+
     const getInquiryStateLabel = (state) => {
         switch (state) {
             case 'CHECK':

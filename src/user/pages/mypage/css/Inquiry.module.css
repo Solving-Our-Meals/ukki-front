@@ -104,8 +104,15 @@
     justify-items: center;
     position: relative;
     height: 95px;
+    cursor: pointer;
+    transition: all 0.1s ease;
 }
 
+.reservationItem:hover {
+    background-color: #D3D3D3;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+}
 
 /* 페이지네이션 */
 .pagination {
@@ -501,6 +508,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
+    transition: all 0.2s ease;
 }
 
 .button1 {
@@ -612,6 +620,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
+    transition: all 0.2s ease;
 }
 
 .button2 {
