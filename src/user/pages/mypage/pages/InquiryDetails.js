@@ -10,23 +10,56 @@ function InquiryDetail({ userInfo }) {
     const [showOverlay, setShowOverlay] = useState(false);
     const [showOverlay2, setShowOverlay2] = useState(false);
 
-    if (!userInfo) {
-        return <div className={styles.loading}>정보를 불러오는 중...</div>;
-    }
+    const [inquiry, setInquiry] = useState(null);
 
-    const inquiry = userInfo.find(item => item.inquiryNo === parseInt(inquiryNo));
 
-    if (!inquiry) {
-        return <div className={styles.error}>해당 문의를 찾을 수 없습니다.</div>;
-    }
+    useEffect(() => {
+        if (!userInfo) return;
+
+        // 문의를 찾고, 상태 업데이트를 위한 로직
+        const currentInquiry = userInfo.find(item => item.inquiryNo === parseInt(inquiryNo));
+        if (currentInquiry) {
+            setInquiry(currentInquiry);
+
+            // 답변이 있는 경우에만 상태를 '읽음'으로 변경
+            if (currentInquiry.answerDate && currentInquiry.status !== 'read') {
+                updateInquiryStatus('read');
+            }
+        }
+    }, [userInfo, inquiryNo]);
 
     const handleShowMore = () => {
         setShowMore(!showMore);
         setShowOverlay(!showOverlay);
-    }
+    };
+
     const handleShowMore2 = () => {
         setShowMore2(!showMore2);
         setShowOverlay2(!showOverlay2);
+    };
+
+    const updateInquiryStatus = async (status) => {
+        try {
+            const response = await fetch(`/user/mypage/inquiry/${inquiryNo}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update status');
+            }
+            const data = await response.json();
+            console.log(data.message);
+        } catch (error) {
+            console.error('Error updating status:', error);
+        }
+    };
+
+    if (!inquiry) {
+        return <div className={styles.error}>해당 문의를 찾을 수 없습니다.</div>;
     }
 
 

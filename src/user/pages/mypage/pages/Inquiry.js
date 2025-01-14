@@ -26,7 +26,7 @@ function Inquiry() {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/inquiry', {
+            const response = await fetch('/user/mypage/inquiry', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -55,7 +55,7 @@ function Inquiry() {
 
     const deleteReview = async (reviewNo) => {
         try {
-            const response = await fetch('/user/review/delete', {
+            const response = await fetch('/user/mypage/review/delete', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

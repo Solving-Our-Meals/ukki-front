@@ -1,6 +1,6 @@
 export const getUserInfo = async () => {
     try {
-        const response = await fetch('/user/inquiry', {
+        const response = await fetch('/user/mypage/inquiry', {
             method: 'GET',
             credentials: 'include',
         });

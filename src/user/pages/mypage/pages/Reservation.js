@@ -18,7 +18,7 @@ function Reservation() {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/reservation', {
+            const response = await fetch('/user/mypage/reservation', {
                 method: 'GET',
                 credentials: 'include',
             });

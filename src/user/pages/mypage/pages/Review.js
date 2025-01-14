@@ -26,7 +26,7 @@ function Review() {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/review', {
+            const response = await fetch('/user/mypage//review', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -55,13 +55,13 @@ function Review() {
 
     const deleteReview = async (reviewNo) => {
         try {
-            const response = await fetch('/user/review/delete', {
+            const response = await fetch('/user/mypage/review/delete', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-                body: JSON.stringify({ reviewNo }) // 리뷰 ID를 본문에 포함
+                body: JSON.stringify({ reviewNo })
             });
 
             if (response.ok) {
