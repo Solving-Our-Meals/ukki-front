@@ -792,6 +792,7 @@
 
     transform: translate(60px, 140px);
     display: inline-block;
+    border-radius: 15px;
 
 }
 
