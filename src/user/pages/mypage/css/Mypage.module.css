@@ -24,3 +24,21 @@
     border: 3px solid #FF8AA3;
     border-radius: 50px;
 }
+
+.loadingContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loadingContainer img {
+    max-width: 150px;
+    height: auto;
+}
