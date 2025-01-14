@@ -12,14 +12,6 @@ function Inquiry() {
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [totalPages, setTotalPages] = useState(0);
 
-    // 삭제용 모달
-    const [showModal, setShowModal] = useState(false);
-    const [selectedReview, setSelectedReview] = useState(null);
-
-    // 삭제 후 상태 표시 모달
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
-    const [showFailModal, setShowFailModal] = useState(false);
-
     useEffect(() => {
         fetchUserInfo();
     }, []);
@@ -47,45 +39,6 @@ function Inquiry() {
             setLoading(false);
         }
     };
-
-    const handleDeleteClick = (reviewNo) => {
-        setSelectedReview(reviewNo);
-        setShowModal(true);
-    };
-
-    const deleteReview = async (reviewNo) => {
-        try {
-            const response = await fetch('/user/mypage/review/delete', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify({ reviewNo }) // 리뷰 ID를 본문에 포함
-            });
-
-            if (response.ok) {
-                setUserInfo(prevState => prevState.filter(review => review.reviewNo !== reviewNo));
-                setShowModal(false);
-                setShowSuccessModal(true);
-                setTimeout(() => setShowSuccessModal(false), 2000);
-            } else {
-                setError('리뷰 삭제에 실패했습니다.');
-                setShowModal(false);
-                setShowFailModal(true);
-                setTimeout(() => setShowFailModal(false), 2000);
-
-            }
-        } catch (error) {
-            setError('에러 발생: ' + error.message);
-            setShowModal(false);
-        }
-    };
-
-    const cancelDelete = () => {
-        setShowModal(false);
-    };
-
 
     if (loading) {
         return (
@@ -123,7 +76,7 @@ function Inquiry() {
                         <div className={styles.headerItem}>문의제목</div>
                     </div>
 
-                    {/* 리뷰 항목이 없을 경우 */}
+                    {/* 문의 항목이 없을 경우 */}
                     <div className={styles.reservationItem}>
                         <div className={styles.headerItem}>-</div>
                         <div className={styles.headerItem}>-</div>
@@ -189,34 +142,6 @@ function Inquiry() {
             </div>
         );
     };
-
-    const SuccessModal = ({ onClose }) => {
-        return (
-            <div className={styles.modalOverlay}>
-                <div className={styles.modal}>
-                    <h3 className={styles.modalMainText2}>삭제가 완료되었습니다!</h3>
-                    <div className={styles.modalButtons}>
-                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
-                    </div>
-                </div>
-            </div>
-        )
-    };
-
-    const FailModal = ({ onClose }) => {
-        return (
-            <div className={styles.modalOverlay}>
-                <div className={styles.modal}>
-                    <h3 className={styles.modalMainText2}>삭제에 실패했습니다!</h3>
-                    <div className={styles.modalButtons}>
-                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
-                    </div>
-                </div>
-            </div>
-        )
-    };
-
-    console.log(userInfo)
 
     const getInquiryStateLabel = (state) => {
         switch (state) {
@@ -313,26 +238,6 @@ function Inquiry() {
                 </div>
 
             </div>
-
-            {/* 삭제 확인 모달 */}
-            {showModal && (
-                <ConfirmModal
-                    reviewNo={selectedReview}
-                    onConfirm={deleteReview}
-                    onCancel={cancelDelete}
-                />
-            )}
-
-            {/* 삭제 완료 모달 */}
-            {showSuccessModal && (
-                <SuccessModal onClose={() => setShowSuccessModal(false)}/>
-            )}
-
-            {showFailModal && (
-                <FailModal onClose={() => setShowFailModal(false)}/>
-            )}
-
-
         </div>
     );
 }

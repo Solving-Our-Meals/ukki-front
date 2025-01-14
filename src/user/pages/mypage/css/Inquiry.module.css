@@ -451,7 +451,6 @@
     font-weight: 500;
 }
 
-
 .inquiryText {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -720,4 +719,150 @@
 
 .notAnswer p {
     transform: translateX(-15px);
+}
+
+.editDeleteButtons {
+    position: absolute;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: #232323;
+
+}
+
+.editButton {
+    width: 180px;
+    height: 51px;
+    left: 820px;
+    top: 50px;
+    font-weight: 700;
+    background: #FEDA00;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.delButton {
+    margin-left: 20px;
+    width: 180px;
+    height: 51px;
+    left: 1000px;
+    top: 50px;
+    font-weight: 700;
+    background: #FF8AA3;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.editButton:hover {
+    background-color: #FFCB00;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.editButton:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.delButton:hover {
+    background-color: #FF5E7A;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.delButton:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.inquiryTitleEditable {
+    position: absolute;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(60px, 140px);
+    display: inline-block;
+    border-radius: 15px;
+
+}
+
+.inquiryTextEditable {
+    display: -webkit-box;
+    width: 1153px;
+    height: 207px;
+    transform: translate(49px, 165px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 10px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+}
+
+.inquiryTextEditable::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+.inquiryTextEditable::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+.inquiryTextEditable::-webkit-scrollbar-thumb {
+    background-color: #FFEB3B;
+    border-radius: 10px;
+    border: 3px solid #f0f0f0;
+}
+
+
+.CDButtons {
+    position: absolute;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: #232323;
+
+}
+
+.editConfirm {
+    width: 180px;
+    height: 51px;
+    left: 820px;
+    top: -179px;
+    font-weight: 700;
+    background: #FEDA00;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.delCancel {
+    margin-left: 20px;
+    width: 180px;
+    height: 51px;
+    left: 1000px;
+    top: -179px;
+    font-weight: 700;
+    background: #FF8AA3;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
 }
