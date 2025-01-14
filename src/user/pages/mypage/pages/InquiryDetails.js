@@ -7,6 +7,8 @@ function InquiryDetail({ userInfo }) {
     const [showMore, setShowMore] = useState(false);
     const [showMore2, setShowMore2] = useState(false);
 
+    const [showOverlay, setShowOverlay] = useState(false);
+    const [showOverlay2, setShowOverlay2] = useState(false);
 
     if (!userInfo) {
         return <div className={styles.loading}>정보를 불러오는 중...</div>;
@@ -20,13 +22,19 @@ function InquiryDetail({ userInfo }) {
 
     const handleShowMore = () => {
         setShowMore(!showMore);
+        setShowOverlay(!showOverlay);
     }
     const handleShowMore2 = () => {
         setShowMore2(!showMore2);
+        setShowOverlay2(!showOverlay2);
     }
+
 
     return (
         <div className={styles.inquiryDetailContainer}>
+            {showOverlay && <div className={styles.overlay} onClick={handleShowMore} />}
+            {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2} />}
+
             <div className={styles.allTabs}>
                 <Link to="/user/mypage/inquiry">
                     <div className={styles.tab1}>문의 내역</div>
@@ -51,7 +59,10 @@ function InquiryDetail({ userInfo }) {
                         {inquiry.text}
                     </p>
                     {inquiry.text.length > 100 && (
-                        <div className={styles.button1} onClick={handleShowMore}>
+                        <div className={styles.button1}
+                             onClick={handleShowMore}
+                             style={{ zIndex: showMore ? 1000 : 1 }}
+                        >
                             {showMore ? '줄이기' : '더보기'}
                         </div>
                     )}
@@ -62,14 +73,17 @@ function InquiryDetail({ userInfo }) {
                     <div className={styles.answer}>
                         <p className={styles.AnswerTitle}>답변 제목 : <span
                             className={styles.inquiryTitle}>{inquiry.answerTitle}</span></p>
-                        <p className={styles.AnswerDate}>답변 일자 : <span
+                        <p className={styles.AnswerDate2}>답변 일자 : <span
                             className={styles.inquiryDate}>{inquiry.inquiryDate}</span></p>
                         <p className={styles.Text}>
                             <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2}>
                                 {inquiry.answerContent}
                             </p>
                             {inquiry.answerContent.length > 100 && (
-                                <div className={styles.button2} onClick={handleShowMore2}>
+                                <div className={styles.button2}
+                                     onClick={handleShowMore2}
+                                     style={{ zIndex: showMore2 ? 1000 : 1 }}
+                                >
                                     {showMore2 ? '줄이기' : '더보기'}
                                 </div>
                             )}

@@ -102,6 +102,7 @@
     justify-items: center;
     position: relative;
     height: 95px;
+    cursor : pointer;
 }
 
 
