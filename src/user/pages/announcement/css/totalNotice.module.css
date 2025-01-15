@@ -186,6 +186,7 @@ a:active {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: default;
 }
 #background #noticeArea {
   position: absolute;
@@ -224,11 +225,32 @@ a:active {
   right: 50px;
   bottom: 50px;
 }
+#background #noticeArea #strNotice {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 120px;
+  top: 40px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 55px;
+  color: #FF8AA3;
+}
+#background #noticeArea #imgPin {
+  position: absolute;
+  width: 40px;
+  height: 40x;
+  margin-top: -8px;
+  left: 310px;
+  top: 50px;
+}
 #background #noticeArea .strArea {
   position: absolute;
-  width: 1550px;
+  width: 1600px;
   height: 80px;
-  top: 80px;
+  top: 120px;
   border-bottom: 4px solid #BDBEBF;
   display: flex;
   justify-content: space-evenly;
@@ -237,33 +259,26 @@ a:active {
   transform: translateX(-50%);
   border-radius: 0;
 }
-#background #noticeArea .strArea #strNotice, #background #noticeArea .strArea #imgPin, #background #noticeArea .strArea #strTitle, #background #noticeArea .strArea #strDate {
+#background #noticeArea .strArea #strCategory, #background #noticeArea .strArea #strTitle, #background #noticeArea .strArea #strDate {
   position: relative;
 }
-#background #noticeArea .strArea #strNotice {
+#background #noticeArea .strArea #strCategory {
   position: absolute;
   width: max-content;
   height: max-content;
-  left: 100px;
+  left: 60px;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
-  font-size: 50px;
-  line-height: 55px;
-  color: #FF8AA3;
-}
-#background #noticeArea .strArea #imgPin {
-  position: absolute;
-  width: 40px;
-  height: 40x;
-  margin-top: -8px;
-  left: 290px;
+  font-size: 40px;
+  line-height: 130%;
+  color: #232323;
 }
 #background #noticeArea .strArea #strTitle {
   position: absolute;
   width: max-content;
   height: max-content;
-  left: 498px;
+  left: 490px;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
@@ -275,7 +290,7 @@ a:active {
   position: absolute;
   width: max-content;
   height: max-content;
-  right: 213px;
+  right: 170px;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
@@ -285,17 +300,18 @@ a:active {
 }
 #background #noticeArea .noticeContainer {
   position: absolute;
-  width: 1550px;
+  width: 1620px;
   height: 430px;
   top: 200px;
   left: 50%;
   transform: translateX(-50%);
+  cursor: pointer;
 }
 #background #noticeArea .noticeContainer .notice {
   position: relative;
-  width: 1480px;
+  width: 1550px;
   height: 80px;
-  left: 35px;
+  left: 33px;
   border-bottom: 2px solid #D9D9D9;
   border-radius: 0;
   display: flex;
@@ -308,7 +324,7 @@ a:active {
 }
 #background #noticeArea .noticeContainer .notice #categoryName {
   position: relative;
-  left: 85px;
+  left: -270px;
   width: 97px;
   height: 38px;
   border-radius: 25px;
@@ -323,8 +339,13 @@ a:active {
 }
 #background #noticeArea .noticeContainer .notice #noticeTitle {
   position: relative;
-  left: 345px;
-  flex: 1;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 650px;
+  height: max-content;
+  left: 40px;
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 400;
@@ -336,7 +357,7 @@ a:active {
 #background #noticeArea .noticeContainer .notice #noticeDate {
   position: relative;
   width: 150px;
-  left: -80px;
+  left: 260px;
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 400;
@@ -347,16 +368,16 @@ a:active {
 }
 #background #noticeArea hr {
   position: absolute;
-  width: 1550px;
+  width: 1600px;
   border: 2.9px solid #BDBEBF;
-  bottom: 125px;
+  bottom: 90px;
 }
 #background #noticeArea .pagination {
   display: flex;
   justify-content: center;
   gap: 40px;
   position: absolute;
-  bottom: 50px;
+  bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 0;

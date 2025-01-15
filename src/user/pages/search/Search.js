@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../../common/header/css/reset.css';
 import style from './css/search.module.css';
 import search from '../main/image/Search.png';
+// import Profile from '../search/components/Profile';
 import Profile from '../storedetail/components/Profile';
 
 function Search() {

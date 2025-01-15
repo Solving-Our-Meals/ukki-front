@@ -8,7 +8,7 @@ function BossTotalNotice(){
         const [currentPage, setCurrentPage] = useState(1); 
         const [currentPageGroup, setCurrentPageGroup] = useState(1);
         
-        const itemsPerPage = 5; 
+        const itemsPerPage = 6; 
         const pagesPerGroup = 5;
     
         const totalPages = Math.ceil(notices.length / itemsPerPage);
@@ -63,9 +63,10 @@ function BossTotalNotice(){
                         <div id={styles.dot2} className={styles.dots}></div>
                         <div id={styles.dot3} className={styles.dots}></div>
                         <div id={styles.dot4} className={styles.dots}></div>
+                        <div id={styles.strNotice}>공지사항</div>
+                        <img id={styles.imgPin} src={pin}/>
                         <div className={styles.strArea}>
-                            <div id={styles.strNotice}>공지사항</div>
-                            <img id={styles.imgPin} src={pin}/>
+                            <div id={styles.strCategory}>카테고리</div>
                             <div id={styles.strTitle}>제목</div>
                             <div id={styles.strDate}>날짜</div>
                         </div>
@@ -81,7 +82,7 @@ function BossTotalNotice(){
                                     <div
                                         key={index}
                                         className={styles.notice}
-                                        style={{border : (index + 1) % 5 === 0 ? "none" : ""}}
+                                        style={{border : (index + 1) % 6 === 0 ? "none" : ""}}
                                     >
                                         <span 
                                             id={styles.categoryName}
@@ -96,14 +97,16 @@ function BossTotalNotice(){
                             })}
                         </div>
                         <hr/>
-                        {/*  페이지네이션 렌더링 */}
+                        {/* // 페이지네이션 로직 7 : 페이지네이션 렌더링 */}
                         <div className={styles.pagination}>
-                           <div
+                            {/* 이전 그룹 버튼 */}
+                            <div
                                 className={`${styles.paginationButton} ${styles.arrow} ${currentPage === 1 ? styles.disabled : ''}`}
                                 onClick={() => handlePrevGroup()}
                             >
                                 ◀
                             </div>
+                            {/* 페이지 번호들 */}
                             {Array.from({length: endPage - startPage + 1}, (_, i) => startPage + i).map(pageNum => (
                                 <div
                                     key={pageNum}
@@ -113,6 +116,7 @@ function BossTotalNotice(){
                                     {pageNum}
                                 </div>
                             ))}    
+                            {/* 다음 그룹 버튼 */}
                             <div
                                 className={`${styles.paginationButton} ${styles.arrow} ${currentPage === totalPages || totalPages === 0 ? styles.disabled : ''}`}
                                 onClick={() => handleNextGroup()}

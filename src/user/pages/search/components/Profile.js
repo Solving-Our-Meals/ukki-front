@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-import styles from "../css/profile.module.css";
+import styles from "../../storedetail/css/profile.module.css";
 
 function Profile({storeNo}) {
-    // const { storeNo } = useParams();
     const [profile, setProfile] = useState('');
 
     useEffect(() => {

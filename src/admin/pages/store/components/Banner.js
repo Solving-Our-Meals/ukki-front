@@ -41,16 +41,16 @@ import styles from '../css/banner.module.css';
 
 // export default Banner;
 
-function Banner() {
+function Banner({ storeNo }) {
     const [images, setImages] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
 
     useEffect(() => {
-        fetch("/store/storebanner/5")
+        fetch(`/store/${storeNo}/storebanner`)
             .then(res => res.json())
             .then(data => {
-                const imageUrls = data.map(filename => `/store/api/files?filename=${filename}`);
+                const imageUrls = data.map(filename => `/store/${storeNo}/api/files?filename=${filename}`);
                 setImages(imageUrls);
             });
     }, []);

@@ -288,6 +288,7 @@ header .menu-button img {
   header img {
     width: 80px;
     left: 5%;
+    z-index: 100;
   }
   header .menu-button {
     background: none;

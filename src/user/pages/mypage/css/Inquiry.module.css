@@ -454,20 +454,20 @@
 .inquiryText {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 5;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 1153px;
-    height: 207px;
+    height: 200px;
     transform: translate(50px, 160px);
     background: #FFF9D1;
     border-radius: 30px;
-    padding: 15px 20px 15px 20px;
+    padding: 20px 15px;
     font-family: 'Pretendard-Regular';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
-    line-height: 47px;
+    line-height: 35px;
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
@@ -475,16 +475,16 @@
 
 .inquiryTextExpanded {
     width: 1153px;
-    height: 526px;
-    transform: translate(50px, 160px);
+    height: 490px;
+    transform: translate(50px, 170px);
     background: #FFF9D1;
     border-radius: 30px;
-    padding: 15px 20px 15px 20px;
+    padding: 20px 15px;
     font-family: 'Pretendard-Regular';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
-    line-height: 47px;
+    line-height: 35px;
     display: block;
     overflow-y: auto;
     position: relative;
@@ -500,8 +500,8 @@
     height: 30px;
     line-height: 30px;
     display: inline-block;
-    margin-top: 170px;
-    margin-left: 1110px;
+    margin-top: 178px;
+    margin-left: 1108px;
     font-family: 'Pretendard-Regular';
     font-size: 18px;
     font-weight: 600;
@@ -532,7 +532,7 @@
 }
 
 .main2 {
-    top:245px;
+    top:225px;
     position: absolute;
     display: flex;
     align-items: center;
@@ -543,20 +543,20 @@
 .inquiryText2 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 6;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 1153px;
-    height: 207px;
+    height: 200px;
     transform: translate(50px, 220px);
     background: #FFF3A7;
     border-radius: 30px;
-    padding: 15px 20px 15px 20px;
+    padding: 20px 15px;
     font-family: 'Pretendard-Regular';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
-    line-height: 47px;
+    line-height: 35px;
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
@@ -564,16 +564,16 @@
 
 .inquiryTextExpanded2 {
     width: 1153px;
-    height: 526px;
-    transform: translate(50px, -100px);
+    height: 495px;
+    transform: translate(50px, -80px);
     background: #FFF3A7;
     border-radius: 30px;
-    padding: 15px 20px;
+    padding: 20px 15px;
     font-family: 'Pretendard-Regular';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
-    line-height: 47px;
+    line-height: 35px;
     display: block;
     position: relative;
     z-index: 999;
@@ -589,8 +589,8 @@
     width:70px;
     height: 30px;
     line-height: 30px;
-    top: 854px;
-    left: 1160px;
+    top: 826px;
+    left: 1159px;
     font-family: 'Pretendard-Regular';
     font-size: 18px;
     font-weight: 600;
