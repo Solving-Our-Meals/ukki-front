@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "../css/ReviewList.module.css"; 
 import "../css/reset.css";
 import { ReviewListAPI } from "../api/ReviewListAPI"; 
-import PopupCalendar from "../../../components/PopupCalendar";
 import { TotalReviewAPI } from "../api/TotalReviewAPI";
 
 function ReviewList() {
@@ -16,7 +15,6 @@ function ReviewList() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const [totalReviews, setTotalReviews] = useState(0);
-    // const [selectedDate, setSelectedDate] = useState("");
     const [isScope, setIsScope] = useState(false);
     const [selectedScope, setSelectedScope] = useState("none");
 
@@ -29,7 +27,6 @@ function ReviewList() {
     const renderStars = (reviewScope) => {
         let stars = [];
         for (let i = 0; i < reviewScope; i++) {
-            // stars.push(<span key={i} className={styles.star}>⭐</span>);
             stars.push(<span key={i} className={styles.star}>&#x2B50;</span>);
         }
         return stars;
@@ -121,7 +118,6 @@ function ReviewList() {
 
     return (
         <>
-            {/* <PopupCalendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} /> */}
             <div className={styles.reviewListText}>리뷰리스트</div>
             <div className={styles.totalReviewCount}>총 {totalReviews}개의 리뷰가 있습니다.</div>
             <select className={styles.reviewListSelection} onChange={categoryChangeHandler}>
