@@ -147,13 +147,13 @@ function InquiryDetail({ userInfo }) {
                 title: editedTitle,
                 text: editedText,
             };
-            
+
             if (file) {
                 const formData = new FormData();
                 formData.append('file', file);
 
                 const fileUploadResponse = await fetch(`/user/mypage/inquiry/${inquiryNo}/file`, {
-                    method: 'PUT',  // PUT 메서드로 파일을 덮어씁니다.
+                    method: 'PUT',
                     body: formData,
                 });
 
