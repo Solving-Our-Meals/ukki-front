@@ -311,7 +311,7 @@ window.onload = initRoulette;
             populateRoulette(closestStores);
         } catch (error) {
             console.error("위치 정보를 가져오는 중 오류 발생:", error);
-        }
+        } 
     }
     
     useEffect(() => {
