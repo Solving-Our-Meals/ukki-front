@@ -76,6 +76,7 @@ function BossTotalNotice(){
                                 switch(notice.categoryNo){
                                     case 1: categoryName = '안내'; break;
                                     case 2: categoryName = '소개'; break;
+                                    case 3: categoryName = '가게'; break;
                                 }
                                 return (
                                     <div
@@ -85,7 +86,7 @@ function BossTotalNotice(){
                                     >
                                         <span 
                                             id={styles.categoryName}
-                                            style={{ backgroundColor : notice.categoryNo === 1 ? "#FF8AA3" : "#FEDA00" }}
+                                            style={{ backgroundColor : notice.categoryNo === 1 ? "#FF8AA3" : notice.categoryNo === 2 ? "#FEDA00" : "#B3E7FF"}}
                                         >
                                             {categoryName}
                                         </span>
