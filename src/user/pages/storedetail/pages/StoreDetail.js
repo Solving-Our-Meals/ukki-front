@@ -135,7 +135,7 @@ function StoreDetail({reservationHandler}){
     return(
         <div className={styles.storeDetail}>
             <div><Banner/>
-                <div><Profile/></div>
+                <div><Profile storeNo={storeNo}/></div>
             </div>
             <div className={styles.nameAndReserve}>
                 <p id={styles.storeName}>{storeInfo.storeName}</p>
