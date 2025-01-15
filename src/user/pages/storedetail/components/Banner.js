@@ -50,12 +50,26 @@ function Banner() {
     const sliderRef = useRef(null);
 
     useEffect(() => {
-        fetch(`/store/${storeNo}/storebanner`)
+        fetch(`/store/${storeNo}/getInfo`)
+        .then(res => res.json())
+        .then(data => {
+            const newStoreNo = data.storeNo;
+
+            fetch(`/store/${newStoreNo}/storebanner`)
             .then(res => res.json())
             .then(data => {
-                const imageUrls = data.map(filename => `/store/${storeNo}/api/files?filename=${filename}`);
+                const imageUrls = data.map(filename => `/store/${newStoreNo}/api/files?filename=${filename}`);
                 setImages(imageUrls);
-            });
+            })
+            .catch(error => console.log(error));
+        })
+        .catch(error => console.log(error));
+        // fetch(`/store/${storeNo}/storebanner`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         const imageUrls = data.map(filename => `/store/${storeNo}/api/files?filename=${filename}`);
+        //         setImages(imageUrls);
+        //     });
     }, []);
 
     useEffect(() => {
