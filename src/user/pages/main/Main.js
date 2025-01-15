@@ -264,6 +264,56 @@ window.onload = initRoulette;
     };
 
 
+    const getUserLocation = () => {
+        return new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            } else {
+                reject(new Error("Geolocation not available"));
+            }
+        });
+    };
+
+    const getClosestStores = async (lat, lon) => {
+        try {
+            const response = await fetch(`/api/stores?lat=${lat}&lon=${lon}`);
+            const data = await response.json();
+            return data;  // List of stores
+        } catch (error) {
+            console.error("Error fetching closest stores:", error);
+            return [];
+        }
+    };
+    
+    const populateRoulette = (stores) => {
+        const panel = document.querySelector(".rouletter-wacu");
+        // Clear existing slots
+        panel.innerHTML = "";
+        // Add new store slots to the roulette panel
+        stores.forEach(store => {
+            const storeElement = document.createElement('div');
+            storeElement.className = "roulette-slot";
+            storeElement.textContent = store.storeName;  // Or any other property of the store
+            panel.appendChild(storeElement);
+        });
+    };
+    async function initRoulette() {
+        try {
+            // 사용자의 위치를 가져오기
+            const position = await getUserLocation();
+            const userLat = position.coords.latitude;
+            const userLon = position.coords.longitude;
+    
+            // 가장 가까운 8개 가게 가져오기
+            const closestStores = await getClosestStores(userLat, userLon);
+    
+            // 룰렛에 가게 추가하기
+            populateRoulette(closestStores);
+        } catch (error) {
+            console.error("위치 정보를 가져오는 중 오류 발생:", error);
+        }
+    }
+    
     useEffect(() => {
         const handleScroll = () => {
             const images = document.querySelectorAll('.talk img');
