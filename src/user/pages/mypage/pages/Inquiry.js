@@ -128,7 +128,8 @@ function Inquiry() {
         navigate(`/user/mypage/inquiry/${inquiryNo}`);
     };
 
-    const getInquiryStateLabel = (state) => {
+//     팀원이 갑자기 다른데서 추가해서 주석처리합니다.
+/*    const getInquiryStateLabel = (state) => {
         switch (state) {
             case 'CHECK':
                 return '확인완료';
@@ -139,7 +140,7 @@ function Inquiry() {
             default:
                 return '-';
         }
-    };
+    };*/
 
     return (
         <div className={styles.mypageReservation}>
@@ -176,7 +177,9 @@ function Inquiry() {
                             className={styles.reservationItem}
                             onClick={() => handleInquiryClick(inquiry.inquiryNo)}
                         >
-                            <div className={styles.headerItem}>{getInquiryStateLabel(inquiry.inquiryState)}</div>
+
+                            {/* 위 주석처리한 것 때문에 변경했습니다. 기존  getInquiryStateLabel(inquiry.inquiryState)를 사용했었음 */}
+                            <div className={styles.headerItem}>{inquiry.inquiryState}</div>
                             <div className={styles.headerItem}>
                                 {inquiry.inquiryDate}
                             </div>

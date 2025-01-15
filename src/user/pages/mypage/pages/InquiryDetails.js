@@ -19,6 +19,10 @@ function InquiryDetail({ userInfo }) {
 
     const navigate = useNavigate();
 
+    // 모달
+    const [isConfirmingEdit, setIsConfirmingEdit] = useState(false);
+    const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
+
     useEffect(() => {
         if (!userInfo) return;
 
@@ -26,7 +30,8 @@ function InquiryDetail({ userInfo }) {
         if (currentInquiry) {
             setInquiry(currentInquiry);
 
-            if (currentInquiry.answerDate && currentInquiry.inquiryState !== 'CHECK') {
+            // 팀원이 갑자기 변경한 부분으로 ''내부의 CHECK는 처리완료로 변경 -> 소통중요성 -> 나도 마찬가지
+            if (currentInquiry.answerDate && currentInquiry.inquiryState !== '확인완료') {
                 updateInquiryStatus('CHECK');
             }
         }
@@ -53,6 +58,36 @@ function InquiryDetail({ userInfo }) {
     const handleShowMore2 = () => {
         setShowMore2(!showMore2);
         setShowOverlay2(!showOverlay2);
+    };
+
+    const ConfirmEditModal = ({ onConfirm, onCancel }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>정말 수정하시겠습니까?</h3>
+                    <h3 className={styles.modalSubText}>이전의 문의는 복구가 불가합니다.</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton1} onClick={onConfirm}>예</button>
+                        <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const ConfirmDeleteModal = ({ onConfirm, onCancel }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>정말 삭제하시겠습니까?</h3>
+                    <h3 className={styles.modalSubText}>삭제된 문의는 복구가 불가합니다.</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton1} onClick={onConfirm}>예</button>
+                        <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
+                    </div>
+                </div>
+            </div>
+        );
     };
 
     const updateInquiryStatus = async (status) => {
@@ -94,6 +129,10 @@ function InquiryDetail({ userInfo }) {
     };
 
     const handleSave = async () => {
+        setIsConfirmingEdit(true);
+    };
+
+    const handleConfirmEdit = async () => {
         try {
             const updatedInquiry = {
                 title: editedTitle,
@@ -122,10 +161,15 @@ function InquiryDetail({ userInfo }) {
             }));
 
             setIsEditing(false);
+            setIsConfirmingEdit(false); // 모달 닫기
             navigate(0);
         } catch (error) {
             console.error('수정 오류:', error);
         }
+    };
+
+    const handleCancelEdit = () => {
+        setIsConfirmingEdit(false);
     };
 
     const handleCancel = () => {
@@ -135,6 +179,10 @@ function InquiryDetail({ userInfo }) {
     };
 
     const handleDeleteInquiry = async () => {
+        setIsConfirmingDelete(true);
+    };
+
+    const handleConfirmDelete = async () => {
         try {
             const response = await fetch(`/user/mypage/inquiry/${inquiryNo}`, {
                 method: 'DELETE',
@@ -150,6 +198,9 @@ function InquiryDetail({ userInfo }) {
         }
     };
 
+    const handleCancelDelete = () => {
+        setIsConfirmingDelete(false);
+    };
 
     return (
         <div className={styles.inquiryDetailContainer}>
@@ -207,7 +258,7 @@ function InquiryDetail({ userInfo }) {
                             {inquiry.text}
                         </p>
                     )}
-                    {inquiry.text.length > 322 && (
+                    {inquiry.text.length > 401 && (
                         <div className={styles.button1}
                              onClick={handleShowMore}
                              style={{zIndex: showMore ? 1000 : 1}}
@@ -228,7 +279,7 @@ function InquiryDetail({ userInfo }) {
                             <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2}>
                                 {inquiry.answerContent}
                             </p>
-                            {inquiry.answerContent.length > 322 && (
+                            {inquiry.answerContent.length > 401 && (
                                 <div className={styles.button2}
                                      onClick={handleShowMore2}
                                      style={{zIndex: showMore2 ? 1000 : 1}}
@@ -257,6 +308,22 @@ function InquiryDetail({ userInfo }) {
                     삭제
                 </button>
             </div>
+
+            {/* 모달 */}
+            {isConfirmingEdit && (
+                <ConfirmEditModal
+                    onConfirm={handleConfirmEdit}
+                    onCancel={handleCancelEdit}
+                />
+            )}
+
+            {/* 삭제 확인 모달 추가 */}
+            {isConfirmingDelete && (
+                <ConfirmDeleteModal
+                    onConfirm={handleConfirmDelete}
+                    onCancel={handleCancelDelete}
+                />
+            )}
         </div>
     );
 }

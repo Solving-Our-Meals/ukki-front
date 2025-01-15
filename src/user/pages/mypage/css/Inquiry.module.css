@@ -835,7 +835,7 @@
     font-weight: 700;
     font-size: 30px;
     line-height: 36px;
-
+    z-index:1004;
     color: #232323;
 
 }
