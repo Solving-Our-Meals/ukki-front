@@ -234,7 +234,7 @@ function InquiryDetail({ userInfo }) {
                     <div>
                         <a
                             href={`/uploads/${inquiry.file}`}
-                            download
+                            download={inquiry.file}
                             className={styles.fileDownloadLabel}
                         >
                             {inquiry.file}
