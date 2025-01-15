@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import AdminLayout from "../layouts/AdminLayout";
 import AdminDashboard from "../pages/dashboard/pages/AdminDashboard";
 import AdminNotice from "../pages/notice/pages/AdminNotice";
-import AdminInquiry from "../pages/inquiry/pages/AdminInquiry";
 import UserList from "../pages/user/pages/UserList";
 import UserInfo from "../pages/user/pages/UserInfo";
 import StoreList from "../pages/store/pages/StoreList";
@@ -15,6 +14,9 @@ import ReservationTodayInfo from "../pages/reservation/pages/ReservationTodayInf
 import ReservationEndInfo from "../pages/reservation/pages/ReservationEndInfo";
 import ReviewList from "../pages/review/pages/ReviewList";
 import ReviewInfo from "../pages/review/pages/ReviewInfo";
+import InquiryList from "../pages/inquiry/pages/InquiryList";
+import InquiryInfo from "../pages/inquiry/pages/InquiryInfo";
+import ReportInfo from "../pages/inquiry/pages/ReportInfo";
 
 function AdminRoutes(){
     return(
@@ -46,7 +48,12 @@ function AdminRoutes(){
                     <Route path="list" element={<ReviewList/>}/>
                     <Route path="info/:reviewNo" element={<ReviewInfo/>}/>
                 </Route>
-                <Route path="/inquiries" element={<AdminInquiry/>}/>
+                <Route path="/inquiries" >
+                    <Route index element={<Navigate to="list" replace/>}/>
+                    <Route path="list" element={<InquiryList/>}/>
+                    <Route path="info/:inquiryNo" element={<InquiryInfo/>}/>
+                    <Route path="info/report/:reportNo" element={<ReportInfo/>}/>
+                </Route>
                 <Route path="/notices" element={<AdminNotice/>}/>
             </Route>
         </Routes>
