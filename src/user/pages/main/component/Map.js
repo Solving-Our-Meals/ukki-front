@@ -86,7 +86,14 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             }
         }
     }, [map, defaultValue, setAddress]);
-
+    useEffect(() => {
+        // 카테고리가 변경될 때 경로 초기화
+        if (window.currentPolyline) {
+            window.currentPolyline.setMap(null);  // 이전 경로 지우기
+            window.currentPolyline = null;  // 글로벌 변수 초기화
+        }
+    }, [selectedCategory]);  // 카테고리 변경 시 실행
+    
     useEffect(() => {
         if (map && stores.length > 0) {
             const newMarkers = stores.map(store => {

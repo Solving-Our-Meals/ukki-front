@@ -190,6 +190,26 @@ const Main = () => {
         scrollToLocation();
     };
 
+    async function initRoulette() {
+    try {
+        // 사용자의 위치를 가져오기
+        const position = await getUserLocation();
+        const userLat = position.coords.latitude;
+        const userLon = position.coords.longitude;
+
+        // 가장 가까운 8개 가게 가져오기
+        const closestStores = await getClosestStores(userLat, userLon);
+
+        // 룰렛에 가게 추가하기
+        populateRoulette(closestStores);
+    } catch (error) {
+        console.error("위치 정보를 가져오는 중 오류 발생:", error);
+    }
+}
+
+// 페이지 로드 시 룰렛 초기화
+window.onload = initRoulette;
+
 
     const scrollToLocation = () => {
         locationRef.current.scrollIntoView({
@@ -213,12 +233,12 @@ const Main = () => {
         const [storeNo, setStoreNo] = useState(null);
 
 
-   const handleStoreSelect = (storeNo) => {
-        setStoreNo(storeNo);
-    };
+        const handleStoreSelect = (storeNo) => {
+            setStoreNo(storeNo);
+        };
 
     };
-  
+
 
     const handleReservationClick = () => {
         if (storeInfo.storeNo) {
@@ -383,30 +403,133 @@ const Main = () => {
         }, 5000);
     };
 
-    const handleRouletteClick = (e) => {
+    const handleRouletteClick = async (e) => {
         const target = e.target;
+    
+        // 룰렛 애니메이션 실행
         if (target.className === "rouletter-btn") {
-            rRotate();
-            rReset(target);
+            rRotate(); // 룰렛 애니메이션
+    
+            setTimeout(async () => {
+                // 8개의 가게 가져오기 (선택된 카테고리 및 위치 기반)
+                const selectedStores = await fetchStoresLocation(selectedCategory, currentPosition);
+                const winningStore = selectedStores[Math.floor(Math.random() * selectedStores.length)];
+    
+                try {
+                    // 현재 시간대와 가장 가까운 예약 시간 가져오기
+                    const nextAvailableTime = await getNextAvailableTime(winningStore.storeNo, new Date().toISOString().split('T')[0]); // 오늘 날짜를 기준으로
+    
+                    // 예약을 진행
+                    const userNo = 123; // 실제로는 로그인한 사용자 ID를 사용해야 함
+                    await makeReservation(userNo, winningStore.storeNo, nextAvailableTime);
+    
+                    alert(`당첨된 가게: ${winningStore.storeName}\n예약 시간: ${nextAvailableTime}`);
+    
+                } catch (error) {
+                    alert("예약 처리 중 오류가 발생했습니다.");
+                }
+    
+                rReset(target); // 룰렛 초기화
+            }, 3000); // 3초 후 예약 처리
         }
     };
+    
 
 
-    const fetchStoresLocation = async (category) => {
+    const makeReservation = async (userNo, storeNo, resTime) => {
+        try {
+            const response = await fetch(`/api/reservations/make`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userNo,
+                    storeNo,
+                    resTime,
+                    isRandom: true,  // 랜덤 예약 여부
+                })
+            });
+    
+            if (!response.ok) {
+                throw new Error("예약에 실패했습니다.");
+            }
+    
+            const data = await response.json();
+            alert("예약이 완료되었습니다. QR 코드: " + data.qr); // 예약 완료 후 QR 코드 반환
+        } catch (error) {
+            console.error("예약 실패", error);
+            alert("예약을 완료할 수 없습니다.");
+        }
+    };
+    
+// 예약 가능한 가장 가까운 시간 반환
+const getNextAvailableTime = async (storeNo, resDate) => {
+    try {
+        const response = await fetch(`/api/reservations/next-available-time`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ storeNo, resDate })
+        });
+
+        if (!response.ok) {
+            throw new Error("예약 가능한 시간이 없습니다.");
+        }
+
+        const data = await response.json();
+        return data.resTime; // 가장 가까운 예약 시간 반환
+    } catch (error) {
+        console.error("예약 시간 가져오기 실패", error);
+        throw new Error("예약 시간을 가져오는 중 문제가 발생했습니다.");
+    }
+};
+
+
+    // 거리 계산을 위한 함수 (Haversine 공식)
+    const calculateDistance = (lat1, lon1, lat2, lon2) => {
+        const R = 6371; // 지구의 반지름 (단위: km)
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c; // 반환 값: km
+    };
+
+    // 주변 가게를 가져오는 API 함수
+    const fetchStoresLocation = async (category, currentPosition) => {
         try {
             const response = await fetch(`/main/category?category=${category}`);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error('가게 정보를 불러오는 데 실패했습니다.');
             }
 
             const data = await response.json();
-            setStores(data);
-            setStoreInfo(data);
-            console.log(data);
+
+            // 주변 가게들의 거리 계산
+            const storesWithDistance = data.map(store => {
+                const distance = calculateDistance(currentPosition.y, currentPosition.x, store.lat, store.lon);
+                return { ...store, distance };
+            });
+
+            // 거리가 가까운 순으로 정렬
+            const sortedStores = storesWithDistance.sort((a, b) => a.distance - b.distance);
+
+            // 가장 가까운 8개의 가게를 룰렛에 추가
+            const selectedStores = sortedStores.slice(0, 8);
+
+            return selectedStores;
         } catch (error) {
             console.error('Error fetching store locations:', error);
         }
     };
+
+
+
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (index) => {
@@ -534,7 +657,7 @@ const Main = () => {
                         4. 이메일로 받은 예약 QR코드를 확인한뒤 방문한다
                     </span>
                     <img src={arrow1} />
-                    <button className="rouletter-btn">랜덤 예약 돌리기</button>
+                    <button className="rouletter-btn" onClick={handleReservationClick}>랜덤 예약 돌리기</button>
                     <img src={arrow2} />
                 </div>
 
@@ -547,7 +670,7 @@ const Main = () => {
                     <div className="rouletter-arrow">
                         <img src={pin} />
                     </div>
-                    <button className="rouletter-btn">start</button>
+                    <button className="rouletter-btn"  onClick={handleReservationClick}>start</button>
                 </div>
             </div>
         </>
