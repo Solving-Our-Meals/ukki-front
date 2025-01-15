@@ -148,29 +148,17 @@ function InquiryDetail({ userInfo }) {
                 text: editedText,
             };
 
+            const formData = new FormData();
+            formData.append('title', editedTitle);
+            formData.append('text', editedText);
+
             if (file) {
-                const formData = new FormData();
                 formData.append('file', file);
-
-                const fileUploadResponse = await fetch(`/user/mypage/inquiry/${inquiryNo}/file`, {
-                    method: 'PUT',
-                    body: formData,
-                });
-
-                if (!fileUploadResponse.ok) {
-                    throw new Error('파일 업로드 실패');
-                }
-
-                const fileUploadData = await fileUploadResponse.json();
-                console.log('파일 업로드 성공:', fileUploadData);
             }
 
             const response = await fetch(`/user/mypage/inquiry/${inquiryNo}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedInquiry),
+                body: formData,
             });
 
             if (!response.ok) {
@@ -194,6 +182,8 @@ function InquiryDetail({ userInfo }) {
             console.error('수정 오류:', error.message);
         }
     };
+
+
 
 
     const handleCancelEdit = () => {
