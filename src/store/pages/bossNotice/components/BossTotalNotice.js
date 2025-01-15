@@ -71,7 +71,7 @@ function BossTotalNotice(){
 
     const sendSearchWordHandler = (searchTerm = "") => {
         const term = typeof searchTerm === 'string' ? searchTerm : "";
-        const url = searchTerm.trim() === "" ? '/notice/user' : `/notice/user?searchWord=${searchTerm}`;
+        const url = searchTerm.trim() === "" ? '/notice/boss' : `/notice/boss?searchWord=${searchTerm}`;
 
         fetch(url)
         .then(res => res.json())
