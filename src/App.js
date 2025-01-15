@@ -19,6 +19,7 @@ import PrivateRoute from './common/authContext/PrivateRoute';
 import UserNotice from './user/pages/announcement/pages/UserNotice';
 import BossLayout from './store/layouts/BossLayout';
 import BossTotalNotice from './store/pages/bossNotice/components/BossTotalNotice';
+import UserSpecificNotice from './user/pages/announcement/pages/UserSpecificNotice';
 
 function App() {
     return (
@@ -43,6 +44,7 @@ function App() {
                         <Route path="reservation" element={<PrivateRoute element={<Reservation />} />} />
                         <Route path="sinquiries" element={<PrivateRoute element={<InquiryEnter />} />} />
                         <Route path="notice" element={<PrivateRoute element={<UserNotice/>}/>}/> 
+                        <Route path="notice/:noticeNo" element={<PrivateRoute element={<UserSpecificNotice/>}/>}/> 
                     </Route>
                     <Route path="/boss" element={<BossLayout />}>
                         <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 

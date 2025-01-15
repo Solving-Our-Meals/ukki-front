@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../css/totalNotice.module.css';
 import pin from '../images/Pin.png';
 
 function TotalNotice(){
 
+    const navigate = useNavigate();
     const [notices, setNotices] = useState([]);
 
     // 페이지네이션 로직 1 : 기본 상태값과 상수 설정
@@ -71,6 +73,10 @@ function TotalNotice(){
         .catch(error => console.log(error));
     }, [])
 
+    const navigateToSpeficifNotice = (noticeNo) => {
+        navigate(`/notice/${noticeNo}`);
+    }
+
 
     return(
         <>
@@ -99,6 +105,7 @@ function TotalNotice(){
                                     key={index}
                                     className={styles.notice}
                                     style={{border : (index + 1) % 6 === 0 ? "none" : ""}}
+                                    onClick={() => navigateToSpeficifNotice(notice.noticeNo)}
                                 >
                                     <span 
                                         id={styles.categoryName}
