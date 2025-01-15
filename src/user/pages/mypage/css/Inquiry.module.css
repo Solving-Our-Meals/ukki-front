@@ -298,7 +298,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1005;
 }
 
 .modal {
@@ -335,7 +335,7 @@
 }
 
 .modalButton2 {
-    transform: translate(300px, 110px);
+    transform: translate(325px, 110px);
     width: 171px;
     height: 44px;
     border: none;
@@ -865,4 +865,72 @@
     border: none;
     transition: all 0.3s ease;
     position: absolute;
+}
+
+/* 조회할 때 파일 */
+.fileDownloadContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    position: absolute;
+    top: 115px;
+    left:1080px;
+    z-index:1;
+}
+
+.fileDownloadLabel {
+    display: inline-block;
+    padding: 12px 16px;
+    background-color: #FFEB3B;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fileDownloadLabel:hover {
+    background-color: #FDD835;  /* 호버 시 노란색이 진해짐 */
+}
+
+
+
+/* 수정할 때 파일 */
+.fileUploadContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    position: absolute;
+    top:-110px;
+    left:1080px;
+    z-index:1;
+}
+
+.fileLabel {
+    display: inline-block;
+    padding: 12px 16px;
+    background-color: #FFEB3B;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fileLabel:hover {
+    background-color: #FDD835;
 }
