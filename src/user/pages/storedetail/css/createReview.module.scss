@@ -33,7 +33,7 @@
     background-color: $primary;
     border-radius: 50px;
     border: none;
-    font-family: 'Pretendard Variable';
+    font-family: 'Pretendard-Regular';
     font-size: 30px;
     font-weight: 600;
     color: $textStrong;
@@ -126,7 +126,7 @@
                 }
 
                 span {
-                    font-family: 'Pretendard Variable';
+                    font-family: 'Pretendard-Regular';
                     font-size: 25px;
                     color: $textStrong;
                     font-weight: 600;
@@ -155,17 +155,18 @@
         position : absolute;
         left : 20px;
         top : 10px;
-        padding-left: 10px;
-        padding-top: 10px;
-        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 30px;
+        line-height : 160%;
         width : 865px;
         height : 400px;
         resize: none;  // 영역 조절 불가
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 25px;
         color : $textStrong;
         cursor: text;
-        // background-color: #FFF9D1;
         background-color: #FFFFFF;
         border-right: 3px dashed $textCaption;
         border-left: none;
@@ -179,9 +180,9 @@
 
     #addFile{
         position: absolute;
-        width : 530px;
+        width : 520px;
         height : 400px;
-        left : 900px;
+        left : 910px;
         top : 10px;
         border-radius: 0;
         cursor: pointer;
@@ -251,7 +252,7 @@
         border: none;
         border-radius: 20px;
         background-color: $secondary2;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 20px;
         font-weight: 700;
         display: flex;
@@ -269,7 +270,7 @@
         border: none;
         border-radius: 20px;
         background-color: $primary;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 20px;
         font-weight: 700;
         display: flex;
@@ -316,7 +317,7 @@
         width: max-content;
         margin-top: 40px;
         height : 36px;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 30px;
         font-weight: 500;
         color: $danger;
@@ -330,7 +331,7 @@
         background-color: $secondary;
         border: none;
         border-radius: 25px;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 25px;
         font-weight: 500;
         color: $textStrong;
@@ -345,7 +346,7 @@
         background-color: $primary;
         border: none;
         border-radius: 25px;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 25px;
         font-weight: 500;
         color: $textStrong;
@@ -382,7 +383,7 @@
         width: max-content;
         margin-top: 40px;
         height : 36px;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 30px;
         font-weight: 500;
         color: $danger;
@@ -395,7 +396,7 @@
         background-color: $secondary;
         border: none;
         border-radius: 25px;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 25px;
         font-weight: 500;
         color: $textStrong;
@@ -437,7 +438,7 @@
         background-color: $primary;
         border-radius: 30px;
         border: none;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 20px;
         font-weight: 600;
         color: $textStrong;
@@ -484,7 +485,7 @@
             width : 400px;
             height : 180px;
             resize: none;  // 영역 조절 불가
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 13px;
             font-weight: 600;
             color : $textStrong;
@@ -514,7 +515,7 @@
             //     gap: 16px;
             //     display: flex;
             //     flex-direction: column;
-            //     font-family: 'Pretendard Variable';
+            //     font-family: 'Pretendard-Regular';
             //     color: $textStrong;
             
             //     .info_key {
@@ -522,13 +523,13 @@
             //         font-weight: 500;
             //         font-size: 12px;
             //         margin-bottom: 4px;
-            //         font-family: 'Pretendard Variable';
+            //         font-family: 'Pretendard-Regular';
             //         color: $textStrong;
             //       }
                   
             //       .info_value {
             //         font-size: 14px;
-            //         font-family: 'Pretendard Variable';
+            //         font-family: 'Pretendard-Regular';
             //         color: $textStrong;
             //       }
             //   }
@@ -592,7 +593,7 @@
             border: none;
             border-radius: 11px;
             background-color: $secondary;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 11px;
             font-weight: 700;
             display: flex;
@@ -610,7 +611,7 @@
             border: none;
             border-radius: 11px;
             background-color: $primary;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 11px;
             font-weight: 700;
             display: flex;
@@ -645,7 +646,7 @@
     
         #noticeReview{
             margin-top: 8px;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 20px;
             font-weight: 500;
             color: $danger;
@@ -659,7 +660,7 @@
             background-color: $secondary;
             border: none;
             border-radius: 16px;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 16px;
             font-weight: 500;
             color: $textStrong;
@@ -674,7 +675,7 @@
             background-color: $primary;
             border: none;
             border-radius: 16px;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 16px;
             font-weight: 500;
             color: $textStrong;
@@ -707,7 +708,7 @@
     
         #completedReviewNotice{
             margin-top: 8px;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 20px;
             font-weight: 500;
             color: $danger;
@@ -720,7 +721,7 @@
             background-color: $secondary;
             border: none;
             border-radius: 16px;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 16px;
             font-weight: 500;
             color: $textStrong;
