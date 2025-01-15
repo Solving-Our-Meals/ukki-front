@@ -10,7 +10,7 @@ function TotalNotice(){
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
     const [currentPageGroup, setCurrentPageGroup] = useState(1); // 현재 페이지 그룹
     
-    const itemsPerPage = 5; // 페이지당 항목 수(한 페이지당 보여줄 아이템 수)
+    const itemsPerPage = 6; // 페이지당 항목 수(한 페이지당 보여줄 아이템 수)
     const pagesPerGroup = 5; // 그룹당 페이지 수(한 그룹당 보여줄 페이지 수)
 
     // 페이지네이션 로직 2 : 전체 페이지와 그룹 수 계산
@@ -80,9 +80,10 @@ function TotalNotice(){
                     <div id={styles.dot2} className={styles.dots}></div>
                     <div id={styles.dot3} className={styles.dots}></div>
                     <div id={styles.dot4} className={styles.dots}></div>
+                    <div id={styles.strNotice}>공지사항</div>
+                    <img id={styles.imgPin} src={pin}/>
                     <div className={styles.strArea}>
-                        <div id={styles.strNotice}>공지사항</div>
-                        <img id={styles.imgPin} src={pin}/>
+                        <div id={styles.strCategory}>카테고리</div>
                         <div id={styles.strTitle}>제목</div>
                         <div id={styles.strDate}>날짜</div>
                     </div>
@@ -97,7 +98,7 @@ function TotalNotice(){
                                 <div
                                     key={index}
                                     className={styles.notice}
-                                    style={{border : (index + 1) % 5 === 0 ? "none" : ""}}
+                                    style={{border : (index + 1) % 6 === 0 ? "none" : ""}}
                                 >
                                     <span 
                                         id={styles.categoryName}
