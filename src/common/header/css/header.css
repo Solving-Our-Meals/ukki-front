@@ -275,6 +275,7 @@ header .menu-button {
 }
 header .menu-button img {
   width: 40px;
+  z-index: 100;
 }
 @media (max-width: 768px) {
   header {
@@ -298,6 +299,7 @@ header .menu-button img {
     left: 80%;
     height: 30px;
     width: 30px;
+    z-index: 100;
   }
   header .menu {
     display: none;

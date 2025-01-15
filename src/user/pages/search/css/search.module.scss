@@ -4,6 +4,15 @@
     .storeList {
         display: block;
         /* 요소가 화면에 나타나도록 확인 */
+        .no{
+            position: absolute;
+            top: 30vw;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 2rem;
+            color: $textCaption;
+            left: 45vw;
+    
+        }
     }
 
     .input {
@@ -29,13 +38,14 @@
                 font-size: 1.2rem;
                 box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
                 padding:0vw 2vw;
+                z-index: 1;
 
                 &::placeholder {
                     color: #888888;
                     font-family: 'Pretendard Variable';
                     font-weight: 700;
                     font-size: 1.2rem;
-                    z-index: 11;
+                    
                 }
             }
 
@@ -241,7 +251,7 @@
             left: 13vw;
             top: 34.5vw;
             font-family: 'Bobaesum Jindo TTF';
-            font-size: 1.3vw;
+            font-size: 1.3rem;
             color: $textStrong;
         }
 
@@ -252,7 +262,7 @@
             font-family: 'Pretendard Variable';
             font-style: normal;
             font-weight: 700;
-            font-size: 1vw;
+            font-size: 1rem;
             color: $textStrong;
         }
 
@@ -273,7 +283,7 @@
             font-family: 'Bobaesum Jindo TTF';
             font-style: normal;
             font-weight: 400;
-            font-size: 1.5vw;
+            font-size: 1.5rem;
             color: $textStrong;
         }
 
@@ -282,7 +292,7 @@
             font-family: 'Pretendard Variable';
             font-style: normal;
             font-weight: 500;
-            font-size: 1vw;
+            font-size: 1rem;
             color: $textStrong;
 
             &:nth-of-type(1) {
@@ -294,21 +304,21 @@
                 left: 15vw;
                 top: 67.5vw;
                 font-weight: 800;
-                font-size: 1.2vw;
+                font-size: 1.2rem;
             }
 
             &:nth-of-type(3) {
                 left: 41.5vw;
                 top: 67.5vw;
                 font-weight: 800;
-                font-size: 1.2vw;
+                font-size: 1.2rem;
             }
 
             &:nth-of-type(4) {
                 left: 68vw;
                 top: 67.5vw;
                 font-weight: 800;
-                font-size: 1.2vw;
+                font-size: 1.2rem;
             }
         }
 
@@ -316,7 +326,7 @@
             position: absolute;
             font-family: 'Pretendard Variable';
             font-weight: 600;
-            font-size: 0.9vw;
+            font-size: 0.9rem;
             color: $textStrong;
             top: 67.7vw;
             left: 26.3vw;
@@ -368,7 +378,7 @@
             left: 21.4vw;
             top: 88vw;
             font-family: 'Bobaesum Jindo TTF';
-            font-size: 2vw;
+            font-size: 2rem;
             color: $primary;
             z-index: 1;
         }
@@ -379,7 +389,7 @@
             top: 92vw;
             font-family: 'Pretendard Variable';
             font-weight: 700;
-            font-size: 1.4vw;
+            font-size: 1.4rem;
             color: $textStrong;
         }
 
@@ -391,11 +401,12 @@
             font-family: 'Pretendard Variable';
             font-style: normal;
             font-weight: 500;
-            font-size: 1vw;
+            font-size: 1rem;
             line-height: 150%;
             color: $textStrong;
         }
     }
+
 }
 
 @media (max-width: 1440px) and (min-width: 769px) {
