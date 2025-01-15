@@ -23,6 +23,7 @@ header {
         top: 15.5%;
         bottom: 21.25%;
         width: 110px;
+        z-index: 100;
     }
 
     .menu {
@@ -112,6 +113,7 @@ header {
 
         img {
             width: 40px;
+            z-index: 100;
         }
     }
 
@@ -136,6 +138,7 @@ header {
                 left: 80%;
                 height: 30px;
                 width: 30px;
+                z-index: 100;
             }
         }
 
@@ -215,6 +218,7 @@ header {
             top: 13.5%;
             bottom: 18%;
             width: 90px;
+            z-index: 100;
         }
 
         .menu {

@@ -178,6 +178,14 @@ a:active {
   display: block;
   /* 요소가 화면에 나타나도록 확인 */
 }
+#search .storeList .no {
+  position: absolute;
+  top: 30vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 2rem;
+  color: #999999;
+  left: 45vw;
+}
 #search .input div {
   position: relative;
   width: 100vw;
@@ -200,13 +208,13 @@ a:active {
   font-size: 1.2rem;
   box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
   padding: 0vw 2vw;
+  z-index: 1;
 }
 #search .input div input::placeholder {
   color: #888888;
   font-family: "Pretendard Variable";
   font-weight: 700;
   font-size: 1.2rem;
-  z-index: 11;
 }
 #search .input div img {
   position: absolute;
@@ -387,7 +395,7 @@ a:active {
   left: 13vw;
   top: 34.5vw;
   font-family: "Bobaesum Jindo TTF";
-  font-size: 1.3vw;
+  font-size: 1.3rem;
   color: #232323;
 }
 #search .banner span {
@@ -397,7 +405,7 @@ a:active {
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 700;
-  font-size: 1vw;
+  font-size: 1rem;
   color: #232323;
 }
 #search .banner img {
@@ -414,7 +422,7 @@ a:active {
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.5vw;
+  font-size: 1.5rem;
   color: #232323;
 }
 #search .today span {
@@ -422,7 +430,7 @@ a:active {
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 500;
-  font-size: 1vw;
+  font-size: 1rem;
   color: #232323;
 }
 #search .today span:nth-of-type(1) {
@@ -433,25 +441,25 @@ a:active {
   left: 15vw;
   top: 67.5vw;
   font-weight: 800;
-  font-size: 1.2vw;
+  font-size: 1.2rem;
 }
 #search .today span:nth-of-type(3) {
   left: 41.5vw;
   top: 67.5vw;
   font-weight: 800;
-  font-size: 1.2vw;
+  font-size: 1.2rem;
 }
 #search .today span:nth-of-type(4) {
   left: 68vw;
   top: 67.5vw;
   font-weight: 800;
-  font-size: 1.2vw;
+  font-size: 1.2rem;
 }
 #search .today p {
   position: absolute;
   font-family: "Pretendard Variable";
   font-weight: 600;
-  font-size: 0.9vw;
+  font-size: 0.9rem;
   color: #232323;
   top: 67.7vw;
   left: 26.3vw;
@@ -492,7 +500,7 @@ a:active {
   left: 21.4vw;
   top: 88vw;
   font-family: "Bobaesum Jindo TTF";
-  font-size: 2vw;
+  font-size: 2rem;
   color: #FF8AA3;
   z-index: 1;
 }
@@ -502,7 +510,7 @@ a:active {
   top: 92vw;
   font-family: "Pretendard Variable";
   font-weight: 700;
-  font-size: 1.4vw;
+  font-size: 1.4rem;
   color: #232323;
 }
 #search .rhkdrh span {
@@ -513,7 +521,7 @@ a:active {
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 500;
-  font-size: 1vw;
+  font-size: 1rem;
   line-height: 150%;
   color: #232323;
 }

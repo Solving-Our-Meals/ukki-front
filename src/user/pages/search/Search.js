@@ -129,6 +129,8 @@ function Search() {
       searchStores(term);   // 해당 검색어로 검색 실행
     };
 
+    
+
   return (
     <div id={style.search}>
       <div className={style.input}>
@@ -162,7 +164,7 @@ function Search() {
               <span key={index}>{index +1+'. ' }{search}</span> // 바로 문자열을 출력
             ))
           ) : (
-            <p>인기 검색어가 없습니다.</p>
+            <p></p>
           )}
         </div>
 
@@ -173,17 +175,21 @@ function Search() {
       </div>
 
       <div className={style.storeList}>
-        {storeList.map((store) => (
-          <div key={store.storeNo}>
-           <Profile/>
-            <h3>{store.storeName}</h3>
-            <p>{store.storeAddress}</p>
-            <p>{store.storeDes}</p>
-          <button onClick={() => handleReservation(store.storeNo)}>예약하기</button>
-            <span>현재 예약 가능 시간대</span>
-            <hr/>
-          </div>
-        ))}
+        {storeList.length > 0 ? (
+          storeList.map((store) => (
+            <div key={store.storeNo}>
+              <Profile />
+              <h3>{store.storeName}</h3>
+              <p>{store.storeAddress}</p>
+              <p>{store.storeDes}</p>
+              <button onClick={() => handleReservation(store.storeNo)}>예약하기</button>
+              <span>가게 키워드</span>
+              <hr />
+            </div>
+          ))
+        ) : (
+          <h3 className={style.no}>"검색결과가 없습니다."</h3>  // 검색 결과가 없을 때 메시지 표시
+        )}
       </div>
     </div>
   );
