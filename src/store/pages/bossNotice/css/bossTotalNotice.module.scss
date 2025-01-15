@@ -80,6 +80,30 @@
             top: 50px;
         }
 
+        #inputSearch{
+            position: absolute;
+            right : 120px;
+            top : 40px;
+            width : 500px;
+            height : 64px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            cursor: text;
+            outline: none;
+            padding-left: 50px;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            color: $textStrong;
+        }
+
+        #searchBtn{
+            position: absolute;
+            right : 150px;
+            top : 50px;
+            width : 40px;
+            height : 40px;
+            cursor: pointer;
+        }
 
         .strArea{
             position: absolute;
@@ -208,6 +232,18 @@
                     color: $textStrong;
                     text-align: left;
                 }
+            }
+
+            .noResultsMessage{
+                position: absolute;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                width: 1550px;
+                height: 80px;
+                left : 33px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
 

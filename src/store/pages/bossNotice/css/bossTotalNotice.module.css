@@ -246,6 +246,29 @@ a:active {
   left: 310px;
   top: 50px;
 }
+#background #noticeArea #inputSearch {
+  position: absolute;
+  right: 120px;
+  top: 40px;
+  width: 500px;
+  height: 64px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  cursor: text;
+  outline: none;
+  padding-left: 50px;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  color: #232323;
+}
+#background #noticeArea #searchBtn {
+  position: absolute;
+  right: 150px;
+  top: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
 #background #noticeArea .strArea {
   position: absolute;
   width: 1600px;
@@ -365,6 +388,17 @@ a:active {
   line-height: 30px;
   color: #232323;
   text-align: left;
+}
+#background #noticeArea .noticeContainer .noResultsMessage {
+  position: absolute;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  width: 1550px;
+  height: 80px;
+  left: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #background #noticeArea hr {
   position: absolute;

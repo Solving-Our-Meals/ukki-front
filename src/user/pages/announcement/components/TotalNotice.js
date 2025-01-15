@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/totalNotice.module.css';
 import pin from '../images/Pin.png';
+import searchBtn from '../images/searchBtn.png';
 
 function TotalNotice(){
 
     const navigate = useNavigate();
     const [notices, setNotices] = useState([]);
+    const [searchWord, setSearchWord] = useState("");
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // 페이지네이션 로직 1 : 기본 상태값과 상수 설정
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
@@ -62,20 +66,57 @@ function TotalNotice(){
         }
     };
 
-    useEffect(() => {
-        fetch('/notice/user')
-        .then(res => res.json())
-        .then(data => {
+    // useEffect(() => {
+    //     fetch('/notice/user')
+    //     .then(res => res.json())
+    //     .then(data => {
 
-            console.log('data', data);
-            setNotices(data);
-        })
-        .catch(error => console.log(error));
-    }, [])
+    //         console.log('data', data);
+    //         // data가 배열인지 확인
+    //         setNotices(Array.isArray(data) ? data : []);
+    //     })
+    //     .catch(error => console.log(error));
+    // }, [])
+
+    useEffect(() => {
+        const searchQuery = searchParams.get("searchWord") || "";
+        setSearchWord(searchQuery);
+        sendSearchWordHandler(searchQuery);
+    }, [searchParams]);
+    
 
     const navigateToSpeficifNotice = (noticeNo) => {
         navigate(`/notice/${noticeNo}`);
     }
+
+    const keyPressHandler = (e) => {
+        // if(e.key === 'Enter'){
+        //     if(searchWord.trim() === ""){
+        //         sendSearchWordHandler("");
+        //     } else {
+        //         sendSearchWordHandler(searchWord);
+        //     }
+        //     // sendSearchWordHandler();
+        // }
+
+        if(e.key === 'Enter'){
+            sendSearchWordHandler(searchWord);
+            setSearchParams({ searchWord });
+        }
+    };
+
+    const sendSearchWordHandler = (searchTerm = "") => {
+        const term = typeof searchTerm === 'string' ? searchTerm : "";
+        const url = searchTerm.trim() === "" ? '/notice/user' : `/notice/user?searchWord=${searchTerm}`;
+
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            setNotices(Array.isArray(data) ? data : []);
+        })
+        .catch(error => console.log(error))
+    }
+    
 
 
     return(
@@ -86,6 +127,23 @@ function TotalNotice(){
                     <div id={styles.dot2} className={styles.dots}></div>
                     <div id={styles.dot3} className={styles.dots}></div>
                     <div id={styles.dot4} className={styles.dots}></div>
+                    <input 
+                        id={styles.inputSearch} 
+                        name='searchWord' 
+                        type='text' 
+                        placeholder='검색할 내용을 입력해주세요.' 
+                        value={searchWord}
+                        onChange={(e) => setSearchWord(e.target.value)}
+                        onKeyPress={(e) => keyPressHandler(e)}
+                    />
+                    <img 
+                        src={searchBtn} 
+                        id={styles.searchBtn}
+                        onClick={() => { 
+                            sendSearchWordHandler(searchWord); 
+                            setSearchParams({ searchWord }); 
+                        }}
+                    />
                     <div id={styles.strNotice}>공지사항</div>
                     <img id={styles.imgPin} src={pin}/>
                     <div className={styles.strArea}>
@@ -94,30 +152,34 @@ function TotalNotice(){
                         <div id={styles.strDate}>날짜</div>
                     </div>
                     <div className={styles.noticeContainer}>
-                        {currentItems.map((notice, index) => {
-                            let categoryName = "";
-                            switch(notice.categoryNo){
-                                case 1: categoryName = '안내'; break;
-                                case 2: categoryName = '소개'; break;
-                            }
-                            return (
-                                <div
-                                    key={index}
-                                    className={styles.notice}
-                                    style={{border : (index + 1) % 6 === 0 ? "none" : ""}}
-                                    onClick={() => navigateToSpeficifNotice(notice.noticeNo)}
-                                >
-                                    <span 
-                                        id={styles.categoryName}
-                                        style={{ backgroundColor : notice.categoryNo === 1 ? "#FF8AA3" : "#FEDA00" }}
+                        {currentItems.length > 0 ? (
+                            currentItems.map((notice, index) => {
+                                let categoryName = "";
+                                switch(notice.categoryNo){
+                                    case 1: categoryName = '안내'; break;
+                                    case 2: categoryName = '소개'; break;
+                                }
+                                return (
+                                    <div
+                                        key={index}
+                                        className={styles.notice}
+                                        style={{border : (index + 1) % 6 === 0 ? "none" : ""}}
+                                        onClick={() => navigateToSpeficifNotice(notice.noticeNo)}
                                     >
-                                        {categoryName}
-                                    </span>
-                                    <span id={styles.noticeTitle}>{notice.noticeTitle}</span>
-                                    <span id={styles.noticeDate}>{notice.date}</span>
-                                </div>
-                            );
-                        })}
+                                        <span 
+                                            id={styles.categoryName}
+                                            style={{ backgroundColor : notice.categoryNo === 1 ? "#FF8AA3" : "#FEDA00" }}
+                                        >
+                                            {categoryName}
+                                        </span>
+                                        <span id={styles.noticeTitle}>{notice.noticeTitle}</span>
+                                        <span id={styles.noticeDate}>{notice.date}</span>
+                                    </div>
+                                );
+                            })
+                        ) : (
+                            <div className={styles.noResultsMessage}>해당 결과가 존재하지 않습니다.</div> // 결과가 없을 때 메시지
+                        )}
                     </div>
                     <hr/>
                     {/* // 페이지네이션 로직 7 : 페이지네이션 렌더링 */}
