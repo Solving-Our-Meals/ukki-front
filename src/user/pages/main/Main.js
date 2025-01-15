@@ -392,21 +392,47 @@ const Main = () => {
     };
 
 
-    const fetchStoresLocation = async (category) => {
-        try {
-            const response = await fetch(`/main/category?category=${category}`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+// 거리 계산을 위한 함수 (Haversine 공식)
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const R = 6371; // 지구의 반지름 (단위: km)
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // 반환 값: km
+};
 
-            const data = await response.json();
-            setStores(data);
-            setStoreInfo(data);
-            console.log(data);
-        } catch (error) {
-            console.error('Error fetching store locations:', error);
+// 주변 가게를 가져오는 API 함수
+const fetchStoresLocation = async (category, currentPosition) => {
+    try {
+        const response = await fetch(`/main/category?category=${category}`);
+        if (!response.ok) {
+            throw new Error('가게 정보를 불러오는 데 실패했습니다.');
         }
-    };
+
+        const data = await response.json();
+        
+        // 주변 가게들의 거리 계산
+        const storesWithDistance = data.map(store => {
+            const distance = calculateDistance(currentPosition.y, currentPosition.x, store.lat, store.lon);
+            return { ...store, distance };
+        });
+
+        // 거리가 가까운 순으로 정렬
+        const sortedStores = storesWithDistance.sort((a, b) => a.distance - b.distance);
+
+        // 가장 가까운 8개의 가게를 룰렛에 추가
+        const selectedStores = sortedStores.slice(0, 8);
+
+        return selectedStores;
+    } catch (error) {
+        console.error('Error fetching store locations:', error);
+    }
+};
+
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (index) => {
