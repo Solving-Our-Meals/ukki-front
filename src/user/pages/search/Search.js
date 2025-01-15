@@ -192,6 +192,12 @@ function Search() {
           <h3 className={style.no}>"검색결과가 없습니다."</h3>  // 검색 결과가 없을 때 메시지 표시
         )}
       </div>
+    ))
+  ) : (
+    <h3 className={style.no}>"검색결과가 없습니다."</h3>
+  )}
+</div>
+
     </div>
   );
 }
