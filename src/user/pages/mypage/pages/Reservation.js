@@ -48,14 +48,6 @@ function Reservation() {
         )
     }
 
-    if (error) {
-        return (
-            <div className={styles.loadingContainer}>
-                <img src="/images/mypage/profile/notInfo.png" alt="없는 정보"/>
-            </div>
-        )
-    }
-
     if (!userInfo || userInfo.length === 0) {
         return (
             <div className={styles.mypageReservation}>

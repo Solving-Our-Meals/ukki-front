@@ -26,11 +26,17 @@ function Mypage() {
             }
 
             const data = await response.json();
-            setUserInfo(data);  // 유저 정보 상태 업데이트
+            if (data && Object.keys(data).length === 0) {
+                // 빈 데이터일 경우, error 상태는 false로 처리
+                setUserInfo(null);  // 빈 데이터인 경우 null 처리
+            } else {
+                setUserInfo(data);
+            }
         } catch (error) {
-            setError(error.message);  // 에러 발생 시 상태 업데이트
+            setError(error.message);
+            setUserInfo([]);
         } finally {
-            setLoading(false);  // 로딩 종료
+            setLoading(false);
         }
     };
 
@@ -42,14 +48,6 @@ function Mypage() {
         return (
             <div className={styles.loadingContainer}>
                 <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
-            </div>
-        )
-    }
-
-    if (error) {
-        return (
-            <div className={styles.loadingContainer}>
-                <img src="/images/mypage/profile/notInfo.png" alt="없는 정보"/>
             </div>
         )
     }
