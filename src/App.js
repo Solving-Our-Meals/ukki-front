@@ -20,6 +20,7 @@ import UserNotice from './user/pages/announcement/pages/UserNotice';
 import BossLayout from './store/layouts/BossLayout';
 import BossTotalNotice from './store/pages/bossNotice/components/BossTotalNotice';
 import UserSpecificNotice from './user/pages/announcement/pages/UserSpecificNotice';
+import BossSpecificPage from './store/pages/bossNotice/pages/BossSpecificPage';
 
 function App() {
     return (
@@ -48,6 +49,7 @@ function App() {
                     </Route>
                     <Route path="/boss" element={<BossLayout />}>
                         <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
+                        <Route path="notice/:noticeNo" element={<PrivateRoute element={<BossSpecificPage/>}/>}/> 
                     </Route>
 
                     {/* QR 관련 및 관리자 관련 라우팅 */}

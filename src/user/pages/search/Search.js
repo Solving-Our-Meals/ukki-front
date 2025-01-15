@@ -179,7 +179,7 @@ function Search() {
         {storeList.length > 0 ? (
           storeList.map((store) => (
             <div key={store.storeNo}>
-              <Profile />
+              <Profile storeNo={store.storeNo}/>
               <h3>{store.storeName}</h3>
               <p>{store.storeAddress}</p>
               <p>{store.storeDes}</p>
