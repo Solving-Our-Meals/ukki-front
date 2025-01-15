@@ -26,7 +26,7 @@ function InquiryDetail({ userInfo }) {
         if (currentInquiry) {
             setInquiry(currentInquiry);
 
-            if (currentInquiry.answerDate && currentInquiry.status !== 'CHECK') {
+            if (currentInquiry.answerDate && currentInquiry.inquiryState !== 'CHECK') {
                 updateInquiryStatus('CHECK');
             }
         }
@@ -64,7 +64,6 @@ function InquiryDetail({ userInfo }) {
                 },
                 body: JSON.stringify({ status }),
             });
-            console.log(status)
 
             if (!response.ok) {
                 throw new Error('Failed to update status');

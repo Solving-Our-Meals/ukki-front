@@ -95,7 +95,6 @@ function Review() {
         )
     }
 
-
     if (!userInfo || userInfo.length === 0) {
         return (
             <div className={styles.mypageReservation}>
