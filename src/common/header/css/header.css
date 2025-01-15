@@ -195,6 +195,7 @@ header img {
   top: 15.5%;
   bottom: 21.25%;
   width: 110px;
+  z-index: 100;
 }
 header .menu {
   display: flex;
@@ -286,6 +287,7 @@ header .menu-button img {
   header img {
     width: 80px;
     left: 5%;
+    z-index: 100;
   }
   header .menu-button {
     background: none;
@@ -361,6 +363,7 @@ header .menu-button img {
     top: 13.5%;
     bottom: 18%;
     width: 90px;
+    z-index: 100;
   }
   header .menu {
     gap: 2px;
