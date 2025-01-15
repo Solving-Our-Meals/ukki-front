@@ -23,12 +23,16 @@ function InquiryDetail({ userInfo }) {
     const [isConfirmingEdit, setIsConfirmingEdit] = useState(false);
     const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
 
+    // 첨부파일 (마지막에 넣었슴다.)
+    const [file, setFile] = useState(null);
+
     useEffect(() => {
         if (!userInfo) return;
 
         const currentInquiry = userInfo.find(item => item.inquiryNo === parseInt(inquiryNo));
         if (currentInquiry) {
             setInquiry(currentInquiry);
+            console.log(currentInquiry)
 
             // 팀원이 갑자기 변경한 부분으로 ''내부의 CHECK는 처리완료로 변경 -> 소통중요성 -> 나도 마찬가지
             if (currentInquiry.answerDate && currentInquiry.inquiryState !== '확인완료') {
@@ -58,6 +62,11 @@ function InquiryDetail({ userInfo }) {
     const handleShowMore2 = () => {
         setShowMore2(!showMore2);
         setShowOverlay2(!showOverlay2);
+    };
+
+    const handleFileChange = (event) => {
+        const selectedFile = event.target.files[0];
+        setFile(selectedFile);
     };
 
     const ConfirmEditModal = ({ onConfirm, onCancel }) => {
@@ -139,6 +148,19 @@ function InquiryDetail({ userInfo }) {
                 text: editedText,
             };
 
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+                const fileUploadResponse = await fetch(`/user/mypage/inquiry/${inquiryNo}/file`, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!fileUploadResponse.ok) {
+                    throw new Error('파일 업로드 실패');
+                }
+            }
+
             const response = await fetch(`/user/mypage/inquiry/${inquiryNo}`, {
                 method: 'PUT',
                 headers: {
@@ -161,7 +183,7 @@ function InquiryDetail({ userInfo }) {
             }));
 
             setIsEditing(false);
-            setIsConfirmingEdit(false); // 모달 닫기
+            setIsConfirmingEdit(false);
             navigate(0);
         } catch (error) {
             console.error('수정 오류:', error);
@@ -207,6 +229,20 @@ function InquiryDetail({ userInfo }) {
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore}/>}
             {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2}/>}
 
+            <div className={styles.fileDownloadContainer}>
+                {inquiry.file ? (
+                    <div>
+                        <a
+                            href={`/uploads/${inquiry.file}`}
+                            download
+                            className={styles.fileDownloadLabel}
+                        >
+                            {inquiry.file}
+                        </a>
+                    </div>
+                ) : null}
+            </div>
+
             <div className={styles.allTabs}>
                 <Link to="/user/mypage/inquiry">
                     <div className={styles.tab1}>문의 내역</div>
@@ -227,11 +263,11 @@ function InquiryDetail({ userInfo }) {
                 {isEditing ? (
                     <div>
                         <p className={styles.Title}> 문의 제목 : &nbsp;</p><input
-                            type="text"
-                            value={editedTitle}
-                            onChange={handleTitleChange}
-                            className={styles.inquiryTitleEditable}
-                        />
+                        type="text"
+                        value={editedTitle}
+                        onChange={handleTitleChange}
+                        className={styles.inquiryTitleEditable}
+                    />
                     </div>
                 ) : (
                     <p className={styles.Title}>
@@ -295,6 +331,22 @@ function InquiryDetail({ userInfo }) {
                         <p>문의를 접수하는중 입니다! 관리자의 답변을 기다려 주세요</p>
                     </div>
                 )}
+
+                {isEditing && (
+                    <div className={styles.fileUploadContainer}>
+                        <input
+                            type="file"
+                            id="file-upload"
+                            onChange={handleFileChange}
+                            style={{display: 'none'}}
+                        />
+                        <label htmlFor="file-upload" className={styles.fileLabel}>
+                            {file ? file.name : '파일 선택'}
+                        </label>
+                    </div>
+                )}
+
+
             </div>
             <div className={styles.editDeleteButtons}>
                 {inquiry.answerDate === null && !isEditing && (
