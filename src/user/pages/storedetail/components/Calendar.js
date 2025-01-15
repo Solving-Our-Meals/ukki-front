@@ -977,7 +977,7 @@ function Calendar() {
  
                          // 클릭 가능 여부 결정
                          const isToday = todayWithoutTime === selectedDateWithoutTime;
-                         const isNotPast = morningDateTime > currentDateTime;
+                         const isNotPast = (morningDateTime > currentDateTime) || !isToday;
  
                          // 클릭 이벤트 핸들러
                          const handleClick = () => {
@@ -1001,7 +1001,7 @@ function Calendar() {
                                     if (!disabledTimes.includes(timeObj)) {
                                         selectedMorningTime(index);
                                     }
-                                    handleClick()
+                                    handleClick(index)
                                 }}
                             >
                                 {timeObj}
@@ -1028,11 +1028,11 @@ function Calendar() {
 
                         // 클릭 가능 여부 결정
                         const isToday = todayWithoutTime === selectedDateWithoutTime;
-                        const isNotPast = morningDateTime > currentDateTime;
+                        const isNotPast = (morningDateTime > currentDateTime) || !isToday;
 
                         // 클릭 이벤트 핸들러
                         const handleClick = () => {
-                            if (isNotPast) {
+                            if (isNotPast && morningArray[index]) {
                                 selectedMorningTime(index);
                             }
                         }
@@ -1041,7 +1041,7 @@ function Calendar() {
                         if(index === afternoonArray.length - 1) {
                             return null;}
 
-                        // 마지마 인덱스가 아닐 경우 반환
+                        // 마지막 인덱스가 아닐 경우 반환
                         return(
                             <div 
                                 key={index} 
@@ -1058,7 +1058,7 @@ function Calendar() {
                                     if (!disabledTimes.includes(timeObj)) {
                                         selectedAfternoonTime(index);
                                     }
-                                    handleClick()
+                                    handleClick(index)
                                 }}
                             >
                                 {timeObj}

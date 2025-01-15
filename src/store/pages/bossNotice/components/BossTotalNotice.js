@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../css/bossTotalNotice.module.css';
 import pin from '../../../../user/pages/announcement/images/Pin.png';
 
 function BossTotalNotice(){
+
+    const navigate = useNavigate();
     const [notices, setNotices] = useState([]);
     
         const [currentPage, setCurrentPage] = useState(1); 
@@ -54,6 +57,10 @@ function BossTotalNotice(){
             })
             .catch(error => console.log(error));
         }, [])
+
+        const navigateToSpecificNotice = (noticeNo) => {
+            navigate(`/notice/${noticeNo}`);
+        }
     
         return(
             <>
@@ -83,6 +90,7 @@ function BossTotalNotice(){
                                         key={index}
                                         className={styles.notice}
                                         style={{border : (index + 1) % 6 === 0 ? "none" : ""}}
+                                        onClick={() => navigateToSpecificNotice(notice.noticeNo)}
                                     >
                                         <span 
                                             id={styles.categoryName}
