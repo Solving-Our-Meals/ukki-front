@@ -351,7 +351,7 @@ function StoreInfoRegist() {
                 formData.append('profile', profileBlob);
             }
 
-            const response = await fetch(`/admin/stores/regist/store`, {
+            const response = await fetch(`/admin/stores/info/${storeNo}/edit`, {
                 method: 'PUT',
                 body: formData
             });

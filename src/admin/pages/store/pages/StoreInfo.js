@@ -133,8 +133,8 @@ function StoreInfo() {
     return(
         <div className={styles.storeDetail}>
             <div id={styles.storeInfoText}>가게 상세정보</div>
-            <div><Banner/>
-                <div><Profile/></div>
+            <div><Banner storeNo={storeNo} />
+                <div><Profile storeNo={storeNo} /></div>
             </div>
             <div className={styles.storeHeader}>
                 <p id={styles.storeName}>{storeInfo.storeName}</p>
@@ -175,7 +175,7 @@ function StoreInfo() {
                 ))}
                 <p id={styles.breakTime}>{`*브레이크 타임 : ${storeInfo.operationTime.breakTime}`}</p>
             </div>
-            <Menu/>
+            <Menu storeNo={storeNo} />
             {/* <div id={styles.mapArea}><KakaoMap/></div> */}
             <div className={styles.keywordArea}>
                 <div>{storeInfo.storeKeyword.keyword1}</div>
