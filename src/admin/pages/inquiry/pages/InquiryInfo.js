@@ -23,17 +23,34 @@ function InquiryInfo() {
     const [resultMessage, setResultMessage] = useState("");
     const [deleteInquiry, setDeleteInquiry] = useState(false);
     const [answerSuccess, setAnswerSuccess] = useState(false);
+    const [fileType, setFileType] = useState("");
+    const [fileUrl, setFileUrl] = useState("");
     const navigate = useNavigate();
+
+    const fetchFile = async (filename) => { 
+        try { 
+            const response = await fetch(`/admin/inquiries/files/${filename}`); 
+            const contentType = response.headers.get('Content-Type'); 
+            setFileType(contentType); 
+            const blob = await response.blob(); const url = URL.createObjectURL(blob); 
+            setFileUrl(url); 
+        } catch (error) { 
+            console.error('Error fetching file:', error); 
+        }};
+
 
     useEffect(() => {
         const currentInquiry = async () => {
             const currentInquiry = await InquiryInfoAPI(inquiryNo);
             setInquiry(currentInquiry);
-            if(currentInquiry.answerDate){
+            if (currentInquiry.answerDate) {
                 setAnswer({
                     answerTitle: currentInquiry.answerTitle,
                     answerContent: currentInquiry.answerContent
                 });
+            }
+            if(currentInquiry.file) {
+                fetchFile(currentInquiry.file);
             }
         }
         currentInquiry();
@@ -50,20 +67,20 @@ function InquiryInfo() {
     };
 
     const handleAnswer = () => {
-        if(answerMode) {
-            if(answer.answerTitle === "" || answer.answerTitle === null || answer.answerContent === "" || answer.answerContent === null) {
+        if (answerMode) {
+            if (answer.answerTitle === "" || answer.answerTitle === null || answer.answerContent === "" || answer.answerContent === null) {
                 setResultMessage("답변 제목과 내용을 입력해주세요.");
                 setShowResultModal(true);
                 return;
-            }else if(answer.answerTitle === inquiry.answerTitle && answer.answerContent === inquiry.answerContent){
+            } else if (answer.answerTitle === inquiry.answerTitle && answer.answerContent === inquiry.answerContent) {
                 setResultMessage("답변 제목과 내용이 동일합니다.");
                 setShowResultModal(true);
                 return;
-            }else{
+            } else {
                 setShowAgreementModal(true);
                 setAgreeMessage("답변을 등록하시겠습니까?");
             }
-        }else{
+        } else {
             setAnswerMode(true);
         }
     };
@@ -134,7 +151,7 @@ function InquiryInfo() {
 
             <div className={styles.inquiryInfoText}>문의상세정보</div>
             <div className={styles.horizon1}></div>
-            
+
             <div className={styles.inquiryArea}>
                 <p className={styles.Title}>
                     문의 제목 : <span className={styles.inquiryTitle}>{inquiry.inquiryTitle}</span>
@@ -146,8 +163,8 @@ function InquiryInfo() {
                     </p>
                     {inquiry.inquiryContent.length > 322 && (
                         <div className={styles.button1}
-                             onClick={handleShowMore}
-                             style={{ zIndex: showMore ? 1000 : 1 }}
+                            onClick={handleShowMore}
+                            style={{ zIndex: showMore ? 1000 : 1 }}
                         >
                             {showMore ? '줄이기' : '더보기'}
                         </div>
@@ -172,8 +189,8 @@ function InquiryInfo() {
                                     </p>
                                     {inquiry.answerContent.length > 322 && (
                                         <div className={styles.button2}
-                                             onClick={handleShowMore2}
-                                             style={{ zIndex: showMore2 ? 1000 : 1 }}
+                                            onClick={handleShowMore2}
+                                            style={{ zIndex: showMore2 ? 1000 : 1 }}
                                         >
                                             {showMore2 ? '줄이기' : '더보기'}
                                         </div>
@@ -183,15 +200,15 @@ function InquiryInfo() {
                         ) : (
                             <div className={styles.answer}>
                                 <p className={styles.AnswerTitle}>답변 제목 : <span
-                                    className={styles.inquiryTitle} style={{color: '#999999'}}>답변 대기중</span></p>
+                                    className={styles.inquiryTitle} style={{ color: '#999999' }}>답변 대기중</span></p>
                                 <div className={styles.Text}>
-                                    <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2} style={{color: '#999999'}}>
+                                    <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2} style={{ color: '#999999' }}>
                                         답변 대기중
                                     </p>
                                     {inquiry.answerContent.length > 322 && (
                                         <div className={styles.button2}
-                                             onClick={handleShowMore2}
-                                             style={{ zIndex: showMore2 ? 1000 : 1 }}
+                                            onClick={handleShowMore2}
+                                            style={{ zIndex: showMore2 ? 1000 : 1 }}
                                         >
                                             {showMore2 ? '줄이기' : '더보기'}
                                         </div>
@@ -202,17 +219,18 @@ function InquiryInfo() {
                     </div>
                 </div>
             </div>
+            {fileUrl && fileType &&  <div className={styles.fileButton}><a href={fileUrl} download>첨부파일</a></div>}
             {answerMode && <button className={styles.cancelButton} onClick={handleCancel}>취소</button>}
             {!answerMode && <button className={styles.delButton} onClick={handleDeleteConfirm}>삭제</button>}
-            <button className={styles.answerButton} onClick={handleAnswer} disabled={inquiry.answerDate !== null} style={answerMode? {left: '1403px', width: '115px'} : {}}>{answerMode ? '확인' : '답변하기'}</button>
-            {inquiry.state === "처리완료" && <button className={styles.answerButton} onClick={handleAnswer} style={answerMode? {left: '1403px', width: '115px'} : {}}>{answerMode ? '확인' : '수정'}</button>}
+            <button className={styles.answerButton} onClick={handleAnswer} disabled={inquiry.answerDate !== null} style={answerMode ? { left: '1403px', width: '115px' } : {}}>{answerMode ? '확인' : '답변하기'}</button>
+            {inquiry.state === "처리완료" && <button className={styles.answerButton} onClick={handleAnswer} style={answerMode ? { left: '1403px', width: '115px' } : {}}>{answerMode ? '확인' : '수정'}</button>}
             {showAgreementModal && (
                 <AdminAgreementModal
                     message={agreeMessage}
                     onConfirm={() => {
-                        if(answerMode) {
+                        if (answerMode) {
                             handleAnswerInquiry();
-                        }else if(deleteInquiry){
+                        } else if (deleteInquiry) {
                             handleDeleteInquiry();
                         }
                         setShowAgreementModal(false);
@@ -221,21 +239,21 @@ function InquiryInfo() {
                 />
             )}
             {showResultModal && (
-                <AdminResultModal message={resultMessage} close={()=>{
-                    if (deleteInquiry){
+                <AdminResultModal message={resultMessage} close={() => {
+                    if (deleteInquiry) {
                         setShowResultModal(false);
                         navigate("/admin/inquiries/list");
                         setDeleteInquiry(false);
-                    }else{
+                    } else {
                         setShowResultModal(false);
                     }
-                    if(answerSuccess){
+                    if (answerSuccess) {
                         setAnswerMode(false);
                         navigate(`/admin/inquiries/info/${inquiryNo}`);
-                    }else{
+                    } else {
                         setShowResultModal(false);
                     }
-                }}/>
+                }} />
             )}
         </div>
     );
