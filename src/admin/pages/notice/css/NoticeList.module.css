@@ -1,0 +1,318 @@
+
+#background #noticeArea {
+  position: absolute;
+  width: 1600px;
+  height: 783px;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background #noticeArea .dots {
+  box-sizing: border-box;
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  background: #B3E7FF;
+  border: 3px solid #BDBEBF;
+}
+#background #noticeArea #dot1 {
+  left: 50px;
+  top: 50px;
+}
+#background #noticeArea #dot2 {
+  right: 50px;
+  top: 50px;
+}
+#background #noticeArea #dot3 {
+  left: 50px;
+  bottom: 50px;
+}
+#background #noticeArea #dot4 {
+  right: 50px;
+  bottom: 50px;
+}
+#background #noticeArea #strNotice {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 120px;
+  top: 40px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 55px;
+  color: #FF8AA3;
+}
+#background #noticeArea #imgPin {
+  position: absolute;
+  width: 40px;
+  height: 40x;
+  margin-top: -8px;
+  left: 310px;
+  top: 50px;
+}
+#background #noticeArea #inputSearch {
+  position: absolute;
+  right: 120px;
+  top: 30px;
+  width: 500px;
+  height: 64px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  cursor: text;
+  outline: none;
+  padding-left: 20px;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  color: #232323;
+}
+#background #noticeArea #searchBtn {
+  position: absolute;
+  right: 150px;
+  top: 40px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+#background #noticeArea .strArea {
+  position: absolute;
+  width: 1400px;
+  height: 80px;
+  top: 120px;
+  border-bottom: 4px solid #BDBEBF;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
+#background #noticeArea .strArea #strCategory, #background #noticeArea .strArea #strTitle, #background #noticeArea .strArea #strDate {
+  position: relative;
+}
+#background #noticeArea .strArea #strCategory {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 60px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 130%;
+  color: #232323;
+}
+#background #noticeArea .strArea #strTitle {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 600px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 130%;
+  color: #232323;
+}
+#background #noticeArea .strArea #strDate {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  right: 150px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 130%;
+  color: #232323;
+}
+#background #noticeArea .noticeContainer {
+  position: absolute;
+  width: 1400px;
+  height: 430px;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+#background #noticeArea .noticeContainer .notice {
+  position: relative;
+  width: 1350px;
+  height: 80px;
+  left: 33px;
+  border-bottom: 2px solid #D9D9D9;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: right;
+  justify-content: center;
+  align-items: center;
+}
+#background #noticeArea .noticeContainer .notice #categoryName {
+  position: relative;
+  left: -170px;
+  width: 97px;
+  height: 38px;
+  border-radius: 25px;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  color: #232323;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background #noticeArea .noticeContainer .notice #noticeTitle {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 650px;
+  height: max-content;
+  left: 90px;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  color: #232323;
+  text-align: left;
+}
+#background #noticeArea .noticeContainer .notice #noticeDate {
+  position: relative;
+  width: 150px;
+  left: 150px;
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  color: #232323;
+  text-align: left;
+}
+#background #noticeArea .noticeContainer .noResultsMessage {
+  position: absolute;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  width: 1400px;
+  height: 80px;
+  left: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background #noticeArea hr {
+  position: absolute;
+  width: 1400px;
+  border: 2.9px solid #BDBEBF;
+  bottom: 90px;
+}
+#background #noticeArea .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  position: absolute;
+  bottom: 25px;
+  left: 47%;
+  transform: translateX(-50%);
+  padding: 10px 0;
+}
+#background #noticeArea .pagination .paginationButton {
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 28px;
+  cursor: pointer;
+  color: #232323;
+  opacity: 50%;
+}
+#background #noticeArea .pagination .paginationButton.active {
+  color: #232323;
+  opacity: 100%;
+  font-weight: bold;
+}
+#background #noticeArea .pagination .arrow {
+  color: #FF8AA3;
+  opacity: 100%;
+}
+#background #noticeArea .pagination .arrow.disabled {
+  visibility: hidden;
+  cursor: default;
+}
+
+.noticeBtnPosition {
+  position: absolute;
+  left: 361px;
+  top: 40px;
+}
+
+.noticeListBtn {
+  width: 133px;
+  height: 43px;
+  
+  background: transparent;
+  border: 1px solid #FEDA00;
+  border-radius: 10px;
+
+  opacity: 50%;
+
+  margin-left: 10px;
+  
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19.3027px;
+  line-height: 23px;
+  
+  align-items: center;
+
+  
+  color: #1E1E1E;
+}
+
+.noticeListBtn.active {
+  background: #FEDA00;
+  opacity: 100%;
+}
+
+.noticeListBtn:hover {
+  background: #FEDA00;
+  opacity: 100%;
+  color: #FFFFFF;
+}
+
+.noticeRegistBtn {
+  position: absolute;
+  right: 120px;
+  top: 700px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  background-color: #FEDA00;
+  border-radius: 30px;
+  cursor: pointer;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 23px;
+
+  color: #1E1E1E;
+}
+
+.noticeRegistBtn:hover {
+  background-color: #FF8AA3;
+  color: #FFFFFF;
+}
