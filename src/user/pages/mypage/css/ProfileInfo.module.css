@@ -63,6 +63,12 @@
     position: fixed;
     z-index: 0;
 }
+.signup2 {
+    top:280px;
+    left:123px;
+    position: fixed;
+    z-index: 0;
+}
 
 .loginText {
     position: absolute;
@@ -103,18 +109,17 @@
     /* text/strong */
     color: #232323;
 
-
-
 }
 
 .error {
     position: absolute;
     width: 500px;
     height: 52.5px;
-    left: 135px;
+    left: 120px;
     top: 440px;
     color: #FF5D18;
     line-height: 21px;
+    z-index: 1;
 }
 
 input.errorInput {
@@ -241,6 +246,15 @@ input.errorInput:focus {
     left:-67px;
 }
 
+.passwordToggleBtn2 img {
+    position: absolute;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    top:363px;
+    left:715px;
+}
+
 button:disabled {
     background-color: #d3d3d3;
     color: #a1a1a1;
@@ -306,4 +320,420 @@ button:disabled {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.idText, .emailText, .nameText, .passwordText {
+    width: 200px;
+    height: 36px;
+    left: 135px;
+    position: absolute;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    /* identical to box height */
+
+    /* text/strong */
+    color: #232323;
+}
+
+.idText {
+    top: 200px;
+}
+
+.nameText {
+    top: 280px;
+}
+
+.passwordText {
+    top: 360px;
+}
+
+.emailText {
+    top: 440px;
+}
+
+
+.infoText1 {
+    display: flex;
+    padding: 20px 20px;
+    align-items: center;
+    width: 481px;
+    height: 42px;
+    position: absolute;
+    top: 0px;
+    left: 145px;
+
+    background: #BDBEBF;
+    border: 2px solid #FF8AA3;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #232323;
+
+}
+
+.infoText2 {
+    display: flex;
+    padding: 20px 20px;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 145px;
+
+    position: absolute;
+    width: 481px;
+    height: 42px;
+
+    background: #BDBEBF;
+    border: 2px solid #FF8AA3;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #232323;
+
+}
+
+.inputField {
+    display: flex;
+    padding: 20px 20px;
+    align-items: center;
+    width: 481px;
+    height: 42px;
+    position: absolute;
+    top: 280px;
+    left: 280px;
+
+    background: white;
+    border: 2px solid #FF8AA3;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #232323;
+}
+
+.inputField2 {
+    display: flex;
+    padding: 20px 20px;
+    align-items: center;
+    width: 481px;
+    height: 42px;
+    position: absolute;
+    top: 360px;
+    left: 280px;
+
+    background: white;
+    /* primary */
+    border: 2px solid #FF8AA3;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #232323;
+}
+
+.updateButton {
+    position: absolute;
+    width: 180px;
+    height: 51px;
+    left: 130px;
+    top: 570px;
+    background: #FF8AA3;
+    border-radius: 50px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #232323;
+    border: none;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.updateButton:active {
+    transform: scale(0.98);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.updateButton:hover {
+    background-color: #FF6C77;
+    transform: scale(1.01);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.exitButton {
+    position: absolute;
+    width: 100px;
+    height: 51px;
+    left: 1050px;
+    top: 190px;
+    background: #FFBBC8;
+    border-radius: 50px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #FF5D18;
+    border: none;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exitButton:active {
+    transform: scale(0.98);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.exitButton:hover {
+    background-color: #FF8A95;
+    transform: scale(1.01);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.error2 {
+    position: absolute;
+    width: 500px;
+    height: 52.5px;
+    left: 145px;
+    top: 625px;
+    color: #FF5D18;
+    line-height: 21px;
+}
+
+input.error2Input {
+    border: 3px solid #FF5D18;
+}
+
+input.error2Input:focus {
+    border: 3px solid black;
+}
+
+.loadingContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.loadingContainer img {
+    max-width: 100%;
+    height: auto;
+}
+
+.errorName {
+    position: absolute;
+    width: 500px;
+    height: 52.5px;
+    left: 300px;
+    top: 325px;
+    color: #FF5D18;
+    line-height: 21px;
+}
+
+.successName {
+        position: absolute;
+        width: 500px;
+        height: 52.5px;
+        left: 300px;
+        top: 325px;
+        color: #51CC16;
+        line-height: 21px;
+}
+
+.errorPassword {
+    position: absolute;
+    width: 500px;
+    height: 52.5px;
+    left: 300px;
+    top: 405px;
+
+    color: #FF5D18;
+    line-height: 21px;
+}
+
+.successPassword {
+    position: absolute;
+    width: 500px;
+    height: 52.5px;
+    left: 300px;
+    top: 405px;
+    color: #51CC16;
+    line-height: 21px;
+}
+
+.inputFile {
+    position: absolute;
+    left: 9.06%;
+    right: 8.41%;
+    top: 2.74%;
+    bottom: 9.86%;
+
+    background: #FF8AA3;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1005;
+}
+
+.modal {
+    position: absolute;
+    width: 879px;
+    height: 316px;
+    left: 520px;
+    top: 318px;
+
+    background: #FFFFFF;
+    border: 5px solid #FF8AA3;
+    border-radius: 50px;
+
+}
+
+.modalButtons {
+    margin-top: 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+
+    color: #232323;
+}
+
+.modalButton1 {
+    transform: translate(200px, 110px);
+    width: 171px;
+    height: 44px;
+    background: #FEDA00;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+.modalButton2 {
+    transform: translate(325px, 110px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FF8AA3;
+    border-radius: 25px;
+
+
+    cursor: pointer;
+}
+
+.modalButton3 {
+    transform: translate(350px, 130px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FF8AA3;
+    border-radius: 25px;
+
+
+    cursor: pointer;
+}
+
+.modalButton:hover {
+    background-color: #FF2B2B;
+}
+
+.modalMainText {
+    transform: translateY(60px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalMainText2 {
+    transform: translateY(90px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalSubText {
+    transform: translateY(90px);
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+
+    /* system/danger */
+    color: #FF5D18;
+}
+
+.modalButton1:hover {
+    background: #fbc700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalButton1:active {
+    background: #fbc700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 모달 두 번째 버튼 */
+.modalButton2:hover, .modalButton3:hover {
+    background: #ff7a8e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalButton2:active .modalButton3:active {
+    background: #ff7a8e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modalButton1, .modalButton2, .modalButton3 {
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
 }
