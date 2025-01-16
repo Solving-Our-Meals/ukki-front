@@ -10,6 +10,7 @@ import JpgLogo from './image/ukki logo.jpg';
 import Jpg from './image/styleguide.jpg';
 import '../../../common/header/css/reset.css';
 import '../info/css/Info.css';
+import Footer from '../info/component/Footer';
 
 function downloadFiles(files) {
     files.forEach(file => {
@@ -90,6 +91,7 @@ function Info() {
                 </a>
                
             </div>
+            <Footer/>
         </>
     )
 }

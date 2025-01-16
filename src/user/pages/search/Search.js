@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../../common/header/css/reset.css';
 import style from './css/search.module.css';
 import search from '../main/image/Search.png';
-// import Profile from '../search/components/Profile';
 import Profile from '../storedetail/components/Profile';
+import Footer from './components/Footer';
 
 function Search() {
   const { storeNo } = useParams();
@@ -23,6 +23,8 @@ function Search() {
 
   const [popularSearches, setPopularSearches] = useState([]); // 실시간 인기 검색어
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태
+
+  const footerRef = useRef(null);
 
   // 검색어 입력 시 자동완성 리스트 업데이트
   const updateSearch = (e) => {
@@ -109,6 +111,7 @@ function Search() {
 
   useEffect(() => {
     fetchPopularSearches();  // 컴포넌트가 마운트될 때 인기 검색어 불러오기
+    adjustFooterPosition();
   }, []);
 
   const handleKeyPress = (e) => {
@@ -127,7 +130,36 @@ function Search() {
     searchStores(term);   // 해당 검색어로 검색 실행
   };
 
+   // Footer의 위치를 조정하는 함수
+  const adjustFooterPosition = () => {
+    if(footerRef.current){
+      const storeListElement = document.getElementById(style.storeList);
+      if(storeListElement && storeListElement.children.length > 1){
+        // const storeListAreaBottom = storeListElement.getBoundingClientRect().bottom;
+        const footerTop =  window.scrollY + 450
+
+        footerRef.current.style.top = `${footerTop}px`;
+      } else {
+        footerRef.current.style.top = `${window.innerHeight - footerRef.current.offsetHeight + 200}px`; // 기본 위치에서 10px 높이 조정
+      }
+    } else {
+      footerRef.current.style.top = `${window.innerHeight - footerRef.current.offsetHeight}px`
+    }
+  };  
+  
+
+  useEffect(() => {
+    // 컴포넌트가 마운트되거나 리뷰가 업데이트 될 때 Footer 위치 조정
+    adjustFooterPosition();
+    window.addEventListener('resize', adjustFooterPosition); // 창 크기 조정 시 Footer 위치 조정
+
+    return() => {
+        window.removeEventListener('resize', adjustFooterPosition) // 이벤트 리스너 정리                
+    }
+  }, [storeList])
+
   return (
+    <>
       <div id={style.search}>
         <div className={style.input}>
           <div>
@@ -167,10 +199,10 @@ function Search() {
           <div className={style.dlsrl}></div>
         </div>
 
-        <div className={style.storeList}>
+        <div className={style.storeList} id={style.storeList}>
           {storeList.length > 0 ? (
               storeList.map((store) => (
-                  <div key={store.storeNo}>
+                  <div key={store.storeNo} id={style.storeInfo}>
                     <Profile storeNo={store.storeNo}/>
                     <h3>{store.storeName}</h3>
                     <p>{store.storeAddress}</p>
@@ -185,6 +217,8 @@ function Search() {
           )}
         </div>
       </div>
+      <Footer ref={footerRef}/>
+      </>
   );
 }
 
