@@ -31,8 +31,6 @@ import StoreDetail from './StoreDetail';
 import ReservationInfo from './ReservationInfo';
 import Review from './Review';
 
-// import Footer from '../../../../common/footer/components/Footer';
-
 function UserStorePage() {
     const reserveScrollRef = useRef(null);
 
@@ -56,7 +54,6 @@ function UserStorePage() {
             <StoreDetail reservationHandler={reservationHandler} />
             <ReservationInfo ref={reserveScrollRef} />
             <Review />
-            {/* <Footer /> */}
         </>
     );
 }
