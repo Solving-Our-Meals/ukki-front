@@ -7,6 +7,8 @@ import styles from "../css/Mypage.module.css";
 import Header from '../../../../common/header/components/Header';
 import MyProfile from "../component/MyProfile";
 import InquiryDetail from "../pages/InquiryDetails";
+import ProfileInfo from "../pages/ProfileInfo";
+import Info from "../pages/Info";
 
 function Mypage() {
 
@@ -27,8 +29,7 @@ function Mypage() {
 
             const data = await response.json();
             if (data && Object.keys(data).length === 0) {
-                // 빈 데이터일 경우, error 상태는 false로 처리
-                setUserInfo(null);  // 빈 데이터인 경우 null 처리
+                setUserInfo(null);
             } else {
                 setUserInfo(data);
             }
@@ -62,6 +63,8 @@ function Mypage() {
                     <Route path="review" element={<Review />} />
                     <Route path="inquiry" element={<Inquiry />} />
                     <Route path="/inquiry/:inquiryNo" element={<InquiryDetail userInfo={userInfo} />} />
+                    <Route path="profile" element={<ProfileInfo />} />
+                    <Route path="info" element={<Info />} />
                     <Route path="*" element={<Navigate to="reservation" />} />
                 </Routes>
             </div>

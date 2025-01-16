@@ -190,7 +190,7 @@ const Main = () => {
         scrollToLocation();
     };
 
-    async function initRoulette() {
+/*    async function initRoulette() {
     try {
         // 사용자의 위치를 가져오기
         const position = await getUserLocation();
@@ -208,7 +208,7 @@ const Main = () => {
 }
 
 // 페이지 로드 시 룰렛 초기화
-window.onload = initRoulette;
+window.onload = initRoulette;*/
 
 
     const scrollToLocation = () => {
