@@ -64,7 +64,7 @@ function Inquiry() {
                     </Link>
                     <div className={styles.line2}>|</div>
                     <Link to="/user/mypage/review">
-                        <div className={styles.tab4}>작성리뷰</div>
+                        <div className={styles.tab4}>작성된 리뷰</div>
                     </Link>
                 </div>
 
@@ -157,7 +157,7 @@ function Inquiry() {
                 </Link>
                 <div className={styles.line2}>|</div>
                 <Link to="/user/mypage/review">
-                    <div className={styles.tab4}>작성리뷰</div>
+                    <div className={styles.tab4}>작성된 리뷰</div>
                 </Link>
             </div>
 

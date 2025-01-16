@@ -1,24 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../css/Reservation.module.css';
+import styles from '../css/ProfileInfo.module.css';
 import '../css/reset.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function ProfileInfo() {
     const [userInfo, setUserInfo] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [formData, setFormData] = useState({ userPass: '' });
+    const [passwordError, setPasswordError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(5);
-    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
-        fetchUserInfo();
+
     }, []);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+
+    const handlePasswordSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!formData.userPass) {
+            setPasswordError('비밀번호를 입력해주세요.');
+            return;
+        }
+
+        try {
+            const response = await fetch('/user/mypage/confirm', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({ password: formData.userPass }),
+            });
+
+            if (response.ok) {
+                fetchUserInfo();
+            } else {
+                setPasswordError('ⓘ 비밀번호가 잘못되었습니다.');
+            }
+        } catch (error) {
+            setPasswordError('에러 발생: ' + error.message);
+        }
+    };
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/mypage/reservation', {
+            const response = await fetch('/user/mypage/profile-info', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -26,7 +66,7 @@ function ProfileInfo() {
             if (response.ok) {
                 const data = await response.json();
                 setUserInfo(data);
-                setTotalPages(Math.ceil(data.length / itemsPerPage));
+                navigate('/user/mypage/edit');
             } else if (response.status === 401) {
                 setError('인증이 필요합니다.');
                 navigate('/auth/login');
@@ -40,170 +80,75 @@ function ProfileInfo() {
         }
     };
 
-    if (loading) {
-        return (
-            <div className={styles.loadingContainer}>
-                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
-            </div>
-        )
-    }
+    return (
+        <div>
+            {error && <div className={styles.error}>{error}</div>}
 
-    if (!userInfo || userInfo.length === 0) {
-        return (
             <div className={styles.mypageReservation}>
                 <div className={styles.allTabs}>
-                    <Link to="/user/mypage/reservation">
-                        <div className={styles.tab1}>예약리스트</div>
-                    </Link>
                     <Link to="/user/mypage/review">
-                        <div className={styles.tab2}>작성된 리뷰</div>
+                        <div className={styles.tab1}>회원 정보수정</div>
+                    </Link>
+                    <Link to="/user/mypage/reservation">
+                        <div className={styles.tab2}>문의 내역</div>
                     </Link>
                     <div className={styles.line1}>|</div>
                     <Link to="/user/mypage/inquiry">
-                        <div className={styles.tab3}>문의 내역</div>
+                        <div className={styles.tab3}>예약리스트</div>
                     </Link>
                     <div className={styles.line2}>|</div>
                     <Link to="/user/mypage/profile">
-                        <div className={styles.tab4}>회원 정보수정</div>
+                        <div className={styles.tab4}>작성된 리뷰</div>
                     </Link>
                 </div>
-
-                <div className={styles.mypageReservationMain}>
-                    {/* 상단 제목 */}
-                    <div className={styles.headerRow}>
-                        <div className={styles.headerItem}>가게명</div>
-                        <div className={styles.headerItem}>예약 날짜 및 시간</div>
-                        <div className={styles.headerItem}>예약 현황</div>
-                        <div className={styles.headerItem}>QR 코드</div>
-                    </div>
-
-                    {/* 예약 항목이 없을 경우 */}
-                    <div className={styles.reservationItem}>
-                        <div className={styles.headerItem}>-</div>
-                        <div className={styles.headerItem}>-</div>
-                        <div className={styles.headerItem}>-</div>
-                        <div className={styles.headerItem}>-</div>
-                    </div>
-
-                </div>
-            </div>
-        );
-    }
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = userInfo.slice(indexOfFirstItem, indexOfLastItem);
-
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    const getReservationStatus = (reservationTime) => {
-        const currentTime = new Date();
-        const reservationDate = new Date(reservationTime);
-        return currentTime < reservationDate ? "예약 중" : "예약 만료";
-    };
-
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-    }
-
-    const currentRangeStart = Math.floor((currentPage - 1) / 5) * 5 + 1;
-    const currentRangeEnd = Math.min(currentRangeStart + 4, totalPages);
-
-    const pageNumbersToDisplay = pageNumbers.slice(currentRangeStart - 1, currentRangeEnd);
-
-    const handlePrevClick = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
-
-    const handleNextClick = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    return (
-        <div className={styles.mypageReservation}>
-            <div className={styles.allTabs}>
-                <Link to="/user/mypage/reservation">
-                    <div className={styles.tab1}>예약리스트</div>
-                </Link>
-                <Link to="/user/mypage/review">
-                    <div className={styles.tab2}>작성리뷰</div>
-                </Link>
-                <div className={styles.line1}>|</div>
-                <Link to="/user/mypage/inquiry">
-                    <div className={styles.tab3}>문의 내역</div>
-                </Link>
-                <div className={styles.line2}>|</div>
-                <Link to="/user/mypage/profile">
-                    <div className={styles.tab4}>회원 정보수정</div>
-                </Link>
             </div>
 
-            <div className={styles.mypageReservationMain}>
-                {/* 상단 제목 */}
-                <div className={styles.headerRow}>
-                    <div className={styles.headerItem}>가게명</div>
-                    <div className={styles.headerItem}>예약 날짜 및 시간</div>
-                    <div className={styles.headerItem}>예약 현황</div>
-                    <div className={styles.headerItem}>QR 코드</div>
+            {!userInfo && !loading && (
+                <div className={styles.signupBasic}>
+                        <p className={styles.loginText}>비밀번호를 입력해주세요</p>
+                        <img className={styles.signup} src="/images/mypage/profile/password.png" alt="회원가입 로고"/>
+                        <form onSubmit={handlePasswordSubmit}>
+                            <fieldset className={styles.fieldPwd}>
+                                <div className={styles.inputWrapper}>
+                                    <input
+                                        className={`${styles.signupPwd} ${passwordError ? styles.errorInput : ''}`}
+                                        type={showPassword ? "text" : "password"}
+                                        name="userPass"
+                                        value={formData.userPass}
+                                        onChange={handleChange}
+                                        id="userPass"
+                                        placeholder="비밀번호 입력"
+                                    />
+                                    <label htmlFor="userPass">비밀번호 입력</label>
+                                    <div className={styles.passwordToggleBtn}>
+                                        <img
+                                            src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                            alt="비밀번호 보이기/숨기기"
+                                            onClick={togglePasswordVisibility}
+                                        />
+                                    </div>
+                                </div>
+                            </fieldset>
+                            {passwordError && <div className={styles.error}>{passwordError}</div>}
+                            <button className={styles.loginButton} type="submit">확인</button>
+                        </form>
+                    </div>
+            )}
+
+            {loading && (
+                <div className={styles.loadingContainer}>
+                    <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
                 </div>
+            )}
 
-                {/* 예약 항목 */}
-                {currentItems.length > 0 ? (
-                    currentItems.map((reservation, index) => (
-                        <div key={index} className={styles.reservationItem}>
-                            <div className={styles.headerItem}>{reservation.storeName}</div>
-                            <div className={styles.headerItem}>
-                                {reservation.date} {reservation.time}
-                            </div>
-                            <div className={styles.headerItem}>
-                                {getReservationStatus(`${reservation.date} ${reservation.time}`)}
-                            </div>
-                            <div className={styles.headerItem}>{reservation.qr}</div>
-                        </div>
-                    ))
-                ) : (
-                    // 비었을 때
-                    <div className={styles.reservationItem}>
-                        <div className={styles.headerItem}>-</div>
-                        <div className={styles.headerItem}>-</div>
-                        <div className={styles.headerItem}>-</div>
-                        <div className={styles.headerItem}>-</div>
-                    </div>
-                )}
-
-                {/* 페이지네이션 */}
-                <div className={styles.pagination}>
-                    <div
-                        className={`${styles.paginationButton} ${styles.arrow} ${currentPage === 1 ? styles.disabled : ''}`}
-                        onClick={handlePrevClick}
-                    >
-                        ◀
-                    </div>
-
-                    {pageNumbersToDisplay.map(number => (
-                        <div
-                            key={number}
-                            className={`${styles.paginationButton} ${currentPage === number ? styles.active : ''}`}
-                            onClick={() => paginate(number)}
-                        >
-                            {number}
-                        </div>
-                    ))}
-
-                    <div
-                        className={`${styles.paginationButton} ${styles.arrow} ${currentPage === totalPages || totalPages === 0 ? styles.disabled : ''}`}
-                        onClick={handleNextClick}
-                    >
-                        ▶
-                    </div>
+            {userInfo && (
+                <div>
+                    <h2>회원 정보</h2>
+                    <p>이름: {userInfo.name}</p>
+                    <p>이메일: {userInfo.email}</p>
+                    {/* 기타 유저 정보 표시 */}
                 </div>
-
-            </div>
+            )}
         </div>
     );
 }
