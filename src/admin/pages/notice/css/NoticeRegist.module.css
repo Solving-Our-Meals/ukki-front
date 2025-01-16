@@ -1,0 +1,178 @@
+#background #noticeArea {
+    position: absolute;
+    width: 1610px;
+    height: 783px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #background .noticeInfo {
+    position: absolute;
+    width: 1705px;
+    height: 703px;
+    left: 15px;
+    top: 15px;
+    border-radius: 0;
+  }
+  
+  #background .noticeInfo #strNotice {
+    position: absolute;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 50px;
+    color: #232323;
+    left: 50px;
+    top: 50px;
+    width: max-content;
+    height: max-content;
+  }
+  
+  .categoryArea {
+    position: absolute;
+    left: 260px;
+    top: 68px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .category {
+    margin-left: 10px;
+    width: 109px;
+    height: 38px;
+    border: none;
+    border-radius: 25px;
+    font-size: 25px;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .editCategory {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  
+  .editCategory:hover {
+    background-color: #FF8AA3;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .editCategory.active {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: none;
+  }
+  
+  .titleText {
+    position: absolute;
+    left: 70px;
+    top: 170px;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+  }
+  
+  .titleContext {
+    position: absolute;
+    left: 150px;
+    top: 160px;
+    height: 50px;
+    width: 1000px;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .dateText {
+    position: absolute;
+    left: 1180px;
+    top: 170px;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+  }
+  
+  .dateContext {
+    position: absolute;
+    left: 1320px;
+    top: 170px;
+    width: 1000px;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+  }
+  
+  .content {
+    position: absolute;
+    left: 50px;
+    top: 230px;
+    width: 1490px;
+    height: 480px;
+    border: none;
+    border-radius: 20px;
+    background-color: #FFF9D1;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px 20px;
+    line-height: 160%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: none;
+  }
+  
+  .registButton {
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    left: 1405px;
+    top: 60px;
+  
+    background: #FEDA00;
+    border-radius: 40px;
+  
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    align-items: center;
+  
+    /* text/strong */
+    color: #232323;
+  
+    border: none;
+    cursor: pointer;
+  }
+  
+  .registButton:hover {
+    /* background-color: #FEDA00; */
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .registButton:active {
+    transform: scale(1);
+    box-shadow: none;
+  }

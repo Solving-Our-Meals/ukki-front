@@ -13,15 +13,18 @@
   justify-content: center;
   align-items: center;
 }
+
 #background .noticeInfo {
-  position: relative;
+  position: absolute;
   width: 1705px;
   height: 703px;
-  top: -30px;
+  left: 15px;
+  top: 15px;
   border-radius: 0;
 }
+
 #background .noticeInfo #strNotice {
-  position: relative;
+  position: absolute;
   font-family: "Bobaesum Jindo TTF";
   font-size: 50px;
   color: #232323;
@@ -30,56 +33,94 @@
   width: max-content;
   height: max-content;
 }
-#background .noticeInfo span {
-  position: relative;
+
+.categoryArea {
+  position: absolute;
+  left: 260px;
+  top: 68px;
+  display: flex;
+  flex-direction: row;
+}
+
+.category {
+  margin-left: 10px;
+  width: 109px;
+  height: 38px;
+  border: none;
+  border-radius: 25px;
+  font-size: 25px;
   font-family: "Pretendard-Regular";
   color: #232323;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#background .noticeInfo span:nth-of-type(1) {
-  position: absolute;
-  left: 250px;
-  top: 50px;
-  width: 109px;
-  height: 38px;
-  border: none;
-  border-radius: 25px;
-  font-size: 25px;
+
+.editCategory {
+  cursor: pointer;
+  opacity: 0.5;
 }
-#background .noticeInfo span:nth-of-type(2) {
+
+.editCategory:hover {
+  background-color: #FF8AA3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.editCategory.active {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: none;
+}
+
+.titleText {
   position: absolute;
-  left: 50px;
-  top: 150px;
+  left: 70px;
+  top: 170px;
   font-size: 30px;
   font-weight: 600;
+  font-family: "Pretendard-Regular";
+  color: #232323;
 }
-#background .noticeInfo span:nth-of-type(3) {
+
+.titleContext {
   position: absolute;
-  left: 130px;
-  top: 150px;
+  left: 150px;
+  top: 160px;
+  height: 50px;
+  width: 1000px;
   font-size: 30px;
   font-weight: 400;
+  font-family: "Pretendard-Regular";
+  color: #232323;
+  align-items: center;
+  align-content: center;
 }
-#background .noticeInfo span:nth-of-type(4) {
+
+.dateText {
   position: absolute;
-  left: 1200px;
-  top: 150px;
+  left: 1180px;
+  top: 170px;
   font-size: 30px;
   font-weight: 600;
+  font-family: "Pretendard-Regular";
+  color: #232323;
 }
-#background .noticeInfo span:nth-of-type(5) {
+
+.dateContext {
   position: absolute;
-  left: 1350px;
-  top: 150px;
+  left: 1320px;
+  top: 170px;
   font-size: 30px;
   font-weight: 400;
+  font-family: "Pretendard-Regular";
+  color: #232323;
 }
-#background .noticeInfo #content {
-  position: relative;
+
+.content {
+  position: absolute;
   left: 50px;
-  top: 180px;
+  top: 230px;
   width: 1490px;
   height: 480px;
   border: none;
@@ -98,6 +139,7 @@
   line-height: 160%;
   overflow-y: auto;
   overflow-x: hidden;
+  resize: none;
 }
 
 .cancelButton {
@@ -155,7 +197,7 @@
   cursor: pointer;
 }
 
-.editButton:hover{
+.editButton:hover {
   background-color: #FFF3A7;
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);

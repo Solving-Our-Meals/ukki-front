@@ -19,6 +19,7 @@ import InquiryInfo from "../pages/inquiry/pages/InquiryInfo";
 import ReportInfo from "../pages/inquiry/pages/ReportInfo";
 import NoticeList from "../pages/notice/pages/NoticeList";
 import NoticeInfo from "../pages/notice/pages/NoticeInfo";
+import NoticeRegist from "../pages/notice/pages/NoticeRegist";
 
 function AdminRoutes(){
     return(
@@ -60,6 +61,7 @@ function AdminRoutes(){
                     <Route index element={<Navigate to="list" replace/>}/>
                     <Route path="list" element={<NoticeList/>}/>
                     <Route path="info/:noticeNo" element={<NoticeInfo/>}/>
+                    <Route path="regist" element={<NoticeRegist/>}/>
                 </Route>
             </Route>
         </Routes>
