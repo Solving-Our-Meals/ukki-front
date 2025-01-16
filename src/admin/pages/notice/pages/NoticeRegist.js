@@ -51,7 +51,6 @@ function NoticeRegist(){
                 setResultMessage("공지사항이 등록되었습니다.");
                 setShowResultModal(true);
                 setShowAgreementModal(false);
-                navigate("/admin/notices/list");
             } else {
                 setIsRegist(false);
                 setResultMessage("공지사항 등록에 실패했습니다.");
