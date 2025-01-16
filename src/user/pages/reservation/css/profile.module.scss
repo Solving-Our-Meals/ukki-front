@@ -2,13 +2,13 @@
 
 #profile{
     position :absolute;
-    padding: 30px 30px;
     left : 120px;
     top : 540px;
     width : 244px;
     height : 221px;
     border-radius: 50px;
     background-color: #FFFFFF;
+    object-fit: fill;
 }
 
 @media screen and (min-width : 769px) and (max-width : 1024px){
