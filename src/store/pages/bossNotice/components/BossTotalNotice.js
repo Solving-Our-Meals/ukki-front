@@ -71,7 +71,7 @@ function BossTotalNotice(){
 
     const sendSearchWordHandler = (searchTerm = "") => {
         const term = typeof searchTerm === 'string' ? searchTerm : "";
-        const url = searchTerm.trim() === "" ? '/notice/user' : `/notice/user?searchWord=${searchTerm}`;
+        const url = searchTerm.trim() === "" ? '/notice/boss' : `/notice/boss?searchWord=${searchTerm}`;
 
         fetch(url)
         .then(res => res.json())
@@ -106,40 +106,6 @@ function BossTotalNotice(){
                             setSearchParams({ searchWord }); 
                         }}
                     />
-                    {/* <div id={styles.strNotice}>공지사항</div>
-                    <img id={styles.imgPin} src={pin}/>
-                    <div className={styles.strArea}>
-                        <div id={styles.strCategory}>카테고리</div>
-                        <div id={styles.strTitle}>제목</div>
-                        <div id={styles.strDate}>날짜</div>
-                    </div>
-                    <div className={styles.noticeContainer}>
-                        {currentItems.map((notice, index) => {
-                            let categoryName = "";
-                            switch(notice.categoryNo){
-                                case 1: categoryName = '안내'; break;
-                                case 2: categoryName = '소개'; break;
-                                case 3: categoryName = '가게'; break;
-                            }
-                            return (
-                                <div
-                                    key={index}
-                                    className={styles.notice}
-                                    style={{border : (index + 1) % 6 === 0 ? "none" : ""}}
-                                    onClick={() => navigateToSpecificNotice(notice.noticeNo)}
-                                >
-                                    <span 
-                                        id={styles.categoryName}
-                                        style={{ backgroundColor : notice.categoryNo === 1 ? "#FF8AA3" : notice.categoryNo === 2 ? "#FEDA00" : "#B3E7FF"}}
-                                    >
-                                        {categoryName}
-                                    </span>
-                                    <span id={styles.noticeTitle}>{notice.noticeTitle}</span>
-                                    <span id={styles.noticeDate}>{notice.date}</span>
-                                </div>
-                            );
-                        })}
-                    </div> */}
                     <div id={styles.strNotice}>공지사항</div>
                         <img id={styles.imgPin} src={pin}/>
                         <div className={styles.strArea}>
