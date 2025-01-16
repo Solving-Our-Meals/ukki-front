@@ -21,6 +21,9 @@ import BossLayout from './store/layouts/BossLayout';
 import BossTotalNotice from './store/pages/bossNotice/components/BossTotalNotice';
 import UserSpecificNotice from './user/pages/announcement/pages/UserSpecificNotice';
 import BossSpecificPage from './store/pages/bossNotice/pages/BossSpecificPage';
+import Error404 from './common/error/pages/Error404';
+import Error403 from './common/error/pages/Error403';
+import Error500 from './common/error/pages/Error500';
 
 function App() {
     return (
@@ -55,6 +58,15 @@ function App() {
                     {/* QR 관련 및 관리자 관련 라우팅 */}
                     <Route path="qr/*" element={<QrRoutes />} />
                     <Route path="admin/*" element={<AdminRoutes />} />
+
+                    {/* 500 INTERNAL SERVER ERROR */}
+                    <Route path='/500' element={<Error500/>}/>
+
+                    {/* 403 FORBIDDEN ERROR */}
+                    <Route path='/403' element={<Error403/>}/>
+
+                    {/* 404 NOT FOUND ERROR */}
+                    <Route path="/*" element={<Error404/>}/>
                 </Routes>
             </AuthProvider>
         </BrowserRouter>
