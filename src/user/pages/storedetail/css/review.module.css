@@ -190,7 +190,7 @@ a:active {
   left: 112px;
   top: 2051px;
   width: max-content;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   color: #232323;
 }
@@ -204,7 +204,7 @@ a:active {
   background-color: #FFFFFF;
   border-radius: 5px;
   border: 5px solid #FF8AA3;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   font-weight: 600;
   color: #232323;
@@ -215,7 +215,7 @@ a:active {
   width: 170px;
   height: 50px;
   background-color: #FFFFFF;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   color: #232323;
   cursor: pointer;
@@ -305,7 +305,7 @@ a:active {
   left: 190px;
   top: 107px;
   width: max-content;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 20px;
   font-weight: 400;
   font-style: normal;
@@ -318,9 +318,8 @@ a:active {
   width: 850px;
   height: 223px;
   background-color: #FFF9D3;
-  padding-left: 15px;
-  padding-top: 10px;
-  font-family: "Pretendard Variable";
+  padding: 20px 15px;
+  font-family: "Pretendard-Regular";
   font-size: 20px;
   font-weight: 500;
   font-style: normal;
@@ -328,6 +327,8 @@ a:active {
   line-height: 160%;
   border-radius: 0;
   z-index: 5;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .reviewStyle .reviewArea .reviewContainer .review #deleteReview {
   position: absolute;
@@ -341,7 +342,7 @@ a:active {
   border: none;
   font-size: 25px;
   font-weight: 600;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -364,7 +365,7 @@ a:active {
 }
 .reviewStyle .reviewArea #moreReview {
   margin-top: 50px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 40px;
   font-weight: 700;
   color: #232323;
@@ -407,7 +408,7 @@ a:active {
   width: max-content;
   margin-top: 40px;
   height: 36px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   font-weight: 500;
   color: #FF5D18;
@@ -420,7 +421,7 @@ a:active {
   background-color: #FEDA00;
   border: none;
   border-radius: 25px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 500;
   color: #232323;
@@ -434,7 +435,7 @@ a:active {
   background-color: #FF8AA3;
   border: none;
   border-radius: 25px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 500;
   color: #232323;
@@ -468,7 +469,7 @@ a:active {
   background-color: #FEDA00;
   border: none;
   border-radius: 25px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 500;
   color: #232323;
@@ -493,7 +494,7 @@ a:active {
     left: 51px;
     top: 1200px;
     width: max-content;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 20px;
     color: #232323;
   }
@@ -515,7 +516,7 @@ a:active {
     width: 120px;
     height: 28px;
     background-color: #FFFFFF;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 18px;
     color: #232323;
     cursor: pointer;
@@ -617,7 +618,7 @@ a:active {
     left: 124px;
     top: 56px;
     width: max-content;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 15px;
     font-weight: 400;
     font-style: normal;
@@ -630,9 +631,8 @@ a:active {
     width: 436px;
     height: 117px;
     background-color: #FFF9D3;
-    padding-left: 7px;
-    padding-top: 5px;
-    font-family: "Pretendard Variable";
+    padding: 20px 15px;
+    font-family: "Pretendard-Regular";
     font-size: 13px;
     font-weight: 500;
     font-style: normal;
@@ -640,6 +640,8 @@ a:active {
     line-height: 160%;
     border-radius: 0;
     z-index: 5;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   .reviewStyle .reviewArea .reviewContainer .review #reviewPhoto {
     position: absolute;
@@ -652,7 +654,7 @@ a:active {
   }
   .reviewStyle .reviewArea #moreReview {
     margin-top: 30px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 30px;
     font-weight: 700;
     color: #232323;
@@ -721,7 +723,7 @@ a:active {
     left: 35px;
     top: 1300px;
     width: max-content;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 15px;
     color: #232323;
   }
@@ -742,7 +744,7 @@ a:active {
     width: 80px;
     height: 20px;
     background-color: #FFFFFF;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 13px;
     color: #232323;
     cursor: pointer;
@@ -815,7 +817,7 @@ a:active {
     left: 65px;
     top: 32px;
     width: max-content;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 11px;
     font-weight: 400;
     font-style: normal;
@@ -825,9 +827,8 @@ a:active {
   .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(3) {
     left: 65px;
     top: 40px;
-  }
-  .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(3) img {
-    border: 1px solid red;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   .reviewStyle .reviewArea .reviewContainer .review div:nth-of-type(4) {
     left: 18px;
@@ -837,7 +838,7 @@ a:active {
     background-color: #FFF9D3;
     padding-left: 7px;
     padding-top: 5px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 10px;
     font-weight: 500;
     font-style: normal;
@@ -857,7 +858,7 @@ a:active {
   }
   .reviewStyle .reviewArea #moreReview {
     margin-top: 30px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 15px;
     font-weight: 700;
     color: #232323;

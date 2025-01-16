@@ -1,14 +1,17 @@
 .reservation {
-  height: 915px;
+  position: relative;
+  height: 845px;
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .reservation {
+    position: relative;
     height: 915px;
   }
 }
 @media screen and (max-width: 768px) {
   .reservation {
+    position: relative;
     height: 1080px;
   }
 }

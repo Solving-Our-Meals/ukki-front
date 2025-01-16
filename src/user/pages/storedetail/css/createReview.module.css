@@ -204,7 +204,7 @@ a:active {
   background-color: #FF8AA3;
   border-radius: 50px;
   border: none;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   font-weight: 600;
   color: #232323;
@@ -288,7 +288,7 @@ a:active {
   border-color: #FF8AA3;
 }
 .createReview .reviewScope .starRatingContainer .starLabel span {
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   color: #232323;
   font-weight: 600;
@@ -310,13 +310,15 @@ a:active {
   position: absolute;
   left: 20px;
   top: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 30px;
+  line-height: 160%;
   width: 865px;
   height: 400px;
   resize: none;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   color: #232323;
   cursor: text;
@@ -331,9 +333,9 @@ a:active {
 }
 .createReview #addFile {
   position: absolute;
-  width: 530px;
+  width: 520px;
   height: 400px;
-  left: 900px;
+  left: 910px;
   top: 10px;
   border-radius: 0;
   cursor: pointer;
@@ -390,7 +392,7 @@ a:active {
   border: none;
   border-radius: 20px;
   background-color: #FFF3A7;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 20px;
   font-weight: 700;
   display: flex;
@@ -407,7 +409,7 @@ a:active {
   border: none;
   border-radius: 20px;
   background-color: #FF8AA3;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 20px;
   font-weight: 700;
   display: flex;
@@ -451,7 +453,7 @@ a:active {
   width: max-content;
   margin-top: 40px;
   height: 36px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   font-weight: 500;
   color: #FF5D18;
@@ -464,7 +466,7 @@ a:active {
   background-color: #FEDA00;
   border: none;
   border-radius: 25px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 500;
   color: #232323;
@@ -478,7 +480,7 @@ a:active {
   background-color: #FF8AA3;
   border: none;
   border-radius: 25px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 500;
   color: #232323;
@@ -513,7 +515,7 @@ a:active {
   width: max-content;
   margin-top: 40px;
   height: 36px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   font-weight: 500;
   color: #FF5D18;
@@ -525,7 +527,7 @@ a:active {
   background-color: #FEDA00;
   border: none;
   border-radius: 25px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 500;
   color: #232323;
@@ -560,7 +562,7 @@ a:active {
     background-color: #FF8AA3;
     border-radius: 30px;
     border: none;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 20px;
     font-weight: 600;
     color: #232323;
@@ -604,7 +606,7 @@ a:active {
     width: 400px;
     height: 180px;
     resize: none;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 13px;
     font-weight: 600;
     color: #232323;
@@ -674,7 +676,7 @@ a:active {
     border: none;
     border-radius: 11px;
     background-color: #FEDA00;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 11px;
     font-weight: 700;
     display: flex;
@@ -691,7 +693,7 @@ a:active {
     border: none;
     border-radius: 11px;
     background-color: #FF8AA3;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 11px;
     font-weight: 700;
     display: flex;
@@ -723,7 +725,7 @@ a:active {
   }
   #finalConfirmReview #noticeReview {
     margin-top: 8px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 20px;
     font-weight: 500;
     color: #FF5D18;
@@ -736,7 +738,7 @@ a:active {
     background-color: #FEDA00;
     border: none;
     border-radius: 16px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 16px;
     font-weight: 500;
     color: #232323;
@@ -750,7 +752,7 @@ a:active {
     background-color: #FF8AA3;
     border: none;
     border-radius: 16px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 16px;
     font-weight: 500;
     color: #232323;
@@ -780,7 +782,7 @@ a:active {
   }
   #completeReview #completedReviewNotice {
     margin-top: 8px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 20px;
     font-weight: 500;
     color: #FF5D18;
@@ -792,7 +794,7 @@ a:active {
     background-color: #FEDA00;
     border: none;
     border-radius: 16px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 16px;
     font-weight: 500;
     color: #232323;

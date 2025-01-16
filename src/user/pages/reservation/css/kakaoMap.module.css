@@ -185,7 +185,7 @@ a:active {
 }
 #mapContainer .customoverlay {
   color: #232323;
-  font-Family: "Pretendard Variable";
+  font-Family: "Pretendard-Regular";
   font-Size: 15px;
   font-Style: "Regular";
   font-Weight: 600;
@@ -201,7 +201,7 @@ a:active {
 }
 #mapContainer .customoverlay .mapLink {
   color: #007AFF;
-  font-Family: "Pretendard Variable";
+  font-Family: "Pretendard-Regular";
   font-Size: 13px;
   font-Style: "Regular";
   border: none;
@@ -213,14 +213,14 @@ a:active {
     left: -8px;
     top: 50px;
     width: 245px;
-    height: 295px;
+    height: 250px;
     border: 5.21px solid #FFA8B8;
     border-Radius: 30px;
     z-index: 3;
   }
   #mapContainer .customoverlay {
     color: #232323;
-    font-Family: "Pretendard Variable";
+    font-Family: "Pretendard-Regular";
     font-Size: 15px;
     font-Style: "Regular";
     font-Weight: 600;
@@ -236,7 +236,7 @@ a:active {
   }
   #mapContainer .customoverlay .mapLink {
     color: #007AFF;
-    font-Family: "Pretendard Variable";
+    font-Family: "Pretendard-Regular";
     font-Size: 13px;
     font-Style: "Regular";
     border: none;
@@ -254,7 +254,7 @@ a:active {
   }
   #mapContainer .customoverlay {
     color: #232323;
-    font-Family: "Pretendard Variable";
+    font-Family: "Pretendard-Regular";
     font-Size: 11px;
     font-Style: "Regular";
     font-Weight: 600;
@@ -268,7 +268,7 @@ a:active {
   }
   #mapContainer .customoverlay .mapLink {
     color: #007AFF;
-    font-Family: "Pretendard Variable";
+    font-Family: "Pretendard-Regular";
     font-Size: 11px;
     font-Style: "Regular";
     border: none;
