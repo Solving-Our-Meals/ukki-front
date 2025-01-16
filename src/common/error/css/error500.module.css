@@ -1,0 +1,292 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FFF3A7;
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+.background .errorContainer {
+  position: absolute;
+  width: 1541px;
+  height: 644px;
+  border: 3px solid #FF8AA3;
+  border-radius: 50px;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+.background .errorContainer #leftArea {
+  position: relative;
+  width: max-content;
+  height: max-content;
+  border-radius: 0;
+  text-align: center;
+  left: 220px;
+}
+.background .errorContainer #leftArea p {
+  font-family: "Mungyeong Gamhong Apple";
+  font-size: 50px;
+  color: #FF8AA3;
+}
+.background .errorContainer #leftArea img {
+  width: 309px;
+  height: 291px;
+}
+.background .errorContainer #line {
+  position: absolute;
+  left: 660px;
+  border: 3px solid #FF8AA3;
+  height: 530px;
+  border-radius: 0;
+}
+.background .errorContainer #rightArea {
+  position: relative;
+  width: 630px;
+  height: 230px;
+  border-radius: 0;
+  text-align: center;
+  left: 460px;
+  margin-top: -60px;
+}
+.background .errorContainer #rightArea img {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 10px;
+  margin-left: 10px;
+}
+.background .errorContainer #rightArea p {
+  color: #232323;
+}
+.background .errorContainer #rightArea p:nth-of-type(1) {
+  position: absolute;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  left: 70px;
+  top: 5px;
+}
+.background .errorContainer #rightArea p:nth-of-type(2) {
+  position: absolute;
+  font-family: "Pretendard-Regular";
+  font-size: 30px;
+  font-weight: 500;
+  left: 20px;
+  top: 80px;
+}
+.background .errorContainer #rightArea p:nth-of-type(3) {
+  position: absolute;
+  font-family: "Pretendard-Regular";
+  font-size: 30px;
+  font-weight: 500;
+  left: 20px;
+  top: 150px;
+  text-align: left;
+  line-height: 160%;
+}
+.background .errorContainer #btnArea {
+  position: relative;
+  left: 50px;
+  top: 190px;
+  display: flex;
+  flex-direction: right;
+}
+.background .errorContainer #btnArea button {
+  width: 200px;
+  height: 44px;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  font-weight: 600;
+  margin-right: 20px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+.background .errorContainer #btnArea #toMain {
+  background-color: #FEDA00;
+}
+.background .errorContainer #btnArea button:nth-of-type(1) {
+  background-color: #FF8AA3;
+}/*# sourceMappingURL=error500.module.css.map */
