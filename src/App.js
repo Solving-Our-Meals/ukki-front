@@ -24,6 +24,7 @@ import BossSpecificPage from './store/pages/bossNotice/pages/BossSpecificPage';
 import Error404 from './common/error/pages/Error404';
 import Error403 from './common/error/pages/Error403';
 import Error500 from './common/error/pages/Error500';
+import BossPage from './store/pages/bossStore/pages/BossPage';
 
 function App() {
     return (
@@ -51,6 +52,7 @@ function App() {
                         <Route path="notice/:noticeNo" element={<PrivateRoute element={<UserSpecificNotice/>}/>}/> 
                     </Route>
                     <Route path="/boss" element={<BossLayout />}>
+                        <Route path="mypage" element={<PrivateRoute element={<BossPage/>}/>}/> 
                         <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
                         <Route path="notice/:noticeNo" element={<PrivateRoute element={<BossSpecificPage/>}/>}/> 
                     </Route>
