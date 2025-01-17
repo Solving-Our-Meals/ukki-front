@@ -32,7 +32,7 @@ function NoticeInfo(){
 
     useEffect(() => {
         fetchNoticeInfo();
-    }, [noticeNo])
+    }, [noticeNo, editMode])
 
     const fetchNoticeInfo = async () => {
         const noticeInfo = await NoticeInfoAPI(noticeNo);
@@ -50,15 +50,18 @@ function NoticeInfo(){
                 content : noticeInfo.noticeContent,
                 date : noticeInfo.date
             }));
+            setEditTitle(noticeInfo.noticeTitle);
+            setEditContent(noticeInfo.noticeContent);
+            setEditCategory(noticeInfo.categoryNo);
     }
 
     const handleEdit = () => {
         if (editMode) {
-            if (notice.title === "" || notice.title === null || notice.content === "" || notice.content === null) {
-                setResultMessage("공지사항 제목과 내용을 입력해주세요.");
+            if (editTitle === "" || editTitle === null || editContent === "" || editContent === null || editCategory === null || editCategory === 0) {
+                setResultMessage("내용을 확인해주세요.");
                 setShowResultModal(true);
                 return;
-            } else if (notice.title === notice.title && notice.content === notice.content) {
+            } else if (notice.title === editTitle && notice.content === editContent && notice.categoryNo === editCategory) {
                 setResultMessage("공지사항 제목과 내용이 동일합니다.");
                 setShowResultModal(true);
                 return;
@@ -86,7 +89,12 @@ function NoticeInfo(){
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(notice),
+                body: JSON.stringify({
+                    noticeNo : noticeNo,
+                    noticeTitle : editTitle,
+                    noticeContent : editContent,
+                    categoryNo : editCategory
+                }),
             });
             if (response.ok) {
                 setEditSuccess(true);
@@ -136,26 +144,34 @@ function NoticeInfo(){
                 <div id={styles.noticeArea}>
                     <div className={styles.noticeInfo}>
                         <p id={styles.strNotice}>공지사항</p>
-                        <div id={styles.categoryArea}>
-                        {!editMode? <span
-                            id={styles.category}
-                            style={{backgroundColor : notice.category === '안내' ? "#FF8AA3" : notice.category === '소개' ? "#FEDA00" : "#B3E7FF" }}
-                        >
-                            {notice.category}
-                        </span> : <>
-                        <span id={styles.category}  style={{backgroundColor: "#FF8AA3"}} onClick={() => setEditCategory(1)}>안내</span>
-                        <span id={styles.category}  style={{backgroundColor: "#FEDA00"}} onClick={() => setEditCategory(2)}>소개</span>
-                        <span id={styles.category}  style={{backgroundColor: "#B3E7FF"}} onClick={() => setEditCategory(3)}>가게</span>
-                        </>
-                        }
-                        </div>
-
-                        <span>제목 : </span> <span>{notice.title}</span>
-                        <span>작성 날짜 : </span> <span>{notice.date}</span>
-                        <span id={styles.content}>{notice.content}</span>
                     </div>
                 </div>
             </div>
+            <div className={styles.categoryArea}>
+                        {!editMode? <span
+                            className={styles.category}
+                            style={{backgroundColor : notice.category === '안내' ? "#FF8AA3" : notice.category === '소개' ? "#FEDA00" : "#B3E7FF" }}
+                        >
+                        {notice.category}
+                        </span> : <>
+                        <span className={`${styles.category} ${styles.editCategory} ${editCategory==1? styles.active : ""}`}  style={{backgroundColor: "#FF8AA3"}} onClick={() => setEditCategory(1)}>안내</span>
+                        <span className={`${styles.category} ${styles.editCategory} ${editCategory==2? styles.active : ""}`}  style={{backgroundColor: "#FEDA00"}} onClick={() => setEditCategory(2)}>소개</span>
+                        <span className={`${styles.category} ${styles.editCategory} ${editCategory==3? styles.active : ""}`}  style={{backgroundColor: "#B3E7FF"}} onClick={() => setEditCategory(3)}>가게</span>
+                        </>
+
+                        }
+                        </div>
+            {editMode ? 
+            <>
+            <span className={styles.titleText}>제목 : </span> <input className={styles.titleContext} value={editTitle} onChange={(e) => setEditTitle(e.target.value)}/>
+            </> : 
+            <>
+            <span className={styles.titleText}>제목 : </span> <span className={styles.titleContext}>{notice.title}</span>
+            </>}
+            <span className={styles.dateText}>작성 날짜 : </span> <span className={styles.dateContext}>{notice.date}</span>
+            {editMode ? 
+            <textarea className={styles.content} value={editContent} onChange={(e) => setEditContent(e.target.value)}/> : 
+            <span className={styles.content}>{notice.content}</span>}
             {editMode && <button className={styles.cancelButton} onClick={handleCancel}>취소</button>}
             {!editMode && <button className={styles.delButton} onClick={handleDeleteConfirm}>삭제</button>}
             <button className={styles.editButton} onClick={handleEdit} style={editMode ? { left: '1403px', width: '115px' } : {}}>{editMode ? '확인' : '수정'}</button>
@@ -181,12 +197,15 @@ function NoticeInfo(){
                         setDeleteNotice(false);
                     } else {
                         setShowResultModal(false);
+                        setDeleteNotice(false);
                     }
                     if (editSuccess) {
                         setEditMode(false);
                         navigate(`/admin/notices/info/${noticeNo}`);
+                        setEditSuccess(false);
                     } else {
                         setShowResultModal(false);
+                        setEditSuccess(false);
                     }
                 }} />
             )}
