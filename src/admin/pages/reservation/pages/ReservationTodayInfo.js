@@ -6,7 +6,6 @@ import styles from '../css/ReservationInfo.module.css'
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 
-
 function ReservationTodayInfo(){
 
     const {reservationNo} = useParams();
@@ -82,6 +81,7 @@ function ReservationTodayInfo(){
         <div id={styles.reservationInfoTime}><p>예약시간 : </p> {resInfo.resTime}</div>
         <div id={styles.reservationInfoStatus}><p>예약상태 : </p> {resInfo.qrConfirm? "예약확인" : "예약대기중"}</div>
         <div id={styles.qrInfo}><p> qr이미지 넣을까 고민중 </p> {resInfo.reservationCount}</div>
+        <img src={`/${resInfo.qr}/api/qrImage`}/>
         </> : 
         <div>해당 예약이 존재하지 않습니다.</div>}
         {showAgreementModal && (
