@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/bossTotalNotice.module.css';
-import pin from '../images/Pin.png';
 import searchBtn from '../images/searchBtn.png';
 
 function BossTotalNotice(){
@@ -14,8 +13,10 @@ function BossTotalNotice(){
     
     const [currentPage, setCurrentPage] = useState(1); 
     const [currentPageGroup, setCurrentPageGroup] = useState(1);
+
+    const [recentNotice, setRecentNotice] = useState({});
     
-    const itemsPerPage = 6; 
+    const itemsPerPage = 7; 
     const pagesPerGroup = 5;
 
     const totalPages = Math.ceil(notices.length / itemsPerPage);
@@ -52,6 +53,15 @@ function BossTotalNotice(){
     };
 
     useEffect(() => {
+        fetch('/notice/boss/recentNotice')
+        .then(res => res.json())
+        .then(data => {
+            setRecentNotice(data);
+        })
+        .catch(error => console.log(error));
+    }, [])
+
+    useEffect(() => {
         const searchQuery = searchParams.get("searchWord") || "";
         setSearchWord(searchQuery);
         sendSearchWordHandler(searchQuery);
@@ -84,66 +94,73 @@ function BossTotalNotice(){
     return(
         <>
             <div id={styles.background}>
-                <div id={styles.noticeArea}>
-                    <div id={styles.dot1} className={styles.dots}></div>
-                    <div id={styles.dot2} className={styles.dots}></div>
-                    <div id={styles.dot3} className={styles.dots}></div>
-                    <div id={styles.dot4} className={styles.dots}></div>
-                    <input 
-                        id={styles.inputSearch} 
-                        name='searchWord' 
-                        type='text' 
-                        placeholder='검색할 내용을 입력해주세요.' 
-                        value={searchWord}
-                        onChange={(e) => setSearchWord(e.target.value)}
-                        onKeyPress={(e) => keyPressHandler(e)}
-                    />
-                    <img 
-                        src={searchBtn} 
-                        id={styles.searchBtn}
-                        onClick={() => { 
-                            sendSearchWordHandler(searchWord); 
-                            setSearchParams({ searchWord }); 
-                        }}
-                    />
-                    <div id={styles.strNotice}>공지사항</div>
-                        <img id={styles.imgPin} src={pin}/>
-                        <div className={styles.strArea}>
-                            <div id={styles.strCategory}>카테고리</div>
-                            <div id={styles.strTitle}>제목</div>
-                            <div id={styles.strDate}>날짜</div>
-                        </div>
-                        <div className={styles.noticeContainer}>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((notice, index) => {
-                                    let categoryName = "";
-                                    switch(notice.categoryNo){
-                                        case 1: categoryName = '안내'; break;
-                                        case 2: categoryName = '소개'; break;
-                                        case 3: categoryName = '가게'; break;
-                                    }
-                                    return (
-                                        <div
-                                            key={index}
-                                            className={styles.notice}
-                                            style={{border : (index + 1) % 6 === 0 ? "none" : ""}}
-                                            onClick={() => navigateToSpeficifNotice(notice.noticeNo)}
+                <div id={styles.recentNotice}>
+                    <span>최근 공지</span> 
+                    <span>{recentNotice.categoryNo === 1 ? "[안내]" : recentNotice.categoryNo === 2 ? "[소개]" : "[가게]"}</span> 
+                    <span onClick={() => navigateToSpeficifNotice(recentNotice.noticeNo)}>
+                        {recentNotice.noticeTitle}
+                    </span>
+                    <div className={styles.marquee}>
+                        <span className={styles.marqueeText}>
+                            {recentNotice.noticeContent}
+                        </span>
+                    </div> 
+                </div>
+                <div id={styles.strNotice}>공지사항</div>
+                <input 
+                    id={styles.inputSearch} 
+                    name='searchWord' 
+                    type='text' 
+                    placeholder='검색할 내용을 입력해주세요.' 
+                    value={searchWord}
+                    onChange={(e) => setSearchWord(e.target.value)}
+                    onKeyPress={(e) => keyPressHandler(e)}
+                />
+                <img 
+                    src={searchBtn} 
+                    id={styles.searchBtn}
+                    onClick={() => { 
+                        sendSearchWordHandler(searchWord); 
+                        setSearchParams({ searchWord }); 
+                    }}
+                />
+                <div className={styles.noticeListArea}>
+                    <div className={styles.strArea}>
+                        <div id={styles.strCategory}>카테고리</div>
+                        <div id={styles.strTitle}>제목</div>
+                        <div id={styles.strDate}>날짜</div>
+                    </div>
+                    <div className={styles.noticeContainer}>
+                        {currentItems.length > 0 ? (
+                            currentItems.map((notice, index) => {
+                                let categoryName = "";
+                                switch(notice.categoryNo){
+                                    case 1: categoryName = '안내'; break;
+                                    case 2: categoryName = '소개'; break;
+                                    case 3: categoryName = '가게'; break;
+                                }
+                                return (
+                                    <div
+                                        key={index}
+                                        className={styles.notice}
+                                        style={{border : (index + 1) % 7 === 0 ? "none" : ""}}
+                                        onClick={() => navigateToSpeficifNotice(notice.noticeNo)}
+                                    >
+                                        <span 
+                                            id={styles.categoryName}
+                                            style={{ backgroundColor : notice.categoryNo === 1 ? "#FF8AA3" : notice.categoryNo === 2 ? "#FEDA00" : "#B3E7FF"}}
                                         >
-                                            <span 
-                                                id={styles.categoryName}
-                                                style={{ backgroundColor : notice.categoryNo === 1 ? "#FF8AA3" : notice.categoryNo === 2 ? "#FEDA00" : "#B3E7FF"}}
-                                            >
-                                                {categoryName}
-                                            </span>
-                                            <span id={styles.noticeTitle}>{notice.noticeTitle}</span>
-                                            <span id={styles.noticeDate}>{notice.date}</span>
-                                        </div>
-                                    );
-                                })
-                            ) : (
-                                <div className={styles.noResultsMessage}>해당 결과가 존재하지 않습니다.</div> // 결과가 없을 때 메시지
-                            )}
-                        </div>
+                                            {categoryName}
+                                        </span>
+                                        <span id={styles.noticeTitle}>{notice.noticeTitle}</span>
+                                        <span id={styles.noticeDate}>{notice.date}</span>
+                                    </div>
+                                );
+                            })
+                        ) : (
+                            <div className={styles.noResultsMessage}>해당 결과가 존재하지 않습니다.</div> // 결과가 없을 때 메시지
+                        )}
+                    </div>
                     <hr/>
                     {/* // 페이지네이션 로직 7 : 페이지네이션 렌더링 */}
                     <div className={styles.pagination}>
