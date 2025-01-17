@@ -76,7 +76,7 @@ function KakaoMap(){
         <>
             <Map
                 // 지도로 보여줄 위치 지정(위도, 경도)
-                center={{ lat : storeLatitude + 0.0002, lng : storeLongitude}}
+                center={{ lat : storeLatitude + 0.0004, lng : storeLongitude}}
                 // 지도 스타일 적용
                 id={styles.mapContainer}
                 level={3}
@@ -106,13 +106,14 @@ function KakaoMap(){
                 >
                     <CustomOverlayMap
                         position={{ lat : storeLatitude, lng : storeLongitude}}
-                        yAnchor={2.55}
+                        yAnchor={2.3}
                     >
                         <div className={styles.customoverlay}>
                             <div>
-                                {storeName}
+                                {storeName} <br/>
+                                {storeInfo.storeAddress}
                             </div>
-                            <div>
+                            {/* <div>
                                 <a
                                     href= {mapLink}
                                     className={styles.mapLink}
@@ -135,7 +136,7 @@ function KakaoMap(){
                                 >
                                    &nbsp; 길찾기 &emsp;
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </CustomOverlayMap>
                 </MapMarker>

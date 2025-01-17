@@ -824,6 +824,7 @@ function Calendar() {
                     time : morningArray[index],
                     storeName : storeInfo.storeName,
                     storeNo : storeInfo.storeNo,
+                    storeAddress : storeInfo.storeAddress,
                     latitude : storeInfo.latitude,
                     longitude : storeInfo.longitude
                 },
@@ -876,6 +877,7 @@ function Calendar() {
                     time : afternoonArray[index],
                     storeName : storeInfo.storeName,
                     storeNo : storeInfo.storeNo,
+                    storeAddress : storeInfo.storeAddress,
                     latitude : storeInfo.latitude,
                     longitude : storeInfo.longitude
                 },
