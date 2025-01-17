@@ -53,24 +53,14 @@ function Review() {
     };
 
     const handleDeleteClick = (reviewNo, storeNo, userNo) => {
-        // 선택된 reviewNo, storeNo 상태 업데이트
         setSelectedReview({ reviewNo, storeNo, userNo });
         setShowModal(true);
-        console.log(storeNo);
-        console.log(userNo);
     };
 
     const deleteReview = async () => {
-        // selectedReview에서 reviewNo, storeNo, userNo 값을 가져옵니다
         const { reviewNo, storeNo, userNo } = selectedReview;
 
-        // 디버깅용 로그 출력
-        console.log(reviewNo);
-        console.log(storeNo);
-        console.log(userNo);
-
         try {
-            // URL 수정: ?로 시작하고, &로 파라미터를 구분해야 합니다
             const response = await fetch(`/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`, {
                 method: 'DELETE',
                 headers: {
@@ -199,9 +189,11 @@ function Review() {
         return stars;
     };
 
-    const handleReviewClick = (storeNo) => {
-        navigate(`/store/${storeNo}`);
+    const handleReviewClick = (reviewNo) => {
+        navigate(`/user/mypage/review/${reviewNo}`)
     };
+
+
 
     const ConfirmModal = ({ reviewNo, onConfirm, onCancel }) => {
         return (
@@ -278,7 +270,7 @@ function Review() {
                         <div
                             key={index}
                             className={styles.reservationItem}
-                            onClick={() => handleReviewClick(review.storeNo)}
+                            onClick={() => handleReviewClick(review.reviewNo)}
                         >
                             <div className={styles.headerItem}>{review.storeName}</div>
                             <div className={styles.headerItem}>

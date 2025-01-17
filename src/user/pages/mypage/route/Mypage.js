@@ -9,6 +9,7 @@ import MyProfile from "../component/MyProfile";
 import InquiryDetail from "../pages/InquiryDetails";
 import ProfileInfo from "../pages/ProfileInfo";
 import Info from "../pages/Info";
+import ReviewDetail from "../pages/ReviewDetail";
 
 function Mypage() {
 
@@ -61,6 +62,7 @@ function Mypage() {
                     <Route path="/" element={<Navigate to="reservation" />} />
                     <Route path="reservation" element={<Reservation />} />
                     <Route path="review" element={<Review />} />
+                    <Route path="/review/:reviewNo" element={<ReviewDetail />} />
                     <Route path="inquiry" element={<Inquiry />} />
                     <Route path="/inquiry/:inquiryNo" element={<InquiryDetail userInfo={userInfo} />} />
                     <Route path="profile" element={<ProfileInfo />} />
