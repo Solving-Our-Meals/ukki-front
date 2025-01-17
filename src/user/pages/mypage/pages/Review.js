@@ -14,7 +14,11 @@ function Review() {
 
     // 삭제용 모달
     const [showModal, setShowModal] = useState(false);
-    const [selectedReview, setSelectedReview] = useState(null);
+    const [selectedReview, setSelectedReview] = useState({
+        reviewNo : "",
+        storeNo : "",
+        userNo : "",
+    });
 
     // 삭제 후 상태 표시 모달
     const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -26,7 +30,7 @@ function Review() {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/mypage//review', {
+            const response = await fetch('/user/mypage/review', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -48,21 +52,34 @@ function Review() {
         }
     };
 
-    const handleDeleteClick = (reviewNo) => {
-        setSelectedReview(reviewNo);
+    const handleDeleteClick = (reviewNo, storeNo, userNo) => {
+        // 선택된 reviewNo, storeNo 상태 업데이트
+        setSelectedReview({ reviewNo, storeNo, userNo });
         setShowModal(true);
+        console.log(storeNo);
+        console.log(userNo);
     };
 
-    const deleteReview = async (reviewNo) => {
+    const deleteReview = async () => {
+        // selectedReview에서 reviewNo, storeNo, userNo 값을 가져옵니다
+        const { reviewNo, storeNo, userNo } = selectedReview;
+
+        // 디버깅용 로그 출력
+        console.log(reviewNo);
+        console.log(storeNo);
+        console.log(userNo);
+
         try {
-            const response = await fetch('/user/mypage/review/delete', {
+            // URL 수정: ?로 시작하고, &로 파라미터를 구분해야 합니다
+            const response = await fetch(`/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-                body: JSON.stringify({ reviewNo })
+                body: JSON.stringify({ reviewNo, storeNo, userNo }), // body에 추가되는 데이터도 여전히 포함
             });
+            console.log(response);
 
             if (response.ok) {
                 setUserInfo(prevState => prevState.filter(review => review.reviewNo !== reviewNo));
@@ -74,13 +91,13 @@ function Review() {
                 setShowModal(false);
                 setShowFailModal(true);
                 setTimeout(() => setShowFailModal(false), 2000);
-
             }
         } catch (error) {
             setError('에러 발생: ' + error.message);
             setShowModal(false);
         }
     };
+
 
     const cancelDelete = () => {
         setShowModal(false);
@@ -165,6 +182,7 @@ function Review() {
         }
     };
 
+    console.log(userInfo)
 
     const truncateReview = (reviewText) => {
         if (reviewText.length > 15) {
@@ -276,10 +294,10 @@ function Review() {
                                 className={styles.deleteButton}
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    handleDeleteClick(review.reviewNo);
+                                    handleDeleteClick(review.reviewNo, review.storeNo, review.userNo);
                                 }}
                             >
-                                리뷰 삭제
+                              리뷰 삭제
                             </button>
                         </div>
                     ))
