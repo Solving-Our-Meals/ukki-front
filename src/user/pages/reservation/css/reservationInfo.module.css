@@ -174,9 +174,9 @@ a:active {
   font-style: normal;
 }
 .reservationInfo {
-  position: relative;
+  position: absolute;
   left: 720px;
-  top: -530px;
+  top: 100px;
   width: 1107px;
   height: 365px;
   background-color: #FFF3A7;
@@ -193,7 +193,7 @@ a:active {
   line-height: 40px;
 }
 .reservationInfo #orderer p {
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   color: #232323;
 }
 .reservationInfo #orderer p:nth-of-type(1) {
@@ -214,7 +214,7 @@ a:active {
   line-height: 40px;
 }
 .reservationInfo #reservationConfirm p {
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   color: #232323;
 }
 .reservationInfo #reservationConfirm p:nth-of-type(1) {
@@ -243,7 +243,7 @@ a:active {
   line-height: 50px;
 }
 .reservationInfo #storeLocation p {
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   color: #232323;
 }
 .reservationInfo #storeLocation p:nth-of-type(1) {
@@ -253,11 +253,11 @@ a:active {
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .reservationInfo {
-    position: relative;
+    position: absolute;
     left: 360px;
-    top: -305px;
+    top: 80px;
     width: 560px;
-    height: 391px;
+    height: 350px;
     background-color: #FFF3A7;
     border: none;
     border-radius: 30px;
@@ -265,14 +265,14 @@ a:active {
   .reservationInfo #orderer {
     position: absolute;
     left: 30px;
-    top: 45px;
+    top: 25px;
     width: max-content;
     height: max-content;
     border-radius: 0px;
     line-height: 40px;
   }
   .reservationInfo #orderer p {
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     color: #232323;
   }
   .reservationInfo #orderer p:nth-of-type(1) {
@@ -286,14 +286,14 @@ a:active {
   .reservationInfo #reservationConfirm {
     position: absolute;
     left: 30px;
-    top: 160px;
+    top: 140px;
     width: max-content;
     height: max-content;
     border-radius: 0px;
     line-height: 40px;
   }
   .reservationInfo #reservationConfirm p {
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     color: #232323;
   }
   .reservationInfo #reservationConfirm p:nth-of-type(1) {
@@ -315,13 +315,13 @@ a:active {
   .reservationInfo #storeLocation {
     position: absolute;
     left: 300px;
-    top: 20px;
+    top: 320px;
     width: max-content;
     height: max-content;
     border-radius: 0px;
   }
   .reservationInfo #storeLocation p {
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     color: #232323;
   }
   .reservationInfo #storeLocation p:nth-of-type(1) {
@@ -331,9 +331,9 @@ a:active {
 }
 @media screen and (max-width: 768px) {
   .reservationInfo {
-    position: relative;
+    position: absolute;
     left: 270px;
-    top: -232px;
+    top: 60px;
     width: 330px;
     height: 290px;
     background-color: #FFF3A7;
@@ -350,7 +350,7 @@ a:active {
     line-height: 40px;
   }
   .reservationInfo #orderer p {
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     color: #232323;
   }
   .reservationInfo #orderer p:nth-of-type(1) {
@@ -371,7 +371,7 @@ a:active {
     line-height: 40px;
   }
   .reservationInfo #reservationConfirm p {
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     color: #232323;
   }
   .reservationInfo #reservationConfirm p:nth-of-type(1) {
@@ -403,7 +403,7 @@ a:active {
     background-color: #FFF3A7;
   }
   .reservationInfo #storeLocation p {
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     color: #232323;
   }
   .reservationInfo #storeLocation p:nth-of-type(1) {
@@ -411,4 +411,4 @@ a:active {
     font-size: 18px;
     margin-left: 15px;
   }
-}/*# sourceMappingURL=reservationInfo.module.css.map */
+}

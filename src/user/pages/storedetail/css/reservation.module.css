@@ -191,7 +191,7 @@ a:active {
   left: 112px;
   top: 1253px;
   width: max-content;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   color: #232323;
 }
@@ -207,7 +207,7 @@ a:active {
   top: -75px;
   width: max-content;
   height: 36px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   font-weight: 700;
   color: #615DFF;
@@ -221,7 +221,7 @@ a:active {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   color: #ffffff;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 35px;
   font-weight: 700;
   display: flex;
@@ -285,13 +285,13 @@ a:active {
 }
 .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.currentMonth {
   color: #232323;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 700;
 }
 .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.otherMonth {
   color: #838383;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   cursor: default;
   font-weight: 700;
@@ -329,7 +329,7 @@ a:active {
 .reservationStyle .calendarContainer .selectArea .instructionTime {
   width: max-content;
   margin-left: 340px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 30px;
   color: #232323;
   margin-top: -40px;
@@ -347,7 +347,7 @@ a:active {
   width: 100%;
   margin-top: 20px;
   margin-left: 10px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 600;
 }
@@ -359,7 +359,7 @@ a:active {
   height: 37px;
   background-color: #FEDA00;
   border-radius: 10px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 20px;
   text-align: center;
   margin: 10px 10px;
@@ -378,7 +378,7 @@ a:active {
   width: 100%;
   margin-top: 20px;
   margin-left: 10px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 600;
 }
@@ -390,7 +390,7 @@ a:active {
   height: 37px;
   background-color: #FEDA00;
   border-radius: 10px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 20px;
   text-align: center;
   margin: 10px 10px;
@@ -438,7 +438,7 @@ a:active {
   background-color: #FEDA00;
   border: none;
   border-radius: 25px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-size: 25px;
   font-weight: 500;
   color: #232323;
@@ -471,7 +471,7 @@ a:active {
     left: 51px;
     top: 739px;
     width: max-content;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 20px;
     color: #232323;
   }
@@ -486,7 +486,7 @@ a:active {
     left: 175px;
     top: -53px;
     width: max-content;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 20px;
     font-weight: 700;
     color: #615DFF;
@@ -500,7 +500,7 @@ a:active {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     color: #ffffff;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 21px;
     font-weight: 700;
     display: flex;
@@ -566,13 +566,13 @@ a:active {
   }
   .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.currentMonth {
     color: #232323;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 15px;
     font-weight: 700;
   }
   .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.otherMonth {
     color: #838383;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 15px;
     font-weight: 700;
   }
@@ -612,7 +612,7 @@ a:active {
     width: max-content;
     margin-left: 235px;
     padding-top: 17px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 20px;
     color: #232323;
   }
@@ -630,7 +630,7 @@ a:active {
     margin-top: 25px;
     margin-bottom: 5px;
     margin-left: 9px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 17px;
     font-weight: 600;
   }
@@ -642,7 +642,7 @@ a:active {
     height: 25px;
     background-color: #FEDA00;
     border-radius: 5px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 14px;
     text-align: center;
     margin: 5px 5px;
@@ -662,7 +662,7 @@ a:active {
     margin-top: 20px;
     margin-bottom: 5px;
     margin-left: 9px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 17px;
     font-weight: 600;
   }
@@ -674,7 +674,7 @@ a:active {
     height: 25px;
     background-color: #FEDA00;
     border-radius: 5px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 14px;
     text-align: center;
     margin: 5px 5px;
@@ -707,7 +707,7 @@ a:active {
     left: 35px;
     top: 590px;
     width: max-content;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 15px;
     color: #232323;
   }
@@ -722,7 +722,7 @@ a:active {
     left: 85px;
     top: -35.5px;
     width: max-content;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 14px;
     font-weight: 700;
     color: #615DFF;
@@ -736,7 +736,7 @@ a:active {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     color: #ffffff;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 13px;
     font-weight: 700;
     display: flex;
@@ -803,13 +803,13 @@ a:active {
   }
   .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.currentMonth {
     color: #232323;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 14px;
     font-weight: 700;
   }
   .reservationStyle .calendarContainer .calendarBody .calendarGrid .dateCell.otherMonth {
     color: #838383;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 14px;
     font-weight: 700;
   }
@@ -849,7 +849,7 @@ a:active {
     width: max-content;
     margin-left: 130px;
     padding-top: 25px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 15px;
     color: #232323;
   }
@@ -867,7 +867,7 @@ a:active {
     margin-top: 25px;
     margin-bottom: 5px;
     margin-left: 9px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 13px;
     font-weight: 600;
   }
@@ -879,7 +879,7 @@ a:active {
     height: 25px;
     background-color: #FEDA00;
     border-radius: 5px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 14px;
     text-align: center;
     margin: 5px 7px;
@@ -899,7 +899,7 @@ a:active {
     margin-top: 20px;
     margin-bottom: 5px;
     margin-left: 9px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 13px;
     font-weight: 600;
   }
@@ -911,7 +911,7 @@ a:active {
     height: 25px;
     background-color: #FEDA00;
     border-radius: 5px;
-    font-family: "Pretendard Variable";
+    font-family: "Pretendard-Regular";
     font-size: 14px;
     text-align: center;
     margin: 5px 7px;
@@ -923,4 +923,4 @@ a:active {
     top: 1218px;
     width: 458px;
   }
-}/*# sourceMappingURL=reservation.module.css.map */
+}

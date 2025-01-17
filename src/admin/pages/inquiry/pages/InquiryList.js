@@ -191,19 +191,19 @@ function InquiryList() {
                         <th style={{ width: '179px' }}>문의 날짜</th>
                         <th style={{ width: '325px' }}>카테고리</th>
                         <th style={{ width: '325px' }}>문의제목</th>
-                        <th style={{ width: '480px' }}>문의내용</th>
+                        <th style={{ width: '500px' }}>문의내용</th>
                         <th style={{ width: '159px' }}>상태</th>
                     </tr>
                 </thead>
             </table>
             <div id={styles.inquiryListBodyPosition}>
                 {searchSuccess ? currentItem.map((item, index) => (
-                    <div className={styles.inquiryListBody} key={index} onClick={() => handlerinquiryInfo(item.inqNo, item.inquiry)} value={item.inquiry}>
+                    <div className={styles.inquiryListBody} key={index} onClick={() => handlerinquiryInfo(item.inqNo, item.inquiry)} value={item.inquiry} style={{ cursor: 'pointer' }}>
                         <div style={{ width: '178px' }}>{item.inqDate}</div>
                         <div style={{ width: '325px' }}>{item.categoryName}</div>
                         <div style={{ width: '325px' }}>{item.inqTitle}</div>
-                        <div style={{ width: '480px' }}>{item.inqContent}</div>
-                        <div style={{ width: '158px' }}>{item.status}</div>
+                        <div style={{ width: '500px' }}>{item.inqContent}</div>
+                        <div style={{ width: '158px' }}>{item.state}</div>
                     </div>
                 )) : <div className={styles.inquiryListBody}>해당 결과가 존재하지 않습니다.</div>}
             </div>

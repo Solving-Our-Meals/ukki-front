@@ -66,7 +66,7 @@
 //                         <div className="customoverlay"
 //                                 style = {{
 //                                 color : '#323232',
-//                                 fontFamily : 'Pretendard Variable',
+//                                 fontFamily : 'Pretendard-Regular',
 //                                 fontSize : '17px',
 //                                 fontStyle : 'Regular',
 //                                 fontWeight : 600,
@@ -87,7 +87,7 @@
 //                                     href= {mapLink}
 //                                     style={{
 //                                         color : '#007AFF',
-//                                         fontFamily : 'Pretendard Variable',
+//                                         fontFamily : 'Pretendard-Regular',
 //                                         fontSize : '15px',
 //                                         fontStyle : 'Regular',
 //                                         border : 'none'
@@ -107,7 +107,7 @@
 //                                     href={mapLink}
 //                                     style={{
 //                                         color : '#007AFF',
-//                                         fontFamily : 'Pretendard Variable',
+//                                         fontFamily : 'Pretendard-Regular',
 //                                         fontSize : '15px',
 //                                         fontStyle : 'Regular',
 //                                     }}

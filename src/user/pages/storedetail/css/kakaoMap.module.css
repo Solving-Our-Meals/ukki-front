@@ -184,7 +184,7 @@ a:active {
 }
 #mapContainer .customoverlay {
   color: #232323;
-  font-Family: "Pretendard Variable";
+  font-Family: "Pretendard-Regular";
   font-Size: 17px;
   font-Style: "Regular";
   font-Weight: 600;
@@ -199,7 +199,7 @@ a:active {
 }
 #mapContainer .customoverlay .mapLink {
   color: #007AFF;
-  font-Family: "Pretendard Variable";
+  font-Family: "Pretendard-Regular";
   font-Size: 15px;
   font-Style: "Regular";
   border: none;
@@ -217,7 +217,7 @@ a:active {
   }
   #mapContainer .customoverlay {
     color: #232323;
-    font-Family: "Pretendard Variable";
+    font-Family: "Pretendard-Regular";
     font-Size: 11px;
     font-Style: "Regular";
     font-Weight: 600;
@@ -231,7 +231,7 @@ a:active {
   }
   #mapContainer .customoverlay .mapLink {
     color: #007AFF;
-    font-Family: "Pretendard Variable";
+    font-Family: "Pretendard-Regular";
     font-Size: 11px;
     font-Style: "Regular";
     border: none;
@@ -249,7 +249,7 @@ a:active {
   }
   #mapContainer .customoverlay {
     color: #232323;
-    font-Family: "Pretendard Variable";
+    font-Family: "Pretendard-Regular";
     font-Size: 11px;
     font-Style: "Regular";
     font-Weight: 600;
@@ -263,9 +263,9 @@ a:active {
   }
   #mapContainer .customoverlay .mapLink {
     color: #007AFF;
-    font-Family: "Pretendard Variable";
+    font-Family: "Pretendard-Regular";
     font-Size: 11px;
     font-Style: "Regular";
     border: none;
   }
-}/*# sourceMappingURL=kakaoMap.module.css.map */
+}

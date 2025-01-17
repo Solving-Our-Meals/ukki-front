@@ -131,7 +131,7 @@ function Reservation() {
                     <div className={styles.tab1}>예약리스트</div>
                 </Link>
                 <Link to="/user/mypage/review">
-                    <div className={styles.tab2}>작성리뷰</div>
+                    <div className={styles.tab2}>작성된 리뷰</div>
                 </Link>
                 <div className={styles.line1}>|</div>
                 <Link to="/user/mypage/inquiry">

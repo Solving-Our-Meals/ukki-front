@@ -24,6 +24,7 @@ import rBg from './image/roulette.png';
 import '../../../common/header/css/reset.css';
 import './css/main.css';
 import Map from './component/Map.js';
+import Footer from './component/Footer.js';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
@@ -190,25 +191,25 @@ const Main = () => {
         scrollToLocation();
     };
 
-    async function initRoulette() {
+/*    async function initRoulette() {
     try {
         // 사용자의 위치를 가져오기
-        const position = await getUserLocation();
-        const userLat = position.coords.latitude;
-        const userLon = position.coords.longitude;
+        // const position = await getUserLocation();
+        // const userLat = position.coords.latitude;
+        // const userLon = position.coords.longitude;
 
         // 가장 가까운 8개 가게 가져오기
-        const closestStores = await getClosestStores(userLat, userLon);
+        // const closestStores = await getClosestStores(userLat, userLon);
 
         // 룰렛에 가게 추가하기
-        populateRoulette(closestStores);
+        // populateRoulette(closestStores);
     } catch (error) {
         console.error("위치 정보를 가져오는 중 오류 발생:", error);
     }
 }
 
 // 페이지 로드 시 룰렛 초기화
-window.onload = initRoulette;
+window.onload = initRoulette;*/
 
 
     const scrollToLocation = () => {
@@ -723,6 +724,7 @@ const getNextAvailableTime = async (storeNo, resDate) => {
                     <button className="rouletter-btn"  onClick={handleReservationClick}>start</button>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };

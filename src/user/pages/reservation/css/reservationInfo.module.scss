@@ -1,9 +1,9 @@
 @import "../../../../common/reset/reset.scss";
 
 .reservationInfo{
-    position: relative;
+    position: absolute;
     left : 720px;
-    top : -530px;
+    top : 100px;
     width : 1107px;
     height : 365px;
     background-color: $secondary2;
@@ -21,7 +21,7 @@
         line-height: 40px;
 
         p{
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             color: $textStrong;
         }
 
@@ -47,7 +47,7 @@
         line-height: 40px;
 
         p{
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             color: $textStrong;
         }
 
@@ -83,7 +83,7 @@
         line-height: 50px;
 
         p{
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             color: $textStrong;
         }
 
@@ -97,11 +97,11 @@
 
 @media screen and (min-width : 769px) and (max-width : 1024px) {
     .reservationInfo{
-        position: relative;
+        position: absolute;
         left : 360px;
-        top : -305px;
+        top : 80px;
         width : 560px;
-        height : 391px;
+        height : 350px;
         background-color: $secondary2;
         border: none;
         border-radius: 30px;
@@ -110,14 +110,14 @@
             // border: 1px solid red;
             position: absolute;
             left : 30px;
-            top : 45px;
+            top : 25px;
             width : max-content;
             height : max-content;
             border-radius: 0px;
             line-height: 40px;
     
             p{
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 color: $textStrong;
             }
     
@@ -136,14 +136,14 @@
             // border: 1px solid blue;
             position: absolute;
             left : 30px;
-            top : 160px;
+            top : 140px;
             width : max-content;
             height : max-content;
             border-radius: 0px;
             line-height: 40px;
     
             p{
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 color: $textStrong;
             }
     
@@ -172,13 +172,13 @@
             // border: 1px solid green;
             position: absolute;
             left : 300px;
-            top : 20px;
+            top : 320px;
             width : max-content;
             height : max-content;
             border-radius: 0px;
     
             p{
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 color: $textStrong;
             }
     
@@ -193,9 +193,9 @@
 
 @media screen and (max-width : 768px){
     .reservationInfo{
-        position: relative;
+        position: absolute;
         left : 270px;
-        top : -232px;
+        top : 60px;
         width : 330px;
         height : 290px;
         background-color: $secondary2;
@@ -212,7 +212,7 @@
             line-height: 40px;
     
             p{
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 color: $textStrong;
             }
     
@@ -238,7 +238,7 @@
             line-height: 40px;
     
             p{
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 color: $textStrong;
             }
     
@@ -277,7 +277,7 @@
             background-color: $secondary2;
     
             p{
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 color: $textStrong;
             }
     

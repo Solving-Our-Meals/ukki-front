@@ -1,0 +1,196 @@
+#background #noticeArea {
+  position: absolute;
+  width: 1610px;
+  height: 783px;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background .noticeInfo {
+  position: relative;
+  width: 1705px;
+  height: 703px;
+  top: -30px;
+  border-radius: 0;
+}
+#background .noticeInfo #strNotice {
+  position: relative;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 50px;
+  color: #232323;
+  left: 50px;
+  top: 50px;
+  width: max-content;
+  height: max-content;
+}
+#background .noticeInfo span {
+  position: relative;
+  font-family: "Pretendard-Regular";
+  color: #232323;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background .noticeInfo span:nth-of-type(1) {
+  position: absolute;
+  left: 250px;
+  top: 50px;
+  width: 109px;
+  height: 38px;
+  border: none;
+  border-radius: 25px;
+  font-size: 25px;
+}
+#background .noticeInfo span:nth-of-type(2) {
+  position: absolute;
+  left: 50px;
+  top: 150px;
+  font-size: 30px;
+  font-weight: 600;
+}
+#background .noticeInfo span:nth-of-type(3) {
+  position: absolute;
+  left: 130px;
+  top: 150px;
+  font-size: 30px;
+  font-weight: 400;
+}
+#background .noticeInfo span:nth-of-type(4) {
+  position: absolute;
+  left: 1200px;
+  top: 150px;
+  font-size: 30px;
+  font-weight: 600;
+}
+#background .noticeInfo span:nth-of-type(5) {
+  position: absolute;
+  left: 1350px;
+  top: 150px;
+  font-size: 30px;
+  font-weight: 400;
+}
+#background .noticeInfo #content {
+  position: relative;
+  left: 50px;
+  top: 180px;
+  width: 1490px;
+  height: 480px;
+  border: none;
+  border-radius: 20px;
+  background-color: #FFF9D1;
+  font-family: "Pretendard-Regular";
+  color: #232323;
+  font-size: 30px;
+  font-weight: 400;
+  text-align: left;
+  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px 20px;
+  line-height: 160%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.cancelButton {
+  width: 120px;
+  height: 40px;
+
+  position: absolute;
+  left: 1255px;
+  top: 60px;
+  border: none;
+
+  border-radius: 50px;
+  background-color: #FF8AA3;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+  /*display: none;*/
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  align-items: center;
+
+  /* text/strong */
+  color: #232323;
+}
+
+.cancelButton:hover {
+  background-color: #FFBDC9;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.editButton {
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  left: 1255px;
+  top: 60px;
+
+  background: #FEDA00;
+  border-radius: 40px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  align-items: center;
+  /* text/strong */
+  color: #232323;
+
+  transition: all 0.3s ease;
+
+  border: none;
+  cursor: pointer;
+}
+
+.editButton:hover{
+  background-color: #FFF3A7;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.delButton {
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  left: 1405px;
+  top: 60px;
+
+  background: #FF8AA3;
+  border-radius: 40px;
+
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  align-items: center;
+
+  /* text/strong */
+  color: #232323;
+
+  border: none;
+  cursor: pointer;
+}
+
+.delButton:hover {
+  background-color: #FF5E7A;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.delButton:active {
+  transform: scale(1);
+  box-shadow: none;
+}

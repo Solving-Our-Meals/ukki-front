@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from '../css/review.module.css';
 import { useParams } from 'react-router-dom';
 import CreateReview from '../components/CreateReview';
+import Footer from '../components/Footer';
 
 function Review(){
 
@@ -23,6 +24,8 @@ function Review(){
     // 선택된 리뷰 번호
     const [selectedReviewNo, setSelectedReviewNo] = useState(null);
     const [selectedUserNo, setSelectedUserNo] = useState(null);
+    // Footer를 참고하기 위한 ref
+    const footerRef = useRef(null);
 
 
     useEffect(() => {
@@ -56,6 +59,7 @@ function Review(){
     const moreReviewHandler = () => {
         setIsMoreReview(prevState => !prevState);
         setHiddenWord(prevState => !prevState);
+        adjustFooterPosition(); // Footer 위치 조정 호출
     }
 
     const reviewLatest = () => {
@@ -114,6 +118,33 @@ function Review(){
         setIsCompleteDeleteReview(false);
         window.location.reload();
     }
+
+    // Footer의 위치를 조정하는 함수
+    const adjustFooterPosition = () => {
+        if(footerRef.current){
+            const reviewArea = document.getElementById(styles.reviewArea);
+            if(reviewArea){
+                const footerHeight = footerRef.current.offsetHeight;
+                const reviewAreaBottom = reviewArea.getBoundingClientRect().bottom;
+                const footerTop = reviewAreaBottom + window.scrollY;
+
+                footerRef.current.style.top = `${footerTop}px`;
+            } else {
+                console.warn("reviewArea가 존재하지 않습니다.")
+            }
+        }
+    };
+
+    useEffect(() => {
+        // 컴포넌트가 마운트되거나 리뷰가 업데이트 될 때 Footer 위치 조정
+        adjustFooterPosition();
+        window.addEventListener('resize', adjustFooterPosition); // 창 크기 조정 시 Footer 위치 조정
+
+        return() => {
+            window.removeEventListener('resize', adjustFooterPosition) // 이벤트 리스너 정리                
+        }
+        
+    }, [reviews, moreReviewHandler])
     
     return(
         <div className={styles.reviewStyle}>
@@ -123,7 +154,7 @@ function Review(){
                 <option value="latest">최신순</option>
                 <option value="rating">별점순</option>
             </select>
-            <div className={styles.reviewArea}>
+            <div className={styles.reviewArea} id={styles.reviewArea}>
                 <div className={styles.reviewContainer}>
                     {reviews.map((review, index) => (
                         <div 
@@ -161,9 +192,13 @@ function Review(){
                 </div>
                 <div 
                     id={styles.moreReview} 
+                    style = {{ 
+                        display : reviews.length <= 4 && reviews.length >= 1 ? "none" : "", 
+                        cursor :  reviews.length < 1 ? 'default' : "pointer"
+                    }}
                     onClick={() => moreReviewHandler()}
                 >
-                    {hiddenWord ? "리뷰 더보기 > " : "리뷰 닫기"} 
+                    { reviews.length < 1 ? "리뷰가 없습니다." : hiddenWord ? "리뷰 더보기 > " : "리뷰 닫기"} 
                 </div>
             </div>
             {realDeleteReview && (
@@ -230,6 +265,7 @@ function Review(){
                 </div>
             )}
             <CreateReview/>
+            <Footer ref={footerRef}/>
         </div>
     );
 }

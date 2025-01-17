@@ -159,10 +159,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .inquiryListBody:hover {
     background-color: #f5f5f5;
+    
 }
 
 .pageNation {

@@ -83,12 +83,11 @@ function CreateReview(){
      const setFileInfo = (file) => {
         const {type, name} = file;
         const isImage = type.includes('image');
+        const isJpgOrPng = type === 'image/jpeg' || type === 'image/png';
         const size = (file.size / (1024 * 1024)).toFixed(2) + 'mb';
         const updatedInfo = {name, size, type, file, isImage}
 
-        //console.log('updatedInfo : ' , updatedInfo);
-
-        if(!isImage){
+        if(!isJpgOrPng){
            alert("이미지 파일만 업로드 가능합니다.") // name, size, type 정보를 uploadedInfo에 저장
             return;
         }

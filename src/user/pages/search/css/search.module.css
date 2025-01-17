@@ -174,6 +174,9 @@ a:active {
   font-weight: normal;
   font-style: normal;
 }
+#search {
+  height: 100%;
+}
 #search .storeList {
   display: block;
   /* 요소가 화면에 나타나도록 확인 */
@@ -237,8 +240,8 @@ a:active {
 }
 #search .input p:nth-of-type(2) {
   position: fixed;
-  top: 13vw;
-  left: 7vw;
+  top: 10vw;
+  left: 6.8vw;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
@@ -263,11 +266,11 @@ a:active {
 }
 #search .input .box {
   position: fixed;
-  top: 17vw;
+  top: 12.5vw;
   left: 5vw;
   display: flex;
   flex-direction: column;
-  gap: 0.5vw;
+  gap: 0.3vw;
   z-index: 9;
   width: inherit;
   justify-content: start;
@@ -284,12 +287,11 @@ a:active {
 #search .input .dlsrl {
   position: fixed;
   width: 12vw;
-  height: 28vw;
+  height: 24vw;
   left: 5.5vw;
-  top: 15.5vw;
+  top: 12vw;
   background: rgba(255, 233, 138, 0.3960784314);
   border-radius: 15px;
-  display: sticky;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   outline: #fff 5px solid;
 }
@@ -350,7 +352,6 @@ a:active {
   height: 5vw;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 140%;
@@ -957,4 +958,4 @@ a:active {
     line-height: 150%;
     color: #232323;
   }
-}/*# sourceMappingURL=search.module.css.map */
+}

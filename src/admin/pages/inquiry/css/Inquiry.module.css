@@ -20,10 +20,6 @@
     color: #232323;
 }
 
-/*.reservationItem:hover .deleteButton {*/
-/*    display: block;*/
-/*}*/
-
 .deleteButton:hover {
     background-color: #FF8AA3;
     transform: scale(1.05);
@@ -37,146 +33,6 @@
 
 .deleteButton:focus {
     outline: none;
-}
-
-/* 모달 */
-
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal {
-    position: absolute;
-    width: 879px;
-    height: 316px;
-    left: 520px;
-    top: 318px;
-
-    background: #FFFFFF;
-    border: 5px solid #FF8AA3;
-    border-radius: 50px;
-
-}
-
-.modalButtons {
-    margin-top: 20px;
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-
-    color: #232323;
-}
-
-.modalButton1 {
-    transform: translate(200px, 110px);
-    width: 171px;
-    height: 44px;
-    background: #FEDA00;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-}
-
-.modalButton2 {
-    transform: translate(300px, 110px);
-    width: 171px;
-    height: 44px;
-    border: none;
-    background: #FF8AA3;
-    border-radius: 25px;
-
-
-    cursor: pointer;
-}
-
-.modalButton3 {
-    transform: translate(350px, 130px);
-    width: 171px;
-    height: 44px;
-    border: none;
-    background: #FF8AA3;
-    border-radius: 25px;
-
-
-    cursor: pointer;
-}
-
-.modalButton:hover {
-    background-color: #FF2B2B;
-}
-
-.modalMainText {
-    transform: translateY(60px);
-    font-family: 'BobaesumJindoTTF';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 44px;
-    text-align: center;
-
-    /* text/strong */
-    color: #232323;
-}
-
-.modalMainText2 {
-    transform: translateY(90px);
-    font-family: 'BobaesumJindoTTF';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 44px;
-    text-align: center;
-
-    /* text/strong */
-    color: #232323;
-}
-
-.modalSubText {
-    transform: translateY(90px);
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 36px;
-    text-align: center;
-
-    /* system/danger */
-    color: #FF5D18;
-}
-
-.modalButton1:hover {
-    background: #fbc700;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.modalButton1:active {
-    background: #fbc700;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* 모달 두 번째 버튼 */
-.modalButton2:hover, .modalButton3:hover {
-    background: #ff7a8e;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.modalButton2:active .modalButton3:active {
-    background: #ff7a8e;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.modalButton1, .modalButton2, .modalButton3 {
-    transition: background-color 0.3s ease, box-shadow 0.2s ease;
 }
 
 
@@ -220,7 +76,7 @@
     -webkit-line-clamp: 5;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 1153px;
+    width: 1383px;
     height: 200px;
     transform: translate(50px, 160px);
     background: #FFF9D1;
@@ -237,8 +93,8 @@
 }
 
 .inquiryTextExpanded {
-    width: 1153px;
-    height: 490px;
+    width: 1383px;
+    height: 479px;
     transform: translate(50px, 170px);
     background: #FFF9D1;
     border-radius: 30px;
@@ -263,8 +119,8 @@
     height: 30px;
     line-height: 30px;
     display: inline-block;
-    margin-top: 178px;
-    margin-left: 1108px;
+    margin-top: 170px;
+    margin-left: 1357px;
     font-family: 'Pretendard-Regular';
     font-size: 18px;
     font-weight: 600;
@@ -309,7 +165,7 @@
     -webkit-line-clamp: 6;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 1153px;
+    width: 1383px;
     height: 200px;
     transform: translate(50px, 220px);
     background: #FFF3A7;
@@ -326,7 +182,7 @@
 }
 
 .inquiryTextExpanded2 {
-    width: 1153px;
+    width: 1383px;
     height: 495px;
     transform: translate(50px, -80px);
     background: #FFF3A7;
@@ -353,7 +209,7 @@
     height: 30px;
     line-height: 30px;
     top: 826px;
-    left: 1159px;
+    left: 1645px;
     font-family: 'Pretendard-Regular';
     font-size: 18px;
     font-weight: 600;
@@ -384,7 +240,7 @@
     color: #232323;
 
 
-    left:790px;
+    left:1020px;
 }
 
 .Date {
@@ -455,60 +311,6 @@
     padding-left: 8px;
 }
 
-.notAnswer img {
-    transform: translate(-50px, -20px);
-}
-
-.notAnswer {
-    position: absolute;
-    width: 931px;
-    height: 120px;
-    left: 60px;
-    top: 280px;
-
-    background: #FFF3A7;
-    border-radius: 30px;
-
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 30px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.notAnswer p {
-    transform: translateX(-15px);
-}
-
-.editDeleteButtons {
-    position: absolute;
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-
-    color: #232323;
-
-}
-
-.editButton {
-    width: 180px;
-    height: 51px;
-    left: 820px;
-    top: 50px;
-    font-weight: 700;
-    background: #FEDA00;
-    border-radius: 50px;
-    border: none;
-    transition: all 0.3s ease;
-    position: absolute;
-}
-
 .delButton {
     position: absolute;
     width: 110px;
@@ -532,17 +334,6 @@
     cursor: pointer;
 }
 
-.editButton:hover {
-    background-color: #FFCB00;
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.editButton:active {
-    transform: scale(1);
-    box-shadow: none;
-}
-
 .delButton:hover {
     background-color: #FF5E7A;
     transform: scale(1.05);
@@ -552,91 +343,6 @@
 .delButton:active {
     transform: scale(1);
     box-shadow: none;
-}
-
-.inquiryTitleEditable {
-    position: absolute;
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-
-    transform: translate(60px, 140px);
-    display: inline-block;
-    border-radius: 15px;
-
-}
-
-.inquiryTextEditable {
-    display: -webkit-box;
-    width: 1153px;
-    height: 207px;
-    transform: translate(49px, 165px);
-    background: #FFF9D1;
-    border-radius: 30px;
-    padding: 10px 20px 15px 20px;
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 47px;
-}
-
-.inquiryTextEditable::-webkit-scrollbar {
-    width: 16px;
-    height: 16px;
-}
-
-.inquiryTextEditable::-webkit-scrollbar-track {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-}
-
-.inquiryTextEditable::-webkit-scrollbar-thumb {
-    background-color: #FFEB3B;
-    border-radius: 10px;
-    border: 3px solid #f0f0f0;
-}
-
-
-.CDButtons {
-    position: absolute;
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-
-    color: #232323;
-
-}
-
-.editConfirm {
-    width: 180px;
-    height: 51px;
-    left: 820px;
-    top: -179px;
-    font-weight: 700;
-    background: #FEDA00;
-    border-radius: 50px;
-    border: none;
-    transition: all 0.3s ease;
-    position: absolute;
-}
-
-.delCancel {
-    margin-left: 20px;
-    width: 180px;
-    height: 51px;
-    left: 1000px;
-    top: -179px;
-    font-weight: 700;
-    background: #FF8AA3;
-    border-radius: 50px;
-    border: none;
-    transition: all 0.3s ease;
-    position: absolute;
 }
 
 .horizon1 {
@@ -649,14 +355,10 @@
     background: #E3E3E3;
 }
 
-.inquiryInfoContainer{
+.inquiryArea{
     position: absolute;
-    width: 1488px;
-    height: 2px;
+    top: 30px;
     left: 56px;
-    
-
-    background: #E3E3E3;
 }
 
 .answerButton {
@@ -674,10 +376,131 @@
     font-weight: 700;
     font-size: 19px;
     align-items: center;
-
     /* text/strong */
     color: #232323;
+
+    transition: all 0.3s ease;
 
     border: none;
     cursor: pointer;
 }
+
+.answerButton:hover{
+    background-color: #FFF3A7;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.inputAnswerTitle {
+    width: 425px;
+    height: 40px;
+
+    padding-left: 10px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    /* line-height: 36px; */
+    border-radius: 10px;
+}
+
+.inputAnswerTitle::placeholder {
+    visibility: visible;
+}
+
+.inputAnswerContent {
+    
+    position: absolute;
+    top: 260px;
+    left: 50px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    width: 1383px;
+    height: 200px;
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 20px 15px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    resize: none;
+    overflow:scroll;
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
+}
+
+
+.inputAnswerContent::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+.inputAnswerContent::-webkit-scrollbar-track {
+    background-color: #E0F7FA;
+    border-radius: 10px;
+}
+
+.inputAnswerContent::-webkit-scrollbar-thumb {
+    background-color: #4FC3F7;
+    border-radius: 10px;
+    border: 3px solid #E0F7FA;
+}
+
+.inputAnswerContent::-webkit-scrollbar-thumb:hover {
+    background-color: #0288D1;
+}
+
+.cancelButton {
+    width: 110px;
+    height: 40px;
+
+    position: absolute;
+    left: 1275px;
+    top: 45px;
+    border: none;
+
+    border-radius: 50px;
+    background-color: #FF8AA3;
+
+    transition: all 0.3s ease;
+    cursor: pointer;
+    /*display: none;*/
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    align-items: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.cancelButton:hover {
+    background-color: #FFBDC9;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.fileButton {
+    position: absolute;
+    top: 168px;
+    left: 1380px;
+    padding: 12px 16px;
+    background-color: #FFEB3B;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+

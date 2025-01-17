@@ -351,7 +351,7 @@ a:active {
   width: 97px;
   height: 38px;
   border-radius: 25px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
@@ -369,7 +369,7 @@ a:active {
   width: 650px;
   height: max-content;
   left: 40px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
@@ -381,7 +381,7 @@ a:active {
   position: relative;
   width: 150px;
   left: 260px;
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
@@ -438,4 +438,4 @@ a:active {
 #background #noticeArea .pagination .arrow.disabled {
   visibility: hidden;
   cursor: default;
-}/*# sourceMappingURL=bossTotalNotice.module.css.map */
+}
