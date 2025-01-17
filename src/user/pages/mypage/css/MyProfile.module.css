@@ -88,34 +88,42 @@
     color: #232323;
 }
 
-.allReservationTitle, .allReviewTitle, .allRandomTitle {
+.allNumber {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
 
+.allNumber {
+    position: absolute;
+    display: flex;
+    flex-direction: column; /* 세로로 배치 */
+    align-items: center; /* 각 항목들을 가로로 중앙 정렬 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    gap: 10px; /* 각 항목 간의 간격 */
+    width: 100%;
+    top:365px;
+}
+
+.allNumber > div {
+    display: flex;
+    justify-content: space-between; /* 항목 간 간격을 균등하게 배치 */
+    width: 100%;
+    max-width: 400px; /* 각 줄의 최대 너비를 설정하여 일정하게 배치되도록 */
+}
+
+.allReservationTitle, .allReviewTitle, .allRandomTitle {
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 900;
     font-size: 25px;
     text-align: center;
-
     color: #232323;
-}
-
-.allReservationTitle {
-    display: inline-block;
-    transform: translate(5px, 90px);
-}
-
-.allReviewTitle {
-    display: inline-block;
-    transform: translate(70px, 90px);
-}
-
-.allRandomTitle {
-    display: inline-block;
-    transform: translate(125px, 90px);
+    flex: 1; /* 각 항목이 가로로 고르게 배치되도록 설정 */
 }
 
 .mypageReservationNo, .mypageReviewNo, .mypageRandomNo {
-
     font-family: 'Mungyeong-Gamhong-Apple';
     font-style: normal;
     font-weight: 400;
@@ -123,22 +131,10 @@
     line-height: 103%;
     text-align: center;
     letter-spacing: 0.03em;
-    display: inline-block;
-
     color: #FF8AA3;
+    flex: 1; /* 각 항목이 가로로 고르게 배치되도록 설정 */
 }
 
-.mypageReservationNo {
-    transform: translate(-237px, 120px);
-}
-
-.mypageReviewNo {
-    transform: translate(-132px, 120px);
-}
-
-.mypageRandomNo {
-    transform: translate(-23px, 120px);
-}
 
 
 .challengerMedal {
