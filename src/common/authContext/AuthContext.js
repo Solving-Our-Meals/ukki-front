@@ -12,6 +12,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [authToken, setAuthToken] = useState(null);
+    const [user, setUser] = useState(null); // 사용자 정보 추가
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -44,6 +45,18 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    // 사용자 정보 가져오기
+    const fetchUser = async () => {
+        try {
+            const response = await axiosInstance.get('/me');
+            if (response.status === 200) {
+                setUser(response.data); // 사용자 정보 저장
+            }
+        } catch (error) {
+            console.error('Failed to fetch user:', error);
+        }
+    };
+
     useEffect(() => {
         const verifyAuthToken = async () => {
             const isValid = await checkAuthToken();
@@ -51,11 +64,13 @@ export const AuthProvider = ({ children }) => {
                 const newToken = await refreshAuthToken();
                 if (newToken) {
                     setIsAuthenticated(true);
+                    await fetchUser(); // 토큰이 유효하면 사용자 정보도 받아옴
                 } else {
                     setIsAuthenticated(false);
                 }
             } else {
                 setIsAuthenticated(true);
+                await fetchUser(); // 인증이 유효한 경우 사용자 정보 가져옴
             }
             setLoading(false);
         };
@@ -68,11 +83,11 @@ export const AuthProvider = ({ children }) => {
             <div className={styles.loadingContainer}>
                 <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
             </div>
-        )
+        );
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, authToken, setAuthToken, refreshAuthToken }}>
+        <AuthContext.Provider value={{ isAuthenticated, authToken, user, setAuthToken, refreshAuthToken }}>
             {children}
         </AuthContext.Provider>
     );
