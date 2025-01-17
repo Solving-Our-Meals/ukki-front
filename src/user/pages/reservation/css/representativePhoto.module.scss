@@ -2,13 +2,14 @@
 
 #representativePhoto{
     position: absolute;
-    padding: 30px 30px;
+    // padding: 30px 30px;
     left : 89px;
     top : 100px;
     width: 587px;
     height : 690px;
     border-radius: 50px;
     background-color: rgba(0, 0, 0, 0.1);
+    object-fit: fill;
 }
 
 @media screen and (min-width : 769px) and (max-width : 1024px){
