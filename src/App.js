@@ -25,6 +25,8 @@ import Error404 from './common/error/pages/Error404';
 import Error403 from './common/error/pages/Error403';
 import Error500 from './common/error/pages/Error500';
 import BossPage from './store/pages/bossStore/pages/BossPage';
+// import BossReviewPage from './store/pages/bossReview/pages/BossReviewPage';
+import TotalReview from './store/pages/bossReview/pages/TotalReview';
 
 function App() {
     return (
@@ -54,7 +56,8 @@ function App() {
                     <Route path="/boss" element={<BossLayout />}>
                         <Route path="mypage" element={<PrivateRoute element={<BossPage/>}/>}/> 
                         <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
-                        <Route path="notice/:noticeNo" element={<PrivateRoute element={<BossSpecificPage/>}/>}/> 
+                        <Route path="notice/:noticeNo" element={<PrivateRoute element={<BossSpecificPage/>}/>}/>
+                        <Route path="review" element={<PrivateRoute element={<TotalReview/>}/>}/>
                     </Route>
 
                     {/* QR 관련 및 관리자 관련 라우팅 */}
