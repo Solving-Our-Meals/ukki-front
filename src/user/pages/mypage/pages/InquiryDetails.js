@@ -183,8 +183,32 @@ function InquiryDetail({ userInfo }) {
         }
     };
 
+    const handleFileDownload = async (filePath) => {
+        try {
+            // 파일 경로에서 파일 이름만 추출 (예: "2025-01-17.txt") - 이거 없으면 경로가 들어가서 오류남
+            const fileName = filePath.split('/').pop().split('\\').pop();
 
+            console.log("파일 다운로드 시작:", fileName);  // 확인용 로그
 
+            // 위에서 자른 파일이름만 전달하기
+            const response = await fetch(`/user/mypage/download/${fileName}`, {
+                method: 'GET',
+                credentials: 'include', // 쿠키 포함
+            });
+
+            if (!response.ok) {
+                throw new Error('파일 다운로드 실패');
+            }
+
+            const blob = await response.blob();
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = fileName;  // 다운로드할 파일명
+            downloadLink.click();
+        } catch (error) {
+            console.error('파일 다운로드 오류:', error);
+        }
+    };
 
     const handleCancelEdit = () => {
         setIsConfirmingEdit(false);
@@ -227,15 +251,12 @@ function InquiryDetail({ userInfo }) {
 
             <div className={styles.fileDownloadContainer}>
                 {inquiry.file ? (
-                    <div>
-                        <a
-                            href={`/uploads/${inquiry.file}`}
-                            download={inquiry.file}
-                            className={styles.fileDownloadLabel}
-                        >
-                            {inquiry.file}
-                        </a>
-                    </div>
+                    <button
+                        onClick={() => handleFileDownload(inquiry.file)}
+                        className={styles.fileDownloadLabel}
+                    >
+                        {inquiry.file}
+                    </button>
                 ) : null}
             </div>
 
