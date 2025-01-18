@@ -244,6 +244,10 @@ function InquiryDetail({ userInfo }) {
         setIsConfirmingDelete(false);
     };
 
+    const getFileName = (filePath) => {
+        return filePath.split('/').pop().split('\\').pop();
+    };
+
     return (
         <div className={styles.inquiryDetailContainer}>
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore}/>}
@@ -255,7 +259,7 @@ function InquiryDetail({ userInfo }) {
                         onClick={() => handleFileDownload(inquiry.file)}
                         className={styles.fileDownloadLabel}
                     >
-                        {inquiry.file}
+                        {getFileName(inquiry.file)}
                     </button>
                 ) : null}
             </div>
