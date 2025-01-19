@@ -116,12 +116,12 @@ function CreateReview(){
     const submitHandler = () => {
         const formData = new FormData();
         formData.append('params', JSON.stringify({
-            reviewDate: review.reviewDate,
-            reviewContent: review.reviewContent,
-            reviewScope: review.reviewScope,
-            storeNo: review.storeNo,
-            userNo: review.userNo,
-            resNo: review.resNo,
+            reviewDate: review.reviewDate || "",
+            reviewContent: review.reviewContent || "",
+            reviewScope: review.reviewScope || "",
+            storeNo: review.storeNo || "",
+            userNo: review.userNo || "",
+            resNo: review.resNo || "",
         }));
 
         // 이미지가 있을 때만 formData에 추가

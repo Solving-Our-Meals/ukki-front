@@ -106,13 +106,21 @@ function KakaoMap(){
                 >
                     <CustomOverlayMap
                         position={{ lat : storeLatitude, lng : storeLongitude}}
-                        yAnchor={2.3}
+                        yAnchor={2.35}
                     >
                         <div className={styles.customoverlay}>
-                            <div>
-                                {storeName} <br/>
+                            <span>{storeName}</span>
+                            <br/>
+                            <span>{storeInfo.storeAddress}</span>
+                            {/* <div id={styles.storeName}>
+                                {storeName} 
+                                <br/>
                                 {storeInfo.storeAddress}
                             </div>
+                            <div id={styles.storeAddress}>
+                                {storeName} <br/>
+                                {storeInfo.storeAddress}
+                            </div> */}
                             {/* <div>
                                 <a
                                     href= {mapLink}
