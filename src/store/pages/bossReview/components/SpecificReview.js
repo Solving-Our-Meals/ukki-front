@@ -4,6 +4,11 @@ import styles from '../css/specificReview.module.css';
 function SpecificReview({reviewNo, storeNo}){
 
     const [review, setReview] = useState({});
+    const [showReportModal, setShowReportModal] = useState(false);
+    const [reportTitle, setReportTitle] = useState("");
+    const [reportContent, setReportContent] = useState("");
+    const [reportedReviewNo, setReportedReviewNo] = useState("");
+    const [isReportComplete, setIsReportComplete] = useState(false);
 
     useEffect(() => {
         if (!reviewNo) {
@@ -21,12 +26,57 @@ function SpecificReview({reviewNo, storeNo}){
     }, [reviewNo]);
     
     const renderStars = (reviewScope) => {
-            let stars = [];
-            for (let i = 0; i < reviewScope; i++) {
-                stars.push(<span key={i} className={styles.star}>&#x2B50;</span>);
+        let stars = [];
+        for (let i = 0; i < reviewScope; i++) {
+            stars.push(<span key={i} className={styles.star}>&#x2B50;</span>);
+        }
+        return stars;
+    };
+
+    const reportHandler = () => {
+        setShowReportModal(true);
+    }
+
+    const reportCancleHandler = () => {
+        setReportTitle("");
+        setReportContent("");
+        setShowReportModal(false);
+    };
+
+    const submitHandler = () => {
+        const today = new Date();
+        const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+        const data = { 
+            reportTitle: reportTitle, 
+            reportContent: reportContent, 
+            reviewNo: reviewNo, 
+            reportDate: formattedDate // 날짜 추가 
+            };
+
+        fetch(`/boss/mypage/reviewReport?storeNo=${storeNo}`, {
+            method: 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(data)
+        })
+        .then((res) => {
+            if (res.ok) {
+                setReportTitle("");
+                setReportContent("");
+                setShowReportModal(false);
+                setIsReportComplete(true);
+            } else {
+                console.error("Failed to submit review", res.statusText);
             }
-            return stars;
-        };
+        })
+        .catch(error => console.error("Error:", error));
+    }
+
+    const completeHandler = () => {
+        setIsReportComplete(false);
+    }
 
     return(
         <>
@@ -41,11 +91,52 @@ function SpecificReview({reviewNo, storeNo}){
                         <span id={styles.useName}>{review.userName}</span>
                         {renderStars(review.reviewScope)}
                     </div>
-                    <button id={styles.reportBtn}>신고하기</button>
+                    <button 
+                        id={styles.reportBtn}
+                        onClick={() => reportHandler()}
+                    >
+                        신고하기
+                    </button>
                     <div>{review.reviewDate}</div>
                     <div>{review.reviewContent}</div>
                     <img src={`/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
                 </div> 
+            </div>
+            <div className={styles.overlay} style={{display : showReportModal || isReportComplete ? "" : "none"}}></div>
+            <div 
+                id={styles.reportModal}
+                style={{display : showReportModal ? "" : "none"}}
+            >
+                <span id={styles.strReport}>신고하기</span>
+                <span id={styles.strReportTitle}>신고 제목 : </span>
+                <input 
+                    type='text' 
+                    name='reportTitle'
+                    placeholder='제목을 입력하세요.' 
+                    value={reportTitle}
+                    className={styles.inputTitle}
+                    onChange={(e) => setReportTitle(e.target.value)}
+                />
+                <textarea
+                    id={styles.inputReportContent}
+                    name='reportContent'
+                    value={reportContent}
+                    onChange={(e) => setReportContent(e.target.value)}
+                    placeholder='신고 내용을 입력하세요.'
+                />
+                <button type='button' id={styles.reportCancle} onClick={(e) => reportCancleHandler(e)}>취소</button>
+                <button 
+                    type='submit' 
+                    id={styles.reportConfirm} 
+                    onClick={() => submitHandler()}
+                >
+                    확인
+                </button>
+            </div>
+            <div id={styles.completeReportModal} style={{display : isReportComplete ? "" : "none"}}>
+                <p id={styles.completedReportMessage}>신고가 접수되었습니다.</p>
+                <p id={styles.completedReportNotice}>문의내역에서 확인하실 수 있습니다.</p>
+                <button type='button' id={styles.completeBtn} onClick={() => completeHandler()}>확인</button>        
             </div>
         </>
     );
