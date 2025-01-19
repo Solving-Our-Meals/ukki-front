@@ -124,6 +124,11 @@ function Reservation() {
         }
     };
 
+    const handleReviewClick = (reviewNo) => {
+        navigate(`/user/mypage/reservation/${reviewNo}`)
+    };
+    console.log(userInfo)
+
     return (
         <div className={styles.mypageReservation}>
             <div className={styles.allTabs}>
@@ -155,7 +160,10 @@ function Reservation() {
                 {/* 예약 항목 */}
                 {currentItems.length > 0 ? (
                     currentItems.map((reservation, index) => (
-                        <div key={index} className={styles.reservationItem}>
+                        <div key={index}
+                             className={styles.reservationItem}
+                             onClick={() => handleReviewClick(reservation.resNo)}
+                        >
                             <div className={styles.headerItem}>{reservation.storeName}</div>
                             <div className={styles.headerItem}>
                                 {reservation.date} {reservation.time}
