@@ -10,8 +10,8 @@ function MyProfile() {
     const navigate = useNavigate();
     const [showTooltip, setShowTooltip] = useState(null);
 
-    const [profileImage, setProfileImage] = useState(null);
-    const [imageFile, setImageFile] = useState(null);
+    const [profileImage, setProfileImage] = useState(null); // 선택된 이미지 미리보기
+    const [imageFile, setImageFile] = useState(null); // 업로드할 파일
     const [image, setImage] = useState(null);
 
     useEffect(() => {
@@ -44,16 +44,16 @@ function MyProfile() {
     // 로딩
     if (loading) {
         return (
-        <div className={styles.loadingContainer}>
-            <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
-        </div>
+            <div className={styles.loadingContainer}>
+                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+            </div>
         )
     }
 
     if (error) {
         return (
             <div className={styles.loadingContainer}>
-                <img src="/images/mypage/profile/notInfo.png" alt="없는 정보"/>
+                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
             </div>
         )
     }
@@ -69,17 +69,18 @@ function MyProfile() {
     const hasAchievedBadge = rvc >= 10;
     const hasAchievedBadge2 = rc >= 10;
     const hasAchievedBadge3 = rvc >= 25;
-    const hasAchievedBadge4 = rdc >=3;
+    const hasAchievedBadge4 = rdc >= 3;
     const hasAchievedBadge5 = rc >= 20;
     const hasAchievedBadge6 = rvc >= 50 && rc >= 30 && rdc >= 7;
 
+    // 이미지 파일 선택 시 미리보기
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             setImageFile(file);
             const reader = new FileReader();
             reader.onloadend = () => {
-                setProfileImage(reader.result);  // 선택한 이미지를 미리보기로 표시
+                setProfileImage(reader.result);  // 미리보기 이미지
             };
             reader.readAsDataURL(file);
         }
@@ -101,24 +102,65 @@ function MyProfile() {
                 credentials: 'include',
             });
 
-            const result = await response.json();
+            const result = await response.text();
             if (response.ok) {
-                // 서버에서 성공적으로 이미지를 업데이트하면 새로운 프로필 이미지를 가져와서 상태 업데이트
-                setUserInfo(result);
-                setProfileImage(result.profileImage);
+                alert(result);
+                setUserInfo(prev => ({ ...prev, profileImage: result })); // 서버 응답을 사용자 정보에 반영
+                setProfileImage(result);
             } else {
-                alert('이미지 업로드에 실패했습니다.');
+                alert(result);
             }
         } catch (error) {
             alert('이미지 업로드 중 오류가 발생했습니다.');
         }
     };
 
+
     return (
         <div className={styles.profileMain}>
-            <img className={styles.profileImage} src={userInfo?.profileImage || "/images/mypage/profile/default.png"}
-                 alt="Profile"/>
-                <img src="/images/mypage/profile/pencil.gif" alt="업로드 아이콘" className={styles.uploadButton} onClick={handleImageUpload}/>
+            <div className={styles.profileImageContainer}>
+                {/* 기본 이미지만 별도로 위치시킴 */}
+                {!profileImage && !userInfo?.profileImage && (
+                    <img
+                        className={styles.defaultImage}
+                        src="/images/mypage/profile/default.png"
+                        alt="Default Profile"
+                        onClick={() => document.getElementById('fileInput').click()} // 기본 이미지를 클릭하면 파일 선택 창 열기
+                    />
+                )}
+
+                {/* 사용자 이미지 */}
+                <img
+                    className={styles.profileImage}
+                    src={profileImage || userInfo?.profileImage || ""}
+                    alt="Profile"
+                    onClick={() => document.getElementById('fileInput').click()} // 이미지 클릭시 파일 선택 창 열기
+                />
+
+                {/* 프로필 이미지 변경 문구 */}
+                <div className={styles.profileImageText}>
+                    프로필 이미지 변경
+                </div>
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    className={styles.uploadInput}
+                    onChange={handleImageChange}
+                    accept="image/*"
+                    style={{display: 'none'}} // 파일 입력창은 숨김
+                />
+
+                {/* 업로드 아이콘 */}
+                {profileImage && (
+                    <img
+                        src="/images/mypage/profile/pencil.gif"
+                        alt="업로드 아이콘"
+                        className={styles.uploadButton}
+                        onClick={handleImageUpload} // 이미지 업로드 버튼 클릭 시 업로드
+                    />
+                )}
+            </div>
             <p className={styles.mypageNickname}>{userInfo?.nickname || ''}</p>
             <hr className={styles.mypageHorizonLine1}/>
             <div className={styles.mypageTextBox}>나의 도전현황</div>
