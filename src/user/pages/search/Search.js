@@ -8,23 +8,22 @@ import Profile from '../storedetail/components/Profile';
 import Footer from './components/Footer';
 
 function Search() {
-  const { storeNo } = useParams();
+  const {storeNo} = useParams();
   const [searchTerm, setSearchTerm] = useState(''); // 검색어
   const [storeList, setStoreList] = useState([]); // 검색된 가게 목록
   const navigate = useNavigate();
 
   const [recentSearches, setRecentSearches] = useState([]); // 최근 검색어
-
+  const footerRef = useRef(null);
   // 최근 검색어 로드
   useEffect(() => {
     const storedSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
     setRecentSearches(storedSearches);
-  }, []);
-
+  }, []); 
+  
+  // 최근 검색어
   const [popularSearches, setPopularSearches] = useState([]); // 실시간 인기 검색어
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태
-
-  const footerRef = useRef(null);
 
   // 검색어 입력 시 자동완성 리스트 업데이트
   const updateSearch = (e) => {
@@ -55,18 +54,18 @@ function Search() {
 
     // 수정된 URL 경로 (storeName을 쿼리 파라미터로 전달)
     axios.get(`/store/search?name=${encodedName}`)
-        .then((response) => {
-          if (response.data && response.data.length) {
-            setStoreList(response.data); // 검색된 가게 목록을 상태에 저장
-          } else {
-            setStoreList([]); // 검색 결과가 없을 경우 빈 배열 설정
-          }
-          setIsLoading(false); // 로딩 종료
-        })
-        .catch((error) => {
-          console.error('검색 오류:', error);
-          setIsLoading(false); // 로딩 종료
-        });
+      .then((response) => {
+        if (response.data && response.data.length) {
+          setStoreList(response.data); // 검색된 가게 목록을 상태에 저장
+        } else {
+          setStoreList([]); // 검색 결과가 없을 경우 빈 배열 설정
+        }
+        setIsLoading(false); // 로딩 종료
+      })
+      .catch((error) => {
+        console.error('검색 오류:', error);
+        setIsLoading(false); // 로딩 종료
+      });
   };
 
   const handleSearch = () => {
@@ -79,13 +78,13 @@ function Search() {
 
       // 서버에 검색어 기록 (엔터키 눌렀을 때만)
       axios.post('/store/insertOrUpdateSearch', { storeName: searchTerm })
-          .then(() => {
-            // 인기 검색어 갱신 후 다시 가져오기
-            fetchPopularSearches();
-          })
-          .catch((error) => {
-            console.error('검색어 기록 오류:', error);
-          });
+        .then(() => {
+          // 인기 검색어 갱신 후 다시 가져오기
+          fetchPopularSearches();
+        })
+        .catch((error) => {
+          console.error('검색어 기록 오류:', error);
+        });
     }
   };
 
@@ -93,25 +92,24 @@ function Search() {
   const fetchPopularSearches = () => {
     setIsLoading(true); // 데이터를 가져오기 전에 로딩 상태 설정
     axios
-        .get('/store/popular-searches')
-        .then((response) => {
-          console.log('Popular Search Response:', response.data); // 응답 데이터 확인
-          if (Array.isArray(response.data)) {
-            setPopularSearches(response.data); // 인기 검색어 상태 업데이트
-          } else {
-            console.error("Invalid data format for popular searches:", response.data);
-          }
-          setIsLoading(false); // 로딩 종료
-        })
-        .catch((error) => {
-          console.error('Error fetching popular searches:', error);
-          setIsLoading(false); // 로딩 종료
-        });
+      .get('/store/popular-searches')
+      .then((response) => {
+        console.log('Popular Search Response:', response.data); // 응답 데이터 확인
+        if (Array.isArray(response.data)) {
+          setPopularSearches(response.data); // 인기 검색어 상태 업데이트
+        } else {
+          console.error("Invalid data format for popular searches:", response.data);
+        }
+        setIsLoading(false); // 로딩 종료
+      })
+      .catch((error) => {
+        console.error('Error fetching popular searches:', error);
+        setIsLoading(false); // 로딩 종료
+      });
   };
 
   useEffect(() => {
     fetchPopularSearches();  // 컴포넌트가 마운트될 때 인기 검색어 불러오기
-    adjustFooterPosition();
   }, []);
 
   const handleKeyPress = (e) => {
@@ -120,23 +118,26 @@ function Search() {
     }
   };
 
-  // 예약하기 버튼 클릭 시 해당 storeNo 페이지로 이동
-  const handleReservation = (storeNo) => {
-    navigate(`/store/${storeNo}`); // storeNo에 해당하는 페이지로 이동
-  };
 
-  const handleRecentSearch = (term) => {
-    setSearchTerm(term); // 검색어 상태 업데이트
-    searchStores(term);   // 해당 검색어로 검색 실행
-  };
+    // 예약하기 버튼 클릭 시 해당 storeNo 페이지로 이동
+    const handleReservation = (storeNo) => {
+      navigate(`/store/${storeNo}`); // storeNo에 해당하는 페이지로 이동
+    };
 
-   // Footer의 위치를 조정하는 함수
+
+    const handleRecentSearch = (term) => {
+      setSearchTerm(term); // 검색어 상태 업데이트
+      searchStores(term);   // 해당 검색어로 검색 실행
+    };
+
+
+  // Footer의 위치를 조정하는 함수
   const adjustFooterPosition = () => {
-    if(footerRef.current){
+    if (footerRef.current) {
       const storeListElement = document.getElementById(style.storeList);
-      if(storeListElement && storeListElement.children.length > 1){
+      if (storeListElement && storeListElement.children.length > 1) {
         // const storeListAreaBottom = storeListElement.getBoundingClientRect().bottom;
-        const footerTop =  window.scrollY + 450
+        const footerTop = window.scrollY + 450
 
         footerRef.current.style.top = `${footerTop}px`;
       } else {
@@ -145,16 +146,16 @@ function Search() {
     } else {
       footerRef.current.style.top = `${window.innerHeight - footerRef.current.offsetHeight}px`
     }
-  };  
-  
+  };
+
 
   useEffect(() => {
     // 컴포넌트가 마운트되거나 리뷰가 업데이트 될 때 Footer 위치 조정
     adjustFooterPosition();
     window.addEventListener('resize', adjustFooterPosition); // 창 크기 조정 시 Footer 위치 조정
 
-    return() => {
-        window.removeEventListener('resize', adjustFooterPosition) // 이벤트 리스너 정리                
+    return () => {
+      window.removeEventListener('resize', adjustFooterPosition) // 이벤트 리스너 정리                
     }
   }, [storeList])
 
@@ -164,61 +165,75 @@ function Search() {
         <div className={style.input}>
           <div>
             <input
-                className={style.dlsvnt}
-                type="search"
-                value={searchTerm}
-                onChange={updateSearch}
-                onKeyPress={handleKeyPress}  // 엔터키 눌렀을 때 검색 처리
-                placeholder="검색어를 입력하세요"
+              className={style.dlsvnt}
+              type="search"
+              value={searchTerm}
+              onChange={updateSearch}
+              onKeyPress={handleKeyPress}  // 엔터키 눌렀을 때 검색 처리
+              placeholder="검색어를 입력하세요"
             />
             <img
-                src={search}
-                alt="search"
-                onClick={handleSearch}  // 아이콘 클릭 시 검색 처리
+              src={search}
+              alt="search"
+              onClick={handleSearch}  // 아이콘 클릭 시 검색 처리
             />
           </div>
 
           <p>최근 검색어</p>
           <div className={style.boxs}>
             {recentSearches.map((term, index) => (
-                <span key={term + index} onClick={() => handleRecentSearch(term)}>{term}</span>
+              <span key={term + index} onClick={() => handleRecentSearch(term)}>{term}</span>
             ))}
           </div>
 
           <p>실시간 인기 검색어</p>
           <div className={style.box}>
             {popularSearches.length > 0 ? (
-                popularSearches.map((search, index) => (
-                    <span key={index}>{index + 1}. {search}</span>
-                ))
+              popularSearches.map((search, index) => (
+                <span key={index}>{index + 1 + '. '}{search}</span> // 바로 문자열을 출력
+              ))
             ) : (
-                <p>로딩 중...</p> // 로딩 중일 때 표시할 메시지
+              <p></p>
             )}
           </div>
 
-          <div className={style.dlsrl}></div>
+          <div className={style.dlsrl}>
+
+          </div>
+          <div></div>
         </div>
 
-        <div className={style.storeList} id={style.storeList}>
+        <div className={style.storeList}>
           {storeList.length > 0 ? (
-              storeList.map((store) => (
-                  <div key={store.storeNo} id={style.storeInfo}>
-                    <Profile storeNo={store.storeNo}/>
-                    <h3>{store.storeName}</h3>
-                    <p>{store.storeAddress}</p>
-                    <p>{store.storeDes}</p>
-                    <button onClick={() => handleReservation(store.storeNo)}>예약하기</button>
-                    <span>가게 키워드</span>
-                    <hr/>
+            storeList.map((store) => (
+              <div key={store.storeNo}>
+                <Profile storeNo={store.storeNo} />
+                <h3>{store.storeName}</h3>
+                <p>{store.storeAddress}</p>
+                <p>{store.storeDes}</p>
+                <button onClick={() => handleReservation(store.storeNo)}>예약하기</button>
+
+                <span>가게 키워드</span>
+                {store.storeKeyword && (
+                  <div>
+                    {Object.values(store.storeKeyword).map((keyword, index) => (
+                      keyword !== 0 && <span key={index}>{keyword}</span>
+                    ))}
                   </div>
-              ))
+                )}
+                F
+                <hr />
+              </div>
+            ))
           ) : (
-              <h3 className={style.no}>검색결과가 없습니다.</h3> // 검색 결과가 없을 때 메시지 표시
+            <h3 className={style.no}>"검색결과가 없습니다."</h3>
           )}
         </div>
+
       </div>
-      <Footer ref={footerRef}/>
-      </>
+
+      <Footer ref={footerRef} />
+    </>
   );
 }
 
