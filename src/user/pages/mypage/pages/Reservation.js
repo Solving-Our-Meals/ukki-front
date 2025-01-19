@@ -124,8 +124,8 @@ function Reservation() {
         }
     };
 
-    const handleReviewClick = (reviewNo) => {
-        navigate(`/user/mypage/reservation/${reviewNo}`)
+    const handleReviewClick = (resNo) => {
+        navigate(`/user/mypage/reservation/${resNo}`)
     };
     console.log(userInfo)
 
