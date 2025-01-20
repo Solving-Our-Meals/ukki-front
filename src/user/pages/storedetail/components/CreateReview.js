@@ -42,7 +42,7 @@ function CreateReview(){
         reviewScope : "",
         storeNo : "",
         userNo : "",
-        resNo : "9999"
+        resNo : ""
     });
 
     const onChangeHandler = (e) => {
@@ -203,7 +203,7 @@ function CreateReview(){
     }
 
     // 리뷰 작성하기 버튼 활성화 여부
-    const [writeReview, setWriteReview] = useState(true);
+    const [writeReview, setWriteReview] = useState(false);
 
     // DB에 유저 넘버와 가게 번호 넘기기
     // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기

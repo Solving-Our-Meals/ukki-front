@@ -1,0 +1,277 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+#totalArea {
+  position: relative;
+  left: 281px;
+  top: 74px;
+  width: 1622px;
+  height: 444px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#totalArea .reviewContainer {
+  position: relative;
+  border: 3px solid #FF8AA3;
+  width: 1602px;
+  height: 424px;
+  border-radius: 25px;
+}
+#totalArea .reviewContainer #userProfile {
+  position: relative;
+  left: 50px;
+  top: 30px;
+  width: 114px;
+  height: 108px;
+  z-index: 5;
+  border-radius: 0;
+}
+#totalArea .reviewContainer div {
+  position: absolute;
+  width: max-content;
+  cursor: default;
+  z-index: 2;
+}
+#totalArea .reviewContainer div:nth-of-type(1) {
+  left: 190px;
+  top: 43px;
+  width: max-content;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 30px;
+  font-weight: 500;
+  font-style: normal;
+  color: #232323;
+  z-index: 5;
+}
+#totalArea .reviewContainer div:nth-of-type(1) span {
+  margin-right: 8px;
+}
+#totalArea .reviewContainer div:nth-of-type(1) .star {
+  font-size: 25px;
+  margin-right: -5px;
+  display: inline-block;
+}
+#totalArea .reviewContainer div:nth-of-type(2) {
+  left: 190px;
+  top: 87px;
+  width: max-content;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  color: #232323;
+  z-index: 5;
+}
+#totalArea .reviewContainer div:nth-of-type(3) {
+  left: 50px;
+  top: 150px;
+  width: 1000px;
+  height: 243px;
+  background-color: #FFF9D3;
+  padding: 20px 15px;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  color: #232323;
+  line-height: 160%;
+  border-radius: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#totalArea .reviewContainer #reviewPhoto {
+  position: absolute;
+  right: 50px;
+  top: 27px;
+  width: 468px;
+  height: 367px;
+  border-radius: 0;
+  z-index: 5;
+}
+#totalArea .reviewContainer #reportBtn {
+  position: absolute;
+  left: 870px;
+  top: 40px;
+  width: 175px;
+  height: 65px;
+  border: none;
+  border-radius: 50px;
+  background-color: #FEDA00;
+  color: #FF5D18;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 30px;
+  cursor: pointer;
+}
