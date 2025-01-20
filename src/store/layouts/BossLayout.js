@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../../common/header/components/Header";
 import FloatingBar from "../../common/floatingBar/components/FloatingBar";
 import styles from './css/bosslayout.module.css';
+import Sidebar from '../pages/bossStore/components/Sidebar';
 
 function BossLayout() {
     const [storeInfo, setStoreInfo] = useState(null); // 가게 정보
@@ -48,7 +49,9 @@ function BossLayout() {
         <>
             <div className={styles.layoutStyle}>
                 <Header className={styles.header} />
-                {/!* 에러 상태를 UI에 반영 *!/}
+                <Sidebar/>
+                {/* 에러 상태를 UI에 반영 */}
+
                 {error ? (
                     <div className={styles.errorMessage}>{error}</div>
                 ) : (
@@ -61,12 +64,8 @@ function BossLayout() {
                 )}
             </div>
             <FloatingBar />
-
-
-
         </>
     );
 }
 
 export default BossLayout;
-*/

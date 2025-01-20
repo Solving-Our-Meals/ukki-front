@@ -176,7 +176,7 @@ a:active {
 }
 #totalArea {
   position: relative;
-  left: 281px;
+  left: 260px;
   top: 75px;
   width: 1622px;
   height: 400px;
@@ -266,7 +266,6 @@ a:active {
   display: flex;
   flex-direction: row;
   gap: 13px;
-  cursor: pointer;
   transition: transform 0.5s ease-in-out;
 }
 #totalArea #reviewContainer .review {
@@ -276,6 +275,7 @@ a:active {
   background-color: #FFF9D1;
   flex-shrink: 0;
   position: relative;
+  cursor: pointer;
 }
 #totalArea #reviewContainer .review span {
   font-size: 20px;
@@ -324,4 +324,4 @@ a:active {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+}/*# sourceMappingURL=totalReview.module.css.map */

@@ -113,7 +113,7 @@ function TotalReview(){
                 style={{ 
                     position : 'absolute',
                     width : '1600px',
-                    left : '285px',
+                    left : '260px',
                     top : '475px',
                     border : '2px dashed #D9D9D9'
                 }}

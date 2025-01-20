@@ -176,7 +176,7 @@ a:active {
 }
 #background {
   position: absolute;
-  left: 281px;
+  left: 260px;
   top: 75px;
   bottom: 0px;
   width: 1622px;
@@ -251,7 +251,7 @@ a:active {
   position: absolute;
   width: max-content;
   height: max-content;
-  left: 15px;
+  left: 25px;
   top: 120px;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
@@ -337,7 +337,6 @@ a:active {
   top: 50px;
   left: 50%;
   transform: translateX(-50%);
-  cursor: pointer;
 }
 #background .noticeListArea .noticeContainer .notice {
   position: relative;
@@ -448,4 +447,4 @@ a:active {
 #background .noticeListArea .pagination .arrow.disabled {
   visibility: hidden;
   cursor: default;
-}
+}/*# sourceMappingURL=bossTotalNotice.module.css.map */

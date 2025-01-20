@@ -175,7 +175,7 @@ a:active {
 }
 #noticeArea {
   position: relative;
-  left: 281px;
+  left: 260px;
   top: 75px;
   bottom: 0px;
   width: 1622px;
@@ -268,4 +268,4 @@ a:active {
   line-height: 160%;
   overflow-y: auto;
   overflow-x: hidden;
-}
+}/*# sourceMappingURL=bossSpecificNotice.module.css.map */
