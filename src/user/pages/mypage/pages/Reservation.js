@@ -42,7 +42,7 @@ function Reservation() {
     };
 
     const handleSearch = () => {
-        const query = searchQuery ? `?search=${searchQuery}` : ''; // 검색어가 있으면 쿼리 추가
+        const query = searchQuery ? `?search=${searchQuery}` : '';
         setLoading(true);
         fetchUserInfo(query);
         setCurrentPage(1);
