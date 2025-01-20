@@ -211,6 +211,19 @@ function ProfileInfo() {
         </div>
     );
 
+    const DeleteConfirmModal = ({ onConfirm, onCancel }) => (
+        <div className={styles.modalOverlay}>
+            <div className={styles.modal}>
+                <h3 className={styles.modalMainText}>정말 탈퇴하시겠습니까?</h3>
+                <h3 className={styles.modalSubText}>탈퇴한 정보는 복구할 수 없습니다.</h3>
+                <div className={styles.modalButtons}>
+                    <button className={styles.modalButton1} onClick={onConfirm}>확인</button>
+                    <button className={styles.modalButton2} onClick={onCancel}>취소</button>
+                </div>
+            </div>
+        </div>
+    );
+
     const SuccessModal = ({ onClose }) => (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
@@ -234,31 +247,33 @@ function ProfileInfo() {
     );
 
     const handleDeleteAccount = async () => {
+        setShowConfirmModal(true);
+    };
+
+    const handleConfirmDelete = async () => {
+        setShowConfirmModal(false);
         try {
-            const confirmDelete = window.confirm("정말로 탈퇴하시겠습니까?");
-            if (confirmDelete) {
-                const response = await fetch('/user/mypage/delete', {
-                    method: 'DELETE',
+            const response = await fetch('/user/mypage/delete', {
+                method: 'DELETE',
+                credentials: 'include',
+            });
+
+            if (response.ok) {
+                const logoutResponse = await fetch('/auth/logout', {
+                    method: 'POST',
                     credentials: 'include',
                 });
 
-                if (response.ok) {
-                    const logoutResponse = await fetch('/auth/logout', {
-                        method: 'POST',
-                        credentials: 'include',
-                    });
+                const logoutData = await logoutResponse.json();
 
-                    const logoutData = await logoutResponse.json();
-
-                    if (logoutData.success) {
-                        navigate('/main');
-                    } else {
-                        alert(logoutData.message || '로그아웃 처리 중 오류가 발생했습니다.');
-                    }
+                if (logoutData.success) {
+                    navigate('/main');  // 탈퇴 후 메인 페이지로 이동
                 } else {
-                    const result = await response.json();
-                    alert(result.message || '탈퇴 처리 중 오류가 발생했습니다.');
+                    alert(logoutData.message || '로그아웃 처리 중 오류가 발생했습니다.');
                 }
+            } else {
+                const result = await response.json();
+                alert(result.message || '탈퇴 처리 중 오류가 발생했습니다.');
             }
         } catch (error) {
             alert('탈퇴 처리 중 오류가 발생했습니다.');
@@ -402,7 +417,16 @@ function ProfileInfo() {
                     </button>
                 </div>
             )}
+
+            {showConfirmModal && (
+                <DeleteConfirmModal
+                    onConfirm={handleConfirmDelete}
+                    onCancel={() => setShowConfirmModal(false)}
+                />
+            )}
+
         </div>
+
     );
 }
 
