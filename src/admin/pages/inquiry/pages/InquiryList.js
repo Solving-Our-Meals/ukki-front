@@ -118,7 +118,7 @@ function InquiryList() {
 
     return (
         <>
-            <div className={styles.inquiryListText}>리뷰리스트</div>
+            <div className={styles.inquiryListText}>문의리스트</div>
             <div className={styles.totalInquiryCount}>총 {totalInquiries}개의 문의가 있습니다.</div>
             <div className={styles.inquiryListBtnPosition}>
             <button type="button" className={`${styles.inquiryListBtn} ${isUser ? styles.active : ''}`} onClick={() => {setIsUser(true); setIsStore(false);}}>회원문의</button>

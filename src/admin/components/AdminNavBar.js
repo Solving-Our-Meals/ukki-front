@@ -1,6 +1,13 @@
 import '../../common/reset/reset.css'
 import './css/AdminNavBar.css'
 import { NavLink } from "react-router-dom";
+import dashboardIcon from './css/images/navbar/dashboard.png';
+import storeIcon from './css/images/navbar/store.png';
+import userIcon from './css/images/navbar/user.png';
+import reservationIcon from './css/images/navbar/reservation.png';
+import reviewIcon from './css/images/navbar/review.png';
+import inquiryIcon from './css/images/navbar/inquiry.png';
+import noticeIcon from './css/images/navbar/notice.png';
 
 function AdminNavBar(){
 
@@ -13,31 +20,31 @@ function AdminNavBar(){
         <div id='adminNavBar'>
             <NavLink id='adminEnterDashboard' to="/admin/dashboard"
                     end style={({ isActive, isPending }) => (isActive || isPending) ? activeStyle : undefined}>
-                    <img src='/images/admin/navbar/dashboard.png'/>
+                    <img src={dashboardIcon} alt="dashboard"/>
             </NavLink>
             <NavLink id='adminEnterStore' to="/admin/stores"
                     style={({ isActive }) => isActive? activeStyle : undefined}>
-                    <img src='/images/admin/navbar/store.png'/>
+                    <img src={storeIcon} alt="store"/>
             </NavLink>
             <NavLink id='adminEnterUser' to="/admin/users"
                     style={({ isActive }) => isActive? activeStyle : undefined}>
-                    <img src='/images/admin/navbar/user.png'/>
+                    <img src={userIcon} alt="user"/>
             </NavLink>
             <NavLink id='adminEnterReservation' to="/admin/reservations"
                     style={({ isActive }) => isActive? activeStyle : undefined}>
-                    <img src='/images/admin/navbar/reservation.png'/>
+                    <img src={reservationIcon} alt="reservation"/>
             </NavLink>
             <NavLink id='adminEnterReview' to="/admin/reviews"
                     style={({ isActive }) => isActive? activeStyle : undefined}>
-                    <img src='/images/admin/navbar/review.png'/>
+                    <img src={reviewIcon} alt="review"/>
             </NavLink>
             <NavLink id='adminEnterInquiry' to="/admin/inquiries"
                     style={({ isActive }) => isActive? activeStyle : undefined}>
-                    <img src='/images/admin/navbar/inquiry.png'/>
+                    <img src={inquiryIcon} alt="inquiry"/>
             </NavLink>
             <NavLink id='adminEnterNotice' to="/admin/notices"
                     style={({ isActive }) => isActive? activeStyle : undefined}>
-                    <img src='/images/admin/navbar/notice.png'/>
+                    <img src={noticeIcon} alt="notice"/>
             </NavLink>
         </div>
     )
