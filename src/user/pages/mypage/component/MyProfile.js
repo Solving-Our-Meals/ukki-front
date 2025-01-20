@@ -105,7 +105,7 @@ function MyProfile() {
             const result = await response.text();
             if (response.ok) {
                 alert(result);
-                setUserInfo(prev => ({ ...prev, profileImage: result })); // 서버 응답을 사용자 정보에 반영
+                setUserInfo(prev => ({ ...prev, profileImage: result }));
                 setProfileImage(result);
             } else {
                 alert(result);

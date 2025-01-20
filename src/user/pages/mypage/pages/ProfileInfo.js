@@ -200,8 +200,8 @@ function ProfileInfo() {
                 <h3 className={styles.modalMainText}>정말 수정하시겠습니까?</h3>
                 <h3 className={styles.modalSubText}>수정한 내용은 복구할 수 없습니다.</h3>
                 <div className={styles.modalButtons}>
-                    <button className={styles.modalButton1} onClick={onConfirm}>예</button>
-                    <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
+                    <button className={styles.modalButton1} onClick={onConfirm}>확인</button>
+                    <button className={styles.modalButton2} onClick={onCancel}>취소</button>
                 </div>
             </div>
         </div>
