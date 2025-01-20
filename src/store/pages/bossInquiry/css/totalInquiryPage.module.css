@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
  v2.0 | 20110126
  License: none (public domain)
@@ -175,166 +176,184 @@ a:active {
 }
 #background {
   position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
+  left: 260px;
+  top: 75px;
   bottom: 0px;
-  width: 100%;
-  height: 100%;
-  background-color: #FFF3A7;
+  width: 1622px;
+  height: 844px;
+  background-color: #FFFFFF;
   border-radius: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: default;
 }
-#background #noticeArea {
+#background #recentInquiry {
   position: absolute;
-  margin-top: 75px;
-  width: 1805px;
-  height: 783px;
-  background-color: #FFFFFF;
+  width: 1600px;
+  height: 50px;
+  background-color: #FFF9D1;
   border: none;
-  border-radius: 50px;
-  text-align: center;
+  border-radius: 15px;
+  left: 10px;
+  top: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: left;
+  cursor: pointer;
 }
-#background #noticeArea .dots {
+#background #recentInquiry span {
+  color: #232323;
+  font-weight: 600;
+}
+#background #recentInquiry span:nth-of-type(1) {
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 20px;
+  margin-left: 30px;
+  margin-top: 15px;
+  font-weight: 500;
+}
+#background #recentInquiry span:nth-of-type(2) {
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+#background #recentInquiry span:nth-of-type(3) {
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+#background #recentInquiry span:nth-of-type(4) {
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+#background #recentInquiry .marquee {
+  width: 1100px; /* 부모 요소의 너비에 맞추어 설정 */
+  overflow: hidden;
+  white-space: nowrap;
   box-sizing: border-box;
-  position: absolute;
-  width: 27px;
-  height: 27px;
-  background: #B3E7FF;
-  border: 3px solid #BDBEBF;
 }
-#background #noticeArea #dot1 {
-  left: 50px;
-  top: 50px;
+#background #recentInquiry .marquee .marqueeText {
+  display: inline-block;
+  padding-left: 100%; /* 텍스트가 오른쪽에서 나타나게 설정 */
+  overflow: visible;
+  animation: marquee 200s linear infinite;
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
 }
-#background #noticeArea #dot2 {
-  right: 50px;
-  top: 50px;
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
-#background #noticeArea #dot3 {
-  left: 50px;
-  bottom: 50px;
-}
-#background #noticeArea #dot4 {
-  right: 50px;
-  bottom: 50px;
-}
-#background #noticeArea #strNotice {
+#background #strInquiry {
   position: absolute;
   width: max-content;
   height: max-content;
-  left: 120px;
-  top: 40px;
+  left: 25px;
+  top: 120px;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
-  font-size: 50px;
+  font-size: 32px;
   line-height: 55px;
-  color: #FF8AA3;
-}
-#background #noticeArea #imgPin {
-  position: absolute;
-  width: 40px;
-  height: 40x;
-  margin-top: -8px;
-  left: 310px;
-  top: 50px;
-}
-#background #noticeArea #inputSearch {
-  position: absolute;
-  right: 120px;
-  top: 40px;
-  width: 500px;
-  height: 64px;
-  border: 5px solid #FF8AA3;
-  border-radius: 50px;
-  cursor: text;
-  outline: none;
-  padding-left: 50px;
-  font-family: "Pretendard-Regular";
-  font-size: 25px;
   color: #232323;
 }
-#background #noticeArea #searchBtn {
+#background #inputSearch {
   position: absolute;
-  right: 150px;
-  top: 50px;
+  right: 35px;
+  top: 120px;
+  width: 500px;
+  height: 50px;
+  border-radius: 15px;
+  border: 3px solid #FF8AA3;
+  cursor: text;
+  outline: none;
+  padding-left: 20px;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  color: #232323;
+}
+#background #searchBtn {
+  position: absolute;
+  right: 55px;
+  top: 125px;
   width: 40px;
   height: 40px;
   cursor: pointer;
 }
-#background #noticeArea .strArea {
-  position: absolute;
+#background .inquiryListArea {
+  position: relative;
   width: 1600px;
-  height: 80px;
-  top: 120px;
-  border-bottom: 4px solid #BDBEBF;
+  height: 620px;
+  left: 0px;
+  top: 80px;
+}
+#background .inquiryListArea .strArea {
+  position: relative;
+  width: 1550px;
+  height: 30px;
+  top: 20px;
+  padding-bottom: 15px;
+  border-bottom: 4px solid #FF8AA3;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 0;
 }
-#background #noticeArea .strArea #strCategory, #background #noticeArea .strArea #strTitle, #background #noticeArea .strArea #strDate {
-  position: relative;
+#background .inquiryListArea .strArea #strState, #background .inquiryListArea .strArea #strCategory, #background .inquiryListArea .strArea #strTitle, #background .inquiryListArea .strArea #strDate {
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 130%;
+  color: #232323;
 }
-#background #noticeArea .strArea #strCategory {
+#background .inquiryListArea .strArea #strState {
   position: absolute;
   width: max-content;
   height: max-content;
   left: 60px;
-  font-family: "Bobaesum Jindo TTF";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 130%;
-  color: #232323;
 }
-#background #noticeArea .strArea #strTitle {
+#background .inquiryListArea .strArea #strCategory {
   position: absolute;
   width: max-content;
   height: max-content;
-  left: 490px;
-  font-family: "Bobaesum Jindo TTF";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 130%;
-  color: #232323;
+  left: 300px;
 }
-#background #noticeArea .strArea #strDate {
+#background .inquiryListArea .strArea #strTitle {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 550px;
+}
+#background .inquiryListArea .strArea #strDate {
   position: absolute;
   width: max-content;
   height: max-content;
   right: 170px;
-  font-family: "Bobaesum Jindo TTF";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 130%;
-  color: #232323;
 }
-#background #noticeArea .noticeContainer {
+#background .inquiryListArea .inquiryContainer {
   position: absolute;
-  width: 1620px;
-  height: 430px;
-  top: 200px;
+  width: 1550px;
+  height: 580px;
+  top: 50px;
   left: 50%;
   transform: translateX(-50%);
-  cursor: pointer;
 }
-#background #noticeArea .noticeContainer .notice {
+#background .inquiryListArea .inquiryContainer .inquiry {
   position: relative;
-  width: 1550px;
-  height: 80px;
-  left: 33px;
+  width: 1530px;
+  height: 75px;
+  left: 10px;
   border-bottom: 2px solid #D9D9D9;
   border-radius: 0;
   display: flex;
@@ -344,23 +363,39 @@ a:active {
   flex-direction: right;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
-#background #noticeArea .noticeContainer .notice #categoryName {
+#background .inquiryListArea .inquiryContainer .inquiry #inquiryState {
   position: relative;
-  left: -270px;
-  width: 97px;
+  left: -200px;
+  width: 130px;
   height: 38px;
-  border-radius: 25px;
+  border-radius: 23px;
   font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
   color: #232323;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
-#background #noticeArea .noticeContainer .notice #noticeTitle {
+#background .inquiryListArea .inquiryContainer .inquiry #categoryName {
+  position: relative;
+  left: -90px;
+  width: 97px;
+  height: 38px;
+  border-radius: 23px;
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  color: #232323;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+#background .inquiryListArea .inquiryContainer .inquiry #inquiryTitle {
   position: relative;
   display: block;
   white-space: nowrap;
@@ -368,74 +403,76 @@ a:active {
   text-overflow: ellipsis;
   width: 650px;
   height: max-content;
-  left: 40px;
+  left: 62px;
   font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
+  font-size: 23px;
   line-height: 30px;
   color: #232323;
   text-align: left;
 }
-#background #noticeArea .noticeContainer .notice #noticeDate {
+#background .inquiryListArea .inquiryContainer .inquiry #inquiryDate {
   position: relative;
   width: 150px;
-  left: 260px;
+  left: 200px;
   font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
+  font-size: 23px;
   line-height: 30px;
   color: #232323;
   text-align: left;
 }
-#background #noticeArea .noticeContainer .noResultsMessage {
+#background .inquiryListArea .inquiryContainer .noResultsMessage {
   position: absolute;
   font-family: "Pretendard-Regular";
   font-size: 25px;
   width: 1550px;
   height: 80px;
-  left: 33px;
+  left: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #999999;
 }
-#background #noticeArea hr {
-  position: absolute;
-  width: 1600px;
-  border: 2.9px solid #BDBEBF;
+#background .inquiryListArea hr {
+  position: relative;
+  top: 535.5px;
+  width: 1545px;
+  border: 2.9px solid #FF8AA3;
   bottom: 90px;
 }
-#background #noticeArea .pagination {
+#background .inquiryListArea .pagination {
   display: flex;
   justify-content: center;
   gap: 40px;
   position: absolute;
-  bottom: 25px;
+  bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 0;
 }
-#background #noticeArea .pagination .paginationButton {
+#background .inquiryListArea .pagination .paginationButton {
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 28px;
   cursor: pointer;
   color: #232323;
   opacity: 50%;
 }
-#background #noticeArea .pagination .paginationButton.active {
+#background .inquiryListArea .pagination .paginationButton.active {
   color: #232323;
   opacity: 100%;
   font-weight: bold;
 }
-#background #noticeArea .pagination .arrow {
+#background .inquiryListArea .pagination .arrow {
   color: #FF8AA3;
   opacity: 100%;
 }
-#background #noticeArea .pagination .arrow.disabled {
+#background .inquiryListArea .pagination .arrow.disabled {
   visibility: hidden;
   cursor: default;
-}/*# sourceMappingURL=totalNotice.module.css.map */
+}/*# sourceMappingURL=totalInquiryPage.module.css.map */

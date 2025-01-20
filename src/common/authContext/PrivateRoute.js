@@ -18,9 +18,9 @@ function PrivateRoute({ element, ...rest }) {
     useEffect(() => {
         if (isAuthenticated && user?.userRole === 'STORE') {
             // 가게 관리자일 경우 BossPage로 리디렉션
-            navigate('/boss/mypage');
+        
         } else if (isAuthenticated && user?.userRole === 'ADMIN') {
-            navigate('/admin');
+            navigate('/admin/**');
         }
     }, [isAuthenticated, user, navigate]);
 
