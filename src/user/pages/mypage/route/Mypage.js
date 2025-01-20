@@ -8,7 +8,6 @@ import Header from '../../../../common/header/components/Header';
 import MyProfile from "../component/MyProfile";
 import InquiryDetail from "../pages/InquiryDetails";
 import ProfileInfo from "../pages/ProfileInfo";
-import Info from "../pages/Info";
 import ReviewDetail from "../pages/ReviewDetail";
 import ReservationDetail from "../pages/ReservationDetail";
 
@@ -68,7 +67,6 @@ function Mypage() {
                     <Route path="inquiry" element={<Inquiry />} />
                     <Route path="/inquiry/:inquiryNo" element={<InquiryDetail userInfo={userInfo} />} />
                     <Route path="profile" element={<ProfileInfo />} />
-                    <Route path="info" element={<Info />} />
                     <Route path="*" element={<Navigate to="reservation" />} />
                 </Routes>
             </div>

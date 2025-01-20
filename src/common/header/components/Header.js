@@ -48,7 +48,7 @@ function Header() {
 
         setIsLoggedIn(false);
         navigate('/main');
-        window.location.reload();
+        /*window.location.reload();*/
     };
 
     const handleMenuClick = (path) => {

@@ -1,3 +1,4 @@
+/*
 import { useState, useEffect } from 'react';
 import { Outlet } from "react-router-dom";
 import Header from "../../common/header/components/Header";
@@ -47,7 +48,7 @@ function BossLayout() {
         <>
             <div className={styles.layoutStyle}>
                 <Header className={styles.header} />
-                {/* 에러 상태를 UI에 반영 */}
+                {/!* 에러 상태를 UI에 반영 *!/}
                 {error ? (
                     <div className={styles.errorMessage}>{error}</div>
                 ) : (
@@ -61,7 +62,11 @@ function BossLayout() {
             </div>
             <FloatingBar />
 
-        </>);
+
+
+        </>
+    );
 }
 
 export default BossLayout;
+*/

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styles from "../css/ReviewDetail.module.css";
+import DefaultProfile from "../images/mypage/default.png";
 
 function ReviewDetail() {
     const { reviewNo } = useParams(); // URL에서 reviewNo를 가져옴
@@ -84,7 +85,7 @@ function ReviewDetail() {
                         <img
                             src={reviewDetail.userProfile
                                 ? `/images/profiles/${reviewDetail.userProfile}`
-                                : '/images/mypage/profile/default.png'}
+                                : DefaultProfile}
                             alt="프로필 이미지"
                             className={styles.userProfile}
                         />
