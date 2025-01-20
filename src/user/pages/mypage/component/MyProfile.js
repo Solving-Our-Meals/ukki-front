@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/MyProfile.module.css'
 import '../css/reset.css';
 import { useNavigate } from 'react-router-dom';
+import Badge1 from '../images/badge1.png';
+import Badge2 from '../images/badge2.png';
+import Badge3 from '../images/badge3.png';
+import Badge4 from '../images/badge4.png';
+import Badge5 from '../images/badge5.png';
+import Badge6 from '../images/badge6.png';
+import DefaultProfile from '../images/mypage/default.png';
+import Pencil from '../images/mypage/pencil.gif';
 
 function MyProfile() {
     const [userInfo, setUserInfo] = useState(null);
@@ -123,7 +131,7 @@ function MyProfile() {
                 {!profileImage && !userInfo?.profileImage && (
                     <img
                         className={styles.defaultImage}
-                        src="/images/mypage/profile/default.png"
+                        src={DefaultProfile}
                         alt="Default Profile"
                         onClick={() => document.getElementById('fileInput').click()} // 기본 이미지를 클릭하면 파일 선택 창 열기
                     />
@@ -154,7 +162,7 @@ function MyProfile() {
                 {/* 업로드 아이콘 */}
                 {profileImage && (
                     <img
-                        src="/images/mypage/profile/pencil.gif"
+                        src={Pencil}
                         alt="업로드 아이콘"
                         className={styles.uploadButton}
                         onClick={handleImageUpload} // 이미지 업로드 버튼 클릭 시 업로드
@@ -183,7 +191,7 @@ function MyProfile() {
             <div className={styles.challengerMedal}>
                 {/* 1번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge1.png"
+                    src={Badge1}
                     alt="메달"
                     className={`${styles.medalImage} ${!hasAchievedBadge ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge1')}
@@ -197,7 +205,7 @@ function MyProfile() {
 
                 {/* 2번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge2.png"
+                    src={Badge2}
                     alt="메달"
                     className={`${styles.medalImage2} ${!hasAchievedBadge2 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge2')}
@@ -213,7 +221,7 @@ function MyProfile() {
 
                 {/* 3번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge3.png"
+                    src={Badge3}
                     alt="메달"
                     className={`${styles.medalImage3} ${!hasAchievedBadge3 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge3')}
@@ -229,7 +237,7 @@ function MyProfile() {
 
                 {/* 4번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge4.png"
+                    src={Badge4}
                     alt="메달"
                     className={`${styles.medalImage4} ${!hasAchievedBadge4 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge4')}
@@ -245,7 +253,7 @@ function MyProfile() {
 
                 {/* 5번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge5.png"
+                    src={Badge5}
                     alt="메달"
                     className={`${styles.medalImage5} ${!hasAchievedBadge5 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge5')}
@@ -261,7 +269,7 @@ function MyProfile() {
 
                 {/* 6번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge6.png"
+                    src={Badge6}
                     alt="메달"
                     className={`${styles.medalImage6} ${!hasAchievedBadge6 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge6')}

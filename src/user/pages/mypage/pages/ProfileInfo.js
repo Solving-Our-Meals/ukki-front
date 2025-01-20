@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/ProfileInfo.module.css';
 import '../css/reset.css';
 import { useNavigate, Link } from 'react-router-dom';
+import UserInfo from '../images/mypage/info.png';
+import UserPass from '../images/mypage/password.png'
+import Default from '../../signup/images/default.png';
+import On from '../../signup/images/on.png';
 
 function ProfileInfo() {
     const [userInfo, setUserInfo] = useState(null);
@@ -312,7 +316,7 @@ function ProfileInfo() {
             {!userInfo && !loading && (
                 <div className={styles.signupBasic}>
                     <p className={styles.loginText}>비밀번호를 입력해주세요</p>
-                    <img className={styles.signup} src="/images/mypage/profile/password.png" alt="회원가입 로고" />
+                    <img className={styles.signup} src={UserPass} alt="회원가입 로고" />
                     <form onSubmit={handlePasswordSubmit}>
                         <fieldset className={styles.fieldPwd}>
                             <div className={styles.inputWrapper}>
@@ -342,7 +346,7 @@ function ProfileInfo() {
 
             {userInfo && (
                 <div>
-                    <img className={styles.signup2} src="/images/mypage/profile/info.png" alt="회원가입 로고" />
+                    <img className={styles.signup2} src={UserInfo} alt="회원가입 로고" />
                     <div className={styles.idText}> 아이디 : <div className={styles.infoText1}>{userInfo.userId}</div></div>
                     <div className={styles.nameText}> 닉네임 :</div>
                     <div className={styles.passwordText}> 비밀번호 :</div>
@@ -377,7 +381,7 @@ function ProfileInfo() {
                             />
                             <div className={styles.passwordToggleBtn2} onClick={togglePasswordVisibility}>
                                 <img
-                                    src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                    src={showPassword ? Default : On}
                                     alt="비밀번호 보이기/숨기기"
                                 />
                             </div>
