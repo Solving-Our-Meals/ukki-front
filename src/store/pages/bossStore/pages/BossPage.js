@@ -86,7 +86,7 @@ function BossPage() {
  
     return (
         <div className="boss-page">
-            <Sidebar />
+            {/* <Sidebar /> */}
             <div className="content">
                 {storeInfo && (
                     <div className="store-info">
