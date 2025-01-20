@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useOutletContext } from 'react-router-dom';
+import { useSearchParams, useOutletContext, useNavigate} from 'react-router-dom';
 import styles from '../css/totalInquiryPage.module.css';
 import searchBtn from '../images/searchBtn.png';
 
 
 function TotalInquiryPage(){
+
+    const navigate = useNavigate();
 
     const {storeNo} = useOutletContext();
     const {userNo} = useOutletContext();
@@ -70,21 +71,6 @@ function TotalInquiryPage(){
         sendSearchWordHandler(searchQuery);
     }, [searchParams]);
 
-
-    // useEffect(() => {
-    //     Promise.all([
-    //         fetch(`/boss/mypage/recentInquiry?storeNo=${storeNo}&userNo=${userNo}`).then(res => res.json()),
-    //         fetch(`/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}&searchWord=${searchParams.get("searchWord")}`).then(res => res.json())
-    //     ])
-    //     .then(([recentInquiryData, inquiryListData]) => {
-    //         console.log('최근 문의',recentInquiryData);
-    //         console.log('문의 내역', inquiryListData)
-    //         setRecentInquiry(recentInquiryData);
-    //         setInquiries(inquiryListData);
-    //     })
-    //     .catch(error => console.log(error));
-    // }, [])
-
     const keyPressHandler = (e) => {
         if(e.key === 'Enter'){
             sendSearchWordHandler(searchWord);
@@ -94,18 +80,19 @@ function TotalInquiryPage(){
 
     const sendSearchWordHandler = (searchTerm = "") => {
         const term = typeof searchTerm === 'string' ? searchTerm : "";
-        const url = searchTerm.trim() === "" ? `/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}` : `/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}&searchWord=${searchParams.get("searchWord")}`;
+        const url = searchTerm.trim() === "" ? `/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}` : `/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}&searchWord=${searchTerm}`;
 
         fetch(url)
         .then(res => res.json())
         .then(data => {
             setInquiries(Array.isArray(data) ? data : []);
+            console.log('문의 내역 : ', data);
         })
         .catch(error => console.log(error))
     };
 
-    const navigateToSpecificInquiry = () => {
-        
+    const navigateToSpecificInquiry = (inquiryNo) => {
+        navigate(`/boss/inquiry/${inquiryNo}`);
     }
 
     // 추가 부분 - 최근 문의 내역 로직
@@ -118,13 +105,14 @@ function TotalInquiryPage(){
         case 5 : recentCategoryName = '예약문의'; break;
         case 6 : recentCategoryName = '수정문의'; break;
         case 7 : recentCategoryName = '일반문의'; break;
-        default : recentCategoryName = '리뷰신고'; break;
+        case 0 : recentCategoryName = '리뷰신고'; break;
     }
 
     let recentState = "";
     switch(recentInquiry.state){
         case "COMPLETE" : recentState = "[처리완료]"; break;
         case "CHECK" : recentState = "[읽음]"; break;
+        case "확인" : recentState = "[읽음]"; break;
         case "PROCESSING" : recentState = "[처리중]"; break;
         case "처리중" : recentState = "[처리중]"; break;
     }   
@@ -175,13 +163,14 @@ function TotalInquiryPage(){
                                     case 5 : categoryName = '예약문의'; break;
                                     case 6 : categoryName = '수정문의'; break;
                                     case 7 : categoryName = '일반문의'; break;
-                                    default : categoryName = '리뷰신고'; break;
+                                    case 0 : categoryName = '리뷰신고'; break;
                                 }
 
                                 let state = "";
                                 switch(inquiry.state){
                                     case "COMPLETE" : state = "처리완료"; break;
                                     case "CHECK" : state = "읽음"; break;
+                                    case "확인" : state = "읽음"; break;
                                     case "PROCESSING" : state = "처리중"; break;
                                     case "처리중" : state = "처리중"; break;
                                 }
