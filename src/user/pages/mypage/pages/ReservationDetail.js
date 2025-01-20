@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../css/Review.module.css';
+import styles from '../css/ReservationDetail.module.css';
 import '../css/reset.css';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
@@ -48,15 +48,25 @@ function ReservationDetail() {
         return <div>해당 리뷰를 찾을 수 없습니다.</div>;
     }
 
+    const getReservationStatus = (reservationTime) => {
+        const currentTime = new Date();
+        const reservationDate = new Date(reservationTime);
+        return currentTime < reservationDate ? "예약 중" : "예약 만료";
+    };
+
+    const reservationTime = `${reviewDetail.date} ${reviewDetail.time}`;
+
+    console.log(reviewDetail)
+
     return (
         <>
             {/* 탭 영역 */}
             <div className={styles.allTabs}>
-                <Link to="/user/mypage/review">
-                    <div className={styles.tab1}>작성된 리뷰</div>
-                </Link>
                 <Link to="/user/mypage/reservation">
-                    <div className={styles.tab2}>예약리스트</div>
+                    <div className={styles.tab1}>예약리스트</div>
+                </Link>
+                <Link to="/user/mypage/review">
+                    <div className={styles.tab2}>작성된 리뷰</div>
                 </Link>
                 <div className={styles.line1}>|</div>
                 <Link to="/user/mypage/inquiry">
@@ -71,40 +81,28 @@ function ReservationDetail() {
             {/* 리뷰 상세 정보 */}
             <div className={styles.reviewContainer}>
                 <div className={styles.reviewHeader}>
-                    {/* 프로필 사진 */}
-                    <div className={styles.profileContainer}>
-                        <img
-                            src={reviewDetail.userProfile
-                                ? `/images/profiles/${reviewDetail.userProfile}`
-                                : '/images/mypage/profile/default.png'}
-                            alt="프로필 이미지"
-                            className={styles.userProfile}
-                        />
-                    </div>
-                    <div className={styles.storeNameTitle}>가게이름 : <p
-                        className={styles.storeName}>{reviewDetail.storeName}</p>
+                    <div className={styles.Title}>예약 정보</div>
+                    <div className={styles.reservationUserNameTitle}>예약회원 : <p
+                        className={styles.reservationUserName}>{reviewDetail.userName}</p></div>
+                    <div className={styles.store}>
+                        <div className={styles.storeNameTitle}>가게이름 : <p
+                            className={styles.storeName}>{reviewDetail.storeName}</p></div>
                         <Link to={`/store/${reviewDetail.storeNo}`} className={styles.storeDetailButton}>
                             <button className={styles.storeDetailBtn}>가게 상세보기</button>
                         </Link>
                     </div>
-                </div>
-                <div className={styles.reviewMain}>
-                    <div className={styles.reviewName}>{reviewDetail.userName}</div>
-                </div>
-                <div className={styles.reviewDate}>{reviewDetail.reviewDate}</div>
 
-                <div className={styles.reviewText}>{reviewDetail.reviewText}</div>
+                    <div className={styles.reservationUserNameTitle}>예약날짜 : <p
+                        className={styles.reservationUserName}>{reviewDetail.date}</p></div>
 
-                {/* 리뷰 사진 */}
-                {reviewDetail.reviewPicture && (
-                    <div className={styles.reviewImageContainer}>
-                        <img
-                            src={`/images/reviews/${reviewDetail.reviewPicture}`}
-                            alt="리뷰 이미지"
-                            className={styles.reviewImage}
-                        />
-                    </div>
-                )}
+                    <div className={styles.reservationTime}>예약시간 : <p
+                        className={styles.reservationUserName}>{reviewDetail.time}</p></div>
+
+                    <div className={styles.reservationTime}>예약현황 : <p
+                        className={styles.reservationUserName}>{getReservationStatus(reservationTime)} </p></div>
+
+
+                </div>
             </div>
         </>
     );
