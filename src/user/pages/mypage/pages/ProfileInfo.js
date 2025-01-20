@@ -134,10 +134,6 @@ function ProfileInfo() {
             updateData.append('userPass', formData.newPassword);
         }
 
-        if (formData.profileImage) {
-            updateData.append('profileImage', formData.profileImage);
-        }
-
         try {
             const updateResponse = await fetch('/user/mypage/update', {
                 method: 'PUT',
@@ -149,20 +145,13 @@ function ProfileInfo() {
             if (updateResponse.ok) {
                 setUpdateSuccess(true);
                 setUserInfo(result);
+                window.location.reload();
             } else {
                 setUpdateError(result.message);
             }
         } catch (error) {
             setUpdateError('네트워크 오류가 발생했습니다.');
         }
-    };
-
-
-    const handleFileChange = (event) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            profileImage: event.target.files[0],
-        }));
     };
 
     const handlePasswordSubmit = async (event) => {
@@ -384,18 +373,6 @@ function ProfileInfo() {
                         {passwordError && <div className={styles.errorPassword}>{passwordError}</div>}
                         {passwordSuccess && !passwordError &&
                             <div className={styles.successPassword}>ⓘ 유효한 비밀번호입니다.</div>}
-
-                        {/* 프로필 이미지 변경 */}
-                        <div className={styles.inputWrapper}>
-                            <label htmlFor="profileImage" className={styles.inputLabel}>프로필 이미지</label>
-                            <input
-                                className={styles.inputFile}
-                                type="file"
-                                name="profileImage"
-                                onChange={handleFileChange}
-                                accept="image/*"
-                            />
-                        </div>
 
                         {updateError && <div className={styles.error2}>{updateError}</div>}
 

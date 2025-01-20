@@ -89,11 +89,18 @@ function ReviewDetail() {
                             className={styles.userProfile}
                         />
                     </div>
-                    <div className={styles.storeNameTitle}>가게이름 : <p className={styles.storeName}>{reviewDetail.storeName}</p></div>
+                    <div className={styles.storeNameTitle}>가게이름 : <p
+                        className={styles.storeName}>{reviewDetail.storeName}</p><Link to={`/store/${reviewDetail.storeNo}`} className={styles.storeDetailButton}>
+                        <button className={styles.storeDetailBtn}>가게 상세보기</button>
+                    </Link></div>
                 </div>
-                <div className={styles.reviewDate}>리뷰 날짜: {reviewDetail.reviewDate}</div>
-                <div className={styles.reviewText}>리뷰 내용: {reviewDetail.reviewText}</div>
-                <div className={styles.starRating}>별점: {renderStars(reviewDetail.star)}</div>
+                <div className={styles.reviewMain}>
+                <div className={styles.reviewName}>{reviewDetail.userName}</div>
+                <div className={styles.starRating}>{renderStars(reviewDetail.star)}</div>
+                </div>
+                <div className={styles.reviewDate}>{reviewDetail.reviewDate}</div>
+
+                <div className={styles.reviewText}>{reviewDetail.reviewText}</div>
 
                 {/* 리뷰 사진 표시 */}
                 {reviewDetail.reviewPicture && (

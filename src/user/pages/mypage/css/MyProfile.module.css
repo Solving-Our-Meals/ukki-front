@@ -328,3 +328,11 @@
     max-width: 150px;
     height: auto;
 }
+
+.uploadButton {
+    position: absolute;
+    top:200px;
+    left:250px;
+    border-radius: 50%;
+    border: black solid 1px;
+}
