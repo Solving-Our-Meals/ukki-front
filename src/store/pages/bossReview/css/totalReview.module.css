@@ -192,7 +192,6 @@ a:active {
   top: 10px;
   display: flex;
   flex-direction: left;
-  cursor: default;
 }
 #totalArea #recentReview #strRecentReview {
   position: relative;
@@ -216,6 +215,7 @@ a:active {
   position: relative;
   font-family: "Pretendard-Regular";
   font-size: 18px;
+  width: 1280px;
   height: 18px;
   margin-left: 20px;
   margin-right: 30px;
@@ -235,10 +235,7 @@ a:active {
   font-size: 23px;
   font-weight: 600;
 }
-#totalArea #reviewList {
-  position: relative;
-}
-#totalArea #reviewList #prevBtn, #totalArea #reviewList #nextBtn {
+#totalArea #prevBtn, #totalArea #nextBtn {
   position: absolute;
   top: 220px;
   width: 40px;
@@ -256,13 +253,13 @@ a:active {
   padding-top: 5px;
   cursor: pointer;
 }
-#totalArea #reviewList #prevBtn {
+#totalArea #prevBtn {
   left: -20px;
 }
-#totalArea #reviewList #nextBtn {
+#totalArea #nextBtn {
   right: -20px;
 }
-#totalArea #reviewList #reviewContainer {
+#totalArea #reviewContainer {
   position: relative;
   left: 10px;
   top: 110px;
@@ -272,7 +269,7 @@ a:active {
   cursor: pointer;
   transition: transform 0.5s ease-in-out;
 }
-#totalArea #reviewList #reviewContainer .review {
+#totalArea #reviewContainer .review {
   width: 390px;
   height: 250px;
   border: none;
@@ -280,13 +277,13 @@ a:active {
   flex-shrink: 0;
   position: relative;
 }
-#totalArea #reviewList #reviewContainer .review span {
+#totalArea #reviewContainer .review span {
   font-size: 20px;
   color: #232323;
   font-family: "Pretendard-Regular";
   font-weight: 400;
 }
-#totalArea #reviewList #reviewContainer .review #userName {
+#totalArea #reviewContainer .review #userName {
   position: absolute;
   font-family: "Bobaesum Jindo TTF";
   left: 20px;
@@ -294,15 +291,15 @@ a:active {
   margin-right: 20px;
   font-size: 23px;
 }
-#totalArea #reviewList #reviewContainer .review #stars {
+#totalArea #reviewContainer .review #stars {
   position: absolute;
   left: 20px;
   top: 50px;
 }
-#totalArea #reviewList #reviewContainer .review #stars #reviewScope {
+#totalArea #reviewContainer .review #stars #reviewScope {
   margin-left: -3px;
 }
-#totalArea #reviewList #reviewContainer .review #reviewContent {
+#totalArea #reviewContainer .review #reviewContent {
   position: absolute;
   left: 20px;
   top: 80px;

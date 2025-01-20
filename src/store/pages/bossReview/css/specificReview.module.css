@@ -185,7 +185,6 @@ a:active {
 }
 #totalArea .reviewContainer {
   position: relative;
-  border: 3px solid #FF8AA3;
   width: 1602px;
   height: 424px;
   border-radius: 25px;
@@ -273,5 +272,161 @@ a:active {
   color: #FF5D18;
   font-family: "Bobaesum Jindo TTF";
   font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 6;
+}
+
+#reportModal {
+  z-index: 8;
+  position: absolute;
+  width: 1580px;
+  height: 570px;
+  left: 300px;
+  top: 205px;
+  border: 5px solid #FF8AA3;
+  background-color: #FFFFFF;
+}
+#reportModal #strReport {
+  position: absolute;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 50px;
+  left: 50px;
+  top: 40px;
+  color: #232323;
+}
+#reportModal #strReportTitle {
+  position: absolute;
+  font-family: "Pretendard-Regular";
+  font-size: 30px;
+  left: 50px;
+  top: 120px;
+  color: #232323;
+  font-weight: 600;
+}
+#reportModal .inputTitle {
+  position: absolute;
+  font-family: "Pretendard-Regular";
+  font-size: 30px;
+  left: 185px;
+  top: 120px;
+  border: none;
+  background-color: #FFF3A7;
+  border-radius: 10px;
+  outline: none;
+  padding-left: 20px;
+}
+#reportModal #inputReportContent {
+  position: absolute;
+  left: 45px;
+  top: 180px;
+  padding: 10px 20px;
+  line-height: 160%;
+  resize: none;
+  width: 1480px;
+  height: 280px;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  color: #232323;
+  cursor: text;
+  background-color: #FFF9D3;
+  border: none;
+  border-radius: 15px;
+}
+#reportModal #inputReportContent:focus {
+  outline: none;
+}
+#reportModal #reportCancle {
+  position: absolute;
+  left: 1195px;
+  top: 495px;
+  width: 145px;
+  height: 36px;
+  border: none;
+  border-radius: 20px;
+  background-color: #FEDA00;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding-top: 5px;
+}
+#reportModal #reportConfirm {
+  position: absolute;
+  left: 1355px;
+  top: 495px;
+  width: 145px;
+  height: 36px;
+  border: none;
+  border-radius: 20px;
+  background-color: #FF8AA3;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding-top: 5px;
+}
+
+#completeReportModal {
+  position: absolute;
+  left: 621px;
+  top: 330px;
+  width: 879px;
+  height: 316px;
+  border: 5px solid #FF8AA3;
+  border-radius: 50px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+#completeReportModal #completedReportMessage {
+  width: max-content;
+  margin-top: 5px;
+  height: 44px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  font-weight: 500;
+  color: #232323;
+}
+#completeReportModal #completedReportNotice {
+  width: max-content;
+  margin-top: 40px;
+  height: 36px;
+  font-family: "Pretendard-Regular";
+  font-size: 30px;
+  font-weight: 500;
+  color: #FF5D18;
+}
+#completeReportModal #completeBtn {
+  margin-top: 40px;
+  width: 171px;
+  height: 44px;
+  background-color: #FEDA00;
+  border: none;
+  border-radius: 25px;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  font-weight: 500;
+  color: #232323;
   cursor: pointer;
 }

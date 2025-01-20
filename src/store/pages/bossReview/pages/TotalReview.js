@@ -35,7 +35,12 @@ function TotalReview(){
     const renderStars = (reviewScope) => {
         let stars = [];
         for (let i = 0; i < reviewScope; i++) {
-            stars.push(<span key={i} id={styles.reviewScope}>&#x2B50;</span>);
+            stars.push(<span 
+                            key={i} 
+                            id={styles.reviewScope}
+                       >
+                        &#x2B50;
+                       </span>);
         }
         return stars;
     };
@@ -56,58 +61,63 @@ function TotalReview(){
             setCurrentPage(prevPage => prevPage + 1);
         }
     };    
+
+    const showSpecificReview = (reviewNo) => {
+        setSelectedReviewNo(reviewNo)
+    }
     
     return (
         <>
             <div id={styles.totalArea}>
-                <div id={styles.recentReview}>
+                <div 
+                    id={styles.recentReview}
+                    onClick={() => showSpecificReview(recentReview.reviewNo)}
+                    style={{cursor : 'pointer'}}
+                >
                     <span id={styles.strRecentReview}>최근 리뷰</span>
                     {renderStars(recentReview.reviewScope)}
-                    <span id={styles.recentReviewContent}>{recentReview.reviewContent}</span>
+                    <span id={styles.recentReviewContent} onClick={() => showSpecificReview(recentReview.revieNo)}>{recentReview.reviewContent}</span>
                 </div>
                 <span id={styles.reviewCount}>총 {totalReviewInfo.reviewCount}개의 리뷰가 있습니다.</span>
-                <div id={styles.reviewList}>
-                    <button 
-                        id={styles.prevBtn} 
-                        onClick={handlePrevClick}
-                        style={{ display : currentPage === 0 ? "none" : ""}}
-                    >
-                        〈
-                    </button>
-                    <div id={styles.reviewContainer}>
-                        {currentReviews.map((review, index) => (
-                            <div
-                                key={index}
-                                className={styles.review}
-                                onClick={() => {setSelectedReviewNo(review.reviewNo)}}
-                            >
-                                <span id={styles.userName}>{review.userName}</span>
-                                <div id={styles.stars}>
-                                    {renderStars(review.reviewScope)}
-                                </div>
-                                <span id={styles.reviewContent}>{review.reviewContent}</span>
+                <button 
+                    id={styles.prevBtn} 
+                    onClick={handlePrevClick}
+                    style={{ display : currentPage === 0 ? "none" : ""}}
+                >
+                    〈
+                </button>
+                <div id={styles.reviewContainer}>
+                    {currentReviews.map((review, index) => (
+                        <div
+                            key={index}
+                            className={styles.review}
+                            onClick={() => {showSpecificReview(review.reviewNo)}}
+                        >
+                            <span id={styles.userName}>{review.userName}</span>
+                            <div id={styles.stars}>
+                                {renderStars(review.reviewScope)}
                             </div>
-                        ))}
-                    </div>
-                    <button 
-                        id={styles.nextBtn} 
-                        onClick={handleNextClick}
-                        style={{ display: ((currentPage + 1) * reviewsPerPage < reviewList.length) ? "" : "none" }}
-                    >
-                        〉
-                    </button>
+                            <span id={styles.reviewContent}>{review.reviewContent}</span>
+                        </div>
+                    ))}
                 </div>
+                <button 
+                    id={styles.nextBtn} 
+                    onClick={handleNextClick}
+                    style={{ display: ((currentPage + 1) * reviewsPerPage < reviewList.length) ? "" : "none" }}
+                >
+                    〉
+                </button>
             </div>
-            {/* <hr 
+            <hr
                 style={{ 
                     position : 'absolute',
-                    // border : '2px dashed #D9D9D9',
-                    border : '2px solid #FF8AA3',
-                    width : '1622px',
-                    left : '280px',
-                    top : '485px'
+                    width : '1600px',
+                    left : '285px',
+                    top : '475px',
+                    border : '2px dashed #D9D9D9'
                 }}
-            /> */}
+            />
             {selectedReviewNo ? (
                 <SpecificReview reviewNo={selectedReviewNo} storeNo={storeNo} />
             ) : (
@@ -115,7 +125,6 @@ function TotalReview(){
             )}
         </>
     );
-    
 }
 
 export default TotalReview;
