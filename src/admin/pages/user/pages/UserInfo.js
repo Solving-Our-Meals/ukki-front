@@ -111,12 +111,12 @@ function UserInfo(){
         <div id={styles.badgeArea}>
             <div id={styles.badgeAreaText}>뱃지</div>
             <div id={styles.badgeImgArea}>
-                <div className={styles.badge}><img src="/images/badge/badge1.png" alt="뱃지1" className={userInfo.resCount >= 10 ? '' : styles.badgeNotAchieved} /></div>
-                <div className={styles.badge}><img src="/images/badge/badge2.png" alt="뱃지2" className={userInfo.reviewCount >= 10 ? '' : styles.badgeNotAchieved} /></div>
-                <div className={styles.badge}><img src="/images/badge/badge3.png" alt="뱃지3" className={userInfo.resCount >= 25 ? '' : styles.badgeNotAchieved} /></div>   
-                <div className={styles.badge}><img src="/images/badge/badge4.png" alt="뱃지4" className={userInfo.randomCount >= 3 ? '' : styles.badgeNotAchieved} /></div>
-                <div className={styles.badge}><img src="/images/badge/badge5.png" alt="뱃지5" className={userInfo.reviewCount >= 20? '' : styles.badgeNotAchieved} /></div>
-                <div className={styles.badge}><img src="/images/badge/badge6.png" alt="뱃지6" className={userInfo.resCount >= 50 && userInfo.reviewCount >= 30 && userInfo.randomCount >= 7 ? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/src/user/pages/mypage/images/badge1.png" alt="뱃지1" className={userInfo.resCount >= 10 ? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/src/user/pages/mypage/images/badge2.png" alt="뱃지2" className={userInfo.reviewCount >= 10 ? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/src/user/pages/mypage/images/badge3.png" alt="뱃지3" className={userInfo.resCount >= 25 ? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/src/user/pages/mypage/images/badge4.png" alt="뱃지4" className={userInfo.randomCount >= 3 ? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/src/user/pages/mypage/images/badge5.png" alt="뱃지5" className={userInfo.reviewCount >= 20? '' : styles.badgeNotAchieved} /></div>
+                <div className={styles.badge}><img src="/src/user/pages/mypage/images/badge6.png" alt="뱃지6" className={userInfo.resCount >= 50 && userInfo.reviewCount >= 30 && userInfo.randomCount >= 7 ? '' : styles.badgeNotAchieved} /></div>
             </div>
         </div>
         <div id={styles.reservationCount}>

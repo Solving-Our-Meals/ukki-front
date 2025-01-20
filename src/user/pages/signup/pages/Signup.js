@@ -1,6 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react';
 import styles from '../css/Signup.module.css';
 import '../css/reset.css';
+import signupLogo from '../images/signupLogo.png';
+import Default from '../images/default.png';
+import On from '../images/on.png';
 
 function Signup() {
     const [step, setStep] = useState(1);
@@ -248,7 +251,7 @@ function Signup() {
         <div className={styles.signupBasic}>
             <div className={styles.signup}>
                 <p className={styles.signupText}>회원가입</p>
-                <img className={styles.signupLogo} src="/images/signup/signupLogo.png" alt="회원가입 로고"/>
+                <img className={styles.signupLogo} src={signupLogo} alt="회원가입 로고"/>
                 {step === 1 && (
                     <form onSubmit={handleUsernameSubmit}>
                         <fieldset className={styles.fieldId}>
@@ -293,7 +296,7 @@ function Signup() {
                                 <label htmlFor="userPass">비밀번호 입력</label>
                                 <div className={styles.passwordToggleBtn}>
                                     <img
-                                        src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                        src={showPassword ? Default : On}
                                         alt="비밀번호 보이기/숨기기"
                                         onClick={togglePasswordVisibility}
                                     />

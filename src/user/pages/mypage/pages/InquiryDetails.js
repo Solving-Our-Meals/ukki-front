@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Link, useParams, Navigate, useNavigate} from 'react-router-dom';
 import styles from '../css/Inquiry.module.css';
+import Logo from '../images/mypage/logo.png'
 
 function InquiryDetail({ userInfo }) {
     const { inquiryNo } = useParams();
@@ -348,7 +349,7 @@ function InquiryDetail({ userInfo }) {
                     </div>
                 ) : (
                     <div className={styles.notAnswer}>
-                        <img src="/images/common/logo.png" alt="문의 관리자 로고" className={styles.logo}/>
+                        <img src={Logo} alt="문의 관리자 로고" className={styles.logo}/>
                         <p>문의를 접수하는중 입니다! 관리자의 답변을 기다려 주세요</p>
                     </div>
                 )}
