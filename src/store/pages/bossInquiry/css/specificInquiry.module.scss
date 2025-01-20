@@ -393,3 +393,209 @@
         }
     }
 }
+// 문의 수정
+#updateInquiry{
+    position : relative;
+    left : 260px;
+    top : 75px;
+    bottom : 0px;
+    width : 1622px;
+    height : 844px;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    // border: 1px solid red;
+
+    #strUpdateInquiry{
+        position: absolute;
+        font-family: 'Bobaesum Jindo TTF';
+        font-size: 50px;
+        color: $textStrong;
+        left : 50px;
+        top : 50px;
+        width: max-content;
+        height: max-content;
+    }
+
+    #cancelBtn{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Pretendard-Regular';
+        font-size: 25px;
+        font-weight: 600;
+        background-color: #FFC6D2;
+        width : 180px;
+        height : 50px;
+        left : 1180px;
+        top : 50px;
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        padding-top: -10px;
+        cursor: pointer;
+    }
+
+    #confirmBtn{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Pretendard-Regular';
+        font-size: 25px;
+        font-weight: 600;
+        background-color: $primary;
+        width : 180px;
+        height : 50px;
+        left : 1380px;
+        top : 50px;
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        padding-top: -10px;
+        cursor: pointer;
+    }
+
+    .StringElement{
+        position: absolute;
+        font-family: 'Pretendard-Regular';
+        color: $textStrong;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // 제목
+    #strTitle{
+        position: absolute;
+        left : 50px;
+        top : 180px;
+        font-size: 30px;
+        font-weight : 600;
+    }
+
+    // notice.title
+    #inquiryTitle{
+        position: absolute;
+        left :130px;
+        top : 165px;
+        width : 500px;
+        height : 60px;
+        font-size: 30px;
+        font-weight : 400;
+        border-radius: 15px;
+        border: none;
+        background-color: #FFF3A7;
+        padding : 10px 15px;
+        outline: none;
+    }
+
+     // 작성 날짜
+    #strDate{
+        position: absolute;
+        left : 1260px;
+        top : 180px;
+        font-size: 30px;
+        font-weight : 600;
+    }
+
+    // inquiryInfo.date
+    #inquiryDate{
+        position: absolute;
+        left : 1400px;
+        top : 180px;
+        font-size: 30px;
+        font-weight : 400;
+    }
+
+    #updateInquiryContent{
+        position :absolute;
+        left : 40px;
+        top : 240px;
+        width : 1535px;
+        height : 240px;
+        background-color :#FFF9D1;
+        border: none;
+
+        #updateFile{
+            position: absolute;
+            width : 180px;
+            height : 50px;
+            border: none;
+            border-radius: 50px;
+            outline: none;
+            right : 30px;
+            top : 170px;
+            background-color: $secondary;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            padding: 10px 20px;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+        }
+
+        textarea{
+            position: absolute;
+            left : 10px;
+            top : 1px;
+            padding : 5px 10px;
+            width : 1515px;
+            height : 235px;
+            font-family: 'Pretendard-Regular';
+            color: $textStrong;
+            font-size: 30px;
+            font-weight : 400;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            line-height: 160%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            resize: none;
+            outline: none;
+            // border: 1px solid red;
+        }
+    }
+
+    #updateNoAnswerArea{
+        border: 1px solid blue;
+        position: absolute;
+        left : 40px;
+        top : 500px;
+        width : 1535px;
+        height : 300px;
+
+        #updateNoAnswerLogo{
+            position: absolute;
+            left : 10px;
+            top : 30px;
+            width : 270px;
+            height : 270px;
+            z-index: 5;
+        }
+
+        #updateProcessingMessage{
+            position: relative;
+            left : 10px;
+            top : 100px;
+            width : 1515px;
+            height : 180px;
+            font-family: 'Pretendard-Regular';
+            font-size: 33px;
+            font-weight: 600;
+            background-color: #FFF3A7;
+            border-radius : 25px;
+            padding-left : 190px;
+            padding-top : 10px;
+            border: 1px solid green;
+        }
+    }
+}

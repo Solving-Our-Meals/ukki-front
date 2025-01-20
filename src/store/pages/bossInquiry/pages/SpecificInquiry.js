@@ -13,22 +13,39 @@ function SpecificInquiry(){
     const [realDeleteInquiry, setRealDeleteInquiry] = useState(false);
     const [isCompleteDeleteInquiry, setIsCompleteDeleteInquiry] = useState(false);
     const [completeOrFailDeleteMessage, setCompleteOrFailDeleteMessage] = useState("");
+    const [isUpdate, setIsUpdate] = useState(false);
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    const [updateInquiryData, setUpdateInquiryData] = useState({
+        inquiryTitle : "",
+        inquiryContent : "",
+        inquiryDate : formattedDate,
+        file : ""
+    });
     
     useEffect(() => {
         fetch(`/boss/mypage/getSpecificInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}`)
         .then(res => res.json())
         .then(data => {
             setInquiryInfo(data);
-            console.log(data);
+
+            if (data) {
+                setUpdateInquiryData({
+                    inquiryTitle: data.inquiryTitle || "",
+                    inquiryContent: data.inquiryContent || "",
+                    inquiryDate: formattedDate,
+                    file: data.file || ""
+                });
+            }
         })
         .catch(error => console.log(error));
-    }, [])
-
-    // const updateInquiry = (inquiryNo) => {
-    //     fetch(`/boss/mypage/updateInquiry?inquiryNo=${inquiryNo}`)
-    //     .then(res => res.json())
-    //     .catch(error => console.log(error));
-    // }
+    }, [inquiryNo, categoryNo])
 
     const completeHandler = () => {
         setIsCompleteDeleteInquiry(false);
@@ -57,16 +74,24 @@ function SpecificInquiry(){
         .then(data => console.log('문의 내역 삭제 성공', data))
         .catch(error => console.log(error));
     }
+
+    const inputChangeHandler = (e) => {
+        const {name, value} = e.target;
+        setUpdateInquiryData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }    
     
     return(
         <>
-            <div id={styles.inquiryArea}>
+            <div id={styles.inquiryArea} style={{display : isUpdate ? "none" : ""}}>
                 <p id={styles.strInquiry}>문의 상세보기</p>
                 <button 
                     type="button" 
                     id={styles.updateBtn} 
                     style={{display : inquiryInfo.answerDate == null ? "" : "none" }}
-                    // onClick={() => updateInquiry(inquiryInfo.inquiryNo)}
+                    onClick={() => setIsUpdate(true)}
                 >
                     수정
                 </button>
@@ -102,6 +127,7 @@ function SpecificInquiry(){
                         <span id={styles.answerContent}>{inquiryInfo.answerContent}</span>
                     </div>
                 </div>
+                {/* 문의 삭제 */}
                 {realDeleteInquiry && (
                     <div 
                         id={styles.modalOverlay}
@@ -134,7 +160,6 @@ function SpecificInquiry(){
                         </div>
                     </div>
                 )}
-    
                 {isCompleteDeleteInquiry && (
                     <div 
                         id={styles.modalOverlay}
@@ -165,6 +190,57 @@ function SpecificInquiry(){
                         </div>
                     </div>
                 )}
+            </div>
+            {/* 문의 수정 */}
+            <div id={styles.updateInquiry} style={{display : isUpdate ? "" : "none"}}>
+                <p id={styles.strUpdateInquiry}>문의 수정</p>
+                <button 
+                    type="button" 
+                    id={styles.cancelBtn} 
+                    onClick={() => setIsUpdate(false)}
+                >
+                    취소
+                </button>
+                <button 
+                    type="button" 
+                    id={styles.confirmBtn}
+                    // onClick={() => setRealDeleteInquiry(true)}
+                >
+                    완료
+                </button>
+                <span id={styles.strTitle} className={styles.StringElement}>제목 : </span> 
+                <input 
+                    type='text' 
+                    id={styles.inquiryTitle} 
+                    className={styles.StringElement}
+                    name = "inquiryTitle"
+                    value={updateInquiryData.inquiryTitle} 
+                    onChange={(e) => inputChangeHandler(e)}
+                />
+                <span id={styles.strDate} className={styles.StringElement}>수정 일자 : </span> 
+                <span id={styles.inquiryDate} className={styles.StringElement}>{formattedDate}</span>
+                <div id={styles.updateInquiryContent}>
+                    <textarea 
+                        type='text' 
+                        name = "inquiryContent"
+                        id={styles.updateInquiryContent} 
+                        value={updateInquiryData.inquiryContent} 
+                        onChange={(e) => inputChangeHandler(e)}
+                    />
+                    <div id={styles.updateFile}>
+                        {/* <a
+                            href={'파일 경로'}
+                            download={inquiryInfo.file} // 파일 다운로드 가능하게 하는 속성
+                            target='_blank' // 새 탭에서 열 수 있도록 설정(파일을 열 수 있을 경우)
+                        > */}
+                            {inquiryInfo.file == null ? "첨부파일" : inquiryInfo.file}
+                        {/* </a> */}
+                    </div>
+                </div>
+                <div id={styles.updateNoAnswerArea}>
+                    <img src={noAnswerLogo} id={styles.updateNoAnswerLogo} alt="우끼 로고"/>
+                    <span id={styles.updateProcessingMessage}>문의를 접수하는 중 입니다! 관리자의 답변을 기다려 주세요.</span>
+                </div>
             </div>
         </>
     );
