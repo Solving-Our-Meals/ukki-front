@@ -11,8 +11,6 @@ function BossLayout() {
     const [userData, setUserData] = useState(null); // 사용자 정보
     const [error, setError] = useState(null); // 에러 상태 추가
 
-    const [doInquiryModal, setDoInquiryModal] = useState(false);
-
     useEffect(() => {
         const fetchStoreInfo = async () => {
             try {
@@ -47,16 +45,9 @@ function BossLayout() {
         fetchStoreInfo();
     }, []);
 
-    useEffect(() => { 
-        if (doInquiryModal) {
-            document.querySelector('html').style.overflowY = 'hidden';
-      } else { 
-        document.querySelector('html').style.overflowY = 'auto';
-     } },[doInquiryModal]);
-
     return (
         <>
-            <div className={!doInquiryModal? styles.layoutStyle : styles.layoutModalStyle}>
+            <div className={styles.layoutStyle}>
                 <Header className={styles.header} />
                 <Sidebar/>
                 {/* 에러 상태를 UI에 반영 */}
@@ -72,8 +63,7 @@ function BossLayout() {
                     )
                 )}
             </div>
-            {doInquiryModal && <div className={styles.overlay}></div>}
-            <FloatingBar setDoInquiryModal={setDoInquiryModal} />
+            <FloatingBar />
         </>
     );
 }

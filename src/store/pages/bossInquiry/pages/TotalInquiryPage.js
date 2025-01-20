@@ -91,8 +91,8 @@ function TotalInquiryPage(){
         .catch(error => console.log(error))
     };
 
-    const navigateToSpecificInquiry = (inquiryNo) => {
-        navigate(`/boss/inquiry/${inquiryNo}`);
+    const navigateToSpecificInquiry = (inquiryNo, categoryNo) => {
+        navigate(`/boss/inquiry/${inquiryNo}?categoryNo=${ categoryNo }`);
     }
 
     // 추가 부분 - 최근 문의 내역 로직
@@ -179,7 +179,7 @@ function TotalInquiryPage(){
                                         key={index}
                                         className={styles.inquiry}
                                         style={{ border : (index + 1) % 7 === 0 ? "none" : ""}}
-                                        onClick={() => navigateToSpecificInquiry(inquiry.inquiryNo)}
+                                        onClick={() => navigateToSpecificInquiry(inquiry.inquiryNo, inquiry.categoryNo)}
                                     >
                                         <span id={styles.inquiryState}>[{state}]</span>
                                         <span id={styles.categoryName}>{categoryName}</span>
