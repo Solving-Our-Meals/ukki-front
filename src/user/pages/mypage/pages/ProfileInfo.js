@@ -134,10 +134,6 @@ function ProfileInfo() {
             updateData.append('userPass', formData.newPassword);
         }
 
-        if (formData.profileImage) {
-            updateData.append('profileImage', formData.profileImage);
-        }
-
         try {
             const updateResponse = await fetch('/user/mypage/update', {
                 method: 'PUT',
@@ -149,20 +145,13 @@ function ProfileInfo() {
             if (updateResponse.ok) {
                 setUpdateSuccess(true);
                 setUserInfo(result);
+                window.location.reload();
             } else {
                 setUpdateError(result.message);
             }
         } catch (error) {
             setUpdateError('네트워크 오류가 발생했습니다.');
         }
-    };
-
-
-    const handleFileChange = (event) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            profileImage: event.target.files[0],
-        }));
     };
 
     const handlePasswordSubmit = async (event) => {
@@ -211,8 +200,8 @@ function ProfileInfo() {
                 <h3 className={styles.modalMainText}>정말 수정하시겠습니까?</h3>
                 <h3 className={styles.modalSubText}>수정한 내용은 복구할 수 없습니다.</h3>
                 <div className={styles.modalButtons}>
-                    <button className={styles.modalButton1} onClick={onConfirm}>예</button>
-                    <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
+                    <button className={styles.modalButton1} onClick={onConfirm}>확인</button>
+                    <button className={styles.modalButton2} onClick={onCancel}>취소</button>
                 </div>
             </div>
         </div>
@@ -250,7 +239,18 @@ function ProfileInfo() {
                 });
 
                 if (response.ok) {
-                    navigate('/main');
+                    const logoutResponse = await fetch('/auth/logout', {
+                        method: 'POST',
+                        credentials: 'include',
+                    });
+
+                    const logoutData = await logoutResponse.json();
+
+                    if (logoutData.success) {
+                        navigate('/main');
+                    } else {
+                        alert(logoutData.message || '로그아웃 처리 중 오류가 발생했습니다.');
+                    }
                 } else {
                     const result = await response.json();
                     alert(result.message || '탈퇴 처리 중 오류가 발생했습니다.');
@@ -260,6 +260,8 @@ function ProfileInfo() {
             alert('탈퇴 처리 중 오류가 발생했습니다.');
         }
     };
+
+
 
 
     const togglePasswordVisibility = () => {
@@ -384,18 +386,6 @@ function ProfileInfo() {
                         {passwordError && <div className={styles.errorPassword}>{passwordError}</div>}
                         {passwordSuccess && !passwordError &&
                             <div className={styles.successPassword}>ⓘ 유효한 비밀번호입니다.</div>}
-
-                        {/* 프로필 이미지 변경 */}
-                        <div className={styles.inputWrapper}>
-                            <label htmlFor="profileImage" className={styles.inputLabel}>프로필 이미지</label>
-                            <input
-                                className={styles.inputFile}
-                                type="file"
-                                name="profileImage"
-                                onChange={handleFileChange}
-                                accept="image/*"
-                            />
-                        </div>
 
                         {updateError && <div className={styles.error2}>{updateError}</div>}
 

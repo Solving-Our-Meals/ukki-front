@@ -69,7 +69,7 @@ function BossTotalNotice(){
     
 
     const navigateToSpeficifNotice = (noticeNo) => {
-        navigate(`/notice/${noticeNo}`);
+        navigate(`/boss/notice/${noticeNo}`);
     }
 
     const keyPressHandler = (e) => {

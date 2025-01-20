@@ -188,23 +188,23 @@ a:active {
   font-Family: "Pretendard-Regular";
   font-Size: 15px;
   font-Style: "Regular";
-  font-Weight: 600;
+  font-Weight: 500;
   display: block;
   flex-Direction: column;
-  border: 2px solid #323232;
+  border: 2.3px solid #323232;
   border-Radius: 36px;
   background-Color: #FFFFFF;
   padding: 5px 10px;
   text-Align: center;
-  line-height: 130%;
+  line-height: 160%;
   z-index: 99999;
 }
-#mapContainer .customoverlay .mapLink {
-  color: #007AFF;
-  font-Family: "Pretendard-Regular";
-  font-Size: 13px;
-  font-Style: "Regular";
-  border: none;
+#mapContainer .customoverlay span {
+  color: #232323;
+}
+#mapContainer .customoverlay span:nth-of-type(1) {
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 16px;
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -273,4 +273,4 @@ a:active {
     font-Style: "Regular";
     border: none;
   }
-}/*# sourceMappingURL=kakaoMap.module.css.map */
+}

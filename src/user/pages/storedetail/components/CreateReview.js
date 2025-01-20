@@ -42,7 +42,7 @@ function CreateReview(){
         reviewScope : "",
         storeNo : "",
         userNo : "",
-        resNo : "9999"
+        resNo : ""
     });
 
     const onChangeHandler = (e) => {
@@ -116,12 +116,12 @@ function CreateReview(){
     const submitHandler = () => {
         const formData = new FormData();
         formData.append('params', JSON.stringify({
-            reviewDate: review.reviewDate,
-            reviewContent: review.reviewContent,
-            reviewScope: review.reviewScope,
-            storeNo: review.storeNo,
-            userNo: review.userNo,
-            resNo: review.resNo,
+            reviewDate: review.reviewDate || "",
+            reviewContent: review.reviewContent || "",
+            reviewScope: review.reviewScope || "",
+            storeNo: review.storeNo || "",
+            userNo: review.userNo || "",
+            resNo: review.resNo || "",
         }));
 
         // 이미지가 있을 때만 formData에 추가
@@ -203,7 +203,7 @@ function CreateReview(){
     }
 
     // 리뷰 작성하기 버튼 활성화 여부
-    const [writeReview, setWriteReview] = useState(true);
+    const [writeReview, setWriteReview] = useState(false);
 
     // DB에 유저 넘버와 가게 번호 넘기기
     // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기

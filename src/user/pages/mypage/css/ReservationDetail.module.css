@@ -57,8 +57,9 @@
     border: 3px solid#FF8AA3;
 }
 
-.storeNameTitle {
+.Title {
     position: absolute;
+    left:20px;
     top: -50px;
     font-family: 'BobaesumJindoTTF';
     font-weight: 300;
@@ -66,8 +67,8 @@
     color: #1E1E1E;
 }
 
+
 .storeName {
-    display: inline-block;
     font-family: 'Pretendard-Regular';
     font-size: 30px;
     font-weight: 400;
@@ -79,8 +80,44 @@
     top:45px;
 }
 
-.reviewName {
-    font-family: 'Bobaesum Jindo TTF';
+.reservationUserNameTitle {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.storeNameTitle {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: inline-block;
+}
+
+.reservationTime {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: block;
+}
+
+.storeName {
+    font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 400;
     font-size: 30px;
@@ -89,6 +126,15 @@
     display: inline-block;
 }
 
+.reservationUserName {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    display: inline-block;
+}
 
 .reviewDate {
     font-family: 'Pretendard-Regular';
@@ -145,29 +191,6 @@
 .loadingContainer img {
     width: 50px;
     height: 50px;
-}
-
-.reviewText {
-        position: absolute;
-        left: 40px;
-        top: 150px;
-        width: 700px;
-        height: 250px;
-        background-color: #FFF9D3;
-        padding-left: 15px;
-        padding-top: 10px;
-        font-family: "Pretendard-Regular";
-        font-size: 20px;
-        font-weight: 500;
-        font-style: normal;
-        color: #232323;
-
-        display: -webkit-box;
-        -webkit-line-clamp: 8;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis
-
 }
 
 .reviewImageContainer {

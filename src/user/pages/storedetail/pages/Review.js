@@ -3,6 +3,7 @@ import styles from '../css/review.module.css';
 import { useParams } from 'react-router-dom';
 import CreateReview from '../components/CreateReview';
 import Footer from '../components/Footer';
+import basicReviewImg from '../images/BASIC_REVIEW_IMG.png';
 
 function Review(){
 
@@ -27,7 +28,14 @@ function Review(){
     // Footer를 참고하기 위한 ref
     const footerRef = useRef(null);
 
-
+    const addNewReview = (newReview) => {
+        setReviews(prevReviews => [...prevReviews, newReview]);
+        setReviewContent(prevContent => ({
+            ...prevContent,
+            reviewCount: prevContent.reviewCount + 1, // 리뷰 수 업데이트
+        }));
+    };
+    
     useEffect(() => {
         // Promise.all을 사용하여 두 fetch를 동기화
         Promise.all([
@@ -102,6 +110,8 @@ function Review(){
         })
         .then((res) => {
             if(res.ok){
+                // 삭제 후 상태 없데이트
+                setReviews(prevReviews => prevReviews.filter(review => review.reviewNo !== reviewNo));
                 setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
                 setCompleteOrFailDeleteMessage("해당 리뷰가 삭제되었습니다.");
@@ -116,7 +126,6 @@ function Review(){
 
     const completeHandler = () => {
         setIsCompleteDeleteReview(false);
-        window.location.reload();
     }
 
     // Footer의 위치를 조정하는 함수
@@ -186,7 +195,11 @@ function Review(){
                                 리뷰 삭제
                             </button>
                             <div>{review.reviewContent}</div>
-                            <img src={`/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
+                            <img 
+                                src={review.reviewImage === null ? basicReviewImg : `/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} 
+                                id={styles.reviewPhoto} 
+                                alt='리뷰 사진'
+                            />
                         </div>
                     ))}
                 </div>
@@ -264,7 +277,7 @@ function Review(){
                     </div>
                 </div>
             )}
-            <CreateReview/>
+            <CreateReview addNewReview={addNewReview}/>
             <Footer ref={footerRef}/>
         </div>
     );
