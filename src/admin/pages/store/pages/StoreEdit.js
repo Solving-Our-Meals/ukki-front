@@ -55,12 +55,14 @@ function StoreInfoRegist() {
                     GetBannerAPI(storeNo)
                 ]);
 
+                console.log('bannerImages : '+bannerImages);
+
                 const initialStoreData = {
                     ...storeData,
-                    storeCoordinate: {
-                        latitude: storeData.latitude,
-                        longitude: storeData.longitude
-                    },
+                    // storeCoordinate: {
+                    //     latitude: storeData.latitude,
+                    //     longitude: storeData.longitude
+                    // },
                     operationTime: {
                         ...storeData.operationTime,
                         breakTime: storeData.operationTime?.breakTime ?? '없음'
@@ -112,6 +114,7 @@ function StoreInfoRegist() {
     }, [storeInfo.operationTime]);
 
     const handleInputChange = useCallback((e) => {
+        console.log('bannerImages : '+bannerImages);
         const { id, value } = e.target;
         const fieldName = id.replace(styles.storeName, 'storeName')
             .replace(styles.storeDes, 'storeDes')
@@ -153,11 +156,12 @@ function StoreInfoRegist() {
 
     const handleBannerUpload = useCallback((e, index) => {
         const file = e.target.files[0];
+        console.log('file : '+file);
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setBannerImages(prev => {
-                    const newBannerImages = [...prev];
+                    const newBannerImages = Array.isArray(prev) ? [...prev] : [];
                     newBannerImages[index] = reader.result;
                     return newBannerImages;
                 });
@@ -168,7 +172,9 @@ function StoreInfoRegist() {
 
     const handleDeleteBanner = useCallback((index) => {
         setBannerImages(prev => {
-            const newBannerImages = [...prev];
+            console.log('prev : '+prev);
+            const newBannerImages = Array.isArray(prev) ? [...prev] : [];
+            console.log('newBannerImages : '+newBannerImages);
             for (let i = index; i < newBannerImages.length - 1; i++) {
                 newBannerImages[i] = newBannerImages[i + 1];
             }
@@ -209,10 +215,8 @@ function StoreInfoRegist() {
                 const [latitude, longitude] = coordinates;
                 setStoreInfo(prev => ({
                     ...prev,
-                    storeCoordinate: {
-                        latitude,
-                        longitude
-                    }
+                    latitude,
+                    longitude
                 }));
                 setIsAddressChanged(false); // 변환 완료 후 버튼 비활성화
                 setCoordError('');
@@ -238,8 +242,8 @@ function StoreInfoRegist() {
         });
 
         // 좌표 비교
-        if (storeInfo.storeCoordinate.latitude !== initialData.storeCoordinate.latitude ||
-            storeInfo.storeCoordinate.longitude !== initialData.storeCoordinate.longitude) {
+        if (storeInfo.latitude !== initialData.latitude ||
+            storeInfo.longitude !== initialData.longitude) {
             changes.storeCoordinate = storeInfo.storeCoordinate;
         }
 
@@ -356,12 +360,17 @@ function StoreInfoRegist() {
                 body: formData
             });
 
-            if (!response.ok) throw new Error('수정 요청이 실패했습니다.');
+            if(!response.ok){
+                const error = await response.json();
+                console.log('error : '+error);
+                throw new Error(error.message);
+            }
 
             setResultMessage('성공적으로 수정되었습니다.');
             setShowResultModal(true);
         } catch (error) {
             setResultMessage('수정 중 오류가 발생했습니다.');
+            console.log('error : '+error);
             setShowResultModal(true);
         }
     };
@@ -463,8 +472,8 @@ function StoreInfoRegist() {
                 </div>
             )}
             <div className={styles.storeCoordinate}>
-                <p>위도 : {storeInfo.storeCoordinate.latitude}</p>
-                <p>경도 : {storeInfo.storeCoordinate.longitude}</p>
+                <p>위도 : {storeInfo.latitude}</p>
+                <p>경도 : {storeInfo.longitude}</p>
             </div>
             <p id={styles.operTime} onClick={onClickHandler}>
                 영업 시간 설정
