@@ -62,7 +62,7 @@ function Mypage() {
                 <Routes>
                     <Route path="/" element={<Navigate to="reservation" />} />
                     <Route path="reservation" element={<Reservation />} />
-                    <Route path="reservation/:reservationNo" element={<ReservationDetail />} />
+                    <Route path="reservation/:resNo" element={<ReservationDetail />} />
                     <Route path="review" element={<Review />} />
                     <Route path="/review/:reviewNo" element={<ReviewDetail />} />
                     <Route path="inquiry" element={<Inquiry />} />
