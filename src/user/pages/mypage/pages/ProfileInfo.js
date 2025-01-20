@@ -246,9 +246,22 @@ function ProfileInfo() {
         </div>
     );
 
+    const handleLogout = async () => {
+        try {
+            await fetch('/auth/logout', {
+                method: 'POST',
+                credentials: 'include',
+            });
+            navigate('/');  // 로그아웃 후 로그인 페이지로 리디렉션
+        } catch (error) {
+            console.error('로그아웃 실패:', error);
+        }
+    };
+
     const handleDeleteAccount = async () => {
         setShowConfirmModal(true);
     };
+
 
     const handleConfirmDelete = async () => {
         setShowConfirmModal(false);
@@ -259,18 +272,7 @@ function ProfileInfo() {
             });
 
             if (response.ok) {
-                const logoutResponse = await fetch('/auth/logout', {
-                    method: 'POST',
-                    credentials: 'include',
-                });
-
-                const logoutData = await logoutResponse.json();
-
-                if (logoutData.success) {
-                    navigate('/main');  // 탈퇴 후 메인 페이지로 이동
-                } else {
-                    alert(logoutData.message || '로그아웃 처리 중 오류가 발생했습니다.');
-                }
+                await handleLogout();
             } else {
                 const result = await response.json();
                 alert(result.message || '탈퇴 처리 중 오류가 발생했습니다.');
@@ -279,6 +281,7 @@ function ProfileInfo() {
             alert('탈퇴 처리 중 오류가 발생했습니다.');
         }
     };
+
 
 
 
