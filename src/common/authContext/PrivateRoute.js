@@ -12,14 +12,15 @@ function PrivateRoute({ element, ...rest }) {
                 navigate('/auth/login');
             }
         };
-
         verifyAuth();
     }, [isAuthenticated, navigate]);
 
     useEffect(() => {
-        if (isAuthenticated && user?.role === 'BOSS') {
+        if (isAuthenticated && user?.userRole === 'STORE') {
             // 가게 관리자일 경우 BossPage로 리디렉션
             navigate('/boss/mypage');
+        } else if (isAuthenticated && user?.userRole === 'ADMIN') {
+            navigate('/admin');
         }
     }, [isAuthenticated, user, navigate]);
 

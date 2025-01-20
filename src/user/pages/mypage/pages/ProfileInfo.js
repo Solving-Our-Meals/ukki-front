@@ -239,7 +239,18 @@ function ProfileInfo() {
                 });
 
                 if (response.ok) {
-                    navigate('/main');
+                    const logoutResponse = await fetch('/auth/logout', {
+                        method: 'POST',
+                        credentials: 'include',
+                    });
+
+                    const logoutData = await logoutResponse.json();
+
+                    if (logoutData.success) {
+                        navigate('/main');
+                    } else {
+                        alert(logoutData.message || '로그아웃 처리 중 오류가 발생했습니다.');
+                    }
                 } else {
                     const result = await response.json();
                     alert(result.message || '탈퇴 처리 중 오류가 발생했습니다.');
@@ -249,6 +260,8 @@ function ProfileInfo() {
             alert('탈퇴 처리 중 오류가 발생했습니다.');
         }
     };
+
+
 
 
     const togglePasswordVisibility = () => {
