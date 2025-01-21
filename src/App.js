@@ -29,6 +29,7 @@ import BossPage from './store/pages/bossStore/pages/BossPage';
 import TotalReview from './store/pages/bossReview/pages/TotalReview';
 import TotalInquiryPage from './store/pages/bossInquiry/pages/TotalInquiryPage';
 import SpecificInquiry from './store/pages/bossInquiry/pages/SpecificInquiry';
+import BossStoreInfoPage from './store/pages/storeInfo/page/BossStoreInfoPage';
 
 function App() {
     return (
@@ -57,6 +58,7 @@ function App() {
                     </Route>
                     <Route path="/boss" element={<BossLayout />}>
                         <Route path="mypage" element={<PrivateRoute element={<BossPage/>}/>}/> 
+                        <Route path="info" element={<PrivateRoute element={<BossStoreInfoPage/>}/>}/> 
                         <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
                         <Route path="notice/:noticeNo" element={<PrivateRoute element={<BossSpecificPage/>}/>}/>
                         <Route path="review" element={<PrivateRoute element={<TotalReview/>}/>}/>
