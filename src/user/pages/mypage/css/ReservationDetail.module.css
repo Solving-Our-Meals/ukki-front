@@ -295,7 +295,8 @@
 .calendarDay:hover {
     background-color: #FFDBE4;
     transform: scale(1.05);
-=======
+}
+
 #qrInfo{
     position: absolute;
     width: 300px;
@@ -321,7 +322,7 @@
     top:320px;
     width: 250px;
     height: 30px;
-    font-family: 'Bobaesum Jindo TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-weight: 400;
     font-size: 30px;
