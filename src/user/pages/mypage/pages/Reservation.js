@@ -15,6 +15,10 @@ function Reservation() {
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
+        const savedPage = sessionStorage.getItem('currentReservation');
+        if (savedPage) {
+            setCurrentPage(Number(savedPage));
+        }
         fetchUserInfo();
     }, []);
 
@@ -107,7 +111,10 @@ function Reservation() {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = userInfo.slice(indexOfFirstItem, indexOfLastItem);
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        sessionStorage.setItem('currentReservation', pageNumber);
+    }
 
     const getReservationStatus = (reservationTime) => {
         const currentTime = new Date();

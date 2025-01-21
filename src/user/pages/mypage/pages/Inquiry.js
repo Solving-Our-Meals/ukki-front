@@ -15,6 +15,10 @@ function Inquiry() {
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
+        const savedPage = sessionStorage.getItem('currentInquiry');
+        if (savedPage) {
+            setCurrentPage(Number(savedPage));
+        }
         fetchUserInfo();
     }, []);
 
@@ -105,7 +109,10 @@ function Inquiry() {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = userInfo.slice(indexOfFirstItem, indexOfLastItem);
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        sessionStorage.setItem('currentInquiry', pageNumber);
+    }
 
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {

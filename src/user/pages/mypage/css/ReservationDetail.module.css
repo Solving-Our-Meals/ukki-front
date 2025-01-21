@@ -225,3 +225,75 @@
 
     cursor: pointer;
 }
+
+/* 전체 달력 컨테이너 */
+.calendarContainer {
+    position: relative;
+    top:250px;
+    left:200px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #FFF9D3;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.calendarHeader {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #232323;
+}
+
+.calendarWeekDays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.calendarWeekDays div {
+    padding: 8px;
+}
+
+.calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    text-align: center;
+}
+
+.calendarDay {
+    padding: 12px;
+    background-color: #FFF9D3;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+.today {
+    background-color: #FF8AA3;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #FF8AA3;
+    transform: scale(1.1);
+}
+
+.emptyDay {
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.calendarDay:hover {
+    background-color: #FFDBE4;
+    transform: scale(1.05);
+}
