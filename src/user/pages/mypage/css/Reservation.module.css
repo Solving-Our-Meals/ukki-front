@@ -105,6 +105,12 @@
     height: 95px;
 }
 
+.reservationItem:hover {
+    cursor: pointer;
+    background-color: #D3D3D3;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+}
 
 /* 페이지네이션 */
 .pagination {
@@ -265,4 +271,16 @@
     width : 40px;
     height : 40px;
     cursor: pointer;
+}
+
+.reviewButton {
+
+}
+
+.qrButton {
+
+}
+
+.cancelButton {
+
 }
