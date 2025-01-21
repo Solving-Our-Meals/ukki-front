@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/Inquiry.module.css';
 import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
 
 function Inquiry() {
     const [userInfo, setUserInfo] = useState(null);
@@ -11,14 +12,15 @@ function Inquiry() {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [totalPages, setTotalPages] = useState(0);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetchUserInfo();
     }, []);
 
-    const fetchUserInfo = async () => {
+    const fetchUserInfo = async (query = '') => {
         try {
-            const response = await fetch('/user/mypage/inquiry', {
+            const response = await fetch(`/user/mypage/inquiry${query}`, {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -38,6 +40,17 @@ function Inquiry() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleSearch = () => {
+        const query = searchQuery ? `?search=${searchQuery}` : '';
+        setLoading(true);
+        fetchUserInfo(query);
+        setCurrentPage(1);
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
     };
 
     if (loading) {
@@ -162,6 +175,18 @@ function Inquiry() {
             </div>
 
             <div className={styles.mypageReservationMain}>
+                {/* 검색창 */}
+                <div className={styles.searchContainer}>
+                    <input
+                        type="text"
+                        className={styles.searchInput}
+                        placeholder="문의 제목으로 검색"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    />
+                    <img src={Search} className={styles.searchButton} onClick={handleSearch}/>
+                </div>
+
                 {/* 상단 제목 */}
                 <div className={styles.headerRow}>
                     <div className={styles.headerItem}>문의 상태</div>
