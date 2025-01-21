@@ -88,7 +88,7 @@ function ReservationDetail() {
                         <div className={styles.storeNameTitle}>가게이름 : <p
                             className={styles.storeName}>{reviewDetail.storeName}</p></div>
                         <Link to={`/store/${reviewDetail.storeNo}`} className={styles.storeDetailButton}>
-                            <button className={styles.storeDetailBtn}>가게 상세보기</button>
+                            <button className={styles.storeDetailBtn}><p className={styles.pT}>가게 상세보기</p></button>
                         </Link>
                     </div>
 

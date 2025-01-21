@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/Reservation.module.css';
 import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
 
 function Reservation() {
     const [userInfo, setUserInfo] = useState(null);
@@ -170,7 +171,7 @@ function Reservation() {
                         value={searchQuery}
                         onChange={handleSearchChange}
                     />
-                    <button className={styles.searchButton} onClick={handleSearch}>검색</button>
+                    <img src={Search} className={styles.searchButton} onClick={handleSearch}/>
                 </div>
 
                 {/* 상단 제목 */}

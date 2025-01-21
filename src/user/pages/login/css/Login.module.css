@@ -270,7 +270,7 @@ button:disabled {
 }
 
 @media  (min-width: 1025px) and (max-width: 1920px) {
-    input::placeholder {
+    .signupBasic input::placeholder {
         visibility: hidden;
     }
 
@@ -443,7 +443,7 @@ button:disabled {
         color: #007bff;
     }
 
-    .signupBasicinput:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
+    .signupBasic input:focus + .signupBasic label,.signupBasic input:not(:placeholder-shown) + .signupBasic label {
         top: 170px;
         left: 380px;
         font-size: 12px;
@@ -453,7 +453,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input::placeholder {
+    .signupBasic input::placeholder {
         visibility: hidden;
     }
 
@@ -716,7 +716,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input::placeholder {
+    .signupBasic input::placeholder {
         visibility: hidden;
     }
 
@@ -979,7 +979,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input::placeholder {
+    .signupBasicinput input::placeholder {
         visibility: hidden;
     }
 

@@ -141,8 +141,8 @@ function MyProfile() {
                 <img
                     className={styles.profileImage}
                     src={profileImage || userInfo?.profileImage || ""}
-                    alt="Profile"
-                    onClick={() => document.getElementById('fileInput').click()} // 이미지 클릭시 파일 선택 창 열기
+                    alt="user"
+                    onClick={() => document.getElementById('fileInput').click()}
                 />
 
                 {/* 프로필 이미지 변경 문구 */}

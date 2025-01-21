@@ -336,7 +336,7 @@ input.errorInput:focus {
     color: #007bff;
 }
 
-input::placeholder {
+.signupBasic input::placeholder {
     visibility: hidden;
 }
 
@@ -703,7 +703,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input::placeholder {
+    .signupBasic input::placeholder {
         visibility: hidden;
     }
 
@@ -1123,7 +1123,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input::placeholder {
+    .signupBasic input::placeholder {
         visibility: hidden;
     }
 
@@ -1544,7 +1544,7 @@ button:disabled {
         color: #007bff;
     }
 
-    input::placeholder {
+    .signupBasic input::placeholder {
         visibility: hidden;
     }
 

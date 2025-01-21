@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/Review.module.css';
 import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
 
 function Review() {
     const [userInfo, setUserInfo] = useState(null);
@@ -277,7 +278,7 @@ function Review() {
                         value={searchQuery}
                         onChange={handleSearchChange}
                     />
-                    <button className={styles.searchButton} onClick={handleSearch}>검색</button>
+                    <img src={Search} className={styles.searchButton} onClick={handleSearch}/>
                 </div>
 
                 {/* 상단 제목 */}

@@ -18,10 +18,12 @@
 .profileImage {
     position: absolute;
     top:50px;
+    border: 1px solid black;
 }
 
 .mypageNickname {
-    transform: translateY(50px);
+    position: absolute;
+    top:250px;
 
     font-family: 'Bobaesum-Jindo-TTF';
     font-style: normal;
@@ -33,19 +35,17 @@
 }
 
 .mypageHorizonLine1 {
-    transform: translateY(65px);
-    /* Line 1 */
-
+    transform: translateY(85px);
     width: 389px;
     border: 1px solid #BDBEBF;
 }
 .mypageHorizonLine2 {
-    transform: translateY(140px);
+    transform: translateY(170px);
     width: 389px;
     border: 1px solid #BDBEBF;
 }
 .mypageHorizonLine3 {
-    transform: translateY(150px);
+    transform: translateY(170px);
     width: 389px;
     border: 1px solid #BDBEBF;
 }
@@ -54,7 +54,7 @@
     width: 146px;
     height: 35px;
 
-    transform: translateY(80px);
+    transform: translateY(90px);
     background: #FEDA00;
     border-radius: 10px;
 
@@ -103,7 +103,7 @@
     justify-content: center;
     gap: 10px;
     width: 100%;
-    top:365px;
+    top:370px;
 }
 
 .allNumber > div {
@@ -135,8 +135,6 @@
     flex: 1;
 }
 
-
-
 .challengerMedal {
     width:390px;
     height:240px;
@@ -156,7 +154,7 @@
 }
 
 .medalImage:hover, .medalImage2:hover, .medalImage3:hover, .medalImage4:hover, .medalImage5:hover, .medalImage6:hover {
-    box-shadow: 0 0 20px rgba(255, 138, 163, 0.8), 0 0 30px rgba(255, 138, 163, 0.5); /* 빛나는 그림자 */
+    box-shadow: 0 0 20px rgba(255, 138, 163, 0.8), 0 0 30px rgba(255, 138, 163, 0.5);
 }
 
 .grayscale {
@@ -199,12 +197,12 @@
 }
 
 .medalImage {
-    transform: translate(5px, 155px);
+    transform: translate(5px, 175px);
     object-fit: contain;
 }
 
 .tooltip {
-    transform: translate(-140px, 255px);
+    transform: translate(-140px, 275px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip {
@@ -214,12 +212,12 @@
 }
 
 .medalImage2 {
-    transform: translate(47px, 155px);
+    transform: translate(47px, 175px);
     object-fit: contain;
 }
 
 .tooltip2 {
-    transform: translate(-95px, 255px);
+    transform: translate(-95px, 275px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip2 {
@@ -229,12 +227,12 @@
 }
 
 .medalImage3 {
-    transform: translate(89px, 155px);
+    transform: translate(89px, 175px);
     object-fit: contain;
 }
 
 .tooltip3 {
-    transform: translate(-60px, 255px);
+    transform: translate(-60px, 275px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip3 {
@@ -244,12 +242,12 @@
 }
 
 .medalImage4 {
-    transform: translate(5px, 175px);
+    transform: translate(5px, 195px);
     object-fit: contain;
 }
 
 .tooltip4 {
-    transform: translate(-140px, 275px);
+    transform: translate(-140px, 295px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip4 {
@@ -259,12 +257,12 @@
 }
 
 .medalImage5 {
-    transform: translate(47px, 175px);
+    transform: translate(47px, 195px);
     object-fit: contain;
 }
 
 .tooltip5 {
-    transform: translate(-100px, 275px);
+    transform: translate(-100px, 295px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip5 {
@@ -274,13 +272,13 @@
 }
 
 .medalImage6 {
-    transform: translate(89px, 175px);
+    transform: translate(89px, 195px);
     object-fit: contain;
 }
 
 .tooltip6 {
     line-height: 30px;
-    transform: translate(-55px, 275px);
+    transform: translate(-55px, 295px);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .challengerMedal:hover .tooltip6 {
