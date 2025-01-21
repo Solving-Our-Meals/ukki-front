@@ -351,12 +351,12 @@ function Reservation() {
             {isCancelModalOpen && (
                 <div className={styles.cancelModal}>
                     <div className={styles.cancelModalContent}>
-                        <h3>정말로 예약을 취소하시겠습니까?</h3>
-                        <div className={styles.cancelModalActions}>
-                            <button className={styles.cancelModalButton} onClick={handleConfirmCancel}>
+                        <h3 className={styles.modalMainText}>정말로 예약을 취소하시겠습니까?</h3>
+                        <div className={styles.modalButtons}>
+                            <button className={styles.modalButton1} onClick={handleConfirmCancel}>
                                 확인
                             </button>
-                            <button className={styles.cancelModalButton} onClick={handleCancelClose}>
+                            <button className={styles.modalButton2} onClick={handleCancelClose}>
                                 취소
                             </button>
                         </div>
@@ -367,8 +367,8 @@ function Reservation() {
             {isCancelSuccessModalOpen && (
                 <div className={styles.successModal}>
                     <div className={styles.successModalContent}>
-                        <h3>{cancelSuccessMessage}</h3>
-                        <button className={styles.closeSuccessModalButton} onClick={() => setIsCancelSuccessModalOpen(false)}>
+                        <h3 className={styles.modalMainText}>{cancelSuccessMessage}</h3>
+                        <button className={styles.modalButton3} onClick={() => setIsCancelSuccessModalOpen(false)}>
                             닫기
                         </button>
                     </div>

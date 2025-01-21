@@ -355,6 +355,14 @@
 
 
     cursor: pointer;
+
+    margin-top: 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+
+    color: #232323;
 }
 
 .modalButton:hover {
