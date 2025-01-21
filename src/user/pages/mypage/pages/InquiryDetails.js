@@ -27,6 +27,9 @@ function InquiryDetail({ userInfo }) {
     const [isEditSuccess, setIsEditSuccess] = useState(false);
     const [isEditError, setIsEditError] = useState(false);
 
+    const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
+    const [isDeleteError, setIsDeleteError] = useState(false);
+
     // 첨부파일 (마지막에 넣었슴다.)
     const [file, setFile] = useState(null);
 
@@ -239,12 +242,15 @@ function InquiryDetail({ userInfo }) {
             });
 
             if (response.ok) {
+                setIsConfirmingDelete(false);
+                setIsDeleteSuccess(true);
                 window.location.href = '/user/mypage/inquiry';
             } else {
                 throw new Error('문의 삭제에 실패했습니다.');
             }
         } catch (error) {
             console.log(error.message);
+            setIsDeleteError(true);
         }
     };
 
@@ -282,8 +288,37 @@ function InquiryDetail({ userInfo }) {
         );
     };
 
+    const DeleteSuccessModal = ({ onClose }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>삭제가 완료되었습니다!</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const DeleteErrorModal = ({ onClose }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>삭제에 실패했습니다. 다시 시도해 주세요.</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+
     return (
         <div className={styles.inquiryDetailContainer}>
+            {isDeleteSuccess && <DeleteSuccessModal onClose={() => setIsDeleteSuccess(false)} />}
+            {isDeleteError && <DeleteErrorModal onClose={() => setIsDeleteError(false)} />}
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore}/>}
             {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2}/>}
             {isEditSuccess && <EditSuccessModal onClose={() => setIsEditSuccess(false)} />}
