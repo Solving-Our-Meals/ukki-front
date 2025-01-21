@@ -934,3 +934,33 @@
 .fileLabel:hover {
     background-color: #FDD835;
 }
+
+.searchContainer {
+    position: absolute;
+    left:1280px;
+    top:-190px;
+}
+
+.searchInput {
+    position: absolute;
+    right : 35px;
+    top : 120px;
+    width : 500px;
+    height : 50px;
+    border-radius: 15px;
+    border: 3px solid #ff7a8e;
+    cursor: text;
+    outline: none;
+    padding-left: 20px;
+    font-family: 'Pretendard-Regular';
+    font-size: 20px;
+}
+
+.searchButton {
+    position: absolute;
+    right : 55px;
+    top : 125px;
+    width : 40px;
+    height : 40px;
+    cursor: pointer;
+}

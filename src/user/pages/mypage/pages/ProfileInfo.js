@@ -282,10 +282,6 @@ function ProfileInfo() {
         }
     };
 
-
-
-
-
     const togglePasswordVisibility = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
@@ -378,7 +374,7 @@ function ProfileInfo() {
                                 name="nickname"
                                 value={formData.nickname}
                                 onChange={handleChange}
-                                placeholder="닉네임 수정"
+                                placeholder={userInfo.userName}
                             />
                         </div>
                         {nicknameError && (
@@ -390,11 +386,11 @@ function ProfileInfo() {
                         <div className={styles.inputWrapper}>
                             <input
                                 className={styles.inputField2}
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 name="newPassword"
                                 value={formData.newPassword}
                                 onChange={handleChange}
-                                placeholder="새 비밀번호"
+                                placeholder="새로운 비밀번호로 변경"
                                 id="newPassword"
                             />
                             <div className={styles.passwordToggleBtn2} onClick={togglePasswordVisibility}>
