@@ -11,27 +11,59 @@ function SpecificInquiry(){
     const categoryNo = searchParams.get('categoryNo');
     const [inquiryInfo, setInquiryInfo] = useState({});
     const [realDeleteInquiry, setRealDeleteInquiry] = useState(false);
+    const [realUpdateInquiry, setRealUpdateInquiry] = useState(false);
     const [isCompleteDeleteInquiry, setIsCompleteDeleteInquiry] = useState(false);
+    const [isCompleteUpdateInquiry, setIsCompleteUpdateInquiry] = useState(false);
     const [completeOrFailDeleteMessage, setCompleteOrFailDeleteMessage] = useState("");
+    const [completeOrFailUpdateMessage, setCompleteOrFailUpdateMessage] = useState("");
+    const [isUpdate, setIsUpdate] = useState(false);
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    const [updateInquiryData, setUpdateInquiryData] = useState({
+        inquiryTitle : "",
+        inquiryContent : "",
+        inquiryDate : formattedDate,
+        file : null,
+        categoryNo : 0
+    });
     
     useEffect(() => {
         fetch(`/boss/mypage/getSpecificInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}`)
         .then(res => res.json())
         .then(data => {
             setInquiryInfo(data);
-            console.log(data);
+            console.log('inquiry!!!!', data)
+
+            setUpdateInquiryData({
+                inquiryTitle: data.inquiryTitle || "",
+                inquiryContent: data.inquiryContent || "",
+                inquiryDate: data.inquiryDate || formattedDate,
+                file: data.file || null,
+                categoryNo : data.categoryNo || 0,
+            });
+            
         })
         .catch(error => console.log(error));
-    }, [])
+    }, [inquiryNo, categoryNo]);
 
-    // const updateInquiry = (inquiryNo) => {
-    //     fetch(`/boss/mypage/updateInquiry?inquiryNo=${inquiryNo}`)
-    //     .then(res => res.json())
-    //     .catch(error => console.log(error));
-    // }
+    // 파일 삭제 버튼 클릭
+    const deleteFileHandler = (e) => {
+        e.stopPropagation();
+        setUpdateInquiryData(prevState => ({
+            ...prevState,
+            file : null
+        }));
+    };
 
     const completeHandler = () => {
         setIsCompleteDeleteInquiry(false);
+        setIsCompleteUpdateInquiry(false);
     }
 
     const deleteInquiry = (inquiryNo, categoryNo, reviewNo) => {
@@ -46,27 +78,161 @@ function SpecificInquiry(){
                 // 삭제 후 상태 없데이트
                 setRealDeleteInquiry(false)
                 setIsCompleteDeleteInquiry(true);
-                setCompleteOrFailDeleteMessage("해당 리뷰가 삭제되었습니다.");
+                setCompleteOrFailDeleteMessage("해당 문의 내역이 삭제되었습니다.");
                 navigate('/boss/inquiry');
             } else {
                 setRealDeleteInquiry(false)
                 setIsCompleteDeleteInquiry(true);
-                setCompleteOrFailDeleteMessage("리뷰 삭제를 실패했습니다.");
+                setCompleteOrFailDeleteMessage("문의 내용 삭제에 실패했습니다.");
             }
         })
         .then(data => console.log('문의 내역 삭제 성공', data))
         .catch(error => console.log(error));
     }
+
+    // const inputChangeHandler = (e) => {
+    //     const {name, value} = e.target;
+    //     setUpdateInquiryData(prevState => ({
+    //         ...prevState,
+    //         [name]: value
+    //     }));
+    // }    
+
+    const inputChangeHandler = (e) => {
+        const { name, value, files } = e.target;
+    
+        if (name === 'file' && files) {
+            setUpdateInquiryData(prevState => ({
+                ...prevState,
+                file: files[0], // 실제 파일 객체로 설정
+            }));
+        } else {
+            setUpdateInquiryData(prevState => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
+    };
+    
+
+    const cancelUpdateHandler = () => {
+        setIsUpdate(false);
+        setUpdateInquiryData({
+            inquiryTitle: inquiryInfo.inquiryTitle || "",
+            inquiryContent: inquiryInfo.inquiryContent || "",
+            inquiryDate: inquiryInfo.inquiryDate,
+            file: inquiryInfo.file || null,
+            categoryNo : inquiryInfo.categoryNo || 0
+        });
+    }
+
+    const updateInquiryHandler = (inquiryNo, categoryNo, reviewNo) => {
+
+        const formData = new FormData();
+        formData.append("inquiryTitle", updateInquiryData.inquiryTitle);
+        formData.append("inquiryContent", updateInquiryData.inquiryContent);
+        formData.append("inquiryDate", updateInquiryData.inquiryDate);
+
+        if(updateInquiryData.file){
+            formData.append("inquiryFile", updateInquiryData.file);
+        }
+
+        formData.append("params", JSON.stringify({
+            inquiryTitle: updateInquiryData.inquiryTitle,
+            inquiryContent: updateInquiryData.inquiryContent,
+            inquiryDate: formattedDate
+        }));
+
+        fetch(`/boss/mypage/updateInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}&reviewNo=${reviewNo}`, {
+            method : 'PUT',
+            body : formData,
+        })
+        .then(res => {
+            if(res.ok){
+                // 수정 후 상태 없데이트
+                setRealUpdateInquiry(false)
+                setIsCompleteUpdateInquiry(true);
+                setCompleteOrFailUpdateMessage("해당 문의 내용이 수정되었습니다.");
+                navigate('/boss/inquiry');
+            } else {
+                setRealDeleteInquiry(false)
+                setIsCompleteDeleteInquiry(true);
+                setCompleteOrFailDeleteMessage("문의 내용 수정에 실패했습니다.");
+            }
+        })
+        .then(data => console.log('문의 내용 수정 성공', data))
+        .catch(error => {
+            console.error('문의 내용 수정 실패:', error);
+            setRealUpdateInquiry(false);
+            setIsCompleteUpdateInquiry(true);
+            setCompleteOrFailUpdateMessage("문의 내용 수정 중 오류가 발생했습니다.");
+        });
+    }
+
+    // const updateInquiry = (inquiryNo, categoryNo, reviewNo) => {
+
+    //     const formData = new FormData();
+    //     formData.append("inquiryTitle", updateInquiryData.inquiryTitle);
+    //     formData.append("inquiryContent", updateInquiryData.inquiryContent);
+    //     formData.append("inquiryDate", formattedDate);
+
+    //     if(updateInquiryData.file){
+    //         formData.append("inquiryFile", updateInquiryData.file);
+    //     }
+
+    //     formData.append("params", JSON.stringify({
+    //         inquiryTitle: updateInquiryData.inquiryTitle,
+    //         inquiryContent: updateInquiryData.inquiryContent,
+    //         inquiryDate: formattedDate
+    //     }));
+
+    //     fetch(`/boss/mypage/updateInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}&reviewNo=${reviewNo}`, {
+    //         method : 'PUT',
+    //         body : formData,
+    //     })
+    //     .then(res => {
+    //         if(res.ok){
+    //             // 수정 후 상태 없데이트
+    //             setRealUpdateInquiry(false)
+    //             setIsCompleteUpdateInquiry(true);
+    //             setCompleteOrFailUpdateMessage("해당 문의 내용이 수정되었습니다.");
+    //             navigate('/boss/inquiry');
+    //         } else {
+    //             setRealDeleteInquiry(false)
+    //             setIsCompleteDeleteInquiry(true);
+    //             setCompleteOrFailDeleteMessage("문의 내용 수정에 실패했습니다.");
+    //         }
+    //     })
+    //     .then(data => console.log('문의 내용 수정 성공', data))
+    //     .catch(error => {
+    //         console.error('문의 내용 수정 실패:', error);
+    //         setRealUpdateInquiry(false);
+    //         setIsCompleteUpdateInquiry(true);
+    //         setCompleteOrFailUpdateMessage("문의 내용 수정 중 오류가 발생했습니다.");
+    //     });
+    // }
+    
+    const updateButtonClickHandler = () => {
+        setIsUpdate(true);
+        setUpdateInquiryData({
+            inquiryTitle: inquiryInfo.inquiryTitle || "",
+            inquiryContent: inquiryInfo.inquiryContent || "",
+            inquiryDate: formattedDate,
+            file: inquiryInfo.file || null,  // 파일 정보 제대로 전달
+            categoryNo: inquiryInfo.categoryNo || 0
+        });
+    };
     
     return(
         <>
-            <div id={styles.inquiryArea}>
+            <div id={styles.inquiryArea} style={{display : isUpdate ? "none" : ""}}>
                 <p id={styles.strInquiry}>문의 상세보기</p>
                 <button 
                     type="button" 
                     id={styles.updateBtn} 
                     style={{display : inquiryInfo.answerDate == null ? "" : "none" }}
-                    // onClick={() => updateInquiry(inquiryInfo.inquiryNo)}
+                    // onClick={() => updateButtonClickHandler()}
+                    onClick={() => setIsUpdate(true)}
                 >
                     수정
                 </button>
@@ -83,9 +249,8 @@ function SpecificInquiry(){
                     <span id={styles.inquiryContent}>{inquiryInfo.inquiryContent}</span>
                     <div id={styles.file} style={{display : inquiryInfo.file === null ? "none" : ""}}>
                         <a
-                            href={'파일 경로'}
+                            href={`http://localhost:8080/boss/mypage/downloadFile?fileName=${inquiryInfo.file}`}
                             download={inquiryInfo.file} // 파일 다운로드 가능하게 하는 속성
-                            target='_blank' // 새 탭에서 열 수 있도록 설정(파일을 열 수 있을 경우)
                         >
                             {inquiryInfo.file}
                         </a>
@@ -102,6 +267,7 @@ function SpecificInquiry(){
                         <span id={styles.answerContent}>{inquiryInfo.answerContent}</span>
                     </div>
                 </div>
+                {/* 문의 삭제 */}
                 {realDeleteInquiry && (
                     <div 
                         id={styles.modalOverlay}
@@ -134,7 +300,6 @@ function SpecificInquiry(){
                         </div>
                     </div>
                 )}
-    
                 {isCompleteDeleteInquiry && (
                     <div 
                         id={styles.modalOverlay}
@@ -161,6 +326,143 @@ function SpecificInquiry(){
                             }}
                         >
                             <p id={styles.completedDeletteMessage}>{completeOrFailDeleteMessage}</p>
+                            <button type='button' id={styles.completeBtn} onClick={() => completeHandler()}>확인</button>
+                        </div>
+                    </div>
+                )}
+            </div>
+            {/* 문의 수정 */}
+            <div id={styles.updateInquiry} style={{display : isUpdate ? "" : "none"}}>
+                <p id={styles.strUpdateInquiry}>문의 수정</p>
+                <button 
+                    type="button" 
+                    id={styles.cancelBtn} 
+                    onClick={() => cancelUpdateHandler()}
+                >
+                    취소
+                </button>
+                <button 
+                    type="button" 
+                    id={styles.confirmBtn}
+                    onClick={() => setRealUpdateInquiry(true)}
+                >
+                    완료
+                </button>
+                <span id={styles.strTitle} className={styles.StringElement}>제목 : </span> 
+                <input 
+                    type='text' 
+                    id={styles.inquiryTitle} 
+                    className={styles.StringElement}
+                    name = "inquiryTitle"
+                    value={updateInquiryData.inquiryTitle} 
+                    onChange={(e) => inputChangeHandler(e)}
+                />
+                <span id={styles.strDate} className={styles.StringElement}>수정 일자 : </span> 
+                <span id={styles.inquiryDate} className={styles.StringElement}>{formattedDate}</span>
+                <div id={styles.updateInquiryContent}>
+                    <textarea 
+                        type='text' 
+                        name = "inquiryContent"
+                        id={styles.updateInquiryContent} 
+                        value={updateInquiryData.inquiryContent} 
+                        onChange={(e) => inputChangeHandler(e)}
+                    />
+                    <div 
+                        id={styles.updateFile} 
+                        onClick={() => document.getElementById('fileInput').click()}  // div 클릭 시 파일 탐색기 열기
+                        style={{ cursor: 'pointer', display : updateInquiryData.categoryNo === 0 ? "none" : "" }}  // 클릭 가능하도록 스타일 설정
+                    >
+                        {/* 파일 이름이 선택되지 않았다면 "첨부파일"을 표시, 그렇지 않으면 파일 이름 표시 */}
+                        {updateInquiryData.file ? (
+                            <span id={styles.updateFileName}>{updateInquiryData.file.name || updateInquiryData.file}</span>
+                        ) : (
+                            <span>파일첨부</span>
+                        )}
+
+                        {/* 파일 선택 input을 숨깁니다 */}
+                        <input 
+                            type="file" 
+                            id="fileInput" 
+                            name="file" 
+                            onChange={(e) => setUpdateInquiryData({ ...updateInquiryData, file: e.target.files[0] })}
+                            style={{ display: 'none' }}  // 파일 입력 필드를 숨김
+                        />
+
+                        {/* 파일 삭제 버튼 추가 */}
+                        {updateInquiryData.file && (
+                            <button 
+                                type="button" 
+                                id={styles.deleteFileBtn} 
+                                onClick={(e) => deleteFileHandler(e)}
+                                style={{ marginLeft: '5px', background : "none", border:"none", color: '#232323', cursor: 'pointer' }}
+                            >
+                                &#x2716;
+                            </button>
+                        )}
+                    </div>
+                </div>
+                <div id={styles.updateNoAnswerArea}>
+                    <img src={noAnswerLogo} id={styles.updateNoAnswerLogo} alt="우끼 로고"/>
+                    <div id={styles.updateProcessingMessage}>문의를 접수하는 중 입니다! 관리자의 답변을 기다려 주세요.</div>
+                </div>
+                {realUpdateInquiry && (
+                    <div 
+                        id={styles.modalOverlay}
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            zIndex: 1000
+                        }}
+                    >
+                        <div 
+                            id={styles.finalCheck}
+                            style={{
+                                backgroundColor: '#FFFFFF',
+                                padding: '20px',
+                                borderRadius: '30px',
+                                position: 'relative'
+                            }}
+                        >
+                            <p id={styles.reallyUpdateInquiry}>해당 문의를 수정하시겠습니까?</p>
+                            <p id={styles.inquiry}>선택하신 문의가 수정된 내용으로 접수됩니다.</p>
+                            <button type='button' id={styles.cancleUpdateInquiry} onClick={() => setRealUpdateInquiry(false)}>취소</button>
+                            <button type='submit' id={styles.confirmUpdateInquiry} onClick={() => updateInquiryHandler(inquiryInfo.inquiryNo, inquiryInfo.categoryNo, inquiryInfo.reviewNo)}>확인</button>
+                        </div>
+                    </div>
+                )}
+                {isCompleteUpdateInquiry && (
+                    <div 
+                        id={styles.modalOverlay}
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            zIndex: 1000
+                        }}
+                    >
+                        <div 
+                            id={styles.completeUpdateInquiry}
+                            style={{
+                                backgroundColor: '#FFFFFF',
+                                padding: '20px',
+                                borderRadius: '30px',
+                                position: 'relative'
+                            }}
+                        >
+                            <p id={styles.completedUpdateMessage}>{completeOrFailUpdateMessage}</p>
                             <button type='button' id={styles.completeBtn} onClick={() => completeHandler()}>확인</button>
                         </div>
                     </div>
