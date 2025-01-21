@@ -78,6 +78,12 @@ function ReservationDetail() {
                 </Link>
             </div>
 
+            {/* QR 이미지 추가 */}
+            <div className={styles.qrInfo}>
+                <div className={styles.qrInfoText}>QR 이미지</div>
+                <img className={styles.qrImage} src={`/${reviewDetail.qr}/api/qrImage`} alt="QR 코드" />
+            </div>
+
             {/* 리뷰 상세 정보 */}
             <div className={styles.reviewContainer}>
                 <div className={styles.reviewHeader}>

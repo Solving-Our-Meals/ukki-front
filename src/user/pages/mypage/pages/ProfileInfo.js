@@ -24,9 +24,13 @@ function ProfileInfo() {
     const [updateError, setUpdateError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isInputChanged, setIsInputChanged] = useState(false);
-    const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [updateSuccess, setUpdateSuccess] = useState(false);
     const navigate = useNavigate();
+    const [showUpdateConfirmModal, setShowUpdateConfirmModal] = useState(false);
+    const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
+    const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+    const [showDeleteFailModal, setShowDeleteFailModal] = useState(false);
+
 
     useEffect(() => {
         if (userInfo !== null) {
@@ -252,19 +256,40 @@ function ProfileInfo() {
                 method: 'POST',
                 credentials: 'include',
             });
-            navigate('/');  // 로그아웃 후 로그인 페이지로 리디렉션
+            navigate('/');
         } catch (error) {
             console.error('로그아웃 실패:', error);
         }
     };
 
     const handleDeleteAccount = async () => {
-        setShowConfirmModal(true);
+        setShowDeleteConfirmModal(true);
     };
 
+    const DeleteSuccessModal = ({ onClose }) => (
+        <div className={styles.modalOverlay}>
+            <div className={styles.modal}>
+                <h3 className={styles.modalMainText2}>탈퇴가 성공적으로 처리되었습니다!</h3>
+                <div className={styles.modalButtons}>
+                    <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                </div>
+            </div>
+        </div>
+    );
+
+    const DeleteFailModal = ({ onClose }) => (
+        <div className={styles.modalOverlay}>
+            <div className={styles.modal}>
+                <h3 className={styles.modalMainText2}>탈퇴 처리에 실패했습니다!</h3>
+                <div className={styles.modalButtons}>
+                    <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                </div>
+            </div>
+        </div>
+    );
 
     const handleConfirmDelete = async () => {
-        setShowConfirmModal(false);
+        setShowDeleteConfirmModal(false);
         try {
             const response = await fetch('/user/mypage/delete', {
                 method: 'DELETE',
@@ -272,13 +297,14 @@ function ProfileInfo() {
             });
 
             if (response.ok) {
+                setShowDeleteSuccessModal(true);
                 await handleLogout();
             } else {
                 const result = await response.json();
-                alert(result.message || '탈퇴 처리 중 오류가 발생했습니다.');
+                setShowDeleteFailModal(true);
             }
         } catch (error) {
-            alert('탈퇴 처리 중 오류가 발생했습니다.');
+            setShowDeleteFailModal(true);
         }
     };
 
@@ -288,21 +314,24 @@ function ProfileInfo() {
 
     const handleOpenConfirmModal = (event) => {
         event.preventDefault();
-        setShowConfirmModal(true);
+        setShowUpdateConfirmModal(true);
     };
 
     const handleCancelUpdate = () => {
-        setShowConfirmModal(false);
+        setShowUpdateConfirmModal(false);
     };
 
     const handleConfirmUpdate = () => {
-        setShowConfirmModal(false);
+        setShowUpdateConfirmModal(false);
         handleUpdateSubmit();
     };
 
     return (
         <div>
-            {showConfirmModal && <ConfirmModal onConfirm={handleConfirmUpdate} onCancel={handleCancelUpdate} />}
+            {showDeleteSuccessModal && <DeleteSuccessModal onClose={() => setShowDeleteSuccessModal(false)} />}
+            {showDeleteFailModal && <DeleteFailModal onClose={() => setShowDeleteFailModal(false)} />}
+            {showUpdateConfirmModal && <ConfirmModal onConfirm={handleConfirmUpdate} onCancel={() => setShowUpdateConfirmModal(false)} />}
+            {showDeleteConfirmModal && <DeleteConfirmModal onConfirm={handleConfirmDelete} onCancel={() => setShowDeleteConfirmModal(false)} />}
             {updateSuccess && <SuccessModal onClose={() => setUpdateSuccess(false)} />}
             {updateError && <FailModal onClose={() => setUpdateError('')} />}
 
@@ -407,20 +436,21 @@ function ProfileInfo() {
 
                         {updateError && <div className={styles.error2}>{updateError}</div>}
 
-                        <button className={styles.updateButton} type="submit">
+                        <button className={styles.updateButton} type="button" onClick={handleOpenConfirmModal}>
                             수정
                         </button>
+
                     </form>
                     <button className={styles.exitButton} onClick={handleDeleteAccount}>
-                        탈퇴
+                    탈퇴
                     </button>
                 </div>
             )}
 
-            {showConfirmModal && (
+            {showDeleteConfirmModal && (
                 <DeleteConfirmModal
                     onConfirm={handleConfirmDelete}
-                    onCancel={() => setShowConfirmModal(false)}
+                    onCancel={() => setShowDeleteConfirmModal(false)}
                 />
             )}
 

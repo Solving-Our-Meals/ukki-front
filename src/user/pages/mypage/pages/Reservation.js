@@ -13,6 +13,11 @@ function Reservation() {
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [totalPages, setTotalPages] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedQr, setSelectedQr] = useState(null);
+    const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+    const [reservationToCancel, setReservationToCancel] = useState(null);
+    const [isCancelSuccessModalOpen, setIsCancelSuccessModalOpen] = useState(false);
+    const [cancelSuccessMessage, setCancelSuccessMessage] = useState('');
 
     useEffect(() => {
         fetchUserInfo();
@@ -28,6 +33,7 @@ function Reservation() {
             if (response.ok) {
                 const data = await response.json();
                 setUserInfo(data);
+                console.log(data)
                 setTotalPages(Math.ceil(data.length / itemsPerPage));
             } else if (response.status === 401) {
                 setError('인증이 필요합니다.');
@@ -137,10 +143,60 @@ function Reservation() {
         }
     };
 
-    const handleReviewClick = (resNo) => {
-        navigate(`/user/mypage/reservation/${resNo}`)
+    const handleReviewClick = (resNo, e) => {
+        if (e && e.target) {
+            if (e.target.closest(".qrButton") || e.target.closest(".cancelButton") || e.target.closest(".reviewButton")) {
+                return;
+            }
+        }
+        navigate(`/user/mypage/reservation/${resNo}`);
     };
+
     console.log(userInfo)
+
+    const handleQrClick = (e, qr) => {
+        e.stopPropagation();
+        setSelectedQr(qr);
+    };
+
+    const handleCloseQr = () => {
+        setSelectedQr(null);
+    };
+
+        const handleCancelButtonClick = (reservation, e) => {
+            e.stopPropagation();
+            setReservationToCancel(reservation);
+            setIsCancelModalOpen(true);
+        };
+
+    const handleConfirmCancel = () => {
+        if (reservationToCancel) {
+            fetch(`/user/mypage/reservation/cancel/${reservationToCancel.resNo}`, {
+                method: 'POST',
+                credentials: 'include',
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // 취소 성공 시
+                    setCancelSuccessMessage('예약이 취소되었습니다.');
+                    setIsCancelSuccessModalOpen(true);  // 성공 모달 열기
+                    fetchUserInfo();  // 예약 정보를 갱신
+                })
+                .catch((error) => {
+                    // 취소 실패 시
+                    setCancelSuccessMessage('예약 취소에 실패했습니다.');
+                    setIsCancelSuccessModalOpen(true);  // 실패 모달 열기
+                })
+                .finally(() => {
+                    setIsCancelModalOpen(false);  // 예약 취소 확인 모달 닫기
+                });
+        }
+    };
+
+
+    const handleCancelClose = () => {
+        setIsCancelModalOpen(false);
+    };
 
     return (
         <div className={styles.mypageReservation}>
@@ -187,7 +243,7 @@ function Reservation() {
                     currentItems.map((reservation, index) => (
                         <div key={index}
                              className={styles.reservationItem}
-                             onClick={() => handleReviewClick(reservation.resNo)}
+                             onClick={(e) => handleReviewClick(reservation.resNo)}
                         >
                             <div className={styles.headerItem}>{reservation.storeName}</div>
                             <div className={styles.headerItem}>
@@ -196,8 +252,48 @@ function Reservation() {
                             <div className={styles.headerItem}>
                                 {getReservationStatus(`${reservation.date} ${reservation.time}`)}
                             </div>
-                            <div className={styles.headerItem}>{reservation.qr}</div>
+                            <div className={styles.headerItem}>
+                                {getReservationStatus(`${reservation.date} ${reservation.time}`) === '예약 만료' && reservation.replyNo === 0 && reservation.qrConfirm === false ? (
+                                    <div className={styles.reviewComplete2}>
+                                        QR 미확인
+                                    </div>
+                                ) : (
+                                    getReservationStatus(`${reservation.date} ${reservation.time}`) === '예약 만료' && reservation.replyNo === 0 ? (
+                                        <button
+                                            className={styles.reviewButton}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                navigate(`/store/${reservation.storeNo}`);
+                                            }}
+                                        >
+                                            리뷰 작성하기
+                                        </button>
+                                    ) : (
+                                        getReservationStatus(`${reservation.date} ${reservation.time}`) !== '예약 만료' && reservation.replyNo === 0 ? (
+                                            <div className={styles.buttonGroup}>
+                                                <button
+                                                    className={styles.qrButton}
+                                                    onClick={(e) => handleQrClick(e, reservation.qr)} // QR 버튼 클릭 시 모달을 띄움
+                                                >
+                                                    QR 확인
+                                                </button>
+                                                <button
+                                                    className={styles.cancelButton}
+                                                    onClick={(e) => handleCancelButtonClick(reservation, e)} // 예약 취소 버튼 클릭 시 확인 모달 띄움
+                                                >
+                                                    예약 취소
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className={styles.reviewComplete}>
+                                                리뷰 작성 완료
+                                            </div>
+                                        )
+                                    )
+                                )}
+                            </div>
                         </div>
+
                     ))
                 ) : (
                     // 비었을 때
@@ -226,6 +322,8 @@ function Reservation() {
                         >
                             {number}
                         </div>
+
+
                     ))}
 
                     <div
@@ -237,6 +335,48 @@ function Reservation() {
                 </div>
 
             </div>
+            {/* QR 모달 */}
+            {selectedQr && (
+                <div className={styles.qrModal} onClick={handleCloseQr}>
+                    <div className={styles.qrModalContent} onClick={(e) => e.stopPropagation()}>
+                        <div className={styles.qrInfo}>
+                            <div className={styles.qrInfoText}>QR 이미지</div>
+                            <img className={styles.qrImage} src={`/${selectedQr}/api/qrImage`} alt="QR 코드" />
+                        </div>
+                        <button className={styles.closeQrButton} onClick={handleCloseQr}>닫기</button>
+                    </div>
+                </div>
+            )}
+
+            {isCancelModalOpen && (
+                <div className={styles.cancelModal}>
+                    <div className={styles.cancelModalContent}>
+                        <h3 className={styles.modalMainText}>정말로 예약을 취소하시겠습니까?</h3>
+                        <div className={styles.modalButtons}>
+                            <button className={styles.modalButton1} onClick={handleConfirmCancel}>
+                                확인
+                            </button>
+                            <button className={styles.modalButton2} onClick={handleCancelClose}>
+                                취소
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {isCancelSuccessModalOpen && (
+                <div className={styles.successModal}>
+                    <div className={styles.successModalContent}>
+                        <h3 className={styles.modalMainText}>{cancelSuccessMessage}</h3>
+                        <button className={styles.modalButton3} onClick={() => setIsCancelSuccessModalOpen(false)}>
+                            닫기
+                        </button>
+                    </div>
+                </div>
+            )}
+
+
+
         </div>
     );
 }
