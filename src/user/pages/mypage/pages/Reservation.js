@@ -152,8 +152,6 @@ function Reservation() {
         navigate(`/user/mypage/reservation/${resNo}`);
     };
 
-
-
     console.log(userInfo)
 
     const handleQrClick = (e, qr) => {

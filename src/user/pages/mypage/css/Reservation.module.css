@@ -354,3 +354,38 @@
     color: #FF5D18;
     pointer-events: none;
 }
+
+.qrModal {
+    position: absolute;
+    width: 500px;
+    height:500px;
+    left:30%;
+    top:10%;
+}
+
+.qrImage {
+    width: 500px;
+    height:500px;
+    border: 5px solid black;
+
+}
+
+.qrInfoText {
+    font-size: 25px;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'BobaesumJindoTTF';
+}
+
+.closeQrButton {
+    float: right;
+    background: #FFF3A7;
+    border-radius: 50px;
+    width: 100px;
+    height: 50px;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 700;
+    font-family: Pretendard-Regular;
+    border: 5px solid black;
+}
