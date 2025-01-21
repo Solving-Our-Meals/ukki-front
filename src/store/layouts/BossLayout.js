@@ -1,4 +1,4 @@
-/*
+
 import { useState, useEffect } from 'react';
 import { Outlet } from "react-router-dom";
 import Header from "../../common/header/components/Header";
@@ -10,6 +10,8 @@ function BossLayout() {
     const [storeInfo, setStoreInfo] = useState(null); // 가게 정보
     const [userData, setUserData] = useState(null); // 사용자 정보
     const [error, setError] = useState(null); // 에러 상태 추가
+
+    const [doInquiryModal, setDoInquiryModal] = useState(false);
 
     useEffect(() => {
         const fetchStoreInfo = async () => {
@@ -45,9 +47,16 @@ function BossLayout() {
         fetchStoreInfo();
     }, []);
 
+    useEffect(() => { 
+        if (doInquiryModal) {
+            document.querySelector('html').style.overflowY = 'hidden';
+      } else { 
+        document.querySelector('html').style.overflowY = 'auto';
+     } },[doInquiryModal]);
+
     return (
         <>
-            <div className={styles.layoutStyle}>
+            <div className={!doInquiryModal? styles.layoutStyle : styles.layoutModalStyle}>
                 <Header className={styles.header} />
                 <Sidebar/>
                 {/* 에러 상태를 UI에 반영 */}
@@ -63,7 +72,8 @@ function BossLayout() {
                     )
                 )}
             </div>
-            <FloatingBar />
+            {doInquiryModal && <div className={styles.overlay}></div>}
+            <FloatingBar setDoInquiryModal={setDoInquiryModal} />
         </>
     );
 }
