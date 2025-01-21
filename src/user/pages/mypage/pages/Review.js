@@ -27,6 +27,10 @@ function Review() {
     const [showFailModal, setShowFailModal] = useState(false);
 
     useEffect(() => {
+        const savedPage = sessionStorage.getItem('currentReview');
+        if (savedPage) {
+            setCurrentPage(Number(savedPage));
+        }
         fetchUserInfo();
     }, []);
 
@@ -161,7 +165,10 @@ function Review() {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = userInfo.slice(indexOfFirstItem, indexOfLastItem);
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        sessionStorage.setItem('currentReview', pageNumber);
+    }
 
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
