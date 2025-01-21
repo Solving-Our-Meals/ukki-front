@@ -221,9 +221,9 @@ function Calendar() {
                     // 2-2. 휴무인 날    
                     } else {
                         setIsOper(false);
-                        morningArr.push('00:00');
-                        afternoonArr.push('00:00');
-                        afternoonArr.push('00:00');
+                        morningArr.push('휴무');
+                        afternoonArr.push('휴무');
+                        afternoonArr.push('휴무');
                     }
                 // 1-2. 브레이크 타임 없을 경우    
                 } else {
@@ -361,9 +361,9 @@ function Calendar() {
                     // 2-2. 휴무인 날    
                     } else {
                         setIsOper(false);
-                        morningArr.push('00:00');
-                        afternoonArr.push('00:00');
-                        afternoonArr.push('00:00');
+                        morningArr.push('휴무');
+                        afternoonArr.push('휴무');
+                        afternoonArr.push('휴무');
                     }          
                 }
                 setMorningArray(morningArr);
@@ -597,9 +597,9 @@ function Calendar() {
             // 2-2. 휴무인 날    
             } else {
                 setIsOper(false);
-                morningArr.push('00:00');
-                afternoonArr.push('00:00');
-                afternoonArr.push('00:00');
+                morningArr.push('휴무');
+                afternoonArr.push('휴무');
+                afternoonArr.push('휴무');
             }
         } else {
             // 브레이크 타임 없을 경우
@@ -737,9 +737,9 @@ function Calendar() {
             // 2-2. 휴무인 날    
             } else {
                 setIsOper(false);
-                morningArr.push('00:00');
-                afternoonArr.push('00:00');
-                afternoonArr.push('00:00');
+                morningArr.push('휴무');
+                afternoonArr.push('휴무');
+                afternoonArr.push('휴무');
             }          
         }
         setMorningArray(morningArr);

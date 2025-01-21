@@ -90,6 +90,12 @@
         position: absolute;
         left :130px;
         top : 180px;
+        // border: 1px solid red;
+        width : 800px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 30px;
         font-weight : 400;
     }
@@ -534,11 +540,22 @@
             font-family: 'Pretendard-Regular';
             font-size: 25px;
             padding: 10px 20px;
-            display: block;
+            // display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             cursor: pointer;
+
+            #updateFileName {
+                display: inline-block;
+                max-width: 210px; /* 원하는 최대 길이 설정 */
+                white-space: nowrap; /* 한 줄로 표시 */
+                overflow: hidden; /* 넘치는 텍스트는 숨김 */
+                text-overflow: ellipsis; /* 넘치는 텍스트에 '...' 표시 */
+            }            
         }
 
         textarea{
@@ -566,7 +583,7 @@
     }
 
     #updateNoAnswerArea{
-        border: 1px solid blue;
+        // border: 1px solid blue;
         position: absolute;
         left : 40px;
         top : 500px;
@@ -593,9 +610,125 @@
             font-weight: 600;
             background-color: #FFF3A7;
             border-radius : 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding-left : 190px;
             padding-top : 10px;
-            border: 1px solid green;
+            // border: 1px solid green;
+        }
+    }
+
+    .modalOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    #finalCheck {
+        width: 879px;
+        height: 316px;
+        border: 5px solid $primary;
+        border-radius: 50px;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+    
+        #reallyUpdateInquiry {
+            width: max-content;
+            margin-top: 5px;
+            height: 44px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 40px;
+            font-weight: 500;
+            color: $textStrong;
+        }
+    
+        #inquiry {
+            width: max-content;
+            margin-top: 40px;
+            height: 36px;
+            font-family: 'Pretendard-Regular';
+            font-size: 30px;
+            font-weight: 500;
+            color: $danger;
+        }
+    
+        #cancleUpdateInquiry {
+            margin-top: 40px;
+            margin-left: -220px;
+            width: 171px;
+            height: 44px;
+            background-color: $secondary;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 500;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    
+        #confirmUpdateInquiry {
+            margin-top: -44px;
+            margin-left: 220px;
+            width: 171px;
+            height: 44px;
+            background-color: $primary;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 500;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    }
+    
+    #completeUpdateInquiry {
+        width: 879px;
+        height: 316px;
+        border: 5px solid $primary;
+        border-radius: 50px;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+    
+        #completedUpdateMessage {
+            width: max-content;
+            margin-top: 5px;
+            height: 44px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 40px;
+            font-weight: 500;
+            color: $textStrong;
+        }
+    
+        #completeBtn {
+            margin-top: 40px;
+            width: 171px;
+            height: 44px;
+            background-color: $secondary;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 500;
+            color: $textStrong;
+            cursor: pointer;
         }
     }
 }
