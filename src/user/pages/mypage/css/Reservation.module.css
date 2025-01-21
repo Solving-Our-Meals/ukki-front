@@ -274,13 +274,83 @@
 }
 
 .reviewButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 50px;
+    background: #FEDA00;
+    border-radius: 50px;
 
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #232323;
 }
 
 .qrButton {
+    width: 120px;
+    height: 50px;
 
+    background: #FF8AA3;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #232323;
 }
 
 .cancelButton {
+    margin-left: 20px;
+    width: 120px;
+    height: 50px;
 
+    background: #FFBDC9;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #232323;
+}
+
+.reviewComplete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 50px;
+    background: #FFF3A7;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #232323;
+    pointer-events: none;
+}
+
+.reviewComplete2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 50px;
+    background: #FFF3A7;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #FF5D18;
+    pointer-events: none;
 }

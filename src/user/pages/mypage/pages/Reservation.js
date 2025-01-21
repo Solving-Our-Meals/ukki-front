@@ -149,7 +149,7 @@ function Reservation() {
                 return;
             }
         }
-        navigate(`/user/mypage/review/write/${resNo}`);
+        navigate(`/user/mypage/reservation/${resNo}`);
     };
 
 
@@ -255,34 +255,44 @@ function Reservation() {
                                 {getReservationStatus(`${reservation.date} ${reservation.time}`)}
                             </div>
                             <div className={styles.headerItem}>
-                                {getReservationStatus(`${reservation.date} ${reservation.time}`) === '예약 만료' && reservation.replyNo === 0 ? (
-                                    <button
-                                        className={styles.reviewButton}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            navigate(`/store/${reservation.storeNo}`); // 가게 상세 페이지로 이동
-                                        }}
-                                    >
-                                        리뷰 작성하기
-                                    </button>
+                                {getReservationStatus(`${reservation.date} ${reservation.time}`) === '예약 만료' && reservation.replyNo === 0 && reservation.qrConfirm === false ? (
+                                    <div className={styles.reviewComplete2}>
+                                        QR 미확인
+                                    </div>
                                 ) : (
-                                    getReservationStatus(`${reservation.date} ${reservation.time}`) !== '예약 만료' && reservation.replyNo == 0 ? (
-                                        <div className={styles.buttonGroup}>
-                                            <button
-                                                className={styles.qrButton}
-                                                onClick={(e) => handleQrClick(e, reservation.qr)} // QR 버튼 클릭 시 모달을 띄움
-                                            >
-                                                QR 확인
-                                            </button>
-                                            <button
-                                                className={styles.cancelButton}
-                                                onClick={(e) => handleCancelButtonClick(reservation, e)} // 예약 취소 버튼 클릭 시 확인 모달 띄움
-                                            >
-                                                예약 취소
-                                            </button>
-                                        </div>
-                                ) : null // 예약 만료이고 replyNo가 0이 아닌 경우에는 아무것도 렌더링하지 않음
-                                    )}
+                                    getReservationStatus(`${reservation.date} ${reservation.time}`) === '예약 만료' && reservation.replyNo === 0 ? (
+                                        <button
+                                            className={styles.reviewButton}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                navigate(`/store/${reservation.storeNo}`);
+                                            }}
+                                        >
+                                            리뷰 작성하기
+                                        </button>
+                                    ) : (
+                                        getReservationStatus(`${reservation.date} ${reservation.time}`) !== '예약 만료' && reservation.replyNo === 0 ? (
+                                            <div className={styles.buttonGroup}>
+                                                <button
+                                                    className={styles.qrButton}
+                                                    onClick={(e) => handleQrClick(e, reservation.qr)} // QR 버튼 클릭 시 모달을 띄움
+                                                >
+                                                    QR 확인
+                                                </button>
+                                                <button
+                                                    className={styles.cancelButton}
+                                                    onClick={(e) => handleCancelButtonClick(reservation, e)} // 예약 취소 버튼 클릭 시 확인 모달 띄움
+                                                >
+                                                    예약 취소
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className={styles.reviewComplete}>
+                                                리뷰 작성 완료
+                                            </div>
+                                        )
+                                    )
+                                )}
                             </div>
                         </div>
 
