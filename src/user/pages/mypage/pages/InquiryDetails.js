@@ -24,6 +24,12 @@ function InquiryDetail({ userInfo }) {
     const [isConfirmingEdit, setIsConfirmingEdit] = useState(false);
     const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
 
+    const [isEditSuccess, setIsEditSuccess] = useState(false);
+    const [isEditError, setIsEditError] = useState(false);
+
+    const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
+    const [isDeleteError, setIsDeleteError] = useState(false);
+
     // 첨부파일 (마지막에 넣었슴다.)
     const [file, setFile] = useState(null);
 
@@ -177,10 +183,14 @@ function InquiryDetail({ userInfo }) {
 
             setIsEditing(false);
             setIsConfirmingEdit(false);
+            setIsEditSuccess(true);
+            setIsEditError(false);
             navigate(0);
 
         } catch (error) {
             console.error('수정 오류:', error.message);
+            setIsEditError(true);
+            setIsEditSuccess(false);
         }
     };
 
@@ -232,12 +242,15 @@ function InquiryDetail({ userInfo }) {
             });
 
             if (response.ok) {
+                setIsConfirmingDelete(false);
+                setIsDeleteSuccess(true);
                 window.location.href = '/user/mypage/inquiry';
             } else {
                 throw new Error('문의 삭제에 실패했습니다.');
             }
         } catch (error) {
             console.log(error.message);
+            setIsDeleteError(true);
         }
     };
 
@@ -249,10 +262,67 @@ function InquiryDetail({ userInfo }) {
         return filePath.split('/').pop().split('\\').pop();
     };
 
+    const EditSuccessModal = ({ onClose }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>수정이 완료되었습니다!</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const EditErrorModal = ({ onClose }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>수정에 실패했습니다. 다시 시도해 주세요.</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const DeleteSuccessModal = ({ onClose }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>삭제가 완료되었습니다!</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const DeleteErrorModal = ({ onClose }) => {
+        return (
+            <div className={styles.modalOverlay}>
+                <div className={styles.modal}>
+                    <h3 className={styles.modalMainText}>삭제에 실패했습니다. 다시 시도해 주세요.</h3>
+                    <div className={styles.modalButtons}>
+                        <button className={styles.modalButton3} onClick={onClose}>확인</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+
     return (
         <div className={styles.inquiryDetailContainer}>
+            {isDeleteSuccess && <DeleteSuccessModal onClose={() => setIsDeleteSuccess(false)} />}
+            {isDeleteError && <DeleteErrorModal onClose={() => setIsDeleteError(false)} />}
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore}/>}
             {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2}/>}
+            {isEditSuccess && <EditSuccessModal onClose={() => setIsEditSuccess(false)} />}
+            {isEditError && <EditErrorModal onClose={() => setIsEditError(false)} />}
 
             <div className={styles.fileDownloadContainer}>
                 {inquiry.file ? (

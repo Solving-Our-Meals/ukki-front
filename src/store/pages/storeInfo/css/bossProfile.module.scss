@@ -1,0 +1,41 @@
+#profileStyle {
+    position: absolute;
+    left: 80px;
+    top: 50px;
+    width: 200px;
+    height: 180px;
+    text-align: center;
+    z-index: 99;
+    object-fit: cover;
+    border-radius: 35px;
+}
+
+// @media screen and (min-width : 769px) and (max-width : 1024px) {
+//     #profileStyle {
+//         position: absolute;
+//         left: 55px;
+//         top: 168px;
+//         width: 122px;
+//         height: 110px;
+//         text-align: center;
+//         z-index: 99;
+//         object-fit: cover;
+//         border-radius: 35px;
+//     }
+// }
+
+// @media screen and (max-width : 768px){
+//     #profileStyle {
+//         position: absolute;
+//         left: 35px;
+//         top: 80px;
+//         width: 50px;
+//         height: 42px;
+//         text-align: center;
+//         z-index: 99;
+//         object-fit: cover;
+//         border-radius: 35px;
+//     }
+// }
+    
+    

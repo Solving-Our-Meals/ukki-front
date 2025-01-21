@@ -46,7 +46,7 @@ function BossSpecificNotice(){
                     {notice.category}
                 </span>
                 <span>제목 : </span> <span>{notice.title}</span>
-                <span>작성 날짜 : </span> <span>{notice.date}</span>
+                <span>작성 일자 : </span> <span>{notice.date}</span>
                 <div id={styles.noticeContent}>
                     <span id={styles.content}>{notice.content}</span>
                 </div>

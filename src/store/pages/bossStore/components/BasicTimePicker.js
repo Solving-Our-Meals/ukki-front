@@ -4,7 +4,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import dayjs from 'dayjs';
 
-export default function BasicTimePicker() {
+export default function BasicTimePicker({ value, onChange }) {
   // 현재 시간을 기준으로 다음 30분 간격을 계산
   const getNextTimeSlot = () => {
     const now = dayjs();
@@ -19,13 +19,23 @@ export default function BasicTimePicker() {
 
   const nextTimeSlot = getNextTimeSlot();  // 현재 시간에 맞는 가장 가까운 30분 간격
 
+  // 선택된 시간이 변경되면 호출되는 함수
+  const handleTimeChange = (newValue) => {
+    // 'HH:mm' 형식으로 변환하여 부모 컴포넌트로 전달
+    const formattedTime = newValue ? dayjs(newValue).format('HH:mm') : '';
+    onChange(formattedTime);  // 부모 컴포넌트의 onChange에 전달
+  };
+
+  // value가 문자열일 경우 Dayjs 객체로 변환
+  const parsedValue = value ? dayjs(value, 'HH:mm') : nextTimeSlot;
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TimePicker
-        label="Basic time picker"
-        minutesStep={30} // 30분 간격으로 설정
-        value={nextTimeSlot} // 계산된 시간으로 기본값 설정
-        onChange={(newValue) => console.log(newValue)}
+        label="시간 선택"
+        minutesStep={30}  // 30분 간격으로 설정
+        value={parsedValue}  // 문자열을 Dayjs 객체로 변환한 값 사용
+        onChange={handleTimeChange}  // onChange에서 time을 'HH:mm' 형식으로 전달
         renderInput={(params) => <input {...params} />}
       />
     </LocalizationProvider>
