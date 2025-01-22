@@ -39,7 +39,7 @@ function Review(){
     useEffect(() => {
         // Promise.all을 사용하여 두 fetch를 동기화
         Promise.all([
-            fetch('/user/info').then(res => res.json()),
+            fetch('/user/info').then(res => res.json()).catch(() => ({ nickname: "" })), // 로그인 안 되어 있으면 기본 값 반환
             fetch(`/store/${storeNo}/review`).then(res => res.json())
         ])
         .then(([userData, reviewData]) => {

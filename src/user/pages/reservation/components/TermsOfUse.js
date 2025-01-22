@@ -59,12 +59,15 @@ function TermsOfUse () {
             },
             body : JSON.stringify(reservationInfo)
         })
-        .then(res => res.json())
+        .then(res => res.text())
         .then(data => {
-            if(data = "예약 성공"){
+            console.log("예약 결과는 ???" , data)
+            if(data.trim() === "예약 성공"){
                 setIsComplete(true);
+                console.log("예약 성공 state:", isComplete);
             } else {
                 setIsFail(true);
+                console.log("예약 실패 state:", isFail);
             }
         })
         .catch(error => console.log('error', error));
@@ -84,7 +87,7 @@ function TermsOfUse () {
     
     return(
         <>
-            <div className={isComplete ? styles.overLay : ""}></div>
+            <div className={isComplete || isFail ? styles.overLay : ""}></div>
             <div className={styles.termsOfUse}>
                 <p id={styles.strTerms}>예약 약관</p><br/>
                 <div id={styles.temsArea}>
