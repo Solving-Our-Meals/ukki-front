@@ -3,6 +3,7 @@ import styles from '../css/Review.module.css';
 import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
+import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function Review() {
     const [userInfo, setUserInfo] = useState(null);
@@ -114,7 +115,7 @@ function Review() {
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
-                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+                <img src={Loading} alt="로딩 중"/>
             </div>
         )
     }

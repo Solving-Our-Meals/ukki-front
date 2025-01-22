@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../css/ReservationDetail.module.css';
 import { useParams, Link } from 'react-router-dom';
+import Loading from "../../../../common/inquiry/img/loadingInquiryList.gif";
 
 function ReservationDetail() {
     const { resNo } = useParams();
@@ -35,11 +36,19 @@ function ReservationDetail() {
     };
 
     if (error) {
-        return <div>{error}</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중"/>
+            </div>
+        );
     }
 
     if (!reviewDetail) {
-        return <div>해당 리뷰를 찾을 수 없습니다.</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중"/>
+            </div>
+        )
     }
 
     const reservationDate = new Date(reviewDetail.date);
@@ -63,7 +72,7 @@ function ReservationDetail() {
         const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
         weekdays.forEach((day, index) => {
             days.push(
-                <div key={index} className={styles.calendarWeekDay}>
+                <div key={`weekday-${index}`} className={styles.calendarWeekDay}>
                     {day}
                 </div>
             );
@@ -76,10 +85,10 @@ function ReservationDetail() {
         for (let day = 1; day <= daysInMonth; day++) {
             days.push(
                 <div
-                    key={day}
+                    key={`day-${day}`}
                     className={`${styles.calendarDay} ${day === reservationDay && month === reservationMonth && year === reservationYear ? styles.today : ''} 
-                    ${firstDay + day - 1 === 0 ? styles.sunday : ''} 
-                    ${firstDay + day - 1 === 6 ? styles.saturday : ''}`}
+                ${firstDay + day - 1 === 0 ? styles.sunday : ''} 
+                ${firstDay + day - 1 === 6 ? styles.saturday : ''}`}
                 >
                     {day}
                 </div>
@@ -88,6 +97,7 @@ function ReservationDetail() {
 
         return days;
     };
+
 
     return (
         <>
@@ -108,11 +118,13 @@ function ReservationDetail() {
                 </Link>
             </div>
 
-            {/* QR 이미지 추가 */}
-            <div className={styles.qrInfo}>
-                <div className={styles.qrInfoText}>QR 이미지</div>
-                <img className={styles.qrImage} src={`/${reviewDetail.qr}/api/qrImage`} alt="QR 코드" />
-            </div>
+            {/* QR */}
+            {getReservationStatus(reservationTime) !== "예약 만료" && reviewDetail.qr && (
+                <div className={styles.qrInfo}>
+                    <div className={styles.qrInfoText}>QR 이미지</div>
+                    <img className={styles.qrImage} src={`/${reviewDetail.qr}/api/qrImage`} alt="QR 코드" />
+                </div>
+            )}
 
             {/* 리뷰 상세 정보 */}
             <div className={styles.reviewContainer}>
@@ -143,7 +155,7 @@ function ReservationDetail() {
                     </div>
                 </div>
             </div>
-
+<div className={styles.calendarMain}>
             <div
                 className={`${styles.calendarContainer} ${calendarVisible ? styles.fadeIn : ''}`}
             >
@@ -154,6 +166,7 @@ function ReservationDetail() {
                     {generateCalendarDays(reservationYear, reservationMonth)}
                 </div>
             </div>
+</div>
         </>
     );
 }

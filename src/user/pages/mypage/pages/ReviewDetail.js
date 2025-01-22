@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styles from "../css/ReviewDetail.module.css";
 import DefaultProfile from "../images/mypage/default.png";
+import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function ReviewDetail() {
     const { reviewNo } = useParams(); // URL에서 reviewNo를 가져옴
@@ -43,17 +44,25 @@ function ReviewDetail() {
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
-                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+                <img src={Loading} alt="로딩 중"/>
             </div>
         );
     }
 
     if (error) {
-        return <div>{error}</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중"/>
+            </div>
+        );
     }
 
     if (!reviewDetail) {
-        return <div>해당 리뷰를 찾을 수 없습니다.</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중"/>
+            </div>
+        );
     }
 
     return (
