@@ -427,7 +427,7 @@
 }
 
 .modalButton1 {
-    transform: translate(457px, 110px);
+    transform: translate(457px, 130px);
     width: 171px;
     height: 44px;
     background: #FF8AA3;
@@ -437,7 +437,7 @@
 }
 
 .modalButton2 {
-    transform: translate(70px, 110px);
+    transform: translate(70px, 130px);
     width: 171px;
     height: 44px;
     border: none;
@@ -454,6 +454,12 @@
     background: #FF8AA3;
     border-radius: 25px;
     cursor: pointer;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    color: #232323;
 }
 
 .modalButton:hover {
@@ -461,7 +467,7 @@
 }
 
 .modalMainText {
-    transform: translateY(60px);
+    transform: translateY(90px);
     font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-weight: 400;

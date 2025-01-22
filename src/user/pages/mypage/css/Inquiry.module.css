@@ -352,6 +352,12 @@
     background: #FF8AA3;
     border-radius: 25px;
     cursor: pointer;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    color: #232323;
 }
 
 .modalButton:hover {

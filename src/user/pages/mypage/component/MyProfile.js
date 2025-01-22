@@ -19,8 +19,8 @@ function MyProfile() {
     const navigate = useNavigate();
     const [showTooltip, setShowTooltip] = useState(null);
 
-    const [profileImage, setProfileImage] = useState(null); // 선택된 이미지 미리보기
-    const [imageFile, setImageFile] = useState(null); // 업로드할 파일
+    const [profileImage, setProfileImage] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
     const [image, setImage] = useState(null);
 
     useEffect(() => {
@@ -138,7 +138,7 @@ function MyProfile() {
                         className={styles.defaultImage}
                         src={DefaultProfile}
                         alt="Default Profile"
-                        onClick={() => document.getElementById('fileInput').click()} // 기본 이미지를 클릭하면 파일 선택 창 열기
+                        onClick={() => document.getElementById('fileInput').click()}
                     />
                 )}
 
