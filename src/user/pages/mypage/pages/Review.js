@@ -223,8 +223,8 @@ function Review() {
                     <h3 className={styles.modalMainText}>정말 삭제하시겠습니까?</h3>
                     <h3 className={styles.modalSubText}>삭제한 리뷰는 복구가 불가합니다.</h3>
                     <div className={styles.modalButtons}>
-                        <button className={styles.modalButton1} onClick={() => onConfirm(reviewNo)}>예</button>
-                        <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
+                        <button className={styles.modalButton1} onClick={() => onConfirm(reviewNo)}>확인</button>
+                        <button className={styles.modalButton2} onClick={onCancel}>취소</button>
                     </div>
                 </div>
             </div>

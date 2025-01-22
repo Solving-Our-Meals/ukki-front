@@ -427,24 +427,22 @@
 }
 
 .modalButton1 {
-    transform: translate(200px, 110px);
+    transform: translate(457px, 110px);
     width: 171px;
     height: 44px;
-    background: #FEDA00;
+    background: #FF8AA3;
     border-radius: 25px;
     border: none;
     cursor: pointer;
 }
 
 .modalButton2 {
-    transform: translate(325px, 110px);
+    transform: translate(70px, 110px);
     width: 171px;
     height: 44px;
     border: none;
-    background: #FF8AA3;
+    background: #FEDA00;
     border-radius: 25px;
-
-
     cursor: pointer;
 }
 
@@ -455,16 +453,6 @@
     border: none;
     background: #FF8AA3;
     border-radius: 25px;
-
-    margin-top: 20px;
-    font-family: 'Pretendard-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-
-    color: #232323;
-
-
     cursor: pointer;
 }
 
@@ -511,22 +499,22 @@
     color: #FF5D18;
 }
 
-.modalButton1:hover {
+.modalButton2:hover {
     background: #fbc700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.modalButton1:active {
+.modalButton2:active {
     background: #fbc700;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.modalButton2:hover, .modalButton3:hover {
+.modalButton1:hover, .modalButton3:hover {
     background: #ff7a8e;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.modalButton2:active .modalButton3:active {
+.modalButton1:active .modalButton3:active {
     background: #ff7a8e;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

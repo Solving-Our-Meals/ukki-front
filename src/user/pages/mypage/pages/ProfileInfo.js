@@ -6,6 +6,7 @@ import UserInfo from '../images/mypage/info.png';
 import UserPass from '../images/mypage/password.png'
 import Default from '../../signup/images/default.png';
 import On from '../../signup/images/on.png';
+import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function ProfileInfo() {
     const [userInfo, setUserInfo] = useState(null);
@@ -46,7 +47,7 @@ function ProfileInfo() {
             [name]: value,
         }));
 
-        setIsInputChanged(true);  // 입력값이 변경되었음을 추적
+        setIsInputChanged(true);
     };
 
     useEffect(() => {
@@ -391,10 +392,9 @@ function ProfileInfo() {
 
             {loading && (
                 <div className={styles.loadingContainer}>
-                    <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중" />
+                    <img src={Loading} alt="로딩 중"/>
                 </div>
             )}
-
             {userInfo && (
                 <div>
                     <img className={styles.signup2} src={UserInfo} alt="회원가입 로고" />

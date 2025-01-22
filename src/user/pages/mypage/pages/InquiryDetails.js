@@ -86,8 +86,8 @@ function InquiryDetail({ userInfo }) {
                     <h3 className={styles.modalMainText}>정말 수정하시겠습니까?</h3>
                     <h3 className={styles.modalSubText}>이전의 문의는 복구가 불가합니다.</h3>
                     <div className={styles.modalButtons}>
-                        <button className={styles.modalButton1} onClick={onConfirm}>예</button>
-                        <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
+                        <button className={styles.modalButton1} onClick={onConfirm}>확인</button>
+                        <button className={styles.modalButton2} onClick={onCancel}>취소</button>
                     </div>
                 </div>
             </div>
@@ -101,8 +101,8 @@ function InquiryDetail({ userInfo }) {
                     <h3 className={styles.modalMainText}>정말 삭제하시겠습니까?</h3>
                     <h3 className={styles.modalSubText}>삭제된 문의는 복구가 불가합니다.</h3>
                     <div className={styles.modalButtons}>
-                        <button className={styles.modalButton1} onClick={onConfirm}>예</button>
-                        <button className={styles.modalButton2} onClick={onCancel}>아니오</button>
+                        <button className={styles.modalButton1} onClick={onConfirm}>확인</button>
+                        <button className={styles.modalButton2} onClick={onCancel}>취소</button>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,11 @@ function InquiryDetail({ userInfo }) {
     };
 
     if (!inquiry) {
-        return <div className={styles.error}>해당 문의를 찾을 수 없습니다.</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중" />
+            </div>
+        );
     }
 
     const handleEditClick = () => {
@@ -199,7 +203,7 @@ function InquiryDetail({ userInfo }) {
 
     const handleFileDownload = async (filePath) => {
         try {
-            // 파일 경로에서 파일 이름만 추출 (예: "2025-01-17.txt") - 이거 없으면 경로가 들어가서 오류남
+            // 파일 경로에서 파일 이름만 추출 (예: "2025-01-17.txt") - 이거 없으면 경로가 들어가서 오류남 - 이거 나중에 이름만들어가게해서 빼도되는데 걍 둠
             const fileName = filePath.split('/').pop().split('\\').pop();
 
             console.log("파일 다운로드 시작:", fileName);  // 확인용 로그
