@@ -20,6 +20,8 @@ function Mypage() {
 
     const [reservationDeleted, setReservationDeleted] = useState(false);
     const [reviewDeleted, setReviewDeleted] = useState(false);
+    const [updateProfile, setUpdateProfile] = useState(false);
+
 
     const getUserInfo = async () => {
         try {
@@ -54,9 +56,13 @@ function Mypage() {
         setReviewDeleted(prev => !prev); // 리뷰 삭제 후 상태 변경
     };
 
+    const handleUpdateProfile = () => {
+        setUpdateProfile((prev) => !prev);
+    }
+
     useEffect(() => {
         getUserInfo();
-    }, [reservationDeleted, reviewDeleted]);
+    }, [reservationDeleted, reviewDeleted, updateProfile]);
 
     if (loading) {
         return (
@@ -84,7 +90,10 @@ function Mypage() {
                     <Route path="/review/:reviewNo" element={<ReviewDetail />} />
                     <Route path="inquiry" element={<Inquiry />} />
                     <Route path="/inquiry/:inquiryNo" element={<InquiryDetail userInfo={userInfo} />} />
-                    <Route path="profile" element={<ProfileInfo />} />
+                    <Route
+                        path="profile"
+                        element={<ProfileInfo onUpdate={handleUpdateProfile} />}
+                    />
                     <Route path="*" element={<Navigate to="reservation" />} />
                 </Routes>
             </div>

@@ -8,7 +8,7 @@ import Default from '../../signup/images/default.png';
 import On from '../../signup/images/on.png';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
-function ProfileInfo() {
+function ProfileInfo({onUpdate}) {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -153,7 +153,7 @@ function ProfileInfo() {
             if (updateResponse.ok) {
                 setUpdateSuccess(true);
                 setUserInfo(result);
-                window.location.reload();
+                onUpdate();
             } else {
                 setUpdateError(result.message);
             }
