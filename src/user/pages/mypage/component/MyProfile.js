@@ -10,6 +10,7 @@ import Badge5 from '../images/badge5.png';
 import Badge6 from '../images/badge6.png';
 import DefaultProfile from '../images/mypage/default.png';
 import Pencil from '../images/mypage/pencil.gif';
+import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function MyProfile() {
     const [userInfo, setUserInfo] = useState(null);
@@ -53,7 +54,7 @@ function MyProfile() {
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
-                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+                <img src={Loading} alt="로딩 중"/>
             </div>
         )
     }
@@ -61,13 +62,17 @@ function MyProfile() {
     if (error) {
         return (
             <div className={styles.loadingContainer}>
-                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+                <img src={Loading} alt="로딩 중"/>
             </div>
         )
     }
 
     if (!userInfo) {
-        return <div>유저 정보를 찾을 수 없습니다.</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중"/>
+            </div>
+        )
     }
 
     const rvc = userInfo.reservationCount;

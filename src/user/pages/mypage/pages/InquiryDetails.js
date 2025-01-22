@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {Link, useParams, Navigate, useNavigate} from 'react-router-dom';
 import styles from '../css/Inquiry.module.css';
 import Logo from '../images/mypage/logo.png'
+import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function InquiryDetail({ userInfo }) {
     const { inquiryNo } = useParams();
@@ -15,6 +16,7 @@ function InquiryDetail({ userInfo }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedText, setEditedText] = useState('');
     const [editedTitle, setEditedTitle] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const textareaRef = useRef(null);
 
@@ -41,10 +43,11 @@ function InquiryDetail({ userInfo }) {
             setInquiry(currentInquiry);
             console.log(currentInquiry)
 
-            // 팀원이 갑자기 변경한 부분으로 ''내부의 CHECK는 처리완료로 변경 -> 소통중요성 -> 나도 마찬가지
+            // 갑자기 변경된 부분으로 ''내부의 CHECK는 처리완료로 변경 -> 소통중요성 -> 나도 마찬가지
             if (currentInquiry.answerDate && currentInquiry.inquiryState !== '확인완료') {
                 updateInquiryStatus('CHECK');
             }
+            setLoading(false);
         }
     }, [userInfo, inquiryNo]);
 
@@ -313,6 +316,22 @@ function InquiryDetail({ userInfo }) {
             </div>
         );
     };
+
+    if (loading) {
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중" />
+            </div>
+        );
+    }
+
+    if (!inquiry) {
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중" />
+            </div>
+        );
+    }
 
 
     return (

@@ -10,6 +10,7 @@ import InquiryDetail from "../pages/InquiryDetails";
 import ProfileInfo from "../pages/ProfileInfo";
 import ReviewDetail from "../pages/ReviewDetail";
 import ReservationDetail from "../pages/ReservationDetail";
+import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function Mypage() {
 
@@ -49,7 +50,7 @@ function Mypage() {
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
-                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+                <img src={Loading} alt="로딩 중"/>
             </div>
         )
     }
