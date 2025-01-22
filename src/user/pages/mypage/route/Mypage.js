@@ -18,6 +18,11 @@ function Mypage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [reservationDeleted, setReservationDeleted] = useState(false);
+    const [reviewDeleted, setReviewDeleted] = useState(false);
+    const [updateProfile, setUpdateProfile] = useState(false);
+
+
     const getUserInfo = async () => {
         try {
             const response = await fetch('/user/mypage/inquiry', {
@@ -43,9 +48,21 @@ function Mypage() {
         }
     };
 
+    const handleReservationDelete = () => {
+        setReservationDeleted((prev) => !prev); // 예약 삭제 상태 변경
+    };
+
+    const handleReviewDelete = () => {
+        setReviewDeleted(prev => !prev); // 리뷰 삭제 후 상태 변경
+    };
+
+    const handleUpdateProfile = () => {
+        setUpdateProfile((prev) => !prev);
+    }
+
     useEffect(() => {
         getUserInfo();
-    }, []);
+    }, [reservationDeleted, reviewDeleted, updateProfile]);
 
     if (loading) {
         return (
@@ -61,17 +78,26 @@ function Mypage() {
             <div className={styles.contentList}>
                 <Routes>
                     <Route path="/" element={<Navigate to="reservation" />} />
-                    <Route path="reservation" element={<Reservation />} />
+                    <Route
+                        path="reservation"
+                        element={<Reservation onDelete={handleReservationDelete} />}
+                    />
                     <Route path="reservation/:resNo" element={<ReservationDetail />} />
-                    <Route path="review" element={<Review />} />
+                    <Route
+                        path="review"
+                        element={<Review onDelete={handleReviewDelete} />}
+                    />
                     <Route path="/review/:reviewNo" element={<ReviewDetail />} />
                     <Route path="inquiry" element={<Inquiry />} />
                     <Route path="/inquiry/:inquiryNo" element={<InquiryDetail userInfo={userInfo} />} />
-                    <Route path="profile" element={<ProfileInfo />} />
+                    <Route
+                        path="profile"
+                        element={<ProfileInfo onUpdate={handleUpdateProfile} />}
+                    />
                     <Route path="*" element={<Navigate to="reservation" />} />
                 </Routes>
             </div>
-            <MyProfile />
+            <MyProfile key={reservationDeleted} />
         </div>
     );
 }

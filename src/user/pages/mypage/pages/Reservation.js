@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
-function Reservation() {
+function Reservation({onDelete}) {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -193,6 +193,7 @@ function Reservation() {
                     fetchUserInfo();
                     setCancelSuccessMessage('예약이 취소되었습니다.');
                     setIsCancelSuccessModalOpen(true);
+                    onDelete();
                 })
                 .catch((error) => {
                     console.error('Error:', error);

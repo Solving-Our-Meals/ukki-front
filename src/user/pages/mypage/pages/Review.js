@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
-function Review() {
+function Review({onDelete}) {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -99,6 +99,7 @@ function Review() {
                 setShowModal(false);
                 setShowFailModal(true);
                 setTimeout(() => setShowFailModal(false), 2000);
+                onDelete();
             }
         } catch (error) {
             setError('에러 발생: ' + error.message);
