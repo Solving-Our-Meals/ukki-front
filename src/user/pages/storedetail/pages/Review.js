@@ -57,8 +57,10 @@ function Review(){
         const option = e.target.value; 
         setSortOption(option);
         
-        if (option === 'rating') {
+        if (option === 'highRating') {
             reviewScope();
+        } else if(option === 'lowRating'){
+            reviewSecondScope();
         } else {
             reviewLatest();
         }
@@ -84,6 +86,18 @@ function Review(){
 
     const reviewScope = () => {
         fetch(`/store/${storeNo}/reviewscope`)
+        .then(res => res.json())
+        .then(data => {
+            console.log('리뷰 정보 : ', data);
+            setReviewContent(data);
+            const reviewList = data.reviewList;
+            setReviews(reviewList);
+        })
+        .catch(error => console.log(error));
+    }
+
+    const reviewSecondScope = () => {
+        fetch(`/store/${storeNo}/reviewSecondScope`)
         .then(res => res.json())
         .then(data => {
             console.log('리뷰 정보 : ', data);
@@ -128,6 +142,22 @@ function Review(){
         setIsCompleteDeleteReview(false);
     }
 
+    const fncReflashMethod = () => {
+        Promise.all([
+            fetch('/user/info').then(res => res.json()),
+            fetch(`/store/${storeNo}/review`).then(res => res.json())
+        ])
+        .then(([userData, reviewData]) => {
+            console.log('현재 유저!!!!!:', userData.nickname);  // 현재 유저 이름 확인
+            console.log('리뷰 데이터:', reviewData);      // 리뷰 데이터 확인
+            
+            setCurrentUserName(userData.nickname);
+            setReviewContent(reviewData);
+            setReviews(reviewData.reviewList);
+        })
+        .catch(error => console.log(error));
+    }
+
     // Footer의 위치를 조정하는 함수
     const adjustFooterPosition = () => {
         if(footerRef.current){
@@ -161,7 +191,8 @@ function Review(){
             <div id={styles.strCountReview}>{`총 ${reviewContent.reviewCount}개의 리뷰가 있습니다.`}</div>
             <select id={styles.reviewSort} value={sortOption} onChange={(e) => handleSort(e)}>
                 <option value="latest">최신순</option>
-                <option value="rating">별점순</option>
+                <option value="highRating">별점 높은 순</option>
+                <option value="lowRating">별점 낮은 순</option>
             </select>
             <div className={styles.reviewArea} id={styles.reviewArea}>
                 <div className={styles.reviewContainer}>
@@ -277,7 +308,7 @@ function Review(){
                     </div>
                 </div>
             )}
-            <CreateReview addNewReview={addNewReview}/>
+            <CreateReview addNewReview={addNewReview} reflashMethod={fncReflashMethod}/>
             <Footer ref={footerRef}/>
         </div>
     );

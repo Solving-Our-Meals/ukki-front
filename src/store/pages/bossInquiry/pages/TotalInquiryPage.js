@@ -120,7 +120,7 @@ function TotalInquiryPage(){
     return(
         <>
             <div id={styles.background}>
-                <div id={styles.recentInquiry}>
+                <div id={styles.recentInquiry} onClick={() => navigateToSpecificInquiry(recentInquiry.inquiryNo, recentInquiry.categoryNo)}>
                     <span>최근 문의</span>
                     <span id={styles.recentState}>{recentState}</span>
                     <span id={styles.recentCategory}>{recentCategoryName}</span>

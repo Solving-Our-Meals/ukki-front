@@ -32,6 +32,8 @@ function Calendar() {
 
     const { storeNo } = useParams();
 
+    const [userInfo, setUserInfo] = useState({});
+
     const [storeInfo, setStoreInfo] = useState({});
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedMorningTimeIndex, setSelectedMorningTimeIndex] = useState(null);
@@ -58,6 +60,18 @@ function Calendar() {
 
     // 새로운 state 추가
     const [disabledTimes, setDisabledTimes] = useState([]);
+
+    useEffect(
+        () => {
+            fetch('user/info')
+            .then(res => res.json())
+            .then(data => {
+                setUserInfo(data);
+                console.log('유저정보', data);
+            })
+            .then(error => console.log(error));
+        }, []
+    )
 
     useEffect(() => {
         switch(day){
@@ -885,19 +899,6 @@ function Calendar() {
         } else {
             setFirstModalActive(true); // 현재 시간 이전의 시간을 선택했을 때 모달 표시시
         }
-
-
-        // navigate('/reservation',{
-        //     state:{
-        //         date1 : `${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
-        //         date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
-        //         time : afternoonArray[index],
-        //         storeName : storeInfo.storeName,
-        //         storeNo : storeInfo.storeNo,
-        //         latitude : storeInfo.latitude,
-        //         longitude : storeInfo.longitude
-        //     },
-        // });
     }
 
 
@@ -995,9 +996,9 @@ function Calendar() {
                                     backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
                                         ? (selectedMorningTimeIndex === index ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7', 
-                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF', 
-                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
-                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? '#000000' : '#BDBEBF', 
+                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? 'auto' : 'none'
                                 }}
                                 onClick={() => {
                                     if (!disabledTimes.includes(timeObj)) {
@@ -1052,9 +1053,9 @@ function Calendar() {
                                     backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
                                         ? (selectedAfternoonTimeIndex === index ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7',
-                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF',
-                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
-                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? '#000000' : '#BDBEBF',
+                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? 'auto' : 'none'
                                 }}
                                 onClick={() => {
                                     if (!disabledTimes.includes(timeObj)) {
