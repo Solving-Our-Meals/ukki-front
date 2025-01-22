@@ -170,35 +170,36 @@ function Reservation() {
         setSelectedQr(null);
     };
 
-        const handleCancelButtonClick = (reservation, e) => {
-            e.stopPropagation();
-            setReservationToCancel(reservation);
-            setIsCancelModalOpen(true);
-        };
+    const handleCancelButtonClick = (reservation, e) => {
+        e.stopPropagation();
+        setReservationToCancel(reservation);
+        setIsCancelModalOpen(true);
+    };
 
     const handleConfirmCancel = () => {
         if (reservationToCancel) {
-            fetch(`/user/mypage/reservation/cancel/${reservationToCancel.resNo}`, {
-                method: 'POST',
+            fetch(`/user/mypage/reservation/${reservationToCancel.resNo}`, {
+                method: 'DELETE',
                 credentials: 'include',
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    // 취소 성공 시
+                    // 예약 취소 성공 후 예약 정보 갱신
+                    fetchUserInfo();
                     setCancelSuccessMessage('예약이 취소되었습니다.');
-                    setIsCancelSuccessModalOpen(true);  // 성공 모달 열기
-                    fetchUserInfo();  // 예약 정보를 갱신
+                    setIsCancelSuccessModalOpen(true);
                 })
                 .catch((error) => {
-                    // 취소 실패 시
+                    fetchUserInfo();
                     setCancelSuccessMessage('예약 취소에 실패했습니다.');
-                    setIsCancelSuccessModalOpen(true);  // 실패 모달 열기
+                    setIsCancelSuccessModalOpen(true);
                 })
                 .finally(() => {
-                    setIsCancelModalOpen(false);  // 예약 취소 확인 모달 닫기
+                    setIsCancelModalOpen(false);
                 });
         }
     };
+
 
 
     const handleCancelClose = () => {
