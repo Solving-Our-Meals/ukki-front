@@ -52,17 +52,16 @@ function ProfileInfo() {
     useEffect(() => {
         const debounceNicknameCheck = setTimeout(async () => {
             if (formData.nickname) {
-                // 닉네임 길이 유효성 검사
                 if (formData.nickname.length < 1 || formData.nickname.length > 12) {
                     setNicknameError("ⓘ 닉네임은 1~12자 사이여야 합니다.");
                     setNicknameSuccess(false);
-                    return;  // 길이가 맞지 않으면 서버 요청하지 않음
+                    return;
                 }
 
                 if (!validateNickname(formData.nickname)) {
                     setNicknameError("ⓘ 닉네임은 영문, 숫자, 한글만 가능합니다.");
                     setNicknameSuccess(false);
-                    return;  // 유효성 검사 실패
+                    return;
                 }
 
                 try {
@@ -300,8 +299,8 @@ function ProfileInfo() {
                 setShowDeleteSuccessModal(true);
                 setTimeout(async () => {
                     setShowDeleteSuccessModal(false);
+                    await handleLogout();
                 }, 2000);
-                await handleLogout();
             } else {
                 const result = await response.json();
                 setShowDeleteFailModal(true);
