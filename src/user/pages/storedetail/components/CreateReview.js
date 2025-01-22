@@ -15,7 +15,7 @@ const FileInfo = ({uploadedInfo}) => (
     </ul>
 );
 
-function CreateReview(){
+const CreateReview = ({reflashMethod}) => {
     const { storeNo } = useParams();
     const year = new Date().getFullYear();
     const month = new Date().getMonth()+1
@@ -42,7 +42,7 @@ function CreateReview(){
         reviewScope : "",
         storeNo : "",
         userNo : "",
-        resNo : ""
+        resNo : "999"
     });
 
     const onChangeHandler = (e) => {
@@ -152,7 +152,8 @@ function CreateReview(){
 
     const completeHandler = () => {
         setIsCompletedReview(false);
-        window.location.reload();
+        reflashMethod();
+        // window.location.reload();
     }
 
     const addFileBtnClickHandler = () => {
@@ -203,7 +204,7 @@ function CreateReview(){
     }
 
     // 리뷰 작성하기 버튼 활성화 여부
-    const [writeReview, setWriteReview] = useState(false);
+    const [writeReview, setWriteReview] = useState(true);
 
     // DB에 유저 넘버와 가게 번호 넘기기
     // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기
@@ -559,7 +560,7 @@ function CreateReview(){
     const isSubmitDisabled = !review.reviewContent.trim() || !review.reviewScope;
 
     const removeImageHandler = (e) => {
-        e.stopPropagation(); // 이벤트 전달 중단단
+        e.stopPropagation(); // 이벤트 전달 중단
         setUploadedFile(null);
         setImageUrl(null);
         if(previewRef.current){

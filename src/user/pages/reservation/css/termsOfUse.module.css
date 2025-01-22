@@ -566,4 +566,47 @@ a:active {
     color: #232323;
     cursor: pointer;
   }
+  #failReservation {
+    position: absolute;
+    left: 50px;
+    top: 400px;
+    width: 400px;
+    height: 150px;
+    border: 3px solid #FF8AA3;
+    border-radius: 20px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+  }
+  #failReservation #failMessage {
+    margin-top: 2px;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 18px;
+    font-weight: 500;
+    color: #232323;
+  }
+  #failReservation #duplicateMessage {
+    margin-top: -3px;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    font-weight: 500;
+    color: #FF5D18;
+  }
+  #failReservation #confirm {
+    margin-top: -2px;
+    margin-left: -130px;
+    width: 100px;
+    height: 25px;
+    background-color: #FEDA00;
+    border: none;
+    border-radius: 16px;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    font-weight: 500;
+    color: #232323;
+    cursor: pointer;
+  }
 }
