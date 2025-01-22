@@ -49,9 +49,8 @@ function App() {
                     {/* 로그인 인증이 필요한 라우트들 넣고 element에 PrivateRoute 붙여주세요. */}
                     <Route path="user/mypage/*" element={<PrivateRoute element={<Mypage />} />} />
                     <Route path="/" element={<UserLayout />}>
-                        <Route path="search" element={<PrivateRoute element={<Search />} />} />
+                        <Route path="search" element={<Search />}/>
                         <Route path="store/:storeNo" element={<UserStorePage />} />
-                        {/* <Route path="store/:storeNo" element={<PrivateRoute element={<UserStorePage />}/>} /> */}
                         <Route path="reservation" element={<PrivateRoute element={<Reservation />} />} />
                         <Route path="sinquiries" element={<PrivateRoute element={<InquiryEnter />} />} />
                         <Route path="notice" element={<PrivateRoute element={<UserNotice/>}/>}/> 
