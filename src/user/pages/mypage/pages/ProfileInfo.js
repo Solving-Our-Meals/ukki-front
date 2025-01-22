@@ -298,6 +298,9 @@ function ProfileInfo() {
 
             if (response.ok) {
                 setShowDeleteSuccessModal(true);
+                setTimeout(async () => {
+                    setShowDeleteSuccessModal(false);
+                }, 2000);
                 await handleLogout();
             } else {
                 const result = await response.json();
@@ -365,7 +368,7 @@ function ProfileInfo() {
                             <div className={styles.inputWrapper}>
                                 <input
                                     className={`${styles.signupPwd} ${error ? styles.errorInput : ''}`}
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     name="userPass"
                                     value={formData.userPass}
                                     onChange={handleChange}
@@ -373,6 +376,12 @@ function ProfileInfo() {
                                     placeholder="비밀번호 입력"
                                 />
                                 <label htmlFor="userPass">비밀번호 입력</label>
+                                <div className={styles.passwordToggleBtn} onClick={togglePasswordVisibility}>
+                                    <img
+                                        src={showPassword ? Default : On}
+                                        alt="비밀번호 보이기/숨기기"
+                                    />
+                                </div>
                             </div>
                         </fieldset>
                         {passwordError && <div className={styles.error}>{passwordError}</div>}
