@@ -52,17 +52,16 @@ function ProfileInfo() {
     useEffect(() => {
         const debounceNicknameCheck = setTimeout(async () => {
             if (formData.nickname) {
-                // 닉네임 길이 유효성 검사
                 if (formData.nickname.length < 1 || formData.nickname.length > 12) {
                     setNicknameError("ⓘ 닉네임은 1~12자 사이여야 합니다.");
                     setNicknameSuccess(false);
-                    return;  // 길이가 맞지 않으면 서버 요청하지 않음
+                    return;
                 }
 
                 if (!validateNickname(formData.nickname)) {
                     setNicknameError("ⓘ 닉네임은 영문, 숫자, 한글만 가능합니다.");
                     setNicknameSuccess(false);
-                    return;  // 유효성 검사 실패
+                    return;
                 }
 
                 try {
@@ -298,7 +297,10 @@ function ProfileInfo() {
 
             if (response.ok) {
                 setShowDeleteSuccessModal(true);
-                await handleLogout();
+                setTimeout(async () => {
+                    setShowDeleteSuccessModal(false);
+                    await handleLogout();
+                }, 2000);
             } else {
                 const result = await response.json();
                 setShowDeleteFailModal(true);
@@ -365,7 +367,7 @@ function ProfileInfo() {
                             <div className={styles.inputWrapper}>
                                 <input
                                     className={`${styles.signupPwd} ${error ? styles.errorInput : ''}`}
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     name="userPass"
                                     value={formData.userPass}
                                     onChange={handleChange}
@@ -373,6 +375,12 @@ function ProfileInfo() {
                                     placeholder="비밀번호 입력"
                                 />
                                 <label htmlFor="userPass">비밀번호 입력</label>
+                                <div className={styles.passwordToggleBtn} onClick={togglePasswordVisibility}>
+                                    <img
+                                        src={showPassword ? Default : On}
+                                        alt="비밀번호 보이기/숨기기"
+                                    />
+                                </div>
                             </div>
                         </fieldset>
                         {passwordError && <div className={styles.error}>{passwordError}</div>}
