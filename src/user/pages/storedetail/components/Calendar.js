@@ -32,7 +32,7 @@ function Calendar() {
 
     const { storeNo } = useParams();
 
-    const [userInfo, setUserInfo] = useState({});
+    const [userInfo, setUserInfo] = useState(null);
 
     const [storeInfo, setStoreInfo] = useState({});
     const [selectedDate, setSelectedDate] = useState(null);
@@ -406,7 +406,7 @@ function Calendar() {
                 .then(res => res.json())
                 .then(data => {
                     console.log('예약가능인원 : ', data);
-                    const operTimeArray = data.listDayResPosNumDTO;
+                    const operTimeArray = data;
                     setResPosNumber(data);
                     setOperTimeArray(operTimeArray);
                     console.log('ssssssss', returnData.allTimeArray);
@@ -424,7 +424,7 @@ function Calendar() {
                     // }
 
                     operTimeArray.forEach(slot => {
-                        if (slot.resPosNum === 0) {
+                        if (slot.resPosNum <= 0) {
                             // allTimeArray에서 해당 시간이 존재하는지 확인
                             if (returnData.allTimeArray.includes(slot.operTime)) {
                                 disabledTimesList.push(slot.operTime);
@@ -769,14 +769,14 @@ function Calendar() {
             .then(res => res.json())
             .then(data => {
                 console.log('선택한 날짜의 예약가능인원:', data);
-                const operTimeArray = data.listDayResPosNumDTO;
+                const operTimeArray = data;
                 setOperTimeArray(operTimeArray);
 
                 const disabledTimesList = [];
 
                 // 5. 예약 불가능한 시간 체크
                 operTimeArray.forEach(slot => {
-                    if (slot.resPosNum === 0) {
+                    if (slot.resPosNum <= 0) {
                         const timeStr = slot.operTime;
                         // 방금 생성한 morningArr, afternoonArr 배열에서 체크
                         if (morningArr.includes(timeStr) || afternoonArr.includes(timeStr)) {
@@ -981,6 +981,8 @@ function Calendar() {
                          // 클릭 가능 여부 결정
                          const isToday = todayWithoutTime === selectedDateWithoutTime;
                          const isNotPast = (morningDateTime > currentDateTime) || !isToday;
+
+                        //  const isUserInfoLoaded = userInfo && Object.keys(userInfo).length > 0;
  
                          // 클릭 이벤트 핸들러
                          const handleClick = () => {
@@ -988,17 +990,18 @@ function Calendar() {
                                  selectedMorningTime(index);
                              }
                          };
+
                          return (
                             <div 
                                 key={index} 
                                 className={styles.morningArr} 
                                 style={{
-                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
+                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast 
                                         ? (selectedMorningTimeIndex === index ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7', 
-                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? '#000000' : '#BDBEBF', 
-                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? 'pointer' : 'default',
-                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? 'auto' : 'none'
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF', 
+                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
                                 }}
                                 onClick={() => {
                                     if (!disabledTimes.includes(timeObj)) {
@@ -1033,6 +1036,8 @@ function Calendar() {
                         const isToday = todayWithoutTime === selectedDateWithoutTime;
                         const isNotPast = (morningDateTime > currentDateTime) || !isToday;
 
+                        // const isUserInfoLoaded = userInfo && Object.keys(userInfo).length > 0;
+
                         // 클릭 이벤트 핸들러
                         const handleClick = () => {
                             if (isNotPast && morningArray[index]) {
@@ -1053,9 +1058,9 @@ function Calendar() {
                                     backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
                                         ? (selectedAfternoonTimeIndex === index ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7',
-                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? '#000000' : '#BDBEBF',
-                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? 'pointer' : 'default',
-                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast && userInfo ? 'auto' : 'none'
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF',
+                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
                                 }}
                                 onClick={() => {
                                     if (!disabledTimes.includes(timeObj)) {
