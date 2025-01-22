@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import styles from '../css/bossStoreInfoPage.module.css';
 import triangleBtn from '../../../../user/pages/storedetail/images/inverted_triangle.png';
 import mapIcon from '../../../../user/pages/storedetail/images/mapMarker-logo.png';
@@ -11,6 +11,7 @@ import BossMenu from '../components/BossMenu';
 function BossStoreInfoPage(){
 
     const {storeNo} = useOutletContext();
+    const navigate = useNavigate();
 
     const [colorMonday, setColorMonday] = useState("");
     const [colorTuesday, setColorTuesday] = useState("");
@@ -113,6 +114,10 @@ function BossStoreInfoPage(){
     const onClickHandler = (e) => {
         setIsNone(prevState => !prevState);
     } 
+
+    const navigateToMyStore = () => {
+        navigate(`/store/${storeNo}`);
+    }
         
     return(
         <div id={styles.background}>
@@ -121,6 +126,7 @@ function BossStoreInfoPage(){
             </div>
             <div className={styles.nameAndReserve}>
                 <p id={styles.storeName}>{storeInfo.storeName}</p>
+                <div id={styles.goMyStore} onClick={() => navigateToMyStore()}>가게 상세페이지</div>
             </div>
             <p id={styles.storeDes}>{storeInfo.storeDes}</p>
             <img src={mapIcon} id={styles.mapIcon} alt = '지도 아이콘'/>
