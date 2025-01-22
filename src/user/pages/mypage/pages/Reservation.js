@@ -182,16 +182,22 @@ function Reservation() {
                 method: 'DELETE',
                 credentials: 'include',
             })
-                .then((response) => response.json())
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    // 실패한 경우 오류를 던짐
+                    throw new Error('예약 취소에 실패했습니다.');
+                })
                 .then((data) => {
-                    // 예약 취소 성공 후 예약 정보 갱신
                     fetchUserInfo();
                     setCancelSuccessMessage('예약이 취소되었습니다.');
                     setIsCancelSuccessModalOpen(true);
                 })
                 .catch((error) => {
+                    console.error('Error:', error);
                     fetchUserInfo();
-                    setCancelSuccessMessage('예약 취소에 실패했습니다.');
+                    setCancelSuccessMessage(error.message);
                     setIsCancelSuccessModalOpen(true);
                 })
                 .finally(() => {
@@ -199,7 +205,6 @@ function Reservation() {
                 });
         }
     };
-
 
 
     const handleCancelClose = () => {
