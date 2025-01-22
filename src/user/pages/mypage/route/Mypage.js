@@ -18,6 +18,8 @@ function Mypage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [reservationDeleted, setReservationDeleted] = useState(false);
+
     const getUserInfo = async () => {
         try {
             const response = await fetch('/user/mypage/inquiry', {
@@ -43,9 +45,13 @@ function Mypage() {
         }
     };
 
+    const handleReservationDelete = () => {
+        setReservationDeleted((prev) => !prev); // 예약 삭제 상태 변경
+    };
+
     useEffect(() => {
         getUserInfo();
-    }, []);
+    }, [reservationDeleted]);
 
     if (loading) {
         return (
@@ -61,7 +67,10 @@ function Mypage() {
             <div className={styles.contentList}>
                 <Routes>
                     <Route path="/" element={<Navigate to="reservation" />} />
-                    <Route path="reservation" element={<Reservation />} />
+                    <Route
+                        path="reservation"
+                        element={<Reservation onDelete={handleReservationDelete} />}
+                    />
                     <Route path="reservation/:resNo" element={<ReservationDetail />} />
                     <Route path="review" element={<Review />} />
                     <Route path="/review/:reviewNo" element={<ReviewDetail />} />
@@ -71,7 +80,7 @@ function Mypage() {
                     <Route path="*" element={<Navigate to="reservation" />} />
                 </Routes>
             </div>
-            <MyProfile />
+            <MyProfile key={reservationDeleted} />
         </div>
     );
 }
