@@ -4,6 +4,7 @@ import '../css/reset.css';
 import styles from '../css/NoticeRegist.module.css';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function NoticeRegist(){
     const navigate = useNavigate();
@@ -39,11 +40,13 @@ function NoticeRegist(){
 
     const handleRegistNotice = async () => {
         try {
-            const response = await fetch(`/admin/notices/regist`, {
+            const response = await fetch(`${API_BASE_URL}/admin/notices/regist`, {
                 method: 'POST',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
+                credentials: "include",
                 body: JSON.stringify(notice),
             });
             if (response.ok) {

@@ -3,7 +3,7 @@ import '../css/reset.css';
 import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
 import ResultSmallModal from './ResultSmallModal';
-
+import { API_BASE_URL } from '../../../config/api.config';
 function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
 
     
@@ -87,13 +87,13 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
       formData.append("file", inquiryFile)
       let isPass = isWrite.every(Boolean);
       if(isPass){
-      fetch(`/inquiries/stores`, {
+      fetch(`${API_BASE_URL}/inquiries/stores`, {
         method: "POST",
-        headers: {},
+        credentials: "include",
         body: formData
       }).then(res => {
         if(res.ok) {
-          setResultMessage("문의기 성공적으로 제출되었습니다.")
+          setResultMessage("문의가 성공적으로 제출되었습니다.")
           setShowResultModal(true);
         }else{
           setResultMessage("문의에 실패했습니다.")

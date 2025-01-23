@@ -1,10 +1,26 @@
+import { API_BASE_URL } from '../../../../config/api.config';
+
 export async function NoticeListStoreAPI(word){
     let noticeList = {}
     if(word == null){
-        const res = await fetch('/admin/notices/list/store')
+        const res = await fetch(`${API_BASE_URL}/admin/notices/list/store`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        })
         noticeList = await res.json();
     }else if(word != null){
-        const res = await fetch(`/admin/notices/list/store?word=${word}`)
+        const res = await fetch(`${API_BASE_URL}/admin/notices/list/store?word=${word}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        })
         noticeList = await res.json();
     }
     return noticeList

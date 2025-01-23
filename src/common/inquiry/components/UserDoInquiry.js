@@ -3,6 +3,8 @@ import '../css/reset.css';
 import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
 import ResultSmallModal from './ResultSmallModal';
+import { API_BASE_URL } from '../../../config/api.config';
+import { getUserNo } from '../api/GetUserNoAPI';
 
 
 function UserDoInquiry({closeModal}){
@@ -18,6 +20,7 @@ function UserDoInquiry({closeModal}){
     const [showResultModal, setShowResultModal] = useState(false);
     const [checkContent, setCheckContent] = useState(false);
     const [resultMessage, setResultMessage] = useState("");
+    const [userNo, setUserNo] = useState(0);
     const fileInputRef = useRef(null);
 
 
@@ -59,16 +62,15 @@ function UserDoInquiry({closeModal}){
     function handleFileChange(e){setInquiryFile(e.target.files[0]); console.log("file 사옹")}
 
     async function fetchCategory(){
-        // const categories = await inquiryCategory();
-        // setCategory([categories[0], categories[1], categories[2], categories[3]])
-         const categories = await inquiryCategory(); if (categories && categories.length > 0)
+        const categories = await inquiryCategory(); if (categories && categories.length > 0)
         { setCategory(categories.slice(0, 4))}; // 첫 4개의 카테고리만 설정
     }
 
     function submit(e) {
       e.preventDefault();
+      console.log(userNo);
       const inquiryDTO = {
-        userNo : 1,
+        userNo : userNo,
         inquiryTitle : inquiryTitle,
         inquiryContent : inquiryContent,
         categoryNo : selectCategory,
@@ -78,31 +80,31 @@ function UserDoInquiry({closeModal}){
       const blob = new Blob([json], {type: 'application/json'});
       formData.append("data", blob)
       formData.append("file", inquiryFile)
-      for (const x of formData.entries()) {
-        console.log(x);
-       };
-       let isPass = isWrite.every(Boolean);
+      
+      let isPass = isWrite.every(Boolean);
       if(isPass){
-      fetch(`/inquiries/users`, {
-        method: "POST",
-        headers: {},
-        body: formData
-      }).then(res => {
-        if(res.ok) {
-          setResultMessage("문의가 성공적으로 제출되었습니다.")
-          setShowResultModal(true)
-        }else{
-          setResultMessage("문의에 실패했습니다.")
-        }
-      })
-    }else{
-      setCheckContent(true);
-    }
-
+        fetch(`${API_BASE_URL}/inquiries/users`, {
+          method: "POST",
+          credentials: "include",
+          body: formData
+        }).then(res => {
+          if(res.ok) {
+            setResultMessage("문의가 성공적으로 제출되었습니다.")
+            setShowResultModal(true)
+          }else{
+            setResultMessage("문의에 실패했습니다.")
+          }
+        })
+      }else{
+        setCheckContent(true);
+      }
     }
 
     useEffect(()=>{
         fetchCategory()
+        getUserNo().then(userNo => {
+            setUserNo(userNo)
+        })
     },[])
 
     function handleCancle(){

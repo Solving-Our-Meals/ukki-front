@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import AdminLayout from "../layouts/AdminLayout";
 import AdminDashboard from "../pages/dashboard/pages/AdminDashboard";
-import AdminNotice from "../pages/notice/pages/AdminNotice";
 import UserList from "../pages/user/pages/UserList";
 import UserInfo from "../pages/user/pages/UserInfo";
 import StoreList from "../pages/store/pages/StoreList";

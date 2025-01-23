@@ -69,7 +69,10 @@ function StoreUpdateInquiry({ setEnterUpdate, inquiryDTO }) {
             let url = '/inquiries/list/' + inquiryDTO.inquiryNo;
             fetch(url, {
                 method: "PUT",
-                headers: {},
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 body: formData
             }).then(res => {
                 if (res.ok) {

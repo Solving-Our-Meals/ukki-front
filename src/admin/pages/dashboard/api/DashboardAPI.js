@@ -1,6 +1,14 @@
+import { API_BASE_URL } from '../../../../config/api.config';
 export const fetchGraphData1 = async () => {
     try {
-        const response = await fetch('/admin/reservations/weekly');
+        const response = await fetch(`${API_BASE_URL}/admin/reservations/weekly`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -14,7 +22,14 @@ export const fetchGraphData1 = async () => {
 
 export const fetchGraphData2 = async () => {
     try {
-        const response = await fetch('/admin/stores/total');
+        const response = await fetch(`${API_BASE_URL}/admin/stores/total`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -28,7 +43,14 @@ export const fetchGraphData2 = async () => {
 
 export const fetchGraphData3 = async () => {
     try {
-        const response = await fetch('/admin/reservations/today');
+        const response = await fetch(`${API_BASE_URL}/admin/reservations/today`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -42,7 +64,14 @@ export const fetchGraphData3 = async () => {
 
 export const fetchGraphData4 = async () => {
     try {
-        const response = await fetch('/admin/stores/monthly');
+        const response = await fetch(`${API_BASE_URL}/admin/stores/monthly`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -56,7 +85,14 @@ export const fetchGraphData4 = async () => {
 
 export const fetchGraphData5 = async () => {
     try {
-        const response = await fetch('/admin/reservations/noshow');
+        const response = await fetch(`${API_BASE_URL}/admin/reservations/noshow`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -70,7 +106,14 @@ export const fetchGraphData5 = async () => {
 
 export const fetchGraphData6 = async () => {
     try {
-        const response = await fetch('/admin/inquiries/processingInquiry');
+        const response = await fetch(`${API_BASE_URL}/admin/inquiries/processingInquiry`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
