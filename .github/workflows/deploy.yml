@@ -7,11 +7,11 @@ on:
     branches: [ "main" ]  # main 브랜치로 PR이 생성될 때 실행
 
 env:
-  AWS_REGION: ap-northeast-2                   # AWS 리전
+  AWS_REGION: ap-northeast-2                   # AWS 리전 위치
   ECR_REPOSITORY: ukki-front                   # ECR 저장소 이름
   ECR_REGISTRY: public.ecr.aws/j7n6r7d0          # ECR 레지스트리
   EC2_HOST: ${{ secrets.EC2_HOST }}           # EC2 퍼블릭 IP
-  EC2_USERNAME: ec2-user                       # EC2 사용자 이름
+  EC2_USERNAME: ubuntu                       # EC2 사용자 이름
   EC2_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }} # EC2 SSH 키
 
 permissions:
@@ -56,7 +56,7 @@ jobs:
         username: ${{ env.EC2_USERNAME }}
         key: ${{ env.EC2_PRIVATE_KEY }}
         script: |
-          cd /home/ec2-user/ukki-project
+          cd /home/ubuntu/ukki-project
           aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
           docker-compose down || true  # 기존 컨테이너 안전하게 중지
           docker-compose pull
