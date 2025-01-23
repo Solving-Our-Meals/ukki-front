@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import styles from '../css/totalReview.module.css';
 import SpecificReview from '../components/SpecificReview';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 
 function TotalReview(){
@@ -19,8 +20,20 @@ function TotalReview(){
         // storeNo가 정의되어 있을 때만 fetch 요청을 보냄
         if (storeNo !== undefined && storeNo !== null) {
             Promise.all([
-                fetch(`/boss/mypage/recentReview?storeNo=${storeNo}`).then(res => res.json()),
-                fetch(`/boss/mypage/reviewList?storeNo=${storeNo}`).then(res => res.json())
+                fetch(`${API_BASE_URL}/boss/mypage/recentReview?storeNo=${storeNo}`,{
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                }).then(res => res.json()),
+                fetch(`${API_BASE_URL}/boss/mypage/reviewList?storeNo=${storeNo}`,{
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                }).then(res => res.json())
             ])
             .then(([recentReviewData, reviewListData]) => {
                 setRecentReview(recentReviewData);

@@ -26,8 +26,8 @@ function PrivateRoute({ element, ...rest }) {
                     navigate('/boss');
                 }
             } else if (user?.userRole === 'USER') {
-                if (!window.location.pathname.startsWith('/user')) {
-                    navigate('/user');
+                if (!window.location.pathname.startsWith('/')) {
+                    navigate('/');
                 }
             }
         }

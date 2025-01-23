@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import CreateReview from '../components/CreateReview';
 import Footer from '../components/Footer';
 import basicReviewImg from '../images/BASIC_REVIEW_IMG.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function Review(){
 
@@ -39,8 +40,21 @@ function Review(){
     useEffect(() => {
         // Promise.all을 사용하여 두 fetch를 동기화
         Promise.all([
-            fetch('/user/info').then(res => res.json()).catch(() => ({ nickname: "" })), // 로그인 안 되어 있으면 기본 값 반환
-            fetch(`/store/${storeNo}/review`).then(res => res.json())
+            fetch(`${API_BASE_URL}/user/info`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                credentials : "include"
+            }).then(res => res.json()).catch(() => ({ nickname: "" })), // 로그인 안 되어 있으면 기본 값 반환
+            fetch(`${API_BASE_URL}/store/${storeNo}/review`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }).then(res => res.json())
         ])
         .then(([userData, reviewData]) => {
             console.log('현재 유저!!!!!:', userData.nickname);  // 현재 유저 이름 확인
@@ -73,7 +87,13 @@ function Review(){
     }
 
     const reviewLatest = () => {
-        fetch(`/store/${storeNo}/review`)
+        fetch(`${API_BASE_URL}/store/${storeNo}/review`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
         .then(res => res.json())
         .then(data => {
             console.log('리뷰 정보 : ', data);
@@ -85,7 +105,13 @@ function Review(){
     }
 
     const reviewScope = () => {
-        fetch(`/store/${storeNo}/reviewscope`)
+        fetch(`${API_BASE_URL}/store/${storeNo}/reviewscope`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
         .then(res => res.json())
         .then(data => {
             console.log('리뷰 정보 : ', data);
@@ -97,7 +123,13 @@ function Review(){
     }
 
     const reviewSecondScope = () => {
-        fetch(`/store/${storeNo}/reviewSecondScope`)
+        fetch(`${API_BASE_URL}}/store/${storeNo}/reviewSecondScope`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
         .then(res => res.json())
         .then(data => {
             console.log('리뷰 정보 : ', data);
@@ -119,7 +151,7 @@ function Review(){
 
     // 리뷰 삭제
     const deleteReview = (reviewNo, userNo) => {
-        fetch(`/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`,{
+        fetch(`${API_BASE_URL}/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`,{
             method : "DELETE",         
         })
         .then((res) => {
@@ -144,8 +176,21 @@ function Review(){
 
     const fncReflashMethod = () => {
         Promise.all([
-            fetch('/user/info').then(res => res.json()),
-            fetch(`/store/${storeNo}/review`).then(res => res.json())
+            fetch(`${API_BASE_URL}/user/info`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                credentials : "include"
+            }).then(res => res.json()),
+            fetch(`${API_BASE_URL}/store/${storeNo}/review`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }).then(res => res.json())
         ])
         .then(([userData, reviewData]) => {
             console.log('현재 유저!!!!!:', userData.nickname);  // 현재 유저 이름 확인

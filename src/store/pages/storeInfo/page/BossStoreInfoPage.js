@@ -7,6 +7,7 @@ import BossBanner from '../components/BossBanner';
 import Menu from '../../../../user/pages/storedetail/components/Menu';
 import BossProfile from '../components/BossProfile';
 import BossMenu from '../components/BossMenu';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function BossStoreInfoPage(){
 
@@ -35,7 +36,13 @@ function BossStoreInfoPage(){
 
     useEffect(
         () => {
-            fetch(`/store/${storeNo}/getInfo`)
+            fetch(`${API_BASE_URL}/store/${storeNo}/getInfo`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            })
             .then(res => res.json())
             .then(data => {
                 setStoreInfo(data)
