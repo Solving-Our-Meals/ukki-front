@@ -176,7 +176,6 @@ function InquiryDetail({ userInfo }) {
                 method: 'PUT',
                 headers: {
                     'Accept' : 'application/json',
-                    'Content-Type': 'application/json'
                 },
                 body: formData,
             });
@@ -218,8 +217,7 @@ function InquiryDetail({ userInfo }) {
             const response = await fetch(`${API_BASE_URL}/user/mypage/download/${fileName}`, {
                 method: 'GET',
                 headers: {
-                    'Accept' : 'application/json',
-                    'Content-Type': 'application/json'
+                    'Accept' : 'application/octet-stream',
                 },
                 credentials: 'include', // 쿠키 포함
             });
