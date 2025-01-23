@@ -94,12 +94,12 @@ function Review({onDelete}) {
                 setShowModal(false);
                 setShowSuccessModal(true);
                 setTimeout(() => setShowSuccessModal(false), 2000);
+                onDelete();
             } else {
                 setError('리뷰 삭제에 실패했습니다.');
                 setShowModal(false);
                 setShowFailModal(true);
                 setTimeout(() => setShowFailModal(false), 2000);
-                onDelete();
             }
         } catch (error) {
             setError('에러 발생: ' + error.message);

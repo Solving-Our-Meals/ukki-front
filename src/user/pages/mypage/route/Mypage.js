@@ -49,11 +49,11 @@ function Mypage() {
     };
 
     const handleReservationDelete = () => {
-        setReservationDeleted((prev) => !prev); // 예약 삭제 상태 변경
+        setReservationDeleted((prev) => !prev);
     };
 
     const handleReviewDelete = () => {
-        setReviewDeleted(prev => !prev); // 리뷰 삭제 후 상태 변경
+        setReviewDeleted(prev => !prev);
     };
 
     const handleUpdateProfile = () => {
@@ -97,7 +97,7 @@ function Mypage() {
                     <Route path="*" element={<Navigate to="reservation" />} />
                 </Routes>
             </div>
-            <MyProfile key={reservationDeleted} />
+            <MyProfile key={`${reservationDeleted}-${reviewDeleted}-${updateProfile}`} />
         </div>
     );
 }

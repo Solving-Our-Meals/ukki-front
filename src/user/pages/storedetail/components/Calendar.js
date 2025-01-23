@@ -48,9 +48,9 @@ function Calendar() {
     const date = currentDate.getDate();
     const [day, setDay] = useState(currentDate.getDay());
 
-    // const [operArray, setOperArray] = useState([]);  
+    // const [operArray, setOperArray] = useState([]);
     const [morningArray, setMorningArray] = useState([]);
-    const [afternoonArray, setAfternoonArray] = useState([]);  
+    const [afternoonArray, setAfternoonArray] = useState([]);
     const [isOper, setIsOper] = useState(true);
 
     const [resPosNumber, setResPosNumber] = useState({});
@@ -96,7 +96,7 @@ function Calendar() {
             case 6:
                 setDay("토");
                 break;
-            default : 
+            default :
                 break;
         }
     }, [day]);
@@ -106,8 +106,8 @@ function Calendar() {
         selectedMonth : month + 1,
         selectedDate : date,
         selectedDay : day,
-    }); 
-    
+    });
+
     useEffect(() => {
         setSelectedTotalDate(prevState => ({
             ...prevState,
@@ -139,8 +139,8 @@ function Calendar() {
                 const dayOfWeekMap = {
                     0 : "sunday",
                     1 : "monday",
-                    2 : "tuesday", 
-                    3 : "wednesday", 
+                    2 : "tuesday",
+                    3 : "wednesday",
                     4 : "thursday",
                     5 : "friday",
                     6 : "saturday"
@@ -232,14 +232,14 @@ function Calendar() {
                                 return !(currentTime >= startBreakTime && currentTime < endBreakTime);
                             });
                         }
-                    // 2-2. 휴무인 날    
+                    // 2-2. 휴무인 날
                     } else {
                         setIsOper(false);
                         morningArr.push('휴무');
                         afternoonArr.push('휴무');
                         afternoonArr.push('휴무');
                     }
-                // 1-2. 브레이크 타임 없을 경우    
+                // 1-2. 브레이크 타임 없을 경우
                 } else {
                     // 2-1. 휴무 아닌 날
                     if(data.operationTime[dayOfWeek] !== '휴무'){
@@ -251,7 +251,7 @@ function Calendar() {
                         const [strStartHour, strStartMinute] = strStartTime.split(':');
                         const strEndTime = operTimeOfDay.split('~')[1];
                         const [strEndHour, strEndMinute] = strEndTime.split(':');
-                        
+
                         // 선택한 날짜의 운영 시간 -> Date() 형태
                         const startTime = new Date();
                         startTime.setHours(parseInt(strStartHour));
@@ -278,7 +278,7 @@ function Calendar() {
                                 } else {
                                     afternoonArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
                                 }
-                            // 4-2. 마감 시간이 23시 이후인 경우    
+                            // 4-2. 마감 시간이 23시 이후인 경우
                             } else {
                                 for(let i = 8; i < 12; i++){
                                     for (let j = 0; j < 60; j += 30) {
@@ -288,10 +288,10 @@ function Calendar() {
                                     for(let j = 0; j < 60; j += 30){
                                         afternoonArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                                     }
-                                }  
+                                }
                                 afternoonArr.push('23:00');
                             }
-                        // 3-2.오전 시작 : 장사 시작 시간이 8시 초과   
+                        // 3-2.오전 시작 : 장사 시작 시간이 8시 초과
                         } else if(8 <= startTime.getHours() && startTime.getHours() < 12){
                             // 4-1. 마감 시간이 23시 이전인 경우
                             if(endTime.getHours() <= 23){
@@ -316,7 +316,7 @@ function Calendar() {
                                 } else {
                                     afternoonArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
                                 }
-                            // 4-2. 마감 시간이 23시 이후인 경우    
+                            // 4-2. 마감 시간이 23시 이후인 경우
                             } else {
                                 for(let i = startTime.getHours(); i < 12; i++){
                                     if(startTime.getMinutes() === 0){
@@ -333,10 +333,10 @@ function Calendar() {
                                     for(let j = 0; j < 60; j += 30){
                                         afternoonArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                                     }
-                                }  
+                                }
                                 afternoonArr.push('23:00');
                             }
-                        // 3-3. 오후 시작    
+                        // 3-3. 오후 시작
                         } else if(startTime.getHours() >= 12){
                             // 4-1. 마감 시간이 23시 이전인 경우 -> 새벽 마감인 경우에도 23 이하이므로 8 초과라는 조건을 더 줌줌
                             if(endTime.getHours() <= 23 && endTime.getHours() > 8){
@@ -371,14 +371,14 @@ function Calendar() {
                                 }
                                 afternoonArr.push('23:00');
                             }
-                        } 
-                    // 2-2. 휴무인 날    
+                        }
+                    // 2-2. 휴무인 날
                     } else {
                         setIsOper(false);
                         morningArr.push('휴무');
                         afternoonArr.push('휴무');
                         afternoonArr.push('휴무');
-                    }          
+                    }
                 }
                 setMorningArray(morningArr);
                 setAfternoonArray(afternoonArr);
@@ -401,7 +401,7 @@ function Calendar() {
                 let todayFormat = today.getFullYear() +
                 '-' + ( (today.getMonth()+1) < 9 ? "0" + (today.getMonth()+1) : (today.getMonth()+1))+
                 '-' + ( (today.getDate()) < 9 ? "0" + (today.getDate()) : (today.getDate()));
-                
+
                 return fetch(`/store/${storeNo}/resPosNumber?storeNo=${storeNo}&day=${day}&date=${todayFormat}`)
                 .then(res => res.json())
                 .then(data => {
@@ -410,7 +410,7 @@ function Calendar() {
                     setResPosNumber(data);
                     setOperTimeArray(operTimeArray);
                     console.log('ssssssss', returnData.allTimeArray);
-                    
+
 
                     const disabledTimesList = [];
 
@@ -454,7 +454,7 @@ function Calendar() {
     };
 
     const goToday = () => {
-        setSelectedDate(today); 
+        setSelectedDate(today);
         setCurrentDate(today);
         selectedDateHandler(today);
         setSelectedMorningTimeIndex(null);
@@ -489,8 +489,8 @@ function Calendar() {
             case 6:
                 selectedDayStr = "토";
                 break;
-            default : 
-                break;    
+            default :
+                break;
         }
 
         setSelectedTotalDate(prevState => ({
@@ -506,8 +506,8 @@ function Calendar() {
         const dayOfWeekMap = {
             0 : "sunday",
             1 : "monday",
-            2 : "tuesday", 
-            3 : "wednesday", 
+            2 : "tuesday",
+            3 : "wednesday",
             4 : "thursday",
             5 : "friday",
             6 : "saturday"
@@ -540,7 +540,7 @@ function Calendar() {
                 const [strStartBreakHour, strStartBreakMinute] = strStartBreak.split(':');
                 const strEndBreak = operBreakTime.split('~')[1];
                 const [strEndBreakHour, strEndBreakMinute] = strEndBreak.split(':');
-                
+
                 // 선택한 날짜의 운영 시간 -> Date() 형태
                 const startTime = new Date();
                 startTime.setHours(parseInt(strStartHour));
@@ -567,21 +567,21 @@ function Calendar() {
                         }
                     }
                 };
-        
+
                 // 운영 시간이 8시 미만일 때 8시부터 시작
                 const effectiveStartTime = new Date(startTime);
                 if (startTime.getHours() < 8) {
                     effectiveStartTime.setHours(8);
                     effectiveStartTime.setMinutes(0);
                 }
-        
+
                 // 종료 시간이 23시 이후일 때 23시로 조정
                 const effectiveEndTime = new Date(endTime);
                 if (endTime.getHours() >= 23 || endTime.getHours() <= 8) {
                     effectiveEndTime.setHours(23);
                     effectiveEndTime.setMinutes(0);
                 }
-        
+
                 // 오전 시간 추가 (8시 ~ 11:30)
                 if (effectiveStartTime.getHours() < 12) {
                     const morningEndTime = new Date(Math.min(effectiveEndTime, new Date(effectiveStartTime).setHours(11, 30, 0, 0)));
@@ -594,7 +594,7 @@ function Calendar() {
                         return !(currentTime >= startBreakTime && currentTime < endBreakTime);
                     });
                 }
-        
+
                 // 오후 시간 추가 (12시 ~ 23:00)
                 if (effectiveEndTime.getHours() >= 12) {
                     const afternoonStartTime = new Date(Math.max(effectiveStartTime, new Date(effectiveEndTime).setHours(12, 0, 0, 0)));
@@ -607,8 +607,8 @@ function Calendar() {
                         return !(currentTime >= startBreakTime && currentTime < endBreakTime);
                     });
                 }
-        
-            // 2-2. 휴무인 날    
+
+            // 2-2. 휴무인 날
             } else {
                 setIsOper(false);
                 morningArr.push('휴무');
@@ -620,14 +620,14 @@ function Calendar() {
             if( operation[dayOfWeek] !== '휴무'){
                 setIsOper(true);
                 const operTimeOfDay = operation[dayOfWeek];
-                
+
                 // 날짜 문자열 자르기
                 const strStartTime = operTimeOfDay.split('~')[0];
                 const [strStartHour, strStartMinute] = strStartTime.split(':');
                 const strEndTime = operTimeOfDay.split('~')[1];
                 const [strEndHour, strEndMinute] = strEndTime.split(':');
-                
-                
+
+
                 // 선택한 날짜의 운영 시간 -> Date() 형태 -> Wed Dec 25 2024 16:00:00 GMT+0900 (한국 표준시)
                 const startTime = new Date();
                 startTime.setHours(parseInt(strStartHour));
@@ -654,7 +654,7 @@ function Calendar() {
                         } else {
                             afternoonArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
                         }
-                    // 4-2. 마감 시간이 23시 이후인 경우    
+                    // 4-2. 마감 시간이 23시 이후인 경우
                     } else {
                         for(let i = 8; i < 12; i++){
                             for (let j = 0; j < 60; j += 30) {
@@ -664,10 +664,10 @@ function Calendar() {
                             for(let j = 0; j < 60; j += 30){
                                 afternoonArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                             }
-                        }  
+                        }
                         afternoonArr.push('23:00');
                     }
-                // 3-2.오전 시작 : 장사 시작 시간이 8시 초과   
+                // 3-2.오전 시작 : 장사 시작 시간이 8시 초과
                 } else if(8 <= startTime.getHours() && startTime.getHours() < 12){
                     // 4-1. 마감 시간이 23시 이전인 경우
                     if(endTime.getHours() <= 23){
@@ -692,7 +692,7 @@ function Calendar() {
                         } else {
                             afternoonArr.push(endTime.getHours().toString().padStart(2, '0') + ':00');
                         }
-                    // 4-2. 마감 시간이 23시 이후인 경우    
+                    // 4-2. 마감 시간이 23시 이후인 경우
                     } else {
                         for(let i = startTime.getHours(); i < 12; i++){
                             if(startTime.getMinutes() === 0){
@@ -709,10 +709,10 @@ function Calendar() {
                             for(let j = 0; j < 60; j += 30){
                                 afternoonArr.push(i.toString().padStart(2, '0') + ':' + j.toString().padStart(2, '0'));
                             }
-                        }  
+                        }
                         afternoonArr.push('23:00');
                     }
-                // 3-3. 오후 시작    
+                // 3-3. 오후 시작
                 } else if(startTime.getHours() >= 12){
                     // 4-1. 마감 시간이 23시 이전인 경우 -> 새벽 마감인 경우에도 23 이하이므로 8 초과라는 조건을 더 줌줌
                     if(endTime.getHours() <= 23 && endTime.getHours() > 8){
@@ -747,14 +747,14 @@ function Calendar() {
                         }
                         afternoonArr.push('23:00');
                     }
-                } 
-            // 2-2. 휴무인 날    
+                }
+            // 2-2. 휴무인 날
             } else {
                 setIsOper(false);
                 morningArr.push('휴무');
                 afternoonArr.push('휴무');
                 afternoonArr.push('휴무');
-            }          
+            }
         }
         setMorningArray(morningArr);
         setAfternoonArray(afternoonArr);
@@ -816,7 +816,7 @@ function Calendar() {
         }
 
         console.log('morningArray[index] : ', morningArray[index], 'typeof(morningArray[index]) : ', typeof(morningArray[index]));
-        
+
         // 선택한 시간과 현재 시간 비교
         const [hours, minutes] = morningArray[index].split(':').map(Number);
         const selectedTime = new Date(
@@ -946,9 +946,9 @@ function Calendar() {
                                 }}
                                 onClick={isWithinOneWeek ? () => { selectedDateHandler(date) } : undefined}
                             >
-                                <img 
-                                    src={todayIcon} 
-                                    style={{display : (isToday && !selectedDate) || isSelected ? "" : "none"}} 
+                                <img
+                                    src={todayIcon}
+                                    style={{display : (isToday && !selectedDate) || isSelected ? "" : "none"}}
                                     alt="오늘 날짜 표시 아이콘"
                                 />
                                 {date.getDate()}
@@ -970,20 +970,20 @@ function Calendar() {
                          const [currentHours, currentMinutes] = [now.getHours(), now.getMinutes()];
                          const todayWithoutTime = new Date(now).setHours(0, 0, 0, 0);
                          const selectedDateWithoutTime = new Date(selectedTotalDate.selectedYear, selectedTotalDate.selectedMonth - 1, selectedTotalDate.selectedDate).setHours(0, 0, 0, 0);
- 
+
                          // morningArr의 시간을 분리하여 비교
                          const [morningHours, morningMinutes] = timeObj.split(":").map(Number);
- 
+
                          // 비교를 위한 Date 객체 생성
                          const currentDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), currentHours, currentMinutes);
                          const morningDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), morningHours, morningMinutes);
- 
+
                          // 클릭 가능 여부 결정
                          const isToday = todayWithoutTime === selectedDateWithoutTime;
                          const isNotPast = (morningDateTime > currentDateTime) || !isToday;
 
                         //  const isUserInfoLoaded = userInfo && Object.keys(userInfo).length > 0;
- 
+
                          // 클릭 이벤트 핸들러
                          const handleClick = () => {
                              if (isNotPast) {
@@ -992,14 +992,14 @@ function Calendar() {
                          };
 
                          return (
-                            <div 
-                                key={index} 
-                                className={styles.morningArr} 
+                            <div
+                                key={index}
+                                className={styles.morningArr}
                                 style={{
-                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast 
+                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
                                         ? (selectedMorningTimeIndex === index ? '#FF8AA3' : '#FEDA00')
-                                        : '#FFF3A7', 
-                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF', 
+                                        : '#FFF3A7',
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF',
                                     cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
                                     pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
                                 }}
@@ -1051,9 +1051,9 @@ function Calendar() {
 
                         // 마지막 인덱스가 아닐 경우 반환
                         return(
-                            <div 
-                                key={index} 
-                                className={styles.afternoonArr} 
+                            <div
+                                key={index}
+                                className={styles.afternoonArr}
                                 style={{
                                     backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
                                         ? (selectedAfternoonTimeIndex === index ? '#FF8AA3' : '#FEDA00')
@@ -1078,9 +1078,9 @@ function Calendar() {
             <div className={styles.modalOverlay} style={{display : firstModalActive ? "" : "none"}}/>
             <div id={styles.timeConfirm} style={{display : firstModalActive ? "" : "none"}}>
                 <p id={styles.chooseOtherTime}>예약 가능한 시간이 아닙니다. <br/> 시간을 다시 선택해주세요.</p>
-                <button 
-                    type='button' 
-                    id={styles.chooseAgainTime} 
+                <button
+                    type='button'
+                    id={styles.chooseAgainTime}
                     onClick={() => {
                         setFirstModalActive(false);
                         window.location.reload();
