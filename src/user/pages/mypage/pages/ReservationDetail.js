@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/ReservationDetail.module.css';
 import { useParams, Link } from 'react-router-dom';
 import Loading from "../../../../common/inquiry/img/loadingInquiryList.gif";
-import API_BASE_URL from '../../../../config/api.config';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function ReservationDetail() {
     const { resNo } = useParams();

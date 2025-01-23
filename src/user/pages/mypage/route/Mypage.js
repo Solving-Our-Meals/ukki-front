@@ -11,7 +11,7 @@ import ProfileInfo from "../pages/ProfileInfo";
 import ReviewDetail from "../pages/ReviewDetail";
 import ReservationDetail from "../pages/ReservationDetail";
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
-import API_BASE_URL from '../../../../config/api.config';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function Mypage() {
 

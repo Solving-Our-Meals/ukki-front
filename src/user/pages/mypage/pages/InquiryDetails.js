@@ -3,7 +3,7 @@ import {Link, useParams, Navigate, useNavigate} from 'react-router-dom';
 import styles from '../css/Inquiry.module.css';
 import Logo from '../images/mypage/logo.png'
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
-import API_BASE_URL from '../../../../config/api.config';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function InquiryDetail({ userInfo }) {
     const { inquiryNo } = useParams();

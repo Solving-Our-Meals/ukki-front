@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import styles from "../css/ReviewDetail.module.css";
 import DefaultProfile from "../images/mypage/default.png";
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
-import API_BASE_URL from '../../../../config/api.config';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function ReviewDetail() {
     const { reviewNo } = useParams(); // URL에서 reviewNo를 가져옴

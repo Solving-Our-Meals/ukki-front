@@ -7,7 +7,7 @@ import UserPass from '../images/mypage/password.png'
 import Default from '../../signup/images/default.png';
 import On from '../../signup/images/on.png';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
-import API_BASE_URL from '../../../../config/api.config';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function ProfileInfo({onUpdate}) {
     const [userInfo, setUserInfo] = useState(null);

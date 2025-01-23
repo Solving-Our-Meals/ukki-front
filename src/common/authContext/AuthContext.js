@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from "../../user/pages/mypage/css/Mypage.module.css";
 import Loading from "../../common/inquiry/img/loadingInquiryList.gif";
-import API_BASE_URL from '../../../../config/api.config';
+import {API_BASE_URL} from '../../config/api.config';
 
 const AuthContext = createContext();
 

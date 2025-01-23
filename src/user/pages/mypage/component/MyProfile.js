@@ -11,7 +11,7 @@ import Badge6 from '../images/badge6.png';
 import DefaultProfile from '../images/mypage/default.png';
 import Pencil from '../images/mypage/pencil.gif';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
-import API_BASE_URL from '../../../../config/api.config';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function MyProfile() {
     const [userInfo, setUserInfo] = useState(null);
