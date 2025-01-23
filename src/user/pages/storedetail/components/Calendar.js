@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/reservation.module.css';
@@ -33,6 +34,7 @@ function Calendar() {
     const { storeNo } = useParams();
 
     const [userInfo, setUserInfo] = useState(null);
+    const [isUser, setIsUser] = useState(false);
 
     const [storeInfo, setStoreInfo] = useState({});
     const [selectedDate, setSelectedDate] = useState(null);
@@ -61,17 +63,45 @@ function Calendar() {
     // 새로운 state 추가
     const [disabledTimes, setDisabledTimes] = useState([]);
 
-    useEffect(
-        () => {
-            fetch('user/info')
-            .then(res => res.json())
-            .then(data => {
+    // useEffect(
+    //     () => {
+    //         fetch('/user/info')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setUserInfo(data);
+    //             console.log('유저정보', data);
+    //             // if(data !== null){
+    //             //     setIsUser(true);
+    //             // }   
+    //             setIsUser(true); 
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //             setIsUser(false);
+    //         });
+    //     }, []
+    // )
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            try {
+                const response = await fetch('/user/info', {
+                    method: 'GET'
+                });
+                const data = await response.json();
                 setUserInfo(data);
                 console.log('유저정보', data);
-            })
-            .then(error => console.log(error));
-        }, []
-    )
+                setIsUser(true); 
+            } catch (error) {
+                console.error(error);
+                setIsUser(false);
+            }
+        };
+    
+        fetchUserInfo();
+    }, []);
+    
+    
 
     useEffect(() => {
         switch(day){
@@ -133,6 +163,8 @@ function Calendar() {
             .then(data => {
                 setOperation(data.operationTime);
                 setStoreInfo(data);
+                console.log('storeInfo : ', data)
+                console.log('data.operationTime : ' , data.operationTime)
 
                 const today = new Date().getDay();
 
@@ -996,12 +1028,12 @@ function Calendar() {
                                 key={index} 
                                 className={styles.morningArr} 
                                 style={{
-                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast 
+                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast && isUser
                                         ? (selectedMorningTimeIndex === index ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7', 
-                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF', 
-                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
-                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast && isUser ? '#000000' : '#BDBEBF', 
+                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast && isUser ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast && isUser ? 'auto' : 'none'
                                 }}
                                 onClick={() => {
                                     if (!disabledTimes.includes(timeObj)) {
@@ -1055,12 +1087,12 @@ function Calendar() {
                                 key={index} 
                                 className={styles.afternoonArr} 
                                 style={{
-                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast
+                                    backgroundColor: !disabledTimes.includes(timeObj) && isOper && isNotPast && isUser
                                         ? (selectedAfternoonTimeIndex === index ? '#FF8AA3' : '#FEDA00')
                                         : '#FFF3A7',
-                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast ? '#000000' : '#BDBEBF',
-                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'pointer' : 'default',
-                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast ? 'auto' : 'none'
+                                    color: !disabledTimes.includes(timeObj) && isOper && isNotPast && isUser ? '#000000' : '#BDBEBF',
+                                    cursor: !disabledTimes.includes(timeObj) && isOper && isNotPast && isUser ? 'pointer' : 'default',
+                                    pointerEvents: !disabledTimes.includes(timeObj) && isOper && isNotPast && isUser ? 'auto' : 'none'
                                 }}
                                 onClick={() => {
                                     if (!disabledTimes.includes(timeObj)) {

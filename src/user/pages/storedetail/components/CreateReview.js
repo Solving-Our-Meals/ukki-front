@@ -235,7 +235,7 @@ const CreateReview = ({reflashMethod}) => {
                 //console.log('유저정보', data);
                 setReview(prevReview => ({
                     ...prevReview,
-                    userNo : data.userNo.toString()
+                    userNo : data.userNo
                 }))
             })
             .then(error => console.log(error));
