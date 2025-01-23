@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Map.css';
 import loMarker from '../image/marker.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 const { kakao } = window;
 
@@ -17,7 +18,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
     useEffect(() => {
         if (selectedCategory) {
-            fetch(`/main/category?category=${selectedCategory}`)
+            fetch(`${API_BASE_URL}/main/category?category=${selectedCategory}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setStores(data);

@@ -6,6 +6,8 @@ import style from './css/search.module.css';
 import search from '../main/image/Search.png';
 import Profile from '../storedetail/components/Profile';
 import Footer from './components/Footer';
+import { API_BASE_URL } from '../../../config/api.config';
+
 
 function Search() {
   const {storeNo} = useParams();
@@ -53,7 +55,7 @@ function Search() {
     const encodedName = encodeURIComponent(trimmedName);
 
     // 수정된 URL 경로 (storeName을 쿼리 파라미터로 전달)
-    axios.get(`/store/search?name=${encodedName}`)
+    axios.get(`${API_BASE_URL}/store/search?name=${encodedName}`)
       .then((response) => {
         if (response.data && response.data.length) {
           setStoreList(response.data); // 검색된 가게 목록을 상태에 저장
@@ -77,7 +79,7 @@ function Search() {
       }
 
       // 서버에 검색어 기록 (엔터키 눌렀을 때만)
-      axios.post('/store/insertOrUpdateSearch', { storeName: searchTerm })
+      axios.post(`${API_BASE_URL}/store/insertOrUpdateSearch`, { storeName: searchTerm })
         .then(() => {
           // 인기 검색어 갱신 후 다시 가져오기
           fetchPopularSearches();
@@ -92,7 +94,7 @@ function Search() {
   const fetchPopularSearches = () => {
     setIsLoading(true); // 데이터를 가져오기 전에 로딩 상태 설정
     axios
-      .get('/store/popular-searches')
+      .get(`${API_BASE_URL}/store/popular-searches`)
       .then((response) => {
         console.log('Popular Search Response:', response.data); // 응답 데이터 확인
         if (Array.isArray(response.data)) {
