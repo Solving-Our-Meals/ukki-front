@@ -83,7 +83,23 @@ function BossHeader() {
     return (
         <>
             <header>
-                <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+                <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}><img src={headerLogo} alt='header-logo' /></NavLink>
+                <span className={`menu ${menuOpen ? 'open' : ''}`}>
+                    <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}>메인</NavLink>
+                    <NavLink to="/search" className={`menu-item ${activeMenu === '/search' ? 'active' : ''} ${visibleMenuItems.includes('/search') ? 'visible' : ''}`} onClick={() => handleMenuClick('/search')}>검색</NavLink>
+                    <NavLink to="/info" className={`menu-item ${activeMenu === '/info' ? 'active' : ''} ${visibleMenuItems.includes('/info') ? 'visible' : ''}`} onClick={() => handleMenuClick('/info')}>소개</NavLink>
+                    {/* <NavLink to="/reservation" className={`menu-item ${activeMenu === '/reservation' ? 'active' : ''} ${visibleMenuItems.includes('/reservation') ? 'visible' : ''}`} onClick={() => handleMenuClick('/reservation')}>예약</NavLink> */}
+                    <NavLink to="/notice" className={`menu-item ${activeMenu === '/notice' ? 'active' : ''} ${visibleMenuItems.includes('/notice') ? 'visible' : ''}`} onClick={() => handleMenuClick('/notice')}>공지사항</NavLink>
+                    <NavLink to="/user/mypage" className={`menu-item ${activeMenu === '/user/mypage' ? 'active' : ''} ${visibleMenuItems.includes('/user/mypage') ? 'visible' : ''}`} onClick={() => handleMenuClick('/user/mypage')}>마이페이지</NavLink>
+                    {!isLoggedIn ? (
+                        <>
+                            <NavLink to="/auth/login" className={`menu-item auth ${activeMenu === '/auth/login' ? 'active' : ''} ${visibleMenuItems.includes('/auth/login') ? 'visible' : ''}`} onClick={() => handleMenuClick('/auth/login')}>로그인</NavLink>
+                            <NavLink to="/auth/signup" className={`menu-item auth ${activeMenu === '/auth/signup' ? 'active' : ''} ${visibleMenuItems.includes('/auth/signup') ? 'visible' : ''}`} onClick={() => handleMenuClick('/auth/signup')}>회원가입</NavLink>
+                        </>
+                    ) : (
+                        <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+                    )}
+                </span>
                 <button className="menu-button" onClick={toggleMenu}>
                     <img src={menuIcon} alt="Menu" />
                 </button>

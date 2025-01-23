@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../../common/header/components/Header";
 import FloatingBar from "../../common/floatingBar/components/FloatingBar";
-// import Footer from "../../common/footer/components/Footer";
 import styles from './css/userlayout.module.css';
 import { useEffect } from "react";
 
