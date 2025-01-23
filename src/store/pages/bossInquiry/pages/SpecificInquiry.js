@@ -42,7 +42,14 @@ function SpecificInquiry(){
                 'Content-Type': 'application/json'
             }, 
         })
-        .then(res => res.json())
+        .then(res => {
+            if(!res.ok){
+                return res.json().then(error => {
+                    throw new Error(error.error || "알 수 없는 오류");
+                });
+            }
+            return res.json()
+        })
         .then(data => {
             setInquiryInfo(data);
             console.log('inquiry!!!!', data)
@@ -56,7 +63,7 @@ function SpecificInquiry(){
             });
             
         })
-        .catch(error => console.log(error));
+        .catch(error => navigate('/Error404Page'));
     }, [inquiryNo, categoryNo]);
 
     // 파일 삭제 버튼 클릭
