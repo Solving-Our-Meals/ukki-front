@@ -11,6 +11,7 @@ import Badge6 from '../images/badge6.png';
 import DefaultProfile from '../images/mypage/default.png';
 import Pencil from '../images/mypage/pencil.gif';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import API_BASE_URL from '../../../../config/api.config';
 
 function MyProfile() {
     const [userInfo, setUserInfo] = useState(null);
@@ -29,8 +30,12 @@ function MyProfile() {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/info', {
+            const response = await fetch(`${API_BASE_URL}/user/info`, {
                 method: 'GET',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
 
@@ -109,8 +114,12 @@ function MyProfile() {
         formData.append('profileImage', imageFile);
 
         try {
-            const response = await fetch('/user/mypage/profile-image', {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/profile-image`, {
                 method: 'POST',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 body: formData,
                 credentials: 'include',
             });

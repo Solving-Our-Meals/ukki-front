@@ -11,6 +11,7 @@ import ProfileInfo from "../pages/ProfileInfo";
 import ReviewDetail from "../pages/ReviewDetail";
 import ReservationDetail from "../pages/ReservationDetail";
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import API_BASE_URL from '../../../../config/api.config';
 
 function Mypage() {
 
@@ -25,8 +26,12 @@ function Mypage() {
 
     const getUserInfo = async () => {
         try {
-            const response = await fetch('/user/mypage/inquiry', {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry`, {
                 method: 'GET',
+                                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
 

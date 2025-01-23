@@ -4,6 +4,7 @@ import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import API_BASE_URL from '../../../../config/api.config';
 
 function Review({onDelete}) {
     const [userInfo, setUserInfo] = useState(null);
@@ -37,8 +38,12 @@ function Review({onDelete}) {
 
     const fetchUserInfo = async (query = '') => {
         try {
-            const response = await fetch(`/user/mypage/review${query}`, {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/review${query}`, {
                 method: 'GET',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
 
@@ -79,9 +84,10 @@ function Review({onDelete}) {
         const { reviewNo, storeNo, userNo } = selectedReview;
 
         try {
-            const response = await fetch(`/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`, {
+            const response = await fetch(`${API_BASE_URL}/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`, {
                 method: 'DELETE',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',

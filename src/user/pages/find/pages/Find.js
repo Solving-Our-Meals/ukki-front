@@ -5,6 +5,7 @@ import '../css/reset.css';
 import signupLogo from '../../signup/images/signupLogo.png';
 import Default from '../../signup/images/default.png';
 import On from '../../signup/images/on.png';
+import API_BASE_URL from '../../../../config/api.config';
 
     function Find() {
         const [step, setStep] = useState(1);
@@ -36,9 +37,10 @@ import On from '../../signup/images/on.png';
             setError('');
             setEmailPending(true);
 
-            const response = await fetch('/auth/checkemail', {
+            const response = await fetch(`${API_BASE_URL}/auth/checkemail`, {
                 method: 'POST',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email: formData.email }),
@@ -53,9 +55,10 @@ import On from '../../signup/images/on.png';
             }
 
             setLoading(true);
-            const sendCodeResponse = await fetch('/auth/sendemail', {
+            const sendCodeResponse = await fetch(`${API_BASE_URL}/auth/sendemail`, {
                 method: 'POST',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email: formData.email }),
@@ -82,9 +85,10 @@ import On from '../../signup/images/on.png';
                 return;
             }
 
-            const response = await fetch('/auth/verifycode', {
+            const response = await fetch(`${API_BASE_URL}/auth/verifycode`, {
                 method: 'POST',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -107,9 +111,10 @@ import On from '../../signup/images/on.png';
                 setStep(4);
             } else if (step === 3 && type !== 'password' && formData.email) {
                 const fetchUserId = async () => {
-                    const userIdResponse = await fetch('/auth/find/id', {
+                    const userIdResponse = await fetch(`${API_BASE_URL}/auth/find/id`, {
                         method: 'POST',
                         headers: {
+                            'Accept' : 'application/json',
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({ email: formData.email }),
@@ -164,9 +169,10 @@ import On from '../../signup/images/on.png';
                 return;
             }
 
-            const response = await fetch('/auth/find/pwd', {
+            const response = await fetch(`${API_BASE_URL}/auth/find/pwd`, {
                 method: 'POST',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from "../../user/pages/mypage/css/Mypage.module.css";
 import Loading from "../../common/inquiry/img/loadingInquiryList.gif";
+import API_BASE_URL from '../../../../config/api.config';
 
 const AuthContext = createContext();
 
@@ -18,8 +19,12 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
     const axiosInstance = axios.create({
-        baseURL: '/auth',
+        baseURL: `${API_BASE_URL}/auth`,
         withCredentials: true,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
     });
 
     // 인증된 상태 확인 함수

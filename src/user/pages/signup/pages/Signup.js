@@ -4,6 +4,7 @@ import '../css/reset.css';
 import signupLogo from '../images/signupLogo.png';
 import Default from '../images/default.png';
 import On from '../images/on.png';
+import {API_BASE_URL} from "../../../../config/api.config";
 
 function Signup() {
     const [step, setStep] = useState(1);
@@ -55,9 +56,10 @@ function Signup() {
 
         console.log("Submitting userid:", formData.userId);
 
-        const response = await fetch('/auth/signupid', {
+        const response = await fetch(`${API_BASE_URL}/auth/signupid`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({userId: formData.userId})
@@ -75,9 +77,10 @@ function Signup() {
     const handlePasswordSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/signuppwd', {
+        const response = await fetch(`${API_BASE_URL}/auth/signuppwd`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({userPass: formData.userPass})
@@ -101,9 +104,10 @@ function Signup() {
         setEmailPending(true); // 이메일 대기 중 상태 설정
 
         // 이메일 중복
-        const emailCheckResponse = await fetch('/auth/checkemail', {
+        const emailCheckResponse = await fetch(`${API_BASE_URL}/auth/checkemail`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({email: formData.email}),
@@ -126,9 +130,10 @@ function Signup() {
 
         // 인증번호 전송
         setLoading(true);
-        const response = await fetch('/auth/sendemail', {
+        const response = await fetch(`${API_BASE_URL}/auth/sendemail`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({email: formData.email}),
@@ -156,9 +161,10 @@ function Signup() {
             return;
         }
 
-        const response = await fetch('/auth/verifycode', {
+        const response = await fetch(`${API_BASE_URL}/auth/verifycode`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -188,9 +194,10 @@ function Signup() {
             return;
         }
 
-        const response = await fetch('/auth/signupnickname', {
+        const response = await fetch(`${API_BASE_URL}/auth/signupnickname`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({userName: formData.userName})
@@ -213,9 +220,10 @@ function Signup() {
         }
 
         // 회원가입 완료
-        const response = fetch('/auth/signup', {
+        const response = fetch(`${API_BASE_URL}/auth/signup`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)  // 모든 회원가입 정보 전송

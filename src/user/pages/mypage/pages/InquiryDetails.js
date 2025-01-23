@@ -3,6 +3,7 @@ import {Link, useParams, Navigate, useNavigate} from 'react-router-dom';
 import styles from '../css/Inquiry.module.css';
 import Logo from '../images/mypage/logo.png'
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import API_BASE_URL from '../../../../config/api.config';
 
 function InquiryDetail({ userInfo }) {
     const { inquiryNo } = useParams();
@@ -111,9 +112,10 @@ function InquiryDetail({ userInfo }) {
 
     const updateInquiryStatus = async (status) => {
         try {
-            const response = await fetch(`/user/mypage/inquiry/${inquiryNo}/status`, {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry/${inquiryNo}/status`, {
                 method: 'PUT',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ status }),
@@ -170,8 +172,12 @@ function InquiryDetail({ userInfo }) {
                 formData.append('file', file);
             }
 
-            const response = await fetch(`/user/mypage/inquiry/${inquiryNo}`, {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry/${inquiryNo}`, {
                 method: 'PUT',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 body: formData,
             });
 
@@ -209,8 +215,12 @@ function InquiryDetail({ userInfo }) {
             console.log("파일 다운로드 시작:", fileName);  // 확인용 로그
 
             // 위에서 자른 파일이름만 전달하기
-            const response = await fetch(`/user/mypage/download/${fileName}`, {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/download/${fileName}`, {
                 method: 'GET',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include', // 쿠키 포함
             });
 
@@ -244,8 +254,14 @@ function InquiryDetail({ userInfo }) {
 
     const handleConfirmDelete = async () => {
         try {
-            const response = await fetch(`/user/mypage/inquiry/${inquiryNo}`, {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry/${inquiryNo}`, {
                 method: 'DELETE',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                // 2025-01-23 추가
+                credentials: 'include', 
             });
 
             if (response.ok) {
