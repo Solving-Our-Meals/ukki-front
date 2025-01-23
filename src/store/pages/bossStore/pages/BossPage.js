@@ -67,7 +67,7 @@ function BossPage() {
             console.error('Error fetching available pos num:', error.response?.data || error);
         }
     };
-    
+     
 
     // useEffect에서 데이터 로딩 시 예약 가능한 인원 수 불러오기
     useEffect(() => {
