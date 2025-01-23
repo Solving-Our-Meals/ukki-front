@@ -1,5 +1,5 @@
 import { useAuth } from './AuthContext';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 
 function PrivateRoute({ element, ...rest }) {
@@ -16,19 +16,28 @@ function PrivateRoute({ element, ...rest }) {
     }, [isAuthenticated, navigate]);
 
     useEffect(() => {
-        if (isAuthenticated && user?.userRole === 'STORE') {
-            // 가게 관리자일 경우 BossPage로 리디렉션
-
-        } else if (isAuthenticated && user?.userRole === 'ADMIN') {
-            navigate('/admin/**');
+        if (isAuthenticated) {
+            if (user?.userRole === 'ADMIN') {
+                if (!window.location.pathname.startsWith('/admin')) {
+                    navigate('/admin');
+                }
+            } else if (user?.userRole === 'STORE') {
+                if (!window.location.pathname.startsWith('/boss')) {
+                    navigate('/boss');
+                }
+            } else if (user?.userRole === 'USER') {
+                if (!window.location.pathname.startsWith('/user')) {
+                    navigate('/user');
+                }
+            }
         }
     }, [isAuthenticated, user, navigate]);
 
     if (!isAuthenticated) {
-        return null; // 로그인 상태가 아니면 아무것도 렌더링하지 않음
+        return null;
     }
 
-    return element; // 로그인 된 경우, 전달된 컴포넌트를 렌더링
+    return element;
 }
 
 export default PrivateRoute;
