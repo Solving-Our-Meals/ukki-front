@@ -31,43 +31,8 @@ function BossPage() {
         return now;
     };
 
-    // 예약 가능 인원 수를 디비에서 가져오는 함수
-    // 예약 가능 인원 수를 디비에서 가져오는 함수
-    const fetchAvailableSlots = async (date, time) => {
-        try {
-            const formattedDate = dayjs(date).format('YYYY-MM-DD');
-            const formattedTime = dayjs(time, 'HH:mm').format('HH:mm');
-    
-            const params = {
-                storeNo: storeNo,
-                reservationDate: formattedDate,
-                reservationTime: formattedTime
-            };
-    
-            console.log('Fetching slots with params:', params); // params 로그 추가
-    
-            const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservation-status`, { params });
-    
-            if (!response || !response.data || response.data.length === 0) {
-                console.error('No reservation data found');
-                return;
-            }
-    
-            const availableSlot = response.data.find(res =>
-                res && res.reservationDate === formattedDate && res.reservationTime === formattedTime
-            );
-    
-            const resPosNumber = availableSlot ? availableSlot.resPosNumber : 5; // 기본값 5
-    
-            setResPosNumbers(prev => ({
-                ...prev,
-                [`${formattedDate} ${formattedTime}`]: resPosNumber
-            }));
-        } catch (error) {
-            console.error('Error fetching available pos num:', error.response?.data || error);
-        }
-    };
-     
+
+
 
     // useEffect에서 데이터 로딩 시 예약 가능한 인원 수 불러오기
     useEffect(() => {
@@ -105,13 +70,11 @@ function BossPage() {
         fetchAvailableSlots(startDate, dayjs(closestTime).format('HH:mm'));
     }, [userNo, storeNo, startDate]);
 
-    // 선택된 날짜와 시간에 맞는 예약 가능 인원 수를 가져오는 useEffect
     useEffect(() => {
         if (selectedDate && selectedTime) {
-            const formattedTime = dayjs(selectedTime, 'HH:mm').format('HH:mm');
-            fetchAvailableSlots(selectedDate, formattedTime);
+            fetchAvailableSlots(selectedDate, selectedTime); // 상태 변경 후 API 호출
         }
-    }, [selectedDate, selectedTime, storeNo]);
+    }, [selectedDate, selectedTime]); // `resPosNumbers`는 의존성 배열에서 제거
 
 
     const handleDateChange = (date) => {
@@ -126,42 +89,84 @@ function BossPage() {
 
 
     const handleSlotsChange = (amount) => {
-        const currentPosNum = resPosNumbers[`${selectedDate} ${selectedTime}`] ?? 5; // 기본값 5
-        const newPosNum = Math.max(currentPosNum + amount, 0); // 0보다 작은 값으로는 설정되지 않도록
+        const currentPosNum = resPosNumbers[`${selectedDate} ${selectedTime}`] ?? 5;
+        const newPosNum = Math.max(currentPosNum + amount, 0);
 
-        // 새로운 예약 가능 인원 수를 상태에 반영
-        setResPosNumbers(prev => ({
-            ...prev,
-            [`${selectedDate} ${selectedTime}`]: newPosNum
-        }));
+        // 상태 업데이트 후 서버에 반영
+        setResPosNumbers(prev => {
+            const updatedPosNumbers = {
+                ...prev,
+                [`${selectedDate} ${selectedTime}`]: newPosNum
+            };
 
-        // 상태 업데이트 후에 서버에 반영
-        handleUpdatePosNum(selectedDate, selectedTime, newPosNum);
+            // 서버에 업데이트
+            handleUpdatePosNum(selectedDate, selectedTime, newPosNum);
+
+            return updatedPosNumbers;
+        });
+    };
+
+
+    // 예약 가능 인원 수를 디비에서 가져오는 함수
+    const fetchAvailableSlots = async (date, time) => {
+        try {
+            const formattedDate = dayjs(date).format('YYYY-MM-DD');
+            const formattedTime = dayjs(time, 'HH:mm').format('HH:mm');
+
+            const params = {
+                storeNo: storeNo,
+                reservationDate: formattedDate,
+                reservationTime: formattedTime
+            };
+
+            const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservation-status`, { params });
+
+            // 응답 처리
+            if (!response || !response.data || response.data.length === 0) {
+                console.error('No reservation data found');
+                return;
+            }
+
+            const availableSlot = response.data.find(res =>
+                res && res.reservationDate === formattedDate && res.reservationTime === formattedTime
+            );
+
+            const resPosNumber = availableSlot ? availableSlot.resPosNumber : 5;
+
+            setResPosNumbers(prev => ({
+                ...prev,
+                [`${formattedDate} ${formattedTime}`]: resPosNumber
+            }));
+
+            // 상태가 업데이트된 후 추가적으로 로직을 처리할 수 있음
+        } catch (error) {
+            console.error('Error fetching available pos num:', error.response?.data || error);
+        }
     };
 
     const handleUpdatePosNum = async (selectedDate, selectedTime, newPosNum) => {
         try {
             const formattedDate = dayjs(selectedDate).format('YYYY-MM-DD');
             const formattedTime = dayjs(selectedTime, 'HH:mm').format('HH:mm');
-
+    
             if (isNaN(newPosNum)) {
                 newPosNum = 5; // 기본값 5
             }
-
+    
             if (newPosNum < 0) {
                 newPosNum = 0; // 최소값 0
             }
-
-            const response = await axios.post(`${API_BASE_URL}/boss/mypage/insertAvailableSlots`, {
-                storeNo,
+    
+            const response = await axios.post(`${API_BASE_URL}/boss/mypage/updateAvailableSlots`, {
+                storeNo: storeNo,  // storeNo는 변수로 전달
                 reservationDate: formattedDate,
                 reservationTime: formattedTime,
                 resPosNumber: newPosNum
             });
-
+    
             if (response.status === 200) {
-                console.log("예약 가능한 인원 수가 성공적으로 반영되었습니다.");
-                fetchAvailableSlots(formattedDate, formattedTime);
+                console.log("예약 가능한 인원 수가 성공적으로 업데이트되었습니다.");
+                fetchAvailableSlots(formattedDate, formattedTime); // 서버에서 최신 예약 가능 인원 가져오기
             } else {
                 alert("예약 가능 인원 수를 업데이트하는 데 실패했습니다.");
             }
@@ -170,17 +175,25 @@ function BossPage() {
             alert("서버와의 연결에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
         }
     };
+    
+
+
 
 
     const filteredReservations = (reservations || []).filter((res) => {
-        const reservationDate = res?.reservationDate;
-        if (!reservationDate) {
+        if (!res || res.resPosNumber === null || !res.reservationDate || !res.reservationTime) {
             return false;
         }
-        const isSameDate = reservationDate.dayjs().split('T')[0] === startDate.dayjs().split('T')[0];
+
+        const reservationDate = dayjs(res.reservationDate).format('YYYY-MM-DD');
+        const isSameDate = reservationDate === startDate;
         const isSameTime = selectedTime ? res.reservationTime === selectedTime : true;
+
         return isSameDate && isSameTime;
     });
+
+
+
 
     return (
         <div className="boss-page">
@@ -236,7 +249,7 @@ function BossPage() {
                         >
                             -
                         </button>
-                        <span>{resPosNumbers[`${selectedDate} ${selectedTime}`] ?? 5}</span>
+                        <span>{resPosNumbers[`${selectedDate} ${selectedTime}`] ?? '로딩중'}</span>
                         <button
                             onClick={() => handleSlotsChange(1)}
                             disabled={!selectedDate || !selectedTime}

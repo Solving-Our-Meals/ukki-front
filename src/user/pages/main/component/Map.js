@@ -18,22 +18,29 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
     useEffect(() => {
         if (selectedCategory) {
-            fetch(`${API_BASE_URL}/main/category?category=${selectedCategory}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    setStores(data);
-
-                    // 기존 마커들 삭제
-                    markersRef.current.forEach(marker => {
-                        marker.setMap(null);  // 마커 삭제
-                        if (marker.infowindow) {
-                            marker.infowindow.close();
-                        }
-                    });
-                    markersRef.current = []; // 기존 마커 배열 초기화
+            fetch(`${API_BASE_URL}/main/category?category=${selectedCategory}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',  // 응답을 JSON 형식으로 받겠다는 의미
+                    'Content-Type': 'application/json',  // 요청 내용이 JSON 형식임을 지정
+                }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                setStores(data);
+    
+                // 기존 마커들 삭제
+                markersRef.current.forEach(marker => {
+                    marker.setMap(null);  // 마커 삭제
+                    if (marker.infowindow) {
+                        marker.infowindow.close();
+                    }
                 });
+                markersRef.current = []; // 기존 마커 배열 초기화
+            });
         }
     }, [selectedCategory]);
+    
 
     useEffect(() => {
         const script = document.createElement('script');
