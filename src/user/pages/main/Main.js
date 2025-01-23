@@ -25,6 +25,7 @@ import '../../../common/header/css/reset.css';
 import './css/main.css';
 import Map from './component/Map.js';
 import Footer from './component/Footer.js';
+import { API_BASE_URL } from '../../../config/api.config.js';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
@@ -277,7 +278,15 @@ window.onload = initRoulette;*/
 
     const getClosestStores = async (lat, lon) => {
         try {
-            const response = await fetch(`/api/stores?lat=${lat}&lon=${lon}`);
+            const response = await fetch(`${API_BASE_URL}/api/stores?lat=${lat}&lon=${lon}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',  // 응답을 JSON 형식으로 받겠다는 의미
+                    'Content-Type': 'application/json',  // 요청 내용이 JSON 형식임을 지정
+                   
+                }
+            });
+    
             const data = await response.json();
             return data;  // List of stores
         } catch (error) {
@@ -285,6 +294,7 @@ window.onload = initRoulette;*/
             return [];
         }
     };
+    
     
     const populateRoulette = (stores) => {
         const panel = document.querySelector(".rouletter-wacu");
@@ -489,10 +499,11 @@ window.onload = initRoulette;*/
 
     const makeReservation = async (userNo, storeNo, resTime) => {
         try {
-            const response = await fetch(`/api/reservations/make`, {
+            const response = await fetch(`${API_BASE_URL}/api/reservations/make`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     userNo,
@@ -517,10 +528,11 @@ window.onload = initRoulette;*/
 // 예약 가능한 가장 가까운 시간 반환
 const getNextAvailableTime = async (storeNo, resDate) => {
     try {
-        const response = await fetch(`/api/reservations/next-available-time`, {
+        const response = await fetch(`${API_BASE_URL}/api/reservations/next-available-time`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({ storeNo, resDate })
         });
@@ -554,7 +566,13 @@ const getNextAvailableTime = async (storeNo, resDate) => {
     // 주변 가게를 가져오는 API 함수
     const fetchStoresLocation = async (category, currentPosition) => {
         try {
-            const response = await fetch(`/main/category?category=${category}`);
+            const response = await fetch(`${API_BASE_URL}/main/category?category=${category}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
             if (!response.ok) {
                 throw new Error('가게 정보를 불러오는 데 실패했습니다.');
             }
