@@ -21,7 +21,7 @@
         left: 112px;
         top: 1253px;
         width: max-content;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 30px;
         color: $textStrong;
     }
@@ -39,7 +39,7 @@
             top : -75px;
             width : max-content;
             height : 36px;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 30px;
             font-weight: 700;
             color : $pending;
@@ -54,7 +54,7 @@
             border-bottom-left-radius: 0px;
             border-bottom-right-radius: 0px;
             color: #ffffff;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 35px;
             font-weight: 700;
             display: flex;
@@ -126,14 +126,14 @@
 
                     &.currentMonth {
                         color : $textStrong;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 25px;
                         font-weight: 700;
                     }
 
                     &.otherMonth {
                         color: #838383;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 25px;
                         cursor: default;
                         font-weight: 700;
@@ -179,7 +179,7 @@
                 width : max-content;
                 margin-left: 340px;
                 // height : 31px;
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 font-size: 30px;
                 color: $textStrong;
                 margin-top: -40px;
@@ -199,7 +199,7 @@
                     width : 100%;
                     margin-top: 20px;
                     margin-left: 10px;
-                    font-family: 'Pretendard Variable';
+                    font-family: 'Pretendard-Regular';
                     font-size: 25px;
                     font-weight: 600;
                 }
@@ -212,7 +212,7 @@
                     height : 37px;
                     background-color: $secondary;
                     border-radius: 10px;
-                    font-family: 'Pretendard Variable';
+                    font-family: 'Pretendard-Regular';
                     font-size: 20px;
                     text-align: center;
                     margin : 10px 10px;
@@ -234,7 +234,7 @@
                     width : 100%;
                     margin-top: 20px;
                     margin-left: 10px;
-                    font-family: 'Pretendard Variable';
+                    font-family: 'Pretendard-Regular';
                     font-size: 25px;
                     font-weight: 600;
                 }
@@ -247,12 +247,64 @@
                     height : 37px;
                     background-color: $secondary;
                     border-radius: 10px;
-                    font-family: 'Pretendard Variable';
+                    font-family: 'Pretendard-Regular';
                     font-size: 20px;
                     text-align: center;
                     margin : 10px 10px;
                     cursor: pointer;
                 }
+            }
+        }
+
+        .modalOverlay{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right : 0;
+            bottom : 0;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: 998;
+        }
+
+        #timeConfirm{
+            position : absolute;
+            left : 440px;
+            top : 40px;
+            width : 800px;
+            height : 330px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #FFFFFF;
+            line-height: 300%;
+        
+            #chooseOtherTime{
+                width: max-content;
+                margin-top: 10px;
+                height : 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 35px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #chooseAgainTime{
+                margin-top: 100px;
+                width: 171px;
+                height : 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
             }
         }
     }
@@ -263,6 +315,8 @@
         width : 1738px;
         background: #D9D9D9;
     }
+
+
 }
 
 @media screen and (min-width:769px) and (max-width :1024px){
@@ -287,7 +341,7 @@
             left: 51px;
             top: 739px;
             width: max-content;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 20px;
             color: $textStrong;
         }
@@ -304,7 +358,7 @@
                 left : 175px;
                 top : -53px;
                 width : max-content;
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 font-size: 20px;
                 font-weight: 700;
                 color : $pending;
@@ -319,7 +373,7 @@
                 border-bottom-left-radius: 0px;
                 border-bottom-right-radius: 0px;
                 color: #ffffff;
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 font-size: 21px;
                 font-weight: 700;
                 display: flex;
@@ -394,14 +448,14 @@
     
                         &.currentMonth {
                             color : $textStrong;
-                            font-family: 'Pretendard Variable';
+                            font-family: 'Pretendard-Regular';
                             font-size: 15px;
                             font-weight: 700;
                         }
     
                         &.otherMonth {
                             color: #838383;
-                            font-family: 'Pretendard Variable';
+                            font-family: 'Pretendard-Regular';
                             font-size: 15px;
                             font-weight: 700;
                         }
@@ -450,7 +504,7 @@
                     width : max-content;
                     margin-left: 235px;
                     padding-top : 17px;
-                    font-family: 'Pretendard Variable';
+                    font-family: 'Pretendard-Regular';
                     font-size: 20px;
                     color: $textStrong;
                 }
@@ -470,7 +524,7 @@
                         margin-top: 25px;
                         margin-bottom: 5px;
                         margin-left: 9px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 17px;
                         font-weight: 600;
                     }
@@ -483,7 +537,7 @@
                         height : 25px;
                         background-color: $secondary;
                         border-radius: 5px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 14px;
                         text-align: center;
                         margin : 5px 5px;
@@ -506,7 +560,7 @@
                         margin-top: 20px;
                         margin-bottom: 5px;
                         margin-left: 9px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 17px;
                         font-weight: 600;
                     }
@@ -519,7 +573,7 @@
                         height : 25px;
                         background-color: $secondary;
                         border-radius: 5px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 14px;
                         text-align: center;
                         margin : 5px 5px;
@@ -561,7 +615,7 @@
             left: 35px;
             top: 590px;
             width: max-content;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 15px;
             color: $textStrong;
         }
@@ -578,7 +632,7 @@
                 left : 85px;
                 top : -35.5px;
                 width : max-content;
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 font-size: 14px;
                 font-weight: 700;
                 color : $pending;
@@ -593,7 +647,7 @@
                 border-bottom-left-radius: 0px;
                 border-bottom-right-radius: 0px;
                 color: #ffffff;
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 font-size: 13px;
                 font-weight: 700;
                 display: flex;
@@ -669,14 +723,14 @@
     
                         &.currentMonth {
                             color : $textStrong;
-                            font-family: 'Pretendard Variable';
+                            font-family: 'Pretendard-Regular';
                             font-size: 14px;
                             font-weight: 700;
                         }
     
                         &.otherMonth {
                             color: #838383;
-                            font-family: 'Pretendard Variable';
+                            font-family: 'Pretendard-Regular';
                             font-size: 14px;
                             font-weight: 700;
                         }
@@ -725,7 +779,7 @@
                     width : max-content;
                     margin-left: 130px;
                     padding-top : 25px;
-                    font-family: 'Pretendard Variable';
+                    font-family: 'Pretendard-Regular';
                     font-size: 15px;
                     color: $textStrong;
                 }
@@ -745,7 +799,7 @@
                         margin-top: 25px;
                         margin-bottom: 5px;
                         margin-left: 9px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 13px;
                         font-weight: 600;
                     }
@@ -758,7 +812,7 @@
                         height : 25px;
                         background-color: $secondary;
                         border-radius: 5px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 14px;
                         text-align: center;
                         margin : 5px 7px;
@@ -781,7 +835,7 @@
                         margin-top: 20px;
                         margin-bottom: 5px;
                         margin-left: 9px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 13px;
                         font-weight: 600;
                     }
@@ -794,7 +848,7 @@
                         height : 25px;
                         background-color: $secondary;
                         border-radius: 5px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 14px;
                         text-align: center;
                         margin : 5px 7px;

@@ -1,0 +1,478 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+#background {
+  position: absolute;
+  left: 260px;
+  top: 75px;
+  bottom: 0px;
+  width: 1622px;
+  height: 844px;
+  background-color: #FFFFFF;
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+#background #recentInquiry {
+  position: absolute;
+  width: 1600px;
+  height: 50px;
+  background-color: #FFF9D1;
+  border: none;
+  border-radius: 15px;
+  left: 10px;
+  top: 10px;
+  display: flex;
+  flex-direction: left;
+  cursor: pointer;
+}
+#background #recentInquiry span {
+  color: #232323;
+  font-weight: 600;
+}
+#background #recentInquiry span:nth-of-type(1) {
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 20px;
+  margin-left: 30px;
+  margin-top: 15px;
+  font-weight: 500;
+}
+#background #recentInquiry span:nth-of-type(2) {
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+#background #recentInquiry span:nth-of-type(3) {
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+#background #recentInquiry span:nth-of-type(4) {
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+#background #recentInquiry .marquee {
+  width: 1100px; /* 부모 요소의 너비에 맞추어 설정 */
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+#background #recentInquiry .marquee .marqueeText {
+  display: inline-block;
+  padding-left: 100%; /* 텍스트가 오른쪽에서 나타나게 설정 */
+  overflow: visible;
+  animation: marquee 200s linear infinite;
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+#background #strInquiry {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 25px;
+  top: 120px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 55px;
+  color: #232323;
+}
+#background #inputSearch {
+  position: absolute;
+  right: 35px;
+  top: 120px;
+  width: 500px;
+  height: 50px;
+  border-radius: 15px;
+  border: 3px solid #FF8AA3;
+  cursor: text;
+  outline: none;
+  padding-left: 20px;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  color: #232323;
+}
+#background #searchBtn {
+  position: absolute;
+  right: 55px;
+  top: 125px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+#background .inquiryListArea {
+  position: relative;
+  width: 1600px;
+  height: 620px;
+  left: 0px;
+  top: 80px;
+}
+#background .inquiryListArea .strArea {
+  position: relative;
+  width: 1550px;
+  height: 30px;
+  top: 20px;
+  padding-bottom: 15px;
+  border-bottom: 4px solid #FF8AA3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
+#background .inquiryListArea .strArea #strState, #background .inquiryListArea .strArea #strCategory, #background .inquiryListArea .strArea #strTitle, #background .inquiryListArea .strArea #strDate {
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 130%;
+  color: #232323;
+}
+#background .inquiryListArea .strArea #strState {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 60px;
+}
+#background .inquiryListArea .strArea #strCategory {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 300px;
+}
+#background .inquiryListArea .strArea #strTitle {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: 550px;
+}
+#background .inquiryListArea .strArea #strDate {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  right: 170px;
+}
+#background .inquiryListArea .inquiryContainer {
+  position: absolute;
+  width: 1550px;
+  height: 580px;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#background .inquiryListArea .inquiryContainer .inquiry {
+  position: relative;
+  width: 1530px;
+  height: 75px;
+  left: 10px;
+  border-bottom: 2px solid #D9D9D9;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: right;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#background .inquiryListArea .inquiryContainer .inquiry #inquiryState {
+  position: relative;
+  left: -200px;
+  width: 130px;
+  height: 38px;
+  border-radius: 23px;
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  color: #232323;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+#background .inquiryListArea .inquiryContainer .inquiry #categoryName {
+  position: relative;
+  left: -90px;
+  width: 97px;
+  height: 38px;
+  border-radius: 23px;
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  color: #232323;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+#background .inquiryListArea .inquiryContainer .inquiry #inquiryTitle {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 650px;
+  height: max-content;
+  left: 62px;
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 30px;
+  color: #232323;
+  text-align: left;
+}
+#background .inquiryListArea .inquiryContainer .inquiry #inquiryDate {
+  position: relative;
+  width: 150px;
+  left: 200px;
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 30px;
+  color: #232323;
+  text-align: left;
+}
+#background .inquiryListArea .inquiryContainer .noResultsMessage {
+  position: absolute;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  width: 1550px;
+  height: 80px;
+  left: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999999;
+}
+#background .inquiryListArea hr {
+  position: relative;
+  top: 535.5px;
+  width: 1545px;
+  border: 2.9px solid #FF8AA3;
+  bottom: 90px;
+}
+#background .inquiryListArea .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 0;
+}
+#background .inquiryListArea .pagination .paginationButton {
+  font-family: "Bobaesum Jindo TTF";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  cursor: pointer;
+  color: #232323;
+  opacity: 50%;
+}
+#background .inquiryListArea .pagination .paginationButton.active {
+  color: #232323;
+  opacity: 100%;
+  font-weight: bold;
+}
+#background .inquiryListArea .pagination .arrow {
+  color: #FF8AA3;
+  opacity: 100%;
+}
+#background .inquiryListArea .pagination .arrow.disabled {
+  visibility: hidden;
+  cursor: default;
+}/*# sourceMappingURL=totalInquiryPage.module.css.map */

@@ -1,0 +1,22 @@
+.bannerStyle {
+  position: relative;
+  overflow: hidden;
+  left: 1px;
+  top: -297px;
+  width: 1622px;
+  height: 250px;
+  border-radius: 0;
+}
+.bannerStyle .slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.bannerStyle .slider .slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+.bannerStyle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}/*# sourceMappingURL=bossBanner.module.css.map */

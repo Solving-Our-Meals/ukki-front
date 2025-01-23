@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import '../css/reset.css';
 import styles from '../css/Login.module.css';
 import { Link } from 'react-router-dom'
+import signupLogo from '../../signup/images/signupLogo.png';
+import Default from '../../signup/images/default.png';
+import On from '../../signup/images/on.png';
+import {API_BASE_URL} from "../../../../config/api.config";
 
 function Login() {
     const [step, setStep] = useState(1);
@@ -24,9 +28,10 @@ function Login() {
     const handleUsernameSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/login/step-one', {
+        const response = await fetch(`${API_BASE_URL}/auth/login/step-one`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ userId: formData.userId }),
@@ -45,9 +50,10 @@ function Login() {
     const handlePasswordSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/login/step-two', {
+        const response = await fetch(`${API_BASE_URL}/auth/login/step-two`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -83,7 +89,7 @@ function Login() {
         <div className={styles.signupBasic}>
             <div className={styles.signup}>
                 <p className={styles.loginText}>로그인</p>
-                <img className={styles.signupLogo} src="/images/signup/signupLogo.png" alt="회원가입 로고"/>
+                <img className={styles.signupLogo} src={signupLogo} alt="회원가입 로고"/>
                 {step === 1 && (
                     <form onSubmit={handleUsernameSubmit}>
 
@@ -132,7 +138,7 @@ function Login() {
                                 <label htmlFor="userPass">비밀번호 입력</label>
                                 <div className={styles.passwordToggleBtn}>
                                     <img
-                                        src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                        src={showPassword ? Default : On}
                                         alt="비밀번호 보이기/숨기기"
                                         onClick={togglePasswordVisibility}
                                     />

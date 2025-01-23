@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import banner1 from './image/main-banner1.png';
 import banner2 from './image/main-banner2.png';
 import banner3 from './image/main-banner3.png';
@@ -24,6 +24,8 @@ import rBg from './image/roulette.png';
 import '../../../common/header/css/reset.css';
 import './css/main.css';
 import Map from './component/Map.js';
+import Footer from './component/Footer.js';
+import { API_BASE_URL } from '../../../config/api.config.js';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
@@ -70,8 +72,10 @@ const Main = () => {
 
 
 
-
+    const navigate = useNavigate(null);
     const locationRef = useRef(null);
+
+
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -80,22 +84,23 @@ const Main = () => {
                     x: position.coords.longitude,
                     y: position.coords.latitude
                 });
+            }, error => {
+                alert('위치 정보를 가져올 수 없습니다.');
             });
+        } else {
+            alert('Geolocation을 사용할 수 없습니다.');
         }
-    },
-        []);
+    }, []);
 
-        
-        const requestDirections = (store) => {
-            if (currentPosition && store) {
-                console.log('Requesting directions from:', currentPosition, 'to:', store);
-                // 현재 위치(currentPosition)와 선택된 가게(store)의 경로 요청 로직 추가
-            } else {
-                alert('경로를 요청할 수 없습니다.');
-            }
-        };
-       
-        
+    const requestDirections = (store) => {
+        if (currentPosition && store) {
+            console.log('Requesting directions from:', currentPosition, 'to:', store);
+        } else {
+            alert('경로를 요청할 수 없습니다.');
+        }
+    };
+
+
 
     useEffect(() => {
         const fImg = document.querySelector('.category>div');
@@ -187,6 +192,26 @@ const Main = () => {
         scrollToLocation();
     };
 
+/*    async function initRoulette() {
+    try {
+        // 사용자의 위치를 가져오기
+        // const position = await getUserLocation();
+        // const userLat = position.coords.latitude;
+        // const userLon = position.coords.longitude;
+
+        // 가장 가까운 8개 가게 가져오기
+        // const closestStores = await getClosestStores(userLat, userLon);
+
+        // 룰렛에 가게 추가하기
+        // populateRoulette(closestStores);
+    } catch (error) {
+        console.error("위치 정보를 가져오는 중 오류 발생:", error);
+    }
+}
+
+// 페이지 로드 시 룰렛 초기화
+window.onload = initRoulette;*/
+
 
     const scrollToLocation = () => {
         locationRef.current.scrollIntoView({
@@ -200,13 +225,34 @@ const Main = () => {
         storeDes: '',
         storeAddress: '',
         storeProfile: '',
+        storeNo: '',
         storeMenu: ''
 
     });
 
-    const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress) => {
+
+    const StoreSelection = () => {
+        const [storeNo, setStoreNo] = useState(null);
+
+
+        const handleStoreSelect = (storeNo) => {
+            setStoreNo(storeNo);
+        };
+
+    };
+
+
+    const handleReservationClick = () => {
+        if (storeInfo.storeNo) {
+            // Use navigate to redirect to the store's page
+            navigate(`/store/${storeInfo.storeNo}`);
+        } else {
+            alert("가게를 선택해주세요.");
+        }
+    };
+    const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo) => {
         setStoreInfo({
-            storeName, storeDes, storeMenu, storeProfile, storeAddress
+            storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo
         });
         setIsMarkerClicked(true);
     };
@@ -219,6 +265,66 @@ const Main = () => {
         }
     };
 
+
+    const getUserLocation = () => {
+        return new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            } else {
+                reject(new Error("Geolocation not available"));
+            }
+        });
+    };
+
+    const getClosestStores = async (lat, lon) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/stores?lat=${lat}&lon=${lon}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',  // 응답을 JSON 형식으로 받겠다는 의미
+                    'Content-Type': 'application/json',  // 요청 내용이 JSON 형식임을 지정
+                   
+                }
+            });
+    
+            const data = await response.json();
+            return data;  // List of stores
+        } catch (error) {
+            console.error("Error fetching closest stores:", error);
+            return [];
+        }
+    };
+    
+    
+    const populateRoulette = (stores) => {
+        const panel = document.querySelector(".rouletter-wacu");
+        // Clear existing slots
+        panel.innerHTML = "";
+        // Add new store slots to the roulette panel
+        stores.forEach(store => {
+            const storeElement = document.createElement('div');
+            storeElement.className = "roulette-slot";
+            storeElement.textContent = store.storeName;  // Or any other property of the store
+            panel.appendChild(storeElement);
+        });
+    };
+    async function initRoulette() {
+        try {
+            // 사용자의 위치를 가져오기
+            const position = await getUserLocation();
+            const userLat = position.coords.latitude;
+            const userLon = position.coords.longitude;
+    
+            // 가장 가까운 8개 가게 가져오기
+            const closestStores = await getClosestStores(userLat, userLon);
+    
+            // 룰렛에 가게 추가하기
+            populateRoulette(closestStores);
+        } catch (error) {
+            console.error("위치 정보를 가져오는 중 오류 발생:", error);
+        } 
+    }
+    
     useEffect(() => {
         const handleScroll = () => {
             const images = document.querySelectorAll('.talk img');
@@ -358,30 +464,141 @@ const Main = () => {
         }, 5000);
     };
 
-    const handleRouletteClick = (e) => {
+    const handleRouletteClick = async (e) => {
         const target = e.target;
+    
+        // 룰렛 애니메이션 실행
         if (target.className === "rouletter-btn") {
-            rRotate();
-            rReset(target);
+            rRotate(); // 룰렛 애니메이션
+    
+            setTimeout(async () => {
+                // 8개의 가게 가져오기 (선택된 카테고리 및 위치 기반)
+                const selectedStores = await fetchStoresLocation(selectedCategory, currentPosition);
+                const winningStore = selectedStores[Math.floor(Math.random() * selectedStores.length)];
+    
+                try {
+                    // 현재 시간대와 가장 가까운 예약 시간 가져오기
+                    const nextAvailableTime = await getNextAvailableTime(winningStore.storeNo, new Date().toISOString().split('T')[0]); // 오늘 날짜를 기준으로
+    
+                    // 예약을 진행
+                    const userNo = 123; // 실제로는 로그인한 사용자 ID를 사용해야 함
+                    await makeReservation(userNo, winningStore.storeNo, nextAvailableTime);
+    
+                    alert(`당첨된 가게: ${winningStore.storeName}\n예약 시간: ${nextAvailableTime}`);
+    
+                } catch (error) {
+                    alert("예약 처리 중 오류가 발생했습니다.");
+                }
+    
+                rReset(target); // 룰렛 초기화
+            }, 3000); // 3초 후 예약 처리
         }
     };
+    
 
 
-    const fetchStoresLocation = async (category) => {
+    const makeReservation = async (userNo, storeNo, resTime) => {
         try {
-            const response = await fetch(`/main/category?category=${category}`);
+            const response = await fetch(`${API_BASE_URL}/api/reservations/make`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userNo,
+                    storeNo,
+                    resTime,
+                    isRandom: true,  // 랜덤 예약 여부
+                })
+            });
+    
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error("예약에 실패했습니다.");
+            }
+    
+            const data = await response.json();
+            alert("예약이 완료되었습니다. QR 코드: " + data.qr); // 예약 완료 후 QR 코드 반환
+        } catch (error) {
+            console.error("예약 실패", error);
+            alert("예약을 완료할 수 없습니다.");
+        }
+    };
+    
+// 예약 가능한 가장 가까운 시간 반환
+const getNextAvailableTime = async (storeNo, resDate) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/reservations/next-available-time`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ storeNo, resDate })
+        });
+
+        if (!response.ok) {
+            throw new Error("예약 가능한 시간이 없습니다.");
+        }
+
+        const data = await response.json();
+        return data.resTime; // 가장 가까운 예약 시간 반환
+    } catch (error) {
+        console.error("예약 시간 가져오기 실패", error);
+        throw new Error("예약 시간을 가져오는 중 문제가 발생했습니다.");
+    }
+};
+
+
+    // 거리 계산을 위한 함수 (Haversine 공식)
+    const calculateDistance = (lat1, lon1, lat2, lon2) => {
+        const R = 6371; // 지구의 반지름 (단위: km)
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c; // 반환 값: km
+    };
+
+    // 주변 가게를 가져오는 API 함수
+    const fetchStoresLocation = async (category, currentPosition) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/main/category?category=${category}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error('가게 정보를 불러오는 데 실패했습니다.');
             }
 
             const data = await response.json();
-            setStores(data);
-            setStoreInfo(data);
-            console.log(data);
+
+            // 주변 가게들의 거리 계산
+            const storesWithDistance = data.map(store => {
+                const distance = calculateDistance(currentPosition.y, currentPosition.x, store.lat, store.lon);
+                return { ...store, distance };
+            });
+
+            // 거리가 가까운 순으로 정렬
+            const sortedStores = storesWithDistance.sort((a, b) => a.distance - b.distance);
+
+            // 가장 가까운 8개의 가게를 룰렛에 추가
+            const selectedStores = sortedStores.slice(0, 8);
+
+            return selectedStores;
         } catch (error) {
             console.error('Error fetching store locations:', error);
         }
     };
+
+
+
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (index) => {
@@ -389,7 +606,7 @@ const Main = () => {
         fetchStoresLocation(index + 1); // 카테고리 코드를 +1 해서 전달
     };
 
-    
+
 
 
 
@@ -421,26 +638,7 @@ const Main = () => {
                     </div>
                     <div className="leftbtn btn" onClick={handlePrev}>&lt;</div>
                     <div className="rightbtn btn" onClick={handleNext}>&gt;</div>
-                    {/* <div className="pagination">
-                        <ul>
-                            {banners.map((_, index) => (
-                                <li
-                                    key={index}
-                                    className={currentSlide === index ? 'act' : ''}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handlePaginationClick(index);
-                                    }}
-                                >
-                                </li>
-                            ))}
-                        </ul>
-                    </div> */}
                 </div>
-                {/* <div className='search'>
-                    <input type='search' defaultValue="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색창으로 이동" />
-                    <NavLink to="/search"><img src={search} alt="search" /></NavLink>
-                </div> */}
                 <div className='category'>
                     <h3>지금 끌리는 메뉴는?</h3>
                     <p>카테고리 별로 근처 식당을 추천해드려요!</p>
@@ -448,32 +646,22 @@ const Main = () => {
                         <p>한식</p>
                     </div>
                     <img src={gkstlr} onClick={() => { handleFirstImgClick(); handleCategoryClick(0); }} className={selectedCategory === 1 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 1 ? 'selected-span' : ''}>
-                        {selectedCategory === 1 ? '너로 정했다!' : '흠..별로?'}</span> */}
                     <div onClick={() => { handleSecondImgClick(); handleCategoryClick(1) }}>
                         <p>중식</p>
                     </div>
                     <img src={dlftlr} onClick={() => { handleSecondImgClick(); handleCategoryClick(1) }} className={selectedCategory === 2 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 2 ? 'selected-span' : ''}>
-                        {selectedCategory === 2 ? '너로 정했다!' : '흠..별로?'}</span> */}
                     <div onClick={() => { handleThreeImgClick(); handleCategoryClick(2) }}>
                         <p>일식</p>
                     </div>
                     <img src={wndtlr} onClick={() => { handleThreeImgClick(); handleCategoryClick(2) }} className={selectedCategory === 3 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 3 ? 'selected-span' : ''}>
-                        {selectedCategory === 3 ? '너로 정했다!' : '흠..별로?'}</span> */}
                     <div onClick={() => { handleFourImgClick(); handleCategoryClick(3) }}>
                         <p>양식</p>
                     </div>
                     <img src={didtlr} onClick={() => { handleFourImgClick(); handleCategoryClick(3) }} className={selectedCategory === 4 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 4 ? 'selected-span' : ''}>
-                        {selectedCategory === 4 ? '너로 정했다!' : '흠..별로?'}</span> */}
                     <div onClick={() => { handleLastImgClick(); handleCategoryClick(4) }}>
                         <p>기타</p>
                     </div>
                     <img src={rlxk} onClick={() => { handleLastImgClick(); handleCategoryClick(4) }} className={selectedCategory === 5 ? 'selected-img' : ''} />
-                    {/* <span className={selectedCategory === 5 ? 'selected-span' : ''}>
-                        {selectedCategory === 5 ? '너로 정했다!' : '흠..별로?'}</span> */}
                 </div>
                 <div className='location' ref={locationRef}>
                     <Map
@@ -506,12 +694,12 @@ const Main = () => {
                             <label>현재 위치 : </label>
                             <input defaultValue={storeInfo.storeAddress}></input>
                             <label>가게 위치 : </label>
-                            <button>예약하기</button>
-                            
+                            <button onClick={handleReservationClick}>예약하기</button>
+
                             <div>
                                 <div>
-                                <p onClick={() => setIsMarkerClicked(false)}>x</p>
-                                    </div>
+                                    <p onClick={() => setIsMarkerClicked(false)}>x</p>
+                                </div>
                             </div>
                         </>
                     )}
@@ -538,7 +726,7 @@ const Main = () => {
                         4. 이메일로 받은 예약 QR코드를 확인한뒤 방문한다
                     </span>
                     <img src={arrow1} />
-                    <button className="rouletter-btn">랜덤 예약 돌리기</button>
+                    <button className="rouletter-btn" onClick={handleReservationClick}>랜덤 예약 돌리기</button>
                     <img src={arrow2} />
                 </div>
 
@@ -551,9 +739,10 @@ const Main = () => {
                     <div className="rouletter-arrow">
                         <img src={pin} />
                     </div>
-                    <button className="rouletter-btn">start</button>
+                    <button className="rouletter-btn"  onClick={handleReservationClick}>start</button>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };

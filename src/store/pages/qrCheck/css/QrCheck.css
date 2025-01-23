@@ -1,5 +1,5 @@
 /* 부모 요소 */
-#qrCheckBackground {
+.qrBackground {
     display: flex;
     flex-direction: column;
     justify-content: center; /* 가로축 중앙 정렬 */
@@ -10,137 +10,51 @@
     margin: -0.1vh;
 }
 
-/* 자식 요소들 */
-#inputStoreNoText, #inputStoreNoAtQr, #checkStoreNo, #confirmStoreNo, #qrCheckDefaultImg {
-    max-width: 90%;
-    max-height: 90%;
-}
-
-#inputStoreNoText {
-    font-size: 4.5vh; /* 뷰포트 높이에 따른 폰트 크기 */
-
-    margin: 1vh;
-    font-family: 'Bobaesum Jindo TTF';
-    font-style: normal;
-    font-weight: 400;
-
+.qrResultMessage {
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 4.5vw;
     color: #232323;
-
-
+    width: max-content;
+    height: max-content;
 }
 
-#inputStoreNoAtQr {
-    margin: 1vh;
-    position: relative;
-    top: 0px;
-    left: 0px;
+.qrResultImg {
+    width: 50vh;
+    height: 30vw;
+    object-fit: contain;
+}  
 
-    width: 40vw;
-    height: 5vh;
+.fromQrToMain {
 
-    background: #FFFFFF;
-
-    border: 0.2vh solid #FF8AA3;
-    border-radius: 3vh;
-
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 2vh;
-    padding-left: 1.2vh;
-}
-
-.checkStoreNo {
-
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 2vh;
-
-    text-decoration-line: underline;
-
-    color: #232323;
-    width: 39vw; 
-    height: 5vh; 
-}
-
-.checkStoreNoFail{
+    width: 10vw;
+    min-width: 70px;
+    height: 5vw;
+    min-height: 20px;
     margin-top: 2vh;
-    color: #232323;
-    width: 40vw; 
-
+  
+    background: #FF8AA3;
+    border-radius: 40px;
+  
     font-family: 'Pretendard Variable';
     font-style: normal;
-    font-weight: 600;
-    font-size: 2vh;
-
-    text-decoration-line: underline;
-    text-align: center;
-}
-
-
-.confirmStoreNoBtn {
-    margin-top: 4vh;
-    width: 15vw; 
-    height: 5vh; 
-
-    background: #FFA8B8;
-    border-radius: 3vh;
-
+    font-weight: 700;
+    font-size: 2vw;
+    align-items: center;
+  
+    /* text/strong */
+    color: #232323;
+  
     border: none;
-
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 2.5vh;
-
-    text-align: center;
-
-    color: #232323;
-
-
-}
-
-.qrCheckDefaultImg {
-    margin-top: 5vh;
-    width: 30vw; /* 뷰포트 너비의 30% */
-    height: auto; /* 너비에 따라 높이 자동 조정 */
-    transition: opacity 0.5s ease-in-out;
-    opacity: 1;
-}
-
-.hidden{
-    opacity: 0;
-}
-
-#qrCheckFailImg {
-    margin-top: 1vh;
-    width: 20vw; 
-    height: 30vw; 
-}
-
-#qrFailMessage{
-    /* 가게 번호가 잘못 입력되었습니다 */
-    width: 40vh;
-
-    font-family: 'Pretendard Variable';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 2vh;
-    text-align: center;
-
-    /* system/danger */
-    color: #FF5D18;
-
-}
-
-.failPage{
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* 가로축 중앙 정렬 */
-    align-items: center; /* 세로축 중앙 정렬 */
-    opacity: 1;
-}
-
-/*@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } } */
-/*@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; }}*/
+    cursor: pointer;
+  }
+  
+  .fromQrToMain:hover {
+    background-color: #FF5E7A;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .fromQrToMain:active {
+    transform: scale(1);
+    box-shadow: none;
+  }

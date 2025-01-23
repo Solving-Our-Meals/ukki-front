@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/Inquiry.module.css';
 import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
+import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function Inquiry() {
     const [userInfo, setUserInfo] = useState(null);
@@ -9,17 +12,26 @@ function Inquiry() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
     const [totalPages, setTotalPages] = useState(0);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
+        const savedPage = sessionStorage.getItem('currentInquiry');
+        if (savedPage) {
+            setCurrentPage(Number(savedPage));
+        }
         fetchUserInfo();
     }, []);
 
-    const fetchUserInfo = async () => {
+    const fetchUserInfo = async (query = '') => {
         try {
-            const response = await fetch('/user/review', {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry${query}`, {
                 method: 'GET',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
 
@@ -40,27 +52,96 @@ function Inquiry() {
         }
     };
 
+    const handleSearch = () => {
+        const query = searchQuery ? `?search=${searchQuery}` : '';
+        setLoading(true);
+        fetchUserInfo(query);
+        setCurrentPage(1);
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
-                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+                <img src={Loading} alt="로딩 중"/>
             </div>
         )
     }
 
-    if (error) {
-        return <div>{error}</div>;
-    }
+    if (!userInfo || userInfo.length === 0) {
+        return (
+            <div className={styles.mypageReservation}>
+                <div className={styles.allTabs}>
+                    <Link to="/user/mypage/inquiry">
+                        <div className={styles.tab1}>문의 내역</div>
+                    </Link>
+                    <Link to="/user/mypage/profile">
+                        <div className={styles.tab2}>회원 정보수정</div>
+                    </Link>
+                    <div className={styles.line1}>|</div>
+                    <Link to="/user/mypage/reservation">
+                        <div className={styles.tab3}>예약리스트</div>
+                    </Link>
+                    <div className={styles.line2}>|</div>
+                    <Link to="/user/mypage/review">
+                        <div className={styles.tab4}>작성된 리뷰</div>
+                    </Link>
+                </div>
 
-    if (!userInfo) {
-        return <div>유저 정보를 찾을 수 없습니다.</div>;
+                <div className={styles.mypageReservationMain}>
+                    {/* 상단 제목 */}
+                    <div className={styles.headerRow}>
+                        <div className={styles.headerItem}>문의상태</div>
+                        <div className={styles.headerItem}>문의일자</div>
+                        <div className={styles.headerItem}>문의제목</div>
+                    </div>
+
+                    {/* 문의 항목이 없을 경우 */}
+                    <div className={styles.reservationItem}>
+                        <div className={styles.headerItem}>-</div>
+                        <div className={styles.headerItem}>-</div>
+                        <div className={styles.headerItem}>-</div>
+                    </div>
+
+                </div>
+            </div>
+        );
     }
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = userInfo.slice(indexOfFirstItem, indexOfLastItem);
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        sessionStorage.setItem('currentInquiry', pageNumber);
+    }
+
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
+    const currentRangeStart = Math.floor((currentPage - 1) / 5) * 5 + 1;
+    const currentRangeEnd = Math.min(currentRangeStart + 4, totalPages);
+
+    const pageNumbersToDisplay = pageNumbers.slice(currentRangeStart - 1, currentRangeEnd);
+
+    const handlePrevClick = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handleNextClick = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
 
     const truncateReview = (reviewText) => {
         if (reviewText.length > 15) {
@@ -69,62 +150,85 @@ function Inquiry() {
         return reviewText;
     };
 
-    const renderStars = (rating) => {
-        let stars = '';
-        for (let i = 0; i < rating; i++) {
-            stars += '⭐';
-        }
-        return stars;
+    const handleInquiryClick = (inquiryNo) => {
+        navigate(`/user/mypage/inquiry/${inquiryNo}`);
     };
+
+//     팀원이 갑자기 다른데서 추가해서 주석처리합니다.
+/*    const getInquiryStateLabel = (state) => {
+        switch (state) {
+            case 'CHECK':
+                return '확인완료';
+            case 'PROCESSING':
+                return '처리중';
+            case 'COMPLETE':
+                return '처리완료';
+            default:
+                return '-';
+        }
+    };*/
 
     return (
         <div className={styles.mypageReservation}>
             <div className={styles.allTabs}>
-                <Link to="/user/mypage/review">
-                    <div className={styles.tab1}>작성된 리뷰</div>
+                <Link to="/user/mypage/inquiry">
+                    <div className={styles.tab1}>문의 내역</div>
                 </Link>
-                <Link to="/user/mypage/reservation">
-                    <div className={styles.tab2}>예약리스트</div>
+                <Link to="/user/mypage/profile">
+                    <div className={styles.tab2}>회원 정보수정</div>
                 </Link>
                 <div className={styles.line1}>|</div>
-                <Link to="/user/mypage/inquiry">
-                    <div className={styles.tab3}>문의 내역</div>
+                <Link to="/user/mypage/reservation">
+                    <div className={styles.tab3}>예약리스트</div>
                 </Link>
                 <div className={styles.line2}>|</div>
-                <Link to="/user/mypage/profile">
-                    <div className={styles.tab4}>회원 정보수정</div>
+                <Link to="/user/mypage/review">
+                    <div className={styles.tab4}>작성된 리뷰</div>
                 </Link>
             </div>
 
             <div className={styles.mypageReservationMain}>
+                {/* 검색창 */}
+                <div className={styles.searchContainer}>
+                    <input
+                        type="text"
+                        className={styles.searchInput}
+                        placeholder="문의 제목으로 검색"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    />
+                    <img src={Search} className={styles.searchButton} onClick={handleSearch}/>
+                </div>
+
                 {/* 상단 제목 */}
                 <div className={styles.headerRow}>
-                    <div className={styles.headerItem}>가게명</div>
-                    <div className={styles.headerItem}>리뷰 작성 날짜</div>
-                    <div className={styles.headerItem}>리뷰 내용</div>
-                    <div className={styles.headerItem}>별점</div>
+                    <div className={styles.headerItem}>문의 상태</div>
+                    <div className={styles.headerItem}>문의 일자</div>
+                    <div className={styles.headerItem}>문의 제목</div>
                 </div>
 
                 {/* 리뷰 항목 */}
                 {currentItems.length > 0 ? (
-                    currentItems.map((review, index) => (
-                        <div key={index} className={styles.reservationItem}>
-                            <div className={styles.headerItem}>{review.storeName}</div>
+                    currentItems.map((inquiry, index) => (
+                        <div
+                            key={index}
+                            className={styles.reservationItem}
+                            onClick={() => handleInquiryClick(inquiry.inquiryNo)}
+                        >
+
+                            {/* 위 주석처리한 것 때문에 변경했습니다. 기존  getInquiryStateLabel(inquiry.inquiryState)를 사용했었음 */}
+                            <div className={styles.headerItem}>{inquiry.inquiryState}</div>
                             <div className={styles.headerItem}>
-                                {review.reviewDate}
+                                {inquiry.inquiryDate}
                             </div>
                             <div className={styles.headerItem}>
-                                {truncateReview(review.reviewText)}
-                            </div>
-                            <div className={styles.headerItem}>
-                                {renderStars(review.star)}
+                                {truncateReview(inquiry.title)}
                             </div>
                         </div>
                     ))
                 ) : (
                     // 비었을 때
                     <div className={styles.reservationItem}>
-                        <div className={styles.headerItem}>-</div>
                         <div className={styles.headerItem}>-</div>
                         <div className={styles.headerItem}>-</div>
                         <div className={styles.headerItem}>-</div>
@@ -135,19 +239,30 @@ function Inquiry() {
                 {/* 페이지네이션 */}
                 <div className={styles.pagination}>
                     <div
-                        className={`${styles.paginationButton} ${currentPage === 1 ? styles.disabled : ''}`}
-                        onClick={() => paginate(currentPage - 1)}
+                        className={`${styles.paginationButton} ${styles.arrow} ${currentPage === 1 ? styles.disabled : ''}`}
+                        onClick={handlePrevClick}
                     >
                         ◀
                     </div>
-                    <span>{currentPage} / {totalPages}</span>
+
+                    {pageNumbersToDisplay.map(number => (
+                        <div
+                            key={number}
+                            className={`${styles.paginationButton} ${currentPage === number ? styles.active : ''}`}
+                            onClick={() => paginate(number)}
+                        >
+                            {number}
+                        </div>
+                    ))}
+
                     <div
-                        className={`${styles.paginationButton} ${currentPage === totalPages || totalPages === 0 ? styles.disabled : ''}`}
-                        onClick={() => paginate(currentPage + 1)}
+                        className={`${styles.paginationButton} ${styles.arrow} ${currentPage === totalPages || totalPages === 0 ? styles.disabled : ''}`}
+                        onClick={handleNextClick}
                     >
                         ▶
                     </div>
                 </div>
+
             </div>
         </div>
     );

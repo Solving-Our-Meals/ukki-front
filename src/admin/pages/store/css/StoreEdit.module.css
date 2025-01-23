@@ -540,3 +540,22 @@
     border: 3px solid #FF6B87; /* 호버 시 테두리 색상 변경 */
     background: #FFE0E6; /* 호버 시 배경색 변경 */
 }
+
+#storeDes::placeholder,
+#storeName::placeholder,
+#storeAddress::placeholder {
+    color: #808080; /* 색상 확인 */
+    visibility: visible;
+}
+
+.storeEdit div > input::placeholder{
+    color: #808080; /* 색상 확인 */
+    opacity: 1; /* opacity를 1로 설정 */
+    visibility: visible;
+}
+
+.storeEdit .storeEditText > input::placeholder{
+    visibility: visible;
+    color: #808080; /* 색상 확인 */
+    opacity: 1; /* opacity를 1로 설정 */
+}

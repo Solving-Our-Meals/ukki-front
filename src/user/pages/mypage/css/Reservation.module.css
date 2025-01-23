@@ -1,5 +1,8 @@
 .mypageReservation {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
 }
 
 .allTabs {
@@ -9,34 +12,34 @@
     display: inline-block;
 }
 
- .tab2, .tab3, .tab4 {
-     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+.tab2, .tab3, .tab4 {
+    display: inline-block;
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
-    font-weight: 900;
-     margin-left: 30px;
-     cursor: pointer;
-     color : #BDBEBF;
+    font-weight: 400;
+    margin-left: 10px;
+    cursor: pointer;
+    color : #BDBEBF;
 }
 
 .tab2:hover, .tab3:hover, .tab4:hover {
     color : #232323;
 }
 
- .line1, .line2 {
-     display: inline-block;
-     font-family: 'Bobaesum-Jindo-TTF';
-     font-style: normal;
-     font-size: 20px;
-     font-weight: 900;
-     margin-left: 20px;
-     color : #BDBEBF;
- }
+.line1, .line2 {
+    display: inline-block;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 7px;
+    color : #BDBEBF;
+}
 
 .tab1 {
     display: inline-block;
-    font-family: 'Bobaesum Jindo TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-weight: 400;
     font-size: 45px;
@@ -49,75 +52,89 @@
 /* 예약 리스트 CSS */
 .mypageReservationMain .headerRow {
     display: grid;
-    grid-template-columns:  2fr 5fr 3fr 3fr;;
-    padding: 10px 0;
-
+    grid-template-columns:  2fr 12fr 12fr 15fr 15fr;
+    padding: 0px 0;
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 30px;
 
-    /* text/strong */
     color: #232323;
 }
 
 /* 가운데 정렬 */
-/*.mypageReservationMain {
-    transform: translate(-30px, 150px);
+.mypageReservationMain {
+    transform: translateY(-50px);
+    margin-top: 160px;
+
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+    height: 565px;
+}
+
+.headerRow {
+    margin-top: 10px;
 }
 
 /* 가운데 정렬 2 */
-/*.headerItem {
-    width:325px;
+.headerItem {
+    width:300px;
     background: none;
     text-align: center;
-}*/
-
-/* 좌측 정렬 */
-.mypageReservationMain {
-    transform: translate(100px, 150px);
-}
-
-/* 좌측 정렬 2 */
-.headerItem {
-    width:325px;
-    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
 }
 
 /* 예약 항목 */
 .reservationItem {
     display: grid;
-    grid-template-columns:  2fr 5fr 3fr 3fr;;
+    grid-template-columns:  2fr 12fr 12fr 15fr 15fr;
     padding: 10px 0;
-
     font-family: 'Pretendard-Regular';
     font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 300;
+    font-size: 25px;
     line-height: 30px;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    height: 95px;
 }
 
+.reservationItem:hover {
+    cursor: pointer;
+    background-color: #D3D3D3;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+}
 
 /* 페이지네이션 */
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    gap: 10px;
-    transform: translateX(-110px);
+    gap: 40px;
+    position: fixed;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0;
 }
 
-.pagination button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+/* 페이지네이션 내부 숫자 */
+.paginationButton {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 28px;
     cursor: pointer;
-    font-size: 14px;
+    color: #232323;
+    opacity: 50%;
 }
-
 .pagination button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
@@ -141,39 +158,63 @@
     font-size: 25px;
     line-height: 28px;
     cursor: pointer;
-    color: #FF8AA3;
+    color: #232323;
+    opacity: 50%;
 }
 
 .paginationButton.disabled {
     visibility: hidden;
 }
+.paginationButton.arrow {
+    color:#FF8AA3;
+    opacity: 1;
+}
 
 /* 선 */
 .headerRow, .reservationItem {
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 55px;
 }
 
 /* 선 2 (가운데 정렬) */
-/*.headerRow::before, .reservationItem::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 90%;
-    height: 2px;
-    background-color: #ccc;
-    transform: translateX(-50%);
-}*/
-
-
-/* 선 2 (좌측 정렬) */
 .headerRow::before, .reservationItem::before {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 40%;
-    width: 90%;
+    left: 50%;
+    width: 95%;
+    height: 2px;
+    background-color: #ccc;
+    transform: translateX(-50%);
+}
+
+.mypageReservationMain .headerRow {
+    display: grid;
+    padding: 0px 0;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #232323;
+    position: relative;
+}
+
+.headerRow::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 95%;
+    height: 5px;
+    transform: translateX(-50%);
+}
+
+.reservationItem::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 95%;
     height: 2px;
     background-color: #ccc;
     transform: translateX(-50%);
@@ -195,4 +236,295 @@
 .loadingContainer img {
     max-width: 100%;
     height: auto;
+}
+
+.paginationButton.active {
+    color:#232323;
+    opacity: 1;
+}
+
+.searchContainer {
+    position: absolute;
+    left:1280px;
+    top:-190px;
+}
+
+.searchInput {
+    position: absolute;
+    right : 35px;
+    top : 120px;
+    width : 500px;
+    height : 50px;
+    border-radius: 15px;
+    border: 3px solid #ff7a8e;
+    cursor: text;
+    outline: none;
+    padding-left: 20px;
+    font-family: 'Pretendard-Regular';
+    font-size: 20px;
+}
+
+.searchButton {
+    position: absolute;
+    right : 55px;
+    top : 125px;
+    width : 40px;
+    height : 40px;
+    cursor: pointer;
+}
+
+.reviewButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 50px;
+    background: #FEDA00;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #232323;
+}
+
+.qrButton {
+    width: 120px;
+    height: 50px;
+
+    background: #FF8AA3;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #232323;
+}
+
+.cancelButton {
+    margin-left: 20px;
+    width: 120px;
+    height: 50px;
+
+    background: #FFBDC9;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #232323;
+}
+
+.reviewComplete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 50px;
+    background: #FFF3A7;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #232323;
+    pointer-events: none;
+}
+
+.reviewComplete2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 50px;
+    background: #FFF3A7;
+    border-radius: 50px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #FF5D18;
+    pointer-events: none;
+}
+
+.qrModal {
+    position: absolute;
+    width: 500px;
+    height:500px;
+    left:30%;
+    top:10%;
+}
+
+.qrImage {
+    width: 500px;
+    height:500px;
+    border: 5px solid black;
+
+}
+
+.qrInfoText {
+    font-size: 25px;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'BobaesumJindoTTF';
+}
+
+.closeQrButton {
+    float: right;
+    background: #FFF3A7;
+    border-radius: 50px;
+    width: 100px;
+    height: 50px;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 700;
+    font-family: Pretendard-Regular;
+    border: 5px solid black;
+}
+
+.cancelModal, .successModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.cancelModalContent, .successModalContent {
+    position: absolute;
+    width: 879px;
+    height: 316px;
+    left: 520px;
+    top: 318px;
+
+    background: #FFFFFF;
+    border: 5px solid #FF8AA3;
+    border-radius: 50px;
+
+}
+
+.modalButtons {
+    margin-top: 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+
+    color: #232323;
+}
+
+.modalButton1 {
+    transform: translate(457px, 130px);
+    width: 171px;
+    height: 44px;
+    background: #FF8AA3;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+.modalButton2 {
+    transform: translate(70px, 130px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FEDA00;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.modalButton3 {
+    transform: translate(350px, 130px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FF8AA3;
+    border-radius: 25px;
+    cursor: pointer;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    color: #232323;
+}
+
+.modalButton:hover {
+    background-color: #FF2B2B;
+}
+
+.modalMainText {
+    transform: translateY(90px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalMainText2 {
+    transform: translateY(90px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalSubText {
+    transform: translateY(90px);
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+
+    /* system/danger */
+    color: #FF5D18;
+}
+
+.modalButton2:hover {
+    background: #fbc700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalButton2:active {
+    background: #fbc700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modalButton1:hover, .modalButton3:hover {
+    background: #ff7a8e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalButton1:active .modalButton3:active {
+    background: #ff7a8e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modalButton1, .modalButton2, .modalButton3 {
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
 }

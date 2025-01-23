@@ -5,7 +5,13 @@ import '../css/reset.css'
 import styles from '../css/UserInfo.module.css'
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
-
+import { API_BASE_URL } from "../../../../config/api.config";
+import badge1 from '../css/images/badge1.png';
+import badge2 from '../css/images/badge2.png';
+import badge3 from '../css/images/badge3.png';
+import badge4 from '../css/images/badge4.png';
+import badge5 from '../css/images/badge5.png';
+import badge6 from '../css/images/badge6.png';
 
 function UserInfo(){
 
@@ -19,11 +25,13 @@ function UserInfo(){
     const [deleteUser, setDeleteUser] = useState(false);
     const [editUser, setEditUser] = useState(false);
     const navigate = useNavigate();
+    const defaultProfile = '/images/mypage/profile/default.png';
 
     const fetchInfo = useCallback(async (no) => {
         try{
             const userInfo = await UserInfoAPI(no);
             if (userInfo){
+                console.log(userInfo)
                 setIsInfo(true)
                 setUserInfo(userInfo)
             }else{
@@ -57,7 +65,7 @@ function UserInfo(){
 
 
     function deleteConfirm(){
-        fetch(`/admin/users/info/${userNo}`, {
+        fetch(`${API_BASE_URL}/admin/users/info/${userNo}`, {
             method: 'DELETE',
         }).then((res) => {
             return res.json();
@@ -76,7 +84,7 @@ function UserInfo(){
     }
 
     function editConfirm(){
-        fetch(`/admin/users/info/${userNo}`, {
+        fetch(`${API_BASE_URL}/admin/users/info/${userNo}`, {
             method: 'PUT',
         }).then((res) => {
             return res.json();
@@ -100,7 +108,7 @@ function UserInfo(){
         <>
         <div id={styles.userInfoText}>회원 상세정보</div>
         <div className={styles.horizon1}></div>
-        <div id={styles.userInfoProfile}>프로필 정리되면 불러올 예정{userInfo.profile}</div>
+        <div id={styles.userInfoProfile}><img src={userInfo.profileImage? userInfo.profileImage : defaultProfile} alt="프로필 이미지" /></div>
         <div id={styles.userInfoContentText}>회원정보</div>
         <div id={styles.userInfoId}><p>아이디 : </p> {userInfo.userId}</div>
         <div id={styles.userInfoName}><p>닉네임 : </p> {userInfo.userName} <button id={styles.userInfoNameChangeBtn} onClick={handleEditUser}>닉네임 변경</button></div>
@@ -109,13 +117,30 @@ function UserInfo(){
         <div id={styles.badgeArea}>
             <div id={styles.badgeAreaText}>뱃지</div>
             <div id={styles.badgeImgArea}>
-                <div className={styles.badge}>뱃지1</div>
-                <div className={styles.badge}>뱃지2</div>
-                <div className={styles.badge}>뱃지3</div>
-                <div className={styles.badge}>뱃지4</div>
-                <div className={styles.badge}>뱃지5</div>
-                <div className={styles.badge}>뱃지6</div>
-                <div className={styles.badge}>뱃지7</div>
+                <div className={styles.badge}>
+                    <img src={badge1} alt="뱃지1" 
+                        className={userInfo.resCount >= 10 ? '' : styles.badgeNotAchieved} />
+                </div>
+                <div className={styles.badge}>
+                    <img src={badge2} alt="뱃지2" 
+                        className={userInfo.reviewCount >= 10 ? '' : styles.badgeNotAchieved} />
+                </div>
+                <div className={styles.badge}>
+                    <img src={badge3} alt="뱃지3" 
+                        className={userInfo.resCount >= 25 ? '' : styles.badgeNotAchieved} />
+                </div>
+                <div className={styles.badge}>
+                    <img src={badge4} alt="뱃지4" 
+                        className={userInfo.randomCount >= 3 ? '' : styles.badgeNotAchieved} />
+                </div>
+                <div className={styles.badge}>
+                    <img src={badge5} alt="뱃지5" 
+                        className={userInfo.reviewCount >= 20 ? '' : styles.badgeNotAchieved} />
+                </div>
+                <div className={styles.badge}>
+                    <img src={badge6} alt="뱃지6" 
+                        className={userInfo.resCount >= 50 && userInfo.reviewCount >= 30 && userInfo.randomCount >= 7 ? '' : styles.badgeNotAchieved} />
+                </div>
             </div>
         </div>
         <div id={styles.reservationCount}>

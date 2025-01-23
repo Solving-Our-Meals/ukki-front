@@ -1,5 +1,8 @@
 .mypageReservation {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
 }
 
 .allTabs {
@@ -7,15 +10,16 @@
     top:50px;
     left:50px;
     display: inline-block;
+    z-index: 999;
 }
 
 .tab2, .tab3, .tab4 {
     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
-    font-weight: 900;
-    margin-left: 30px;
+    font-weight: 400;
+    margin-left: 10px;
     cursor: pointer;
     color : #BDBEBF;
 }
@@ -26,17 +30,17 @@
 
 .line1, .line2 {
     display: inline-block;
-    font-family: 'Bobaesum-Jindo-TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-size: 20px;
     font-weight: 900;
-    margin-left: 20px;
+    margin-left: 7px;
     color : #BDBEBF;
 }
 
 .tab1 {
     display: inline-block;
-    font-family: 'Bobaesum Jindo TTF';
+    font-family: 'BobaesumJindoTTF';
     font-style: normal;
     font-weight: 400;
     font-size: 45px;
@@ -49,75 +53,90 @@
 /* 예약 리스트 CSS */
 .mypageReservationMain .headerRow {
     display: grid;
-    grid-template-columns:  2fr 5fr 3fr 3fr;;
-    padding: 10px 0;
-
+    grid-template-columns:  2fr 12fr 12fr 15fr;
+    padding: 0px 0;
 
     font-family: 'Pretendard-Regular';
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 30px;
 
-    /* text/strong */
     color: #232323;
 }
 
 /* 가운데 정렬 */
-/*.mypageReservationMain {
-    transform: translate(-30px, 150px);
+.mypageReservationMain {
+    transform: translateY(-50px);
+    margin-top: 160px;
+
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+    height: 565px;
+}
+
+.headerRow {
+    margin-top: 10px;
 }
 
 /* 가운데 정렬 2 */
-/*.headerItem {
-    width:325px;
+.headerItem {
+    width:400px;
     background: none;
     text-align: center;
-}*/
-
-/* 좌측 정렬 */
-.mypageReservationMain {
-    transform: translate(100px, 150px);
-}
-
-/* 좌측 정렬 2 */
-.headerItem {
-    width:325px;
-    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
 }
 
 /* 예약 항목 */
 .reservationItem {
     display: grid;
-    grid-template-columns:  2fr 5fr 3fr 3fr;;
+    grid-template-columns:  2fr 12fr 12fr 15fr;
     padding: 10px 0;
-
     font-family: 'Pretendard-Regular';
     font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 300;
+    font-size: 25px;
     line-height: 30px;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    height: 95px;
+    cursor: pointer;
+    transition: all 0.1s ease;
 }
 
+.reservationItem:hover {
+    background-color: #D3D3D3;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+}
 
 /* 페이지네이션 */
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    gap: 10px;
-    transform: translateX(-110px);
+    gap: 40px;
+    position: fixed;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0;
 }
 
-.pagination button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+/* 페이지네이션 내부 숫자 */
+.paginationButton {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 28px;
     cursor: pointer;
-    font-size: 14px;
+    color: #232323;
+    opacity: 50%;
 }
-
 .pagination button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
@@ -141,39 +160,63 @@
     font-size: 25px;
     line-height: 28px;
     cursor: pointer;
-    color: #FF8AA3;
+    color: #232323;
+    opacity: 50%;
 }
 
 .paginationButton.disabled {
     visibility: hidden;
 }
+.paginationButton.arrow {
+    color:#FF8AA3;
+    opacity: 1;
+}
 
 /* 선 */
 .headerRow, .reservationItem {
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 55px;
 }
 
 /* 선 2 (가운데 정렬) */
-/*.headerRow::before, .reservationItem::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 90%;
-    height: 2px;
-    background-color: #ccc;
-    transform: translateX(-50%);
-}*/
-
-
-/* 선 2 (좌측 정렬) */
 .headerRow::before, .reservationItem::before {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 40%;
-    width: 90%;
+    left: 50%;
+    width: 95%;
+    height: 2px;
+    background-color: #ccc;
+    transform: translateX(-50%);
+}
+
+.mypageReservationMain .headerRow {
+    display: grid;
+    padding: 0px 0;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #232323;
+    position: relative;
+}
+
+.headerRow::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 95%;
+    height: 5px;
+    transform: translateX(-50%);
+}
+
+.reservationItem::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 95%;
     height: 2px;
     background-color: #ccc;
     transform: translateX(-50%);
@@ -195,4 +238,730 @@
 .loadingContainer img {
     max-width: 100%;
     height: auto;
+}
+
+.paginationButton.active {
+    color:#232323;
+    opacity: 1;
+}
+
+.deleteButton {
+    width: 80px;
+    height: 35px;
+
+    position: absolute;
+    left: 1160px;
+    top: 30px;
+    border: none;
+
+    background: #FFBDC9;
+    border-radius: 50px;
+
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    /*display: none;*/
+    font-family: 'Pretendard-Regular';
+    color: #232323;
+}
+
+/*.reservationItem:hover .deleteButton {*/
+/*    display: block;*/
+/*}*/
+
+.deleteButton:hover {
+    background-color: #FF8AA3;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.deleteButton:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.deleteButton:focus {
+    outline: none;
+}
+
+/* 모달 */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1005;
+}
+
+.modal {
+    position: absolute;
+    width: 879px;
+    height: 316px;
+    left: 520px;
+    top: 318px;
+
+    background: #FFFFFF;
+    border: 5px solid #FF8AA3;
+    border-radius: 50px;
+
+}
+
+.modalButtons {
+    margin-top: 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+
+    color: #232323;
+}
+
+.modalButton1 {
+    transform: translate(457px, 110px);
+    width: 171px;
+    height: 44px;
+    background: #FF8AA3;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+.modalButton2 {
+    transform: translate(70px, 110px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FEDA00;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.modalButton3 {
+    transform: translate(350px, 130px);
+    width: 171px;
+    height: 44px;
+    border: none;
+    background: #FF8AA3;
+    border-radius: 25px;
+    cursor: pointer;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    color: #232323;
+}
+
+.modalButton:hover {
+    background-color: #FF2B2B;
+}
+
+.modalMainText {
+    transform: translateY(60px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalMainText2 {
+    transform: translateY(90px);
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 44px;
+    text-align: center;
+
+    /* text/strong */
+    color: #232323;
+}
+
+.modalSubText {
+    transform: translateY(90px);
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+
+    /* system/danger */
+    color: #FF5D18;
+}
+
+.modalButton2:hover {
+    background: #fbc700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalButton2:active {
+    background: #fbc700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modalButton1:hover, .modalButton3:hover {
+    background: #ff7a8e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalButton1:active .modalButton3:active {
+    background: #ff7a8e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modalButton1, .modalButton2, .modalButton3 {
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.main {
+    top:-15px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+.Title {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(60px, 140px);
+    display: inline-block;
+}
+
+.inquiryTitle, .inquiryDate {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.inquiryText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1153px;
+    height: 200px;
+    transform: translate(50px, 160px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 20px 15px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.inquiryTextExpanded {
+    width: 1153px;
+    height: 490px;
+    transform: translate(50px, 170px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 20px 15px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    display: block;
+    overflow-y: auto;
+    position: relative;
+    z-index: 999;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    transition: all 0.2s ease;
+}
+
+.button1 {
+    width:70px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    margin-top: 178px;
+    margin-left: 1108px;
+    font-family: 'Pretendard-Regular';
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFF;
+    background-color: #FF6F61;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    z-index: 1001;
+}
+
+.button1:hover {
+    background-color: #E55A50;
+}
+
+.AnswerTitle {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(60px, 200px);
+    display: inline-block;
+}
+
+.main2 {
+    top:225px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+.inquiryText2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1153px;
+    height: 200px;
+    transform: translate(50px, 220px);
+    background: #FFF3A7;
+    border-radius: 30px;
+    padding: 20px 15px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.inquiryTextExpanded2 {
+    width: 1153px;
+    height: 495px;
+    transform: translate(50px, -80px);
+    background: #FFF3A7;
+    border-radius: 30px;
+    padding: 20px 15px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    display: block;
+    position: relative;
+    z-index: 999;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    transition: all 0.2s ease;
+}
+
+.button2 {
+    width:70px;
+    height: 30px;
+    line-height: 30px;
+    top: 826px;
+    left: 1159px;
+    font-family: 'Pretendard-Regular';
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFF;
+    background-color: #FF6F61;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: fixed;
+    z-index: 1001;
+}
+
+
+.button2:hover {
+    background-color: #E55A50;
+}
+
+.Date, .AnswerDate {
+    position: absolute;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: #232323;
+
+
+    left:790px;
+}
+
+.Date {
+    top:140px;
+}
+
+.AnswerDate {
+    top:200px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+.inquiryTextExpanded, .inquiryTextExpanded2 {
+    z-index: 1001;
+}
+
+.inquiryTextExpanded::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+.inquiryTextExpanded::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+.inquiryTextExpanded::-webkit-scrollbar-thumb {
+    background-color: #FF6F61;
+    border-radius: 10px;
+    border: 3px solid #f0f0f0;
+}
+
+.inquiryTextExpanded::-webkit-scrollbar-thumb:hover {
+    background-color: #E55A50;
+}
+
+.inquiryTextExpanded2::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+.inquiryTextExpanded2::-webkit-scrollbar-track {
+    background-color: #E0F7FA;
+    border-radius: 10px;
+}
+
+.inquiryTextExpanded2::-webkit-scrollbar-thumb {
+    background-color: #4FC3F7;
+    border-radius: 10px;
+    border: 3px solid #E0F7FA;
+}
+
+.inquiryTextExpanded2::-webkit-scrollbar-thumb:hover {
+    background-color: #0288D1;
+}
+
+.inquiryTextExpanded, .inquiryTextExpanded2 {
+    overflow: auto;
+    padding-left: 8px;
+}
+
+.notAnswer img {
+    transform: translate(-50px, -20px);
+}
+
+.notAnswer {
+    position: absolute;
+    width: 931px;
+    height: 120px;
+    left: 60px;
+    top: 280px;
+
+    background: #FFF3A7;
+    border-radius: 30px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.notAnswer p {
+    transform: translateX(-15px);
+}
+
+.editDeleteButtons {
+    position: absolute;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: #232323;
+
+}
+
+.editButton {
+    width: 180px;
+    height: 51px;
+    left: 820px;
+    top: 50px;
+    font-weight: 700;
+    background: #FEDA00;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.delButton {
+    margin-left: 20px;
+    width: 180px;
+    height: 51px;
+    left: 1000px;
+    top: 50px;
+    font-weight: 700;
+    background: #FF8AA3;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.editButton:hover {
+    background-color: #FFCB00;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.editButton:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.delButton:hover {
+    background-color: #FF5E7A;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.delButton:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.inquiryTitleEditable {
+    position: absolute;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    transform: translate(60px, 140px);
+    display: inline-block;
+    border-radius: 15px;
+
+}
+
+.inquiryTextEditable {
+    display: -webkit-box;
+    width: 1153px;
+    height: 207px;
+    transform: translate(49px, 165px);
+    background: #FFF9D1;
+    border-radius: 30px;
+    padding: 10px 20px 15px 20px;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 47px;
+}
+
+.inquiryTextEditable::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+.inquiryTextEditable::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+.inquiryTextEditable::-webkit-scrollbar-thumb {
+    background-color: #FFEB3B;
+    border-radius: 10px;
+    border: 3px solid #f0f0f0;
+}
+
+
+.CDButtons {
+    position: absolute;
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    z-index:1004;
+    color: #232323;
+
+}
+
+.editConfirm {
+    width: 180px;
+    height: 51px;
+    left: 820px;
+    top: -179px;
+    font-weight: 700;
+    background: #FEDA00;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.delCancel {
+    margin-left: 20px;
+    width: 180px;
+    height: 51px;
+    left: 1000px;
+    top: -179px;
+    font-weight: 700;
+    background: #FF8AA3;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+/* 조회할 때 파일 */
+.fileDownloadContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    position: absolute;
+    top: 115px;
+    left:1080px;
+    z-index:1;
+}
+
+.fileDownloadLabel {
+    display: inline-block;
+    padding: 12px 16px;
+    background-color: #FFEB3B;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fileDownloadLabel:hover {
+    background-color: #FDD835;  /* 호버 시 노란색이 진해짐 */
+}
+
+
+
+/* 수정할 때 파일 */
+.fileUploadContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    position: absolute;
+    top:-110px;
+    left:1080px;
+    z-index:1;
+}
+
+.fileLabel {
+    display: inline-block;
+    padding: 12px 16px;
+    background-color: #FFEB3B;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fileLabel:hover {
+    background-color: #FDD835;
+}
+
+.searchContainer {
+    position: absolute;
+    left:1280px;
+    top:-190px;
+}
+
+.searchInput {
+    position: absolute;
+    right : 35px;
+    top : 120px;
+    width : 500px;
+    height : 50px;
+    border-radius: 15px;
+    border: 3px solid #ff7a8e;
+    cursor: text;
+    outline: none;
+    padding-left: 20px;
+    font-family: 'Pretendard-Regular';
+    font-size: 20px;
+}
+
+.searchButton {
+    position: absolute;
+    right : 55px;
+    top : 125px;
+    width : 40px;
+    height : 40px;
+    cursor: pointer;
 }

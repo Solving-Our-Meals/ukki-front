@@ -1,0 +1,338 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+#background {
+  position: absolute;
+  left: 260px;
+  top: 75px;
+  bottom: 0px;
+  width: 1622px;
+  height: 844px;
+  background-color: #FFFFFF;
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+#background .nameAndReserve {
+  position: absolute;
+  top: 367px;
+  left: 100px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#background .nameAndReserve #storeName {
+  position: static;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: "regular";
+  font-size: 50px;
+  color: #232323;
+}
+#background .nameAndReserve #goMyStore {
+  position: static;
+  width: 250px;
+  height: 50px;
+  border: none;
+  background-color: #FF8AA3;
+  border-radius: 40px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 30px;
+  color: #232323;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 15px;
+}
+#background #storeDes {
+  position: absolute;
+  width: 780px;
+  height: 30px;
+  left: 100px;
+  top: 440px;
+  font-family: "Bobaesum Jindo TTF";
+  font-style: "semi-bold";
+  font-size: 25px;
+  color: #232323;
+  line-height: 30px;
+}
+#background #mapIcon {
+  position: absolute;
+  width: 145px;
+  height: 164px;
+  left: 70px;
+  top: 480px;
+}
+#background #storeAddress {
+  position: absolute;
+  left: 220px;
+  top: 540px;
+  width: max-content;
+  height: 41px;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  color: #232323;
+}
+#background #operTime {
+  position: absolute;
+  left: 220px;
+  top: 590px;
+  width: max-content;
+  height: 41px;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  color: #232323;
+  cursor: pointer;
+}
+#background #triangle {
+  position: absolute;
+  width: 18px;
+  height: 22px;
+  margin: 10px;
+  top: -8px;
+  cursor: pointer;
+}
+#background #tatolOperTime {
+  position: absolute;
+  left: 390px;
+  top: 620px;
+  width: 190px;
+  height: 233px;
+  border: 2.5px solid #232323;
+  background-color: #FFFFFF;
+  padding: 5px;
+  font-family: "Pretendard-Regular";
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  line-height: 28px;
+  z-index: 5;
+  border-radius: 0;
+}
+#background #tatolOperTime .week {
+  position: absolute;
+  padding-left: 17px;
+}
+#background #tatolOperTime .weekOperTime {
+  position: absolute;
+  width: 146px;
+  margin-top: -28px;
+  margin-left: 33px;
+  text-align: center;
+}
+#background #tatolOperTime #breakTime {
+  position: absolute;
+  width: max-content;
+  font-size: 11px;
+  color: #615DFF;
+  margin-left: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+#background .keywordArea div {
+  position: absolute;
+  top: 740px;
+  width: 240px;
+  height: 61px;
+  background-color: #FFFFFF;
+  border: 4px solid #FF8AA3;
+  border-radius: 50px;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  color: #232323;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#background .keywordArea div:nth-of-type(1) {
+  left: 50px;
+}
+#background .keywordArea div:nth-of-type(2) {
+  left: 306.4px;
+}
+#background .keywordArea div:nth-of-type(3) {
+  left: 562.8px;
+}
+#background .keywordArea div:nth-of-type(4) {
+  left: 819.2px;
+}
+#background .keywordArea div:nth-of-type(5) {
+  left: 1075.4px;
+}
+#background .keywordArea div:nth-of-type(6) {
+  left: 1331.9px;
+}/*# sourceMappingURL=bossStoreInfoPage.module.css.map */

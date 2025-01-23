@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import styles from '../css/createReview.module.css';
-import writeArea from '../images/writeReviewArea.png';
 import addPhoto from '../images/addPhoto.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 const FileInfo = ({uploadedInfo}) => (
     <ul className={styles.previewInfo}>
@@ -15,7 +16,8 @@ const FileInfo = ({uploadedInfo}) => (
     </ul>
 );
 
-function CreateReview(){
+const CreateReview = ({reflashMethod}) => {
+    const { storeNo } = useParams();
     const year = new Date().getFullYear();
     const month = new Date().getMonth()+1
     const date = new Date().getDate()
@@ -23,9 +25,11 @@ function CreateReview(){
     
     const fileUploadRef = useRef(null); 
 
-    const [uploadedInfo, setUploadedInfo] = useState(null);
-    const previewRef = useRef(null);
-    const [imageUrl, setImageUrl] = useState(null);
+    const [fileInformation, setFileInformation] = useState(null);
+    const [uploadedFile, setUploadedFile] = useState(null);
+    const [uploadedInfo, setUploadedInfo] = useState(null);  // 업로드된 파일 정보 상태
+    const previewRef = useRef(null);  // 이미지 미리보기 참조
+    const [imageUrl, setImageUrl] = useState(null);  // 이미지 URL
 
     const [isDisplay, setIsDisplay] = useState(false);
 
@@ -39,7 +43,7 @@ function CreateReview(){
         reviewScope : "",
         storeNo : "",
         userNo : "",
-        resNo : ""
+        resNo : "9999"
     });
 
     const onChangeHandler = (e) => {
@@ -80,15 +84,18 @@ function CreateReview(){
      const setFileInfo = (file) => {
         const {type, name} = file;
         const isImage = type.includes('image');
+        const isJpgOrPng = type === 'image/jpeg' || type === 'image/png';
         const size = (file.size / (1024 * 1024)).toFixed(2) + 'mb';
         const updatedInfo = {name, size, type, file, isImage}
 
-        //console.log('updatedInfo : ' , updatedInfo);
-
-        if(!isImage){
-           setUploadedInfo(updatedInfo); // name, size, type 정보를 uploadedInfo에 저장
+        if(!isJpgOrPng){
+           alert("이미지 파일만 업로드 가능합니다.") // name, size, type 정보를 uploadedInfo에 저장
             return;
         }
+
+        setUploadedInfo(file);
+        setUploadedFile(file);
+        setImageUrl(URL.createObjectURL(file));
         // FileReader 객체의 readAsDataURL 메소드를 이용하여 인자로 전달받은 file 객체를 base64 형태의 문자열로 변환
         // 변환된 문자열은 img 태그의 src 혹은 다른 html 태그의 background-image url 값으로 사용할 수 있다.
         const reader = new FileReader();
@@ -110,32 +117,39 @@ function CreateReview(){
     const submitHandler = () => {
         const formData = new FormData();
         formData.append('params', JSON.stringify({
-            reviewDate: review.reviewDate,
-            reviewContent: review.reviewContent,
-            reviewScope : review.reviewScope,
-            storeNo: review.storeNo,
-            userNo: review.userNo,
-            resNo : review.resNo,
+            reviewDate: review.reviewDate || "",
+            reviewContent: review.reviewContent || "",
+            reviewScope: review.reviewScope || "",
+            storeNo: review.storeNo || "",
+            userNo: review.userNo || "",
+            resNo: review.resNo || "",
         }));
-        formData.append('reviewImage', review.reviewImage); // 파일 객체 추가
 
-        // 이미지가 있을 경우에만 이미지 파일 추가
+        // 이미지가 있을 때만 formData에 추가
         // if (review.reviewImage && Object.keys(review.reviewImage).length > 0) {
         //     formData.append('reviewImage', review.reviewImage);
-        //     reviewData.reviewImage = review.reviewImage.name;  // 이미지 파일명만 데이터에 포함
         // }
 
-        fetch('/store/5/review', {
+        if(uploadedFile){
+            formData.append("reviewImage", uploadedFile);
+        }
+
+        fetch(`${API_BASE_URL}/store/${storeNo}/review`, {
             method: 'POST',
             body: formData,
-
         })
         .then((res) => {
             if (res.ok) {
                 setIsDisplay(false);
                 setDoWriteReview(false);
                 setIsCompletedReview(true);
-                //console.log("Review submitted successfully");
+                setReview((prevState) => ({
+                    ...prevState,
+                    reviewContent : "",
+                    reviewScope : "",
+                }));
+                setUploadedInfo(null);
+                setImageUrl(null);
             } else {
                 console.error("Failed to submit review", res.statusText);
             }
@@ -146,7 +160,8 @@ function CreateReview(){
 
     const completeHandler = () => {
         setIsCompletedReview(false);
-        window.location.reload();
+        reflashMethod();
+        // window.location.reload();
     }
 
     const addFileBtnClickHandler = () => {
@@ -156,7 +171,14 @@ function CreateReview(){
 
     const uploadHandler = ({target}) => {
         const file = target.files[0];
+        if(!file) return; // 파일이 없으면 함수 종료
         setFileInfo(file);
+        setImageUrl(URL.createObjectURL(file));
+
+        setReview(prevReview => ({
+            ...prevReview,
+            reviewImage : file.name
+        }));
     }
 
     // 파일 드래그 앤 드롭 
@@ -190,7 +212,7 @@ function CreateReview(){
     }
 
     // 리뷰 작성하기 버튼 활성화 여부
-    const [writeReview, setWriteReview] = useState(false);
+    const [writeReview, setWriteReview] = useState(true);
 
     // DB에 유저 넘버와 가게 번호 넘기기
     // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기
@@ -214,14 +236,21 @@ function CreateReview(){
 
     useEffect(
         () => {
-            fetch('user/info')
+            fetch(`${API_BASE_URL}/user/info`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                credentials : "include"
+            })
             .then(res => res.json())
             .then(data => {
                 setUserInfo(data);
                 //console.log('유저정보', data);
                 setReview(prevReview => ({
                     ...prevReview,
-                    userNo : data.userNo.toString()
+                    userNo : data.userNo
                 }))
             })
             .then(error => console.log(error));
@@ -261,7 +290,13 @@ function CreateReview(){
 
     useEffect(() => {
         if (userInfo.userId && storeInfo.storeNo) {  
-            fetch(`/store/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
+            fetch(`${API_BASE_URL}/store/${storeNo}/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
                 .then(res => res.json())
                 .then(data => {
                     function isWithinThreeDays(resDate) {
@@ -303,7 +338,12 @@ function CreateReview(){
                                             ...prevReview,
                                             resNo : data[i].resNo.toString()
                                         }))
-                                        fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+                                        fetch(`${API_BASE_URL}/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`,{
+                                            method: 'GET',
+                                            headers: {
+                                                'Accept': 'application/json',
+                                                'Content-Type': 'application/json',
+                                            },})
                                             .then(res => res.json())
                                             .then(data => {
                                                 console.log('예약 번호 성공');
@@ -325,7 +365,12 @@ function CreateReview(){
                                         ...prevReview,
                                         resNo : data[i].resNo.toString()
                                     }))
-                                    fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
+                                    fetch(`${API_BASE_URL}/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`,{
+                                        method: 'GET',
+                                        headers: {
+                                            'Accept': 'application/json',
+                                            'Content-Type': 'application/json',
+                                        },})
                                         .then(res => res.json())
                                         .then(data => {
                                             console.log('예약 번호 성공');
@@ -545,6 +590,15 @@ function CreateReview(){
     // 버튼 활성화 여부를 확인하는 함수 추가
     const isSubmitDisabled = !review.reviewContent.trim() || !review.reviewScope;
 
+    const removeImageHandler = (e) => {
+        e.stopPropagation(); // 이벤트 전달 중단
+        setUploadedFile(null);
+        setImageUrl(null);
+        if(previewRef.current){
+            previewRef.current.src = addPhoto;
+        }
+    };
+
     return(
         <>
             <button 
@@ -622,36 +676,48 @@ function CreateReview(){
                         </label>
                     </div>
                 </div>
-                <img src={writeArea} id={styles.writeReviewArea} alt='리뷰 작성란'/>
-                <textarea 
-                    id={styles.inputReview} 
-                    name='reviewContent' 
-                    value={review.reviewContent}
-                    onChange={(e) => onChangeHandler(e)} 
-                    placeholder='리뷰를 작성하세요.'
-                />
-                <div 
-                    id={styles.addFile} 
-                    onClick={() => addFileBtnClickHandler()}
-                    className={`preview${isActive ? ' active ' : ''}`} // isActive 값에 따라 className 제어
-                    style={{backgroundColor : isActive ? '#EFEEF3' : ""}}
-                    onDragEnter={() => dragStartHandler()} // dragStart 핸들러 추가
-                    onDragLeave={() => dragEndHandler()}  // dragEnd 핸들러 추가
-                    onDrop={(e) => dropHandler(e)} // drop 핸들러 추가
-                    onDragOver={(e) => dragOverHandler(e)}
-                >
-                    <input 
-                        ref={fileUploadRef}
-                        type='file' 
-                        accept='.jpg, .png'
-                        name='reviewImage' 
-                        id={styles.reviewImage}
-                        onChange={(e) => uploadHandler(e)}
+                {/* <img src={writeArea} id={styles.writeReviewArea} alt='리뷰 작성란'/> */}
+                <div className={styles.writeReviewArea}>
+                    <textarea 
+                        id={styles.inputReview} 
+                        name='reviewContent' 
+                        value={review.reviewContent}
+                        onChange={(e) => onChangeHandler(e)} 
+                        placeholder='리뷰를 작성하세요.'
                     />
-                    {imageUrl ? ( 
-                        <img ref={previewRef} src={imageUrl} id={styles.preview} name='addphoto' alt='업로드된 이미지 미리보기'/> 
-                    ) : ( 
-                    <img ref={previewRef} src={addPhoto} id={styles.addPhoto} name='addphoto' alt='사진 추가하기 버튼'/> )} 
+                    <div 
+                        id={styles.addFile} 
+                        onClick={() => addFileBtnClickHandler()}
+                        className={`preview${isActive ? ' active ' : ''}`} // isActive 값에 따라 className 제어
+                        style={{backgroundColor : isActive ? '#EFEEF3' : ""}}
+                        onDragEnter={() => dragStartHandler()} // dragStart 핸들러 추가
+                        onDragLeave={() => dragEndHandler()}  // dragEnd 핸들러 추가
+                        onDrop={(e) => dropHandler(e)} // drop 핸들러 추가
+                        onDragOver={(e) => dragOverHandler(e)}
+                    >
+                        <input 
+                            ref={fileUploadRef}
+                            type='file' 
+                            accept='.jpg, .png'
+                            name='reviewImage' 
+                            id={styles.reviewImage}
+                            onChange={(e) => uploadHandler(e)}
+                        />
+                        {imageUrl && (
+                            <button 
+                                type="button" 
+                                className={styles.removeImageBtn} 
+                                onClick={(e) => removeImageHandler(e)}
+                            >
+                                ×
+                            </button>
+                        )}
+                        {imageUrl ? ( 
+                            <img ref={previewRef} src={imageUrl} id={styles.preview} name='addphoto' alt='업로드된 이미지 미리보기'/> 
+                        ) : ( 
+                            <img ref={previewRef} src={addPhoto} id={styles.addPhoto} name='addphoto' alt='사진 추가하기 버튼'/> 
+                        )}
+                    </div>
                 </div>
                 <button type='button' id={styles.cancle} onClick={(e) => cancleHandler(e)}>취소</button>
                 <button 

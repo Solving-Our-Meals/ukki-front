@@ -1,6 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react';
 import styles from '../css/Signup.module.css';
 import '../css/reset.css';
+import signupLogo from '../images/signupLogo.png';
+import Default from '../images/default.png';
+import On from '../images/on.png';
+import {API_BASE_URL} from "../../../../config/api.config";
 
 function Signup() {
     const [step, setStep] = useState(1);
@@ -52,9 +56,10 @@ function Signup() {
 
         console.log("Submitting userid:", formData.userId);
 
-        const response = await fetch('/auth/signupid', {
+        const response = await fetch(`${API_BASE_URL}/auth/signupid`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({userId: formData.userId})
@@ -72,9 +77,10 @@ function Signup() {
     const handlePasswordSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/signuppwd', {
+        const response = await fetch(`${API_BASE_URL}/auth/signuppwd`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({userPass: formData.userPass})
@@ -98,9 +104,10 @@ function Signup() {
         setEmailPending(true); // 이메일 대기 중 상태 설정
 
         // 이메일 중복
-        const emailCheckResponse = await fetch('/auth/checkemail', {
+        const emailCheckResponse = await fetch(`${API_BASE_URL}/auth/checkemail`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({email: formData.email}),
@@ -123,9 +130,10 @@ function Signup() {
 
         // 인증번호 전송
         setLoading(true);
-        const response = await fetch('/auth/sendemail', {
+        const response = await fetch(`${API_BASE_URL}/auth/sendemail`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({email: formData.email}),
@@ -153,9 +161,10 @@ function Signup() {
             return;
         }
 
-        const response = await fetch('/auth/verifycode', {
+        const response = await fetch(`${API_BASE_URL}/auth/verifycode`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -185,9 +194,10 @@ function Signup() {
             return;
         }
 
-        const response = await fetch('/auth/signupnickname', {
+        const response = await fetch(`${API_BASE_URL}/auth/signupnickname`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({userName: formData.userName})
@@ -210,9 +220,10 @@ function Signup() {
         }
 
         // 회원가입 완료
-        const response = fetch('/auth/signup', {
+        const response = fetch(`${API_BASE_URL}/auth/signup`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)  // 모든 회원가입 정보 전송
@@ -248,7 +259,7 @@ function Signup() {
         <div className={styles.signupBasic}>
             <div className={styles.signup}>
                 <p className={styles.signupText}>회원가입</p>
-                <img className={styles.signupLogo} src="/images/signup/signupLogo.png" alt="회원가입 로고"/>
+                <img className={styles.signupLogo} src={signupLogo} alt="회원가입 로고"/>
                 {step === 1 && (
                     <form onSubmit={handleUsernameSubmit}>
                         <fieldset className={styles.fieldId}>
@@ -293,7 +304,7 @@ function Signup() {
                                 <label htmlFor="userPass">비밀번호 입력</label>
                                 <div className={styles.passwordToggleBtn}>
                                     <img
-                                        src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                        src={showPassword ? Default : On}
                                         alt="비밀번호 보이기/숨기기"
                                         onClick={togglePasswordVisibility}
                                     />

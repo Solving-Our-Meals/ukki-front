@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../css/reset.css';
-import styles from '../css/StoreEdit.module.css';
+import styles from '../css/StoreInfoRegist.module.css';
 import { GetProfileAPI } from '../api/GetProfileAPI';
 import { GetMenuAPI } from '../api/GetMenuAPI';
 import { GetBannerAPI } from '../api/GetBannerAPI';
@@ -12,7 +12,7 @@ import { AddrToCoordinate } from '../api/AddrToCoordinate';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
 
-function StoreEdit() {
+function StoreInfoRegist() {
     const { storeNo } = useParams();
     const navigate = useNavigate();
     const [storeInfo, setStoreInfo] = useState({
@@ -41,6 +41,7 @@ function StoreEdit() {
     const [resultMessage , setResultMessage] = useState('');
     const [agreeMessage , setAgreeMessage] = useState('');
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchStoreData = async () => {
@@ -54,12 +55,14 @@ function StoreEdit() {
                     GetBannerAPI(storeNo)
                 ]);
 
+                console.log('bannerImages : '+bannerImages);
+
                 const initialStoreData = {
                     ...storeData,
-                    storeCoordinate: {
-                        latitude: storeData.latitude,
-                        longitude: storeData.longitude
-                    },
+                    // storeCoordinate: {
+                    //     latitude: storeData.latitude,
+                    //     longitude: storeData.longitude
+                    // },
                     operationTime: {
                         ...storeData.operationTime,
                         breakTime: storeData.operationTime?.breakTime ?? '없음'
@@ -76,7 +79,10 @@ function StoreEdit() {
             } catch (error) {
                 setResultMessage('데이터 로딩 중 오류가 발생했습니다.');
                 setShowResultModal(true);
+            }finally{
+                setLoading(false);
             }
+
         };
 
         fetchStoreData();
@@ -108,6 +114,7 @@ function StoreEdit() {
     }, [storeInfo.operationTime]);
 
     const handleInputChange = useCallback((e) => {
+        console.log('bannerImages : '+bannerImages);
         const { id, value } = e.target;
         const fieldName = id.replace(styles.storeName, 'storeName')
             .replace(styles.storeDes, 'storeDes')
@@ -149,11 +156,12 @@ function StoreEdit() {
 
     const handleBannerUpload = useCallback((e, index) => {
         const file = e.target.files[0];
+        console.log('file : '+file);
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setBannerImages(prev => {
-                    const newBannerImages = [...prev];
+                    const newBannerImages = Array.isArray(prev) ? [...prev] : [];
                     newBannerImages[index] = reader.result;
                     return newBannerImages;
                 });
@@ -164,7 +172,9 @@ function StoreEdit() {
 
     const handleDeleteBanner = useCallback((index) => {
         setBannerImages(prev => {
-            const newBannerImages = [...prev];
+            console.log('prev : '+prev);
+            const newBannerImages = Array.isArray(prev) ? [...prev] : [];
+            console.log('newBannerImages : '+newBannerImages);
             for (let i = index; i < newBannerImages.length - 1; i++) {
                 newBannerImages[i] = newBannerImages[i + 1];
             }
@@ -205,10 +215,8 @@ function StoreEdit() {
                 const [latitude, longitude] = coordinates;
                 setStoreInfo(prev => ({
                     ...prev,
-                    storeCoordinate: {
-                        latitude,
-                        longitude
-                    }
+                    latitude,
+                    longitude
                 }));
                 setIsAddressChanged(false); // 변환 완료 후 버튼 비활성화
                 setCoordError('');
@@ -234,8 +242,8 @@ function StoreEdit() {
         });
 
         // 좌표 비교
-        if (storeInfo.storeCoordinate.latitude !== initialData.storeCoordinate.latitude ||
-            storeInfo.storeCoordinate.longitude !== initialData.storeCoordinate.longitude) {
+        if (storeInfo.latitude !== initialData.latitude ||
+            storeInfo.longitude !== initialData.longitude) {
             changes.storeCoordinate = storeInfo.storeCoordinate;
         }
 
@@ -303,7 +311,7 @@ function StoreEdit() {
     };
 
     // 수정 확인 함수 추가
-    const editConfirm = async () => {
+    const registConfirm = async () => {
         try {
             const changedData = getChangedData();
             const imageData = getChangedImages();
@@ -352,16 +360,24 @@ function StoreEdit() {
                 body: formData
             });
 
-            if (!response.ok) throw new Error('수정 요청이 실패했습니다.');
+            if(!response.ok){
+                const error = await response.json();
+                console.log('error : '+error);
+                throw new Error(error.message);
+            }
 
             setResultMessage('성공적으로 수정되었습니다.');
             setShowResultModal(true);
         } catch (error) {
             setResultMessage('수정 중 오류가 발생했습니다.');
+            console.log('error : '+error);
             setShowResultModal(true);
         }
     };
 
+    if(loading){
+        return <div>로딩중...</div>;
+    }
     return(
         <div className={styles.storeEdit}>
             <div id={styles.storeEditText}>가게 수정</div>
@@ -456,8 +472,8 @@ function StoreEdit() {
                 </div>
             )}
             <div className={styles.storeCoordinate}>
-                <p>위도 : {storeInfo.storeCoordinate.latitude}</p>
-                <p>경도 : {storeInfo.storeCoordinate.longitude}</p>
+                <p>위도 : {storeInfo.latitude}</p>
+                <p>경도 : {storeInfo.longitude}</p>
             </div>
             <p id={styles.operTime} onClick={onClickHandler}>
                 영업 시간 설정
@@ -579,9 +595,13 @@ function StoreEdit() {
                         message={agreeMessage}
                         onConfirm={() => {
                             setShowAgreementModal(false);
-                            editConfirm();
+                            registConfirm();
+                            setAgreeMessage('');
                         }}
-                        onCancel={() => setShowAgreementModal(false)}
+                        onCancel={() => {
+                            setShowAgreementModal(false);
+                             setAgreeMessage('');
+                            }}
                     />
                 )}
                 {showResultModal && (
@@ -594,7 +614,7 @@ function StoreEdit() {
                             }else if(resultMessage === '데이터 로딩 중 오류가 발생했습니다.'){
                                 navigate(`/admin/stores/list`);
                             }
-                            
+                            setResultMessage('');
                         }}
                     />
                 )}
@@ -603,4 +623,4 @@ function StoreEdit() {
     );
 }
 
-export default StoreEdit; 
+export default StoreInfoRegist; 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from '../css/reservationInfo.module.css';
 import KakaoMap from '../components/KakaoMap';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function ReservationInfo(){
 
@@ -12,13 +13,20 @@ function ReservationInfo(){
 
     useEffect(
         () => {
-            fetch('user/info')
+            fetch(`${API_BASE_URL}/user/info`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }, 
+                credentials : "include",
+            })
             .then(res => res.json())
             .then(data => {
                 setUserInfo(data);
                 console.log('유저정보', data);
             })
-            .then(error => console.log(error));
+            .catch(error => console.log(error));
         }, []
     )
 

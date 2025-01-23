@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Map.css';
 import loMarker from '../image/marker.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 const { kakao } = window;
 
@@ -17,7 +18,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
     useEffect(() => {
         if (selectedCategory) {
-            fetch(`/main/category?category=${selectedCategory}`)
+            fetch(`${API_BASE_URL}/main/category?category=${selectedCategory}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setStores(data);
@@ -42,7 +43,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             const mapContainer = document.getElementById('map');
             const mapOption = {
                 center: new kakao.maps.LatLng(37.562997, 127.189575),
-                level: 5
+                level: 3
             };
 
             const kakaoMap = new kakao.maps.Map(mapContainer, mapOption);
@@ -86,7 +87,14 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             }
         }
     }, [map, defaultValue, setAddress]);
-
+    useEffect(() => {
+        // 카테고리가 변경될 때 경로 초기화
+        if (window.currentPolyline) {
+            window.currentPolyline.setMap(null);  // 이전 경로 지우기
+            window.currentPolyline = null;  // 글로벌 변수 초기화
+        }
+    }, [selectedCategory]);  // 카테고리 변경 시 실행
+    
     useEffect(() => {
         if (map && stores.length > 0) {
             const newMarkers = stores.map(store => {
@@ -148,32 +156,31 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
         }
     }, [map, stores, currentPosition]);
 
-    
     const requestDirections = async (store) => {
         try {
             if (!currentPosition) return;
-    
+        
             const url = `https://apis-navi.kakaomobility.com/v1/waypoints/directions`;
-    
+        
             const headers = {
                 'Authorization': `KakaoAK ${process.env.REACT_APP_KAKAOMAP_REST_API_KEY}`,
                 'Content-Type': 'application/json',
             };
-    
+        
             const body = JSON.stringify({
                 origin: currentPosition,
                 destination: { x: store.longitude, y: store.latitude },
                 waypoints: []
             });
-    
+        
             const response = await fetch(url, { method: 'POST', headers, body });
-    
+        
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
+        
             const data = await response.json();
-    
+        
             // 경로 데이터 처리
             if (data.routes && data.routes.length > 0 && data.routes[0].sections && data.routes[0].sections.length > 0) {
                 const roads = data.routes[0].sections[0].roads;
@@ -188,14 +195,9 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                         }
                         return null;
                     }).filter(Boolean));
-    
+            
                     if (routePath && routePath.length > 0) {
-                        // 기존 경로 삭제
-                        polylines.forEach(poly => {
-                            poly.setMap(null);  // 기존 경로 삭제
-                        });
-    
-                        // 새 경로 표시
+                        // 경로를 삭제하고 새 경로 표시
                         displayRoute(routePath);
                     } else {
                         console.error('Invalid directions data: No valid route path found in roads', data);
@@ -216,12 +218,13 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             console.error('Invalid directions data: No route path found');
             return;
         }
+        
+        // 기존 경로 삭제 (새 경로 표시 전에)
+        if (window.currentPolyline) {
+            window.currentPolyline.setMap(null);
+        }
     
-        // 기존 경로들 삭제
-        polylines.forEach(poly => {
-            poly.setMap(null);  // 기존 경로 삭제
-        });
-    
+        // 새로운 경로 표시
         const polyline = new kakao.maps.Polyline({
             path: routePath.map(point => new kakao.maps.LatLng(point[1], point[0])),
             strokeWeight: 5,
@@ -229,16 +232,16 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             strokeOpacity: 1,
             strokeStyle: 'solid'
         });
-    
+        
         polyline.setMap(map);
-    
+        
+        // 경로를 전역 변수로 설정 (다음 경로 표시 시 삭제할 수 있도록)
+        window.currentPolyline = polyline;
+        
         // 경로의 범위에 맞춰 지도 bounds 설정
         const bounds = new kakao.maps.LatLngBounds();
         routePath.forEach(point => bounds.extend(new kakao.maps.LatLng(point[1], point[0])));
         map.setBounds(bounds);
-    
-        // 새로운 경로 배열로 업데이트
-        setPolylines([polyline]);  // 이 부분을 통해 새로운 경로 상태 업데이트
     };
     
     

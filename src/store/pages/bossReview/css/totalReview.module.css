@@ -1,0 +1,327 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+#totalArea {
+  position: relative;
+  left: 260px;
+  top: 75px;
+  width: 1622px;
+  height: 400px;
+}
+#totalArea #recentReview {
+  position: absolute;
+  width: 1600px;
+  height: 50px;
+  background-color: #FFF9D1;
+  border: none;
+  border-radius: 15px;
+  left: 10px;
+  top: 10px;
+  display: flex;
+  flex-direction: left;
+}
+#totalArea #recentReview #strRecentReview {
+  position: relative;
+  font-family: "Bobaesum Jindo TTF";
+  width: 200px;
+  font-size: 20px;
+  margin-left: 30px;
+  margin-top: 17px;
+  margin-right: -100px;
+  color: #232323;
+  font-weight: 600;
+}
+#totalArea #recentReview #reviewScope {
+  position: relative;
+  margin-left: -3px;
+  font-size: 20px;
+  display: inline-block;
+  margin-top: 15px;
+}
+#totalArea #recentReview #recentReviewContent {
+  position: relative;
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  width: 1280px;
+  height: 18px;
+  margin-left: 20px;
+  margin-right: 30px;
+  margin-top: 17.5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 벤더 프리픽스 */
+  line-clamp: 1; /* 표준 속성 추가 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  cursor: pointer;
+}
+#totalArea #reviewCount {
+  position: relative;
+  left: 30px;
+  top: 100px;
+  font-family: "Pretendard-Regular";
+  font-size: 23px;
+  font-weight: 600;
+}
+#totalArea #prevBtn, #totalArea #nextBtn {
+  position: absolute;
+  top: 220px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  z-index: 5;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: "Bobaesum Jindo TTF";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  cursor: pointer;
+}
+#totalArea #prevBtn {
+  left: -20px;
+}
+#totalArea #nextBtn {
+  right: -20px;
+}
+#totalArea #reviewContainer {
+  position: relative;
+  left: 10px;
+  top: 110px;
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  transition: transform 0.5s ease-in-out;
+}
+#totalArea #reviewContainer .review {
+  width: 390px;
+  height: 250px;
+  border: none;
+  background-color: #FFF9D1;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+}
+#totalArea #reviewContainer .review span {
+  font-size: 20px;
+  color: #232323;
+  font-family: "Pretendard-Regular";
+  font-weight: 400;
+}
+#totalArea #reviewContainer .review #userName {
+  position: absolute;
+  font-family: "Bobaesum Jindo TTF";
+  left: 20px;
+  top: 20px;
+  margin-right: 20px;
+  font-size: 23px;
+}
+#totalArea #reviewContainer .review #stars {
+  position: absolute;
+  left: 20px;
+  top: 50px;
+}
+#totalArea #reviewContainer .review #stars #reviewScope {
+  margin-left: -3px;
+}
+#totalArea #reviewContainer .review #reviewContent {
+  position: absolute;
+  left: 20px;
+  top: 80px;
+  margin-right: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* 벤더 프리픽스 */
+  line-clamp: 5; /* 표준 속성 추가 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 160%;
+}
+
+#strNoSelectedReview {
+  position: relative;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 40px;
+  color: #999999;
+  left: 281px;
+  top: 74px;
+  width: 1622px;
+  height: 444px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=totalReview.module.css.map */

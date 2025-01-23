@@ -1,0 +1,193 @@
+@import "../../../../common/reset/reset.scss";
+
+#background{
+    position : absolute;
+    left : 260px;
+    top : 75px;
+    bottom : 0px;
+    width : 1622px;
+    height : 844px;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    // border: 1px solid red;
+
+    .nameAndReserve {
+        position: absolute;
+        top: 367px;
+        left: 100px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        #storeName {
+            position: static;
+            font-family: 'Bobaesum Jindo TTF';
+            font-style: 'regular';
+            font-size: 50px;
+            color: $textStrong;
+        }
+
+        #goMyStore {
+            position: static;
+            width: 250px;
+            height: 50px;
+            border: none;
+            background-color: $primary;
+            border-radius: 40px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 30px;
+            color: $textStrong;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+    }
+
+    #storeDes{
+        position : absolute;
+        width: 780px;
+        height: 30px;
+        left : 100px;
+        top : 440px;
+        font-family: 'Bobaesum Jindo TTF';
+        font-style: 'semi-bold';
+        font-size : 25px;
+        color: $textStrong;
+        line-height: 30px;
+        // border: 1px solid red;
+    }
+
+    #mapIcon{
+        position : absolute;
+        width : 145px;
+        height : 164px;
+        left : 70px;
+        top : 480px;
+    }
+
+    #storeAddress {
+        position : absolute;
+        left : 220px;
+        top : 540px;
+        width : max-content;
+        height: 41px;
+        font-family : 'Pretendard-Regular';
+        font-size : 25px;
+        color: $textStrong;
+    }
+
+    #operTime{
+        position : absolute;
+        left : 220px;
+        top : 590px;
+        width : max-content;
+        height: 41px;
+        font-family : 'Pretendard-Regular';
+        font-size : 25px;
+        color: $textStrong;
+        cursor: pointer;
+    }
+
+    #triangle{
+        position : absolute;
+        width : 18px;
+        height : 22px;
+        margin: 10px;
+        top : -8px;
+        // left : 573px;
+        // top : 826px;
+        cursor: pointer;
+    }
+
+    #tatolOperTime{
+        position : absolute;
+        left : 390px;
+        top : 620px;
+        width : 190px;
+        height : 233px;
+        border: 2.5px solid $textStrong;
+        background-color: #FFFFFF;
+        padding : 5px;
+        font-family: 'Pretendard-Regular';
+        font-size: 16px;
+        font-weight: 500;
+        color: $textStrong;
+        line-height: 28px;
+        z-index : 5;
+        border-radius: 0;
+
+        .week{
+            position : absolute;
+            padding-left : 17px;
+            
+        }
+
+        .weekOperTime{
+            position : absolute;
+            width : 146px;
+            margin-top: -28px;
+            margin-left: 33px;
+            text-align: center;
+        }
+
+        #breakTime {
+            position : absolute;
+            width : max-content;
+            font-size: 11px;
+            color : $pending;
+            margin-left : 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+    }
+
+    .keywordArea{
+        div{
+            position : absolute;
+            top : 740px;
+            width : 240px;
+            height : 61px;
+            // background-color: $primary;
+            background-color: #FFFFFF;
+            border: 4px solid $primary;
+            border-radius: 50px;
+            font-family: 'Pretendard-Regular';
+            font-size : 25px;
+            color: $textStrong;
+            display : flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        div:nth-of-type(1){
+            left : 50px;
+        }
+    
+        div:nth-of-type(2){
+            left : 306.4px;
+        }
+    
+        div:nth-of-type(3){
+            left : 562.8px;
+        }
+    
+        div:nth-of-type(4){
+            left : 819.2px;
+        }
+        
+        div:nth-of-type(5){
+            left : 1075.4px;
+        }
+    
+        div:nth-of-type(6){
+            left : 1331.9px;
+        }
+    }
+}
+

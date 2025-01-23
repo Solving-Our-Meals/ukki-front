@@ -1,0 +1,43 @@
+/* Sidebar.css */
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/* BossPage.css */
+.boss-page {
+    display: flex;
+    margin-left: 220px;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.store-info {
+    margin-bottom: 20px;
+}
+
+.reservation-status, .reservation-slots, .weekly-reservation, .today-reservation {
+    margin-bottom: 20px;
+}
+
+.slots-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

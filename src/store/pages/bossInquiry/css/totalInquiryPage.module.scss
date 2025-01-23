@@ -1,0 +1,338 @@
+@import '../../../../common/reset/reset.scss';
+
+#background{
+    position : absolute;
+    left : 260px;
+    top : 75px;
+    bottom : 0px;
+    width : 1622px;
+    height : 844px;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    // border: 1px solid red;
+
+    #recentInquiry{
+        position: absolute;
+        width: 1600px;
+        height : 50px;
+        background-color: #FFF9D1;
+        border: none;
+        border-radius: 15px;
+        left : 10px;
+        top : 10px;
+        display: flex;
+        flex-direction: left;
+        cursor: pointer;
+
+        span{
+            color: $textStrong;
+            font-weight: 600;
+        }
+
+        span:nth-of-type(1){
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 20px;
+            margin-left: 30px;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        span:nth-of-type(2){
+            font-family: 'Pretendard-Regular';
+            font-size: 18px;
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        span:nth-of-type(3){
+            font-family: 'Pretendard-Regular';
+            font-size: 18px;
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        span:nth-of-type(4){
+            font-family: 'Pretendard-Regular';
+            font-size: 18px;
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        .marquee {
+            width: 1100px; /* 부모 요소의 너비에 맞추어 설정 */
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            
+            .marqueeText {
+                display: inline-block;
+                padding-left: 100%; /* 텍스트가 오른쪽에서 나타나게 설정 */
+                overflow: visible;
+                animation: marquee 200s linear infinite;
+                font-family: 'Pretendard-Regular';
+                font-size: 18px;
+            }
+        }
+          
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+          
+    }
+
+    #strInquiry{
+        position: absolute;
+        width: max-content;
+        height: max-content;
+        left : 25px;
+        top : 120px;
+        font-family: 'Bobaesum Jindo TTF';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 55px;
+        color: $textStrong;
+    }
+
+    #inputSearch{
+        position: absolute;
+        right : 35px;
+        top : 120px;
+        width : 500px;
+        height : 50px;
+        border-radius: 15px;
+        border: 3px solid $primary;
+        cursor: text;
+        outline: none;
+        padding-left: 20px;
+        font-family: 'Pretendard-Regular';
+        font-size: 20px;
+        color: $textStrong;
+    }
+
+    #searchBtn{
+        position: absolute;
+        right : 55px;
+        top : 125px;
+        width : 40px;
+        height : 40px;
+        cursor: pointer;
+    }
+
+    .inquiryListArea{
+        position: relative;
+        width : 1600px;
+        height : 620px;
+        left : 0px;
+        top : 80px;
+
+        .strArea{
+            position: relative;
+            width: 1550px;
+            height: 30px;
+            top : 20px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid $primary;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0;
+    
+            #strState, #strCategory, #strTitle, #strDate {
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 25px;
+                line-height: 130%;
+                color: $textStrong;
+            }
+    
+            #strState{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                left : 60px;
+            }
+
+            #strCategory{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                left : 300px;
+            }
+    
+            #strTitle{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                left : 550px;
+            }
+    
+            #strDate{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                right : 170px;
+            }
+        }
+
+        .inquiryContainer {
+            position: absolute;
+            // border: 1px solid green;
+            width: 1550px;
+            height: 580px;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            .inquiry {
+                // border: 1px solid green;
+                position: relative;
+                width: 1530px;
+                height: 75px;
+                left : 10px;
+                border-bottom: 2px solid #D9D9D9;
+                border-radius: 0;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+                display: flex;
+                flex-direction: right;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                #inquiryState {
+                    position: relative;
+                    left : -200px;
+                    width : 130px;
+                    height : 38px;
+                    border-radius: 23px;
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 25px;
+                    color: $textStrong; 
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                }
+
+                #categoryName {
+                    position: relative;
+                    left : -90px;
+                    width : 97px;
+                    height : 38px;
+                    border-radius: 23px;
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 25px;
+                    color: $textStrong; 
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                }
+
+                #inquiryTitle {
+                    position: relative;
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 650px;
+                    height : max-content;
+                    left : 62px;
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 23px;
+                    line-height: 30px;
+                    color: $textStrong;
+                    text-align: left;
+                }
+
+                #inquiryDate {
+                    position: relative;
+                    width : 150px;
+                    left : 200px;
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 23px;
+                    line-height: 30px;
+                    color: $textStrong;
+                    text-align: left;
+                }
+            }
+
+            .noResultsMessage{
+                position: absolute;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                width: 1550px;
+                height: 80px;
+                left : 1px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $textCaption;
+            }
+        }
+
+        hr{
+            position: relative;
+            // left : 23px;
+            top : 535.5px;
+            width: 1545px;
+            // border: 2.9px solid #BDBEBF;
+            border: 2.9px solid $primary;
+            bottom : 90px
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 0;
+
+            .paginationButton {
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 28px;
+                cursor: pointer;
+                color: $textStrong;
+                opacity: 50%;
+
+                &.active {
+                    color: $textStrong;
+                    opacity: 100%;
+                    font-weight: bold;
+                }
+            }
+
+            .arrow {
+                color: $primary;
+                opacity: 100%;
+
+                &.disabled {
+                    visibility: hidden;
+                    cursor: default;
+                }
+            }
+        }
+    }
+}

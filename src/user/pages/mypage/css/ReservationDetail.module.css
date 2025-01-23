@@ -1,0 +1,344 @@
+.mypageReservation {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+.allTabs {
+    position: absolute;
+    top:50px;
+    left:50px;
+    display: inline-block;
+}
+
+.tab2, .tab3, .tab4 {
+    display: inline-block;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 10px;
+    cursor: pointer;
+    color : #BDBEBF;
+}
+
+.tab2:hover, .tab3:hover, .tab4:hover {
+    color : #232323;
+}
+
+.line1, .line2 {
+    display: inline-block;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 7px;
+    color : #BDBEBF;
+}
+
+.tab1 {
+    display: inline-block;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+
+    /* text/strong */
+    color: #232323;
+    cursor: pointer;
+}
+
+.reviewContainer {
+    position: absolute;
+    width: 1170px;
+    height: 400px;
+    left: 55px;
+    top: 225px;
+    border: 3px solid#FF8AA3;
+}
+
+.Title {
+    position: absolute;
+    left:20px;
+    top: -50px;
+    font-family: 'BobaesumJindoTTF';
+    font-weight: 300;
+    font-size: 40px;
+    color: #1E1E1E;
+}
+
+
+.storeName {
+    font-family: 'Pretendard-Regular';
+    font-size: 30px;
+    font-weight: 400;
+    color: #1E1E1E;
+}
+.reviewMain {
+    position: absolute;
+    left:170px;
+    top:45px;
+}
+
+.reservationUserNameTitle {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.storeNameTitle {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: inline-block;
+}
+
+.reservationTime {
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: block;
+}
+
+.storeName {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    display: inline-block;
+}
+
+.reservationUserName {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 33px;
+    user-select: text;
+    display: inline-block;
+}
+
+.reviewDate {
+    font-family: 'Pretendard-Regular';
+    font-size: 20px;
+    margin-bottom: 15px;
+    position: absolute;
+    left:170px;
+    top:90px;
+}
+
+
+.reviewText {
+    font-family: 'Pretendard-Regular';
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+
+.starRating {
+    font-size: 30px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+
+.profileContainer {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.profileContainer {
+    position: relative;
+    width: 114px;
+    height: 114px;
+    overflow: hidden;
+    border-radius: 50%;
+    left:25px;
+    top: 25px;
+}
+
+.userProfile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.loadingContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.loadingContainer img {
+    max-width: 100%;
+    height: auto;
+}
+
+.reviewImageContainer {
+    width: 360px;
+    height: 360px;
+    position: absolute;
+    left:770px;
+    top:35px;
+}
+
+.storeDetailBtn {
+    margin-left: 10px;
+
+    width: 169px;
+    height: 41px;
+
+    background-color: transparent;
+    border: 1px solid #FF6B87;
+    border-radius: 50px;
+    line-height: 41px;
+
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    display: inline-block;
+
+    color: #232323;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.calendarMain {
+    position: absolute;
+    top: 260px;
+    left:650px;
+}
+
+
+.calendarContainer {
+    position: relative;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #FFF9D3;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.calendarHeader {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #232323;
+}
+
+.calendarWeekDays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.calendarWeekDays div {
+    padding: 8px;
+}
+
+.calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    text-align: center;
+}
+
+.calendarDay {
+    padding: 12px;
+    background-color: #FFF9D3;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+.today {
+    background-color: #FF8AA3;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #FF8AA3;
+    transform: scale(1.1);
+}
+
+.emptyDay {
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.calendarDay:hover {
+    background-color: #FFDBE4;
+    transform: scale(1.05);
+}
+
+#qrInfo{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #E3E3E3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.qrImage {
+    width:300px;
+    height:300px;
+    position: relative;
+    left:930px;
+    top:260px;
+}
+
+.qrInfoText{
+    position: relative;
+    left:1011px;
+    top:300px;
+    width: 250px;
+    height: 30px;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    user-select: text;
+    z-index: 1;
+}

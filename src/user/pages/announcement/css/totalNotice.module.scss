@@ -1,0 +1,295 @@
+@import "../../../../common/reset/reset.scss";
+
+#background{
+    position : absolute;
+    left : 0px;
+    right : 0px;
+    top : 0px;
+    bottom : 0px;
+    width : 100%;
+    height : 100%;
+    background-color: $secondary2;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+
+    #noticeArea{
+        position: absolute;
+        margin-top: 75px;
+        width : 1805px;
+        height : 783px;
+        background-color: #FFFFFF;
+        border: none;
+        border-radius: 50px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .dots{
+            box-sizing: border-box;
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            background: #B3E7FF;
+            border: 3px solid #BDBEBF;
+        }
+
+        #dot1{
+            left: 50px;
+            top: 50px;
+        }
+
+        #dot2{
+            right: 50px;
+            top: 50px;
+        }
+
+        #dot3{
+            left: 50px;
+            bottom: 50px;
+        }
+
+        #dot4{
+            right: 50px;
+            bottom: 50px;
+        }
+
+        #strNotice{
+            position: absolute;
+            width: max-content;
+            height: max-content;
+            left : 120px;
+            top : 40px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 50px;
+            line-height: 55px;
+            color: #FF8AA3;
+        }
+
+        #imgPin{
+            position: absolute;
+            width: 40px;
+            height: 40x;
+            margin-top : -8px;
+            left: 310px;
+            top: 50px;
+        }
+
+        #inputSearch{
+            position: absolute;
+            right : 120px;
+            top : 40px;
+            width : 500px;
+            height : 64px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            cursor: text;
+            outline: none;
+            padding-left: 50px;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            color: $textStrong;
+        }
+
+        #searchBtn{
+            position: absolute;
+            right : 150px;
+            top : 50px;
+            width : 40px;
+            height : 40px;
+            cursor: pointer;
+        }
+
+        .strArea{
+            position: absolute;
+            width: 1600px;
+            height: 80px;
+            top : 120px;
+            border-bottom: 4px solid #BDBEBF;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0;
+
+            #strCategory, #strTitle, #strDate {
+                position: relative;
+            }
+
+            #strCategory{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                left : 60px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 40px;
+                line-height: 130%;
+                color: $textStrong;
+            }
+    
+            #strTitle{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                left : 490px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 40px;
+                line-height: 130%;
+                color: $textStrong;
+            }
+    
+            #strDate{
+                position: absolute;
+                width: max-content;
+                height: max-content;
+                right : 170px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 40px;
+                line-height: 130%;
+                color: $textStrong;
+            }
+        }
+
+        .noticeContainer {
+            position: absolute;
+            width: 1620px;
+            height: 430px;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+
+            .notice {
+                position: relative;
+                width: 1550px;
+                height: 80px;
+                left : 33px;
+                border-bottom: 2px solid #D9D9D9;
+                border-radius: 0;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+                display: flex;
+                flex-direction: right;
+                justify-content: center;
+                align-items: center;
+
+                #categoryName {
+                    position: relative;
+                    left : -270px;
+                    width : 97px;
+                    height : 38px;
+                    border-radius: 25px;
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 25px;
+                    color: $textStrong; 
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                #noticeTitle {
+                    position: relative;
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 650px;
+                    height : max-content;
+                    left : 40px;
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 25px;
+                    line-height: 30px;
+                    color: $textStrong;
+                    text-align: left;
+                }
+
+                #noticeDate {
+                    position: relative;
+                    width : 150px;
+                    left : 260px;
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 25px;
+                    line-height: 30px;
+                    color: $textStrong;
+                    text-align: left;
+                }
+            }
+
+            .noResultsMessage{
+                position: absolute;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                width: 1550px;
+                height: 80px;
+                left : 33px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        hr{
+            position: absolute;
+            width: 1600px;
+            border: 2.9px solid #BDBEBF;
+            bottom : 90px
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 0;
+
+            .paginationButton {
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 25px;
+                line-height: 28px;
+                cursor: pointer;
+                color: $textStrong;
+                opacity: 50%;
+
+                &.active {
+                    color: $textStrong;
+                    opacity: 100%;
+                    font-weight: bold;
+                }
+            }
+
+            .arrow {
+                color: $primary;
+                opacity: 100%;
+
+                &.disabled {
+                    visibility: hidden;
+                    cursor: default;
+                }
+            }
+        }
+    }
+}

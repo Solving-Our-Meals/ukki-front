@@ -1,3 +1,4 @@
+
 @import "../../../../common/reset/reset.scss";
 
 .reviewStyle{
@@ -18,7 +19,7 @@
         left : 112px;
         top : 2051px;
         width: max-content;
-        font-family: 'Pretendard Variable';
+        font-family: 'Pretendard-Regular';
         font-size: 30px;
         color: $textStrong;
     }
@@ -26,37 +27,38 @@
     #reviewSort {
         outline: none;
         position: absolute;
-        left: 230px;
+        left: 220px;
         top: 1984px;
         width: 170px;
         height: 50px;
         background-color: #FFFFFF;
         border-radius: 5px;
-        border: 5px solid $primary;
-        font-family: 'Pretendard Variable';
-        font-size: 30px;
+        border: 4px solid $primary;
+        font-family: 'Pretendard-Regular';
+        font-size: 25px;
         font-weight: 600;
         color: $textStrong;
         cursor: pointer;
-        padding: 0 20px;
+        padding: 0 7px;
     }
 
     option{
         width: 170px;
         height: 50px;
         background-color: #FFFFFF;
-        font-family: 'Pretendard Variable';
-        font-size: 30px;
+        font-family: 'Pretendard-Regular';
+        font-size: 23px;
         color: $textStrong;
         cursor: pointer;
-        padding: 0 20px;
+        padding: 0 7px;
     }
     
 
     .reviewArea{
         cursor: default;
         position: absolute;
-        left: 163px;
+        // left: 163px;
+        left: 198px;
         top : 2135px;
         display: flex;
         flex-direction: column;
@@ -73,6 +75,10 @@
                 position: relative;
                 display: flex;
                 flex-direction: column;
+                width: 1485px;
+                height : 450px;
+                border: 4px solid $primary;
+
 
                 .userInfoContainer {
                     display: flex;
@@ -81,15 +87,6 @@
 
                     .userName {
                         display: inline-block;
-                    }
-
-                    .starRating {
-                        display: inline-flex;
-                        margin-left: 20px;
-                        
-                        img {
-                            height: 20px;
-                        }
                     }
                 }
 
@@ -110,19 +107,11 @@
                 position: relative;
                 display: inline-block;
                 margin-top: 30px;
-                margin-left: -35px;
-
-                #reviewImg{
-                    display: block;
-                    top : 10px;
-                    width: 1532px;
-                    height : 475.5px;
-                    z-index: 1;
-                }
+                // margin-left: -35px;
 
                 #userProfile{
-                    position: absolute;
-                    left : 97px;
+                    position: relative;
+                    margin-left : 50px;
                     top : 50px;
                     width : 114px;
                     height : 108px;
@@ -138,7 +127,7 @@
                 }
     
                 div:nth-of-type(1){
-                    left: 230px;
+                    left: 190px;
                     top : 63px;
                     width: max-content;
                     font-family: 'Bobaesum Jindo TTF';
@@ -149,15 +138,21 @@
                     z-index: 5;
 
                     span{
-                        margin-right: 15px;
+                        margin-right: 8px;
+                    }
+
+                    .star {
+                        font-size: 25px;
+                        margin-right: -5px;
+                        display: inline-block;
                     }
                 }
     
                 div:nth-of-type(2){
-                   left : 230px;
+                   left : 190px;
                    top : 107px;
                    width: max-content;
-                   font-family: 'Pretendard Variable';
+                   font-family: 'Pretendard-Regular';
                    font-size: 20px;
                    font-weight: 400;
                    font-style: normal;
@@ -166,14 +161,13 @@
                 }
 
                 div:nth-of-type(3){
-                    left : 107px;
-                    top : 173px;
-                    width: 802px;
-                    height: 217px;
+                    left : 50px;
+                    top : 180px;
+                    width: 850px;
+                    height: 223px;
                     background-color: #FFF9D3;
-                    padding-left: 15px;
-                    padding-top: 10px;
-                    font-family: 'Pretendard Variable';
+                    padding : 20px 15px;
+                    font-family: 'Pretendard-Regular';
                     font-size: 20px;
                     font-weight: 500;
                     font-style: normal; 
@@ -181,101 +175,40 @@
                     line-height: 160%;
                     border-radius: 0;
                     z-index: 5;
+                    overflow-y :auto;
+                    overflow-x : hidden;
                 }
-    
-                #reviewPhoto{
+
+                #deleteReview {
                     position: absolute;
-                    left : 1022px;
-                    top : 37px;
-                    width: 468px;
-                    height: 367px;
-                    border-radius: 0;
-                    z-index: 5;
-                }
-            }
-
-            .transformReview{
-                position: relative;
-                display: inline-block;
-                margin-top: 30px;
-                margin-left: 70px;
-
-                #reviewImg{
-                    display: block;
-                    top : 10px;
-                    width: 1532px;
-                    height : 475.5px;
+                    top: 50px;
+                    left : 800px;
+                    width: 120px;
+                    height: 50px;
+                    border-radius: 20px;
+                    background-color: #FFBDC9;
+                    color: $textStrong;
+                    border: none;
+                    font-size: 25px;
+                    font-weight: 600;
+                    font-family: 'Pretendard-Regular';
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     z-index: 1;
-                }
-
-                #userProfile{
-                    position: absolute;
-                    left : 613px;
-                    top : 53px;
-                    width : 114px;
-                    height : 108px;
-                    z-index: 5;
-                    border-radius: 0;
-                }
-        
-                div{
-                    position: absolute;
-                    width : max-content;
-                    cursor: default;
-                    z-index: 2;
-                }
-    
-                div:nth-of-type(1){
-                    left: 744px;
-                    top : 70px;
-                    width: max-content;
-                    font-family: 'Bobaesum Jindo TTF';
-                    font-size: 30px;
-                    font-weight: 500;
-                    font-style: normal;
-                    color: $textStrong;
-                    z-index: 5;
                     
-                    span{
-                        margin-right: 15px;
+                    &:hover {
+                        background-color: #FF8AA3;
+                        transform: scale(1.05);
+                        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
                     }
-
-                }
-    
-                div:nth-of-type(2){
-                   left : 744px;
-                   top : 111px;
-                   width: max-content;
-                   font-family: 'Pretendard Variable';
-                   font-size: 20px;
-                   font-weight: 400;
-                   font-style: normal;
-                   color: $textStrong;
-                   z-index: 5;
-                }
-    
-                div:nth-of-type(3){
-                    left : 624px;
-                    top : 176px;
-                    width: 802px;
-                    height: 217px;
-                    background-color: #FFF9D3;
-                    padding-left: 15px;
-                    padding-top: 10px;
-                    font-family: 'Pretendard Variable';
-                    font-size: 20px;
-                    font-weight: 500;
-                    font-style: normal; 
-                    color: $textStrong;
-                    line-height: 160%;
-                    border-radius: 0;
-                    z-index: 5;
                 }
     
                 #reviewPhoto{
                     position: absolute;
-                    left : 43px;
-                    top : 38px;
+                    left : 960px;
+                    top : 37px;
                     width: 468px;
                     height: 367px;
                     border-radius: 0;
@@ -286,9 +219,122 @@
 
         #moreReview{
             margin-top: 50px;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 40px;
             font-weight: 700;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    }
+
+    .modalOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    #finalCheck {
+        width: 879px;
+        height: 316px;
+        border: 5px solid $primary;
+        border-radius: 50px;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+    
+        #reallyDeleteReview {
+            width: max-content;
+            margin-top: 5px;
+            height: 44px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 40px;
+            font-weight: 500;
+            color: $textStrong;
+        }
+    
+        #notice {
+            width: max-content;
+            margin-top: 40px;
+            height: 36px;
+            font-family: 'Pretendard-Regular';
+            font-size: 30px;
+            font-weight: 500;
+            color: $danger;
+        }
+    
+        #cancleDeleteReview {
+            margin-top: 40px;
+            margin-left: -220px;
+            width: 171px;
+            height: 44px;
+            background-color: $secondary;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 500;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    
+        #confirmDeleteReview {
+            margin-top: -44px;
+            margin-left: 220px;
+            width: 171px;
+            height: 44px;
+            background-color: $primary;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 500;
+            color: $textStrong;
+            cursor: pointer;
+        }
+    }
+    
+    #completeDeleteReview {
+        width: 879px;
+        height: 316px;
+        border: 5px solid $primary;
+        border-radius: 50px;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+    
+        #completedDeletteMessage {
+            width: max-content;
+            margin-top: 5px;
+            height: 44px;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 40px;
+            font-weight: 500;
+            color: $textStrong;
+        }
+    
+        #completeBtn {
+            margin-top: 40px;
+            width: 171px;
+            height: 44px;
+            background-color: $secondary;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 500;
             color: $textStrong;
             cursor: pointer;
         }
@@ -314,7 +360,7 @@
             left : 51px;
             top : 1200px;
             width: max-content;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 20px;
             color: $textStrong;
         }
@@ -338,7 +384,7 @@
             width: 120px;
             height: 28px;
             background-color: #FFFFFF;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 18px;
             color: $textStrong;
             cursor: pointer;
@@ -363,7 +409,7 @@
                 height: max-content;
                 // margin-left: -10px;
     
-                .review, .transformReview {
+                .review{
                     position: relative;
                     display: flex;
                     flex-direction: column;
@@ -445,13 +491,19 @@
                         span{
                             margin-right: 10px;
                         }
+
+                        .star {
+                            font-size: 25px;
+                            margin-right: -2px;
+                            display: inline-block;
+                        }
                     }
         
                     div:nth-of-type(2){
                        left : 124px;
                        top : 56px;
                        width: max-content;
-                       font-family: 'Pretendard Variable';
+                       font-family: 'Pretendard-Regular';
                        font-size: 15px;
                        font-weight: 400;
                        font-style: normal;
@@ -465,9 +517,8 @@
                         width: 436px;
                         height: 117px;
                         background-color: #FFF9D3;
-                        padding-left: 7px;
-                        padding-top: 5px;
-                        font-family: 'Pretendard Variable';
+                        padding : 20px 15px;
+                        font-family: 'Pretendard-Regular';
                         font-size: 13px;
                         font-weight: 500;
                         font-style: normal; 
@@ -475,6 +526,8 @@
                         line-height: 160%;
                         border-radius: 0;
                         z-index: 5;
+                        overflow-y :auto;
+                        overflow-x : hidden;
                     }
         
                     #reviewPhoto{
@@ -487,103 +540,67 @@
                         z-index: 5;
                     }
                 }
-
-                .transformReview{
-                    position: relative;
-                    display: inline-block;
-                    margin-top: 30px;
-                    margin-left: 40px;
-
-                    #reviewImg{
-                        display: block;
-                        top : 5px;
-                        width: 831px;
-                        height : 258px;
-                        z-index: 1;
-                    }
-    
-                    #userProfile{
-                        position: absolute;
-                        left : 333px;
-                        top : 28px;
-                        width : 62px;
-                        height : 59px;
-                        z-index: 5;
-                        border-radius: 0;
-                    }
-            
-                    div{
-                        position: absolute;
-                        width : max-content;
-                        cursor: default;
-                        z-index: 2;
-                    }
-        
-                    div:nth-of-type(1){
-                        left: 403px;
-                        top : 34px;
-                        width: max-content;
-                        font-family: 'Bobaesum Jindo TTF';
-                        font-size: 20px;
-                        font-weight: 500;
-                        font-style: normal;
-                        color: $textStrong;
-                        z-index: 5;
-
-                        span{
-                            margin-right: 10px;
-                        }
-                    }
-        
-                    div:nth-of-type(2){
-                       left : 403px;
-                       top : 61px;
-                       width: max-content;
-                       font-family: 'Pretendard Variable';
-                       font-size: 15px;
-                       font-weight: 400;
-                       font-style: normal;
-                       color: $textStrong;
-                       z-index: 5;
-                    }
-        
-                    div:nth-of-type(3){
-                        left : 338px;
-                        top : 95px;
-                        width: 436px;
-                        height: 117px;
-                        background-color: #FFF9D3;
-                        padding-left: 7px;
-                        padding-top: 5px;
-                        font-family: 'Pretendard Variable';
-                        font-size: 13px;
-                        font-weight: 500;
-                        font-style: normal; 
-                        color: $textStrong;
-                        line-height: 160%;
-                        border-radius: 0;
-                        z-index: 5;
-                    }
-        
-                    #reviewPhoto{
-                        position: absolute;
-                        left : 20px;
-                        top : 17px;
-                        width: 263px;
-                        height: 206px;
-                        border-radius: 0;
-                        z-index: 5;
-                    }
-                }
             }
     
             #moreReview{
                 margin-top: 30px;
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 font-size: 30px;
                 font-weight: 700;
                 color: $textStrong;
                 cursor: pointer;
+            }
+        }
+        #finalCheck {
+            width: 600px;
+            height: 250px;
+            border: 4px solid $primary;
+            border-radius: 40px;
+    
+            #reallyDeleteReview {
+                font-size: 32px;
+                height: 36px;
+            }
+    
+            #notice {
+                font-size: 24px;
+                margin-top: 30px;
+                height: 30px;
+            }
+    
+            #cancleDeleteReview, #confirmDeleteReview {
+                width: 140px;
+                height: 38px;
+                font-size: 20px;
+                margin-top: 30px;
+            }
+    
+            #cancleDeleteReview {
+                margin-left: -160px;
+            }
+    
+            #confirmDeleteReview {
+                margin-left: 160px;
+                margin-top: -38px;
+            }
+        }
+    
+        #completeDeleteReview {
+            width: 600px;
+            height: 250px;
+            border: 4px solid $primary;
+            border-radius: 40px;
+    
+            #completedDeletteMessage {
+                font-size: 32px;
+                height: 36px;
+            }
+    
+            #completeBtn {
+                width: 140px;
+                height: 38px;
+                font-size: 20px;
+                margin-top: 30px;
             }
         }
     }
@@ -608,7 +625,7 @@
             left : 35px;
             top : 1300px;
             width: max-content;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 15px;
             color: $textStrong;
         }
@@ -631,7 +648,7 @@
             width: 80px;
             height: 20px;
             background-color: #FFFFFF;
-            font-family: 'Pretendard Variable';
+            font-family: 'Pretendard-Regular';
             font-size: 13px;
             color: $textStrong;
             cursor: pointer;
@@ -702,13 +719,19 @@
                         span{
                             margin-right: 8px;
                         }
+
+                        .star {
+                            font-size: 25px;
+                            margin-right: -2px;
+                            display: inline-block;
+                        }
                     }
         
                     div:nth-of-type(2){
                        left : 65px;
                        top : 32px;
                        width: max-content;
-                       font-family: 'Pretendard Variable';
+                       font-family: 'Pretendard-Regular';
                        font-size: 11px;
                        font-weight: 400;
                        font-style: normal;
@@ -719,10 +742,9 @@
                     div:nth-of-type(3){
                         left : 65px;
                         top : 40px;
+                        overflow-y :auto;
+                        overflow-x : hidden;
                         
-                        img{
-                            border: 1px solid red;
-                        }
                     }
         
                     div:nth-of-type(4){
@@ -733,7 +755,7 @@
                         background-color: #FFF9D3;
                         padding-left: 7px;
                         padding-top: 5px;
-                        font-family: 'Pretendard Variable';
+                        font-family: 'Pretendard-Regular';
                         font-size: 10px;
                         font-weight: 500;
                         font-style: normal; 
@@ -753,103 +775,71 @@
                         z-index: 5;
                     }
                 }
-
-                .transformReview{
-                    position: relative;
-                    display: inline-block;
-                    margin-top: 30px;
-                    margin-left: -5px;
-
-                    #reviewImg{
-                        display: block;
-                        top : 5px;
-                        width: 450px;
-                        height : 158px;
-                        z-index: 1;
-                    }
-    
-                    #userProfile{
-                        position: absolute;
-                        left : 180px;
-                        top : 15px;
-                        width : 33px;
-                        height : 34px;
-                        z-index: 5;
-                        border-radius: 0;
-                    }
-            
-                    div{
-                        position: absolute;
-                        width : max-content;
-                        cursor: default;
-                        z-index: 2;
-                    }
-        
-                    div:nth-of-type(1){
-                        left: 222px;
-                        top : 17px;
-                        width: max-content;
-                        font-family: 'Bobaesum Jindo TTF';
-                        font-size: 12px;
-                        font-weight: 500;
-                        font-style: normal;
-                        color: $textStrong;
-                        z-index: 5;
-
-                        span{
-                            margin-right: 8px;
-                        }
-                    }
-        
-                    div:nth-of-type(2){
-                       left : 222px;
-                       top : 32px;
-                       width: max-content;
-                       font-family: 'Pretendard Variable';
-                       font-size: 11px;
-                       font-weight: 400;
-                       font-style: normal;
-                       color: $textStrong;
-                       z-index: 5;
-                    }
-        
-                    div:nth-of-type(3){
-                        left : 175px;
-                        top : 55px;
-                        width: 255px;
-                        height: 75px;
-                        background-color: #FFF9D3;
-                        padding-left: 7px;
-                        padding-top: 5px;
-                        font-family: 'Pretendard Variable';
-                        font-size: 10px;
-                        font-weight: 500;
-                        font-style: normal; 
-                        color: $textStrong;
-                        line-height: 150%;
-                        border-radius: 0;
-                        z-index: 5;
-                    }
-        
-                    #reviewPhoto{
-                        position: absolute;
-                        left : 8px;
-                        top : 10px;
-                        width: 147px;
-                        height: 128px;
-                        border-radius: 0;
-                        z-index: 5;
-                    }
-                }
             }
     
             #moreReview{
                 margin-top: 30px;
-                font-family: 'Pretendard Variable';
+                font-family: 'Pretendard-Regular';
                 font-size: 15px;
                 font-weight: 700;
                 color: $textStrong;
                 cursor: pointer;
+            }
+        }
+        #finalCheck {
+            width: 300px;
+            height: 180px;
+            border: 3px solid $primary;
+            border-radius: 25px;
+    
+            #reallyDeleteReview {
+                font-size: 20px;
+                height: 24px;
+                margin-top: 3px;
+            }
+    
+            #notice {
+                font-size: 15px;
+                margin-top: 20px;
+                height: 20px;
+            }
+    
+            #cancleDeleteReview, #confirmDeleteReview {
+                width: 80px;
+                height: 30px;
+                font-size: 15px;
+                margin-top: 20px;
+                border-radius: 15px;
+            }
+    
+            #cancleDeleteReview {
+                margin-left: -90px;
+            }
+    
+            #confirmDeleteReview {
+                margin-left: 90px;
+                margin-top: -30px;
+            }
+        }
+    
+        #completeDeleteReview {
+            width: 300px;
+            height: 180px;
+            border: 3px solid $primary;
+            border-radius: 25px;
+    
+            #completedDeletteMessage {
+                font-size: 20px;
+                height: 24px;
+                margin-top: 3px;
+            }
+    
+            #completeBtn {
+                width: 80px;
+                height: 30px;
+                font-size: 15px;
+                margin-top: 20px;
+                border-radius: 15px;
             }
         }
     }

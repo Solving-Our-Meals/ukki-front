@@ -1,5 +1,14 @@
+import { API_BASE_URL } from '../../../config/api.config';
+
 export async function reportList() {
-    const res = await fetch("/reports/list")
+    const res = await fetch(`${API_BASE_URL}/reports/list`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        credentials: "include"
+    })
     const data = await res.json();
 
     for (var i = 0; i < data.length; i++) {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/storedetail.module.css';
 import mapIcon from '../images/mapMarker-logo.png';
@@ -6,10 +7,13 @@ import triangleBtn from '../images/inverted_triangle.png';
 import Banner from '../components/Banner';
 import Profile from '../components/Profile';
 import Menu from '../components/Menu';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 
 function StoreDetail({reservationHandler}){
 
+    const { storeNo } = useParams();
+    
     const [colorMonday, setColorMonday] = useState("");
     const [colorTuesday, setColorTuesday] = useState("");
     const [colorWednesday, setColorWednesday] = useState("");
@@ -34,11 +38,18 @@ function StoreDetail({reservationHandler}){
 
     useEffect(
         () => {
-            fetch('/store/test')  //검색 페이지 만들어지면 pathvariable로 변경하기
+            console.log('sshshshshshshshshsh');
+            fetch(`${API_BASE_URL}/store/${storeNo}/getInfo`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })  //검색 페이지 만들어지면 pathvariable로 변경하기
             .then(res => res.json())
             .then(data => {
                 setStoreInfo(data)
-                navigate('/store',{
+                navigate(`/store/${storeNo}`,{
                     state:{
                         source : 'storedetail',
                         storeName : data.storeName,
@@ -131,7 +142,7 @@ function StoreDetail({reservationHandler}){
     return(
         <div className={styles.storeDetail}>
             <div><Banner/>
-                <div><Profile/></div>
+                <div><Profile storeNo={storeNo}/></div>
             </div>
             <div className={styles.nameAndReserve}>
                 <p id={styles.storeName}>{storeInfo.storeName}</p>

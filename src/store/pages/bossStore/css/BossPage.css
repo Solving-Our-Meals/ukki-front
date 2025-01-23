@@ -1,0 +1,42 @@
+/* BossPage.css */
+.boss-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin-top: 70px;
+}
+
+
+
+.store-info h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.reservation-status, .reservation-slots, .weekly-reservation, .today-reservation {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.slots-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+    margin: 0 auto;
+}
+
+button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+

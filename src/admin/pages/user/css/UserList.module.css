@@ -199,36 +199,6 @@
     background: #FFE970;
 }
 
-.pageNation{
-    position: absolute;
-    width: 370px;
-    height: 28px;
-    left: 620px;
-    top: 700px;
-
-    text-align: center;
-    align-content: center;
-}
-
-
-.pageNation button{
-    background-color: white;
-    border: none;
-    font-size: 20px;
-    color: #FF8AA3;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-
-  .pageNation button.active{
-    background-color: #FF8AA3;
-    color: white;
-  }
-
-  .pageNation button:hover:not(.active) {
-    background-color: #FFE0E6;
-  }
-
 .userListBody > div {
     display: flex;
     width: 100%;
@@ -246,3 +216,98 @@
 .userListBody > div:hover {
     background-color: #f5f5f5;
 }
+
+.totalUserCount{
+    position: absolute;
+    height: 55px;
+    left: 61px;
+    top: 108px;
+ 
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+
+    color: #1E1E1E;
+}
+
+
+.pageNation {
+    position: absolute;
+    justify-content: center;
+    height: 28px;
+    /* width: 300px; */
+    left: 620px;
+    top: 700px;
+    display: flex;
+    /* text-align: center; */
+    align-content: center;
+}
+
+.pageNumArea{
+    display: flex;
+    justify-content: center;
+    width: 200px;
+}
+
+.pageNumBtn{
+    text-align: center;
+    background-color: white;
+    border: none;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    color: #232323;
+    opacity: 50%;
+    width: 38px;
+    border: none;
+    cursor: pointer;
+}
+
+.pageNumBtn.active {
+    color: #232323;
+    opacity: 100%;
+}
+
+
+.pageNationBackBtn{
+    display: inline-block;
+    text-align: start;
+    width: 40px;
+    background-color: #FFFFFF;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    color: #232323;
+    border: none;
+    color: #FF8AA3;
+    cursor: pointer;
+}
+
+.pageNationForwordBtn{
+    display: inline-block  ;
+    text-align: end;
+    width: 40px;
+    background-color: #FFFFFF;
+    font-family: 'BobaesumJindoTTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    color: #232323;
+    border: none;
+    color: #FF8AA3;
+    cursor: pointer;
+}
+
+.pageNationBackBtn.disabled, .pageNationForwordBtn.disabled {
+    visibility: hidden;
+}
+

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import styles from "../css/termsOfUse.module.css";
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function TermsOfUse () {
     
     const [isComplete, setIsComplete] = useState(false);
+    const [isFail, setIsFail] = useState(false);
 
     const navigate = useNavigate();
 
@@ -27,7 +29,14 @@ function TermsOfUse () {
 
     useEffect(
         () => {
-            fetch('user/info')
+            fetch(`${API_BASE_URL}/user/info`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials : "include",
+            })
                 .then(res => res.json())
                 .then(data => {
                 setReservationInfo(prevInfo => ({
@@ -51,16 +60,22 @@ function TermsOfUse () {
 
         console.log('reservationInfo : ', reservationInfo);
 
-        fetch('/reservation/insert', {
+        fetch(`${API_BASE_URL}/reservation/insert`, {
             method : 'POST',
             headers : {
                 "Content-Type" : "application/json; charset=UTF-8"
             },
             body : JSON.stringify(reservationInfo)
         })
-        .then((res) => {
-            if(res.ok){
+        .then(res => res.text())
+        .then(data => {
+            console.log("예약 결과는 ???" , data)
+            if(data.trim() === "예약 성공"){
                 setIsComplete(true);
+                console.log("예약 성공 state:", isComplete);
+            } else {
+                setIsFail(true);
+                console.log("예약 실패 state:", isFail);
             }
         })
         .catch(error => console.log('error', error));
@@ -73,10 +88,14 @@ function TermsOfUse () {
     const toMypage = () => {
         navigate('/user/mypage');
     }
+
+    const toStore = () => {
+        navigate(`/store/${reservationInfo.storeNo}`);
+    }
     
     return(
         <>
-            <div className={isComplete ? styles.overLay : ""}></div>
+            <div className={isComplete || isFail ? styles.overLay : ""}></div>
             <div className={styles.termsOfUse}>
                 <p id={styles.strTerms}>예약 약관</p><br/>
                 <div id={styles.temsArea}>
@@ -183,6 +202,11 @@ function TermsOfUse () {
                 <p id={styles.comfirnEmailMessage}>QR 코드는 가입한 이메일에서 확인 가능합니다.</p>
                 <button type='button' id={styles.toMain} onClick={() => toMain()}>메인으로</button>
                 <button type='submit' id={styles.toMypage} onClick={() => toMypage()}>예약확인</button>
+            </div>
+            <div id={styles.failReservation} style={{display : isFail ? "" : "none"}}>
+                <p id={styles.failMessage}>이미 예약 되어있습니다.</p>
+                <p id={styles.duplicateMessage}>중복 예약이 불가합니다.</p>
+                <button type='button' id={styles.confirm} onClick={() => toStore()}>확인</button>
             </div>
         </>
     );

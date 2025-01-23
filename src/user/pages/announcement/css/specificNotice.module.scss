@@ -1,0 +1,134 @@
+@import "../../../../common/reset/reset.scss";
+
+#background{
+    position : absolute;
+    left : 0px;
+    right : 0px;
+    top : 0px;
+    bottom : 0px;
+    width : 100%;
+    height : 100%;
+    background-color: $secondary2;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+
+    #noticeArea{
+        position: absolute;
+        margin-top: 75px;
+        width : 1805px;
+        height : 783px;
+        background-color: #FFFFFF;
+        border: none;
+        border-radius: 50px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .noticeInfo{
+        position: relative;
+        width : 1705px;
+        height : 703px;
+        border-radius: 0;
+
+        #strNotice{
+            position: relative;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 50px;
+            color: $textStrong;
+            left : 50px;
+            top : 50px;
+            width: max-content;
+            height: max-content;
+        }
+        
+        span{
+            position: relative;
+            font-family: 'Pretendard-Regular';
+            color: $textStrong;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        // notice.category
+        span:nth-of-type(1){
+            position : absolute;
+            left : 250px;
+            top : 50px;
+            width : 109px;
+            height : 38px;
+            border: none;
+            border-radius: 25px;
+            font-size: 25px;
+        }
+
+        // 제목
+        span:nth-of-type(2){
+            position: absolute;
+            left : 50px;
+            top : 150px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+
+        // notice.title
+        span:nth-of-type(3){
+            position: absolute;
+            left :130px;
+            top : 150px;
+            font-size: 30px;
+            font-weight : 400;
+        }
+
+        // 작성 날짜
+        span:nth-of-type(4){
+            position: absolute;
+            left : 1350px;
+            top : 150px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+
+        // notice.date
+        span:nth-of-type(5){
+            position: absolute;
+            left : 1490px;
+            top : 150px;
+            font-size: 30px;
+            font-weight : 400;
+        }
+       
+        #content{
+            position: relative;
+            left : 50px;
+            top : 180px;
+            width : 1600px;
+            height : 420px;
+            border: none;
+            border-radius: 20px;
+            background-color: #FFF9D1;
+            font-family: 'Pretendard-Regular';
+            color: $textStrong;
+            font-size: 30px;
+            font-weight : 400;
+            text-align: left;
+            vertical-align: top;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 20px 20px;
+            line-height: 160%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+
+}

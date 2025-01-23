@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/MyProfile.module.css'
 import '../css/reset.css';
 import { useNavigate } from 'react-router-dom';
+import Badge1 from '../images/badge1.png';
+import Badge2 from '../images/badge2.png';
+import Badge3 from '../images/badge3.png';
+import Badge4 from '../images/badge4.png';
+import Badge5 from '../images/badge5.png';
+import Badge6 from '../images/badge6.png';
+import DefaultProfile from '../images/mypage/default.png';
+import Pencil from '../images/mypage/pencil.gif';
+import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function MyProfile() {
     const [userInfo, setUserInfo] = useState(null);
@@ -10,14 +20,22 @@ function MyProfile() {
     const navigate = useNavigate();
     const [showTooltip, setShowTooltip] = useState(null);
 
+    const [profileImage, setProfileImage] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
+    const [image, setImage] = useState(null);
+
     useEffect(() => {
         fetchUserInfo();
     }, []);
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('/user/info', {
+            const response = await fetch(`${API_BASE_URL}/user/info`, {
                 method: 'GET',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
 
@@ -40,18 +58,26 @@ function MyProfile() {
     // 로딩
     if (loading) {
         return (
-        <div className={styles.loadingContainer}>
-            <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
-        </div>
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중"/>
+            </div>
         )
     }
 
     if (error) {
-        return <div>{error}</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중"/>
+            </div>
+        )
     }
 
     if (!userInfo) {
-        return <div>유저 정보를 찾을 수 없습니다.</div>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img src={Loading} alt="로딩 중"/>
+            </div>
+        )
     }
 
     const rvc = userInfo.reservationCount;
@@ -61,33 +87,124 @@ function MyProfile() {
     const hasAchievedBadge = rvc >= 10;
     const hasAchievedBadge2 = rc >= 10;
     const hasAchievedBadge3 = rvc >= 25;
-    const hasAchievedBadge4 = rdc >=3;
+    const hasAchievedBadge4 = rdc >= 3;
     const hasAchievedBadge5 = rc >= 20;
     const hasAchievedBadge6 = rvc >= 50 && rc >= 30 && rdc >= 7;
 
+    // 이미지 파일 선택 시 미리보기
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setImageFile(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setProfileImage(reader.result);  // 미리보기 이미지
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleImageUpload = async () => {
+        if (!imageFile) {
+            alert('업로드할 이미지가 없습니다.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('profileImage', imageFile);
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/profile-image`, {
+                method: 'POST',
+                headers: {
+                    'Accept' : 'application/json',
+                },
+                body: formData,
+                credentials: 'include',
+            });
+
+            const result = await response.text();
+            if (response.ok) {
+                alert(result);
+                setUserInfo(prev => ({ ...prev, profileImage: result }));
+                setProfileImage(result);
+            } else {
+                alert(result);
+            }
+        } catch (error) {
+            alert('이미지 업로드 중 오류가 발생했습니다.');
+        }
+    };
+
+
     return (
         <div className={styles.profileMain}>
-            <img className={styles.profileImage} src={userInfo?.profileImage || "/images/mypage/profile/default.png"}
-                 alt="Profile"/>
+            <div className={styles.profileImageContainer}>
+                {/* 기본 이미지만 별도로 위치시킴 */}
+                {!profileImage && !userInfo?.profileImage && (
+                    <img
+                        className={styles.defaultImage}
+                        src={DefaultProfile}
+                        alt="Default Profile"
+                        onClick={() => document.getElementById('fileInput').click()}
+                    />
+                )}
+
+                {/* 사용자 이미지 */}
+                <img
+                    className={styles.profileImage}
+                    src={userInfo.profileImage || userInfo?.profileImage}
+                    alt="user"
+                    onClick={() => document.getElementById('fileInput').click()}
+                />
+
+                {/* 프로필 이미지 변경 문구 */}
+                <div className={styles.profileImageText}>
+                    프로필 이미지 변경
+                </div>
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    className={styles.uploadInput}
+                    onChange={handleImageChange}
+                    accept="image/*"
+                    style={{display: 'none'}} // 파일 입력창은 숨김
+                />
+
+                {/* 업로드 아이콘 */}
+                {profileImage && (
+                    <img
+                        src={Pencil}
+                        alt="업로드 아이콘"
+                        className={styles.uploadButton}
+                        onClick={handleImageUpload} // 이미지 업로드 버튼 클릭 시 업로드
+                    />
+                )}
+            </div>
             <p className={styles.mypageNickname}>{userInfo?.nickname || ''}</p>
             <hr className={styles.mypageHorizonLine1}/>
             <div className={styles.mypageTextBox}>나의 도전현황</div>
 
-            <div>
-                <p className={styles.allReservationTitle}>총 예약</p>
-                <p className={styles.allReviewTitle}>리뷰 작성</p>
-                <p className={styles.allRandomTitle}>랜덤 예약</p>
+            <div className={styles.allNumber}>
+                <div>
+                    <p className={styles.allReservationTitle}>총 예약</p>
+                    <p className={styles.allReviewTitle}>리뷰 작성</p>
+                    <p className={styles.allRandomTitle}>랜덤 예약</p>
+                </div>
 
-                <span className={styles.mypageReservationNo}>{userInfo?.reservationCount || ''}</span>
-                <span className={styles.mypageReviewNo}>{userInfo?.reviewCount || ''}</span>
-                <span className={styles.mypageRandomNo}>{userInfo?.randomCount || ''}</span>
+                <div>
+                    <span className={styles.mypageReservationNo}>{userInfo?.reservationCount || '0'}</span>
+                    <span className={styles.mypageReviewNo}>{userInfo?.reviewCount || '0'}</span>
+                    <span className={styles.mypageRandomNo}>{userInfo?.randomCount || '0'}</span>
+                </div>
             </div>
 
             <hr className={styles.mypageHorizonLine2}/>
             <div className={styles.challengerMedal}>
                 {/* 1번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge1.png"
+                    src={Badge1}
                     alt="메달"
                     className={`${styles.medalImage} ${!hasAchievedBadge ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge1')}
@@ -101,7 +218,7 @@ function MyProfile() {
 
                 {/* 2번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge2.png"
+                    src={Badge2}
                     alt="메달"
                     className={`${styles.medalImage2} ${!hasAchievedBadge2 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge2')}
@@ -117,7 +234,7 @@ function MyProfile() {
 
                 {/* 3번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge3.png"
+                    src={Badge3}
                     alt="메달"
                     className={`${styles.medalImage3} ${!hasAchievedBadge3 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge3')}
@@ -133,7 +250,7 @@ function MyProfile() {
 
                 {/* 4번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge4.png"
+                    src={Badge4}
                     alt="메달"
                     className={`${styles.medalImage4} ${!hasAchievedBadge4 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge4')}
@@ -149,7 +266,7 @@ function MyProfile() {
 
                 {/* 5번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge5.png"
+                    src={Badge5}
                     alt="메달"
                     className={`${styles.medalImage5} ${!hasAchievedBadge5 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge5')}
@@ -165,7 +282,7 @@ function MyProfile() {
 
                 {/* 6번 뱃지에 대한 부분*/}
                 <img
-                    src="/images/badge/badge6.png"
+                    src={Badge6}
                     alt="메달"
                     className={`${styles.medalImage6} ${!hasAchievedBadge6 ? styles.grayscale : ''}`}
                     onMouseEnter={() => setShowTooltip('badge6')}
@@ -175,8 +292,8 @@ function MyProfile() {
                     <div
                         className={`${styles.tooltip6} ${!hasAchievedBadge6 ? styles.tooltipGrayscale : ''}`}
                     >
-                        총 예약 수 50번 이상
-                        총 리뷰 수 30번 이상
+                        총 예약 수 50번 이상 <br/>
+                        총 리뷰 수 30번 이상 <br/>
                         총 랜덤 예약 7번 이상
                     </div>
                 )}

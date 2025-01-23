@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import styles from "../css/StoreList.module.css"
 import "../css/reset.css"
 import { StoreListAPI } from "../api/StoreListAPI"
+import { fetchGraphData2 } from "../../dashboard/api/DashboardAPI"
 
 function StoreList(){
     const [list, setList] = useState([])
@@ -13,6 +14,13 @@ function StoreList(){
     const [searchSuccess, setSearchSuccess] = useState(false);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+    const [graphData, setGraphData] = useState(null);
+
+        const fetchGraphData = async () => {
+            const data = await fetchGraphData2();
+            const totalStoreCount = Object.values(data)[0];
+            setGraphData(totalStoreCount);
+        }
 
     const fetchList = useCallback(async (category, word) => {
         try{
@@ -20,6 +28,7 @@ function StoreList(){
             if (storeList && storeList.length > 0){
                 setSearchSuccess(true)
                 setList(storeList)
+                setCurrentPage(1);
             }else{
                 setSearchSuccess(false)
             }
@@ -30,38 +39,27 @@ function StoreList(){
 
     useEffect(()=>{
         fetchList(searchParams.get("category"), searchParams.get("word"));
+        fetchGraphData();
     },[searchParams, fetchList])
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItem = useMemo(()=> {
-        return list.slice(indexOfFirstItem, indexOfLastItem)
-    },[list, indexOfFirstItem, indexOfLastItem]);
+    const currentItem = list.slice(indexOfFirstItem, indexOfLastItem);
 
-    const totalPages = useMemo(()=>
-        Math.ceil(list.length/itemsPerPage)
-    ,[list.length, itemsPerPage]);
+    const totalPages = useMemo(() => Math.ceil(list.length / itemsPerPage), [list.length, itemsPerPage]);
 
-    const visiblePageNum = useCallback(()=>{
-        let startPage = Math.max(currentPage-2, 1);
-        let endPage = Math.min(currentPage+2, totalPages);
+    
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+    
+    const currentRangeStart = Math.floor((currentPage - 1) / 5) * 5 + 1;
+    const currentRangeEnd = Math.min(currentRangeStart + 4, totalPages);
 
-        if(currentPage === 1){
-            endPage = Math.min(5, totalPages);
-        }else if(currentPage === 2){
-            endPage = Math.min(5, totalPages);
-        }else if(currentPage===totalPages-1){
-            startPage = Math.max(totalPages-4, 1)
-        }else if(currentPage===totalPages){
-            startPage = Math.max(totalPages-4, 1)
-        }
+    const pageNumbersToDisplay = pageNumbers.slice(currentRangeStart - 1, currentRangeEnd);
 
-        let pageNumbers = []
-        for(var i = startPage; i <= endPage; i++){
-            pageNumbers.push(i)
-        }
-        return pageNumbers;
-    },[currentPage, totalPages])
+
 
     const paginate = useCallback((no) => {
         if(0<no && no<=totalPages){setCurrentPage(no)}
@@ -94,6 +92,7 @@ function StoreList(){
     return(
     <>
         <div className={styles.storeListText}>가게리스트</div>
+        <div className={styles.totalStoreCount}>총 {graphData}개의 가게가 등록되어 있습니다.</div>
         <select className={styles.storeListSelection} onChange={categoryChangeHandler}>
             <option className={styles.storeListOption} value="none" selected>검색 기준</option>
             <option className={styles.storeListOption} value="CATEGORY">카테고리</option>
@@ -134,16 +133,17 @@ function StoreList(){
         </div>
 
         <div className={styles.pageNation}>
-            <button onClick={()=>paginate(currentPage-1)} disabled={currentPage === 1}>◀</button>
-            {visiblePageNum().map((pageNum)=>(
-                <button key={pageNum} onClick={() => paginate(pageNum)}
-                className={pageNum === currentPage ? styles.active :''}>
-                    {pageNum}
-                </button>
-            ))}
-            <button onClick={()=>paginate(currentPage+1)}>▶</button>
-        </div>
-        <button id={styles.storeUserRegist} type="button">가게 등록하기</button>
+            <div className={`${styles.pageNationBackBtn} ${currentPage === 1 ? styles.disabled : ''}`} onClick={() => paginate(currentPage - 1)} hidden={currentPage === 1}>◀</div>
+            <div className={styles.pageNumArea}>
+                {pageNumbersToDisplay.map((pageNum) => (
+                    <div key={pageNum} onClick={() => paginate(pageNum)} className={`${styles.pageNumBtn} ${pageNum === currentPage ? styles.active : ''}`}>
+                        {pageNum}
+                    </div>
+                ))}
+                </div>
+            <div className={`${styles.pageNationForwordBtn} ${currentPage === totalPages? styles.disabled : ''}`} onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>▶</div>
+            </div>
+        <button id={styles.storeUserRegist} type="button" onClick={()=>navigate('/admin/stores/regist/user')}>가게 등록하기</button>
     </>
     )   
 }

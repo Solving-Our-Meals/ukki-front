@@ -26,13 +26,15 @@
 // export default UserStorePage;
 
 import React, { useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import StoreDetail from './StoreDetail';
 import ReservationInfo from './ReservationInfo';
 import Review from './Review';
-import Footer from '../../../../common/footer/components/Footer';
 
 function UserStorePage() {
     const reserveScrollRef = useRef(null);
+
+    const { storeNo } = useParams();
 
     const reservationHandler = () => {
         if (reserveScrollRef.current) {
@@ -44,7 +46,6 @@ function UserStorePage() {
             }
             const targetPosition = reserveScrollRef.current.getBoundingClientRect().top + window.scrollY - offset; 
             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-            // reserveScrollRef.current.scrollIntoView({ behavior: "smooth" });
         }
     };
 
@@ -53,7 +54,6 @@ function UserStorePage() {
             <StoreDetail reservationHandler={reservationHandler} />
             <ReservationInfo ref={reserveScrollRef} />
             <Review />
-            <Footer />
         </>
     );
 }

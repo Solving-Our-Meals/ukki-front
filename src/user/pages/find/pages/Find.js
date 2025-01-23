@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styles from '../css/Find.module.css';
 import '../css/reset.css';
+import signupLogo from '../../signup/images/signupLogo.png';
+import Default from '../../signup/images/default.png';
+import On from '../../signup/images/on.png';
+import {API_BASE_URL} from '../../../../config/api.config';
 
     function Find() {
         const [step, setStep] = useState(1);
@@ -33,9 +37,10 @@ import '../css/reset.css';
             setError('');
             setEmailPending(true);
 
-            const response = await fetch('/auth/checkemail', {
+            const response = await fetch(`${API_BASE_URL}/auth/checkemail`, {
                 method: 'POST',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email: formData.email }),
@@ -50,9 +55,10 @@ import '../css/reset.css';
             }
 
             setLoading(true);
-            const sendCodeResponse = await fetch('/auth/sendemail', {
+            const sendCodeResponse = await fetch(`${API_BASE_URL}/auth/sendemail`, {
                 method: 'POST',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email: formData.email }),
@@ -79,9 +85,10 @@ import '../css/reset.css';
                 return;
             }
 
-            const response = await fetch('/auth/verifycode', {
+            const response = await fetch(`${API_BASE_URL}/auth/verifycode`, {
                 method: 'POST',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -104,9 +111,10 @@ import '../css/reset.css';
                 setStep(4);
             } else if (step === 3 && type !== 'password' && formData.email) {
                 const fetchUserId = async () => {
-                    const userIdResponse = await fetch('/auth/find/id', {
+                    const userIdResponse = await fetch(`${API_BASE_URL}/auth/find/id`, {
                         method: 'POST',
                         headers: {
+                            'Accept' : 'application/json',
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({ email: formData.email }),
@@ -161,9 +169,10 @@ import '../css/reset.css';
                 return;
             }
 
-            const response = await fetch('/auth/find/pwd', {
+            const response = await fetch(`${API_BASE_URL}/auth/find/pwd`, {
                 method: 'POST',
                 headers: {
+                    'Accept' : 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -198,7 +207,7 @@ import '../css/reset.css';
             <div className={styles.findAccount}>
                 <div className={styles.findAccountContent}>
                     <p className={`${styles.signupText} ${type === 'id' ? styles.signupTextId : styles.signupTextPassword}`}>{type === 'id' ? '아이디 찾기' : '비밀번호 찾기'}</p>
-                    <img className={styles.signupLogo} src="/images/signup/signupLogo.png" alt="회원가입 로고"></img>
+                    <img className={styles.signupLogo} src={signupLogo} alt="회원가입 로고"></img>
                     <div style={searchError}>
                         <p className={styles.findAccountText}>{type === 'id' ? (
                             <Link to="/auth/find/password" onClick={() => setStep(1)}>비밀번호 찾기</Link>
@@ -305,7 +314,7 @@ import '../css/reset.css';
                                 </fieldset>
                                 <div className={styles.passwordToggleBtn}>
                                     <img
-                                        src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                        src={showPassword ? Default : On}
                                         alt="비밀번호 보이기/숨기기"
                                         onClick={togglePasswordVisibility}
                                     />
@@ -334,7 +343,7 @@ import '../css/reset.css';
                             </fieldset>
                             <div className={styles.passwordToggleBtn}>
                                 <img
-                                    src={showPassword ? "/images/signup/default.png" : "/images/signup/on.png"}
+                                    src={showPassword ? Default : On}
                                     alt="비밀번호 보이기/숨기기"
                                     onClick={togglePasswordVisibility}
                                 />
