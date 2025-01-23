@@ -153,7 +153,7 @@ function MyProfile() {
                 {/* 사용자 이미지 */}
                 <img
                     className={styles.profileImage}
-                    src={profileImage || userInfo?.profileImage || ""}
+                    src={userInfo.profileImage || userInfo?.profileImage}
                     alt="user"
                     onClick={() => document.getElementById('fileInput').click()}
                 />
