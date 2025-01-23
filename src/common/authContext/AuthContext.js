@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from "../../user/pages/mypage/css/Mypage.module.css";
+import Loading from "../../common/inquiry/img/loadingInquiryList.gif";
 
 const AuthContext = createContext();
 
@@ -64,13 +65,13 @@ export const AuthProvider = ({ children }) => {
                 const newToken = await refreshAuthToken();
                 if (newToken) {
                     setIsAuthenticated(true);
-                    await fetchUser(); // 토큰이 유효하면 사용자 정보도 받아옴
+                    await fetchUser();
                 } else {
                     setIsAuthenticated(false);
                 }
             } else {
                 setIsAuthenticated(true);
-                await fetchUser(); // 인증이 유효한 경우 사용자 정보 가져옴
+                await fetchUser();
             }
             setLoading(false);
         };
@@ -81,7 +82,7 @@ export const AuthProvider = ({ children }) => {
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
-                <img src="/images/inquiry/loadingInquiryList.gif" alt="로딩 중"/>
+                <img src={Loading} alt="로딩 중"/>
             </div>
         );
     }
