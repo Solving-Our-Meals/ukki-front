@@ -90,7 +90,7 @@ function ProfileInfo({onUpdate}) {
                 setNicknameError('');
                 setNicknameSuccess(null);
             }
-        }, 500);
+        }, 100);
 
         return () => clearTimeout(debounceNicknameCheck);
     }, [formData.nickname]);
@@ -154,6 +154,8 @@ function ProfileInfo({onUpdate}) {
                 setUpdateSuccess(true);
                 setUserInfo(result);
                 onUpdate();
+                setUserInfo();
+                setFormData({userPass:'', nickname:'', newPassword: ''})
             } else {
                 setUpdateError(result.message);
             }
