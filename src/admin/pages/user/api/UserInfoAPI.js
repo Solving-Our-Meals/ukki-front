@@ -7,7 +7,8 @@ export async function UserInfoAPI(no) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: "include"
         });
 
         if (!response.ok) {

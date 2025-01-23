@@ -14,7 +14,8 @@ export async function UserListAPI(category, word) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: "include"
         });
 
         if (!response.ok) {

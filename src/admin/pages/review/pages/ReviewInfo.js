@@ -5,6 +5,7 @@ import '../css/reset.css'
 import styles from '../css/ReviewInfo.module.css'
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
+import { API_BASE_URL } from '../../../../config/api.config';
 
 
 function ReviewInfo(){
@@ -57,8 +58,13 @@ function ReviewInfo(){
 
 
     function deleteConfirm(){
-        fetch(`/admin/reviews/info/${reviewNo}`, {
+        fetch(`${API_BASE_URL}/admin/reviews/info/${reviewNo}`, {
             method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: "include",
             body: JSON.stringify({
                 reviewImg: reviewInfo.reviewImage
             })

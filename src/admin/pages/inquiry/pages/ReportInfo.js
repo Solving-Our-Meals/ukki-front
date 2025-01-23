@@ -4,6 +4,7 @@ import styles from '../css/Inquiry.module.css';
 import { ReportInfoAPI } from '../api/ReportInfoAPI';
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function ReportInfo() {
     const { reportNo } = useParams();
@@ -78,11 +79,13 @@ function ReportInfo() {
 
     const handleAnswerInquiry = async () => {
         try {
-            const response = await fetch(`/admin/inquiries/info/report/${reportNo}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/inquiries/info/report/${reportNo}`, {
                 method: 'PUT',  
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
+                credentials: "include",
                 body: JSON.stringify(answer),
             });
             if (response.ok) {
@@ -109,8 +112,13 @@ function ReportInfo() {
 
     const handleDeleteInquiry = async () => {
         try {
-            const response = await fetch(`/admin/inquiries/info/report/${reportNo}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/inquiries/info/report/${reportNo}`, {
                 method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: "include"
             });
 
             if (response.ok) {

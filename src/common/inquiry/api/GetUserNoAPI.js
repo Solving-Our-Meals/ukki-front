@@ -1,8 +1,7 @@
 import { API_BASE_URL } from '../../../config/api.config';
 
-export async function getReoprtDTO(no){
-    let url = `${API_BASE_URL}/reports/list/${no}`;
-    const res = await fetch(url, {
+export async function getUserNo(){
+    const res = await fetch(`${API_BASE_URL}/user/info`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -10,7 +9,9 @@ export async function getReoprtDTO(no){
         },
         credentials: "include"
     })
-    const info = await res.json();
+    const userNo = await res.json();
 
-    return info;
+    console.log(userNo);
+    console.log(userNo.userNo);
+    return userNo.userNo
 }

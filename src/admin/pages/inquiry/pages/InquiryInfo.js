@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from '../css/Inquiry.module.css';
 import { InquiryInfoAPI } from '../api/InquiryInfoAPI';
+import { API_BASE_URL } from '../../../../config/api.config';
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 
@@ -27,16 +28,25 @@ function InquiryInfo() {
     const [fileUrl, setFileUrl] = useState("");
     const navigate = useNavigate();
 
-    const fetchFile = async (filename) => { 
-        try { 
-            const response = await fetch(`/admin/inquiries/files/${filename}`); 
-            const contentType = response.headers.get('Content-Type'); 
-            setFileType(contentType); 
-            const blob = await response.blob(); const url = URL.createObjectURL(blob); 
-            setFileUrl(url); 
-        } catch (error) { 
-            console.error('Error fetching file:', error); 
-        }};
+    // const fetchFile = async (filename) => { 
+    //     try { 
+    //         const response = await fetch(`${API_BASE_URL}/admin/inquiries/files/${filename}`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             credentials: "include"
+    //         }); 
+    //         const contentType = response.headers.get('Content-Type'); 
+    //         setFileType(contentType); 
+    //         const blob = await response.blob(); 
+    //         const url = URL.createObjectURL(blob); 
+    //         console.log(url);
+    //         setFileUrl(url); 
+    //     } catch (error) { 
+    //         console.error('Error fetching file:', error); 
+    //     }};
 
 
     useEffect(() => {
@@ -50,7 +60,8 @@ function InquiryInfo() {
                 });
             }
             if(currentInquiry.file) {
-                fetchFile(currentInquiry.file);
+                // fetchFile(currentInquiry.file);
+                setFileUrl(currentInquiry.file);
             }
         }
         currentInquiry();
@@ -95,12 +106,14 @@ function InquiryInfo() {
 
     const handleAnswerInquiry = async () => {
         try {
-            const response = await fetch(`/admin/inquiries/info/${inquiryNo}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/inquiries/info/${inquiryNo}`, {
                 method: 'PUT',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(answer),
+                credentials: "include"
             });
             if (response.ok) {
                 setAnswerSuccess(true);
@@ -126,8 +139,13 @@ function InquiryInfo() {
 
     const handleDeleteInquiry = async () => {
         try {
-            const response = await fetch(`/admin/inquiries/info/${inquiryNo}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/inquiries/info/${inquiryNo}`, {
                 method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: "include"
             });
 
             if (response.ok) {
@@ -144,8 +162,10 @@ function InquiryInfo() {
         }
     };
 
+    
     return (
         <div className={styles.inquiryContainer}>
+            
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore} />}
             {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2} />}
 
@@ -219,7 +239,7 @@ function InquiryInfo() {
                     </div>
                 </div>
             </div>
-            {fileUrl && fileType &&  <div className={styles.fileButton}><a href={fileUrl} download>첨부파일</a></div>}
+            {fileUrl && <div className={styles.fileButton}><a href={fileUrl} download>첨부파일</a></div>}
             {answerMode && <button className={styles.cancelButton} onClick={handleCancel}>취소</button>}
             {!answerMode && <button className={styles.delButton} onClick={handleDeleteConfirm}>삭제</button>}
             <button className={styles.answerButton} onClick={handleAnswer} disabled={inquiry.answerDate !== null} style={answerMode ? { left: '1403px', width: '115px' } : {}}>{answerMode ? '확인' : '답변하기'}</button>

@@ -3,8 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import '../css/reset.css';
 import styles from '../css/NoticeInfo.module.css';
 import { NoticeInfoAPI } from '../api/NoticeInfo';
-import AdminAgreementModal from '../../../components/AdminAgreementModal';
-import AdminResultModal from '../../../components/AdminResultModal';
+import { API_BASE_URL } from '../../../../config/api.config';
+import AdminAgreementModal from "../../../components/AdminAgreementModal";
+import AdminResultModal from "../../../components/AdminResultModal";
 
 function NoticeInfo(){
 
@@ -84,11 +85,13 @@ function NoticeInfo(){
 
     const handleEditNotice = async () => {
         try {
-            const response = await fetch(`/admin/notices/info/${noticeNo}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/notices/${noticeNo}`, {
                 method: 'PUT',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
+                credentials: "include",
                 body: JSON.stringify({
                     noticeNo : noticeNo,
                     noticeTitle : editTitle,
@@ -120,8 +123,13 @@ function NoticeInfo(){
 
     const handleDeleteNotice = async () => {
         try {
-            const response = await fetch(`/admin/notices/info/${noticeNo}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/notices/${noticeNo}`, {
                 method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: "include"
             });
 
             if (response.ok) {

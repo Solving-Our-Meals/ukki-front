@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from '../css/StoreUserRegist.module.css';
 import '../css/reset.css';
 import AdminResultModal from '../../../components/AdminResultModal';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 export default function StoreUserRegist(){
     const navigate = useNavigate();
@@ -64,11 +65,13 @@ export default function StoreUserRegist(){
 
         console.log("Submitting userid:", userInfo.userId);
 
-        const response = await fetch('/auth/signupid', {
+        const response = await fetch(`${API_BASE_URL}/auth/signupid`, {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({userId: userInfo.userId})
         });
         const result = await response.json();
@@ -84,11 +87,13 @@ export default function StoreUserRegist(){
  const handlePasswordSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/signuppwd', {
+        const response = await fetch(`${API_BASE_URL}/auth/signuppwd`, {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({userPass: userInfo.userPassword})
         });
 
@@ -114,11 +119,13 @@ export default function StoreUserRegist(){
         }
 
         // 이메일 중복
-        const emailCheckResponse = await fetch('/auth/checkemail', {
+        const emailCheckResponse = await fetch(`${API_BASE_URL}/auth/checkemail`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({email: userInfo.email}),
         });
 
@@ -173,11 +180,13 @@ export default function StoreUserRegist(){
     async function handleSubmit(e){
         e.preventDefault();
         if(canSubmit){
-            const response = await fetch('/admin/stores/regist/user', {
+            const response = await fetch(`${API_BASE_URL}/admin/stores/regist/user`, {
                 method: 'POST',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
+                credentials: "include",
                 body: JSON.stringify(userInfo)
             });
             const result = await response.json();
