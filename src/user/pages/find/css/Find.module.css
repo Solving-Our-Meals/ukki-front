@@ -117,7 +117,7 @@ input.errorInput:focus {
     border: 3px solid black; /* 포커스 시에도 빨간색 테두리 유지 */
 }
 
-.signupId::placeholder {
+.findAccount::placeholder {
     color: #AAAAAA
 }
 
@@ -336,7 +336,7 @@ input.errorInput:focus {
     color: #007bff;
 }
 
-.signupBasic input::placeholder {
+.findAccount input::placeholder {
     visibility: hidden;
 }
 
@@ -507,7 +507,7 @@ button:disabled {
         border: 3px solid black; /* 포커스 시에도 빨간색 테두리 유지 */
     }
 
-    .signupId::placeholder {
+    .findAccount::placeholder {
         color: #AAAAAA
     }
 
@@ -703,7 +703,7 @@ button:disabled {
         color: #007bff;
     }
 
-    .signupBasic input::placeholder {
+    .findAccount input::placeholder {
         visibility: hidden;
     }
 
@@ -945,7 +945,7 @@ button:disabled {
         border: 3px solid black; /* 포커스 시에도 빨간색 테두리 유지 */
     }
 
-    .signupId::placeholder {
+    .findAccount::placeholder {
         color: #AAAAAA
     }
 
@@ -1366,7 +1366,7 @@ button:disabled {
         border: 3px solid black;
     }
 
-    .signupId::placeholder {
+    .findAccount::placeholder {
         color: #AAAAAA
     }
 

@@ -7,6 +7,7 @@ import UserPass from '../images/mypage/password.png'
 import Default from '../../signup/images/default.png';
 import On from '../../signup/images/on.png';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function ProfileInfo({onUpdate}) {
     const [userInfo, setUserInfo] = useState(null);
@@ -66,10 +67,11 @@ function ProfileInfo({onUpdate}) {
                 }
 
                 try {
-                    const response = await fetch('/auth/signupnickname', {
+                    const response = await fetch(`${API_BASE_URL}/auth/signupnickname`, {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json',
+                            'Accept' : 'application/json',
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({ userName: formData.nickname }),
                     });
@@ -143,8 +145,12 @@ function ProfileInfo({onUpdate}) {
         }
 
         try {
-            const updateResponse = await fetch('/user/mypage/update', {
+            const updateResponse = await fetch(`${API_BASE_URL}/user/mypage/update`, {
                 method: 'PUT',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 body: updateData,
                 credentials: 'include',
             });
@@ -173,25 +179,26 @@ function ProfileInfo({onUpdate}) {
         }
 
         try {
-            const response = await fetch('/user/mypage/confirm', {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/confirm`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ password: formData.userPass }),
                 credentials: 'include',
             });
-
             if (!response.ok) {
                 throw new Error('ⓘ 비밀번호 확인에 실패했습니다.');
             }
             setError(null);
             setLoading(true);
 
-            const userInfoData = await fetch('/user/mypage/profile-info', {
+            const userInfoData = await fetch(`${API_BASE_URL}/user/mypage/profile-info`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 credentials: 'include',
             });
@@ -254,8 +261,12 @@ function ProfileInfo({onUpdate}) {
 
     const handleLogout = async () => {
         try {
-            await fetch('/auth/logout', {
+            await fetch(`${API_BASE_URL}/auth/logout`, {
                 method: 'POST',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
             navigate('/');
@@ -293,8 +304,12 @@ function ProfileInfo({onUpdate}) {
     const handleConfirmDelete = async () => {
         setShowDeleteConfirmModal(false);
         try {
-            const response = await fetch('/user/mypage/delete', {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/delete`, {
                 method: 'DELETE',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
 

@@ -4,6 +4,7 @@ import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function Reservation({onDelete}) {
     const [userInfo, setUserInfo] = useState(null);
@@ -30,8 +31,12 @@ function Reservation({onDelete}) {
 
     const fetchUserInfo = async (query = '') => {
         try {
-            const response = await fetch(`/user/mypage/reservation${query}`, {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/reservation${query}`, {
                 method: 'GET',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
 
@@ -179,8 +184,12 @@ function Reservation({onDelete}) {
 
     const handleConfirmCancel = () => {
         if (reservationToCancel) {
-            fetch(`/user/mypage/reservation/${reservationToCancel.resNo}`, {
+            fetch(`${API_BASE_URL}/user/mypage/reservation/${reservationToCancel.resNo}`, {
                 method: 'DELETE',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             })
                 .then((response) => {

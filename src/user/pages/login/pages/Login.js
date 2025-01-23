@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import signupLogo from '../../signup/images/signupLogo.png';
 import Default from '../../signup/images/default.png';
 import On from '../../signup/images/on.png';
+import {API_BASE_URL} from "../../../../config/api.config";
 
 function Login() {
     const [step, setStep] = useState(1);
@@ -27,9 +28,10 @@ function Login() {
     const handleUsernameSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/login/step-one', {
+        const response = await fetch(`${API_BASE_URL}/auth/login/step-one`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ userId: formData.userId }),
@@ -48,9 +50,10 @@ function Login() {
     const handlePasswordSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/auth/login/step-two', {
+        const response = await fetch(`${API_BASE_URL}/auth/login/step-two`, {
             method: 'POST',
             headers: {
+                'Accept' : 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
