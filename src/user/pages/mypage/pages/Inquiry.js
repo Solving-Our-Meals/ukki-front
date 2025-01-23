@@ -4,6 +4,7 @@ import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Search from '../../../../store/pages/bossNotice/images/searchBtn.png';
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function Inquiry() {
     const [userInfo, setUserInfo] = useState(null);
@@ -25,8 +26,12 @@ function Inquiry() {
 
     const fetchUserInfo = async (query = '') => {
         try {
-            const response = await fetch(`/user/mypage/inquiry${query}`, {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry${query}`, {
                 method: 'GET',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
 

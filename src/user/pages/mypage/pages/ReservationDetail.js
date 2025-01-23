@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../css/ReservationDetail.module.css';
 import { useParams, Link } from 'react-router-dom';
 import Loading from "../../../../common/inquiry/img/loadingInquiryList.gif";
+import {API_BASE_URL} from '../../../../config/api.config';
 
 function ReservationDetail() {
     const { resNo } = useParams();
@@ -15,18 +16,21 @@ function ReservationDetail() {
 
     const fetchReservationDetail = async () => {
         try {
-            const response = await fetch(`/user/mypage/reservation/${resNo}`, {
+            const response = await fetch(`${API_BASE_URL}/user/mypage/reservation/${resNo}`, {
                 method: 'GET',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
             });
             if (response.ok) {
                 const data = await response.json();
                 setReviewDetail(data);
 
-                // 1초 후에 달력 보이게 설정
                 setTimeout(() => {
                     setCalendarVisible(true);
-                }, 1000);  // 1초 후 달력 표시
+                }, 1000);
             } else {
                 setError('리뷰를 가져오는 데 실패했습니다.');
             }
