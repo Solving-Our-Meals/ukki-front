@@ -4,7 +4,7 @@ import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
 import ResultSmallModal from './ResultSmallModal';
 import { API_BASE_URL } from '../../../config/api.config';
-import { getUserNo } from '../api/GetUserNoAPI';
+import { GetUserNoAPI } from '../api/GetUserNoAPI';
 
 
 function UserDoInquiry({closeModal}){
@@ -102,7 +102,7 @@ function UserDoInquiry({closeModal}){
 
     useEffect(()=>{
         fetchCategory()
-        getUserNo().then(userNo => {
+        GetUserNoAPI().then(userNo => {
             setUserNo(userNo)
         })
     },[])

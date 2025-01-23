@@ -1,6 +1,6 @@
 import { API_BASE_URL } from '../../../config/api.config';
 
-export async function getUserNo(){
+export async function GetUserNoAPI(){
     const res = await fetch(`${API_BASE_URL}/user/info`, {
         method: 'GET',
         headers: {
