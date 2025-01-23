@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import noAnswerLogo from '../images/noAnswerLogo.png';
 import styles from '../css/specificInquiry.module.css';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function SpecificInquiry(){
 
@@ -34,7 +35,13 @@ function SpecificInquiry(){
     });
     
     useEffect(() => {
-        fetch(`/boss/mypage/getSpecificInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}`)
+        fetch(`${API_BASE_URL}/boss/mypage/getSpecificInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+        })
         .then(res => res.json())
         .then(data => {
             setInquiryInfo(data);
@@ -67,7 +74,7 @@ function SpecificInquiry(){
     }
 
     const deleteInquiry = (inquiryNo, categoryNo, reviewNo) => {
-        fetch(`/boss/mypage/deleteInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}&reviewNo=${reviewNo}`, {
+        fetch(`${API_BASE_URL}/boss/mypage/deleteInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}&reviewNo=${reviewNo}`, {
             method : 'DELETE',
             headers : {
                 'Content-Type' : 'application/json',
@@ -143,7 +150,7 @@ function SpecificInquiry(){
             inquiryDate: formattedDate
         }));
 
-        fetch(`/boss/mypage/updateInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}&reviewNo=${reviewNo}`, {
+        fetch(`${API_BASE_URL}/boss/mypage/updateInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}&reviewNo=${reviewNo}`, {
             method : 'PUT',
             body : formData,
         })

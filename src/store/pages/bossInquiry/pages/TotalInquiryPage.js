@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useOutletContext, useNavigate} from 'react-router-dom';
 import styles from '../css/totalInquiryPage.module.css';
 import searchBtn from '../images/searchBtn.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 
 function TotalInquiryPage(){
@@ -56,7 +57,13 @@ function TotalInquiryPage(){
     };
 
     useEffect(() => {
-        fetch(`/boss/mypage/recentInquiry?storeNo=${storeNo}&userNo=${userNo}`)
+        fetch(`${API_BASE_URL}/boss/mypage/recentInquiry?storeNo=${storeNo}&userNo=${userNo}`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+        })
         .then(res => res.json())
         .then(data => {
             setRecentInquiry(data);
@@ -80,9 +87,15 @@ function TotalInquiryPage(){
 
     const sendSearchWordHandler = (searchTerm = "") => {
         const term = typeof searchTerm === 'string' ? searchTerm : "";
-        const url = searchTerm.trim() === "" ? `/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}` : `/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}&searchWord=${searchTerm}`;
+        const url = searchTerm.trim() === "" ? `${API_BASE_URL}/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}` : `${API_BASE_URL}/boss/mypage/inquiryList?storeNo=${storeNo}&userNo=${userNo}&searchWord=${searchTerm}`;
 
-        fetch(url)
+        fetch(url,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+        })
         .then(res => res.json())
         .then(data => {
             setInquiries(Array.isArray(data) ? data : []);

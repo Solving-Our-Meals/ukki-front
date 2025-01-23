@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from '../css/representativePhoto.module.css';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function RepresentativePhoto(){
 
@@ -12,10 +13,17 @@ function RepresentativePhoto(){
 
     useEffect(
         () => {
-            fetch(`/reservation/repPhoto?storeNo=${storeNo}`)
+            fetch(`${API_BASE_URL}/reservation/repPhoto?storeNo=${storeNo}`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials : "include",
+            })
             .then(res => res.text())
             .then(data => {
-                const bannerUrl = `/reservation/api/repPhoto?repPhotoName=${data}`
+                const bannerUrl = `${API_BASE_URL}/reservation/api/repPhoto?repPhotoName=${data}`
                 setPhoto(bannerUrl);
             })
             .then(error => console.log(error));

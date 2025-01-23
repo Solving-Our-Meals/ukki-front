@@ -6,6 +6,7 @@ import styles from '../css/reservation.module.css';
 import prevBtn from '../images/prev-or-next-icon.png';
 import nextBtn from '../images/prev-or-next-icon.png';
 import todayIcon from '../images/todayIcon.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 // 현재 월, 이전 월, 다음 월 날짜를 계산하는 함수
 const getCalendarDates = (year, month) => {
@@ -63,43 +64,56 @@ function Calendar() {
     // 새로운 state 추가
     const [disabledTimes, setDisabledTimes] = useState([]);
 
-    // useEffect(
-    //     () => {
-    //         fetch('/user/info')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setUserInfo(data);
-    //             console.log('유저정보', data);
-    //             // if(data !== null){
-    //             //     setIsUser(true);
-    //             // }   
-    //             setIsUser(true); 
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //             setIsUser(false);
-    //         });
-    //     }, []
-    // )
-
-    useEffect(() => {
-        const fetchUserInfo = async () => {
-            try {
-                const response = await fetch('/user/info', {
-                    method: 'GET'
-                });
-                const data = await response.json();
+    useEffect(
+        () => {
+            fetch(`${API_BASE_URL}/user/info`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials : "include"
+            })
+            .then(res => res.json())
+            .then(data => {
                 setUserInfo(data);
                 console.log('유저정보', data);
+                // if(data !== null){
+                //     setIsUser(true);
+                // }   
                 setIsUser(true); 
-            } catch (error) {
-                console.error(error);
+            })
+            .catch(error => {
+                console.log(error);
                 setIsUser(false);
-            }
-        };
-    
-        fetchUserInfo();
-    }, []);
+            });
+        }, []
+    )
+
+
+    // useEffect(() => {
+    //     const fetchUserInfo = async () => {
+    //         try {
+    //             const response = await axios.get(`${API_BASE_URL}/user/info`,{
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Accept': 'application/json',
+    //                     'Content-Type': 'application/json'
+    //                 }
+    //             }); // Axios 사용
+    //             const data = await response.data;
+    //             setUserInfo(data);
+    //             console.log('유저정보', data);
+    //             setIsUser(true); 
+    //         } catch (error) {
+    //             console.error(error);
+    //             setIsUser(false);
+    //         }
+    //     };
+
+    //     fetchUserInfo();
+    // }, []);
+
     
     
 
@@ -158,7 +172,13 @@ function Calendar() {
         let morningArr = [];
         let afternoonArr = [];
 
-        fetch(`/store/${storeNo}/getInfo`)
+        fetch(`${API_BASE_URL}/store/${storeNo}/getInfo`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            })
             .then(res => res.json())
             .then(data => {
                 setOperation(data.operationTime);
@@ -434,7 +454,13 @@ function Calendar() {
                 '-' + ( (today.getMonth()+1) < 9 ? "0" + (today.getMonth()+1) : (today.getMonth()+1))+
                 '-' + ( (today.getDate()) < 9 ? "0" + (today.getDate()) : (today.getDate()));
 
-                return fetch(`/store/${storeNo}/resPosNumber?storeNo=${storeNo}&day=${day}&date=${todayFormat}`)
+                return fetch(`${API_BASE_URL}/store/${storeNo}/resPosNumber?storeNo=${storeNo}&day=${day}&date=${todayFormat}`,{
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                })
                 .then(res => res.json())
                 .then(data => {
                     console.log('예약가능인원 : ', data);
@@ -797,7 +823,13 @@ function Calendar() {
                 selectDate.getDate().toString().padStart(2, '0')}`;
 
         // 4. 예약 가능 인원 조회
-        fetch(`/store/${storeNo}/resPosNumber?storeNo=${storeNo}&day=${day}&date=${selectedDateFormat}`)
+        fetch(`${API_BASE_URL}/store/${storeNo}/resPosNumber?storeNo=${storeNo}&day=${day}&date=${selectedDateFormat}`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
             .then(res => res.json())
             .then(data => {
                 console.log('선택한 날짜의 예약가능인원:', data);
@@ -863,7 +895,7 @@ function Calendar() {
 
         // 선택한 시간이 현재 시간보다 미래일 때만 예약 페이지로 넘어가기
         if(selectedTime > currentTime){
-            navigate('/reservation',{
+            navigate(`/reservation`,{
                 state:{
                     date1 :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
                     date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
