@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../css/bossSpecificNotice.module.css';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function BossSpecificNotice(){
     const { noticeNo } = useParams();
@@ -12,7 +13,13 @@ function BossSpecificNotice(){
     });
 
     useEffect(() => {
-        fetch(`/notice/getSpecificNotice?noticeNo=${noticeNo}`)
+        fetch(`${API_BASE_URL}/notice/getSpecificNotice?noticeNo=${noticeNo}`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
         .then(res => res.json())
         .then(data => {
 

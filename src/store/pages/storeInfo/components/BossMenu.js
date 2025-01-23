@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
 import styles from '../css/bossMenu.module.css';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function BossMenu({storeNo}){
     const [menu, setMenu] = useState("");
 
     useEffect(() => {
-        fetch(`/store/${storeNo}/storeMenu`)
+        fetch(`${API_BASE_URL}/store/${storeNo}/storeMenu`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
         .then(res => res.text())
         .then(data => {
-            const menuUrl = `/store/${storeNo}/api/menu?menuName=${data}`
+            const menuUrl = `${API_BASE_URL}/store/${storeNo}/api/menu?menuName=${data}`
             setMenu(menuUrl);
         })
     }, [])

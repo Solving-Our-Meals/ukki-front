@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import styles from '../css/createReview.module.css';
 import addPhoto from '../images/addPhoto.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 const FileInfo = ({uploadedInfo}) => (
     <ul className={styles.previewInfo}>
@@ -133,7 +134,7 @@ const CreateReview = ({reflashMethod}) => {
             formData.append("reviewImage", uploadedFile);
         }
 
-        fetch(`/store/${storeNo}/review`, {
+        fetch(`${API_BASE_URL}}/store/${storeNo}/review`, {
             method: 'POST',
             body: formData,
         })
@@ -204,7 +205,7 @@ const CreateReview = ({reflashMethod}) => {
     }
 
     // 리뷰 작성하기 버튼 활성화 여부
-    const [writeReview, setWriteReview] = useState(true);
+    const [writeReview, setWriteReview] = useState(false);
 
     // DB에 유저 넘버와 가게 번호 넘기기
     // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기
@@ -228,7 +229,14 @@ const CreateReview = ({reflashMethod}) => {
 
     useEffect(
         () => {
-            fetch('/user/info')
+            fetch(`${API_BASE_URL}/user/info`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                credentials : "include"
+            })
             .then(res => res.json())
             .then(data => {
                 setUserInfo(data);
@@ -275,7 +283,13 @@ const CreateReview = ({reflashMethod}) => {
 
     useEffect(() => {
         if (userInfo.userId && storeInfo.storeNo) {  
-            fetch(`/store/${storeNo}/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
+            fetch(`${API_BASE_URL}/store/${storeNo}/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
                 .then(res => res.json())
                 .then(data => {
                     function isWithinThreeDays(resDate) {
@@ -317,7 +331,12 @@ const CreateReview = ({reflashMethod}) => {
                                             ...prevReview,
                                             resNo : data[i].resNo.toString()
                                         }))
-                                        fetch(`/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`)
+                                        fetch(`${API_BASE_URL}/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`,{
+                                            method: 'GET',
+                                            headers: {
+                                                'Accept': 'application/json',
+                                                'Content-Type': 'application/json',
+                                            },})
                                             .then(res => res.json())
                                             .then(data => {
                                                 console.log('예약 번호 성공');
@@ -339,7 +358,12 @@ const CreateReview = ({reflashMethod}) => {
                                         ...prevReview,
                                         resNo : data[i].resNo.toString()
                                     }))
-                                    fetch(`/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`)
+                                    fetch(`${API_BASE_URL}/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`,{
+                                        method: 'GET',
+                                        headers: {
+                                            'Accept': 'application/json',
+                                            'Content-Type': 'application/json',
+                                        },})
                                         .then(res => res.json())
                                         .then(data => {
                                             console.log('예약 번호 성공');

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import styles from "../css/termsOfUse.module.css";
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function TermsOfUse () {
     
@@ -28,7 +29,14 @@ function TermsOfUse () {
 
     useEffect(
         () => {
-            fetch('user/info')
+            fetch(`${API_BASE_URL}/user/info`,{
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials : "include",
+            })
                 .then(res => res.json())
                 .then(data => {
                 setReservationInfo(prevInfo => ({
@@ -52,7 +60,7 @@ function TermsOfUse () {
 
         console.log('reservationInfo : ', reservationInfo);
 
-        fetch('/reservation/insert', {
+        fetch(`${API_BASE_URL}/reservation/insert`, {
             method : 'POST',
             headers : {
                 "Content-Type" : "application/json; charset=UTF-8"

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from '../css/specificReview.module.css';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function SpecificReview({reviewNo, storeNo}){
 
@@ -16,7 +17,13 @@ function SpecificReview({reviewNo, storeNo}){
             return;  // reviewNo가 없으면 fetch를 보내지 않음
         }
         
-        fetch(`/boss/mypage/getReviewInfo?reviewNo=${reviewNo}`)
+        fetch(`${API_BASE_URL}/boss/mypage/getReviewInfo?reviewNo=${reviewNo}`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
         .then(res => res.json())
         .then(data => {
             setReview(data);
@@ -54,7 +61,7 @@ function SpecificReview({reviewNo, storeNo}){
             reportDate: formattedDate // 날짜 추가 
             };
 
-        fetch(`/boss/mypage/reviewReport?storeNo=${storeNo}`, {
+        fetch(`${API_BASE_URL}/boss/mypage/reviewReport?storeNo=${storeNo}`, {
             method: 'POST',
             headers : {
                 'Content-Type' : 'application/json'
@@ -83,7 +90,7 @@ function SpecificReview({reviewNo, storeNo}){
             <div id={styles.totalArea}>
                 <div className={styles.reviewContainer}>
                     <img 
-                        src={review.userProfile === null ? `/store/${storeNo}/api/userProfile?userProfileName=PROFILE_BASIC` : `/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
+                        src={review.userProfile === null ? `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=PROFILE_BASIC` : `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
                         id={styles.userProfile} 
                         alt='프로필 이미지'
                     />
@@ -99,7 +106,7 @@ function SpecificReview({reviewNo, storeNo}){
                     </button>
                     <div>{review.reviewDate}</div>
                     <div>{review.reviewContent}</div>
-                    <img src={`/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
+                    <img src={`${API_BASE_URL}/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
                 </div> 
             </div>
             <div className={styles.overlay} style={{display : showReportModal || isReportComplete ? "" : "none"}}></div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import styles from '../css/bossTotalNotice.module.css';
 import searchBtn from '../images/searchBtn.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function BossTotalNotice(){
 
@@ -52,7 +53,13 @@ function BossTotalNotice(){
     };
 
     useEffect(() => {
-        fetch('/notice/boss/recentNotice')
+        fetch(`${API_BASE_URL}/notice/boss/recentNotice`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
         .then(res => res.json())
         .then(data => {
             setRecentNotice(data);
@@ -80,9 +87,15 @@ function BossTotalNotice(){
 
     const sendSearchWordHandler = (searchTerm = "") => {
         const term = typeof searchTerm === 'string' ? searchTerm : "";
-        const url = searchTerm.trim() === "" ? '/notice/boss' : `/notice/boss?searchWord=${searchTerm}`;
+        const url = searchTerm.trim() === "" ? `${API_BASE_URL}/notice/boss` : `${API_BASE_URL}/notice/boss?searchWord=${searchTerm}`;
 
-        fetch(url)
+        fetch(url,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
         .then(res => res.json())
         .then(data => {
             setNotices(Array.isArray(data) ? data : []);

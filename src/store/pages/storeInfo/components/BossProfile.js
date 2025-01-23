@@ -1,22 +1,35 @@
 import { useState, useEffect } from 'react';
 import styles from "../css/bossProfile.module.css";
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function BossProfile({storeNo}) {
     const [profile, setProfile] = useState('');
 
     useEffect(() => {
-        fetch(`/store/${storeNo}/storeProfile`)
+        fetch(`${API_BASE_URL}/store/${storeNo}/storeProfile`,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
         .then(res => res.text())
         .then(data => {
             if(data === ""){
-                fetch(`/store/${storeNo}/storebanner`)
+                fetch(`${API_BASE_URL}/store/${storeNo}/storebanner`,{
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
                 .then(res => res.json())
                 .then(data => {
-                    const profileUrl = `/store/${storeNo}/api/files?filename=${data[0]}`;
+                    const profileUrl = `${API_BASE_URL}/store/${storeNo}/api/files?filename=${data[0]}`;
                     setProfile(profileUrl);
                 });
             } else {
-                const profileUrl = `/store/${storeNo}/api/profile?profileName=${data}`
+                const profileUrl = `${API_BASE_URL}/store/${storeNo}/api/profile?profileName=${data}`
                 setProfile(profileUrl);
             }
         });
