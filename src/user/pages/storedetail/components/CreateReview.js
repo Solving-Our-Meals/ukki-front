@@ -143,6 +143,13 @@ const CreateReview = ({reflashMethod}) => {
                 setIsDisplay(false);
                 setDoWriteReview(false);
                 setIsCompletedReview(true);
+                setReview((prevState) => ({
+                    ...prevState,
+                    reviewContent : "",
+                    reviewScope : "",
+                }));
+                setUploadedInfo(null);
+                setImageUrl(null);
             } else {
                 console.error("Failed to submit review", res.statusText);
             }
