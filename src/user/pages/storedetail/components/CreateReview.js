@@ -43,7 +43,7 @@ const CreateReview = ({reflashMethod}) => {
         reviewScope : "",
         storeNo : "",
         userNo : "",
-        resNo : "200"
+        resNo : "9999"
     });
 
     const onChangeHandler = (e) => {
@@ -134,7 +134,7 @@ const CreateReview = ({reflashMethod}) => {
             formData.append("reviewImage", uploadedFile);
         }
 
-        fetch(`${API_BASE_URL}}/store/${storeNo}/review`, {
+        fetch(`${API_BASE_URL}/store/${storeNo}/review`, {
             method: 'POST',
             body: formData,
         })
@@ -143,6 +143,13 @@ const CreateReview = ({reflashMethod}) => {
                 setIsDisplay(false);
                 setDoWriteReview(false);
                 setIsCompletedReview(true);
+                setReview((prevState) => ({
+                    ...prevState,
+                    reviewContent : "",
+                    reviewScope : "",
+                }));
+                setUploadedInfo(null);
+                setImageUrl(null);
             } else {
                 console.error("Failed to submit review", res.statusText);
             }
@@ -205,7 +212,7 @@ const CreateReview = ({reflashMethod}) => {
     }
 
     // 리뷰 작성하기 버튼 활성화 여부
-    const [writeReview, setWriteReview] = useState(false);
+    const [writeReview, setWriteReview] = useState(true);
 
     // DB에 유저 넘버와 가게 번호 넘기기
     // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기

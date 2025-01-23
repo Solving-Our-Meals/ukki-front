@@ -75,7 +75,7 @@ function Review(){
             reviewScope();
         } else if(option === 'lowRating'){
             reviewSecondScope();
-        } else {
+        } else if(option === 'latest') {
             reviewLatest();
         }
     };
@@ -123,7 +123,8 @@ function Review(){
     }
 
     const reviewSecondScope = () => {
-        fetch(`${API_BASE_URL}}/store/${storeNo}/reviewSecondScope`,{
+        console.log("별점 낮은 순")
+        fetch(`${API_BASE_URL}/store/${storeNo}/reviewSecondScope`,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
