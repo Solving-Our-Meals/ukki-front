@@ -22,11 +22,32 @@ function MyProfile() {
 
     const [profileImage, setProfileImage] = useState(null);
     const [imageFile, setImageFile] = useState(null);
-    const [image, setImage] = useState(null);
+    const [isUploading, setIsUploading] = useState(false);
+    const [showUploadButton, setShowUploadButton] = useState(false);
 
     useEffect(() => {
         fetchUserInfo();
     }, []);
+
+    useEffect(() => {
+        if (userInfo && userInfo.profileImage) {
+            const fileId = userInfo.profileImage;
+            if (fileId) {
+                fetchImageFromGoogleDrive(fileId);
+            }
+        }
+    }, [userInfo]);
+
+    const fetchImageFromGoogleDrive = async (fileId) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/image?fileId=${fileId}`);
+            const blob = await response.blob();
+            const imgUrl = URL.createObjectURL(blob);
+            setProfileImage(imgUrl);
+        } catch (error) {
+            console.error('이미지 다운로드 실패:', error);
+        }
+    };
 
     const fetchUserInfo = async () => {
         try {
@@ -98,9 +119,10 @@ function MyProfile() {
             setImageFile(file);
             const reader = new FileReader();
             reader.onloadend = () => {
-                setProfileImage(reader.result);  // 미리보기 이미지
+                setProfileImage(reader.result);
             };
             reader.readAsDataURL(file);
+            setShowUploadButton(true);
         }
     };
 
@@ -110,55 +132,57 @@ function MyProfile() {
             return;
         }
 
+        setIsUploading(true);  // 업로드 중 상태로 변경
+
         const formData = new FormData();
         formData.append('profileImage', imageFile);
 
         try {
+            // 이미지 업로드 요청
             const response = await fetch(`${API_BASE_URL}/user/mypage/profile-image`, {
                 method: 'POST',
-                headers: {
-                    'Accept' : 'application/json',
-                },
                 body: formData,
                 credentials: 'include',
             });
 
-            const result = await response.text();
+            const result = await response.json();
             if (response.ok) {
-                alert(result);
-                setUserInfo(prev => ({ ...prev, profileImage: result }));
-                setProfileImage(result);
+                alert(result.message);
+
+                // 새 이미지 URL 받아오기
+                const updatedImageUrl = result.imageUrl;
+
+                // 이미지 URL을 새로 갱신하고 프로필 이미지를 업데이트
+                setProfileImage(updatedImageUrl);
+
+                // 이미지 업로드 후 로딩 상태 끄기
+                setIsUploading(false);
+                setShowUploadButton(false);
             } else {
-                alert(result);
+                alert(result.message);
+                setIsUploading(false);  // 업로드 실패 시 로딩 상태 끄기
             }
         } catch (error) {
             alert('이미지 업로드 중 오류가 발생했습니다.');
+            setIsUploading(false);  // 업로드 실패 시 로딩 상태 끄기
         }
     };
+
+
+
 
 
     return (
         <div className={styles.profileMain}>
             <div className={styles.profileImageContainer}>
-                {/* 기본 이미지만 별도로 위치시킴 */}
-                {!profileImage && !userInfo?.profileImage && (
-                    <img
-                        className={styles.defaultImage}
-                        src={DefaultProfile}
-                        alt="Default Profile"
-                        onClick={() => document.getElementById('fileInput').click()}
-                    />
-                )}
-
-                {/* 사용자 이미지 */}
                 <img
                     className={styles.profileImage}
-                    src={userInfo.profileImage || userInfo?.profileImage}
-                    alt="user"
+                    src={isUploading ? Loading : (imageFile ? URL.createObjectURL(imageFile) : (profileImage ? profileImage : DefaultProfile))}
+                    alt="Profile"
                     onClick={() => document.getElementById('fileInput').click()}
                 />
 
-                {/* 프로필 이미지 변경 문구 */}
+
                 <div className={styles.profileImageText}>
                     프로필 이미지 변경
                 </div>
@@ -169,18 +193,22 @@ function MyProfile() {
                     className={styles.uploadInput}
                     onChange={handleImageChange}
                     accept="image/*"
-                    style={{display: 'none'}} // 파일 입력창은 숨김
+                    style={{display: 'none'}}
                 />
 
-                {/* 업로드 아이콘 */}
-                {profileImage && (
+                {showUploadButton && !isUploading && (
                     <img
+                        id="uploadIcon"
                         src={Pencil}
                         alt="업로드 아이콘"
                         className={styles.uploadButton}
-                        onClick={handleImageUpload} // 이미지 업로드 버튼 클릭 시 업로드
+                        onClick={() => {
+                            setIsUploading(true);
+                            handleImageUpload();
+                        }}
                     />
                 )}
+
             </div>
             <p className={styles.mypageNickname}>{userInfo?.nickname || ''}</p>
             <hr className={styles.mypageHorizonLine1}/>
