@@ -150,6 +150,7 @@ const CreateReview = ({reflashMethod}) => {
                 }));
                 setUploadedInfo(null);
                 setImageUrl(null);
+                setFileInfo(null);
             } else {
                 console.error("Failed to submit review", res.statusText);
             }
