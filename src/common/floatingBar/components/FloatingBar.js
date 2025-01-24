@@ -4,7 +4,7 @@ import floating1 from '../images/floating_home.png';
 import floating2 from '../images/floating_top.png';
 import floating3 from '../images/floating_inquiry.png';
 import floating4 from '../images/floatingBar-logo.png';
-import UserDoInquiry from '../../inquiry/components/UserDoInquiry';
+import DoInquiry from '../../inquiry/components/DoInquiry';
 
 function FloatingBar({setDoInquiryModal}){
 
@@ -36,7 +36,7 @@ function FloatingBar({setDoInquiryModal}){
                 <img src={floating4} alt='플로팅바 우끼' id={styles.floatingBar_logo}/>
             </div>
         </div>
-        {doInquiry && <UserDoInquiry closeModal={()=>{
+        {doInquiry && <DoInquiry closeModal={()=>{
             setDoInquiry(false)
             setDoInquiryModal(false)}}/>}
         </>

@@ -5,6 +5,7 @@ import "../css/reset.css";
 import { InquiryListUserAPI } from "../api/InquiryListUserAPI";
 import { InquiryListStoreAPI } from "../api/InquiryListStoreAPI";
 import { TotalInquiryAPI } from "../api/TotalInquiryAPI";
+import { API_BASE_URL } from "../../../../config/api.config";
 
 function InquiryList() {
     const [list, setList] = useState([]);
@@ -96,7 +97,7 @@ function InquiryList() {
     }
 
     function searchClickHandler() {
-        let url = `?category=${searchCategory}&word=${searchWord}`;
+        let url = `/admin/inquiries/list?category=${searchCategory}&word=${searchWord}`;
         navigate(url);
     }
 
@@ -199,7 +200,7 @@ function InquiryList() {
             <div id={styles.inquiryListBodyPosition}>
                 {searchSuccess ? currentItem.map((item, index) => (
                     <div className={styles.inquiryListBody} key={index} onClick={() => handlerinquiryInfo(item.inqNo, item.inquiry)} value={item.inquiry} style={{ cursor: 'pointer' }}>
-                        <div style={{ width: '178px' }}>{item.inqDate}</div>
+                        <div style={{ width: '177px' }}>{item.inqDate}</div>
                         <div style={{ width: '325px' }}>{item.categoryName}</div>
                         <div style={{ width: '325px' }}>{item.inqTitle}</div>
                         <div style={{ width: '500px' }}>{item.inqContent}</div>

@@ -180,13 +180,12 @@ export default function StoreUserRegist(){
     async function handleSubmit(e){
         e.preventDefault();
         if(canSubmit){
+            console.log(userInfo)
             const response = await fetch(`${API_BASE_URL}/admin/stores/regist/user`, {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                credentials: "include",
                 body: JSON.stringify(userInfo)
             });
             const result = await response.json();

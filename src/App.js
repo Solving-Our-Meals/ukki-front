@@ -9,7 +9,6 @@ import Mypage from './user/pages/mypage/route/Mypage';
 import Info from './user/pages/info/Info';
 import UserLayout from './user/layouts/UserLayout';
 import Main from './user/pages/main/Main';
-import InquiryEnter from './common/inquiry/components/StoreInquiryEnter';
 import UserStorePage from './user/pages/storedetail/pages/UserStorePage';
 import QrRoutes from './store/pages/qrCheck/routes/QrRoutes';
 import AdminRoutes from './admin/route/AdminRoutes';
@@ -48,25 +47,24 @@ function App() {
                             <Route path="info" element={<Info />} />
                         </Route>
 
-                        {/* 로그인 인증이 필요한 라우트들 넣고 element에 PrivateRoute 붙여주세요. */}
-                        <Route path="user/mypage/*" element={<PrivateRoute element={<Mypage />} />} />
-                        <Route path="/" element={<UserLayout />}>
-                            <Route path="search" element={<Search />}/>
-                            <Route path="store/:storeNo" element={<UserStorePage />} />
-                            <Route path="reservation" element={<PrivateRoute element={<Reservation />} />} />
-                            <Route path="sinquiries" element={<PrivateRoute element={<InquiryEnter />} />} />
-                            <Route path="notice" element={<PrivateRoute element={<UserNotice/>}/>}/> 
-                            <Route path="notice/:noticeNo" element={<PrivateRoute element={<UserSpecificNotice/>}/>}/> 
-                        </Route>
-                        <Route path="/boss" element={<BossLayout />}>
-                            <Route path="mypage" element={<PrivateRoute element={<BossPage/>}/>}/> 
-                            <Route path="info" element={<PrivateRoute element={<BossStoreInfoPage/>}/>}/> 
-                            <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
-                            <Route path="notice/:noticeNo" element={<PrivateRoute element={<BossSpecificPage/>}/>}/>
-                            <Route path="review" element={<PrivateRoute element={<TotalReview/>}/>}/>
-                            <Route path="inquiry" element={<PrivateRoute element={<TotalInquiryPage/>}/>}/>
-                            <Route path="inquiry/:inquiryNo" element={<PrivateRoute element={<SpecificInquiry/>}/>}/>
-                        </Route>
+                    {/* 로그인 인증이 필요한 라우트들 넣고 element에 PrivateRoute 붙여주세요. */}
+                    <Route path="user/mypage/*" element={<PrivateRoute element={<Mypage />} />} />
+                    <Route path="/" element={<UserLayout />}>
+                        <Route path="search" element={<Search />}/>
+                        <Route path="store/:storeNo" element={<UserStorePage />} />
+                        <Route path="reservation" element={<PrivateRoute element={<Reservation />} />} />
+                        <Route path="notice" element={<PrivateRoute element={<UserNotice/>}/>}/> 
+                        <Route path="notice/:noticeNo" element={<PrivateRoute element={<UserSpecificNotice/>}/>}/> 
+                    </Route>
+                    <Route path="/boss" element={<BossLayout />}>
+                        <Route path="mypage" element={<PrivateRoute element={<BossPage/>}/>}/> 
+                        <Route path="info" element={<PrivateRoute element={<BossStoreInfoPage/>}/>}/> 
+                        <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
+                        <Route path="notice/:noticeNo" element={<PrivateRoute element={<BossSpecificPage/>}/>}/>
+                        <Route path="review" element={<PrivateRoute element={<TotalReview/>}/>}/>
+                        <Route path="inquiry" element={<PrivateRoute element={<TotalInquiryPage/>}/>}/>
+                        <Route path="inquiry/:inquiryNo" element={<PrivateRoute element={<SpecificInquiry/>}/>}/>
+                    </Route>
 
                         {/* QR 관련 및 관리자 관련 라우팅 */}
                         <Route path="qr/*" element={<QrRoutes />} />

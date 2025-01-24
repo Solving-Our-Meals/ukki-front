@@ -4,7 +4,9 @@ import '../css/doinquiry.css';
 import { inquiryCategory } from '../api/inquiryCategoryAPI';
 import ResultSmallModal from './ResultSmallModal';
 import { API_BASE_URL } from '../../../config/api.config';
-function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
+import { useAuth } from '../../authContext/AuthContext';
+
+function DoInquiry({closeModal}){
 
     
 
@@ -14,15 +16,43 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
     const [inquiryContent, setInquiryContent] = useState("");
     const [inquiryFile, setInquiryFile] = useState(null);
     const [isWrite, setIsWrite] = useState([false, false, false]);
-    const [checkContent, setCheckContent] = useState(false);
     const [showResultModal, setShowResultModal] = useState(false);
+    const [checkContent, setCheckContent] = useState(false);
     const [resultMessage, setResultMessage] = useState("");
+    const [userNo, setUserNo] = useState(0);
     const fileInputRef = useRef(null);
 
+    const { isAuthenticated, user } = useAuth(); // user 정보를 가져옵니다.
+
+    useEffect(() => {
+        const verifyAuth = async () => {
+            if (!isAuthenticated) {
+                closeModal();
+            }
+        };
+        verifyAuth();
+    }, [isAuthenticated]);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            if (user?.userRole === 'STORE') {
+                fetchStoreCategory();
+            } else if (user?.userRole === 'USER') {
+                fetchUserCategory();
+            }
+        }
+
+        setUserNo(user.userNo)
+        
+    }, [isAuthenticated, user]);
+
+    if (!isAuthenticated) {
+        return null;
+    }
 
     function handleTitleChange(e){
-      setInquiryTitle(e.target.value);
       setCheckContent(false);
+      setInquiryTitle(e.target.value);
        if(e.target.value==='' || e.target.value===null || e.target.value.length<5){
         isWrite[0] = false
         setIsWrite([...isWrite]);
@@ -31,8 +61,9 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
         setIsWrite([...isWrite]);
        }}
     function handleContentChange(e){
-      setInquiryContent(e.target.value);
       setCheckContent(false);
+      setInquiryContent(e.target.value);
+      console.log(isWrite)
       if(e.target.value==='' || e.target.value===null || e.target.value.length<5){
         isWrite[1] = false
         setIsWrite([...isWrite]);
@@ -44,8 +75,8 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
       }
   
     function handleCategoryChange(e){
-      setSelectCategory(e.target.value);
       setCheckContent(false);
+      setSelectCategory(e.target.value);
       if(e.target.value==='none'){
         isWrite[2] = false
         setIsWrite([...isWrite]);
@@ -54,28 +85,23 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
         setIsWrite([...isWrite]);
        }}
     
-    function handleFileChange(e){setInquiryFile(e.target.files[0]);}
+    function handleFileChange(e){setInquiryFile(e.target.files[0]); console.log("file 사옹")}
 
-    function handleCancle(){
-      setStoreDoInquiry(false);
-      setIsLittleInquiryModal(true)
+    async function fetchUserCategory(){
+        const categories = await inquiryCategory(); if (categories && categories.length > 0)
+        { setCategory(categories.slice(0, 4))}; // 첫 4개의 카테고리만 설정
     }
 
-    
-    function handleFileButtonClick() {
-      fileInputRef.current.click();
-  }
-
-
-    async function fetchCategory(){
-         const categories = await inquiryCategory(); if (categories && categories.length > 0)
-        { setCategory(categories.slice(4, categories.lastIndex))}; // 4번째 ~ 마지막(7번째)
+    async function fetchStoreCategory(){
+        const categories = await inquiryCategory(); if (categories && categories.length > 0)
+        { setCategory(categories.slice(4, 7))}; // 4번째 카테고리부터 7번째 카테고리까지 설정 
     }
 
     function submit(e) {
       e.preventDefault();
+      console.log(userNo);
       const inquiryDTO = {
-        userNo : 3,
+        userNo : userNo,
         inquiryTitle : inquiryTitle,
         inquiryContent : inquiryContent,
         categoryNo : selectCategory,
@@ -85,29 +111,34 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
       const blob = new Blob([json], {type: 'application/json'});
       formData.append("data", blob)
       formData.append("file", inquiryFile)
+      
       let isPass = isWrite.every(Boolean);
       if(isPass){
-      fetch(`${API_BASE_URL}/inquiries/stores`, {
-        method: "POST",
-        credentials: "include",
-        body: formData
-      }).then(res => {
-        if(res.ok) {
-          setResultMessage("문의가 성공적으로 제출되었습니다.")
-          setShowResultModal(true);
-        }else{
-          setResultMessage("문의에 실패했습니다.")
-        }
-      })
-    }else{
-      setCheckContent(true);
+        fetch(`${API_BASE_URL}/inquiries/users`, {
+          method: "POST",
+          credentials: "include",
+          body: formData
+        }).then(res => {
+          if(res.ok) {
+            setResultMessage("문의가 성공적으로 제출되었습니다.")
+            setShowResultModal(true)
+          }else{
+            setResultMessage("문의에 실패했습니다.")
+          }
+        })
+      }else{
+        setCheckContent(true);
+      }
     }
 
+    function handleCancle(){
+      closeModal()
     }
 
-    useEffect(()=>{
-        fetchCategory()
-    },[])
+    function handleFileButtonClick() {
+      fileInputRef.current.click();
+  }
+
 
     return(
         <>
@@ -145,12 +176,11 @@ function StoreDoInquiry({setIsLittleInquiryModal, setStoreDoInquiry}){
                     message={resultMessage}
                     close={()=>{
                         setShowResultModal(false)
-                        setStoreDoInquiry(false)
-                        setIsLittleInquiryModal(true)
+                        closeModal()
                     }}/>
             )}
         </>
     )
 }
 
-export default StoreDoInquiry;
+export default DoInquiry;
