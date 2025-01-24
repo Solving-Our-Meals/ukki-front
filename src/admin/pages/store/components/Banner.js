@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '../css/banner.module.css';
-
+import { API_BASE_URL } from '../../../../config/api.config';
 // function Banner(){
 
 //     const [images, setImages] = useState([]);
@@ -50,10 +50,20 @@ function Banner({ storeNo }) {
         fetch(`/store/${storeNo}/storebanner`)
             .then(res => res.json())
             .then(data => {
-                const imageUrls = data.map(filename => `/store/${storeNo}/api/files?filename=${filename}`);
-                setImages(imageUrls);
+            fetchImageFromGoogleDrive(data.map(filename => filename));
             });
     }, []);
+
+    const fetchImageFromGoogleDrive = async (fileId) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/image?fileId=${fileId}`);
+            const blob = await response.blob();
+            const imgUrl = URL.createObjectURL(blob);
+            setImages(prevImages => [...prevImages, imgUrl]);
+        } catch (error) {
+            console.error('이미지 다운로드 실패:', error);
+        }
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
