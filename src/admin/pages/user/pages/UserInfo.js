@@ -23,6 +23,7 @@ function UserInfo(){
     const [resultMessage , setResultMessage] = useState('');
     const [agreeMessage , setAgreeMessage] = useState('');
     const [deleteUser, setDeleteUser] = useState(false);
+    const [noShowCount, setNoShowCount] = useState(0);
     const [editUser, setEditUser] = useState(false);
     const navigate = useNavigate();
     const defaultProfile = '/images/mypage/profile/default.png';
@@ -34,6 +35,7 @@ function UserInfo(){
                 console.log(userInfo)
                 setIsInfo(true)
                 setUserInfo(userInfo)
+                setNoShowCount(userInfo.noShow)
             }else{
                 setIsInfo(false)
             }
@@ -42,9 +44,28 @@ function UserInfo(){
             }
         })
 
+        
+    function noShowMinus(){
+        fetch(`${API_BASE_URL}/admin/users/info/${userNo}/noshow`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                noShow: noShowCount - 1
+            })
+        }).then((res) => {
+            return res.json();
+        }).then((data)=>{
+            console.log(data);
+            setNoShowCount(noShowCount - 1);
+        });
+    }
+    
+
     useEffect(()=>{
         fetchInfo(userNo)
-    },[userNo, showResultModal])
+    },[userNo, showResultModal, noShowCount])
 
     function handleDeleteUser() {
         setAgreeMessage("해당 회원을 삭제하시겠습니까?")
@@ -101,7 +122,7 @@ function UserInfo(){
             }
         });
     }
-    
+
     return(
     <>
     {isInfo?
@@ -111,7 +132,9 @@ function UserInfo(){
         <div id={styles.userInfoProfile}><img src={userInfo.profileImage? userInfo.profileImage : defaultProfile} alt="프로필 이미지" /></div>
         <div id={styles.userInfoContentText}>회원정보</div>
         <div id={styles.userInfoId}><p>아이디 : </p> {userInfo.userId}</div>
-        <div id={styles.userInfoName}><p>닉네임 : </p> {userInfo.userName} <button id={styles.userInfoNameChangeBtn} onClick={handleEditUser}>닉네임 변경</button></div>
+        <div id={styles.userInfoName}><p>닉네임 : </p></div>
+        <div className={`${styles.userName} ${userInfo.userName.length > 9 ? styles.longUserName : ''}`}>{userInfo.userName}</div>
+        <button id={styles.userInfoNameChangeBtn} onClick={handleEditUser}>닉네임 변경</button>
         <div id={styles.userInfoEmail}><p>이메일 : </p> {userInfo.email}</div>
         <button id={styles.userInfoDeleteBtn} onClick={handleDeleteUser}>삭제</button>
         <div id={styles.badgeArea}>
@@ -156,6 +179,7 @@ function UserInfo(){
             <div className={styles.userActInfoText}>노쇼</div>
             <div className={styles.userActInfoCount}>{userInfo.noShow}</div>
         </div>
+        {userInfo.noShow > 0 && <div className={styles.noShowMinus}><button className={styles.noShowMinusBtn} onClick={noShowMinus}>-</button></div>}
         </> : 
         <div>해당 회원이 존재하지 않습니다.</div>}
         {showAgreementModal && (

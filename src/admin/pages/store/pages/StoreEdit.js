@@ -11,6 +11,7 @@ import plusBtn from '../css/images/plusBtn.png';
 import { AddrToCoordinate } from '../api/AddrToCoordinate';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function StoreInfoRegist() {
     const { storeNo } = useParams();
@@ -46,7 +47,7 @@ function StoreInfoRegist() {
     useEffect(() => {
         const fetchStoreData = async () => {
             try {
-                const storeResponse = await fetch(`/admin/stores/info/${storeNo}`);
+                const storeResponse = await fetch(`${API_BASE_URL}/admin/stores/info/${storeNo}`);
                 const storeData = await storeResponse.json();
                 
                 const [menuUrl, profileUrl, bannerImages] = await Promise.all([
@@ -355,7 +356,7 @@ function StoreInfoRegist() {
                 formData.append('profile', profileBlob);
             }
 
-            const response = await fetch(`/admin/stores/info/${storeNo}/edit`, {
+            const response = await fetch(`${API_BASE_URL}/admin/stores/info/${storeNo}/edit`, {
                 method: 'PUT',
                 body: formData
             });

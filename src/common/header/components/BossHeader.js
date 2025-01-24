@@ -58,8 +58,7 @@ function BossHeader() {
     useEffect(() => {
         // 각 메뉴 항목을 순차적으로 표시
         const menuItems = [
-            '/', '/search', '/info', '/reservation',
-            '/notice', '/user/mypage'
+            '/', '/search', '/info', '/boss/notice', '/boss/mypage'
         ];
 
         menuItems.forEach((item, index) => {
@@ -89,8 +88,8 @@ function BossHeader() {
                     <NavLink to="/search" className={`menu-item ${activeMenu === '/search' ? 'active' : ''} ${visibleMenuItems.includes('/search') ? 'visible' : ''}`} onClick={() => handleMenuClick('/search')}>검색</NavLink>
                     <NavLink to="/info" className={`menu-item ${activeMenu === '/info' ? 'active' : ''} ${visibleMenuItems.includes('/info') ? 'visible' : ''}`} onClick={() => handleMenuClick('/info')}>소개</NavLink>
                     {/* <NavLink to="/reservation" className={`menu-item ${activeMenu === '/reservation' ? 'active' : ''} ${visibleMenuItems.includes('/reservation') ? 'visible' : ''}`} onClick={() => handleMenuClick('/reservation')}>예약</NavLink> */}
-                    <NavLink to="/notice" className={`menu-item ${activeMenu === '/notice' ? 'active' : ''} ${visibleMenuItems.includes('/notice') ? 'visible' : ''}`} onClick={() => handleMenuClick('/notice')}>공지사항</NavLink>
-                    <NavLink to="/user/mypage" className={`menu-item ${activeMenu === '/user/mypage' ? 'active' : ''} ${visibleMenuItems.includes('/user/mypage') ? 'visible' : ''}`} onClick={() => handleMenuClick('/user/mypage')}>마이페이지</NavLink>
+                    <NavLink to="/boss/notice" className={`menu-item ${activeMenu === '/boss/notice' ? 'active' : ''} ${visibleMenuItems.includes('/boss/notice') ? 'visible' : ''}`} onClick={() => handleMenuClick('/boss/notice')}>공지사항</NavLink>
+                    <NavLink to="/boss/mypage" className={`menu-item ${activeMenu === '/boss/mypage' ? 'active' : ''} ${visibleMenuItems.includes('/boss/mypage') ? 'visible' : ''}`} onClick={() => handleMenuClick('/boss/mypage')}>마이페이지</NavLink>
                     {!isLoggedIn ? (
                         <>
                             <NavLink to="/auth/login" className={`menu-item auth ${activeMenu === '/auth/login' ? 'active' : ''} ${visibleMenuItems.includes('/auth/login') ? 'visible' : ''}`} onClick={() => handleMenuClick('/auth/login')}>로그인</NavLink>

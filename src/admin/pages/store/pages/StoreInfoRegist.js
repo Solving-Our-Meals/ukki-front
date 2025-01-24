@@ -8,6 +8,7 @@ import plusBtn from '../css/images/plusBtn.png';
 import { AddrToCoordinate } from '../api/AddrToCoordinate';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function StoreInfoRegist() {
     const { storeNo } = useParams();
@@ -47,7 +48,14 @@ function StoreInfoRegist() {
     useEffect(() => {
         const fetchStoreData = async () => {
             try {
-                const response = await fetch(`/admin/stores/regist/store`);
+                const response = await fetch(`${API_BASE_URL}/admin/stores/regist/store`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: "include"
+                });
                 const data = await response.json();
                 console.log(data);
                 setUserInfo({
@@ -115,28 +123,25 @@ function StoreInfoRegist() {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                console.log(reader.result);
-                setBannerImages(prev => {
-                    const newBannerImages = [...prev];
+                setBannerImages(prevImages => {
+                    const newBannerImages = Array.isArray(prevImages) ? [...prevImages] : Array(5).fill('');
                     newBannerImages[index] = reader.result;
                     return newBannerImages;
                 });
-                console.log(bannerImages);
             };
             reader.readAsDataURL(file);
         }
     }, []);
 
     const handleDeleteBanner = useCallback((index) => {
-        setBannerImages(prev => {
-            const newBannerImages = [...prev];
+        setBannerImages(prevImages => {
+            const newBannerImages = Array.isArray(prevImages) ? [...prevImages] : Array(5).fill('');
             for (let i = index; i < newBannerImages.length - 1; i++) {
                 newBannerImages[i] = newBannerImages[i + 1];
             }
             newBannerImages[newBannerImages.length - 1] = '';
             return newBannerImages;
         });
-        console.log(bannerImages);
     }, []);
 
     const handleMenuUpload = useCallback((e) => {
@@ -258,36 +263,47 @@ function StoreInfoRegist() {
 
             formData.append('storeData', JSON.stringify(storeInfo));
             formData.append('userData', JSON.stringify(userInfo));
-            console.log(bannerImages);
-            bannerImages.forEach(async (value, index) => {
-                if (value) { // value가 유효한 경우에만 처리
-                    const imageBlob = await fetch(value).then(r => {
-                        if (!r.ok) {
-                            throw new Error('이미지 로드 실패');
-                        }
-                        return r.blob();
-                    });
-                    formData.append(`banner${index+1}`, imageBlob); // 인덱스를 사용하여 키를 정의
+
+            // 배너 이미지 처리 수정
+            for (let i = 0; i < bannerImages.length; i++) {
+                if (bannerImages[i]) { // 값이 존재하는 경우에만
+                    try {
+                        const imageBlob = await fetch(bannerImages[i]).then(r => {
+                            if (!r.ok) {
+                                throw new Error('이미지 로드 실패');
+                            }
+                            return r.blob();
+                        });
+                        // 인덱스는 1부터 시작하도록 수정
+                        formData.append(`banner${i + 1}`, imageBlob);
+                    }
+                    catch (error) {
+                        console.error(`배너 이미지 ${i + 1} 처리 중 오류:`, error);
+                    }
                 }
-            });
+            }
+
+            if (menuImage) {
                 const menuBlob = await fetch(menuImage).then(r => r.blob());
                 formData.append('menu', menuBlob);
+            }
             
-            
-            const profileBlob = await fetch(profileImage).then(r => r.blob());
-            formData.append('profile', profileBlob);
-            
+            if (profileImage) {
+                const profileBlob = await fetch(profileImage).then(r => r.blob());
+                formData.append('profile', profileBlob);
+            }
 
-            const response = await fetch(`/admin/stores/regist/store`, {
+            const response = await fetch(`${API_BASE_URL}/admin/stores/regist/store`, {
                 method: 'POST',
                 body: formData
             });
+
             if (!response.ok) {
-                const errorMessage = await response.text(); // 오류 메시지 가져오기
-                console.log(errorMessage);
-                setResultMessage("등록 중 오류가 발생했습니다."); // 오류 메시지 상태 업데이트
+                const errorMessage = await response.text();
+                console.error('등록 오류:', errorMessage);
+                setResultMessage("등록 중 오류가 발생했습니다.");
                 setShowResultModal(true);
-                return; // 함수 종료
+                return;
             }
 
             setIsRegist(true);
@@ -295,7 +311,7 @@ function StoreInfoRegist() {
             setShowResultModal(true);
 
         } catch (error) {
-            console.log(error);
+            console.error('등록 처리 중 오류:', error);
             setResultMessage('등록 중 오류가 발생했습니다.');
             setShowResultModal(true);
         }
@@ -303,7 +319,7 @@ function StoreInfoRegist() {
 
     const handleCancel = async () => {
         try {
-            const response = await fetch('/admin/stores/cancel/user', {
+            const response = await fetch(`${API_BASE_URL}/admin/stores/cancel/user`, {
                 method: 'POST',
             });
             if (response.ok) {

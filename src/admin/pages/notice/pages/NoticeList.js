@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/NoticeList.module.css';
-import pin from '../css/images/Pin.png';
 import searchBtn from '../css/images/Search.png';
 import '../css/reset.css';
 import { NoticeListUserAPI } from '../api/UserNoticeList';
@@ -122,10 +121,6 @@ function NoticeList(){
         <>
             <div id={styles.background}>
                 <div id={styles.noticeArea}>
-                    <div id={styles.dot1} className={styles.dots}></div>
-                    <div id={styles.dot2} className={styles.dots}></div>
-                    <div id={styles.dot3} className={styles.dots}></div>
-                    <div id={styles.dot4} className={styles.dots}></div>
                     <input 
                         id={styles.inputSearch} 
                         name='searchWord' 
@@ -143,7 +138,6 @@ function NoticeList(){
                         }}
                     />
                     <div id={styles.strNotice}>공지사항</div>
-                    <img id={styles.imgPin} src={pin}/>
                     <div className={styles.strArea}>
                         <div id={styles.strCategory}>카테고리</div>
                         <div id={styles.strTitle}>제목</div>

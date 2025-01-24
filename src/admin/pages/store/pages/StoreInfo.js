@@ -8,6 +8,7 @@ import Profile from '../components/Profile';
 import Menu from '../components/Menu';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function StoreInfo() {
     const { storeNo } = useParams();
@@ -33,7 +34,7 @@ function StoreInfo() {
     const [loading, setLoading] = useState(true);
     useEffect(
         () => {
-            fetch(`/admin/stores/info/${storeNo}`)
+            fetch(`${API_BASE_URL}/admin/stores/info/${storeNo}`)
             .then(res => res.json())
             .then(data => {
                 setStoreInfo(data)

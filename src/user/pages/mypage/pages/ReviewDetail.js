@@ -4,16 +4,61 @@ import styles from "../css/ReviewDetail.module.css";
 import DefaultProfile from "../images/mypage/default.png";
 import Loading from '../../../../common/inquiry/img/loadingInquiryList.gif';
 import {API_BASE_URL} from '../../../../config/api.config';
+import DefaultReview from "../../../../common/default/DEFAULT_REVIEW_IMG.png"
 
 function ReviewDetail() {
     const { reviewNo } = useParams(); // URL에서 reviewNo를 가져옴
     const [reviewDetail, setReviewDetail] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [profileImage, setProfileImage] = useState(null);
+    const [reviewImage, setReviewImage] = useState(null);
 
     useEffect(() => {
         fetchReviewDetail();
     }, [reviewNo]);
+
+    useEffect(() => {
+        if (reviewDetail && reviewDetail.userProfile) {
+            const fileId = reviewDetail.userProfile;
+            if (fileId) {
+                fetchImageFromGoogleDrive(fileId);
+            }
+        }
+    }, [reviewDetail]);
+
+    useEffect(() => {
+        if (reviewDetail && reviewDetail.reviewPicture) {
+            const fileId = reviewDetail.reviewPicture;
+            if (fileId) {
+                fetchImageFromGoogleDrive(fileId);
+            }
+        }
+    }, [reviewDetail]);
+
+    const fetchImageFromGoogleDrive = async (fileId) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/image?fileId=${fileId}`);
+            const blob = await response.blob();
+            const imgUrl = URL.createObjectURL(blob);
+            setProfileImage(imgUrl);
+        } catch (error) {
+            console.error('이미지 다운로드 실패:', error);
+            setReviewImage(DefaultProfile);
+        }
+    };
+
+    const fetchReviewImage = async (fileId) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/image?fileId=${fileId}`);
+            const blob = await response.blob();
+            const imgUrl = URL.createObjectURL(blob);
+            setReviewImage(imgUrl);
+        } catch (error) {
+            console.error('리뷰 이미지 다운로드 실패:', error);
+            setReviewImage(DefaultReview);
+        }
+    };
 
     const fetchReviewDetail = async () => {
         try {
@@ -37,6 +82,8 @@ function ReviewDetail() {
             setLoading(false);
         }
     };
+
+    console.log(reviewDetail)
 
     const renderStars = (rating) => {
         let stars = '';
@@ -90,16 +137,12 @@ function ReviewDetail() {
                 </Link>
             </div>
 
-            {/* 리뷰 상세 정보 컨테이너 */}
             <div className={styles.reviewContainer}>
 
                 <div className={styles.reviewHeader}>
-                    {/* 프로필 사진 */}
                     <div className={styles.profileContainer}>
                         <img
-                            src={reviewDetail.userProfile
-                                ? `/images/profiles/${reviewDetail.userProfile}`
-                                : DefaultProfile}
+                            src={profileImage || DefaultProfile}
                             alt="프로필 이미지"
                             className={styles.userProfile}
                         />
@@ -121,7 +164,7 @@ function ReviewDetail() {
                 {reviewDetail.reviewPicture && (
                     <div className={styles.reviewImageContainer}>
                         <img
-                            src={`/images/reviews/${reviewDetail.reviewPicture}`}
+                            src={reviewImage || DefaultReview}
                             alt="리뷰 이미지"
                             className={styles.reviewImage}
                         />
