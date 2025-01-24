@@ -137,11 +137,9 @@ function ReviewDetail() {
                 </Link>
             </div>
 
-            {/* 리뷰 상세 정보 컨테이너 */}
             <div className={styles.reviewContainer}>
 
                 <div className={styles.reviewHeader}>
-                    {/* 프로필 사진 */}
                     <div className={styles.profileContainer}>
                         <img
                             src={profileImage || DefaultProfile}
