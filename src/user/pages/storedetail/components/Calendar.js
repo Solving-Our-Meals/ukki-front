@@ -7,6 +7,7 @@ import prevBtn from '../images/prev-or-next-icon.png';
 import nextBtn from '../images/prev-or-next-icon.png';
 import todayIcon from '../images/todayIcon.png';
 import { API_BASE_URL } from '../../../../config/api.config';
+import { useError } from '../../../../common/error/components/ErrorContext';
 
 // 현재 월, 이전 월, 다음 월 날짜를 계산하는 함수
 const getCalendarDates = (year, month) => {
@@ -31,7 +32,7 @@ const getCalendarDates = (year, month) => {
 };
 
 function Calendar() {
-
+    const { setGlobalError } = useError();
     const { storeNo } = useParams();
 
     const [userInfo, setUserInfo] = useState(null);
@@ -74,7 +75,18 @@ function Calendar() {
                 },
                 credentials : "include"
             })
-            .then(res => res.json())
+            .then(response => {
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status;
+                    throw error;
+                }
+                // 비어 있는 응답 대비
+                if(response.status === 204) {
+                    return [];
+                }
+                return response.json();
+            })
             .then(data => {
                 setUserInfo(data);
                 console.log('유저정보', data);
@@ -84,39 +96,22 @@ function Calendar() {
                 setIsUser(true); 
             })
             .catch(error => {
-                console.log(error);
+                console.error(error);
+                setGlobalError(error.message, error.status);
                 setIsUser(false);
+
+                 // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                 if (error.status === 404) {
+                    navigate('/404');
+                } else if (error.status === 403) {
+                    navigate('/403');
+                } else {
+                    navigate('/500');
+                }
             });
-        }, []
+        }, [setGlobalError]
     )
-
-
-    // useEffect(() => {
-    //     const fetchUserInfo = async () => {
-    //         try {
-    //             const response = await axios.get(`${API_BASE_URL}/user/info`,{
-    //                 method: 'GET',
-    //                 headers: {
-    //                     'Accept': 'application/json',
-    //                     'Content-Type': 'application/json'
-    //                 }
-    //             }); // Axios 사용
-    //             const data = await response.data;
-    //             setUserInfo(data);
-    //             console.log('유저정보', data);
-    //             setIsUser(true); 
-    //         } catch (error) {
-    //             console.error(error);
-    //             setIsUser(false);
-    //         }
-    //     };
-
-    //     fetchUserInfo();
-    // }, []);
-
     
-    
-
     useEffect(() => {
         switch(day){
             case 0:
@@ -179,7 +174,18 @@ function Calendar() {
                 'Content-Type': 'application/json',
             },
             })
-            .then(res => res.json())
+            .then(response => {
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status;
+                    throw error;
+                }
+                // 비어 있는 응답 대비
+                if(response.status === 204) {
+                    return [];
+                }
+                return response.json();
+            })
             .then(data => {
                 setOperation(data.operationTime);
                 setStoreInfo(data);
@@ -461,7 +467,18 @@ function Calendar() {
                         'Content-Type': 'application/json',
                     },
                 })
-                .then(res => res.json())
+                .then(response => {
+                    if (!response.ok) {
+                        const error = new Error(`HTTP error! status: ${response.status}`);
+                        error.status = response.status;
+                        throw error;
+                    }
+                    // 비어 있는 응답 대비
+                    if(response.status === 204) {
+                        return [];
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     console.log('예약가능인원 : ', data);
                     const operTimeArray = data;
@@ -472,15 +489,7 @@ function Calendar() {
 
                     const disabledTimesList = [];
 
-                    // for( let i = 0; i < operTimeArray.length; i++){
-                    //     if(operTimeArray[i].operTime === allTimeArray[i]){
-                    //         if(operTimeArray[i].resPosNum === 0){
-                    //             disabledTimesList.push(returnData.allTimeArray[i]);
-                    //             console.log('왜 안되냐고 : ', returnData.allTimeArray[i]);
-                    //         }
-                    //     }
-                    // }
-
+                  
                     operTimeArray.forEach(slot => {
                         if (slot.resPosNum <= 0) {
                             // allTimeArray에서 해당 시간이 존재하는지 확인
@@ -499,9 +508,19 @@ function Calendar() {
                 })
             })
             .catch(error => {
-                console.log('Error:', error);
+                console.error(error);
+                setGlobalError(error.message, error.status);
+
+                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                if (error.status === 404) {
+                    navigate('/404');
+                } else if (error.status === 403) {
+                    navigate('/403');
+                } else {
+                    navigate('/500');
+                }
             });
-    }, []);
+    }, [setGlobalError]);
 
     const handlePrevMonth = () => {
         setCurrentDate(new Date(year, month - 1, 1));
@@ -830,7 +849,18 @@ function Calendar() {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(res => res.json())
+            .then(response => {
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status;
+                    throw error;
+                }
+                // 비어 있는 응답 대비
+                if(response.status === 204) {
+                    return [];
+                }
+                return response.json();
+            })
             .then(data => {
                 console.log('선택한 날짜의 예약가능인원:', data);
                 const operTimeArray = data;
@@ -862,7 +892,17 @@ function Calendar() {
                 });
             })
             .catch(error => {
-                console.error('예약 가능 인원 조회 실패:', error);
+                console.error(error);
+                setGlobalError(error.message, error.status);
+
+                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                if (error.status === 404) {
+                    navigate('/404');
+                } else if (error.status === 403) {
+                    navigate('/403');
+                } else {
+                    navigate('/500');
+                }
             });
     }
 
@@ -910,19 +950,6 @@ function Calendar() {
         } else {
             setFirstModalActive(true); // 현재 시간 이전의 시간을 선택했을 때 모달 표시시
         }
-
-
-        // navigate('/reservation',{
-        //     state:{
-        //         date1 :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
-        //         date2 : `${selectedTotalDate.selectedYear}-${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}-${selectedTotalDate.selectedDate.toString().padStart(2,'0')}`,
-        //         time : morningArray[index],
-        //         storeName : storeInfo.storeName,
-        //         storeNo : storeInfo.storeNo,
-        //         latitude : storeInfo.latitude,
-        //         longitude : storeInfo.longitude
-        //     },
-        // });
     };
 
     const selectedAfternoonTime = (index) => {

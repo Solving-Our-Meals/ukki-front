@@ -3,11 +3,13 @@ import { useSearchParams, useOutletContext, useNavigate} from 'react-router-dom'
 import styles from '../css/totalInquiryPage.module.css';
 import searchBtn from '../images/searchBtn.png';
 import { API_BASE_URL } from '../../../../config/api.config';
+import { useError } from '../../../../common/error/components/ErrorContext';
 
 
 function TotalInquiryPage(){
 
     const navigate = useNavigate();
+    const { setGlobalError } = useError();
 
     const {storeNo} = useOutletContext();
     const {userNo} = useOutletContext();
@@ -64,12 +66,37 @@ function TotalInquiryPage(){
                 'Content-Type': 'application/json'
             }, 
         })
-        .then(res => res.json())
+        .then(response => {
+            if (!response.ok) {
+                const error = new Error(`HTTP error! status: ${response.status}`);
+                error.status = response.status;
+                throw error;
+            }
+            // 비어 있는 응답 대비
+            if(response.status === 204) {
+                return [];
+            }
+            return response.json();
+        })
         .then(data => {
             setRecentInquiry(data);
         })
-        .catch(error => console.log(error));
-    }, []);
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 404) {
+                navigate('/404');
+            } else if (error.status === 403) {
+                navigate('/403');
+            } else if(error.status === 500) {
+                navigate('/500');
+            } else {
+                console.log('error : ', error)
+            }
+        });
+    }, [setGlobalError]);
 
 
     useEffect(() => {
@@ -96,12 +123,31 @@ function TotalInquiryPage(){
                 'Content-Type': 'application/json'
             }, 
         })
-        .then(res => res.json())
+        .then(response => {
+            if (!response.ok) {
+                const error = new Error(`HTTP error! status: ${response.status}`);
+                error.status = response.status;
+                throw error;
+            }
+            return response.json();
+        })
         .then(data => {
             setInquiries(Array.isArray(data) ? data : []);
             console.log('문의 내역 : ', data);
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 404) {
+                navigate('/404');
+            } else if (error.status === 403) {
+                navigate('/403');
+            } else {
+                navigate('/500');
+            }
+        })
     };
 
     const navigateToSpecificInquiry = (inquiryNo, categoryNo) => {
@@ -133,7 +179,11 @@ function TotalInquiryPage(){
     return(
         <>
             <div id={styles.background}>
-                <div id={styles.recentInquiry} onClick={() => navigateToSpecificInquiry(recentInquiry.inquiryNo, recentInquiry.categoryNo)}>
+                <div
+                    id={styles.recentInquiry}
+                    onClick={recentInquiry.length > 0 ? () => navigateToSpecificInquiry(recentInquiry.inquiryNo, recentInquiry.categoryNo) : null}
+                    style={{ pointerEvents: recentInquiry.length > 0 ? 'auto' : 'none' }} // 클릭 방지 추가
+                >
                     <span>최근 문의</span>
                     <span id={styles.recentState}>{recentState}</span>
                     <span id={styles.recentCategory}>{recentCategoryName}</span>
