@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styles from '../css/storedetail.module.css';
 import mapIcon from '../images/mapMarker-logo.png';
 import triangleBtn from '../images/inverted_triangle.png';
@@ -8,12 +7,14 @@ import Banner from '../components/Banner';
 import Profile from '../components/Profile';
 import Menu from '../components/Menu';
 import { API_BASE_URL } from '../../../../config/api.config';
+import { useError } from '../../../../common/error/components/ErrorContext';
 
 
 function StoreDetail({reservationHandler}){
 
     const { storeNo } = useParams();
-    
+    const { setGlobalError } = useError(); 
+
     const [colorMonday, setColorMonday] = useState("");
     const [colorTuesday, setColorTuesday] = useState("");
     const [colorWednesday, setColorWednesday] = useState("");
@@ -46,7 +47,18 @@ function StoreDetail({reservationHandler}){
                     'Content-Type': 'application/json',
                 },
             })  //검색 페이지 만들어지면 pathvariable로 변경하기
-            .then(res => res.json())
+            .then(response => {
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status;
+                    throw error;
+                }
+                // 비어 있는 응답 대비
+                if(response.status === 204) {
+                    return [];
+                }
+                return response.json();
+            })
             .then(data => {
                 setStoreInfo(data)
                 navigate(`/store/${storeNo}`,{
@@ -58,8 +70,20 @@ function StoreDetail({reservationHandler}){
                 //console.log("가게 정보111 :",data)
                 });
             })
-            .catch(error => console.log(error));
-        }, []
+            .catch(error => {
+                console.error(error);
+                setGlobalError(error.message, error.status);
+
+                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                if (error.status === 404) {
+                    navigate('/404');
+                } else if (error.status === 403) {
+                    navigate('/403');
+                } else {
+                    navigate('/500');
+                }
+            });
+        }, [setGlobalError]
     );
 
     useEffect(() => {
@@ -165,7 +189,7 @@ function StoreDetail({reservationHandler}){
                 <p className={styles.week}>(일)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorSunday }}>{storeInfo.operationTime.sunday}</p> <br/>
                 <p id={styles.breakTime}>{`*브레이크 타임 : ${storeInfo.operationTime.breakTime}`}</p> <br/>
             </div>
-            <Menu/>
+            {/* <Menu/> */}
             {/* <div id={styles.mapArea}><KakaoMap/></div> */}
             <div className={styles.keywordArea}>
                 <div>{storeInfo.storeKeyword.keyword1}</div>

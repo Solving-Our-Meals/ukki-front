@@ -15,16 +15,6 @@ function KakaoMap(){
     // 지도에서 길찾기/큰지도 보기 할 때 해당 가게의 위도/경도를 링크로 넘겨 카카오맵에서 보여지게 하기.
     const mapLink  = `https://map.kakao.com/link/map/${storeName},${storeLatitude},${storeLongitude}`
 
-    // useEffect(() => {
-    //     fetch('/store/getInfo')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setStoreLatitude(data.latitude);
-    //         setStoreLongitude(data.longitude);
-    //         setStoreName(data.storeName);
-    //     });
-    // }, [])
-
     useEffect(() => {
         setStoreLatitude(storeInfo.latitude);
         setStoreLongitude(storeInfo.longitude);

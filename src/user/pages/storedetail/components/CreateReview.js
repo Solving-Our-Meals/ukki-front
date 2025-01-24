@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from '../css/createReview.module.css';
 import addPhoto from '../images/addPhoto.png';
 import { API_BASE_URL } from '../../../../config/api.config';
+import { useError } from '../../../../common/error/components/ErrorContext';
 
 const FileInfo = ({uploadedInfo}) => (
     <ul className={styles.previewInfo}>
@@ -17,6 +17,8 @@ const FileInfo = ({uploadedInfo}) => (
 );
 
 const CreateReview = ({reflashMethod}) => {
+    const { setGlobalError } = useError();
+    const navigate = useNavigate();
     const { storeNo } = useParams();
     const year = new Date().getFullYear();
     const month = new Date().getMonth()+1
@@ -138,8 +140,8 @@ const CreateReview = ({reflashMethod}) => {
             method: 'POST',
             body: formData,
         })
-        .then((res) => {
-            if (res.ok) {
+        .then((response) => {
+            if (response.ok) {
                 setIsDisplay(false);
                 setDoWriteReview(false);
                 setIsCompletedReview(true);
@@ -150,12 +152,26 @@ const CreateReview = ({reflashMethod}) => {
                 }));
                 setUploadedInfo(null);
                 setImageUrl(null);
-                setFileInfo(null);
             } else {
-                console.error("Failed to submit review", res.statusText);
+                // console.error("Failed to submit review", res.statusText);
+                const error = new Error(`HTTP error! status: ${response.status}`);
+                error.status = response.status;
+                throw error;
             }
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 404) {
+                navigate('/404');
+            } else if (error.status === 403) {
+                navigate('/403');
+            } else {
+                navigate('/500');
+            }
+        });
     };
     
 
@@ -245,7 +261,18 @@ const CreateReview = ({reflashMethod}) => {
                 },
                 credentials : "include"
             })
-            .then(res => res.json())
+            .then(response => {
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status;
+                    throw error;
+                }
+                // 비어 있는 응답 대비
+                if(response.status === 204) {
+                    return [];
+                }
+                return response.json();
+            })
             .then(data => {
                 setUserInfo(data);
                 //console.log('유저정보', data);
@@ -254,40 +281,21 @@ const CreateReview = ({reflashMethod}) => {
                     userNo : data.userNo
                 }))
             })
-            .then(error => console.log(error));
-        }, []
+            .catch(error => {
+                console.error(error);
+                setGlobalError(error.message, error.status);
+
+                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                if (error.status === 404) {
+                    navigate('/404');
+                } else if (error.status === 403) {
+                    navigate('/403');
+                } else {
+                    navigate('/500');
+                }
+            });
+        }, [setGlobalError]
     );
-
-    //  리뷰 작성하기 버튼 권한 주기
-    // useEffect(() => {
-    //     if (userInfo.userId && storeInfo.storeNo) {  
-    //         fetch(`/store/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
-    //             .then(res => res.json())
-    //             .then(data => {
-
-    //                 function isWithinThreeDays(resDate){
-    //                     const reservedDate = new Date(resDate);
-    //                     const currentDate = new Date();
-    //                     const timeDifference = currentDate - reservedDate;
-    //                     const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
-    //                     return dayDifference <= 3;
-    //                 }
-    //                 console.log('예약 리스트 : ', data)
-    //                 for(let i = 0; i < data.length; i++){
-    //                     // const result = isWithinThreeDays(data[i].resDate);
-    //                     const result = isWithinThreeDays('2025-01-10');
-    //                     console.log('result : ', result);
-    //                     if(result){
-    //                         console.log('성공?')
-    //                     } else {
-    //                         console.log('실패')
-    //                     }
-
-    //                 }
-    //             })
-    //             .catch(error => console.error('error', error));
-    //     }
-    // }, [userInfo, storeInfo.storeNo]);
 
     useEffect(() => {
         if (userInfo.userId && storeInfo.storeNo) {  
@@ -298,7 +306,18 @@ const CreateReview = ({reflashMethod}) => {
                     'Content-Type': 'application/json',
                 },
             })
-                .then(res => res.json())
+                .then(response => {
+                    if (!response.ok) {
+                        const error = new Error(`HTTP error! status: ${response.status}`);
+                        error.status = response.status;
+                        throw error;
+                    }
+                    // 비어 있는 응답 대비
+                    if(response.status === 204) {
+                        return [];
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     function isWithinThreeDays(resDate) {
                         const reservedDate = new Date(resDate);
@@ -345,7 +364,18 @@ const CreateReview = ({reflashMethod}) => {
                                                 'Accept': 'application/json',
                                                 'Content-Type': 'application/json',
                                             },})
-                                            .then(res => res.json())
+                                            .then(response => {
+                                                if (!response.ok) {
+                                                    const error = new Error(`HTTP error! status: ${response.status}`);
+                                                    error.status = response.status;
+                                                    throw error;
+                                                }
+                                                // 비어 있는 응답 대비
+                                                if(response.status === 204) {
+                                                    return [];
+                                                }
+                                                return response.json();
+                                            })
                                             .then(data => {
                                                 console.log('예약 번호 성공');
                                                 console.log('data1', data);
@@ -353,7 +383,19 @@ const CreateReview = ({reflashMethod}) => {
                                                     setWriteReview(true);
                                                 } 
                                             })
-                                            .catch(error => console.log(error));
+                                            .catch(error => {
+                                                console.error(error);
+                                                setGlobalError(error.message, error.status);
+                                
+                                                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                                                if (error.status === 404) {
+                                                    navigate('/404');
+                                                } else if (error.status === 403) {
+                                                    navigate('/403');
+                                                } else {
+                                                    navigate('/500');
+                                                }
+                                            });
                                     } 
                                 } 
                             } else {
@@ -372,7 +414,18 @@ const CreateReview = ({reflashMethod}) => {
                                             'Accept': 'application/json',
                                             'Content-Type': 'application/json',
                                         },})
-                                        .then(res => res.json())
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                const error = new Error(`HTTP error! status: ${response.status}`);
+                                                error.status = response.status;
+                                                throw error;
+                                            }
+                                            // 비어 있는 응답 대비
+                                            if(response.status === 204) {
+                                                return [];
+                                            }
+                                            return response.json();
+                                        })
                                         .then(data => {
                                             console.log('예약 번호 성공');
                                             console.log('data2', data);
@@ -380,211 +433,39 @@ const CreateReview = ({reflashMethod}) => {
                                                 setWriteReview(true);
                                             } 
                                         })
-                                        .catch(error => console.log(error));
+                                        .catch(error => {
+                                            console.error(error);
+                                            setGlobalError(error.message, error.status);
+                            
+                                            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                                            if (error.status === 404) {
+                                                navigate('/404');
+                                            } else if (error.status === 403) {
+                                                navigate('/403');
+                                            } else {
+                                                navigate('/500');
+                                            }
+                                        });
                                 } 
                             }
                         } 
                     }
                 })
-                .catch(error => console.error('error', error));
+                .catch(error => {
+                    console.error(error);
+                    setGlobalError(error.message, error.status);
+    
+                    // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                    if (error.status === 404) {
+                        navigate('/404');
+                    } else if (error.status === 403) {
+                        navigate('/403');
+                    } else {
+                        navigate('/500');
+                    }
+                });
         }
     }, [userInfo, storeInfo.storeNo]);
-
-    // useEffect(() => {
-    //     if (userInfo.userId && storeInfo.storeNo) {  
-    //         fetch(`/store/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 function isWithinThreeDays(resDate) {
-    //                     const reservedDate = new Date(resDate);
-    //                     const currentDate = new Date();
-    
-    //                     // 현재 날짜의 시간을 제거하여 비교하기 쉽게 함
-    //                     currentDate.setHours(0, 0, 0, 0);
-    //                     reservedDate.setHours(0, 0, 0, 0);
-    
-    //                     const timeDifference = currentDate - reservedDate;
-    //                     const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
-    
-    //                     // reservedDate가 현재 날짜와 같거나 3일 이전인지 확인
-    //                     return dayDifference >= 0 && dayDifference <= 3;
-    //                 }
-    
-    //                 let shouldWriteReview = false;
-
-    //                 for (let i = 0; i < data.length; i++) {
-    //                     const result = isWithinThreeDays(data[i].resDate);
-    //                     if (result) {
-    //                         console.log('날짜 성공');
-    
-    //                         // 날짜가 오늘인 경우 시간 비교
-    //                         const reservDate = new Date(data[i].resDate);
-    //                         const currentDate = new Date();
-    //                         if(reservDate.toDateString() === currentDate.toDateString()){
-    
-    //                             // 현재 시간이 예약 시간보다 지나간 경우 true, 그렇지 않으면 false
-    //                             const [hours, minutes, seconds] = data[i].resDate.split(':').map(Number);
-    //                             const targetDate = new Date();
-    //                             targetDate.setHours(hours, minutes, seconds, 0);
-    
-    //                             if(currentDate > targetDate){
-    //                                 console.log('오늘 시간 성공')
-    //                                 // 예약이 노쇼인지의 여부 확인
-    //                                 if(data[i].qrConfirm === 1){
-    //                                     console.log('예약 확인 성공 -> 예약 번호 확인')
-    //                                     fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
-    //                                         .then(res => res.json())
-    //                                         .then(data => {
-    //                                             console.log('예약 번호 성공');
-    //                                             console.log('data1', data);
-    //                                             if(data){
-    //                                                 shouldWriteReview = true;
-    //                                             } else {
-    //                                                 setWriteReview(false);
-    //                                             }
-    //                                         })
-    //                                         .catch(error => console.log(error));
-    //                                 } else {
-    //                                     console.log('예약 확인 실패 -> 노쇼')
-    //                                     setWriteReview(false);
-    //                                 }
-    //                             } else {
-    //                                 console.log('오늘 시간 실패')
-    //                                 setWriteReview(false);
-    //                             }
-    //                         } else {
-    //                             console.log('이미 오늘 이전 날짜 : 성공 -> 예약 번호 확인')
-    //                             console.log('reservDate', reservDate.toDateString());
-    //                             // 예약이 노쇼인지의 여부 확인
-    //                             if(data[i].qrConfirm === 1){
-    //                                 console.log('예약 확인 성공 -> 예약 번호 확인')
-    //                                 fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
-    //                                     .then(res => res.json())
-    //                                     .then(data => {
-    //                                         console.log('예약 번호 성공');
-    //                                         console.log('data2', data);
-    //                                         if(data){
-    //                                             shouldWriteReview = true;
-    //                                         } else {
-    //                                             setWriteReview(false);
-    //                                         }
-    //                                     })
-    //                                     .catch(error => console.log(error));
-    //                             } else {
-    //                                 console.log('예약 확인 실패 -> 노쇼')
-    //                                 setWriteReview(false);
-    //                             }
-    //                         }
-    //                     } else {
-    //                         console.log('날짜 실패');
-    //                         setWriteReview(false);
-    //                     }
-    //                 }
-    //                  // 모든 검사가 끝난 후 최종 결과 설정
-    //                  if (shouldWriteReview) {
-    //                     setWriteReview(true);
-    //                 }
-    //             })
-    //             .catch(error => console.error('error', error));
-    //     }
-    // }, [userInfo, storeInfo.storeNo]);
-
-//     useEffect(() => {
-//     if (userInfo.userId && storeInfo.storeNo) {  
-//         fetch(`/store/getreviewlist?userId=${userInfo.userId}&storeNo=${storeInfo.storeNo}`)
-//             .then(res => res.json())
-//             .then(data => {
-//                 function isWithinThreeDays(resDate) {
-//                     const reservedDate = new Date(resDate);
-//                     const currentDate = new Date();
-
-//                     // 현재 날짜의 시간을 제거하여 비교하기 쉽게 함
-//                     currentDate.setHours(0, 0, 0, 0);
-//                     reservedDate.setHours(0, 0, 0, 0);
-
-//                     const timeDifference = currentDate - reservedDate;
-//                     const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
-
-//                     // reservedDate가 현재 날짜와 같거나 3일 이전인지 확인
-//                     return dayDifference >= 0 && dayDifference <= 3;
-//                 }
-
-//                 let shouldWriteReview = false; // 추가 변수
-
-//                 for (let i = 0; i < data.length; i++) {
-//                     const result = isWithinThreeDays(data[i].resDate);
-//                     if (result) {
-//                         console.log('날짜 성공');
-
-//                         // 날짜가 오늘인 경우 시간 비교
-//                         const reservDate = new Date(data[i].resDate);
-//                         const currentDate = new Date();
-//                         if(reservDate.toDateString() === currentDate.toDateString()){
-
-//                             // 현재 시간이 예약 시간보다 지나간 경우 true, 그렇지 않으면 false
-//                             const [hours, minutes, seconds] = data[i].resDate.split(':').map(Number);
-//                             const targetDate = new Date();
-//                             targetDate.setHours(hours, minutes, seconds, 0);
-
-//                             if(currentDate > targetDate){
-//                                 console.log('오늘 시간 성공')
-//                                 // 예약이 노쇼인지의 여부 확인
-//                                 if(data[i].qrConfirm === 1){
-//                                     console.log('예약 확인 성공 -> 예약 번호 확인')
-//                                     fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
-//                                         .then(res => res.json())
-//                                         .then(data => {
-//                                             console.log('예약 번호 성공');
-//                                             console.log('data1', data);
-//                                             if(data === true){
-//                                                 shouldWriteReview = true;
-//                                             }
-//                                         })
-//                                         .catch(error => console.log(error));
-//                                 } else {
-//                                     console.log('예약 확인 실패 -> 노쇼')
-//                                     setWriteReview(false);
-//                                 }
-//                             } else {
-//                                 console.log('오늘 시간 실패')
-//                                 setWriteReview(false);
-//                             }
-//                         } else {
-//                             console.log('이미 오늘 이전 날짜 : 성공 -> 예약 번호 확인')
-//                             console.log('reservDate', reservDate.toDateString());
-//                             // 예약이 노쇼인지의 여부 확인
-//                             if(data[i].qrConfirm === 1){
-//                                 console.log('예약 확인 성공 -> 예약 번호 확인')
-//                                 fetch(`/store/checkReviewList?resNo=${data[i].resNo}`)
-//                                     .then(res => res.json())
-//                                     .then(data => {
-//                                         console.log('예약 번호 성공');
-//                                         console.log('data2', data);
-//                                         if(data === true){
-//                                             shouldWriteReview = true;
-//                                         }
-//                                     })
-//                                     .catch(error => console.log(error));
-//                             } else {
-//                                 console.log('예약 확인 실패 -> 노쇼')
-//                                 setWriteReview(false);
-//                             }
-//                         }
-//                     } else {
-//                         console.log('날짜 실패');
-//                         setWriteReview(false);
-//                     }
-//                 }
-
-//                 // 모든 검사가 끝난 후 최종 결과 설정
-//                 if (shouldWriteReview) {
-//                     setWriteReview(true);
-//                 }
-//             })
-//             .catch(error => console.error('error', error));
-//     }
-// }, [userInfo, storeInfo.storeNo]);
-
     
     console.log('writeReview', writeReview);
 

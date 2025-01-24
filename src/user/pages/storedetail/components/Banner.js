@@ -20,8 +20,8 @@ function Banner() {
     const [images, setImages] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
-    const { setGlobalError } = useError(); // useError 훅 사용
-    const navigate = useNavigate();  // useNavigate 훅 사용
+    const { setGlobalError } = useError(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
