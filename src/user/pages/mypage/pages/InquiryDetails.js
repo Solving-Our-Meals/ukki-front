@@ -77,6 +77,7 @@ function InquiryDetail({ userInfo }) {
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
+        console.log(selectedFile);
         setFile(selectedFile);
     };
 
@@ -170,6 +171,7 @@ function InquiryDetail({ userInfo }) {
 
             if (file) {
                 formData.append('file', file);
+                console.log("파일추가" + file);
             }
 
             const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry/${inquiryNo}`, {
@@ -178,6 +180,7 @@ function InquiryDetail({ userInfo }) {
                     'Accept' : 'application/json',
                 },
                 body: formData,
+                credentials : "include",
             });
 
             if (!response.ok) {
