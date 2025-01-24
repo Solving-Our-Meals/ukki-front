@@ -334,6 +334,7 @@
     border-radius: 50%;
     border: black solid 1px;
     z-index: 3;
+    cursor:pointer;
 }
 
 .profileImageContainer {

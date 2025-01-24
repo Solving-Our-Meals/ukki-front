@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '../css/review.module.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import CreateReview from '../components/CreateReview';
 import Footer from '../components/Footer';
 import basicReviewImg from '../images/BASIC_REVIEW_IMG.png';
 import { API_BASE_URL } from '../../../../config/api.config';
+import { useError } from '../../../../common/error/components/ErrorContext';
 
 function Review(){
 
     const { storeNo } = useParams();
+    const navigate = useNavigate();
+    const { setGlobalError } = useError();
 
     const [reviews, setReviews] = useState([]);
     const [reviewContent, setReviewContent] = useState({
@@ -47,14 +50,28 @@ function Review(){
                     'Content-Type': 'application/json',
                 },
                 credentials : "include"
-            }).then(res => res.json()).catch(() => ({ nickname: "" })), // 로그인 안 되어 있으면 기본 값 반환
+            }).then(response => {
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
+                return response.json();
+            }).catch(() => ({ nickname: "" })), // 로그인 안 되어 있으면 기본 값 반환
             fetch(`${API_BASE_URL}/store/${storeNo}/review`,{
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-            }).then(res => res.json())
+            }).then(response => {
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
+                return response.json();
+            })
         ])
         .then(([userData, reviewData]) => {
             console.log('현재 유저!!!!!:', userData.nickname);  // 현재 유저 이름 확인
@@ -64,8 +81,18 @@ function Review(){
             setReviewContent(reviewData);
             setReviews(reviewData.reviewList);
         })
-        .catch(error => console.log(error));
-    }, []);
+        .catch(error => {
+            console.error(error);
+            // setGlobalError(error.message, error.status);
+            // if (error.status === 404) {
+            //     navigate('/404');
+            // } else if (error.status === 403) {
+            //     navigate('/403');
+            // } else {
+            //     navigate('/500');
+            // }
+        });
+    }, [setGlobalError]);
 
     const handleSort = (e) => {
         const option = e.target.value; 
@@ -94,14 +121,33 @@ function Review(){
                 'Content-Type': 'application/json',
             },
         })
-        .then(res => res.json())
+        .then(response => {
+            if (!response.ok) {
+                const error = new Error(`HTTP error! status: ${response.status}`);
+                error.status = response.status;
+                throw error;
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('리뷰 정보 : ', data);
             setReviewContent(data);
             const reviewList = data.reviewList;
             setReviews(reviewList);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 404) {
+                navigate('/404');
+            } else if (error.status === 403) {
+                navigate('/403');
+            } else {
+                navigate('/500');
+            }
+        });
     }
 
     const reviewScope = () => {
@@ -112,14 +158,33 @@ function Review(){
                 'Content-Type': 'application/json',
             },
         })
-        .then(res => res.json())
+        .then(response => {
+            if (!response.ok) {
+                const error = new Error(`HTTP error! status: ${response.status}`);
+                error.status = response.status;
+                throw error;
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('리뷰 정보 : ', data);
             setReviewContent(data);
             const reviewList = data.reviewList;
             setReviews(reviewList);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 404) {
+                navigate('/404');
+            } else if (error.status === 403) {
+                navigate('/403');
+            } else {
+                navigate('/500');
+            }
+        });
     }
 
     const reviewSecondScope = () => {
@@ -131,14 +196,33 @@ function Review(){
                 'Content-Type': 'application/json',
             },
         })
-        .then(res => res.json())
+        .then(response => {
+            if (!response.ok) {
+                const error = new Error(`HTTP error! status: ${response.status}`);
+                error.status = response.status;
+                throw error;
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('리뷰 정보 : ', data);
             setReviewContent(data);
             const reviewList = data.reviewList;
             setReviews(reviewList);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 404) {
+                navigate('/404');
+            } else if (error.status === 403) {
+                navigate('/403');
+            } else {
+                navigate('/500');
+            }
+        });
     }
 
     const renderStars = (reviewScope) => {
@@ -155,8 +239,8 @@ function Review(){
         fetch(`${API_BASE_URL}/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`,{
             method : "DELETE",         
         })
-        .then((res) => {
-            if(res.ok){
+        .then(response => {
+            if(response.ok){
                 // 삭제 후 상태 없데이트
                 setReviews(prevReviews => prevReviews.filter(review => review.reviewNo !== reviewNo));
                 setRealDeleteReview(false)
@@ -184,14 +268,28 @@ function Review(){
                     'Content-Type': 'application/json',
                 },
                 credentials : "include"
-            }).then(res => res.json()),
+            }).then(response => {
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status;
+                    throw error;
+                }
+                return response.json();
+            }),
             fetch(`${API_BASE_URL}/store/${storeNo}/review`,{
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-            }).then(res => res.json())
+            }).then(response => {
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status;
+                    throw error;
+                }
+                return response.json();
+            })
         ])
         .then(([userData, reviewData]) => {
             console.log('현재 유저!!!!!:', userData.nickname);  // 현재 유저 이름 확인
@@ -201,7 +299,19 @@ function Review(){
             setReviewContent(reviewData);
             setReviews(reviewData.reviewList);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 404) {
+                navigate('/404');
+            } else if (error.status === 403) {
+                navigate('/403');
+            } else {
+                navigate('/500');
+            }
+        });
     }
 
     // Footer의 위치를 조정하는 함수
@@ -288,7 +398,7 @@ function Review(){
                     }}
                     onClick={() => moreReviewHandler()}
                 >
-                    { reviews.length < 1 ? "리뷰가 없습니다." : hiddenWord ? "리뷰 더보기 > " : "리뷰 닫기"} 
+                    { (reviews?.length || 0) < 1 ? "리뷰가 없습니다." : hiddenWord ? "리뷰 더보기 > " : "리뷰 닫기"} 
                 </div>
             </div>
             {realDeleteReview && (

@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import styles from "../css/termsOfUse.module.css";
 import { API_BASE_URL } from '../../../../config/api.config';
+import { useError } from '../../../../common/error/components/ErrorContext';
+
 
 function TermsOfUse () {
     
+    const { setGlobalError } = useError();
     const [isComplete, setIsComplete] = useState(false);
-    const [isFail, setIsFail] = useState(false);
+    const [isDuplicate, setIsDuplicate] = useState(false);
+    const [ isFail, setIsFail ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -37,22 +41,41 @@ function TermsOfUse () {
                 },
                 credentials : "include",
             })
-                .then(res => res.json())
-                .then(data => {
+            .then(response => {
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status;
+                    throw error;
+                }
+                return response.json();
+            })
+            .then(data => {
                 setReservationInfo(prevInfo => ({
                     ...prevInfo,
                     userNo : data.userNo
                 }));
-                })
-                .catch(error => console.log(error));
-            
-                setReservationInfo(prevInfo => ({
-                    ...prevInfo,
-                    storeNo : locationInfo.storeNo,
-                    resDate : locationInfo.date2,
-                    resTime : `${locationInfo.time}:00`
+            })
+            .catch(error => {
+                console.error(error);
+                setGlobalError(error.message, error.status);
+
+                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                if (error.status === 404) {
+                    navigate('/404');
+                } else if (error.status === 403) {
+                    navigate('/403');
+                } else {
+                    navigate('/500');
+                }
+            });
+        
+            setReservationInfo(prevInfo => ({
+                ...prevInfo,
+                storeNo : locationInfo.storeNo,
+                resDate : locationInfo.date2,
+                resTime : `${locationInfo.time}:00`
                 }));
-    }, []);
+    }, [setGlobalError]);
 
 
     const submitHandler = () => {
@@ -67,18 +90,34 @@ function TermsOfUse () {
             },
             body : JSON.stringify(reservationInfo)
         })
-        .then(res => res.text())
+        .then(response => {
+            if (!response.ok) {
+                const error = new Error(`HTTP error! status: ${response.status}`);
+                error.status = response.status;
+                throw error;
+            }
+            return response.text();
+        })
         .then(data => {
             console.log("예약 결과는 ???" , data)
             if(data.trim() === "예약 성공"){
                 setIsComplete(true);
                 console.log("예약 성공 state:", isComplete);
             } else {
-                setIsFail(true);
-                console.log("예약 실패 state:", isFail);
+                setIsDuplicate(true);
+                console.log("예약 중복 state:", isDuplicate);
             }
         })
-        .catch(error => console.log('error', error));
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 500) {
+                setIsFail(true);
+                console.log("예약 실패 state:", isDuplicate);
+            }
+        });
     }
 
     const toMain = () => {
@@ -95,7 +134,7 @@ function TermsOfUse () {
     
     return(
         <>
-            <div className={isComplete || isFail ? styles.overLay : ""}></div>
+            <div className={isComplete || isDuplicate || isFail ? styles.overLay : ""}></div>
             <div className={styles.termsOfUse}>
                 <p id={styles.strTerms}>예약 약관</p><br/>
                 <div id={styles.temsArea}>
@@ -203,9 +242,14 @@ function TermsOfUse () {
                 <button type='button' id={styles.toMain} onClick={() => toMain()}>메인으로</button>
                 <button type='submit' id={styles.toMypage} onClick={() => toMypage()}>예약확인</button>
             </div>
-            <div id={styles.failReservation} style={{display : isFail ? "" : "none"}}>
+            <div id={styles.duplicateReservation} style={{display : isDuplicate ? "" : "none"}}>
                 <p id={styles.failMessage}>이미 예약 되어있습니다.</p>
                 <p id={styles.duplicateMessage}>중복 예약이 불가합니다.</p>
+                <button type='button' id={styles.confirm} onClick={() => toStore()}>확인</button>
+            </div>
+            <div id={styles.failReservation} style={{display : isFail ? "" : "none"}}>
+                <p id={styles.failMessage}>예약에 실패했습니다.</p>
+                <p id={styles.failReservationMessage}>예약하는 도중에 에러가 발생했습니다.</p>
                 <button type='button' id={styles.confirm} onClick={() => toStore()}>확인</button>
             </div>
         </>
