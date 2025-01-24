@@ -197,57 +197,6 @@
     user-select: text;
 }
 
-#toUserInfo{
-    /* Rectangle 166 */
-
-    margin-left: 20px;
-    
-    width: 169px;
-    height: 41px;
-    
-    /* secondary2 */
-    background-color: transparent;
-    border: 1px solid #FF6B87;
-    border-radius: 50px;
-
-    font-family: 'Bobaesum Jindo TTF';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-
-    /* system/danger */
-    color: #232323;
-
-    text-align: center;
-
-    cursor: pointer;
-}
-
-#toStoreInfo{
-    /* Rectangle 166 */
-
-    margin-left: 20px;
-    
-    width: 169px;
-    height: 41px;
-    
-    /* secondary2 */
-    background-color: transparent;
-    border: 1px solid #FF6B87;
-    border-radius: 50px;
-
-    font-family: 'Bobaesum Jindo TTF';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-
-    /* system/danger */
-    color: #232323;
-
-    text-align: center;
-
-    cursor: pointer;
-}
 #reservationInfoDeleteBtn{
 
     position: absolute;
@@ -385,6 +334,27 @@
     border-radius: 0px;
 }
 
+.okLink{
+    position: absolute;
+    left: 266px;
+    top: 510px;
+    background-color: #FFFFFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 0px;
+}
+
+.noShowLink{
+    position: absolute;
+    left: 266px;
+    top: 560px;
+    background-color: #FFFFFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 0px;
+}
+
+
 .statusImageTextWait{
     opacity: 1;
 }
@@ -473,3 +443,109 @@
     color: #ffffff;
 }
 
+.userId{
+    position: absolute;
+    left: 296px;
+    top: 300px;
+    width: 200px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    /* text/title */
+    color: #1E1E1E;
+
+    align-items: center;
+    justify-content: center;
+    user-select: text;
+}
+
+.storeName{
+    position: absolute;
+    left: 296px;
+    top: 363px;
+    width: 200px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    /* text/title */
+    color: #1E1E1E;
+
+    align-items: center;
+    justify-content: center;
+    user-select: text;
+}
+
+.longUserName{
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    text-wrap: wrap;
+}
+
+.longStoreName{
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    text-wrap: wrap;
+}
+
+#toUserInfo{
+    /* Rectangle 166 */
+    position: absolute;
+    left: 500px;
+    top: 298px;
+    
+    width: 129px;
+    height: 41px;
+    
+    /* secondary2 */
+    background-color: transparent;
+    border: 1px solid #FF6B87;
+    border-radius: 50px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    /* system/danger */
+    color: #232323;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+#toStoreInfo{
+    /* Rectangle 166 */
+    position: absolute;
+    left: 500px;
+    top: 358px;
+    
+    width: 129px;
+    height: 41px;
+    
+    /* secondary2 */
+    background-color: transparent;
+    border: 1px solid #FF6B87;
+    border-radius: 50px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    /* system/danger */
+    color: #232323;
+
+    text-align: center;
+
+    cursor: pointer;
+}

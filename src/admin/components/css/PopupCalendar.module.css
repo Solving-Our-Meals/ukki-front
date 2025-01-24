@@ -9,8 +9,14 @@
     top: 60px;
     width: 100px;
     height: 25px;
+    border: 2px solid #FF8AA3;
+    border-radius: 10px;
     text-align: center;
     cursor: pointer;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
 }
 
 .calendar {

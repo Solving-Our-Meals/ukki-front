@@ -84,6 +84,7 @@
     user-select: text;
 }
 
+
 #userInfoName{
 
     position: absolute;
@@ -108,7 +109,7 @@
 }
 #userInfoName > p{
     display: inline-block;
-
+    
     font-family: 'Bobaesum Jindo TTF';
     font-style: normal;
     font-weight: 400;
@@ -150,7 +151,9 @@
 #userInfoNameChangeBtn{
     /* Rectangle 166 */
 
-    margin-left: 20px;
+    position: absolute;
+    left: 755px;
+    top: 351px;
 
     width: 169px;
     height: 41px;
@@ -346,3 +349,66 @@
 .badgeNotAchieved{
     filter: grayscale(100%);
 }
+
+.userName{
+    position: absolute;
+    height: 40px;
+    left: 515px;
+    top: 351px;
+
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 25px;
+    /* text/title */
+    color: #1E1E1E;
+
+    /* text/title */
+    color: #1E1E1E;
+
+    align-content: center;
+    user-select: text;
+    height: 40px;
+    width: 200px;
+}
+
+.longUserName{
+    display: inline-block;
+    position: relative;
+    height: 40px;
+    line-height: 25px;
+    align-items: center;
+    font-size: 27px;
+    width: 200px;
+    white-space: wrap;
+}
+
+.noShowMinus{
+    position: absolute;
+    left: 1225px;
+    top: 663px;
+    
+}
+
+.noShowMinusBtn{
+    width: 50px;
+    height: 40px;
+    background: #f4f4f4;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    color: #1E1E1E;
+    cursor: pointer;
+}
+.noShowMinusBtn:hover{
+    background: #e4e4e4;
+}
+

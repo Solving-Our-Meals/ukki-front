@@ -9,7 +9,6 @@ import Mypage from './user/pages/mypage/route/Mypage';
 import Info from './user/pages/info/Info';
 import UserLayout from './user/layouts/UserLayout';
 import Main from './user/pages/main/Main';
-import InquiryEnter from './common/inquiry/components/StoreInquiryEnter';
 import UserStorePage from './user/pages/storedetail/pages/UserStorePage';
 import QrRoutes from './store/pages/qrCheck/routes/QrRoutes';
 import AdminRoutes from './admin/route/AdminRoutes';
@@ -52,7 +51,6 @@ function App() {
                         <Route path="search" element={<Search />}/>
                         <Route path="store/:storeNo" element={<UserStorePage />} />
                         <Route path="reservation" element={<PrivateRoute element={<Reservation />} />} />
-                        <Route path="sinquiries" element={<PrivateRoute element={<InquiryEnter />} />} />
                         <Route path="notice" element={<PrivateRoute element={<UserNotice/>}/>}/> 
                         <Route path="notice/:noticeNo" element={<PrivateRoute element={<UserSpecificNotice/>}/>}/> 
                     </Route>

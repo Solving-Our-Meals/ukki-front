@@ -85,7 +85,7 @@ function NoticeInfo(){
 
     const handleEditNotice = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/notices/${noticeNo}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/notices/info/${noticeNo}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -123,7 +123,7 @@ function NoticeInfo(){
 
     const handleDeleteNotice = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/notices/${noticeNo}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/notices/info/${noticeNo}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
