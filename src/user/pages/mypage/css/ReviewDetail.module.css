@@ -186,6 +186,11 @@
     top:35px;
 }
 
+.reviewImage {
+    width: 370px;
+    height: 365px;
+}
+
 .storeDetailBtn {
     margin-left: 10px;
 

@@ -3,10 +3,12 @@ import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import noAnswerLogo from '../images/noAnswerLogo.png';
 import styles from '../css/specificInquiry.module.css';
 import { API_BASE_URL } from '../../../../config/api.config';
+import { useError } from '../../../../common/error/components/ErrorContext';
 
 function SpecificInquiry(){
 
     const navigate = useNavigate();
+    const { setGlobalError } = useError();
     const { inquiryNo } = useParams();
     const [searchParams] = useSearchParams(); 
     const categoryNo = searchParams.get('categoryNo');
@@ -42,13 +44,13 @@ function SpecificInquiry(){
                 'Content-Type': 'application/json'
             }, 
         })
-        .then(res => {
-            if(!res.ok){
-                return res.json().then(error => {
+        .then(response => {
+            if(!response.ok){
+                return response.json().then(error => {
                     throw new Error(error.error || "알 수 없는 오류");
                 });
             }
-            return res.json()
+            return response.json()
         })
         .then(data => {
             setInquiryInfo(data);
@@ -63,8 +65,20 @@ function SpecificInquiry(){
             });
             
         })
-        .catch(error => navigate('/Error404Page'));
-    }, [inquiryNo, categoryNo]);
+        .catch(error => {
+            console.error(error);
+            setGlobalError(error.message, error.status);
+
+            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            if (error.status === 404) {
+                navigate('/404');
+            } else if (error.status === 403) {
+                navigate('/403');
+            } else {
+                navigate('/500');
+            }
+        });
+    }, [inquiryNo, categoryNo, setGlobalError]);
 
     // 파일 삭제 버튼 클릭
     const deleteFileHandler = (e) => {
@@ -103,14 +117,6 @@ function SpecificInquiry(){
         .then(data => console.log('문의 내역 삭제 성공', data))
         .catch(error => console.log(error));
     }
-
-    // const inputChangeHandler = (e) => {
-    //     const {name, value} = e.target;
-    //     setUpdateInquiryData(prevState => ({
-    //         ...prevState,
-    //         [name]: value
-    //     }));
-    // }    
 
     const inputChangeHandler = (e) => {
         const { name, value, files } = e.target;
@@ -183,49 +189,6 @@ function SpecificInquiry(){
         });
     }
 
-    // const updateInquiry = (inquiryNo, categoryNo, reviewNo) => {
-
-    //     const formData = new FormData();
-    //     formData.append("inquiryTitle", updateInquiryData.inquiryTitle);
-    //     formData.append("inquiryContent", updateInquiryData.inquiryContent);
-    //     formData.append("inquiryDate", formattedDate);
-
-    //     if(updateInquiryData.file){
-    //         formData.append("inquiryFile", updateInquiryData.file);
-    //     }
-
-    //     formData.append("params", JSON.stringify({
-    //         inquiryTitle: updateInquiryData.inquiryTitle,
-    //         inquiryContent: updateInquiryData.inquiryContent,
-    //         inquiryDate: formattedDate
-    //     }));
-
-    //     fetch(`/boss/mypage/updateInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}&reviewNo=${reviewNo}`, {
-    //         method : 'PUT',
-    //         body : formData,
-    //     })
-    //     .then(res => {
-    //         if(res.ok){
-    //             // 수정 후 상태 없데이트
-    //             setRealUpdateInquiry(false)
-    //             setIsCompleteUpdateInquiry(true);
-    //             setCompleteOrFailUpdateMessage("해당 문의 내용이 수정되었습니다.");
-    //             navigate('/boss/inquiry');
-    //         } else {
-    //             setRealDeleteInquiry(false)
-    //             setIsCompleteDeleteInquiry(true);
-    //             setCompleteOrFailDeleteMessage("문의 내용 수정에 실패했습니다.");
-    //         }
-    //     })
-    //     .then(data => console.log('문의 내용 수정 성공', data))
-    //     .catch(error => {
-    //         console.error('문의 내용 수정 실패:', error);
-    //         setRealUpdateInquiry(false);
-    //         setIsCompleteUpdateInquiry(true);
-    //         setCompleteOrFailUpdateMessage("문의 내용 수정 중 오류가 발생했습니다.");
-    //     });
-    // }
-    
     const updateButtonClickHandler = () => {
         setIsUpdate(true);
         setUpdateInquiryData({
