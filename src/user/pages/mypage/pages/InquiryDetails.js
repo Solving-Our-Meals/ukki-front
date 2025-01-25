@@ -232,7 +232,7 @@ function InquiryDetail({ userInfo }) {
             const blob = await response.blob();
             const downloadLink = document.createElement('a');
             downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = fileName;  // 다운로드할 파일명
+            downloadLink.download = "문의한 첨부파일"
             downloadLink.click();
         } catch (error) {
             console.error('파일 다운로드 오류:', error);
@@ -370,7 +370,7 @@ function InquiryDetail({ userInfo }) {
                         onClick={() => handleFileDownload(inquiry.file)}
                         className={styles.fileDownloadLabel}
                     >
-                        {getFileName(inquiry.file)}
+                        {getFileName("첨부파일")}
                     </button>
                 ) : null}
             </div>
