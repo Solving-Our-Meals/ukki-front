@@ -177,11 +177,10 @@ function MyProfile() {
             <div className={styles.profileImageContainer}>
                 <img
                     className={styles.profileImage}
-                    src={isUploading ? Loading : (imageFile ? URL.createObjectURL(imageFile) : (profileImage ? profileImage : DefaultProfile))}
+                    src={isUploading ? Loading : (profileImage || DefaultProfile)}
                     alt="Profile"
                     onClick={() => document.getElementById('fileInput').click()}
                 />
-
 
                 <div className={styles.profileImageText}>
                     프로필 이미지 변경
