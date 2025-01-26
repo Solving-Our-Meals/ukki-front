@@ -553,3 +553,7 @@
     background: #FFE0E6; /* 호버 시 배경색 변경 */
 }
 
+.background {
+    opacity: 0.5;
+}
+

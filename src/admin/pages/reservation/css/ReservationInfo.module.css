@@ -549,3 +549,7 @@
 
     cursor: pointer;
 }
+
+.background {
+    opacity: 0.5;
+}

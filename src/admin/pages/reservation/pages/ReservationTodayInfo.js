@@ -6,7 +6,7 @@ import styles from '../css/ReservationInfo.module.css'
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 import { API_BASE_URL } from "../../../../config/api.config";
-
+import LodingPage from "../../../components/LoadingPage";
 function ReservationTodayInfo(){
 
     const {reservationNo} = useParams();
@@ -106,8 +106,13 @@ function ReservationTodayInfo(){
         return days;
     };
 
+    if (isLoading) {
+        return <LodingPage />;
+    }
+
     return(
     <>
+    <div className={`${styles.reservationInfo} ${isLoading || showAgreementModal || showResultModal ? styles.background : ''}`}>
     {isInfo?
         <>
         <div id={styles.reservationInfoText}>예약 상세정보</div>
@@ -145,6 +150,7 @@ function ReservationTodayInfo(){
             </div>
         </> : 
         <div>해당 예약이 존재하지 않습니다.</div>}
+        </div>
         {showAgreementModal && (
                 <AdminAgreementModal
                     message={agreeMessage}

@@ -176,3 +176,7 @@
     transform: scale(1);
     box-shadow: none;
   }
+
+.background {
+  opacity: 0.5;
+}

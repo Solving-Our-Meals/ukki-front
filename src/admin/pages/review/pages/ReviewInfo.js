@@ -7,12 +7,13 @@ import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 import { API_BASE_URL } from '../../../../config/api.config';
 import publicProfile from '../../../components/css/images/PROFILE_BASIC.png';
-
+import LodingPage from "../../../components/LoadingPage";
 
 function ReviewInfo(){
 
     const {reviewNo} = useParams();
     const [isInfo, setIsInfo] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [reviewInfo, setReviewInfo] = useState({});
     const [showAgreementModal, setShowAgreementModal] = useState(false);
     const [showResultModal, setShowResultModal] = useState(false);
@@ -35,11 +36,14 @@ function ReviewInfo(){
             if (reviewInfo){
                 setIsInfo(true)
                 setReviewInfo(reviewInfo)
+                setIsLoading(false);
             }else{
                 setIsInfo(false)
+                setIsLoading(false);
             }
             }catch(error){
                 console.log("오류발생", error)
+                setIsLoading(false);
             }
     },[reviewNo, showResultModal])
 
@@ -76,18 +80,25 @@ function ReviewInfo(){
                 resultMessageHandler("삭제에 성공했습니다.");
                 setShowResultModal(true);
                 setDeleteReview(true);
-            
+                setIsLoading(false);
+
         }).catch((e)=>{
             console.log(e)
             setShowAgreementModal(false)
             setShowResultModal(true);
             setDeleteReview(false);
             resultMessageHandler("리뷰 정보 삭제 중 오류가 발생했습니다.");
+            setIsLoading(false);
         });
+    }
+
+    if (isLoading) {
+        return <LodingPage />;
     }
     
     return(
-    <>
+        <>
+        <div className={`${styles.reviewInfo} ${isLoading || showAgreementModal || showResultModal ? styles.background : ''}`}>
     {isInfo?
         <>
         <div id={styles.reviewInfoText}>리뷰 상세정보</div>
@@ -115,6 +126,7 @@ function ReviewInfo(){
         </div>
         </>: 
         <div>해당 리뷰가 존재하지 않습니다.</div>}
+        </div>
         {showAgreementModal && (
                 <AdminAgreementModal
                     message={agreeMessage}
@@ -135,7 +147,7 @@ function ReviewInfo(){
                     }
                 }}/>
             )}
-    </>
+        </>
     )   
 
 }

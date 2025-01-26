@@ -9,6 +9,7 @@ import { AddrToCoordinate } from '../api/AddrToCoordinate';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
 import { API_BASE_URL } from '../../../../config/api.config';
+import LodingPage from '../../../components/LoadingPage';
 
 function StoreInfoRegist() {
     const { storeNo } = useParams();
@@ -28,8 +29,6 @@ function StoreInfoRegist() {
         posNumber : 0
     });
     const [isAddressChanged, setIsAddressChanged] = useState(false);
-    const [latitude, setLatitude] = useState(0);
-    const [longitude, setLongitude] = useState(0);
     const [coordError, setCoordError] = useState('');
     const [isNone, setIsNone] = useState(true);
     const [menuImage, setMenuImage] = useState('');
@@ -42,6 +41,7 @@ function StoreInfoRegist() {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isRegist, setIsRegist] = useState(false);
+
 
     const today = new Date().toISOString().split('T')[0];
 
@@ -330,9 +330,10 @@ function StoreInfoRegist() {
     };
 
     if(loading){
-        return <div>로딩중...</div>;
+        return <LodingPage />;
     }
     return(
+        <>
         <div className={styles.storeEdit}>
             <div id={styles.storeEditText}>가게 등록</div>
             
@@ -552,32 +553,31 @@ function StoreInfoRegist() {
                 >
                     확인
                 </button>
-
-                {showAgreementModal && (
-                    <AdminAgreementModal
-                        message={agreeMessage}
-                        onConfirm={() => {
-                            setShowAgreementModal(false);
-                            registConfirm();
-                        }}
-                        onCancel={() => setShowAgreementModal(false)}
-                    />
-                )}
-                {showResultModal && (
-                    <AdminResultModal 
-                        message={resultMessage} 
-                        close={() => {
-                            setShowResultModal(false);
-                            setResultMessage('');
-                            if(isRegist){
-                                navigate(`/admin/stores/list`);
-                                setIsRegist(false);
-                            }
-                        }}
-                    />
-                )}
         </div>
-        
+                        {showAgreementModal && (
+                            <AdminAgreementModal
+                                message={agreeMessage}
+                                onConfirm={() => {
+                                    setShowAgreementModal(false);
+                                    registConfirm();
+                                }}
+                                onCancel={() => setShowAgreementModal(false)}
+                            />
+                        )}
+                        {showResultModal && (
+                            <AdminResultModal 
+                                message={resultMessage} 
+                                close={() => {
+                                    setShowResultModal(false);
+                                    setResultMessage('');
+                                    if(isRegist){
+                                        navigate(`/admin/stores/list`);
+                                        setIsRegist(false);
+                                    }
+                                }}
+                            />
+                        )}
+        </>
     );
 }
 

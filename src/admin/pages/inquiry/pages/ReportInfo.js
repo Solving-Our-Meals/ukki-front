@@ -5,6 +5,7 @@ import { ReportInfoAPI } from '../api/ReportInfoAPI';
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 import { API_BASE_URL } from '../../../../config/api.config';
+import LodingPage from '../../../components/LoadingPage';
 
 function ReportInfo() {
     const { reportNo } = useParams();
@@ -25,6 +26,7 @@ function ReportInfo() {
     const [deleteInquiry, setDeleteInquiry] = useState(false);
     const [answerSuccess, setAnswerSuccess] = useState(false);
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const currentInquiry = async () => {
@@ -36,6 +38,7 @@ function ReportInfo() {
                 });
             }
             setInquiry(currentInquiry);
+            setIsLoading(false);
         }
         currentInquiry();
     }, [reportNo, answerMode]);
@@ -73,8 +76,12 @@ function ReportInfo() {
         setAnswerMode(false);
     }
 
+    if (isLoading) {
+        return <LodingPage />;
+    }
+
     if (!inquiry) {
-        return <div className={styles.error}>해당 문의를 찾을 수 없습니다.</div>;
+        return <div className={styles.notFound}>해당 문의를 찾을 수 없습니다.</div>;
     }
 
     const handleAnswerInquiry = async () => {
@@ -136,7 +143,8 @@ function ReportInfo() {
     };
 
     return (
-        <div className={styles.inquiryContainer}>
+        <>
+        <div className={`${styles.inquiryContainer} ${isLoading || showAgreementModal || showResultModal ? styles.background : ''}`}>
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore} />}
             {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2} />}
 
@@ -214,7 +222,8 @@ function ReportInfo() {
             {!answerMode && <button className={styles.delButton} onClick={handleDeleteConfirm}>삭제</button>}
             <button className={styles.answerButton} onClick={handleAnswer} disabled={inquiry.answerDate !== null} style={answerMode? {left: '1403px', width: '115px'} : {}}>{answerMode ? '확인' : '답변하기'}</button>
             {inquiry.state === "처리완료" && <button className={styles.answerButton} onClick={handleAnswer} style={answerMode? {left: '1403px', width: '115px'} : {}}>{answerMode ? '확인' : '수정'}</button>}
-            {showAgreementModal && (
+        </div>
+        {showAgreementModal && (
                 <AdminAgreementModal
                     message={agreeMessage}
                     onConfirm={() => {
@@ -245,7 +254,7 @@ function ReportInfo() {
                     }
                 }}/>
             )}
-        </div>
+        </>
     );
 }
 

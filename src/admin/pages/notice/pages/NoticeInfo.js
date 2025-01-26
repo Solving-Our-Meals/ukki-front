@@ -6,11 +6,13 @@ import { NoticeInfoAPI } from '../api/NoticeInfo';
 import { API_BASE_URL } from '../../../../config/api.config';
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
+import LodingPage from '../../../components/LoadingPage';
 
 function NoticeInfo(){
 
     const { noticeNo } = useParams();
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
     const [notice, setNotice] = useState({
         category : "",
         categoryNo : 0,
@@ -33,6 +35,7 @@ function NoticeInfo(){
 
     useEffect(() => {
         fetchNoticeInfo();
+        setIsLoading(false);
     }, [noticeNo, editMode])
 
     const fetchNoticeInfo = async () => {
@@ -77,6 +80,10 @@ function NoticeInfo(){
 
     const handleCancel = () => {
         setEditMode(false);
+    }
+
+    if (isLoading) {
+        return <LodingPage />;
     }
 
     if (!notice) {
@@ -148,6 +155,7 @@ function NoticeInfo(){
 
     return(
         <>
+        <div className={`${styles.noticeInfo} ${isLoading || showAgreementModal || showResultModal ? styles.background : ''}`}>
             <div id={styles.background}>
                 <div id={styles.noticeArea}>
                     <div className={styles.noticeInfo}>
@@ -183,6 +191,7 @@ function NoticeInfo(){
             {editMode && <button className={styles.cancelButton} onClick={handleCancel}>취소</button>}
             {!editMode && <button className={styles.delButton} onClick={handleDeleteConfirm}>삭제</button>}
             <button className={styles.editButton} onClick={handleEdit} style={editMode ? { left: '1403px', width: '115px' } : {}}>{editMode ? '확인' : '수정'}</button>
+            </div>
             {showAgreementModal && (
                 <AdminAgreementModal
                     message={agreeMessage}

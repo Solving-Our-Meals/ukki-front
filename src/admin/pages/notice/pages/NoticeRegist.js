@@ -5,6 +5,7 @@ import styles from '../css/NoticeRegist.module.css';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
 import { API_BASE_URL } from '../../../../config/api.config';
+import LodingPage from '../../../components/LoadingPage';
 
 function NoticeRegist(){
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ function NoticeRegist(){
         noticeContent : "",
         date : ""
     });
+    const [isLoading, setIsLoading] = useState(true);
     const [showAgreementModal, setShowAgreementModal] = useState(false);
     const [showResultModal, setShowResultModal] = useState(false);
     const [agreeMessage, setAgreeMessage] = useState("");
@@ -34,6 +36,7 @@ function NoticeRegist(){
     useEffect(() => {
         const date = new Date().toISOString().split('T')[0];
         setNotice(prevNotice => ({ ...prevNotice, date: date }));
+        setIsLoading(false);
     }, []);
 
 
@@ -71,6 +74,7 @@ function NoticeRegist(){
 
     return(
         <>
+        <div className={`${styles.noticeRegist} ${isLoading || showAgreementModal || showResultModal ? styles.background : ''}`}>
             <div id={styles.background}>
                 <div id={styles.noticeArea}>
                     <div className={styles.noticeInfo}>
@@ -87,7 +91,8 @@ function NoticeRegist(){
             <span className={styles.dateText}>작성 날짜 : </span> <span className={styles.dateContext}>{notice.date}</span>
             <textarea className={styles.content} value={notice.noticeContent} onChange={(e) => setNotice({...notice, noticeContent: e.target.value})}/> 
             <button className={styles.registButton} onClick={handleRegistConfirm}>등록</button>
-            {showAgreementModal && (
+        </div>
+        {showAgreementModal && (
                 <AdminAgreementModal
                     message={agreeMessage}
                     onConfirm={() => {
