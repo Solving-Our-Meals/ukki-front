@@ -11,6 +11,7 @@ function Header() {
     const [activeMenu, setActiveMenu] = useState('/main'); // 현재 활성화된 메뉴 항목을 추적
     const [visibleMenuItems, setVisibleMenuItems] = useState([]);
     const navigate = useNavigate();
+    const [userName, setUserName] = useState('');
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -27,6 +28,19 @@ function Header() {
 
                 if (response.ok) {
                     setIsLoggedIn(true);
+
+                    const userResponse = await fetch('/user/info', {
+                        method: 'GET',
+                        credentials: 'include',
+                    });
+
+                    if (userResponse.ok) {
+                        const userData = await userResponse.json();
+                        setUserName(userData.nickname);
+                        console.log(userData)
+                    } else {
+                        console.error('사용자 정보를 가져오는 데 실패했습니다.');
+                    }
                 } else {
                     setIsLoggedIn(false);
                 }
@@ -80,6 +94,15 @@ function Header() {
 
     }, [isLoggedIn]);
 
+    const greetingStyle = {
+        position : 'absolute',
+        top : '5px',
+        left : '1400px',
+        color: 'blue',
+        fontWeight: 'bold',
+        fontSize: '18px',
+    };
+
     return (
         <>
             <header>
@@ -97,7 +120,10 @@ function Header() {
                             <NavLink to="/auth/signup" className={`menu-item auth ${activeMenu === '/auth/signup' ? 'active' : ''} ${visibleMenuItems.includes('/auth/signup') ? 'visible' : ''}`} onClick={() => handleMenuClick('/auth/signup')}>회원가입</NavLink>
                         </>
                     ) : (
-                        <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+                        <>
+                            <p className="user-greeting" style={greetingStyle}>안녕하세요, {userName}님!</p>
+                            <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+                        </>
                     )}
                 </span>
                 <button className="menu-button" onClick={toggleMenu}>
