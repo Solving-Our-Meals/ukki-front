@@ -30,6 +30,12 @@ function PrivateRoute({ element, ...rest }) {
                     navigate('/');
                 }
             }
+        } else {
+            if (!window.location.pathname.startsWith('/main') &&
+                !window.location.pathname.startsWith('/store') &&
+                !window.location.pathname.startsWith('/info')) {
+                navigate('/main');
+            }
         }
     }, [isAuthenticated, user, navigate]);
 
