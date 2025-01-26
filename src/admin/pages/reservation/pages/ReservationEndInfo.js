@@ -5,6 +5,7 @@ import styles from '../css/ReservationInfo.module.css'
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 import { ReservationEndInfoAPI } from "../api/ReservationEndInfoAPI";
+import { API_BASE_URL } from "../../../../config/api.config";
 
 function ReservationEndInfo(){
 
@@ -17,6 +18,8 @@ function ReservationEndInfo(){
     const [resultMessage , setResultMessage] = useState('');
     const [agreeMessage , setAgreeMessage] = useState('');
     const [deleteRes, setDeleteRes] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [qrImage, setQrImage] = useState('');
     const navigate = useNavigate();
 
     const fetchInfo = useCallback(async (no) => {
@@ -25,6 +28,7 @@ function ReservationEndInfo(){
             if (resInfo){
                 setIsInfo(true)
                 setResInfo(resInfo)
+                fetchQrImage(resInfo.qr)
             }else{
                 setIsInfo(false)
             }
@@ -33,8 +37,14 @@ function ReservationEndInfo(){
             }
         })
 
+    const fetchQrImage = useCallback(async (no) => {
+        const qrUrl = `${API_BASE_URL}/image?fileId=${no}`
+        setQrImage(qrUrl);
+    }, [])
+
     useEffect(()=>{
         fetchInfo(reservationNo)
+        setIsLoading(false);
     },[reservationNo, showResultModal])
 
     function handleDeleteRes() {
@@ -49,7 +59,7 @@ function ReservationEndInfo(){
 
 
     function deleteConfirm(){
-        fetch(`/admin/reservations/info/today/${reservationNo}`, {
+        fetch(`${API_BASE_URL}/admin/reservations/info/today/${reservationNo}`, {
             method: 'DELETE',
         }).then((res) => {
             return res.json();
@@ -96,10 +106,8 @@ function ReservationEndInfo(){
 
     function img(fileUrl) {
         // 방법 1: export=view 파라미터 추가
-        return `https://drive.google.com/uc?export=view&id=${fileUrl}`;
+        return `${API_BASE_URL}/image?fileId=${fileUrl}`;
         
-        // 방법 2: thumbnail 형식 사용
-        // return `https://drive.google.com/thumbnail?id=${fileUrl}`;
         
         // 방법 3: 직접 다운로드 링크 사용
         // return `https://drive.google.com/file/d/${fileUrl}/preview`;
@@ -120,19 +128,7 @@ function ReservationEndInfo(){
         <div id={styles.reservationInfoStatus}><p>예약상태 : </p> {resInfo.qrConfirm? "예약확인" : "예약대기중"}</div>
         <div id={styles.qrInfo}> 
             <div className={styles.qrInfoText}>QR 이미지</div> 
-            <img 
-                src={img("19_KUwY1hGTQUWeIqrJeL_X7iIYC7-UXo")} 
-                alt="QR 코드"
-                style={{ width: '200px', height: 'auto' }}
-                crossOrigin="anonymous"  // CORS 이슈 해결을 위해 추가
-                onError={(e) => {
-                    console.error('이미지 로딩 실패');
-                    // 실패 시 다른 URL 형식 시도
-                    if (e.target.src.includes('uc?')) {
-                        e.target.src = `https://drive.google.com/thumbnail?id=19_KUwY1hGTQUWeIqrJeL_X7iIYC7-UXo`;
-                    }
-                }}
-            />
+            {qrImage && <img src={qrImage} alt="QR 이미지" />}
             {resInfo.reservationCount}
         </div>
         {/* <div id={styles.statusImage}><div className={`${styles.statusImageText} ${resInfo.qr=="expired"? '' : styles.statusImageTextWait}`}>예약대기중</div><div className={`${styles.statusImageText}`}>예약확인</div><div className={`${styles.statusImageText}`}>노쇼</div></div> */}
