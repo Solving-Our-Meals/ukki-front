@@ -1,7 +1,35 @@
 @import '../../../../common/reset/reset.scss';
 
+.loadingContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loadingContainer img {
+    max-width: 150px;
+    height: auto;
+}
+
+.overlay{
+    position: fixed;
+    top : 0;
+    left : 0;
+    width : 100%;
+    height : 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 6;
+}
+
 #totalArea{
-    position: relative;
+    position: absolute;
     left : 70px;
     top : -50px;
     width : 1400px;
@@ -13,56 +41,73 @@
     // border: 1px solid red;
 
     .reviewContainer{
-        position: relative;
+        position: absolute;
         border: 3px solid $primary;
         background-color: #FFFFFF;
         width: 1400px;
         height : 424px;
         border-radius: 25px;
-        border: 1px solid red;
+        // border: 1px solid red;
 
         #userProfile{
-            position: relative;
+            position: absolute;
             left : 50px;
             top : 30px;
             width : 114px;
             height : 108px;
-            z-index: 5;
             border-radius: 0;
         }
 
-        div{
+        #closeModal{
             position: absolute;
-            width : max-content;
-            cursor: default;
-            z-index: 2;
+            left : 730px;
+            top : 50px;
+            width : 100px;
+            height : 50px;
+            background-color: $secondary;
+            border-radius: 25px;
+            border: none;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            color : $textStrong;
+            cursor: pointer;
         }
 
-        div:nth-of-type(1){
+        #userNameAndScope{
+            position: absolute;
+            width: max-content;
             left: 190px;
             top : 43px;
-            width: max-content;
             font-family: 'Bobaesum Jindo TTF';
             font-size: 30px;
             font-weight: 500;
             font-style: normal;
             color: $textStrong;
-            z-index: 5;
-            border: 1px solid blue;
+            display: flex;
+            align-items: center;  // 수직 정렬
+            justify-content: flex-start; // 왼쪽 정렬렬
 
-
-            span{
+            #userName{
+                position : relative;
+                left: 0px;
+                top : 0px;
                 margin-right: 8px;
+                // flex-shrink: 0;
             }
 
-            .star {
+            .stars {
+                left: 0px;
+                top : 0px;
+                position: relative;
                 font-size: 25px;
-                margin-right: -5px;
-                display: inline-block;
+                margin-right: 5px;
+                width : 30px;
+                // display: inline-block;
             }
         }
 
-        div:nth-of-type(2){
+        #reviewDate{
+           position: absolute;
            left : 190px;
            top : 87px;
            width: max-content;
@@ -71,13 +116,13 @@
            font-weight: 400;
            font-style: normal;
            color: $textStrong;
-           z-index: 5;
         }
 
-        div:nth-of-type(3){
+        #reviewContent{
+            position: absolute;
             left : 50px;
             top : 150px;
-            width: 1000px;
+            width: 800px;
             height: 243px;
             background-color: #FFF9D3;
             padding : 20px 15px;
@@ -99,7 +144,7 @@
             width: 468px;
             height: 367px;
             border-radius: 0;
-            z-index: 5;
         }
     }
 }
+

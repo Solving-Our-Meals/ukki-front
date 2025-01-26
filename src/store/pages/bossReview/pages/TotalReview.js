@@ -3,12 +3,12 @@ import { useOutletContext } from 'react-router-dom';
 import styles from '../css/totalReview.module.css';
 import SpecificReview from '../components/SpecificReview';
 import { API_BASE_URL } from '../../../../config/api.config';
-
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function TotalReview(){
 
     const {storeNo} = useOutletContext();
-
+    const [isLoading, setIsLoading] = useState(true);
     const [recentReview, setRecentReview] = useState({});
     const [totalReviewInfo, setTotalReviewInfo] = useState({});
     const [reviewList, setReviewList] = useState([]);
@@ -39,11 +39,24 @@ function TotalReview(){
                 setRecentReview(recentReviewData);
                 setTotalReviewInfo(reviewListData);
                 setReviewList(reviewListData.reviewList);
+                setIsLoading(false);
             })
-            .catch(error => console.log('Error:', error));
+            .catch(error => {
+                console.log('Error:', error);
+                setIsLoading(false);
+            });
         }
     }, [storeNo]); // storeNo가 바뀔 때마다 다시 실행
     
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
 
     const renderStars = (reviewScope) => {
         let stars = [];
