@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../css/reset.css';
 import styles from '../css/Login.module.css';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate  } from 'react-router-dom'
 import signupLogo from '../../signup/images/signupLogo.png';
 import Default from '../../signup/images/default.png';
 import On from '../../signup/images/on.png';
@@ -23,6 +23,7 @@ function Login() {
             [name]: value
         }));
     };
+    const navigate = useNavigate();
 
     // 아이디
     const handleUsernameSubmit = async (e) => {
@@ -68,7 +69,7 @@ function Login() {
         console.log(result.success)
         if (result.success) {
             setError('');
-            window.location.href = '/main';
+            navigate('/main');
         } else {
             setError(result.message || 'ⓘ 비밀번호가 잘못되었습니다.');
         }

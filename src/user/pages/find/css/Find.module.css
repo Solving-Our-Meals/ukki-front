@@ -143,7 +143,7 @@ input.errorInput:focus {
 
 .nextButton {
     position: absolute;
-    width: 83px;
+    width: 85px;
     height: 38px;
     left: 803px;
     top: 300px;
@@ -163,6 +163,22 @@ input.errorInput:focus {
 
 .changeButton {
     background: #FEDA00;
+    position: absolute;
+    width: 85px;
+    height: 38px;
+    left: 803px;
+    top: 300px;
+    border: none;
+
+    border-radius: 25px;
+
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #000000;
 
 }
 
@@ -533,7 +549,7 @@ button:disabled {
 
     .nextButton, .changeButton {
         position: absolute;
-        width: 83px;
+        width: 85px;
         height: 38px;
         left: 803px;
         top: 300px;
@@ -971,7 +987,7 @@ button:disabled {
 
     .nextButton {
         position: absolute;
-        width: 83px;
+        width: 85px;
         height: 38px;
         left: 765px;
         top: 295px;

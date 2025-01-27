@@ -4,6 +4,7 @@ import styles from "../css/StoreList.module.css"
 import "../css/reset.css"
 import { StoreListAPI } from "../api/StoreListAPI"
 import { fetchGraphData2 } from "../../dashboard/api/DashboardAPI"
+import LodingPage from "../../../components/LoadingPage";
 
 function StoreList(){
     const [list, setList] = useState([])
@@ -15,6 +16,7 @@ function StoreList(){
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const [graphData, setGraphData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
         const fetchGraphData = async () => {
             const data = await fetchGraphData2();
@@ -40,6 +42,7 @@ function StoreList(){
     useEffect(()=>{
         fetchList(searchParams.get("category"), searchParams.get("word"));
         fetchGraphData();
+        setIsLoading(false);
     },[searchParams, fetchList])
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -87,6 +90,10 @@ function StoreList(){
         if (e.key === 'Enter') {
             searchClickHandler();
         }
+    }
+
+    if (isLoading) {
+        return <LodingPage />;
     }
 
     return(

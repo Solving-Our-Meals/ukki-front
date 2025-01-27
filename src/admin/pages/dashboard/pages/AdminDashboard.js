@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import '../css/reset.css'
 import '../css/AdminDashboard.css';
+import LodingPage from '../../../components/LoadingPage';
 // import WeeklyRes from '../components/WeeklyRes';
 import { fetchGraphData1, fetchGraphData2, fetchGraphData3, fetchGraphData4, fetchGraphData5, fetchGraphData6 } from '../api/DashboardAPI';
 
@@ -44,7 +45,7 @@ function AdminDashboard(){
     }, []);
 
     if (!data) {
-        return <div>Loading...</div>; // 데이터 로딩 중 표시
+        return <LodingPage />; // 데이터 로딩 중 표시
     }
 
     const today = new Date(); 
@@ -53,7 +54,7 @@ function AdminDashboard(){
 
     return(
         <>
-        <Suspense fallback={<div>Loading graphs...</div>}>
+        <Suspense fallback={<LodingPage />}>
             <div id='weeklyReservationCountText'>이번 주 예약 수</div>
             <div id='weeklyReservationCount'>
                 <WeeklyRes data={data.graph1} />

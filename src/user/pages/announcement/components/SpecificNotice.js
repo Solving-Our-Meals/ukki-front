@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../css/specificNotice.module.css';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function SpecificNotice(){
 
+    const [isLoading, setIsLoading] = useState(true);
     const { noticeNo } = useParams();
     const [notice, setNotice] = useState({
         category : "",
@@ -16,7 +18,6 @@ function SpecificNotice(){
         fetch(`/notice/getSpecificNotice?noticeNo=${noticeNo}`)
         .then(res => res.json())
         .then(data => {
-
             console.log('공지사항 정보', data);
             let categoryName = "";
             switch(data.categoryNo){
@@ -31,10 +32,23 @@ function SpecificNotice(){
                 content : data.noticeContent,
                 date : data.date
             }));
-
+            setIsLoading(false);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            setIsLoading(false);
+        });
     }, [])
+
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
 
     return(
         <>

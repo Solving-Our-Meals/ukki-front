@@ -139,7 +139,9 @@ const CreateReview = ({reflashMethod}) => {
         fetch(`${API_BASE_URL}/store/${storeNo}/review`, {
             method: 'POST',
             body: formData,
-        })
+            Credential : "include"
+        },
+    )
         .then((response) => {
             if (response.ok) {
                 setIsDisplay(false);

@@ -5,7 +5,8 @@ import '../css/reset.css'
 import styles from '../css/ReservationInfo.module.css'
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
-
+import { API_BASE_URL } from "../../../../config/api.config";
+import LodingPage from "../../../components/LoadingPage";
 function ReservationTodayInfo(){
 
     const {reservationNo} = useParams();
@@ -16,6 +17,8 @@ function ReservationTodayInfo(){
     const [resultMessage , setResultMessage] = useState('');
     const [agreeMessage , setAgreeMessage] = useState('');
     const [deleteRes, setDeleteRes] = useState(false);
+    const [qrImage, setQrImage] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     const fetchInfo = useCallback(async (no) => {
@@ -24,6 +27,7 @@ function ReservationTodayInfo(){
             if (resInfo){
                 setIsInfo(true)
                 setResInfo(resInfo)
+                fetchQrImage(resInfo.qr)
             }else{
                 setIsInfo(false)
             }
@@ -32,8 +36,14 @@ function ReservationTodayInfo(){
             }
         })
 
+    const fetchQrImage = useCallback(async (no) => {
+        const qrUrl = `${API_BASE_URL}/image?fileId=${no}`
+        setQrImage(qrUrl);
+    }, [])
+
     useEffect(()=>{
         fetchInfo(reservationNo)
+        setIsLoading(false);
     },[reservationNo, showResultModal])
 
     function handleDeleteRes() {
@@ -67,6 +77,9 @@ function ReservationTodayInfo(){
         });
     }
     
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
     // 캘린더 날짜 생성
     const generateCalendarDays = (year, month) => {
         const daysInMonth = new Date(year, month + 1, 0).getDate(); // 해당 월의 마지막 날짜
@@ -93,8 +106,13 @@ function ReservationTodayInfo(){
         return days;
     };
 
+    if (isLoading) {
+        return <LodingPage />;
+    }
+
     return(
     <>
+    <div className={`${styles.reservationInfo} ${isLoading || showAgreementModal || showResultModal ? styles.background : ''}`}>
     {isInfo?
         <>
         <div id={styles.reservationInfoText}>예약 상세정보</div>
@@ -103,11 +121,9 @@ function ReservationTodayInfo(){
         <div id={styles.reservationInfoId}><p>예약회원 : </p></div><div className={`${styles.userId} ${resInfo.userId && resInfo.userId.length > 9 ? styles.longUserName : ''}`}> {resInfo.userId? resInfo.userId : "삭제된 회원"}</div> {resInfo.userId && <button id={styles.toUserInfo} onClick={()=>{navigate(`admin/users/info/${resInfo.userNo}`)}}>회원 정보</button>}
         <div id={styles.reservationInfoStoreName}><p>가게이름 : </p></div><div className={`${styles.storeName} ${resInfo.storeName && resInfo.storeName.length > 9 ? styles.longUserName : ''}`}>{resInfo.storeName? resInfo.storeName : "삭제된 가게"}</div> {resInfo.storeName && <button id={styles.toStoreInfo} onClick={()=>{navigate(`/admin/stores/info/${resInfo.storeNo}`)}}>가게 정보</button>}
         <button id={styles.reservationInfoDeleteBtn} onClick={handleDeleteRes}>삭제</button>
-        <div id={styles.reservationInfoDate}><p>예약일 : </p> {resInfo.resDate}</div>
-        {/* <div id={styles.reservationInfoTime}><p>예약시간 : </p> {resInfo.resTime}</div> */}
+        <div id={styles.reservationInfoDate}><p>예약시간 : </p> {resInfo.resTime}</div>
         <div id={styles.reservationInfoStatus}><p>예약상태 : </p> {resInfo.qrConfirm? "예약확인" : "예약대기중"}</div>
-        <div id={styles.qrInfo}> <div className={styles.qrInfoText}>QR 이미지</div> <img src={`/${resInfo.qr}/api/qrImage`}/> {resInfo.reservationCount}</div>
-        {/* <div id={styles.statusImage}><div className={`${styles.statusImageText} ${resInfo.qr=="expired"? '' : styles.statusImageTextWait}`}>예약대기중</div><div className={`${styles.statusImageText}`}>예약확인</div><div className={`${styles.statusImageText}`}>노쇼</div></div> */}
+        <div id={styles.qrInfo}> <div className={styles.qrInfoText}>QR 이미지</div> {qrImage && <img src={`${API_BASE_URL}/image?fileId=${resInfo.qr}`} alt="QR 이미지" />} {resInfo.reservationCount}</div>
         <div id={styles.statusWait} className={`${styles.statusImageText} ${resInfo.qr=="expired"? '' : styles.statusImageTextWait}`}>예약대기중</div>
         <div id={styles.statusConfirm} className={`${styles.statusImageText}`}>예약확인</div>
         <div id={styles.statusNoShow} className={`${styles.statusImageText}`}>노쇼</div>
@@ -134,6 +150,7 @@ function ReservationTodayInfo(){
             </div>
         </> : 
         <div>해당 예약이 존재하지 않습니다.</div>}
+        </div>
         {showAgreementModal && (
                 <AdminAgreementModal
                     message={agreeMessage}

@@ -115,9 +115,9 @@ input.errorInput:focus {
 
 .nextButton {
     position: absolute;
-    width: 83px;
+    width: 85px;
     height: 38px;
-    left: 803px;
+    left: 806px;
     top: 300px;
     border: none;
 
@@ -384,7 +384,7 @@ button:disabled {
 
     .nextButton {
         position: absolute;
-        width: 83px;
+        width: 85px;
         height: 38px;
         left: 803px;
         top: 300px;
@@ -647,7 +647,7 @@ button:disabled {
 
     .nextButton {
         position: absolute;
-        width: 83px;
+        width: 85px;
         height: 38px;
         left: 803px;
         top: 300px;
@@ -910,7 +910,7 @@ button:disabled {
 
     .nextButton {
         position: absolute;
-        width: 83px;
+        width: 85px;
         height: 38px;
         left: 803px;
         top: 300px;

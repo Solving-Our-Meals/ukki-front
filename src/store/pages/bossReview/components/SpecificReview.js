@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import styles from '../css/specificReview.module.css';
+import basicProfile from '../../../../user/pages/storedetail/images/PROFILE_BASIC.png';
+import basicReviewImg from '../../../../user/pages/storedetail/images/BASIC_REVIEW_IMG.png';
 import { API_BASE_URL } from '../../../../config/api.config';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function SpecificReview({reviewNo, storeNo}){
 
     const [review, setReview] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     const [showReportModal, setShowReportModal] = useState(false);
     const [reportTitle, setReportTitle] = useState("");
     const [reportContent, setReportContent] = useState("");
@@ -28,9 +32,23 @@ function SpecificReview({reviewNo, storeNo}){
         .then(data => {
             setReview(data);
             console.log(data);
+            setIsLoading(false);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            setIsLoading(false);
+        });
     }, [reviewNo]);
+
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
     
     const renderStars = (reviewScope) => {
         let stars = [];
@@ -90,7 +108,7 @@ function SpecificReview({reviewNo, storeNo}){
             <div id={styles.totalArea}>
                 <div className={styles.reviewContainer}>
                     <img 
-                        src={review.userProfile === null ? `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=PROFILE_BASIC` : `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
+                        src={review.userProfile === null ? basicProfile : `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
                         id={styles.userProfile} 
                         alt='프로필 이미지'
                     />
@@ -106,7 +124,7 @@ function SpecificReview({reviewNo, storeNo}){
                     </button>
                     <div>{review.reviewDate}</div>
                     <div>{review.reviewContent}</div>
-                    <img src={`${API_BASE_URL}/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
+                    <img src={review.reviewImage === null ? basicReviewImg : `/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
                 </div> 
             </div>
             <div className={styles.overlay} style={{display : showReportModal || isReportComplete ? "" : "none"}}></div>

@@ -1,24 +1,10 @@
-export async function GetProfileAPI(storeNo) {
+import { API_BASE_URL } from '../../../../config/api.config';
+
+export async function GetProfileAPI(storeProfile) {
     try {
-        const response = await fetch(`/store/${storeNo}/storeProfile`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: "include"
-        });
-        const data = await response.text();
-        return `/store/${storeNo}/api/profile?profileName=${data}`;
+        return `${API_BASE_URL}/image?fileId=${storeProfile}`; 
     } catch (error) {
-        console.error('프로필 이미지 로드 실패:', error, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: "include"
-        });
+        console.error('프로필 이미지 로드 실패:', error);
         return '';
     }
 }

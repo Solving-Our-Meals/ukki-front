@@ -163,6 +163,7 @@ export default function StoreUserRegist(){
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({userName: userInfo.userName})
         });
         const result = await response.json();
@@ -186,6 +187,7 @@ export default function StoreUserRegist(){
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: "include",
                 body: JSON.stringify(userInfo)
             });
             const result = await response.json();
@@ -200,8 +202,10 @@ export default function StoreUserRegist(){
         }
     }   
     
+
     return(
-        <>
+        <>  
+        <div className={`${styles.storeUserRegist} ${showResultModal ? styles.background : ''}`}>
         <div className={styles.storeUserRegistText}>가게 회원 등록</div>
         <div className={styles.storeUserRegistArea}>
             <div className={styles.storeUserRegistImg}>
@@ -273,7 +277,7 @@ export default function StoreUserRegist(){
             </div>
             <button type="button" className={styles.storeUserRegistSubmitButton} onClick={handleSubmit}>확인</button>
         </div>
-        
+        </div>
         {showResultModal && <AdminResultModal message={resultMessage} 
         close={() => {
             setShowResultModal(false);
