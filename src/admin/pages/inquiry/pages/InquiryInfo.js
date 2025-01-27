@@ -5,6 +5,7 @@ import { InquiryInfoAPI } from '../api/InquiryInfoAPI';
 import { API_BASE_URL } from '../../../../config/api.config';
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
+import LodingPage from '../../../components/LoadingPage';
 
 function InquiryInfo() {
     const { inquiryNo } = useParams();
@@ -27,27 +28,7 @@ function InquiryInfo() {
     const [fileType, setFileType] = useState("");
     const [fileUrl, setFileUrl] = useState("");
     const navigate = useNavigate();
-
-    // const fetchFile = async (filename) => { 
-    //     try { 
-    //         const response = await fetch(`${API_BASE_URL}/admin/inquiries/files/${filename}`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             credentials: "include"
-    //         }); 
-    //         const contentType = response.headers.get('Content-Type'); 
-    //         setFileType(contentType); 
-    //         const blob = await response.blob(); 
-    //         const url = URL.createObjectURL(blob); 
-    //         console.log(url);
-    //         setFileUrl(url); 
-    //     } catch (error) { 
-    //         console.error('Error fetching file:', error); 
-    //     }};
-
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const currentInquiry = async () => {
@@ -65,6 +46,7 @@ function InquiryInfo() {
             }
         }
         currentInquiry();
+        setIsLoading(false);
     }, [inquiryNo, answerMode]);
 
     const handleShowMore = () => {
@@ -100,8 +82,12 @@ function InquiryInfo() {
         setAnswerMode(false);
     }
 
+    if (isLoading) {
+        return <LodingPage />;
+    }
+
     if (!inquiry) {
-        return <div className={styles.error}>해당 문의를 찾을 수 없습니다.</div>;
+        return <div className={styles.notFound}>해당 문의를 찾을 수 없습니다.</div>;
     }
 
     const handleAnswerInquiry = async () => {
@@ -164,7 +150,8 @@ function InquiryInfo() {
 
     
     return (
-        <div className={styles.inquiryContainer}>
+        <>
+        <div className={`${styles.inquiryContainer} ${isLoading || showAgreementModal || showResultModal ? styles.background : ''}`}>
             
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore} />}
             {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2} />}
@@ -244,38 +231,39 @@ function InquiryInfo() {
             {!answerMode && <button className={styles.delButton} onClick={handleDeleteConfirm}>삭제</button>}
             <button className={styles.answerButton} onClick={handleAnswer} disabled={inquiry.answerDate !== null} style={answerMode ? { left: '1403px', width: '115px' } : {}}>{answerMode ? '확인' : '답변하기'}</button>
             {inquiry.state === "처리완료" && <button className={styles.answerButton} onClick={handleAnswer} style={answerMode ? { left: '1403px', width: '115px' } : {}}>{answerMode ? '확인' : '수정'}</button>}
-            {showAgreementModal && (
-                <AdminAgreementModal
-                    message={agreeMessage}
-                    onConfirm={() => {
-                        if (answerMode) {
-                            handleAnswerInquiry();
-                        } else if (deleteInquiry) {
-                            handleDeleteInquiry();
-                        }
-                        setShowAgreementModal(false);
-                    }}
-                    onCancel={() => setShowAgreementModal(false)}
-                />
-            )}
-            {showResultModal && (
-                <AdminResultModal message={resultMessage} close={() => {
-                    if (deleteInquiry) {
-                        setShowResultModal(false);
-                        navigate("/admin/inquiries/list");
-                        setDeleteInquiry(false);
-                    } else {
-                        setShowResultModal(false);
-                    }
-                    if (answerSuccess) {
-                        setAnswerMode(false);
-                        navigate(`/admin/inquiries/info/${inquiryNo}`);
-                    } else {
-                        setShowResultModal(false);
-                    }
-                }} />
-            )}
         </div>
+        {showAgreementModal && (
+            <AdminAgreementModal
+                message={agreeMessage}
+                onConfirm={() => {
+                    if (answerMode) {
+                        handleAnswerInquiry();
+                    } else if (deleteInquiry) {
+                        handleDeleteInquiry();
+                    }
+                    setShowAgreementModal(false);
+                }}
+                onCancel={() => setShowAgreementModal(false)}
+            />
+        )}
+        {showResultModal && (
+            <AdminResultModal message={resultMessage} close={() => {
+                if (deleteInquiry) {
+                    setShowResultModal(false);
+                    navigate("/admin/inquiries/list");
+                    setDeleteInquiry(false);
+                } else {
+                    setShowResultModal(false);
+                }
+                if (answerSuccess) {
+                    setAnswerMode(false);
+                    navigate(`/admin/inquiries/info/${inquiryNo}`);
+                } else {
+                    setShowResultModal(false);
+                }
+            }} />
+        )}
+        </>
     );
 }
 

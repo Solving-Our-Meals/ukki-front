@@ -12,6 +12,7 @@ import { AddrToCoordinate } from '../api/AddrToCoordinate';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
 import { API_BASE_URL } from '../../../../config/api.config';
+import LodingPage from '../../../components/LoadingPage';
 
 function StoreInfoRegist() {
     const { storeNo } = useParams();
@@ -51,19 +52,13 @@ function StoreInfoRegist() {
                 const storeData = await storeResponse.json();
                 
                 const [menuUrl, profileUrl, bannerImages] = await Promise.all([
-                    GetMenuAPI(storeNo),
-                    GetProfileAPI(storeNo),
+                    GetMenuAPI(storeData.storeMenu),
+                    GetProfileAPI(storeData.storeProfile),
                     GetBannerAPI(storeNo)
                 ]);
 
-                console.log('bannerImages : '+bannerImages);
-
                 const initialStoreData = {
                     ...storeData,
-                    // storeCoordinate: {
-                    //     latitude: storeData.latitude,
-                    //     longitude: storeData.longitude
-                    // },
                     operationTime: {
                         ...storeData.operationTime,
                         breakTime: storeData.operationTime?.breakTime ?? '없음'
@@ -377,7 +372,7 @@ function StoreInfoRegist() {
     };
 
     if(loading){
-        return <div>로딩중...</div>;
+        return <LodingPage />;
     }
     return(
         <div className={styles.storeEdit}>

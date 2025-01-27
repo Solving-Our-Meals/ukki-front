@@ -26,7 +26,7 @@ return(
                         <Link to='/'>
                             <button id={styles.toMain}>메인으로</button>
                         </Link>
-                        <button onClick={() => window.location.reload()}>새로고침</button>
+                        <button onClick={() => window.history.back()}>뒤로가기</button>
                     </div>
                 </div>
             </div>

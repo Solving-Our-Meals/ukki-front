@@ -4,6 +4,7 @@ import styles from "../css/ReviewList.module.css";
 import "../css/reset.css";
 import { ReviewListAPI } from "../api/ReviewListAPI"; 
 import { TotalReviewAPI } from "../api/TotalReviewAPI";
+import LodingPage from "../../../components/LoadingPage";
 
 function ReviewList() {
     const [list, setList] = useState([]);
@@ -17,6 +18,7 @@ function ReviewList() {
     const [totalReviews, setTotalReviews] = useState(0);
     const [isScope, setIsScope] = useState(false);
     const [selectedScope, setSelectedScope] = useState("none");
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchTotalReviews = useCallback(async () => {
         const data = await TotalReviewAPI();
@@ -41,6 +43,7 @@ function ReviewList() {
                 setSearchSuccess(true);
                 setIsScope(false);
                 setCurrentPage(1);
+                setIsLoading(false);
             } else {
                 setSearchSuccess(false);
             }
@@ -114,6 +117,10 @@ function ReviewList() {
         if (e.key === 'Enter') {
             searchClickHandler();
         }
+    }
+
+    if (isLoading) {
+        return <LodingPage />;
     }
 
     return (

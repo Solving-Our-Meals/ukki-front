@@ -8,12 +8,14 @@ import Profile from '../components/Profile';
 import Menu from '../components/Menu';
 import { API_BASE_URL } from '../../../../config/api.config';
 import { useError } from '../../../../common/error/components/ErrorContext';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 
 function StoreDetail({reservationHandler}){
 
     const { storeNo } = useParams();
     const { setGlobalError } = useError(); 
+    const [isLoading, setIsLoading] = useState(true);
 
     const [colorMonday, setColorMonday] = useState("");
     const [colorTuesday, setColorTuesday] = useState("");
@@ -60,7 +62,8 @@ function StoreDetail({reservationHandler}){
                 return response.json();
             })
             .then(data => {
-                setStoreInfo(data)
+                setStoreInfo(data);
+                setIsLoading(false);
                 navigate(`/store/${storeNo}`,{
                     state:{
                         source : 'storedetail',
@@ -82,6 +85,7 @@ function StoreDetail({reservationHandler}){
                 } else {
                     navigate('/500');
                 }
+                setIsLoading(false); // 에러 발생 시에도 로딩 상태를 false로 설정정
             });
         }, [setGlobalError]
     );
@@ -158,6 +162,16 @@ function StoreDetail({reservationHandler}){
     const onClickHandler = (e) => {
         setIsNone(prevState => !prevState);
     } 
+
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
     
     //console.log("요일 별 운영시간 : " , storeInfo.operationTime);
     //console.log("오늘 운영 시간 : ", storeInfo.currentOperationTime);
@@ -189,7 +203,7 @@ function StoreDetail({reservationHandler}){
                 <p className={styles.week}>(일)</p>&ensp;<p className={styles.weekOperTime} style={{ color : colorSunday }}>{storeInfo.operationTime.sunday}</p> <br/>
                 <p id={styles.breakTime}>{`*브레이크 타임 : ${storeInfo.operationTime.breakTime}`}</p> <br/>
             </div>
-            {/* <Menu/> */}
+            <Menu/>
             {/* <div id={styles.mapArea}><KakaoMap/></div> */}
             <div className={styles.keywordArea}>
                 <div>{storeInfo.storeKeyword.keyword1}</div>

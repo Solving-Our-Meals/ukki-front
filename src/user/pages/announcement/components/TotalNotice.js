@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../css/totalNotice.module.css';
 import pin from '../images/Pin.png';
 import searchBtn from '../images/searchBtn.png';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function TotalNotice(){
 
@@ -11,6 +12,7 @@ function TotalNotice(){
     const [notices, setNotices] = useState([]);
     const [searchWord, setSearchWord] = useState("");
     const [searchParams, setSearchParams] = useSearchParams();
+    const [isLoading, setIsLoading] = useState(true);
 
     // 페이지네이션 로직 1 : 기본 상태값과 상수 설정
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
@@ -66,22 +68,11 @@ function TotalNotice(){
         }
     };
 
-    // useEffect(() => {
-    //     fetch('/notice/user')
-    //     .then(res => res.json())
-    //     .then(data => {
-
-    //         console.log('data', data);
-    //         // data가 배열인지 확인
-    //         setNotices(Array.isArray(data) ? data : []);
-    //     })
-    //     .catch(error => console.log(error));
-    // }, [])
-
     useEffect(() => {
         const searchQuery = searchParams.get("searchWord") || "";
         setSearchWord(searchQuery);
         sendSearchWordHandler(searchQuery);
+        setIsLoading(false);
     }, [searchParams]);
     
 
@@ -90,14 +81,6 @@ function TotalNotice(){
     }
 
     const keyPressHandler = (e) => {
-        // if(e.key === 'Enter'){
-        //     if(searchWord.trim() === ""){
-        //         sendSearchWordHandler("");
-        //     } else {
-        //         sendSearchWordHandler(searchWord);
-        //     }
-        //     // sendSearchWordHandler();
-        // }
 
         if(e.key === 'Enter'){
             sendSearchWordHandler(searchWord);
@@ -117,7 +100,15 @@ function TotalNotice(){
         .catch(error => console.log(error))
     }
     
-
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
 
     return(
         <>

@@ -4,6 +4,7 @@ import styles from "../css/UserList.module.css"
 import "../css/reset.css"
 import { UserListAPI } from "../api/UserListAPI"
 import { TotalUserAPI } from "../api/TotalUserAPI"
+import LodingPage from "../../../components/LoadingPage";
 
 function UserList(){
 
@@ -16,6 +17,7 @@ function UserList(){
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const [totalUser, setTotalUser] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchTotalUser = useCallback(async () => {
         const data = await TotalUserAPI();
@@ -46,6 +48,7 @@ function UserList(){
     useEffect(()=>{
         fetchList(searchParams.get("category"), searchParams.get("word"));
         fetchTotalUser();
+        setIsLoading(false);
     },[searchParams, fetchList])
 
     
@@ -98,6 +101,11 @@ function UserList(){
                 searchClickHandler();
             }
         }
+
+    if (isLoading) {
+        return <LodingPage />;
+    }
+
     return(
     <>
         <div className={styles.userListText}>회원리스트</div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from '../css/menu.module.css';
 import xButton from '../css/images/xBtn.png';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function Menu({ storeNo }){
 
@@ -8,10 +9,10 @@ function Menu({ storeNo }){
     const [none, setIsNone] = useState(true);
 
     useEffect(() => {
-        fetch(`/store/${storeNo}/storeMenu`)
+        fetch(`${API_BASE_URL}/store/${storeNo}/storeMenu`)
         .then(res => res.text())
         .then(data => {
-            const menuUrl = `/store/${storeNo}/api/menu?menuName=${data}`
+            const menuUrl = `${API_BASE_URL}/image?fileId=${data}`
             setMenu(menuUrl);
         })
     }, [])

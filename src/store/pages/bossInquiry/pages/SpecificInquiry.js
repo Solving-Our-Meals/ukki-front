@@ -4,6 +4,9 @@ import noAnswerLogo from '../images/noAnswerLogo.png';
 import styles from '../css/specificInquiry.module.css';
 import { API_BASE_URL } from '../../../../config/api.config';
 import { useError } from '../../../../common/error/components/ErrorContext';
+import SpecificReviewModal from '../components/SpecificReviewModal';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
+
 
 function SpecificInquiry(){
 
@@ -20,6 +23,9 @@ function SpecificInquiry(){
     const [completeOrFailDeleteMessage, setCompleteOrFailDeleteMessage] = useState("");
     const [completeOrFailUpdateMessage, setCompleteOrFailUpdateMessage] = useState("");
     const [isUpdate, setIsUpdate] = useState(false);
+    const [clickToSeeReview, isClickToSeeReview] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const today = new Date();
     const year = today.getFullYear();
@@ -33,6 +39,7 @@ function SpecificInquiry(){
         inquiryContent : "",
         inquiryDate : formattedDate,
         file : null,
+        fileChangeYn : "N",
         categoryNo : 0
     });
     
@@ -54,13 +61,15 @@ function SpecificInquiry(){
         })
         .then(data => {
             setInquiryInfo(data);
-            console.log('inquiry!!!!', data)
+            console.log('inquiry!!!!', data);
+            setIsLoading(false);
 
             setUpdateInquiryData({
                 inquiryTitle: data.inquiryTitle || "",
                 inquiryContent: data.inquiryContent || "",
                 inquiryDate: data.inquiryDate || formattedDate,
                 file: data.file || null,
+                fileChangeYn : "N",
                 categoryNo : data.categoryNo || 0,
             });
             
@@ -77,6 +86,7 @@ function SpecificInquiry(){
             } else {
                 navigate('/500');
             }
+            setIsLoading(false);
         });
     }, [inquiryNo, categoryNo, setGlobalError]);
 
@@ -85,7 +95,8 @@ function SpecificInquiry(){
         e.stopPropagation();
         setUpdateInquiryData(prevState => ({
             ...prevState,
-            file : null
+            file : null,
+            fileChangeYn : "Y"
         }));
     };
 
@@ -125,6 +136,7 @@ function SpecificInquiry(){
             setUpdateInquiryData(prevState => ({
                 ...prevState,
                 file: files[0], // 실제 파일 객체로 설정
+                fileChangeYn : "Y"
             }));
         } else {
             setUpdateInquiryData(prevState => ({
@@ -142,6 +154,7 @@ function SpecificInquiry(){
             inquiryContent: inquiryInfo.inquiryContent || "",
             inquiryDate: inquiryInfo.inquiryDate,
             file: inquiryInfo.file || null,
+            fileChangeYn : "N",
             categoryNo : inquiryInfo.categoryNo || 0
         });
     }
@@ -152,6 +165,12 @@ function SpecificInquiry(){
         formData.append("inquiryTitle", updateInquiryData.inquiryTitle);
         formData.append("inquiryContent", updateInquiryData.inquiryContent);
         formData.append("inquiryDate", updateInquiryData.inquiryDate);
+        
+        if(updateInquiryData.fileChangeYn === "N"){
+            formData.append("inquiryFileUrl", updateInquiryData.file)
+        } else {
+            formData.append("inquiryFileUrl", "")
+        }
 
         if(updateInquiryData.file){
             formData.append("inquiryFile", updateInquiryData.file);
@@ -189,16 +208,15 @@ function SpecificInquiry(){
         });
     }
 
-    const updateButtonClickHandler = () => {
-        setIsUpdate(true);
-        setUpdateInquiryData({
-            inquiryTitle: inquiryInfo.inquiryTitle || "",
-            inquiryContent: inquiryInfo.inquiryContent || "",
-            inquiryDate: formattedDate,
-            file: inquiryInfo.file || null,  // 파일 정보 제대로 전달
-            categoryNo: inquiryInfo.categoryNo || 0
-        });
-    };
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
     
     return(
         <>
@@ -208,7 +226,6 @@ function SpecificInquiry(){
                     type="button" 
                     id={styles.updateBtn} 
                     style={{display : inquiryInfo.answerDate == null ? "" : "none" }}
-                    // onClick={() => updateButtonClickHandler()}
                     onClick={() => setIsUpdate(true)}
                 >
                     수정
@@ -226,12 +243,35 @@ function SpecificInquiry(){
                     <span id={styles.inquiryContent}>{inquiryInfo.inquiryContent}</span>
                     <div id={styles.file} style={{display : inquiryInfo.file === null ? "none" : ""}}>
                         <a
-                            href={`http://localhost:8080/boss/mypage/downloadFile?fileName=${inquiryInfo.file}`}
-                            download={inquiryInfo.file} // 파일 다운로드 가능하게 하는 속성
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault(); // 기본 동작 방지
+                                const link = document.createElement('a');
+                                link.href = inquiryInfo.file;
+                                link.download = inquiryInfo.file.split('id=')[1]; // 파일 이름 설정
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
                         >
-                            {inquiryInfo.file}
+                            첨부파일
                         </a>
                     </div>
+                    <div id={styles.goToReview}
+                        onClick={() => { 
+                            isClickToSeeReview(true); 
+                            setModalVisible(true);
+                        }}
+                        style={{ display: inquiryInfo.categoryNo === 0 ? "" : "none" }}>
+                        리뷰 보러가기
+                    </div>
+                    {modalVisible && (
+                        <SpecificReviewModal 
+                            reviewNo={inquiryInfo.reviewNo}
+                            isClickToSeeReview={isClickToSeeReview} 
+                            setModalVisible={setModalVisible}
+                        />
+                    )}
                 </div>
                 <div id={styles.noAnswerArea} style={{display : inquiryInfo.answerDate == null ? "" : "none" }}>
                     <img src={noAnswerLogo} id={styles.noAnswerLogo} alt="우끼 로고"/>
@@ -350,18 +390,18 @@ function SpecificInquiry(){
                         style={{ cursor: 'pointer', display : updateInquiryData.categoryNo === 0 ? "none" : "" }}  // 클릭 가능하도록 스타일 설정
                     >
                         {/* 파일 이름이 선택되지 않았다면 "첨부파일"을 표시, 그렇지 않으면 파일 이름 표시 */}
-                        {updateInquiryData.file ? (
+                        {/* {updateInquiryData.file ? (
                             <span id={styles.updateFileName}>{updateInquiryData.file.name || updateInquiryData.file}</span>
                         ) : (
                             <span>파일첨부</span>
-                        )}
-
+                        )} */}
+                        <span id={styles.updateFileName}>파일첨부</span>
                         {/* 파일 선택 input을 숨깁니다 */}
                         <input 
                             type="file" 
                             id="fileInput" 
                             name="file" 
-                            onChange={(e) => setUpdateInquiryData({ ...updateInquiryData, file: e.target.files[0] })}
+                            onChange={(e) => setUpdateInquiryData({ ...updateInquiryData, file: e.target.files[0], fileChangeYn : "Y" })}
                             style={{ display: 'none' }}  // 파일 입력 필드를 숨김
                         />
 

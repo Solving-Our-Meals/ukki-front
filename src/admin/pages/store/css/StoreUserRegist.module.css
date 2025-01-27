@@ -155,7 +155,7 @@ border-radius: 50px;
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
-    color: #aaa;
+    color: transparent;
     transition: transform 0.1s ease, font-size 0.05s ease, left 0.1s ease, top 0.1s ease, color 0.1s ease;
     pointer-events: none;
 }
@@ -226,4 +226,8 @@ border-radius: 50px;
     pointer-events: none;
     opacity: 0.5;
     background-color: #51CC16;
+}
+
+.background {
+    opacity: 0.5;
 }

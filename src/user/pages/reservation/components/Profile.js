@@ -3,12 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from '../css/profile.module.css';
 import { API_BASE_URL } from '../../../../config/api.config';
 import { useError } from '../../../../common/error/components/ErrorContext';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function Profile(){
 
     const [profile, setProfile] = useState(null);
     const navigate = useNavigate();
     const { setGlobalError } = useError();
+    const [isLoading, setIsLoading] = useState(true);
 
     const location = useLocation();
     const storeInfo = {...location.state};
@@ -35,6 +37,7 @@ function Profile(){
             .then(data => {
                 const profileUrl = `${API_BASE_URL}/reservation/api/profile?profileName=${data}`
                 setProfile(profileUrl);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error(error);
@@ -48,8 +51,20 @@ function Profile(){
                 } else {
                     navigate('/500');
                 }
+                setIsLoading(false);
             });
         }, [setGlobalError]);
+
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
+    
 
     return(
         <img id={styles.profile} src={profile} alt='프로필 사진'/>

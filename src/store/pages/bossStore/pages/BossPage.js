@@ -12,11 +12,12 @@ import { subDays, addDays } from 'date-fns';
 import dayjs from 'dayjs';
 import { API_BASE_URL } from '../../../../config/api.config';
 
+
 function BossPage() {
     const { userNo, storeNo } = useOutletContext();
     const [storeInfo, setStoreInfo] = useState(null);
     const [reservations, setReservations] = useState([]);
-    const [resPosNumbers, setResPosNumbers] = useState({}); // 각 날짜, 시간에 대한 예약 가능한 자리 수 관리
+    const [resPosNumbers, setResPosNumbers] = useState({});
     const [weeklyReservationCount, setWeeklyReservationCount] = useState([]);
     const [todayReservationCount, setTodayReservationCount] = useState(0);
     const [startDate, setStartDate] = useState(dayjs().format('YYYY-MM-DD'));
@@ -27,12 +28,10 @@ function BossPage() {
         const now = new Date();
         const minutes = now.getMinutes();
         const nearestHalfHour = minutes < 30 ? 30 : 60;
-        now.setMinutes(nearestHalfHour, 0, 0);  // 30분 단위로 맞추기
+        now.setMinutes(nearestHalfHour, 0, 0);  
         return now;
     };
 
-    // 예약 가능 인원 수를 디비에서 가져오는 함수
-    // 예약 가능 인원 수를 디비에서 가져오는 함수
     const fetchAvailableSlots = async (date, time) => {
         try {
             const formattedDate = dayjs(date).format('YYYY-MM-DD');
@@ -44,75 +43,98 @@ function BossPage() {
                 reservationTime: formattedTime
             };
     
-            console.log('Fetching slots with params:', params); // params 로그 추가
+            console.log('Fetching slots with params:', params);
     
-            const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservation-status`, { params });
+            const response = await axios.get('/boss/mypage/reservation-status', { params });
     
-            if (!response || !response.data || response.data.length === 0) {
-                console.error('No reservation data found');
-                return;
-            }
+            const resPosNumber = Number(response.data.resPosNumber);
+            const validResPosNumber = isNaN(resPosNumber) ? 5 : resPosNumber;
     
-            const availableSlot = response.data.find(res =>
-                res && res.reservationDate === formattedDate && res.reservationTime === formattedTime
-            );
-    
-            const resPosNumber = availableSlot ? availableSlot.resPosNumber : 5; // 기본값 5
-    
+       
             setResPosNumbers(prev => ({
                 ...prev,
-                [`${formattedDate} ${formattedTime}`]: resPosNumber
+                [`${formattedDate} ${formattedTime}`]: validResPosNumber
             }));
         } catch (error) {
-            console.error('Error fetching available pos num:', error.response?.data || error);
+            console.error('Error fetching available pos num:', error);
         }
     };
-     
 
-    // useEffect에서 데이터 로딩 시 예약 가능한 인원 수 불러오기
     useEffect(() => {
-        if (userNo === undefined || storeNo === undefined) {
-            return;
-        }
+        if (userNo === undefined || storeNo === undefined) return;
 
+        const savedResPosNumbers = JSON.parse(localStorage.getItem('resPosNumbers'));
+        if (savedResPosNumbers) {
+            setResPosNumbers(savedResPosNumbers);
+        }
+    
         axios.get(`${API_BASE_URL}/boss/mypage/getStoreInfo?userNo=${userNo}`)
             .then(response => setStoreInfo(response.data))
             .catch(error => console.error("Error fetching store info:", error));
-
-        // 예약 상태를 불러와서 화면에 표시
+    
         axios.get(`${API_BASE_URL}/boss/mypage/reservation-status?storeNo=${storeNo}`)
             .then(response => {
                 setReservations(response.data || []);
             })
             .catch(error => console.error("Error fetching reservations:", error));
-
-        // 주간 예약 수 가져오기
+    
         axios.get(`${API_BASE_URL}/boss/mypage/weekly-reservation-count?storeNo=${storeNo}`)
             .then(response => setWeeklyReservationCount(response.data || []))
             .catch(error => console.error("Error fetching weekly reservation count:", error));
-
-        // 오늘 예약 수 가져오기
+    
         axios.get(`${API_BASE_URL}/boss/mypage/today-reservation-count?storeNo=${storeNo}`)
             .then(response => setTodayReservationCount(response.data || 0))
             .catch(error => console.error("Error fetching today reservation count:", error));
-
-        // 기본 시간 설정
+    
         const closestTime = getClosest30MinTime();
         setSelectedDate(startDate);
         setSelectedTime(dayjs(closestTime).format('HH:mm'));
+    
 
-        // 날짜와 시간에 맞는 예약 가능 인원 수를 가져옵니다.
         fetchAvailableSlots(startDate, dayjs(closestTime).format('HH:mm'));
-    }, [userNo, storeNo, startDate]);
+    
+    }, [userNo, storeNo, startDate]); 
 
-    // 선택된 날짜와 시간에 맞는 예약 가능 인원 수를 가져오는 useEffect
+
+    const fetchReservations = async (date, time) => {
+        try {
+            const formattedDate = dayjs(date).format('YYYY-MM-DD');  
+            const formattedTime = time ? dayjs(time, 'HH:mm').format('HH:mm') : "";  // time이 null일 경우 빈 문자열로 처리
+                
+            console.log('Fetching reservations with params:', { formattedDate, formattedTime });
+    
+            const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservations-list`, {
+                params: {
+                    storeNo,
+                    date: formattedDate,  
+                    time: formattedTime  // time이 null일 경우 빈 문자열로 처리
+                }
+            });
+            setReservations(response.data);
+        } catch (error) {
+            console.error("Error fetching reservations-list:", error);
+        }
+    };
+    
+    
+
+    
+    
+    
+
     useEffect(() => {
         if (selectedDate && selectedTime) {
             const formattedTime = dayjs(selectedTime, 'HH:mm').format('HH:mm');
             fetchAvailableSlots(selectedDate, formattedTime);
+            fetchReservations(dayjs(selectedDate), selectedTime);
         }
     }, [selectedDate, selectedTime, storeNo]);
 
+    useEffect(() => {
+        if (Object.keys(resPosNumbers).length > 0) {
+            localStorage.setItem('resPosNumbers', JSON.stringify(resPosNumbers));
+        }
+    }, [resPosNumbers]);
 
     const handleDateChange = (date) => {
         setStartDate(date);
@@ -124,63 +146,61 @@ function BossPage() {
         setSelectedTime(newTime);
     };
 
-
-    const handleSlotsChange = (amount) => {
-        const currentPosNum = resPosNumbers[`${selectedDate} ${selectedTime}`] ?? 5; // 기본값 5
-        const newPosNum = Math.max(currentPosNum + amount, 0); // 0보다 작은 값으로는 설정되지 않도록
-
-        // 새로운 예약 가능 인원 수를 상태에 반영
+    const handleSlotsChange = async (amount) => {
+        const currentPosNum = resPosNumbers[`${selectedDate} ${selectedTime}`] ?? 5;
+        const newPosNum = Math.max(currentPosNum + amount, 0);
+    
+ 
         setResPosNumbers(prev => ({
             ...prev,
             [`${selectedDate} ${selectedTime}`]: newPosNum
         }));
 
-        // 상태 업데이트 후에 서버에 반영
-        handleUpdatePosNum(selectedDate, selectedTime, newPosNum);
+        try {
+            await handleUpdatePosNum(selectedDate, selectedTime, newPosNum);
+        } catch (error) {
+            console.error("Error updating reservation slots:", error);
+        }
     };
 
     const handleUpdatePosNum = async (selectedDate, selectedTime, newPosNum) => {
         try {
             const formattedDate = dayjs(selectedDate).format('YYYY-MM-DD');
             const formattedTime = dayjs(selectedTime, 'HH:mm').format('HH:mm');
+    
 
             if (isNaN(newPosNum)) {
-                newPosNum = 5; // 기본값 5
+                newPosNum = 5;
             }
-
+    
             if (newPosNum < 0) {
-                newPosNum = 0; // 최소값 0
+                newPosNum = 0;
             }
-
+    
             const response = await axios.post(`${API_BASE_URL}/boss/mypage/insertAvailableSlots`, {
                 storeNo,
                 reservationDate: formattedDate,
                 reservationTime: formattedTime,
                 resPosNumber: newPosNum
             });
-
+    
             if (response.status === 200) {
-                console.log("예약 가능한 인원 수가 성공적으로 반영되었습니다.");
-                fetchAvailableSlots(formattedDate, formattedTime);
-            } else {
-                alert("예약 가능 인원 수를 업데이트하는 데 실패했습니다.");
+                console.log("Reservation slots updated successfully.");
+                fetchAvailableSlots(formattedDate, formattedTime);  
             }
         } catch (error) {
-            console.error("예약 가능한 인원 수 업데이트 중 오류가 발생했습니다:", error.response?.data || error);
-            alert("서버와의 연결에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+            console.error("Error updating reservation slots:", error);
         }
     };
 
-
-    const filteredReservations = (reservations || []).filter((res) => {
+    const filteredReservations = reservations.filter((res) => {
         const reservationDate = res?.reservationDate;
-        if (!reservationDate) {
-            return false;
-        }
-        const isSameDate = reservationDate.dayjs().split('T')[0] === startDate.dayjs().split('T')[0];
+        if (!reservationDate) return false;
+        const isSameDate = reservationDate.toISOString().split('T')[0] === startDate;
         const isSameTime = selectedTime ? res.reservationTime === selectedTime : true;
         return isSameDate && isSameTime;
     });
+    
 
     return (
         <div className="boss-page">
@@ -194,10 +214,10 @@ function BossPage() {
                 <section className="calendar-section">
                     <h2>날짜 선택</h2>
                     <DatePicker
-                        value={selectedDate ? dayjs(selectedDate) : null}
+                        selected={selectedDate ? dayjs(selectedDate).toDate() : null}
                         onChange={handleDateChange}
                         includeDateIntervals={[{ start: subDays(new Date(), 1), end: addDays(new Date(), 7) }]}
-                        format="YY-MM-DD"
+                        format="yy-MM-dd"
                         locale={ko}
                         inline
                     />
@@ -247,6 +267,7 @@ function BossPage() {
                 </section>
 
                 <WeeklyReservationGraph data={weeklyReservationCount} />
+
                 <section className="today-reservation">
                     <h2>오늘 예약 수</h2>
                     <p>{todayReservationCount}건</p>

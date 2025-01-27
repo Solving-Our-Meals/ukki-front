@@ -3,10 +3,12 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import styles from '../css/bossTotalNotice.module.css';
 import searchBtn from '../images/searchBtn.png';
 import { API_BASE_URL } from '../../../../config/api.config';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function BossTotalNotice(){
 
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
     const [notices, setNotices] = useState([]);
     const [searchWord, setSearchWord] = useState("");
     const [searchParams, setSearchParams] = useSearchParams();
@@ -63,8 +65,12 @@ function BossTotalNotice(){
         .then(res => res.json())
         .then(data => {
             setRecentNotice(data);
+            setIsLoading(false);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            setIsLoading(false);
+        });
     }, [])
 
     useEffect(() => {
@@ -102,6 +108,16 @@ function BossTotalNotice(){
         })
         .catch(error => console.log(error))
     };
+
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
 
     return(
         <>

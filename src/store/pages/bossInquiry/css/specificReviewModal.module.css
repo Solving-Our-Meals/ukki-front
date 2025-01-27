@@ -1,0 +1,309 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+a:active {
+  text-decoration: none;
+  color: #232323;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BobaesumJindoTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/BobaesumJindoTTF.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mungyeong-Gamhong-Apple";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+.loadingContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loadingContainer img {
+  max-width: 150px;
+  height: auto;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 6;
+}
+
+#totalArea {
+  position: absolute;
+  left: 70px;
+  top: -50px;
+  width: 1400px;
+  height: 444px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+#totalArea .reviewContainer {
+  position: absolute;
+  border: 3px solid #FF8AA3;
+  background-color: #FFFFFF;
+  width: 1400px;
+  height: 424px;
+  border-radius: 25px;
+}
+#totalArea .reviewContainer #userProfile {
+  position: absolute;
+  left: 50px;
+  top: 30px;
+  width: 114px;
+  height: 108px;
+  border-radius: 0;
+}
+#totalArea .reviewContainer #closeModal {
+  position: absolute;
+  left: 730px;
+  top: 50px;
+  width: 100px;
+  height: 50px;
+  background-color: #FEDA00;
+  border-radius: 25px;
+  border: none;
+  font-family: "Pretendard-Regular";
+  font-size: 25px;
+  color: #232323;
+  cursor: pointer;
+}
+#totalArea .reviewContainer #userNameAndScope {
+  position: absolute;
+  width: max-content;
+  left: 190px;
+  top: 43px;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 30px;
+  font-weight: 500;
+  font-style: normal;
+  color: #232323;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+#totalArea .reviewContainer #userNameAndScope #userName {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  margin-right: 8px;
+}
+#totalArea .reviewContainer #userNameAndScope .stars {
+  left: 0px;
+  top: 0px;
+  position: relative;
+  font-size: 25px;
+  margin-right: 5px;
+  width: 30px;
+}
+#totalArea .reviewContainer #reviewDate {
+  position: absolute;
+  left: 190px;
+  top: 87px;
+  width: max-content;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  color: #232323;
+}
+#totalArea .reviewContainer #reviewContent {
+  position: absolute;
+  left: 50px;
+  top: 150px;
+  width: 800px;
+  height: 243px;
+  background-color: #FFF9D3;
+  padding: 20px 15px;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  color: #232323;
+  line-height: 160%;
+  border-radius: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#totalArea .reviewContainer #reviewPhoto {
+  position: absolute;
+  right: 50px;
+  top: 27px;
+  width: 468px;
+  height: 367px;
+  border-radius: 0;
+}

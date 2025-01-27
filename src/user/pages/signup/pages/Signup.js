@@ -250,8 +250,9 @@ function Signup() {
     const handleScroll = () => {
         const termsContent = termsContentRef.current;
         if (termsContent) {
-            const isAtBottom = termsContent.scrollHeight === termsContent.scrollTop + termsContent.clientHeight;
+            const isAtBottom = Math.abs(termsContent.scrollHeight - termsContent.scrollTop - termsContent.clientHeight) <= 1;
             setCanSubmit(isAtBottom);
+            console.log("isAtBottom:", isAtBottom);  // 체크용 로그
         }
     };
 
