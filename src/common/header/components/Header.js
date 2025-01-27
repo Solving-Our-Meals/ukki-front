@@ -21,8 +21,12 @@ function Header() {
         const checkAuthStatus = async () => {
             try {
                 // 토큰 검증 로직
-                const response = await fetch('/auth/check-auth', {
+                const response = await fetch(`${API_BASE_URL}/auth/check-auth`, {
                     method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
                     credentials: 'include',
                 });
 
