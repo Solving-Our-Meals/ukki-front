@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import CreateReview from '../components/CreateReview';
 import Footer from '../components/Footer';
 import basicReviewImg from '../images/BASIC_REVIEW_IMG.png';
+import basicProfile from '../images/PROFILE_BASIC.png';
 import { API_BASE_URL } from '../../../../config/api.config';
 import { useError } from '../../../../common/error/components/ErrorContext';
 
@@ -360,7 +361,7 @@ function Review(){
                                 display : isMoreReview || index <= 2 ? "" : "none" }}
                         >
                             <img 
-                                src={review.userProfile === null ? `/store/${storeNo}/api/userProfile?userProfileName=PROFILE_BASIC` : `/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
+                                src={review.userProfile === null ? basicProfile : `/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
                                 id={styles.userProfile} 
                                 alt='프로필 이미지'
                                 />
