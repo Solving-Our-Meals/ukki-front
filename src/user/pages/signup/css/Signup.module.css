@@ -115,7 +115,7 @@ input.errorInput:focus {
 
 .nextButton {
     position: absolute;
-    width: 83px;
+    width: 85px;
     height: 38px;
     left: 803px;
     top: 300px;
@@ -343,7 +343,7 @@ button:disabled {
 
 .signupButton {
     position: absolute;
-    width: 83px;
+    width: 85px;
     height: 38px;
     left: 803px;
     top: 370px;
@@ -741,7 +741,7 @@ input[type="checkbox"] {
 
     .signupButton {
         position: absolute;
-        width: 83px;
+        width: 85px;
         height: 38px;
         left: 803px;
         top: 370px;
@@ -1141,7 +1141,7 @@ input[type="checkbox"] {
 
     .signupButton {
         position: absolute;
-        width: 83px;
+        width: 85px;
         height: 38px;
         left: 803px;
         top: 370px;
@@ -1541,7 +1541,7 @@ input[type="checkbox"] {
 
     .signupButton {
         position: absolute;
-        width: 83px;
+        width: 85px;
         height: 38px;
         left: 803px;
         top: 370px;
