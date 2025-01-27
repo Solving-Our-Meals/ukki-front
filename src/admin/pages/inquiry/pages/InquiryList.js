@@ -6,6 +6,7 @@ import { InquiryListUserAPI } from "../api/InquiryListUserAPI";
 import { InquiryListStoreAPI } from "../api/InquiryListStoreAPI";
 import { TotalInquiryAPI } from "../api/TotalInquiryAPI";
 import { API_BASE_URL } from "../../../../config/api.config";
+import LodingPage from "../../../components/LoadingPage";
 
 function InquiryList() {
     const [list, setList] = useState([]);
@@ -21,6 +22,7 @@ function InquiryList() {
     const [isCategory, setIsCategory] = useState(false);
     const [isUser, setIsUser] = useState(true);
     const [isStore, setIsStore] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchTotalInquiries = useCallback(async () => {
         const data = await TotalInquiryAPI();
@@ -41,10 +43,12 @@ function InquiryList() {
                 setList(inquiryList);
                 setSearchSuccess(true);
                 setCurrentPage(1);
+                setIsLoading(false);
             } else {
                 setSearchSuccess(false);
             }
         } catch (error) {
+            setIsLoading(false);
             console.log("오류발생", error);
         }
     }, [isUser, isStore]);
@@ -115,6 +119,10 @@ function InquiryList() {
         if (e.key === 'Enter') {
             searchClickHandler();
         }
+    }
+
+    if (isLoading) {
+        return <LodingPage />;
     }
 
     return (

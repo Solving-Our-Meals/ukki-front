@@ -12,6 +12,7 @@ import { AddrToCoordinate } from '../api/AddrToCoordinate';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
 import { API_BASE_URL } from '../../../../config/api.config';
+import LodingPage from '../../../components/LoadingPage';
 
 function StoreInfoRegist() {
     const { storeNo } = useParams();
@@ -371,7 +372,7 @@ function StoreInfoRegist() {
     };
 
     if(loading){
-        return <div>로딩중...</div>;
+        return <LodingPage />;
     }
     return(
         <div className={styles.storeEdit}>

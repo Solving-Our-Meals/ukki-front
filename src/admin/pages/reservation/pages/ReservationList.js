@@ -5,8 +5,10 @@ import "../css/reset.css";
 import { ReservationListAPI } from "../api/ReservationListAPI"; 
 import { TotalReservationAPI } from "../api/TotalReservationAPI"; 
 import PopupCalendar from "../../../components/PopupCalendar";
+import LodingPage from "../../../components/LoadingPage";
 
 function ReservationList() {
+    const [isLoading, setIsLoading] = useState(true);
     const [list, setList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
@@ -45,6 +47,7 @@ function ReservationList() {
     useEffect(() => {
         fetchList(searchParams.get("category"), searchParams.get("word"));
         fetchTotalReservations();
+        setIsLoading(false);
     }, [searchParams, fetchList]);
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -110,6 +113,10 @@ function ReservationList() {
             url = `/admin/reservations/info/end/${no}`;
         }
         navigate(url);
+    }
+
+    if (isLoading) {
+        return <LodingPage />;
     }
 
     function handleKeyPress(e) {

@@ -9,6 +9,7 @@ import Menu from '../components/Menu';
 import AdminAgreementModal from '../../../components/AdminAgreementModal';
 import AdminResultModal from '../../../components/AdminResultModal';
 import { API_BASE_URL } from '../../../../config/api.config';
+import LodingPage from '../../../components/LoadingPage';
 
 function StoreInfo() {
     const { storeNo } = useParams();
@@ -128,13 +129,14 @@ function StoreInfo() {
     }
 
     if(loading){
-        return <div>로딩중...</div>;
+        return <LodingPage />;
     }
 
     return(
-        <div className={styles.storeDetail}>
+        <>
+        <div className={`${styles.storeDetail} ${loading || showAgreementModal || showResultModal ? styles.background : ''}`}>
             <div id={styles.storeInfoText}>가게 상세정보</div>
-            <div><Banner storeNo={storeNo} />
+            <div><Banner storeNo={storeNo}/>
                 <div><Profile storeNo={storeNo} /></div>
             </div>
             <div className={styles.storeHeader}>
@@ -197,7 +199,9 @@ function StoreInfo() {
                 수정
             </button>
             <button id={styles.storeInfoDeleteBtn} onClick={deleteHandler}>삭제</button>
-            {showAgreementModal && (
+            
+        </div>
+        {showAgreementModal && (
                     <AdminAgreementModal
                         message={agreeMessage}
                         onConfirm={() => {
@@ -217,7 +221,7 @@ function StoreInfo() {
                         }}
                     />
                 )}
-        </div>
+        </>
     );
 }
 

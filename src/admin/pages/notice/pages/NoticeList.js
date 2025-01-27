@@ -6,6 +6,7 @@ import searchBtn from '../css/images/Search.png';
 import '../css/reset.css';
 import { NoticeListUserAPI } from '../api/UserNoticeList';
 import { NoticeListStoreAPI } from '../api/StoreNoticeList';
+import LodingPage from '../../../components/LoadingPage';
 
 function NoticeList(){
 
@@ -15,7 +16,7 @@ function NoticeList(){
     const [searchParams] = useSearchParams();
     const [isUser, setIsUser] = useState(true);
     const [isStore, setIsStore] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(true);
     // 페이지네이션 로직 1 : 기본 상태값과 상수 설정
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
     const [currentPageGroup, setCurrentPageGroup] = useState(1); // 현재 페이지 그룹
@@ -88,6 +89,7 @@ function NoticeList(){
         } catch (error) {
             console.error("오류발생", error);
         }
+        setIsLoading(false);
     }, [isUser, isStore]);
 
     function handleKeyPress(e) {
@@ -115,7 +117,9 @@ function NoticeList(){
         navigate(url);
     }
 
-
+    if (isLoading) {
+        return <LodingPage />;
+    }
 
     return(
         <>
