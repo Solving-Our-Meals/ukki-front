@@ -8,12 +8,13 @@ import Menu from '../../../../user/pages/storedetail/components/Menu';
 import BossProfile from '../components/BossProfile';
 import BossMenu from '../components/BossMenu';
 import { API_BASE_URL } from '../../../../config/api.config';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function BossStoreInfoPage(){
 
     const {storeNo} = useOutletContext();
     const navigate = useNavigate();
-
+    const [isLoading, setIsLoading] = useState(true);
     const [colorMonday, setColorMonday] = useState("");
     const [colorTuesday, setColorTuesday] = useState("");
     const [colorWednesday, setColorWednesday] = useState("");
@@ -45,9 +46,13 @@ function BossStoreInfoPage(){
             })
             .then(res => res.json())
             .then(data => {
-                setStoreInfo(data)
+                setStoreInfo(data);
+                setIsLoading(false);
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error);
+                setIsLoading(false);
+            });
         }, []
     );
 
@@ -125,6 +130,17 @@ function BossStoreInfoPage(){
     const navigateToMyStore = () => {
         navigate(`/store/${storeNo}`);
     }
+
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
+
         
     return(
         <div id={styles.background}>

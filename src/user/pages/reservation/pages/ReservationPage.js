@@ -4,6 +4,7 @@ import ReservationInfo from "../components/ReservationInfo";
 import TermsOfUse from "../components/TermsOfUse";
 import styles from '../css/reservation.module.css';
 
+
 function Reservation () {
 
     return(

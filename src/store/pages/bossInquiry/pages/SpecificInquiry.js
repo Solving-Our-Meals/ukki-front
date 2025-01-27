@@ -5,6 +5,8 @@ import styles from '../css/specificInquiry.module.css';
 import { API_BASE_URL } from '../../../../config/api.config';
 import { useError } from '../../../../common/error/components/ErrorContext';
 import SpecificReviewModal from '../components/SpecificReviewModal';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
+
 
 function SpecificInquiry(){
 
@@ -22,6 +24,8 @@ function SpecificInquiry(){
     const [completeOrFailUpdateMessage, setCompleteOrFailUpdateMessage] = useState("");
     const [isUpdate, setIsUpdate] = useState(false);
     const [clickToSeeReview, isClickToSeeReview] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const today = new Date();
     const year = today.getFullYear();
@@ -57,7 +61,8 @@ function SpecificInquiry(){
         })
         .then(data => {
             setInquiryInfo(data);
-            console.log('inquiry!!!!', data)
+            console.log('inquiry!!!!', data);
+            setIsLoading(false);
 
             setUpdateInquiryData({
                 inquiryTitle: data.inquiryTitle || "",
@@ -81,6 +86,7 @@ function SpecificInquiry(){
             } else {
                 navigate('/500');
             }
+            setIsLoading(false);
         });
     }, [inquiryNo, categoryNo, setGlobalError]);
 
@@ -201,10 +207,19 @@ function SpecificInquiry(){
             setCompleteOrFailUpdateMessage("문의 내용 수정 중 오류가 발생했습니다.");
         });
     }
+
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
     
     return(
         <>
-            <div className={styles.overlay} style={{display : clickToSeeReview ? "" : "none"}}></div>
             <div id={styles.inquiryArea} style={{display : isUpdate ? "none" : ""}}>
                 <p id={styles.strInquiry}>문의 상세보기</p>
                 <button 
@@ -242,12 +257,21 @@ function SpecificInquiry(){
                             첨부파일
                         </a>
                     </div>
-                    <div id={styles.goToReview} onClick={() => isClickToSeeReview(true)} style={{display : inquiryInfo.categoryNo === 0 ? "" : "none"}}>
+                    <div id={styles.goToReview}
+                        onClick={() => { 
+                            isClickToSeeReview(true); 
+                            setModalVisible(true);
+                        }}
+                        style={{ display: inquiryInfo.categoryNo === 0 ? "" : "none" }}>
                         리뷰 보러가기
                     </div>
-                    <div style={{display : clickToSeeReview ? "" : "none"}}> 
-                        <SpecificReviewModal reviewNo={inquiryInfo.reviewNo}/>
-                    </div>
+                    {modalVisible && (
+                        <SpecificReviewModal 
+                            reviewNo={inquiryInfo.reviewNo}
+                            isClickToSeeReview={isClickToSeeReview} 
+                            setModalVisible={setModalVisible}
+                        />
+                    )}
                 </div>
                 <div id={styles.noAnswerArea} style={{display : inquiryInfo.answerDate == null ? "" : "none" }}>
                     <img src={noAnswerLogo} id={styles.noAnswerLogo} alt="우끼 로고"/>

@@ -3,12 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from '../css/representativePhoto.module.css';
 import { API_BASE_URL } from '../../../../config/api.config';
 import { useError } from '../../../../common/error/components/ErrorContext';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function RepresentativePhoto(){
 
     const navigate = useNavigate();
     const { setGlobalError } = useError()
     const [photo, setPhoto] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const location = useLocation();
     const storeInfo = {...location.state};
@@ -35,6 +37,7 @@ function RepresentativePhoto(){
             .then(data => {
                 const bannerUrl = `${API_BASE_URL}/reservation/api/repPhoto?repPhotoName=${data}`
                 setPhoto(bannerUrl);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error(error);
@@ -48,8 +51,19 @@ function RepresentativePhoto(){
                 } else {
                     navigate('/500');
                 }
+                setIsLoading(false);
             });
         }, [setGlobalError]);
+
+    if(isLoading){
+            // 로딩 상태일 때 로딩 화면을 표시
+            return(
+                <div className={styles.loadingContainer}>
+                    <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                    <p>Loading...</p>
+                </div>
+            )
+        }
 
     return(
         <img id={styles.representativePhoto} src={photo} alt='대표 배너 사진'/>

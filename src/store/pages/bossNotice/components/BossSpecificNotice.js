@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../css/bossSpecificNotice.module.css';
 import { API_BASE_URL } from '../../../../config/api.config';
+import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
 
 function BossSpecificNotice(){
     const { noticeNo } = useParams();
+    const [isLoading, setIsLoading] = useState(true);
     const [notice, setNotice] = useState({
         category : "",
         title : "",
@@ -37,10 +39,23 @@ function BossSpecificNotice(){
                 content : data.noticeContent,
                 date : data.date
             }));
-
+            setIsLoading(false);
         })
-        .catch(error => console.log(error));
-    }, [])
+        .catch(error => {
+            console.log(error);
+            setIsLoading(false);
+        });
+    }, []);
+
+    if(isLoading){
+        // 로딩 상태일 때 로딩 화면을 표시
+        return(
+            <div className={styles.loadingContainer}>
+                <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
+                <p>Loading...</p>
+            </div>
+        )
+    }
 
     return(
         <>
