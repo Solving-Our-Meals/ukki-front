@@ -12,11 +12,12 @@ import { subDays, addDays } from 'date-fns';
 import dayjs from 'dayjs';
 import { API_BASE_URL } from '../../../../config/api.config';
 
+
 function BossPage() {
     const { userNo, storeNo } = useOutletContext();
     const [storeInfo, setStoreInfo] = useState(null);
     const [reservations, setReservations] = useState([]);
-    const [resPosNumbers, setResPosNumbers] = useState({}); // Initialize as an object
+    const [resPosNumbers, setResPosNumbers] = useState({});
     const [weeklyReservationCount, setWeeklyReservationCount] = useState([]);
     const [todayReservationCount, setTodayReservationCount] = useState(0);
     const [startDate, setStartDate] = useState(dayjs().format('YYYY-MM-DD'));
@@ -27,7 +28,7 @@ function BossPage() {
         const now = new Date();
         const minutes = now.getMinutes();
         const nearestHalfHour = minutes < 30 ? 30 : 60;
-        now.setMinutes(nearestHalfHour, 0, 0);  // Round to nearest 30 minutes
+        now.setMinutes(nearestHalfHour, 0, 0);  
         return now;
     };
 
@@ -49,7 +50,7 @@ function BossPage() {
             const resPosNumber = Number(response.data.resPosNumber);
             const validResPosNumber = isNaN(resPosNumber) ? 5 : resPosNumber;
     
-            // Update the state with available slots
+       
             setResPosNumbers(prev => ({
                 ...prev,
                 [`${formattedDate} ${formattedTime}`]: validResPosNumber
@@ -59,7 +60,6 @@ function BossPage() {
         }
     };
 
-    // useEffect to fetch initial data
     useEffect(() => {
         if (userNo === undefined || storeNo === undefined) return;
 
@@ -90,17 +90,43 @@ function BossPage() {
         setSelectedDate(startDate);
         setSelectedTime(dayjs(closestTime).format('HH:mm'));
     
-        // Fetch available slots for initial date and time
+
         fetchAvailableSlots(startDate, dayjs(closestTime).format('HH:mm'));
     
-    }, [userNo, storeNo, startDate]); // Remove resPosNumbers dependency
+    }, [userNo, storeNo, startDate]); 
 
 
-    // Update available slots when date or time changes
+    const fetchReservations = async (date, time) => {
+        try {
+            const formattedDate = dayjs(date).format('YYYY-MM-DD');  
+            const formattedTime = time ? dayjs(time, 'HH:mm').format('HH:mm') : "";  // time이 null일 경우 빈 문자열로 처리
+                
+            console.log('Fetching reservations with params:', { formattedDate, formattedTime });
+    
+            const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservations-list`, {
+                params: {
+                    storeNo,
+                    date: formattedDate,  
+                    time: formattedTime  // time이 null일 경우 빈 문자열로 처리
+                }
+            });
+            setReservations(response.data);
+        } catch (error) {
+            console.error("Error fetching reservations-list:", error);
+        }
+    };
+    
+    
+
+    
+    
+    
+
     useEffect(() => {
         if (selectedDate && selectedTime) {
             const formattedTime = dayjs(selectedTime, 'HH:mm').format('HH:mm');
             fetchAvailableSlots(selectedDate, formattedTime);
+            fetchReservations(dayjs(selectedDate), selectedTime);
         }
     }, [selectedDate, selectedTime, storeNo]);
 
@@ -124,13 +150,12 @@ function BossPage() {
         const currentPosNum = resPosNumbers[`${selectedDate} ${selectedTime}`] ?? 5;
         const newPosNum = Math.max(currentPosNum + amount, 0);
     
-        // Update state
+ 
         setResPosNumbers(prev => ({
             ...prev,
             [`${selectedDate} ${selectedTime}`]: newPosNum
         }));
-    
-        // Reflect changes to the server
+
         try {
             await handleUpdatePosNum(selectedDate, selectedTime, newPosNum);
         } catch (error) {
@@ -143,7 +168,7 @@ function BossPage() {
             const formattedDate = dayjs(selectedDate).format('YYYY-MM-DD');
             const formattedTime = dayjs(selectedTime, 'HH:mm').format('HH:mm');
     
-            // Ensure valid number for resPosNum
+
             if (isNaN(newPosNum)) {
                 newPosNum = 5;
             }
@@ -161,7 +186,7 @@ function BossPage() {
     
             if (response.status === 200) {
                 console.log("Reservation slots updated successfully.");
-                fetchAvailableSlots(formattedDate, formattedTime);  // Fetch the updated slots
+                fetchAvailableSlots(formattedDate, formattedTime);  
             }
         } catch (error) {
             console.error("Error updating reservation slots:", error);
@@ -175,6 +200,7 @@ function BossPage() {
         const isSameTime = selectedTime ? res.reservationTime === selectedTime : true;
         return isSameDate && isSameTime;
     });
+    
 
     return (
         <div className="boss-page">
@@ -241,6 +267,7 @@ function BossPage() {
                 </section>
 
                 <WeeklyReservationGraph data={weeklyReservationCount} />
+
                 <section className="today-reservation">
                     <h2>오늘 예약 수</h2>
                     <p>{todayReservationCount}건</p>

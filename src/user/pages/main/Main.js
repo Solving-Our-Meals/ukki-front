@@ -72,7 +72,6 @@ const Main = () => {
 
 
 
-    const navigate = useNavigate(null);
     const locationRef = useRef(null);
 
 
@@ -192,25 +191,7 @@ const Main = () => {
         scrollToLocation();
     };
 
-/*    async function initRoulette() {
-    try {
-        // 사용자의 위치를 가져오기
-        // const position = await getUserLocation();
-        // const userLat = position.coords.latitude;
-        // const userLon = position.coords.longitude;
 
-        // 가장 가까운 8개 가게 가져오기
-        // const closestStores = await getClosestStores(userLat, userLon);
-
-        // 룰렛에 가게 추가하기
-        // populateRoulette(closestStores);
-    } catch (error) {
-        console.error("위치 정보를 가져오는 중 오류 발생:", error);
-    }
-}
-
-// 페이지 로드 시 룰렛 초기화
-window.onload = initRoulette;*/
 
 
     const scrollToLocation = () => {
@@ -241,14 +222,18 @@ window.onload = initRoulette;*/
 
     };
 
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleReservationClick = () => {
-        if (storeInfo.storeNo) {
-            // Use navigate to redirect to the store's page
-            navigate(`/store/${storeInfo.storeNo}`);
-        } else {
-            alert("가게를 선택해주세요.");
-        }
+      // storeInfo 객체가 존재하는지 확인하고, storeNo가 유효한 값인지 체크
+      if (storeInfo && storeInfo.storeNo) {
+        // navigate를 통해 해당 가게의 상세 페이지로 이동
+        navigate(`${API_BASE_URL}/store/${storeInfo.storeNo}`);
+        console.log(storeInfo.storeNo)
+      } else {
+        // 가게 정보가 없을 경우 알림을 띄움
+        alert("가게를 선택해주세요.");
+      }
     };
     const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo) => {
         setStoreInfo({
