@@ -96,7 +96,7 @@ function TotalInquiryPage(){
                 console.log('error : ', error)
             }
         });
-    }, [setGlobalError]);
+    }, [setGlobalError, inquiries]);
 
 
     useEffect(() => {

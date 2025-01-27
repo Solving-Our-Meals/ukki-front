@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from '../css/specificReview.module.css';
+import basicProfile from '../../../../user/pages/storedetail/images/PROFILE_BASIC.png';
+import basicReviewImg from '../../../../user/pages/storedetail/images/BASIC_REVIEW_IMG.png';
 import { API_BASE_URL } from '../../../../config/api.config';
 
 function SpecificReview({reviewNo, storeNo}){
@@ -90,7 +92,7 @@ function SpecificReview({reviewNo, storeNo}){
             <div id={styles.totalArea}>
                 <div className={styles.reviewContainer}>
                     <img 
-                        src={review.userProfile === null ? `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=PROFILE_BASIC` : `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
+                        src={review.userProfile === null ? basicProfile : `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
                         id={styles.userProfile} 
                         alt='프로필 이미지'
                     />
@@ -106,7 +108,7 @@ function SpecificReview({reviewNo, storeNo}){
                     </button>
                     <div>{review.reviewDate}</div>
                     <div>{review.reviewContent}</div>
-                    <img src={`${API_BASE_URL}/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
+                    <img src={review.reviewImage === null ? basicReviewImg : `/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
                 </div> 
             </div>
             <div className={styles.overlay} style={{display : showReportModal || isReportComplete ? "" : "none"}}></div>

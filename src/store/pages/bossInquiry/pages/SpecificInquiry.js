@@ -4,6 +4,7 @@ import noAnswerLogo from '../images/noAnswerLogo.png';
 import styles from '../css/specificInquiry.module.css';
 import { API_BASE_URL } from '../../../../config/api.config';
 import { useError } from '../../../../common/error/components/ErrorContext';
+import SpecificReviewModal from '../components/SpecificReviewModal';
 
 function SpecificInquiry(){
 
@@ -20,6 +21,7 @@ function SpecificInquiry(){
     const [completeOrFailDeleteMessage, setCompleteOrFailDeleteMessage] = useState("");
     const [completeOrFailUpdateMessage, setCompleteOrFailUpdateMessage] = useState("");
     const [isUpdate, setIsUpdate] = useState(false);
+    const [clickToSeeReview, isClickToSeeReview] = useState(false);
 
     const today = new Date();
     const year = today.getFullYear();
@@ -33,6 +35,7 @@ function SpecificInquiry(){
         inquiryContent : "",
         inquiryDate : formattedDate,
         file : null,
+        fileChangeYn : "N",
         categoryNo : 0
     });
     
@@ -61,6 +64,7 @@ function SpecificInquiry(){
                 inquiryContent: data.inquiryContent || "",
                 inquiryDate: data.inquiryDate || formattedDate,
                 file: data.file || null,
+                fileChangeYn : "N",
                 categoryNo : data.categoryNo || 0,
             });
             
@@ -85,7 +89,8 @@ function SpecificInquiry(){
         e.stopPropagation();
         setUpdateInquiryData(prevState => ({
             ...prevState,
-            file : null
+            file : null,
+            fileChangeYn : "Y"
         }));
     };
 
@@ -125,6 +130,7 @@ function SpecificInquiry(){
             setUpdateInquiryData(prevState => ({
                 ...prevState,
                 file: files[0], // 실제 파일 객체로 설정
+                fileChangeYn : "Y"
             }));
         } else {
             setUpdateInquiryData(prevState => ({
@@ -142,6 +148,7 @@ function SpecificInquiry(){
             inquiryContent: inquiryInfo.inquiryContent || "",
             inquiryDate: inquiryInfo.inquiryDate,
             file: inquiryInfo.file || null,
+            fileChangeYn : "N",
             categoryNo : inquiryInfo.categoryNo || 0
         });
     }
@@ -152,6 +159,12 @@ function SpecificInquiry(){
         formData.append("inquiryTitle", updateInquiryData.inquiryTitle);
         formData.append("inquiryContent", updateInquiryData.inquiryContent);
         formData.append("inquiryDate", updateInquiryData.inquiryDate);
+        
+        if(updateInquiryData.fileChangeYn === "N"){
+            formData.append("inquiryFileUrl", updateInquiryData.file)
+        } else {
+            formData.append("inquiryFileUrl", "")
+        }
 
         if(updateInquiryData.file){
             formData.append("inquiryFile", updateInquiryData.file);
@@ -188,27 +201,16 @@ function SpecificInquiry(){
             setCompleteOrFailUpdateMessage("문의 내용 수정 중 오류가 발생했습니다.");
         });
     }
-
-    const updateButtonClickHandler = () => {
-        setIsUpdate(true);
-        setUpdateInquiryData({
-            inquiryTitle: inquiryInfo.inquiryTitle || "",
-            inquiryContent: inquiryInfo.inquiryContent || "",
-            inquiryDate: formattedDate,
-            file: inquiryInfo.file || null,  // 파일 정보 제대로 전달
-            categoryNo: inquiryInfo.categoryNo || 0
-        });
-    };
     
     return(
         <>
+            <div className={styles.overlay} style={{display : clickToSeeReview ? "" : "none"}}></div>
             <div id={styles.inquiryArea} style={{display : isUpdate ? "none" : ""}}>
                 <p id={styles.strInquiry}>문의 상세보기</p>
                 <button 
                     type="button" 
                     id={styles.updateBtn} 
                     style={{display : inquiryInfo.answerDate == null ? "" : "none" }}
-                    // onClick={() => updateButtonClickHandler()}
                     onClick={() => setIsUpdate(true)}
                 >
                     수정
@@ -226,11 +228,25 @@ function SpecificInquiry(){
                     <span id={styles.inquiryContent}>{inquiryInfo.inquiryContent}</span>
                     <div id={styles.file} style={{display : inquiryInfo.file === null ? "none" : ""}}>
                         <a
-                            href={`http://localhost:8080/boss/mypage/downloadFile?fileName=${inquiryInfo.file}`}
-                            download={inquiryInfo.file} // 파일 다운로드 가능하게 하는 속성
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault(); // 기본 동작 방지
+                                const link = document.createElement('a');
+                                link.href = inquiryInfo.file;
+                                link.download = inquiryInfo.file.split('id=')[1]; // 파일 이름 설정
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
                         >
-                            {inquiryInfo.file}
+                            첨부파일
                         </a>
+                    </div>
+                    <div id={styles.goToReview} onClick={() => isClickToSeeReview(true)} style={{display : inquiryInfo.categoryNo === 0 ? "" : "none"}}>
+                        리뷰 보러가기
+                    </div>
+                    <div style={{display : clickToSeeReview ? "" : "none"}}> 
+                        <SpecificReviewModal reviewNo={inquiryInfo.reviewNo}/>
                     </div>
                 </div>
                 <div id={styles.noAnswerArea} style={{display : inquiryInfo.answerDate == null ? "" : "none" }}>
@@ -350,18 +366,18 @@ function SpecificInquiry(){
                         style={{ cursor: 'pointer', display : updateInquiryData.categoryNo === 0 ? "none" : "" }}  // 클릭 가능하도록 스타일 설정
                     >
                         {/* 파일 이름이 선택되지 않았다면 "첨부파일"을 표시, 그렇지 않으면 파일 이름 표시 */}
-                        {updateInquiryData.file ? (
+                        {/* {updateInquiryData.file ? (
                             <span id={styles.updateFileName}>{updateInquiryData.file.name || updateInquiryData.file}</span>
                         ) : (
                             <span>파일첨부</span>
-                        )}
-
+                        )} */}
+                        <span id={styles.updateFileName}>파일첨부</span>
                         {/* 파일 선택 input을 숨깁니다 */}
                         <input 
                             type="file" 
                             id="fileInput" 
                             name="file" 
-                            onChange={(e) => setUpdateInquiryData({ ...updateInquiryData, file: e.target.files[0] })}
+                            onChange={(e) => setUpdateInquiryData({ ...updateInquiryData, file: e.target.files[0], fileChangeYn : "Y" })}
                             style={{ display: 'none' }}  // 파일 입력 필드를 숨김
                         />
 
