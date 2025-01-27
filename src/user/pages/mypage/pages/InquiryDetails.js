@@ -77,6 +77,7 @@ function InquiryDetail({ userInfo }) {
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
+        console.log(selectedFile);
         setFile(selectedFile);
     };
 
@@ -170,6 +171,7 @@ function InquiryDetail({ userInfo }) {
 
             if (file) {
                 formData.append('file', file);
+                console.log("파일추가" + file);
             }
 
             const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry/${inquiryNo}`, {
@@ -178,6 +180,7 @@ function InquiryDetail({ userInfo }) {
                     'Accept' : 'application/json',
                 },
                 body: formData,
+                credentials : "include",
             });
 
             if (!response.ok) {
@@ -229,7 +232,7 @@ function InquiryDetail({ userInfo }) {
             const blob = await response.blob();
             const downloadLink = document.createElement('a');
             downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = fileName;  // 다운로드할 파일명
+            downloadLink.download = "문의한 첨부파일"
             downloadLink.click();
         } catch (error) {
             console.error('파일 다운로드 오류:', error);
@@ -367,7 +370,7 @@ function InquiryDetail({ userInfo }) {
                         onClick={() => handleFileDownload(inquiry.file)}
                         className={styles.fileDownloadLabel}
                     >
-                        {getFileName(inquiry.file)}
+                        {getFileName("첨부파일")}
                     </button>
                 ) : null}
             </div>
