@@ -4,6 +4,7 @@ import headerLogo from '../images/header-logo.png';
 import menuIcon from '../images/menu-icon.png'; // 햄버거 아이콘 추가
 import '../css/reset.css';
 import '../css/header.css';
+import {API_BASE_URL} from '../../../config/api.config';
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,7 +12,6 @@ function Header() {
     const [activeMenu, setActiveMenu] = useState('/main'); // 현재 활성화된 메뉴 항목을 추적
     const [visibleMenuItems, setVisibleMenuItems] = useState([]);
     const navigate = useNavigate();
-    const [userName, setUserName] = useState('');
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -28,19 +28,6 @@ function Header() {
 
                 if (response.ok) {
                     setIsLoggedIn(true);
-
-                    const userResponse = await fetch('/user/info', {
-                        method: 'GET',
-                        credentials: 'include',
-                    });
-
-                    if (userResponse.ok) {
-                        const userData = await userResponse.json();
-                        setUserName(userData.nickname);
-                        console.log(userData)
-                    } else {
-                        console.error('사용자 정보를 가져오는 데 실패했습니다.');
-                    }
                 } else {
                     setIsLoggedIn(false);
                 }
@@ -55,15 +42,28 @@ function Header() {
 
     // 로그아웃
     const handleLogout = async () => {
-        await fetch('/auth/logout', {
-            method: 'POST',
-            credentials: 'include',
-        });
+        try {
+            const response = await fetch(`${API_BASE_URL}/auth/logout`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                redirect: 'follow'
+            });
 
-        setIsLoggedIn(false);
-        navigate('/main');
-        /*window.location.reload();*/
+            if (response.ok) {
+                setIsLoggedIn(false);
+                navigate('/main');
+            } else {
+                console.error('Logout failed');
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+        }
     };
+
 
     const handleMenuClick = (path) => {
         setActiveMenu(path); // 클릭한 메뉴 항목을 활성화
@@ -94,24 +94,15 @@ function Header() {
 
     }, [isLoggedIn]);
 
-    const greetingStyle = {
-        position : 'absolute',
-        top : '5px',
-        left : '1400px',
-        color: 'blue',
-        fontWeight: 'bold',
-        fontSize: '18px',
-    };
-
     return (
         <>
             <header>
-            <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}><img src={headerLogo} alt='header-logo' /></NavLink>
+                <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}><img src={headerLogo} alt='header-logo' /></NavLink>
                 <span className={`menu ${menuOpen ? 'open' : ''}`}>
                     <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}>메인</NavLink>
                     <NavLink to="/search" className={`menu-item ${activeMenu === '/search' ? 'active' : ''} ${visibleMenuItems.includes('/search') ? 'visible' : ''}`} onClick={() => handleMenuClick('/search')}>검색</NavLink>
                     <NavLink to="/info" className={`menu-item ${activeMenu === '/info' ? 'active' : ''} ${visibleMenuItems.includes('/info') ? 'visible' : ''}`} onClick={() => handleMenuClick('/info')}>소개</NavLink>
-                    {/* <NavLink to="/reservation" className={`menu-item ${activeMenu === '/reservation' ? 'active' : ''} ${visibleMenuItems.includes('/reservation') ? 'visible' : ''}`} onClick={() => handleMenuClick('/reservation')}>예약</NavLink> */}
+                    <NavLink to="/reservation" className={`menu-item ${activeMenu === '/reservation' ? 'active' : ''} ${visibleMenuItems.includes('/reservation') ? 'visible' : ''}`} onClick={() => handleMenuClick('/reservation')}>예약</NavLink>
                     <NavLink to="/notice" className={`menu-item ${activeMenu === '/notice' ? 'active' : ''} ${visibleMenuItems.includes('/notice') ? 'visible' : ''}`} onClick={() => handleMenuClick('/notice')}>공지사항</NavLink>
                     <NavLink to="/user/mypage" className={`menu-item ${activeMenu === '/user/mypage' ? 'active' : ''} ${visibleMenuItems.includes('/user/mypage') ? 'visible' : ''}`} onClick={() => handleMenuClick('/user/mypage')}>마이페이지</NavLink>
                     {!isLoggedIn ? (
@@ -120,10 +111,7 @@ function Header() {
                             <NavLink to="/auth/signup" className={`menu-item auth ${activeMenu === '/auth/signup' ? 'active' : ''} ${visibleMenuItems.includes('/auth/signup') ? 'visible' : ''}`} onClick={() => handleMenuClick('/auth/signup')}>회원가입</NavLink>
                         </>
                     ) : (
-                        <>
-                            <p className="user-greeting" style={greetingStyle}>안녕하세요, {userName}님!</p>
-                            <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
-                        </>
+                        <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
                     )}
                 </span>
                 <button className="menu-button" onClick={toggleMenu}>

@@ -244,7 +244,7 @@ header .menu .indicator {
 header .menu .menu-item.active .indicator {
   width: 100%;
 }
-header .menu a:nth-of-type(6) {
+header .menu a:nth-of-type(7) {
   position: absolute;
   font-family: "Pretendard Variable";
   font-style: normal;
@@ -254,7 +254,7 @@ header .menu a:nth-of-type(6) {
   background-color: #232323;
   right: 5vw;
 }
-header .menu a:nth-of-type(7) {
+header .menu a:nth-of-type(8) {
   position: absolute;
   font-family: "Pretendard Variable";
   font-style: normal;
@@ -329,7 +329,7 @@ header .menu-button img {
     border: none;
     font-weight: 700;
   }
-  header .menu a:nth-of-type(6) {
+  header .menu a:nth-of-type(7) {
     width: 100px;
     position: absolute;
     top: 300px;
@@ -339,7 +339,7 @@ header .menu-button img {
     background-color: #232323;
     left: 35px;
   }
-  header .menu a:nth-of-type(7) {
+  header .menu a:nth-of-type(8) {
     width: 100px;
     position: absolute;
     top: 300px;
@@ -374,13 +374,13 @@ header .menu-button img {
     font-size: 1.1rem;
     padding: 2px 12px;
   }
-  header .menu a:nth-of-type(6) {
+  header .menu a:nth-of-type(7) {
     right: 4vw;
   }
-  header .menu a:nth-of-type(7) {
+  header .menu a:nth-of-type(8) {
     right: 12vw;
   }
   header .menu-button {
     display: none;
   }
-}
+}/*# sourceMappingURL=header.css.map */

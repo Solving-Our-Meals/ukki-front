@@ -26,7 +26,6 @@ import './css/main.css';
 import Map from './component/Map.js';
 import Footer from './component/Footer.js';
 import { API_BASE_URL } from '../../../config/api.config.js';
-import { useUser } from '../../../common/authContext/UserRole';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
@@ -71,19 +70,7 @@ const Main = () => {
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
     const [clickedStoreId, setClickedStoreId] = useState(null); // 클릭된 가게의 ID 상태
 
-    const navigateRole = useNavigate(null);
     const locationRef = useRef(null);
-
-    const { userRole } = useUser();
-
-    useEffect(() => {
-        console.log(userRole)
-        if (userRole === 'ADMIN') {
-            navigateRole('/admin'); // 관리 페이지로 이동
-        } else if (userRole === 'STORE') {
-            navigateRole('/boss/mypage')
-        }
-    }, [userRole, navigateRole]);
 
     useEffect(() => {
         if (navigator.geolocation) {
