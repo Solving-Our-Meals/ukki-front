@@ -57,7 +57,13 @@ jobs:
         key: ${{ env.EC2_PRIVATE_KEY }}
         script: |
           cd /home/ubuntu/ukki-project
+          # 도커 리소스 정리
+          docker system prune -af --volumes  # 사용하지 않는 모든 리소스 강제 삭제
+          docker-compose down -v  # 기존 컨테이너와 볼륨 제거
+          
+          # ECR 로그인 및 이미지 pull
           aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
-          docker-compose down || true  # 기존 컨테이너 안전하게 중지
           docker-compose pull
+          
+          # 서비스 시작
           docker-compose up -d 
