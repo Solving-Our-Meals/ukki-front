@@ -71,7 +71,7 @@ const Main = () => {
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
     const [clickedStoreId, setClickedStoreId] = useState(null); // 클릭된 가게의 ID 상태
 
-    const navigate = useNavigate(null);
+    const navigateRole = useNavigate(null);
     const locationRef = useRef(null);
 
     const { userRole } = useUser();
@@ -79,11 +79,11 @@ const Main = () => {
     useEffect(() => {
         console.log(userRole)
         if (userRole === 'ADMIN') {
-            navigate('/admin'); // 관리 페이지로 이동
+            navigateRole('/admin'); // 관리 페이지로 이동
         } else if (userRole === 'STORE') {
-            navigate('/boss/mypage')
+            navigateRole('/boss/mypage')
         }
-    }, [userRole, navigate]);
+    }, [userRole, navigateRole]);
 
     useEffect(() => {
         if (navigator.geolocation) {
