@@ -12,6 +12,7 @@ import badge3 from '../css/images/badge3.png';
 import badge4 from '../css/images/badge4.png';
 import badge5 from '../css/images/badge5.png';
 import badge6 from '../css/images/badge6.png';
+import publicProfile from '../../../components/css/images/PROFILE_BASIC.png';
 
 function UserInfo(){
 
@@ -26,7 +27,6 @@ function UserInfo(){
     const [noShowCount, setNoShowCount] = useState(0);
     const [editUser, setEditUser] = useState(false);
     const navigate = useNavigate();
-    const defaultProfile = '/images/mypage/profile/default.png';
 
     const fetchInfo = useCallback(async (no) => {
         try{
@@ -129,7 +129,7 @@ function UserInfo(){
         <>
         <div id={styles.userInfoText}>회원 상세정보</div>
         <div className={styles.horizon1}></div>
-        <div id={styles.userInfoProfile}><img src={userInfo.profileImage? userInfo.profileImage : defaultProfile} alt="프로필 이미지" /></div>
+        <div id={styles.userInfoProfile}><img src={userInfo.profileImage? `${API_BASE_URL}/image?fileId=${userInfo.profileImage}` : publicProfile} alt="프로필 이미지" /></div>
         <div id={styles.userInfoContentText}>회원정보</div>
         <div id={styles.userInfoId}><p>아이디 : </p> {userInfo.userId}</div>
         <div id={styles.userInfoName}><p>닉네임 : </p></div>

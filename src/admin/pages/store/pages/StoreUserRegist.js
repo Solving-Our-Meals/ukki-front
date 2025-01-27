@@ -163,6 +163,7 @@ export default function StoreUserRegist(){
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({userName: userInfo.userName})
         });
         const result = await response.json();
@@ -186,6 +187,7 @@ export default function StoreUserRegist(){
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: "include",
                 body: JSON.stringify(userInfo)
             });
             const result = await response.json();

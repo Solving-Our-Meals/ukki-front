@@ -6,6 +6,7 @@ import styles from '../css/ReviewInfo.module.css'
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 import { API_BASE_URL } from '../../../../config/api.config';
+import publicProfile from '../../../components/css/images/PROFILE_BASIC.png';
 
 
 function ReviewInfo(){
@@ -99,7 +100,7 @@ function ReviewInfo(){
         <div className={styles.reviewArea}>
                         <div className={styles.review} >
                             <img 
-                                src={reviewInfo.userProfile === null ? `/store/${reviewInfo.storeNo}/api/userProfile?userProfileName=PROFILE_BASIC` : `/store/${reviewInfo.storeNo}/api/userProfile?userProfileName=${reviewInfo.userProfile}`} 
+                                src={reviewInfo.userProfile === null ? publicProfile : `${API_BASE_URL}/image?fileId=${reviewInfo.userProfile}`} 
                                 id={styles.userProfile} 
                                 alt='프로필 이미지'
                                 />
@@ -109,7 +110,7 @@ function ReviewInfo(){
                             </div>
                             <div className={styles.reviewInfoDate}>{reviewInfo.reviewDate}</div>
                             <div className={styles.reviewInfoContent}>{reviewInfo.reviewContent}</div>
-                            <img src={`/store/${reviewInfo.storeNo}/api/reviewImg?reviewImgName=${reviewInfo.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
+                            <img src={reviewInfo.reviewImage ? `${API_BASE_URL}/image?fileId=${reviewInfo.reviewImage}` : publicProfile} id={styles.reviewPhoto} alt='리뷰 사진'/>
                         </div>
         </div>
         </>: 

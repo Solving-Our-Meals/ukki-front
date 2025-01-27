@@ -51,7 +51,6 @@ function StoreInfoRegist() {
                 const response = await fetch(`${API_BASE_URL}/admin/stores/regist/store`, {
                     method: 'GET',
                     headers: {
-                        'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     credentials: "include"

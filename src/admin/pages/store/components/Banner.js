@@ -1,92 +1,102 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '../css/banner.module.css';
-
-// function Banner(){
-
-//     const [images, setImages] = useState([]);
-
-//     // const [banner, setBanner] = useState({
-//     //     banner1 : "",
-//     //     banner2 : "",
-//     //     banner3 : "",
-//     //     banner4 : "",
-//     //     banner5 : ""
-//     // })
-
-//     useEffect(() => {
-//         fetch("http://localhost:8080/storebanner/5")
-//         .then(res => res.json())
-//         .then(data => {
-//             setBanner(data);
-//         });
-//     }, []);
-
-//     console.log("banner Images", images);
-
-//     // const filenames = Object.values(banner).filter(Boolean);
-
-
-//     return (
-//         <>
-//             {/* <img src="//I7E-74/ukki_nas/store/5banner1.jpg"/> */}
-//             {/* {banner.banner1 && <img src={`http://localhost:8080/api/files?filename=${banner.banner1}`} alt='배너 이미지 1' />} */}
-//             <div>
-//             {images.map((imgSrc, index) => (
-//                 <img key={index} src={imgSrc} alt={`배너 이미지 ${index + 1}`}/>
-//             ))}
-//             </div>
-//         </>
-//     );
-// }
-
-// export default Banner;
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function Banner({ storeNo }) {
     const [images, setImages] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const sliderRef = useRef(null);
+    const intervalRef = useRef(null);  // interval을 저장할 ref
 
     useEffect(() => {
-        fetch(`/store/${storeNo}/storebanner`)
+        setIsLoading(true);
+        fetch(`${API_BASE_URL}/store/${storeNo}/storebanner`)
             .then(res => res.json())
             .then(data => {
-                const imageUrls = data.map(filename => `/store/${storeNo}/api/files?filename=${filename}`);
-                setImages(imageUrls);
+                if (Array.isArray(data) && data.length > 0) {
+                    fetchImageFromGoogleDrive(data.filter(id => id));
+                }
+            })
+            .catch(error => {
+                console.error('배너 데이터 로드 실패:', error);
+                setIsLoading(false);
             });
-    }, []);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            // 나머지 연산자를 이용하여 currentIndex가 마지막 인덱스일 때 0번째 인덱스로 이동하게 한다.
+        // 컴포넌트 언마운트 시 interval 정리
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [storeNo]);
+
+    const fetchImageFromGoogleDrive = async (fileIds) => {
+        try {
+            const imagePromises = fileIds.map(async fileId => {
+                const response = await fetch(`${API_BASE_URL}/image?fileId=${fileId}`);
+                if (!response.ok) {
+                    console.error(`이미지 다운로드 실패 (fileId: ${fileId}):`, response.status);
+                    return null;
+                }
+                const blob = await response.blob();
+                return URL.createObjectURL(blob);
+            });
+
+            const loadedImages = (await Promise.all(imagePromises)).filter(img => img);
+            setImages(loadedImages);
+            setIsLoading(false);
+
+            // 이미지 로드 완료 후 슬라이더 시작
+            if (loadedImages.length > 1) {
+                startSlideShow();
+            }
+        } catch (error) {
+            console.error('이미지 다운로드 실패:', error);
+            setIsLoading(false);
+        }
+    };
+
+    const startSlideShow = () => {
+        // 기존 interval 제거
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        // 새로운 interval 설정
+        intervalRef.current = setInterval(() => {
             setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
-        }, 2500);  // 2.5초 간격으로 슬라이드 전환
-
-        return () => clearInterval(interval);
-    }, [images]);
+        }, 2500);
+    };
 
     useEffect(() => {
-        if (sliderRef.current) {
-            // sliderRef.current가 유효할 때 transform을 이용해 요소의 위치, 크키 등을 변경
-            // translateX 함수는 요소를 x축을 따라 이동시킨다.
-            // -${currentIndex * 100}% 는 슬리이더를 왼쪽으로 currentIndex에 따라 100% 단위로 이동시킨다.
-            // 예를 들면 currentIndex가 1이면 슬라이더틑 0%로, 1이면 -100%, 2이면 -200%로 이동
-            // 이는 각 슬라이드가 너비의 100&를 차지한다는 가정하에 실행.
+        if (sliderRef.current && !isLoading) {
             sliderRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
-    }, [currentIndex]);
-    
+    }, [currentIndex, isLoading]);
+
+    if (isLoading) {
+        return <div className={styles.loading}>Loading...</div>;
+    }
+
     return (
-        <>
-            <div className={styles.bannerStyle}>
-                <div className={styles.slider} ref={sliderRef}>
-                    {images.map((imgSrc, index) => (
-                        <div key={index} className={styles.slide}>
-                            <img src={imgSrc} alt={`배너 이미지 ${index + 1}`} />
-                        </div>
-                    ))}
-                </div>
+        <div className={styles.bannerStyle}>
+            <div className={styles.slider} ref={sliderRef}>
+                {images.map((imgSrc, index) => (
+                    <div key={index} className={styles.slide}>
+                        <img 
+                            src={imgSrc} 
+                            alt={`배너 이미지 ${index + 1}`}
+                            onLoad={() => {
+                                if (index === images.length - 1) {
+                                    startSlideShow();
+                                }
+                            }}
+                        />
+                    </div>
+                ))}
             </div>
-        </>
+        </div>
     );
 }
 

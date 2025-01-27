@@ -51,19 +51,13 @@ function StoreInfoRegist() {
                 const storeData = await storeResponse.json();
                 
                 const [menuUrl, profileUrl, bannerImages] = await Promise.all([
-                    GetMenuAPI(storeNo),
-                    GetProfileAPI(storeNo),
+                    GetMenuAPI(storeData.storeMenu),
+                    GetProfileAPI(storeData.storeProfile),
                     GetBannerAPI(storeNo)
                 ]);
 
-                console.log('bannerImages : '+bannerImages);
-
                 const initialStoreData = {
                     ...storeData,
-                    // storeCoordinate: {
-                    //     latitude: storeData.latitude,
-                    //     longitude: storeData.longitude
-                    // },
                     operationTime: {
                         ...storeData.operationTime,
                         breakTime: storeData.operationTime?.breakTime ?? '없음'
