@@ -70,7 +70,8 @@ function App() {
 
                         {/* QR 관련 및 관리자 관련 라우팅 */}
                         <Route path="qr/*" element={<QrRoutes />} />
-                        <Route path="admin/*" element={<PrivateRoute element={<AdminRoutes/>}/>} />
+                        {/* <Route path="admin/*" element={<PrivateRoute element={<AdminRoutes/>}/>} /> */}
+                        <Route path="admin/*" element={<AdminRoutes/>} />
 
                         {/* 500 INTERNAL SERVER ERROR */}
                         <Route path='/500' element={<Error500/>}/>
