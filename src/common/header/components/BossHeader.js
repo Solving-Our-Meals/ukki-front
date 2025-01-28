@@ -4,6 +4,7 @@ import headerLogo from '../images/header-logo.png';
 import menuIcon from '../images/menu-icon.png'; // 햄버거 아이콘 추가
 import '../css/reset.css';
 import '../css/bossHeader.module.css';
+import {API_BASE_URL} from '../../../config/api.config';
 
 function BossHeader() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +12,7 @@ function BossHeader() {
     const [activeMenu, setActiveMenu] = useState('/main'); // 현재 활성화된 메뉴 항목을 추적
     const [visibleMenuItems, setVisibleMenuItems] = useState([]);
     const navigate = useNavigate();
+    const [userName, setUserName] = useState('');
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -20,13 +22,34 @@ function BossHeader() {
         const checkAuthStatus = async () => {
             try {
                 // 토큰 검증 로직
-                const response = await fetch('/auth/check-auth', {
+                const response = await fetch(`${API_BASE_URL}/auth/check-auth`, {
                     method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
                     credentials: 'include',
                 });
 
                 if (response.ok) {
                     setIsLoggedIn(true);
+
+                    const userResponse = await fetch(`${API_BASE_URL}/user/info`, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        credentials: 'include',
+                    });
+
+                    if (userResponse.ok) {
+                        const userData = await userResponse.json();
+                        setUserName(userData.nickname);
+                        console.log(userData)
+                    } else {
+                        console.error('사용자 정보를 가져오는 데 실패했습니다.');
+                    }
                 } else {
                     setIsLoggedIn(false);
                 }
@@ -38,10 +61,9 @@ function BossHeader() {
 
         checkAuthStatus();
     }, []);
-
     // 로그아웃
     const handleLogout = async () => {
-        await fetch('/auth/logout', {
+        await fetch(`${API_BASE_URL}/auth/logout`, {
             method: 'POST',
             credentials: 'include',
         });

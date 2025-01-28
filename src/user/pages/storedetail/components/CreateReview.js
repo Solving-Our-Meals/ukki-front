@@ -307,6 +307,7 @@ const CreateReview = ({reflashMethod}) => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
+                credentials : "include",
             })
                 .then(response => {
                     if (!response.ok) {
@@ -365,7 +366,9 @@ const CreateReview = ({reflashMethod}) => {
                                             headers: {
                                                 'Accept': 'application/json',
                                                 'Content-Type': 'application/json',
-                                            },})
+                                            },
+                                        credentials : "include",
+                                        })
                                             .then(response => {
                                                 if (!response.ok) {
                                                     const error = new Error(`HTTP error! status: ${response.status}`);
@@ -415,7 +418,9 @@ const CreateReview = ({reflashMethod}) => {
                                         headers: {
                                             'Accept': 'application/json',
                                             'Content-Type': 'application/json',
-                                        },})
+                                        },
+                                    credentials : "include",
+                                    })
                                         .then(response => {
                                             if (!response.ok) {
                                                 const error = new Error(`HTTP error! status: ${response.status}`);
