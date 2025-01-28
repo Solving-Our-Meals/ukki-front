@@ -231,7 +231,7 @@ const CreateReview = ({reflashMethod}) => {
     }
 
     // 리뷰 작성하기 버튼 활성화 여부
-    const [writeReview, setWriteReview] = useState(true);
+    const [writeReview, setWriteReview] = useState(false);
 
     // DB에 유저 넘버와 가게 번호 넘기기
     // 예약은 되어 있지만 리뷰를 달지 않은 값들 가져오기
@@ -308,164 +308,101 @@ const CreateReview = ({reflashMethod}) => {
                     'Content-Type': 'application/json',
                 },
             })
-                .then(response => {
-                    if (!response.ok) {
-                        const error = new Error(`HTTP error! status: ${response.status}`);
-                        error.status = response.status;
-                        throw error;
-                    }
-                    // 비어 있는 응답 대비
-                    if(response.status === 204) {
-                        return [];
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    function isWithinThreeDays(resDate) {
-                        const reservedDate = new Date(resDate);
-                        const currentDate = new Date();
-    
-                        // 현재 날짜의 시간을 제거하여 비교하기 쉽게 함
-                        currentDate.setHours(0, 0, 0, 0);
-                        reservedDate.setHours(0, 0, 0, 0);
-    
-                        const timeDifference = currentDate - reservedDate;
-                        const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
-    
-                        // reservedDate가 현재 날짜와 같거나 3일 이전인지 확인
-                        return dayDifference >= 0 && dayDifference <= 3;
-                    }
-    
-                    for (let i = 0; i < data.length; i++) {
-                        const result = isWithinThreeDays(data[i].resDate);
-                        if (result) {
-                            console.log('날짜 성공');
-    
-                            // 날짜가 오늘인 경우 시간 비교
-                            const reservDate = new Date(data[i].resDate);
-                            const currentDate = new Date();
-                            if(reservDate.toDateString() === currentDate.toDateString()){
-    
-                                // 현재 시간이 예약 시간보다 지나간 경우 true, 그렇지 않으면 false
-                                const [hours, minutes, seconds] = data[i].resDate.split(':').map(Number);
-                                const targetDate = new Date();
-                                targetDate.setHours(hours, minutes, seconds, 0);
-    
-                                if(currentDate > targetDate){
-                                    console.log('오늘 시간 성공')
-                                    // 예약이 노쇼인지의 여부 확인
-                                    if(data[i].qrConfirm === 1){
-                                        console.log('예약 확인 성공 -> 예약 번호 확인')
-                                        setReview(prevReview => ({
-                                            ...prevReview,
-                                            resNo : data[i].resNo.toString()
-                                        }))
-                                        fetch(`${API_BASE_URL}/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`,{
-                                            method: 'GET',
-                                            headers: {
-                                                'Accept': 'application/json',
-                                                'Content-Type': 'application/json',
-                                            },})
-                                            .then(response => {
-                                                if (!response.ok) {
-                                                    const error = new Error(`HTTP error! status: ${response.status}`);
-                                                    error.status = response.status;
-                                                    throw error;
-                                                }
-                                                // 비어 있는 응답 대비
-                                                if(response.status === 204) {
-                                                    return [];
-                                                }
-                                                return response.json();
-                                            })
-                                            .then(data => {
-                                                console.log('예약 번호 성공');
-                                                console.log('data1', data);
-                                                if(data === true ){
-                                                    setWriteReview(true);
-                                                } 
-                                            })
-                                            .catch(error => {
-                                                console.error(error);
-                                                setGlobalError(error.message, error.status);
-                                
-                                                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                                                if (error.status === 404) {
-                                                    navigate('/404');
-                                                } else if (error.status === 403) {
-                                                    navigate('/403');
-                                                } else {
-                                                    navigate('/500');
-                                                }
-                                            });
+            .then(response => {
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
+                // // 비어 있는 응답 대비
+                // if(response.status === 204) {
+                //     return [];
+                // }
+                return response.json();
+            })
+            .then(data => {
+                function isWithinThreeDays(resDate) {
+                    const reservedDate = new Date(resDate);
+                    const currentDate = new Date();
+
+                    // 현재 날짜의 시간을 제거하여 비교하기 쉽게 함
+                    currentDate.setHours(0, 0, 0, 0);
+                    reservedDate.setHours(0, 0, 0, 0);
+
+                    const timeDifference = currentDate - reservedDate;
+                    const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
+
+                    // reservedDate가 현재 날짜와 같거나 3일 이전인지 확인
+                    return dayDifference >= 0 && dayDifference <= 3;
+                }
+
+                for (let i = 0; i < data.length; i++) {
+                    const result = isWithinThreeDays(data[i].resDate);
+                    if (result) {
+                        console.log('날짜 3일 이내 성공');
+                        if(data[i].qrConfirm === 1){
+                            console.log('예약 확인 성공 -> 예약 번호 확인')
+                            setReview(prevReview => ({
+                                ...prevReview,
+                                resNo : data[i].resNo.toString()
+                            }))
+                            fetch(`${API_BASE_URL}/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`,{
+                                method: 'GET',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                },})
+                                .then(response => {
+                                    // if (!response.ok) {
+                                    //     const error = new Error(`HTTP error! status: ${response.status}`);
+                                    //     error.status = response.status;
+                                    //     throw error;
+                                    // }
+                                    // // 비어 있는 응답 대비
+                                    // if(response.status === 204) {
+                                    //     return [];
+                                    // }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    console.log('예약 번호 성공');
+                                    console.log('data1', data);
+                                    if(data === true){
+                                        setWriteReview(true);
                                     } 
-                                } 
-                            } else {
-                                console.log('이미 오늘 이전 날짜 : 성공 -> 예약 번호 확인')
-                                console.log('reservDate', reservDate.toDateString());
-                                // 예약이 노쇼인지의 여부 확인
-                                if(data[i].qrConfirm === 1){
-                                    console.log('예약 확인 성공 -> 예약 번호 확인')
-                                    setReview(prevReview => ({
-                                        ...prevReview,
-                                        resNo : data[i].resNo.toString()
-                                    }))
-                                    fetch(`${API_BASE_URL}/store/${storeNo}/checkReviewList?resNo=${data[i].resNo}`,{
-                                        method: 'GET',
-                                        headers: {
-                                            'Accept': 'application/json',
-                                            'Content-Type': 'application/json',
-                                        },})
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                const error = new Error(`HTTP error! status: ${response.status}`);
-                                                error.status = response.status;
-                                                throw error;
-                                            }
-                                            // 비어 있는 응답 대비
-                                            if(response.status === 204) {
-                                                return [];
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            console.log('예약 번호 성공');
-                                            console.log('data2', data);
-                                            if(data === true){
-                                                setWriteReview(true);
-                                            } 
-                                        })
-                                        .catch(error => {
-                                            console.error(error);
-                                            setGlobalError(error.message, error.status);
-                            
-                                            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                                            if (error.status === 404) {
-                                                navigate('/404');
-                                            } else if (error.status === 403) {
-                                                navigate('/403');
-                                            } else {
-                                                navigate('/500');
-                                            }
-                                        });
-                                } 
-                            }
+                                })
+                                .catch(error => {
+                                    console.error(error);
+                                    // setGlobalError(error.message, error.status);
+                    
+                                    // // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                                    // if (error.status === 404) {
+                                    //     navigate('/404');
+                                    // } else if (error.status === 403) {
+                                    //     navigate('/403');
+                                    // } else {
+                                    //     navigate('/500');
+                                    // }
+                                });
+                            } 
                         } 
-                    }
-                })
-                .catch(error => {
-                    console.error(error);
-                    setGlobalError(error.message, error.status);
-    
-                    // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                    if (error.status === 404) {
-                        navigate('/404');
-                    } else if (error.status === 403) {
-                        navigate('/403');
-                    } else {
-                        navigate('/500');
-                    }
-                });
+                        console.log("설마 여기야??")
+                    } 
+                }
+            )
+            .catch(error => {
+                console.error(error);
+                // setGlobalError(error.message, error.status);
+
+                // // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                // if (error.status === 404) {
+                //     navigate('/404');
+                // } else if (error.status === 403) {
+                //     navigate('/403');
+                // } else {
+                //     navigate('/500');
+                // }
+            });
         }
     }, [userInfo, storeInfo.storeNo]);
     
