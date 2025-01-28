@@ -20,10 +20,10 @@ function ReservationDetail() {
     const fetchQRImage = async (fileId) => {
         try {
             const fileId = reviewDetail.qr;
-            const response = await fetch(`${API_BASE_URL}/image?fileId=${fileId}`);
-            const blob = await response.blob();
-            const imgUrl = URL.createObjectURL(blob);
+            console.log(fileId)
+            const imgUrl = await fetch(`${API_BASE_URL}/image?fileId=${fileId}`);
             setQrImage(imgUrl);
+            console.log(imgUrl)
         } catch (error) {
             console.error('QR 이미지 다운로드 실패:', error);
         }
