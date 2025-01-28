@@ -14,20 +14,13 @@ function ReservationDetail() {
 
     useEffect(() => {
         fetchReservationDetail();
-        fetchQRImage();
+        fetchQrImage(reviewDetail.qr);
     }, [resNo]);
 
-    const fetchQRImage = async (fileId) => {
-        try {
-            const fileId = reviewDetail.qr;
-            console.log(fileId)
-            const imgUrl = await fetch(`${API_BASE_URL}/image?fileId=${fileId}`);
-            setQrImage(imgUrl);
-            console.log(imgUrl)
-        } catch (error) {
-            console.error('QR 이미지 다운로드 실패:', error);
-        }
-    };
+    const fetchQrImage = useCallback(async (no) => {
+        const qrUrl = `${API_BASE_URL}/image?fileId=${no}`
+        setQrImage(qrUrl);
+    }, [])
 
     const fetchReservationDetail = async () => {
         try {
