@@ -14,8 +14,13 @@ function ReservationDetail() {
 
     useEffect(() => {
         fetchReservationDetail();
-        fetchQrImage(reviewDetail.qr);
     }, [resNo]);
+
+    useEffect(() => {
+        if (reviewDetail && reviewDetail.qr) {
+            fetchQrImage(reviewDetail.qr);
+        }
+    }, [reviewDetail]);
 
     const fetchQrImage = useCallback(async (no) => {
         const qrUrl = `${API_BASE_URL}/image?fileId=${no}`
