@@ -37,6 +37,9 @@ const CreateReview = ({reflashMethod}) => {
 
     const [doWriteReview, setDoWriteReview] = useState(false);
     const [isCompletedReview, setIsCompletedReview] = useState(false);
+    const [noReviewResNo, setNoReviewResNo] = useState([]);
+    const [canWriteReviewList, setCanWriteReviewList] = useState([]);
+    const [existsResList, setExistsResList] = useState(false);
 
     const [review, setReview] = useState({
         reviewDate : today,
@@ -45,7 +48,7 @@ const CreateReview = ({reflashMethod}) => {
         reviewScope : "",
         storeNo : "",
         userNo : "",
-        resNo : "9999"
+        resNo : ""
     });
 
     const onChangeHandler = (e) => {
@@ -62,10 +65,30 @@ const CreateReview = ({reflashMethod}) => {
                 reviewImage : uploadedInfo.file
             }));
         }
-    }, [uploadedInfo])
+    }, [uploadedInfo]);
+
+    const writeReviewClick = (resNo) => {
+        setIsDisplay(prevState => !prevState);
+        
+    }
 
     const createReviewHandler = () => {
-        setIsDisplay(prevState => !prevState);
+        setExistsResList(true);
+        // setIsDisplay(prevState => !prevState);
+        console.log('noReviewResNo : ', noReviewResNo);
+        fetch(`${API_BASE_URL}/store/getReservationList?resNo=${noReviewResNo}`,{
+            method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('canWriteReview', data);
+            setCanWriteReviewList(data);
+        })
+        .catch(error => console.log(error));
     }
 
     const cancleHandler = () => {
@@ -366,9 +389,14 @@ const CreateReview = ({reflashMethod}) => {
                                 })
                                 .then(data => {
                                     console.log('예약 번호 성공');
-                                    console.log('data1', data);
-                                    if(data === true){
+                                    console.log('data', data)
+                                    if(data.writeReview === true){
                                         setWriteReview(true);
+                                        setNoReviewResNo((prevNoReviewResNo) => [
+                                            ...prevNoReviewResNo,
+                                            data.resNo
+                                        ]);
+                                        console.log('noReviewResNo11 : ', noReviewResNo);
                                     } 
                                 })
                                 .catch(error => {
@@ -386,7 +414,6 @@ const CreateReview = ({reflashMethod}) => {
                                 });
                             } 
                         } 
-                        console.log("설마 여기야??")
                     } 
                 }
             )
@@ -405,8 +432,6 @@ const CreateReview = ({reflashMethod}) => {
             });
         }
     }, [userInfo, storeInfo.storeNo]);
-    
-    console.log('writeReview', writeReview);
 
     // 버튼 활성화 여부를 확인하는 함수 추가
     const isSubmitDisabled = !review.reviewContent.trim() || !review.reviewScope;
@@ -435,6 +460,22 @@ const CreateReview = ({reflashMethod}) => {
             >
                 리뷰 작성하기
             </button>
+            <div className={getOverlayClass()}></div>
+            <div id={styles.reservationListArea} style={{display : existsResList ? "" : "none"}}>
+                <div id={styles.strReservationList}>예약 내역</div>
+                <div id={styles.strResDate}>날짜</div>
+                <div id={styles.strResTime}>시간</div>
+                {canWriteReviewList.map((reservationData, index) => (
+                    <div
+                        key={index}
+                        id={styles.reservationDataArea}
+                        style={{cursor : "pointer"}}
+                        onClick={() => writeReviewClick(reservationData.resNo)}
+                    >
+                        <div id={styles.resDate}>{reservationData.resDate}</div> <div id={styles.resTime}>{reservationData.resTime}</div>
+                    </div>
+                ))}
+            </div>
             <div className={getOverlayClass()}></div>
             <div className={styles.createReview} style={{display : isDisplay ? "" : "none"}} >
                 <div id={styles.strReview}>리뷰하기</div>
