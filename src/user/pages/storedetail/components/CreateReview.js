@@ -40,7 +40,7 @@ const CreateReview = ({reflashMethod}) => {
     const [noReviewResNo, setNoReviewResNo] = useState([]);
     const [canWriteReviewList, setCanWriteReviewList] = useState([]);
     const [existsResList, setExistsResList] = useState(false);
-
+    const [reviewResNo ,setReviewResNo] = useState(null);
     const [review, setReview] = useState({
         reviewDate : today,
         reviewContent : "",
@@ -68,8 +68,10 @@ const CreateReview = ({reflashMethod}) => {
     }, [uploadedInfo]);
 
     const writeReviewClick = (resNo) => {
+        setExistsResList(false);
         setIsDisplay(prevState => !prevState);
-        
+        console.log('resNo',resNo);
+        setReviewResNo(resNo);
     }
 
     const createReviewHandler = () => {
@@ -147,7 +149,7 @@ const CreateReview = ({reflashMethod}) => {
             reviewScope: review.reviewScope || "",
             storeNo: review.storeNo || "",
             userNo: review.userNo || "",
-            resNo: review.resNo || "",
+            resNo: reviewResNo || "",
         }));
 
         // 이미지가 있을 때만 formData에 추가
@@ -159,7 +161,7 @@ const CreateReview = ({reflashMethod}) => {
             formData.append("reviewImage", uploadedFile);
         }
 
-        fetch(`${API_BASE_URL}/store/${storeNo}/review`, {
+        fetch(`${API_BASE_URL}/store/${storeNo}/review?resNo=${reviewResNo}`, {
             method: 'POST',
             body: formData,
             Credential : "include"
@@ -249,7 +251,7 @@ const CreateReview = ({reflashMethod}) => {
 
     const getOverlayClass = () => { 
         if (doWriteReview) return `${styles.overlay} ${styles.zIndex11} ${styles.show}`; 
-        if (isDisplay || isCompletedReview) return `${styles.overlay} ${styles.zIndex10} ${styles.show}`; 
+        if (isDisplay || isCompletedReview || existsResList) return `${styles.overlay} ${styles.zIndex10} ${styles.show}`; 
         return styles.overlay; 
     }
 
@@ -475,6 +477,7 @@ const CreateReview = ({reflashMethod}) => {
                         <div id={styles.resDate}>{reservationData.resDate}</div> <div id={styles.resTime}>{reservationData.resTime}</div>
                     </div>
                 ))}
+                <div id={styles.closeResList} onClick={() => setExistsResList(false)}>닫기</div>
             </div>
             <div className={getOverlayClass()}></div>
             <div className={styles.createReview} style={{display : isDisplay ? "" : "none"}} >

@@ -50,7 +50,7 @@
     border-radius: 50px;
     background-color: #FFFFFF;
     // background-color: #FFF9D1;
-    z-index: 10;
+    z-index: 20;
     cursor: default;
 
     #strReservationList{
@@ -62,7 +62,7 @@
         font-size : 41px;
         font-weight: 600;
         color: $textStrong;
-        z-index: 15;
+        z-index: 20;
     }
 
     #strResDate{
@@ -74,7 +74,7 @@
         font-size : 35px;
         font-weight: 500;
         color: $textStrong;
-        z-index: 15;
+        z-index: 20;
     }
 
     #strResTime{
@@ -113,6 +113,24 @@
     #resTime{
         position: relative;
         margin-left :495px;
+    }
+
+    #closeResList{
+        position: absolute;
+        left : 1350px;
+        top : 605px;
+        width: 145px;
+        height : 36px;
+        border: none;
+        border-radius: 20px;
+        background-color: $secondary2;
+        font-family: 'Pretendard-Regular';
+        font-size: 20px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
     }
 }
 
