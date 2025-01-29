@@ -26,6 +26,7 @@ import './css/main.css';
 import Map from './component/Map.js';
 import Footer from './component/Footer.js';
 import { API_BASE_URL } from '../../../config/api.config.js';
+import axios from 'axios';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
@@ -70,7 +71,11 @@ const Main = () => {
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
     const [clickedStoreId, setClickedStoreId] = useState(null); // 클릭된 가게의 ID 상태
 
+
+
     const locationRef = useRef(null);
+
+
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -221,22 +226,24 @@ const Main = () => {
     const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleReservationClick = () => {
-      // storeInfo 객체가 존재하는지 확인하고, storeNo가 유효한 값인지 체크
-      if (storeInfo && storeInfo.storeNo) {
-        // navigate를 통해 해당 가게의 상세 페이지로 이동
-        navigate(`${API_BASE_URL}/store/${storeInfo.storeNo}`);
-        console.log(storeInfo.storeNo)
-      } else {
-        // 가게 정보가 없을 경우 알림을 띄움
-        alert("가게를 선택해주세요.");
-      }
+        if (storeInfo && storeInfo.storeNo) {
+            console.log("Selected StoreNo: ", storeInfo.storeNo);  // 디버깅용
+            navigate(`/store/${storeInfo.storeNo}`);
+        } else {
+            alert("가게를 선택해주세요.");
+        }
     };
+
+
+
     const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo) => {
+        console.log("Selected Store No: ", storeNo);  // 디버깅용
         setStoreInfo({
             storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo
         });
         setIsMarkerClicked(true);
     };
+
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -264,10 +271,10 @@ const Main = () => {
                 headers: {
                     'Accept': 'application/json',  // 응답을 JSON 형식으로 받겠다는 의미
                     'Content-Type': 'application/json',  // 요청 내용이 JSON 형식임을 지정
-                   
+
                 }
             });
-    
+
             const data = await response.json();
             return data;  // List of stores
         } catch (error) {
@@ -275,8 +282,8 @@ const Main = () => {
             return [];
         }
     };
-    
-    
+
+
     const populateRoulette = (stores) => {
         const panel = document.querySelector(".rouletter-wacu");
         // Clear existing slots
@@ -295,17 +302,17 @@ const Main = () => {
             const position = await getUserLocation();
             const userLat = position.coords.latitude;
             const userLon = position.coords.longitude;
-    
+
             // 가장 가까운 8개 가게 가져오기
             const closestStores = await getClosestStores(userLat, userLon);
-    
+
             // 룰렛에 가게 추가하기
             populateRoulette(closestStores);
         } catch (error) {
             console.error("위치 정보를 가져오는 중 오류 발생:", error);
-        } 
+        }
     }
-    
+
     useEffect(() => {
         const handleScroll = () => {
             const images = document.querySelectorAll('.talk img');
@@ -447,35 +454,35 @@ const Main = () => {
 
     const handleRouletteClick = async (e) => {
         const target = e.target;
-    
+
         // 룰렛 애니메이션 실행
         if (target.className === "rouletter-btn") {
             rRotate(); // 룰렛 애니메이션
-    
+
             setTimeout(async () => {
                 // 8개의 가게 가져오기 (선택된 카테고리 및 위치 기반)
                 const selectedStores = await fetchStoresLocation(selectedCategory, currentPosition);
                 const winningStore = selectedStores[Math.floor(Math.random() * selectedStores.length)];
-    
+
                 try {
                     // 현재 시간대와 가장 가까운 예약 시간 가져오기
                     const nextAvailableTime = await getNextAvailableTime(winningStore.storeNo, new Date().toISOString().split('T')[0]); // 오늘 날짜를 기준으로
-    
+
                     // 예약을 진행
                     const userNo = 123; // 실제로는 로그인한 사용자 ID를 사용해야 함
                     await makeReservation(userNo, winningStore.storeNo, nextAvailableTime);
-    
+
                     alert(`당첨된 가게: ${winningStore.storeName}\n예약 시간: ${nextAvailableTime}`);
-    
+
                 } catch (error) {
                     alert("예약 처리 중 오류가 발생했습니다.");
                 }
-    
+
                 rReset(target); // 룰렛 초기화
             }, 3000); // 3초 후 예약 처리
         }
     };
-    
+
 
 
     const makeReservation = async (userNo, storeNo, resTime) => {
@@ -484,7 +491,7 @@ const Main = () => {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     userNo,
@@ -493,11 +500,11 @@ const Main = () => {
                     isRandom: true,  // 랜덤 예약 여부
                 })
             });
-    
+
             if (!response.ok) {
                 throw new Error("예약에 실패했습니다.");
             }
-    
+
             const data = await response.json();
             alert("예약이 완료되었습니다. QR 코드: " + data.qr); // 예약 완료 후 QR 코드 반환
         } catch (error) {
@@ -505,30 +512,30 @@ const Main = () => {
             alert("예약을 완료할 수 없습니다.");
         }
     };
-    
-// 예약 가능한 가장 가까운 시간 반환
-const getNextAvailableTime = async (storeNo, resDate) => {
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/reservations/next-available-time`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ storeNo, resDate })
-        });
 
-        if (!response.ok) {
-            throw new Error("예약 가능한 시간이 없습니다.");
+    // 예약 가능한 가장 가까운 시간 반환
+    const getNextAvailableTime = async (storeNo, resDate) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/reservations/next-available-time`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ storeNo, resDate })
+            });
+
+            if (!response.ok) {
+                throw new Error("예약 가능한 시간이 없습니다.");
+            }
+
+            const data = await response.json();
+            return data.resTime; // 가장 가까운 예약 시간 반환
+        } catch (error) {
+            console.error("예약 시간 가져오기 실패", error);
+            throw new Error("예약 시간을 가져오는 중 문제가 발생했습니다.");
         }
-
-        const data = await response.json();
-        return data.resTime; // 가장 가까운 예약 시간 반환
-    } catch (error) {
-        console.error("예약 시간 가져오기 실패", error);
-        throw new Error("예약 시간을 가져오는 중 문제가 발생했습니다.");
-    }
-};
+    };
 
 
     // 거리 계산을 위한 함수 (Haversine 공식)
@@ -650,11 +657,12 @@ const getNextAvailableTime = async (storeNo, resDate) => {
                         setAddress={setAddress}
                         defaultValue={defaultValue}
                         selectedCategory={selectedCategory}
-                        onMarkerClick={handleMarkerClick}
+                        onMarkerClick={(storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo) => handleMarkerClick(storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo)}
                         requestDirections={requestDirections}
                         currentPosition={currentPosition}
                         toggleIsMarkerClicked={setIsMarkerClicked}
                     />
+
 
 
                     <h3>
@@ -675,7 +683,7 @@ const getNextAvailableTime = async (storeNo, resDate) => {
                             <label>현재 위치 : </label>
                             <input defaultValue={storeInfo.storeAddress}></input>
                             <label>가게 위치 : </label>
-                            <button onClick={handleReservationClick}>예약하기</button>
+                            <button onClick={() => handleReservationClick()}>예약하기</button>
 
                             <div>
                                 <div>
@@ -720,10 +728,10 @@ const getNextAvailableTime = async (storeNo, resDate) => {
                     <div className="rouletter-arrow">
                         <img src={pin} />
                     </div>
-                    <button className="rouletter-btn"  onClick={handleReservationClick}>start</button>
+                    <button className="rouletter-btn" onClick={handleReservationClick}>start</button>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 };

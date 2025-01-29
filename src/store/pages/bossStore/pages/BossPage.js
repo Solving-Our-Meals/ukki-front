@@ -45,7 +45,7 @@ function BossPage() {
     
             console.log('Fetching slots with params:', params);
     
-            const response = await axios.get('/boss/mypage/reservation-status', { params });
+            const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservation-statu`, { params });
     
             const resPosNumber = Number(response.data.resPosNumber);
             const validResPosNumber = isNaN(resPosNumber) ? 5 : resPosNumber;
