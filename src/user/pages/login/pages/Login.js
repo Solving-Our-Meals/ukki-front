@@ -69,7 +69,17 @@ function Login() {
         console.log(result.success)
         if (result.success) {
             setError('');
-            navigate('/main');
+            const userRole = result.userRole;
+            console.log(userRole)
+            if (userRole === 'ADMIN') {
+                navigate('/admin/dashboard');
+            } else if (userRole === 'STORE') {
+                navigate('/boss/mypage')
+            } else if (userRole === 'BAD_USER') {
+                navigate('403')
+            } else {
+                navigate('/main');
+            }
         } else {
             setError(result.message || 'ⓘ 비밀번호가 잘못되었습니다.');
         }
