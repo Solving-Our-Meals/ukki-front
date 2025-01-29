@@ -77,13 +77,16 @@ const Main = () => {
     const { userRole } = useUser();
 
     useEffect(() => {
-        console.log(userRole)
-        if (userRole === 'ADMIN') {
-            navigateRole('/admin'); // 관리 페이지로 이동
-        } else if (userRole === 'STORE') {
-            navigateRole('/boss/mypage')
+        if (userRole) {
+            console.log(userRole);
+            if (userRole === 'ADMIN') {
+                navigateRole('/admin'); // 관리 페이지로 이동
+            } else if (userRole === 'STORE') {
+                navigateRole('/boss/mypage'); // 스토어 페이지로 이동
+            }
         }
     }, [userRole, navigateRole]);
+
 
     useEffect(() => {
         if (navigator.geolocation) {

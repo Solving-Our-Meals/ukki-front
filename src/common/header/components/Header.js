@@ -21,7 +21,6 @@ function Header() {
     useEffect(() => {
         const checkAuthStatus = async () => {
             try {
-                // 토큰 검증 로직
                 const response = await fetch(`${API_BASE_URL}/auth/check-auth`, {
                     method: 'GET',
                     headers: {
@@ -33,7 +32,6 @@ function Header() {
 
                 if (response.ok) {
                     setIsLoggedIn(true);
-                    // 사용자 정보를 비동기적으로 가져오는 부분 분리
                     fetchUserInfo();
                 } else {
                     setIsLoggedIn(false);
@@ -57,10 +55,9 @@ function Header() {
 
                 if (userResponse.ok) {
                     const userData = await userResponse.json();
-                    setUserName(userData.nickname);  // 닉네임 설정
-                    console.log(userData);
+                    setUserName(userData.nickname);
                 } else {
-                    console.error('사용자 정보를 가져오는 데 실패했습니다.');
+                    console.error('Failed to fetch user info');
                 }
             } catch (error) {
                 console.error('Error fetching user info:', error);
@@ -81,11 +78,11 @@ function Header() {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-                redirect: 'follow'
             });
 
             if (response.ok) {
                 setIsLoggedIn(false);
+                // 로그아웃 후 경로 이동
                 navigate('/main');
             } else {
                 console.error('Logout failed');
@@ -96,12 +93,13 @@ function Header() {
     };
 
 
+
     const handleMenuClick = (path) => {
         setActiveMenu(path); // 클릭한 메뉴 항목을 활성화
     };
 
     useEffect(() => {
-        // 각 메뉴 항목을 순차적으로 표시
+        // 로그인 상태에 따라 메뉴 항목 업데이트
         const menuItems = [
             '/', '/search', '/info', '/reservation',
             '/notice', '/user/mypage'
@@ -110,10 +108,9 @@ function Header() {
         menuItems.forEach((item, index) => {
             setTimeout(() => {
                 setVisibleMenuItems(prevItems => [...prevItems, item]);
-            }, index * 150); // 150ms 간격으로 순차적 표시
+            }, index * 150);
         });
 
-        // 로그인, 회원가입, 로그아웃 메뉴 항목은 0.7초 뒤에 표시
         setTimeout(() => {
             const authItems = isLoggedIn ? ['/logout'] : ['/auth/login', '/auth/signup'];
             authItems.forEach((item, index) => {
@@ -122,17 +119,18 @@ function Header() {
                 }, index * 150);
             });
         }, 700);
-
     }, [isLoggedIn]);
 
     const greetingStyle = {
-        position : 'absolute',
-        top : '5px',
-        left : '1400px',
+        position: 'absolute',
+        top: '5px',
+        left: '80%',
+        transform: 'translateX(-50%)',
         color: 'blue',
         fontWeight: 'bold',
         fontSize: '18px',
     };
+
 
     return (
         <>
