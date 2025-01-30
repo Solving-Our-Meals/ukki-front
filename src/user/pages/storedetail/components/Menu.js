@@ -16,7 +16,8 @@ function Menu() {
             headers: {
                 'Accept': 'text/plain',   // 텍스트 형식으로 요청을 추가합니다.
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials : "include"
         })
         .then(response => {
             // if (!response.ok) {

@@ -158,7 +158,7 @@ export default function StoreUserRegist(){
             return;
         }
 
-        const response = await fetch('/auth/signupnickname', {
+        const response = await fetch(`${API_BASE_URL}/auth/signupnickname`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

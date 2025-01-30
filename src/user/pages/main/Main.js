@@ -27,6 +27,7 @@ import Map from './component/Map.js';
 import Footer from './component/Footer.js';
 import { API_BASE_URL } from '../../../config/api.config.js';
 import axios from 'axios';
+import { useUser } from '../../../common/authContext/UserRole';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
@@ -83,10 +84,22 @@ const Main = () => {
     }, []);
 
 
-
-
     const locationRef = useRef(null);
 
+    const navigateRole = useNavigate(null);
+
+    const { userRole } = useUser();
+
+    useEffect(() => {
+        if (userRole) {
+            console.log(userRole);
+            if (userRole === 'ADMIN') {
+                navigateRole('/admin');
+            } else if (userRole === 'STORE') {
+                navigateRole('/boss/mypage');
+            }
+        }
+    }, [userRole, navigateRole]);
 
 
     useEffect(() => {

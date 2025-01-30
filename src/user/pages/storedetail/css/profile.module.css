@@ -14,13 +14,13 @@
   #profileStyle {
     position: absolute;
     left: 55px;
-    top: 168px;
+    top: 158px;
     width: 122px;
     height: 110px;
     text-align: center;
     z-index: 99;
     object-fit: cover;
-    border-radius: 35px;
+    border-radius: 20px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -33,6 +33,6 @@
     text-align: center;
     z-index: 99;
     object-fit: cover;
-    border-radius: 35px;
+    border-radius: 10px;
   }
 }/*# sourceMappingURL=profile.module.css.map */

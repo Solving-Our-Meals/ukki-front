@@ -191,24 +191,38 @@ a:active {
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-  #menuImg {
+  #menuStyle {
     position: absolute;
-    z-index: 10;
-    width: 380px;
-    height: 230px;
-    left: 520px;
-    top: 330px;
-    border-radius: 0;
+    text-align: center;
+    display: table;
+    border: none;
+    left: 650px;
+    top: 290px;
+    width: 200px;
+    height: 300px;
+  }
+  #menuStyle #menuImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
   }
 }
 @media screen and (max-width: 768px) {
-  #menuImg {
+  #menuStyle {
     position: absolute;
-    z-index: 10;
-    width: 280px;
+    text-align: center;
+    display: table;
+    border: none;
+    left: 150px;
+    top: 245px;
+    width: 130px;
     height: 150px;
-    left: 98px;
-    top: 260px;
-    border-radius: 0;
+  }
+  #menuStyle #menuImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
   }
 }/*# sourceMappingURL=menu.module.css.map */

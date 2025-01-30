@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import styles from '../css/Reservation.module.css';
 import '../css/reset.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -20,6 +20,7 @@ function Reservation({onDelete}) {
     const [reservationToCancel, setReservationToCancel] = useState(null);
     const [isCancelSuccessModalOpen, setIsCancelSuccessModalOpen] = useState(false);
     const [cancelSuccessMessage, setCancelSuccessMessage] = useState('');
+    const [qrImage, setQrImage] = useState('');
 
     useEffect(() => {
         const savedPage = sessionStorage.getItem('currentReservation');
@@ -28,6 +29,11 @@ function Reservation({onDelete}) {
         }
         fetchUserInfo();
     }, []);
+
+    const fetchQrImage = useCallback(async (no) => {
+        const qrUrl = `${API_BASE_URL}/image?fileId=${no}`
+        setQrImage(qrUrl);
+    }, [])
 
     const fetchUserInfo = async (query = '') => {
         try {
@@ -169,7 +175,8 @@ function Reservation({onDelete}) {
 
     const handleQrClick = (e, qr) => {
         e.stopPropagation();
-        setSelectedQr(qr);
+        setSelectedQr(qr); // 선택된 QR 저장
+        fetchQrImage(qr); // 해당 QR 이미지 URL을 가져오기
     };
 
     const handleCloseQr = () => {
@@ -364,7 +371,7 @@ function Reservation({onDelete}) {
                     <div className={styles.qrModalContent} onClick={(e) => e.stopPropagation()}>
                         <div className={styles.qrInfo}>
                             <div className={styles.qrInfoText}>QR 이미지</div>
-                            <img className={styles.qrImage} src={`/${selectedQr}/api/qrImage`} alt="QR 코드" />
+                            <img className={styles.qrImage} src={qrImage} alt="QR 코드" />
                         </div>
                         <button className={styles.closeQrButton} onClick={handleCloseQr}>닫기</button>
                     </div>

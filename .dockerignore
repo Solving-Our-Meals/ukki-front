@@ -13,11 +13,11 @@ build
 dist
 
 # 개발 환경 설정
-.env
-.env.local
-.env.development
-.env.test
-.env.production
+# - .env
+# - .env.local
+# - .env.development
+# - .env.test
+# - .env.production
 
 # IDE 설정
 .idea

@@ -8,6 +8,7 @@ export default function MonthlyNoshow(data){
 
     const filterData = Object.values(data);
     const dataValues = Object.values(filterData[0]);
+    console.log(dataValues);
 
     const datas = {
         labels: ['월간 확인 예약', '월간 노쇼'],
