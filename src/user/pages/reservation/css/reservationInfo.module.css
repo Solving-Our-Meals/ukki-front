@@ -315,7 +315,7 @@ a:active {
   .reservationInfo #storeLocation {
     position: absolute;
     left: 300px;
-    top: 320px;
+    top: 20px;
     width: max-content;
     height: max-content;
     border-radius: 0px;
@@ -411,4 +411,4 @@ a:active {
     font-size: 18px;
     margin-left: 15px;
   }
-}
+}/*# sourceMappingURL=reservationInfo.module.css.map */

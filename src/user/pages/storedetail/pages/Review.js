@@ -30,8 +30,11 @@ function Review(){
     // 선택된 리뷰 번호
     const [selectedReviewNo, setSelectedReviewNo] = useState(null);
     const [selectedUserNo, setSelectedUserNo] = useState(null);
+    const [selectedResNo, setSelectedResNo] = useState(null);
     // Footer를 참고하기 위한 ref
     const footerRef = useRef(null);
+
+    const [deleteResNo, setDeleteResNo] = useState(null);
 
     const addNewReview = (newReview) => {
         setReviews(prevReviews => [...prevReviews, newReview]);
@@ -236,7 +239,7 @@ function Review(){
     };
 
     // 리뷰 삭제
-    const deleteReview = (reviewNo, userNo) => {
+    const deleteReview = (reviewNo, userNo, resNo) => {
         fetch(`${API_BASE_URL}/store/${storeNo}/deletereview?reviewNo=${reviewNo}&userNo=${userNo}`,{
             method : "DELETE",         
         })
@@ -247,6 +250,7 @@ function Review(){
                 setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
                 setCompleteOrFailDeleteMessage("해당 리뷰가 삭제되었습니다.");
+                deleteResNo.push(resNo);
             } else {
                 setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
@@ -256,6 +260,18 @@ function Review(){
         .catch(error => console.log(error));
     };
 
+
+
+    const removeReviewResNo = (resNo, setReviewResNo) => {
+        setReviewResNo((prevReviewResNo) => {
+            if (Array.isArray(prevReviewResNo)) {
+                return prevReviewResNo.filter((item) => item !== resNo);
+            } else {
+                return prevReviewResNo;
+            }
+        });
+    };
+    
     const completeHandler = () => {
         setIsCompleteDeleteReview(false);
     }
@@ -378,6 +394,7 @@ function Review(){
                                     setRealDeleteReview(true);
                                     setSelectedReviewNo(review.reviewNo);
                                     setSelectedUserNo(review.userNo);
+                                    setSelectedResNo(review.resNo);
                                 }}
                             >
                                 리뷰 삭제
@@ -430,7 +447,7 @@ function Review(){
                         <p id={styles.reallyDeleteReview}>리뷰를 삭제하시겠습니까?</p>
                         <p id={styles.notice}>해당 리뷰가 게시물에서 완전히 삭제됩니다.</p>
                         <button type='button' id={styles.cancleDeleteReview} onClick={() => setRealDeleteReview(false)}>취소</button>
-                        <button type='submit' id={styles.confirmDeleteReview} onClick={() => deleteReview(selectedReviewNo, selectedUserNo)}>확인</button>
+                        <button type='submit' id={styles.confirmDeleteReview} onClick={() => deleteReview(selectedReviewNo, selectedUserNo, selectedResNo)}>확인</button>
                     </div>
                 </div>
             )}
@@ -465,7 +482,7 @@ function Review(){
                     </div>
                 </div>
             )}
-            <CreateReview addNewReview={addNewReview} reflashMethod={fncReflashMethod}/>
+            <CreateReview addNewReview={addNewReview} reflashMethod={fncReflashMethod} deleteResNo={deleteResNo}/>
             <Footer ref={footerRef}/>
         </div>
     );

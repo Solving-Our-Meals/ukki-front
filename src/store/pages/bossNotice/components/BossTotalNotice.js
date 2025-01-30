@@ -123,9 +123,9 @@ function BossTotalNotice(){
         <>
             <div id={styles.background}>
                 <div id={styles.recentNotice}>
-                    <span>최근 공지</span> 
-                    <span>{recentNotice.categoryNo === 1 ? "[안내]" : recentNotice.categoryNo === 2 ? "[소개]" : "[가게]"}</span> 
-                    <span onClick={() => navigateToSpeficifNotice(recentNotice.noticeNo)}>
+                    <span id={styles.strRecentNotice}>최근 공지</span> 
+                    <span id={styles.recentCategory}>{recentNotice.categoryNo === 1 ? "[안내]" : recentNotice.categoryNo === 2 ? "[소개]" : "[가게]"}</span> 
+                    <span id={styles.recentTitle} onClick={() => navigateToSpeficifNotice(recentNotice.noticeNo)}>
                         {recentNotice.noticeTitle}
                     </span>
                     <div className={styles.marquee}>

@@ -453,7 +453,7 @@ a:active {
   .agreeArea {
     position: absolute;
     left: 175px;
-    top: -260px;
+    top: 800px;
   }
   .agreeArea button {
     background-color: #FFFFFF;
@@ -467,11 +467,11 @@ a:active {
     cursor: pointer;
   }
   .agreeArea #agree {
-    width: 520px;
-    margin-left: -140px;
+    width: 500px;
+    margin-left: -115px;
   }
   .agreeArea #agreeAll {
-    width: 320px;
+    width: 300px;
     margin-left: 25px;
   }
   #completeReservation {
@@ -523,6 +523,98 @@ a:active {
     width: 110px;
     height: 28px;
     background-color: #FF8AA3;
+    border: none;
+    border-radius: 16px;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    font-weight: 500;
+    color: #232323;
+    cursor: pointer;
+  }
+  #duplicateReservation {
+    position: absolute;
+    left: 225px;
+    top: 360px;
+    width: 500px;
+    height: 190px;
+    border: 3px solid #FF8AA3;
+    border-radius: 30px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+  }
+  #duplicateReservation #failMessage {
+    width: max-content;
+    margin-top: 5px;
+    height: 44px;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 24px;
+    font-weight: 500;
+    color: #232323;
+  }
+  #duplicateReservation #duplicateMessage {
+    width: max-content;
+    margin-top: 15px;
+    height: 36px;
+    font-family: "Pretendard-Regular";
+    font-size: 20px;
+    font-weight: 500;
+    color: #FF5D18;
+  }
+  #duplicateReservation #confirm {
+    margin-top: 15px;
+    width: 110px;
+    height: 28px;
+    background-color: #FEDA00;
+    border: none;
+    border-radius: 16px;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    font-weight: 500;
+    color: #232323;
+    cursor: pointer;
+  }
+  #failReservation {
+    position: absolute;
+    left: 225px;
+    top: 360px;
+    width: 500px;
+    height: 190px;
+    border: 3px solid #FF8AA3;
+    border-radius: 30px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+  }
+  #failReservation #failMessage {
+    width: max-content;
+    margin-top: 5px;
+    height: 44px;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 24px;
+    font-weight: 500;
+    color: #232323;
+  }
+  #failReservation #failReservationMessage {
+    width: max-content;
+    margin-top: 40px;
+    height: 36px;
+    font-family: "Pretendard-Regular";
+    font-size: 20px;
+    font-weight: 500;
+    color: #FF5D18;
+  }
+  #failReservation #confirm {
+    margin-top: 15px;
+    width: 110px;
+    height: 28px;
+    background-color: #FEDA00;
     border: none;
     border-radius: 16px;
     font-family: "Pretendard-Regular";
@@ -660,6 +752,52 @@ a:active {
     color: #232323;
     cursor: pointer;
   }
+  #duplicateReservation {
+    position: absolute;
+    left: 50px;
+    top: 400px;
+    width: 400px;
+    height: 150px;
+    border: 3px solid #FF8AA3;
+    border-radius: 20px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+  }
+  #duplicateReservation #failMessage {
+    width: max-content;
+    margin-top: 5px;
+    height: 25px;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 24px;
+    font-weight: 500;
+    color: #232323;
+  }
+  #duplicateReservation #duplicateMessage {
+    width: max-content;
+    margin-top: 15px;
+    height: 25px;
+    font-family: "Pretendard-Regular";
+    font-size: 20px;
+    font-weight: 500;
+    color: #FF5D18;
+  }
+  #duplicateReservation #confirm {
+    margin-top: 15px;
+    width: 110px;
+    height: 28px;
+    background-color: #FEDA00;
+    border: none;
+    border-radius: 16px;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    font-weight: 500;
+    color: #232323;
+    cursor: pointer;
+  }
   #failReservation {
     position: absolute;
     left: 50px;
@@ -676,31 +814,34 @@ a:active {
     background-color: #FFFFFF;
   }
   #failReservation #failMessage {
-    margin-top: 2px;
+    width: max-content;
+    margin-top: 5px;
+    height: 25px;
     font-family: "Bobaesum Jindo TTF";
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 500;
     color: #232323;
   }
-  #failReservation #duplicateMessage {
-    margin-top: -3px;
+  #failReservation #failReservationMessage {
+    width: max-content;
+    margin-top: 15px;
+    height: 28px;
     font-family: "Pretendard-Regular";
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 500;
     color: #FF5D18;
   }
   #failReservation #confirm {
-    margin-top: -2px;
-    margin-left: -130px;
-    width: 100px;
-    height: 25px;
+    margin-top: 15px;
+    width: 110px;
+    height: 28px;
     background-color: #FEDA00;
     border: none;
     border-radius: 16px;
     font-family: "Pretendard-Regular";
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     color: #232323;
     cursor: pointer;
   }
-}
+}/*# sourceMappingURL=termsOfUse.module.css.map */

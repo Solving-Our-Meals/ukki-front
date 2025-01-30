@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import {API_BASE_URL} from '../../config/api.config';
 
 const UserContext = createContext();
 
@@ -13,8 +14,12 @@ export const UserRole = ({ children }) => {
         // 여기서 사용자의 정보를 가져와서 userRole 설정
         const checkUserRole = async () => {
             try {
-                const response = await fetch('/user/info', {
+                const response = await fetch(`${API_BASE_URL}/user/info`, {
                     method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
                     credentials: 'include', // 쿠키와 인증 정보 포함
                 });
                 if (response.ok) {
