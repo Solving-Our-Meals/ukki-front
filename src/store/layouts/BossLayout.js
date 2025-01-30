@@ -58,7 +58,7 @@ function BossLayout() {
                 console.log('User Data:', fetchedUserData);
 
                 // 가게 정보 가져오기
-                const storeRes = await fetch(`/boss/mypage/getStoreInfo?userNo=${fetchedUserData.userNo}`);
+                const storeRes = await fetch(`${API_BASE_URL}/boss/mypage/getStoreInfo?userNo=${fetchedUserData.userNo}`);
                 if (!storeRes.ok) {
                     throw new Error('가게 정보를 가져오지 못했습니다.');
                 }

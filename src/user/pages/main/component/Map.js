@@ -141,7 +141,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                     }
 
                     // 가게 정보를 업데이트
-                    onMarkerClick(store.storeName, store.storeDes, store.storeMenu, store.storeProfile, store.storeAddress);
+                    onMarkerClick(store.storeName, store.storeDes, store.storeMenu, store.storeProfile, store.storeAddress,store.storeNo);
                 });
 
                 marker.setMap(map);
