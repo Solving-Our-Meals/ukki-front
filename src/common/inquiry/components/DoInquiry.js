@@ -5,10 +5,11 @@ import { inquiryCategory } from '../api/inquiryCategoryAPI';
 import ResultSmallModal from './ResultSmallModal';
 import { API_BASE_URL } from '../../../config/api.config';
 import { useAuth } from '../../authContext/AuthContext';
+import AgreementModal from './AgreementModal';
 
 function DoInquiry({closeModal}){
 
-    
+    const [showAgreementModal, setShowAgreementModal] = useState(false);
 
     const [category, setCategory] = useState([]);
     const [selectCategory, setSelectCategory] = useState("");
@@ -165,12 +166,25 @@ function DoInquiry({closeModal}){
                         첨부파일
                     </button>
                 <button type='button' id='inquiryDoCancleBtn' onClick={handleCancle}>취소</button>
-                <button id='doInquiryBtn' onClick={submit}>확인</button>
+                <button id='doInquiryBtn' onClick={()=>{setShowAgreementModal(true)}}>확인</button>
             </form>
             {checkContent && !isWrite[0] && <div id='checkTitle'>내용을 확인해주세요</div>}
             {checkContent && !isWrite[1] && <div id='checkContent'>내용을 확인해주세요</div>}
             {checkContent && !isWrite[2] && <div id='checkCategory'>내용을 확인해주세요</div>}
         </div>
+        {showAgreementModal && (
+            <AgreementModal
+                message="문의를 제출하시겠습니까?"
+                onCancle={()=>{
+                    setShowAgreementModal(false)
+                }}
+                onConfirm={()=>{
+                    setShowAgreementModal(false)
+                    setShowResultModal(true)
+                    submit()
+                }}
+                />
+        )}
         {showResultModal && (
                 <ResultSmallModal
                     message={resultMessage}

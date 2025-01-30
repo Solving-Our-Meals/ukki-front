@@ -1,8 +1,7 @@
 export async function AddrToCoordinate(address) {
-    console.log('AddrToCoordinate 함수 호출');
-    console.log('process.env.REACT_APP_REST_API_KEY:', process.env.REACT_APP_REST_API_KEY);
-    console.log('address:', address);
-    const KAKAO_API_KEY = process.env.REACT_APP_REST_API_KEY;
+    // 환경변수는 REACT_APP_ 접두사가 있는 것만 window._env_에 노출됨
+    const KAKAO_API_KEY = window._env_?.REACT_APP_REST_API_KEY || process.env.REACT_APP_REST_API_KEY;
+
 
     try {
         if (!KAKAO_API_KEY) {
