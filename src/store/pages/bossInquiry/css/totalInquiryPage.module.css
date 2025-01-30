@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
  v2.0 | 20110126
  License: none (public domain)
@@ -248,28 +247,6 @@ a:active {
   margin-left: 20px;
   margin-top: 15px;
 }
-#background #recentInquiry .marquee {
-  width: 1100px; /* 부모 요소의 너비에 맞추어 설정 */
-  overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
-}
-#background #recentInquiry .marquee .marqueeText {
-  display: inline-block;
-  padding-left: 100%; /* 텍스트가 오른쪽에서 나타나게 설정 */
-  overflow: visible;
-  animation: marquee 200s linear infinite;
-  font-family: "Pretendard-Regular";
-  font-size: 18px;
-}
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
 #background #strInquiry {
   position: absolute;
   width: max-content;
@@ -493,4 +470,590 @@ a:active {
 #background .inquiryListArea .pagination .arrow.disabled {
   visibility: hidden;
   cursor: default;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  #background {
+    position: absolute;
+    left: 160px;
+    top: 75px;
+    bottom: 0px;
+    width: 822px;
+    height: 844px;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+  }
+  #background #recentInquiry {
+    position: absolute;
+    width: 800px;
+    height: 50px;
+    background-color: #FFF9D1;
+    border: none;
+    border-radius: 10px;
+    left: 10px;
+    top: 10px;
+    display: flex;
+    flex-direction: left;
+    cursor: pointer;
+  }
+  #background #recentInquiry span {
+    color: #232323;
+    font-weight: 600;
+  }
+  #background #recentInquiry span:nth-of-type(1) {
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 20px;
+    width: 130px;
+    margin-top: 15px;
+    font-weight: 500;
+  }
+  #background #recentInquiry span:nth-of-type(2) {
+    font-family: "Pretendard-Regular";
+    width: 100px;
+    margin-left: 10px;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+  #background #recentInquiry span:nth-of-type(3) {
+    font-family: "Pretendard-Regular";
+    width: 100px;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #background #recentInquiry span:nth-of-type(4) {
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    width: 380px;
+    margin-left: 10px;
+    margin-top: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #background #strInquiry {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 25px;
+    top: 80px;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 55px;
+    color: #232323;
+  }
+  #background #inputSearch {
+    position: absolute;
+    right: 10px;
+    top: 80px;
+    width: 500px;
+    height: 40px;
+    border-radius: 15px;
+    border: 3px solid #FF8AA3;
+    cursor: text;
+    outline: none;
+    padding-left: 20px;
+    font-family: "Pretendard-Regular";
+    font-size: 20px;
+    color: #232323;
+  }
+  #background #searchBtn {
+    position: absolute;
+    right: 30px;
+    top: 85px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  #background .inquiryListArea {
+    position: relative;
+    width: 800px;
+    height: 320px;
+    left: 0px;
+    top: -120px;
+  }
+  #background .inquiryListArea .strArea {
+    position: relative;
+    width: 775px;
+    height: 20px;
+    top: 20px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #FF8AA3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0;
+  }
+  #background .inquiryListArea .strArea #strState, #background .inquiryListArea .strArea #strCategory, #background .inquiryListArea .strArea #strTitle, #background .inquiryListArea .strArea #strDate {
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    color: #232323;
+  }
+  #background .inquiryListArea .strArea #strState {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 60px;
+  }
+  #background .inquiryListArea .strArea #strCategory {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 170px;
+  }
+  #background .inquiryListArea .strArea #strTitle {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 275px;
+  }
+  #background .inquiryListArea .strArea #strDate {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    right: 120px;
+  }
+  #background .inquiryListArea .inquiryContainer {
+    position: absolute;
+    width: 775px;
+    height: 370px;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry {
+    position: relative;
+    width: 750px;
+    height: 50px;
+    left: 15px;
+    border-bottom: 2px solid #D9D9D9;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: right;
+    justify-content: center;
+    align-items: center;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry #inquiryState {
+    position: relative;
+    left: -30px;
+    width: 80px;
+    height: 25px;
+    border-radius: 25px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry #categoryName {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80px;
+    height: max-content;
+    left: 0px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #232323;
+    text-align: left;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry #inquiryTitle {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 320px;
+    height: max-content;
+    left: 25px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #232323;
+    text-align: left;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry #inquiryDate {
+    position: relative;
+    width: 120px;
+    left: 50px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #232323;
+    text-align: left;
+  }
+  #background .inquiryListArea .inquiryContainer .noResultsMessage {
+    position: absolute;
+    font-family: "Pretendard-Regular";
+    font-size: 20px;
+    width: 750px;
+    height: 50px;
+    left: 1px;
+    color: #999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #background .inquiryListArea hr {
+    position: relative;
+    top: 380px;
+    width: 775px;
+    border: 2.9px solid #FF8AA3;
+    bottom: 90px;
+  }
+  #background .inquiryListArea .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: absolute;
+    bottom: -145px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0;
+  }
+  #background .inquiryListArea .pagination .paginationButton {
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    cursor: pointer;
+    color: #232323;
+    opacity: 50%;
+  }
+  #background .inquiryListArea .pagination .paginationButton.active {
+    color: #232323;
+    opacity: 100%;
+    font-weight: bold;
+  }
+  #background .inquiryListArea .pagination .arrow {
+    color: #FF8AA3;
+    opacity: 100%;
+  }
+  #background .inquiryListArea .pagination .arrow.disabled {
+    visibility: hidden;
+    cursor: default;
+  }
+}
+@media screen and (max-width: 768px) {
+  #background {
+    position: absolute;
+    left: 120px;
+    top: 75px;
+    bottom: 0px;
+    width: 422px;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+  }
+  #background #recentInquiry {
+    position: absolute;
+    width: 400px;
+    height: 30px;
+    background-color: #FFF9D1;
+    border: none;
+    border-radius: 5px;
+    left: 10px;
+    top: 5px;
+    display: flex;
+    flex-direction: left;
+    cursor: pointer;
+  }
+  #background #recentInquiry span {
+    color: #232323;
+    font-weight: 600;
+  }
+  #background #recentInquiry span:nth-of-type(1) {
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 18px;
+    width: 90px;
+    margin-top: 7.5px;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+  #background #recentInquiry span:nth-of-type(2) {
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    margin-left: 30px;
+    margin-top: 15px;
+    display: none;
+  }
+  #background #recentInquiry span:nth-of-type(3) {
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    width: 300px;
+    margin-right: 30px;
+    margin-top: 7.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: none;
+  }
+  #background #recentInquiry span:nth-of-type(4) {
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 280px;
+  }
+  #background #strInquiry {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 25px;
+    top: 40px;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 55px;
+    color: #232323;
+  }
+  #background #inputSearch {
+    position: absolute;
+    left: 160px;
+    top: 50px;
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    border: 3px solid #FF8AA3;
+    cursor: text;
+    outline: none;
+    padding-left: 20px;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    color: #232323;
+  }
+  #background #searchBtn {
+    position: absolute;
+    left: 380px;
+    top: 52px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+  #background .inquiryListArea {
+    position: relative;
+    width: 400px;
+    height: auto;
+    left: 0px;
+    top: -200px;
+  }
+  #background .inquiryListArea .strArea {
+    position: relative;
+    width: 380px;
+    height: 20px;
+    top: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #FF8AA3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0;
+  }
+  #background .inquiryListArea .strArea #strState, #background .inquiryListArea .strArea #strCategory, #background .inquiryListArea .strArea #strTitle, #background .inquiryListArea .strArea #strDate {
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 130%;
+    color: #232323;
+  }
+  #background .inquiryListArea .strArea #strState {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 30px;
+  }
+  #background .inquiryListArea .strArea #strCategory {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 125px;
+    display: none;
+  }
+  #background .inquiryListArea .strArea #strTitle {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 125px;
+  }
+  #background .inquiryListArea .strArea #strDate {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 170px;
+    display: none;
+  }
+  #background .inquiryListArea .inquiryContainer {
+    position: absolute;
+    width: 380px;
+    height: auto;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry {
+    position: relative;
+    width: 380px;
+    height: 40px;
+    left: 1px;
+    border-bottom: 2px solid #D9D9D9;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: right;
+    justify-content: center;
+    align-items: center;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry #inquiryState {
+    position: relative;
+    left: -10px;
+    width: 70px;
+    height: 25px;
+    border-radius: 20px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry #categoryName {
+    position: relative;
+    left: -90px;
+    width: 97px;
+    height: 38px;
+    border-radius: 23px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    color: #232323;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    display: none;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry #inquiryTitle {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 240px;
+    height: max-content;
+    left: 15px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #232323;
+    text-align: left;
+  }
+  #background .inquiryListArea .inquiryContainer .inquiry #inquiryDate {
+    position: relative;
+    width: 150px;
+    left: 260px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    color: #232323;
+    text-align: left;
+    display: none;
+  }
+  #background .inquiryListArea .inquiryContainer .noResultsMessage {
+    position: absolute;
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    width: 380px;
+    height: 30px;
+    left: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #background .inquiryListArea hr {
+    position: relative;
+    top: 310px;
+    width: 380px;
+    border: 2px solid #FF8AA3;
+    bottom: 90px;
+  }
+  #background .inquiryListArea .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: absolute;
+    bottom: -350px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0;
+  }
+  #background .inquiryListArea .pagination .paginationButton {
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    cursor: pointer;
+    color: #232323;
+    opacity: 50%;
+  }
+  #background .inquiryListArea .pagination .paginationButton.active {
+    color: #232323;
+    opacity: 100%;
+    font-weight: bold;
+  }
+  #background .inquiryListArea .pagination .arrow {
+    color: #FF8AA3;
+    opacity: 100%;
+  }
+  #background .inquiryListArea .pagination .arrow.disabled {
+    visibility: hidden;
+    cursor: default;
+  }
 }

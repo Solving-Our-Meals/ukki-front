@@ -1,18 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import styles from '../css/ReservationDetail.module.css';
 import { useParams, Link } from 'react-router-dom';
 import Loading from "../../../../common/inquiry/img/loadingInquiryList.gif";
 import {API_BASE_URL} from '../../../../config/api.config';
+import DefaultReview from "../../../../common/default/DEFAULT_REVIEW_IMG.png";
 
 function ReservationDetail() {
     const { resNo } = useParams();
     const [reviewDetail, setReviewDetail] = useState(null);
     const [calendarVisible, setCalendarVisible] = useState(false); // 달력 보이기 상태 추가
     const [error, setError] = useState(null);
+    const [qrImage, setQrImage] = useState('');
 
     useEffect(() => {
         fetchReservationDetail();
     }, [resNo]);
+
+    useEffect(() => {
+        if (reviewDetail && reviewDetail.qr) {
+            fetchQrImage(reviewDetail.qr);
+        }
+    }, [reviewDetail]);
+
+    const fetchQrImage = useCallback(async (no) => {
+        const qrUrl = `${API_BASE_URL}/image?fileId=${no}`
+        setQrImage(qrUrl);
+    }, [])
 
     const fetchReservationDetail = async () => {
         try {
@@ -26,6 +39,7 @@ function ReservationDetail() {
             });
             if (response.ok) {
                 const data = await response.json();
+                console.log(data)
                 setReviewDetail(data);
 
                 setTimeout(() => {
@@ -126,7 +140,7 @@ function ReservationDetail() {
             {getReservationStatus(reservationTime) !== "예약 만료" && reviewDetail.qr && (
                 <div className={styles.qrInfo}>
                     <div className={styles.qrInfoText}>QR 이미지</div>
-                    <img className={styles.qrImage} src={`/${reviewDetail.qr}/api/qrImage`} alt="QR 코드" />
+                    <img className={styles.qrImage} src={qrImage} alt="QR 코드" />
                 </div>
             )}
 
