@@ -40,6 +40,13 @@ jobs:
       with:
         registry-type: public
 
+    - name: Create .env file
+      run: |
+          echo "REACT_APP_NATIVE_KEY=${{ secrets.REACT_APP_NATIVE_KEY }}" >> .env
+          echo "REACT_APP_REST_API_KEY=${{ secrets.REACT_APP_REST_API_KEY }}" >> .env
+          echo "REACT_APP_KAKAOMAP_APP_KEY=${{ secrets.REACT_APP_KAKAOMAP_APP_KEY }}" >> .env
+          echo "REACT_APP_ADMIN_KEY=${{ secrets.REACT_APP_ADMIN_KEY }}" >> .env
+
     - name: Build and push
       env:
         IMAGE_TAG: ${{ github.sha }}

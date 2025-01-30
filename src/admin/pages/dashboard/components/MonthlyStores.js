@@ -12,20 +12,23 @@ export default function MonthlyStores({ data }) {
   const [viewMinusArrow, setViewMinusArrow] = useState(true);
   const [viewPlusArrow, setViewPlusArrow] = useState(true);
 
+  const safeData = data || [];
+  
   const groupbyYearData = {}
-  for(let item of data){
+  for(let item of safeData){
     if(!groupbyYearData[item.year]){
         groupbyYearData[item.year] = [];
     }
     groupbyYearData[item.year].push(item);
   }
-
+  console.log(groupbyYearData);
   useEffect(()=>{
     viewMinusArrowHandler(selectedYear-1);
     viewPlusArrowHandler(selectedYear+1);
   },[selectedYear])
 
-  const maxValue = Math.max(...groupbyYearData[selectedYear].map(item => item.registStore));
+  const selectedYearData = groupbyYearData[selectedYear] || [];
+  const maxValue = Math.max(...selectedYearData.map(item => item.registStore || 0), 0);
 
   function viewMinusArrowHandler(year){
     if(!Object.keys(groupbyYearData).find(e => e === year.toString())){
@@ -42,11 +45,12 @@ export default function MonthlyStores({ data }) {
     }
   }
 
-  const chartData = groupbyYearData[selectedYear].map(item => {
+  const chartData = selectedYearData.map(item => {
     const label = item.month + '월';
-        return  {labels: label,
-                data: item.registStore
-            }
+    return {
+      labels: label,
+      data: item.registStore || 0
+    }
   });
 
   const chartConfig = {

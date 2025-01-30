@@ -13,7 +13,7 @@
 
   border: 3px solid #FF8AA3;
   border-radius: 50px;
-  z-index: 100000000001;
+  z-index: 10000000;
 }
 
 #doInquiryModal.underModal{
@@ -169,7 +169,7 @@ top: 550px;
 background: #FEDA00;
 border-radius: 50px;
 
-z-index: 2000000000000000000;
+z-index: 10000001;
 /* 첨부파일 */
 
 font-family: 'Pretendard Variable';

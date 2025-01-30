@@ -6,7 +6,7 @@ function ResultSmallModal({message, close}){
         <>
             <div id='agreementModal'>
                 <div id='agreementMessage'>{message}</div>
-                <button id='resultOkBtn' onClick={close}>확인</button>
+                <button id='resultOkBtn' type={"button"} onClick={close}>확인</button>
             </div>
         </>
     );
