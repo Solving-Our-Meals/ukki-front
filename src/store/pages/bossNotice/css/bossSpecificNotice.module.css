@@ -286,4 +286,204 @@ a:active {
   line-height: 160%;
   overflow-y: auto;
   overflow-x: hidden;
+  border-radius: 0;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  #noticeArea {
+    position: absolute;
+    left: 160px;
+    top: 75px;
+    bottom: 0px;
+    width: 822px;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+  }
+  #noticeArea #strNotice {
+    position: absolute;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 38px;
+    color: #232323;
+    left: 30px;
+    top: 30px;
+    width: max-content;
+    height: max-content;
+  }
+  #noticeArea span {
+    position: absolute;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #noticeArea span:nth-of-type(1) {
+    position: absolute;
+    left: 180px;
+    top: 33px;
+    width: 80px;
+    height: 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 25px;
+  }
+  #noticeArea span:nth-of-type(2) {
+    position: absolute;
+    left: 30px;
+    top: 110px;
+    font-size: 25px;
+    font-weight: 600;
+  }
+  #noticeArea span:nth-of-type(3) {
+    position: absolute;
+    left: 90px;
+    top: 110px;
+    font-size: 25px;
+    font-weight: 400;
+  }
+  #noticeArea span:nth-of-type(4) {
+    position: absolute;
+    left: 30px;
+    top: 150px;
+    font-size: 25px;
+    font-weight: 600;
+  }
+  #noticeArea span:nth-of-type(5) {
+    position: absolute;
+    left: 140px;
+    top: 150px;
+    font-size: 25px;
+    font-weight: 400;
+  }
+  #noticeArea #noticeContent {
+    position: absolute;
+    left: 20px;
+    top: 200px;
+    width: 782px;
+    height: 400px;
+    background-color: #FFF9D1;
+    border: none;
+  }
+  #noticeArea #noticeContent #content {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    width: 742px;
+    height: 370px;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+    font-size: 23px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    line-height: 160%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  #noticeArea {
+    position: absolute;
+    left: 120px;
+    top: 75px;
+    bottom: 0px;
+    width: 422px;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+  }
+  #noticeArea #strNotice {
+    position: absolute;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 26px;
+    color: #232323;
+    left: 20px;
+    top: 20px;
+    width: max-content;
+    height: max-content;
+  }
+  #noticeArea span {
+    position: absolute;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #noticeArea span:nth-of-type(1) {
+    position: absolute;
+    left: 125px;
+    top: 20px;
+    width: 70px;
+    height: 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 20px;
+  }
+  #noticeArea span:nth-of-type(2) {
+    position: absolute;
+    left: 20px;
+    top: 70px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  #noticeArea span:nth-of-type(3) {
+    position: absolute;
+    left: 70px;
+    top: 70px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  #noticeArea span:nth-of-type(4) {
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  #noticeArea span:nth-of-type(5) {
+    position: absolute;
+    left: 110px;
+    top: 100px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  #noticeArea #noticeContent {
+    position: absolute;
+    left: 15px;
+    top: 150px;
+    width: 395px;
+    height: 400px;
+    background-color: #FFF9D1;
+    border: none;
+  }
+  #noticeArea #noticeContent #content {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 375px;
+    height: 380px;
+    font-family: "Pretendard-Regular";
+    color: #232323;
+    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    line-height: 160%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 0;
+  }
 }

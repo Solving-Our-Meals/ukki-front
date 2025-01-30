@@ -16,7 +16,7 @@ const FileInfo = ({uploadedInfo}) => (
     </ul>
 );
 
-const CreateReview = ({reflashMethod}) => {
+const CreateReview = ({reflashMethod, deleteResNo}) => {
     const { setGlobalError } = useError();
     const navigate = useNavigate();
     const { storeNo } = useParams();
@@ -76,6 +76,8 @@ const CreateReview = ({reflashMethod}) => {
 
     const createReviewHandler = () => {
         setExistsResList(true);
+        noReviewResNo.concat(deleteResNo);
+        console.log(deleteResNo);
         // setIsDisplay(prevState => !prevState);
         console.log('noReviewResNo : ', noReviewResNo);
         fetch(`${API_BASE_URL}/store/getReservationList?resNo=${noReviewResNo}`,{
@@ -152,11 +154,6 @@ const CreateReview = ({reflashMethod}) => {
             resNo: reviewResNo || "",
         }));
 
-        // 이미지가 있을 때만 formData에 추가
-        // if (review.reviewImage && Object.keys(review.reviewImage).length > 0) {
-        //     formData.append('reviewImage', review.reviewImage);
-        // }
-
         if(uploadedFile){
             formData.append("reviewImage", uploadedFile);
         }
@@ -179,6 +176,23 @@ const CreateReview = ({reflashMethod}) => {
                 }));
                 setUploadedInfo(null);
                 setImageUrl(null);
+
+                // setReviewResNo((prevReviewResNo) => {
+                //     if (Array.isArray(prevReviewResNo)) {
+                //         return prevReviewResNo.filter((resNo) => resNo !== reviewResNo);
+                //     } else {
+                //         return prevReviewResNo;
+                //     }
+                // });
+
+                setNoReviewResNo((prevNoReviewResNo) => {
+                    if (Array.isArray(prevNoReviewResNo)) {
+                        return prevNoReviewResNo.filter((resNo) => resNo !== reviewResNo);
+                    } else {
+                        return prevNoReviewResNo;
+                    }
+                    });
+
             } else {
                 // console.error("Failed to submit review", res.statusText);
                 const error = new Error(`HTTP error! status: ${response.status}`);
