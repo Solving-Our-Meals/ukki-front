@@ -12,6 +12,7 @@ function BossProfile({storeNo}) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            credentials:"include",
         })
         .then(res => res.text())
         .then(data => {
@@ -22,6 +23,7 @@ function BossProfile({storeNo}) {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
+                    credentials:"include",
                 })
                 .then(res => res.json())
                 .then(data => {

@@ -12,6 +12,7 @@ function BossMenu({storeNo}){
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            credentials:"include",
         })
         .then(res => res.text())
         .then(data => {
