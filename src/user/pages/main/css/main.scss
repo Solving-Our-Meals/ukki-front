@@ -73,7 +73,7 @@ div {
                         top: 39vw;
                         font-family: 'Pretendard Variable';
                         font-weight: 700;
-                        font-size: 1.5rem;
+                        font-size: 1.5vw;
                         color: $textStrong;
                         background-color: rgba(255, 255, 255, 0.7);
                         padding: 20px 10px 100px 50px;
@@ -85,12 +85,12 @@ div {
                     span {
                         position: absolute;
                         width: 25vw;
-                        left: 8.5vw;
-                        top: 42vw;
+                        left: 9.5vw;
+                        top: 42.3vw;
                         font-family: 'Pretendard Variable';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 1vw;
+                        font-size: 1.3rem;
                         line-height: 126%;
                         color: $textStrong;
                         height: 60px;
@@ -158,7 +158,7 @@ div {
 
     .btn {
         position: relative;
-        font-size: 5vw;
+        font-size: 5rem;
         top: -28vw;
         left: 2vw;
         color: #fff;
@@ -467,7 +467,7 @@ div {
             display: -webkit-box;
             /* Ensures the box model is correct for ellipsis */
             -webkit-box-orient: vertical;
-            -webkit-line-clamp:3;
+            -webkit-line-clamp: 3;
             /* Limit the lines to 3 */
             overflow: hidden;
             /* Hide any overflow */
@@ -545,7 +545,7 @@ div {
             font-weight: 700;
             font-family: 'Pretendard Variable';
             font-size: 1.2rem;
-            z-index: 10;  
+            z-index: 10;
             left: 75vw;
         }
 
@@ -558,9 +558,9 @@ div {
             z-index: 100;
         }
 
-        &>div{
+        &>div {
             width: 40vw;
-            height:20vw;
+            height: 20vw;
             background-color: #f0f0f0;
             z-index: 9;
             position: relative;
@@ -569,20 +569,21 @@ div {
             border: 2px solid $background;
             box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
 
-            &>div{
+            &>div {
                 width: 10vw;
                 position: relative;
 
-                p{
-                position: absolute;
-                font-size: 2rem !important;
-                z-index: 10;
-                left: 37vw !important;
-                top: 1vw !important;
-                color: $textCaption;
-                user-select: none;
+                p {
+                    position: absolute;
+                    font-size: 2rem !important;
+                    z-index: 10;
+                    left: 37vw !important;
+                    top: 1vw !important;
+                    color: $textCaption;
+                    user-select: none;
 
-            }}
+                }
+            }
         }
     }
 
@@ -786,7 +787,7 @@ div {
             height: 65vw;
             position: relative;
             overflow: hidden;
-            top: 5vw;
+            top: 8vw;
             left: 4vw;
             list-style: none;
             border-radius: 0;
@@ -806,7 +807,7 @@ div {
                     height: 60vw;
                     overflow: hidden;
                     position: relative;
-                    border-radius: 0;
+                    border-radius: 20px;
 
                     &>img {
                         width: 100%;
@@ -830,40 +831,48 @@ div {
                     div {
                         h3 {
                             position: absolute;
-                            left: 9vw;
-                            top: 40vw;
+                            left: 11vw;
+                            top: 36vw;
                             font-family: 'Bobaesum Jindo TTF';
                             font-size: 2.5vw;
-                            color: $primary;
+                            color: $textStrong;
                             z-index: 1;
                         }
 
                         img {
                             position: absolute;
-                            width: 22vw;
-                            left: 6vw;
-                            top: 33vw;
+                            width: 25vw;
+                            left: 7vw;
+                            top: 28vw;
                         }
 
                         p {
                             position: absolute;
-                            left: 8vw;
-                            top: 45vw;
+                            left: 7vw;
+                            top: 43vw;
                             font-family: 'Pretendard Variable';
                             font-weight: 700;
-                            font-size: 1.6vw;
+                            font-size: 2.2vw;
                             color: $textStrong;
+                            width: 40vw;
+                            height: 1vw;
+                            background-color: rgba(255, 255, 255, 0.7);
+                            padding: 2vw 12vw 10vw 5vw;
+                            border-radius: 10px;
+                            box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+
+
                         }
 
                         span {
                             position: absolute;
-                            width: 50vw;
-                            left: 8vw;
-                            top: 47vw;
+                            width: 25vw;
+                            left: 12vw;
+                            top: 48.5vw;
                             font-family: 'Pretendard Variable';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 1.5vw;
+                            font-size: 2vw;
                             line-height: 126%;
                             color: $textStrong;
                         }
@@ -935,7 +944,7 @@ div {
         .btn {
             position: relative;
             font-size: 5vw;
-            top: -28vw;
+            top: -35vw;
             left: 2vw;
             color: #fff;
             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -943,48 +952,50 @@ div {
 
         .rightbtn {
             left: 85vw;
-            top: -33vw;
+            top: -38vw;
         }
 
 
         .category {
-            position: relative;
-            top: -65vw;
-            left: -2vw;
-
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: left 0.7s ease;
+    
             h3 {
                 position: absolute;
-                left: 39vw;
+                left: 40vw;
                 top: 86vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-size: 3vw;
                 color: $textStrong;
             }
-
+    
             p {
                 position: absolute;
-                left: 39.5vw;
-                top: 89.5vw;
+                left: 39vw;
+                top: 91.5vw;
                 font-family: 'Pretendard Variable';
-                font-size: 1.5vw;
+                font-size: 1.7vw;
                 text-align: center;
                 color: $textStrong;
             }
-
+    
             div {
                 position: absolute;
-                width: 5vw;
-                height: 2vw;
-                left: 31.5vw;
-                top: 99vw;
+                width: 7vw;
+                height: 3vw;
+                left: 20vw;
+                top: 110vw;
                 background: #FFFFFF;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 20px;
+                border-radius: 50px;
+                transition: left 0.5s ease;
                 z-index: 3;
-
+    
                 &:nth-of-type(2) {
                     left: 50vw;
-                    top: 101vw;
+                    top: 110vw;
                 }
 
                 &:nth-of-type(3) {
@@ -993,72 +1004,104 @@ div {
 
                 &:nth-of-type(4) {
                     left: 40.5vw;
-                    top: 120vw;
+                    top: 110vw;
                 }
 
                 &:nth-of-type(5) {
                     left: 59.5vw;
-                    top: 120vw;
+                    top: 110vw;
                 }
 
                 p {
                     color: $textStrong;
                     position: absolute;
-                    left: 1.2 vw;
-                    top: 0.4vw;
+                    left: 1.7vw;
+                    top: 0.5vw;
                     font-family: 'Pretendard Variable';
                     font-weight: 500;
-                    font-size: 1.5vw;
+                    font-size: 2vw;
                     z-index: 5;
                 }
 
+    
+    
             }
-
+    
             img {
-                width: 12vw;
-                border-radius: 10%;
-                position: absolute;
-                left: 28vw;
+                width: 8vw;
+                border-radius: 20px;
                 z-index: 2;
                 opacity: 0.8;
-                top: 94vw;
-                transition: opacity 0.5s;
-
+                transition: all 0.5s;
+                height: 27.5vw;
+                object-fit: cover;
+                margin: 10px;
+                margin-top: 32vw;
+                transition: left 0.5s ease;
+    
                 &.selected-img {
                     opacity: 1;
-                    border: 5px solid $primary;
+                    // border: 3px solid $textCaption;
+                    width: 35vw;
                 }
-
 
 
                 &:nth-of-type(2) {
-                    left: 46.5vw;
-                    top: 96vw;
+                    left: 49vw;
 
+                    &.selected-img {
+                        opacity: 1;
+                        // border: 3px solid $textCaption;
+                        width: 35vw;
+                        left: 21vw;
+                    }
                 }
 
                 &:nth-of-type(3) {
-                    left: 65vw;
-                    top: 94vw;
+                    left: 58vw;
+
+
+                    &.selected-img {
+                        opacity: 1;
+                        // border: 3px solid $textCaption;
+                        width: 35vw;
+                        left: 31vw;
+
+                        &:nth-of-type(2) {
+                            left: 15vw;
+                        }
+
+                    }
                 }
 
                 &:nth-of-type(4) {
-                    left: 37vw;
-                    top: 115vw;
+                    left: 67vw;
+
+                    &.selected-img {
+                        opacity: 1;
+                        // border: 3px solid $textCaption;
+                        width: 35vw;
+                        left: 40vw;
+                    }
                 }
 
                 &:nth-of-type(5) {
-                    left: 56vw;
-                    top: 115vw;
+                    left: 76vw;
+
+                    &.selected-img {
+                        opacity: 1;
+                        // border: 3px solid $textCaption;
+                        width: 35vw;
+                        left: 50vw;
+                    }
                 }
 
-
             }
-
+    
             span {
                 position: absolute;
-                left: 31vw;
-                top: 107.5vw;
+                left: 14.5vw;
+                top: 87.5vw;
                 font-family: 'Pretendard Variable';
                 font-weight: 500;
                 font-size: 1vw;
@@ -1067,238 +1110,309 @@ div {
                 padding: 0.5vw 1vw;
                 border-radius: 50px;
                 transition: all 0.4s;
-
+    
                 &.selected-span {
                     background-color: $primary;
                     font-weight: 700;
-                    left: 30.5vw;
+                    left: 14vw;
                 }
-
+    
                 &:nth-of-type(2) {
-                    left: 50vw;
-                    top: 109.5vw;
-
+                    left: 30vw;
+                    top: 89.5vw;
+    
                     &.selected-span {
                         background-color: $primary;
                         font-weight: 700;
-                        left: 49.5vw;
+                        left: 29.5vw;
                     }
                 }
-
+    
                 &:nth-of-type(3) {
-                    left: 68vw;
-
+                    left: 45.5vw;
+    
                     &.selected-span {
                         background-color: $primary;
                         font-weight: 700;
-                        left: 67.5vw;
+                        left: 45vw;
                     }
                 }
-
+    
                 &:nth-of-type(4) {
-                    left: 40vw;
-                    top: 128.5vw;
-
+                    left: 61vw;
+                    top: 89.5vw;
+    
                     &.selected-span {
                         background-color: $primary;
                         font-weight: 700;
-                        left: 39.5vw;
+                        left: 60.5vw;
                     }
                 }
-
+    
                 &:nth-of-type(5) {
-                    left: 59vw;
-                    top: 128.5vw;
-
+                    left: 77vw;
+    
                     &.selected-span {
                         background-color: $primary;
                         font-weight: 700;
-                        left: 58.5vw;
+                        left: 76.2vw;
                     }
                 }
             }
         }
-
         .location {
             position: absolute;
             width: 100vw;
-            height: 40vw;
-            top: 140vw;
-            background: $secondary2;
+            height: 30vw;
+            top: 110vw;
             left: 0;
             border-radius: 0;
             border: none;
-
-            h3 {
-                position: absolute;
-                left: 50vw;
-                top: 5vw;
-                font-family: 'Bobaesum Jindo TTF';
-                font-size: 2vw;
-                color: $textStrong;
-            }
-
-            &>img:nth-of-type(1) {
-                position: absolute;
-                left: 50vw;
-                width: 10vw;
-                top: 8vw;
-                border: 2px solid #FF8AA3;
-                border-radius: 15px;
-            }
-
+    
             p {
                 position: absolute;
                 font-family: 'Pretendard Variable';
-                font-weight: 700;
-                font-size: 1vw;
+                font-weight: 600;
+                font-size: 1.1rem;
                 color: $textStrong;
             }
-
+    
+            h3 {
+                position: absolute;
+                left: 13.5vw;
+                top: 9vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 2.2rem;
+                color: $textStrong;
+                background: linear-gradient(to right, $primary 50%, $textStrong 50%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: changeColor 2s ease-in-out;
+            }
+    
+            @keyframes colorChange {
+                0% {
+                    color: $primary
+                }
+    
+                50% {
+                    color: $primary;
+                }
+    
+                100% {
+                    color: $textStrong;
+                }
+            }
+    
+    
+            &>img:nth-of-type(1) {
+                position: absolute;
+                left: 52vw;
+                width: 13vw;
+                height: 15vw;
+                top: 37.5vw;
+                border: 2px solid $background;
+                border-radius: 10px;
+                z-index: 10;
+                object-fit: cover;
+            }
+    
+    
+    
             p:nth-of-type(1) {
-                left: 61vw;
-                top: 8.5vw;
+                left: 66.5vw;
+                top: 37.5vw;
+                z-index: 10;
             }
-
+    
             p:nth-of-type(2) {
-                left: 61vw;
-                top: 10vw;
+                left: 66.5vw;
+                top: 39.5vw;
+                z-index: 10;
             }
-
-            p:nth-of-type(3) {
-                left: 61vw;
-                top: 13vw;
-            }
-
+    
+    
             span {
                 position: absolute;
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 1vw;
+                font-size: 1rem;
                 color: $textStrong;
             }
-
-            span:nth-of-type(1) {
-                left: 66vw;
-                top: 8.5vw;
+    
+            p:nth-of-type(1) span {
+                left: 4.5vw;
+                top: 0vw;
+                width: 18vw;
+                line-height: 130%;
             }
-
-            span:nth-of-type(2) {
-                left: 61vw;
-                top: 11.5vw;
+    
+            p:nth-of-type(2) span {
+                left: 0vw;
+                top: 1.7vw;
+                width: 22vw;
+                display: -webkit-box;
+                /* Ensures the box model is correct for ellipsis */
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                /* Limit the lines to 3 */
+                overflow: hidden;
+                /* Hide any overflow */
+                text-overflow: ellipsis;
+                line-height: 140%;
+                /* Adjust the line height as necessary */
+                max-height: calc(3 * 1.4em);
+                /* Ensures it cuts off after 3 lines */
             }
-
-            span:nth-of-type(3) {
-                left: 68vw;
-                top: 13vw;
-            }
-
+    
             input {
                 position: absolute;
-                width: 23.5vw;
-                height: 3vw;
+                width: 22vw;
+                height: 2.3vw;
                 background: #FFFFFF;
                 border-radius: 20px;
                 border: none;
                 outline: none;
                 color: $textCaption;
-                font-size: 1vw;
+                font-size: 0.9rem;
                 font-weight: normal;
-
+                padding-left: 5vw;
+                z-index: 10;
+    
             }
-
+    
             input:nth-of-type(1) {
-                left: 50vw;
-                top: 17vw;
+                left: 66.5vw;
+                top: 47vw;
                 text-align: center;
             }
-
+    
             input:nth-of-type(2) {
-                left: 50vw;
-                top: 21vw;
+                left: 66.5vw;
+                top: 50.2vw;
                 text-align: center;
             }
-
+    
             label:nth-of-type(1) {
                 position: absolute;
-                left: 51vw;
-                top: 18vw;
-                font-family: 'Pretendard Variable';
-                font-weight: 700;
-                font-size: 1vw;
-                color: $textStrong;
-                width: 10vw;
-                background-color: transparent;
-            }
-
-            label:nth-of-type(2) {
-                position: absolute;
-                left: 51vw;
-                top: 22vw;
+                left: 67vw;
+                top: 47.8vw;
                 font-family: 'Pretendard Variable';
                 font-weight: 600;
-                font-size: 1vw;
+                font-size: 1rem;
                 color: $textStrong;
                 width: 10vw;
                 background-color: transparent;
+                z-index: 10;
             }
-
+    
+            label:nth-of-type(2) {
+                position: absolute;
+                left: 67vw;
+                top: 51vw;
+                font-family: 'Pretendard Variable';
+                font-weight: 600;
+                font-size: 1rem;
+                color: $textStrong;
+                width: 10vw;
+                background-color: transparent;
+                z-index: 10;
+            }
+    
             button {
                 position: absolute;
                 width: 10vw;
                 height: 2.5vw;
-                left: 50vw;
-                top: 27vw;
+                left: 63vw;
+                top: 9vw;
                 background: $primary;
                 border-radius: 50px;
                 border: none;
                 color: $textStrong;
                 font-weight: 700;
                 font-family: 'Pretendard Variable';
-                font-size: 1.2vw;
+                font-size: 1.2rem;
+                z-index: 10;
+                left: 75vw;
             }
-
-            button:nth-of-type(2) {
-                left: 63vw;
-                background-color: #FFA8B8;
-            }
-
+    
+    
             img:nth-of-type(2) {
                 position: absolute;
                 width: 7vw;
-                left: 42vw;
-                top: 23vw;
-                z-index: 10;
+                left: 83vw;
+                top: 24vw;
+                z-index: 100;
+            }
+    
+            &>div {
+                width: 40vw;
+                height: 20vw;
+                background-color: #f0f0f0;
+                z-index: 9;
+                position: relative;
+                left: 50vw;
+                top: 35vw;
+                border: 2px solid $background;
+                box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+    
+                &>div {
+                    width: 10vw;
+                    position: relative;
+    
+                    p {
+                        position: absolute;
+                        font-size: 2rem !important;
+                        z-index: 10;
+                        left: 37vw !important;
+                        top: 1vw !important;
+                        color: $textCaption;
+                        user-select: none;
+    
+                    }
+                }
             }
         }
-
+    
         .talk {
             img:nth-of-type(1) {
                 position: absolute;
                 width: 80vw;
-                top: 198vw;
+                top: 188vw;
                 left: 10vw;
             }
-
+    
             img:nth-of-type(2) {
                 position: absolute;
                 width: 75vw;
-                top: 190vw;
+                top: 180vw;
                 left: 10vw;
             }
-
+    
             img:nth-of-type(3) {
                 position: absolute;
                 width: 50vw;
-                top: 192vw;
+                top: 182vw;
                 left: 25vw;
             }
-
-
-
+    
+            img {
+                opacity: 0;
+                transform: translateY(20vw);
+                transition: opacity 1s, transform 1s;
+    
+                &.show {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+    
+    
+    
+    
         }
-
+    
         .random {
             h3 {
                 position: absolute;
@@ -1309,12 +1423,12 @@ div {
                 font-size: 3vw;
                 line-height: 128.63%;
                 color: $textStrong;
-
+    
                 span {
                     color: $primary;
                 }
             }
-
+    
             p:nth-of-type(1) {
                 position: absolute;
                 left: 15vw;
@@ -1325,7 +1439,7 @@ div {
                 font-size: 1.5vw;
                 color: $textStrong;
             }
-
+    
             p:nth-of-type(2) {
                 position: absolute;
                 left: 15vw;
@@ -1333,11 +1447,11 @@ div {
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 1vw;
+                font-size: 0.8vw;
                 line-height: 150%;
                 color: $danger;
             }
-
+    
             &>span {
                 position: absolute;
                 left: 15vw;
@@ -1345,16 +1459,16 @@ div {
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 1.2vw;
+                font-size: 1vw;
                 line-height: 150%;
                 color: $textStrong;
             }
-
+    
             button {
                 position: absolute;
-                width: 10vw;
-                height: 3vw;
-                left: 20vw;
+                width: 9vw;
+                height: 2vw;
+                left: 19vw;
                 top: 241vw;
                 background: $secondary;
                 border-radius: 30px;
@@ -1363,45 +1477,45 @@ div {
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 600;
-                font-size: 1.2vw;
-
-
+                font-size: 1vw;
+    
+    
             }
-
+    
             img:nth-of-type(1) {
                 position: absolute;
                 width: 4vw;
                 left: 14.5vw;
-                top: 240.5vw;
+                top: 240vw;
                 opacity: 0.6;
             }
-
+    
             img:nth-of-type(2) {
                 position: absolute;
                 width: 4vw;
-                left: 31.5vw;
-                top: 240.5vw;
+                left: 28.5vw;
+                top: 240vw;
                 opacity: 0.6;
             }
-
+    
         }
-
+    
         .roulette {
             position: relative;
             width: 30vw;
             height: 30vw;
-
+    
             .rouletter-bg {
                 position: absolute;
-                top: 165vw;
-                left: 65vw;
+                top: 126vw;
+                left: 67vw;
                 transform: translate(-50%, -50%);
                 width: 28vw;
                 height: 28vw;
                 border-radius: 350px;
                 overflow: hidden;
-                border: 5px solid $primary;
-
+                border: 8px solid $primary;
+    
                 .rouletter-wacu {
                     img {
                         width: 100%;
@@ -1411,31 +1525,31 @@ div {
                         transform-origin: center;
                         transition-timing-function: ease-in-out;
                         transition: 2s;
-
+    
                     }
                 }
             }
-
+    
             .rouletter-arrow {
-
+    
                 position: absolute;
-                top: 150vw;
-                left: 64vw;
+                top: 111vw;
+                left: 66vw;
                 z-index: 9;
-
+    
                 img {
                     width: 2vw;
                 }
-
+    
             }
-
-
+    
+    
             .rouletter-btn {
                 position: absolute;
                 width: 4vw;
                 height: 4vw;
-                top: 163vw;
-                left: 63vw;
+                top: 124vw;
+                left: 65vw;
                 border-radius: 50%;
                 border: none;
                 background-color: $primary;
@@ -1443,16 +1557,14 @@ div {
                 font-family: 'Pretendard Variable';
                 font-weight: 500;
                 font-size: 1vw;
-
+    
             }
         }
-
+    
         .hidden-input {
             display: none;
-            z-index: -9;
-            opacity: 0;
         }
-    }
+    }    
 
     @media (max-width: 768px) {
         input {

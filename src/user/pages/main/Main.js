@@ -70,6 +70,18 @@ const Main = () => {
     const [isLastImgClicked, setIsLastImgClicked] = useState(false); // 추가된 상태 정의
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
     const [clickedStoreId, setClickedStoreId] = useState(null); // 클릭된 가게의 ID 상태
+    const [userNo, setUserNo] = useState(null); // 로그인된 사용자의 userNo를 저장할 상태
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+
+    useEffect(() => {
+        // 예시: 로컬 스토리지나 API에서 로그인 정보를 가져오는 방법
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (loggedInUser) {
+            setUserNo(loggedInUser.userNo);
+        }
+    }, []);
+
 
 
 
@@ -100,7 +112,21 @@ const Main = () => {
         }
     };
 
-
+      
+        // 윈도우 크기 변경 시 상태 업데이트
+        useEffect(() => {
+          const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+          };
+      
+          // 이벤트 리스너 등록
+          window.addEventListener('resize', handleResize);
+      
+          // 컴포넌트 언마운트 시 이벤트 리스너 제거
+          return () => {
+            window.removeEventListener('resize', handleResize);
+          };
+        }, []);
 
     useEffect(() => {
         const fImg = document.querySelector('.category>div');
@@ -109,6 +135,75 @@ const Main = () => {
         const FImg = document.querySelector('.category>div:nth-of-type(4)');
         const LImg = document.querySelector('.category>div:nth-of-type(5)');
 
+        if (windowWidth >= 769 && windowWidth <= 1440) {
+            if (isFirstImgClicked) {
+                fImg.style.left = '28.5vw';
+                SImg.style.left = '49.9vw';
+                TImg.style.left = '59.5vw';
+                FImg.style.left = '68.9vw';
+                LImg.style.left = '78.2vw';
+            } else if (isSecondImgClicked) {
+                fImg.style.left = '13.8vw';
+                SImg.style.left = '37.5vw';
+                TImg.style.left = '59.5vw';
+                FImg.style.left = '68.9vw';
+                LImg.style.left = '78.2vw';
+    
+            } else if (isThreeImgClicked) {
+                fImg.style.left = '13.8vw';
+                SImg.style.left = '23vw';
+                TImg.style.left = '46.5vw';
+                FImg.style.left = '68.9vw';
+                LImg.style.left = '78.2vw';
+    
+            } else if (isFourImgClicked) {
+                fImg.style.left = '13.8vw';
+                SImg.style.left = '23vw';
+                TImg.style.left = '32.5vw';
+                FImg.style.left = '56.5vw';
+                LImg.style.left = '78.2vw';
+            } else {
+                fImg.style.left = '13.8vw';
+                SImg.style.left = '23vw';
+                TImg.style.left = '32.5vw';
+                FImg.style.left = '42vw';
+                LImg.style.left = '65.5vw';
+         }}
+         else if(windowWidth <= 769 ){
+            if (isFirstImgClicked) {
+                fImg.style.left = '28.5vw';
+                SImg.style.left = '51.5vw';
+                TImg.style.left = '60.5vw';
+                FImg.style.left = '69.5vw';
+                LImg.style.left = '78.5vw';
+            } else if (isSecondImgClicked) {
+                fImg.style.left = '15.5vw';
+                SImg.style.left = '37.5vw';
+                TImg.style.left = '60.5vw';
+                FImg.style.left = '69.5vw';
+                LImg.style.left = '78.5vw';
+    
+            } else if (isThreeImgClicked) {
+                fImg.style.left = '15.5vw';
+                SImg.style.left = '24.5vw';
+                TImg.style.left = '47.5vw';
+                FImg.style.left = '69.5vw';
+                LImg.style.left = '78.5vw';
+    
+            } else if (isFourImgClicked) {
+                fImg.style.left = '15.5vw';
+                SImg.style.left = '24.5vw';
+                TImg.style.left = '33.5vw';
+                FImg.style.left = '56.5vw';
+                LImg.style.left = '78.5vw';
+            } else {
+                fImg.style.left = '15.5vw';
+                SImg.style.left = '24.5vw';
+                TImg.style.left = '33.5vw';
+                FImg.style.left = '43vw';
+                LImg.style.left = '65.5vw';
+            }
+        } else{
         if (isFirstImgClicked) {
             fImg.style.left = '28.5vw';
             SImg.style.left = '51.5vw';
@@ -141,7 +236,7 @@ const Main = () => {
             TImg.style.left = '33.5vw';
             FImg.style.left = '43vw';
             LImg.style.left = '65.5vw';
-        }
+        }}
     }, [isFirstImgClicked, isSecondImgClicked, isThreeImgClicked, isFourImgClicked, isLastImgClicked]);
 
 
@@ -266,7 +361,7 @@ const Main = () => {
 
     const getClosestStores = async (lat, lon) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/stores?lat=${lat}&lon=${lon}`, {
+            const response = await fetch(`${API_BASE_URL}/stores?lat=${lat}&lon=${lon}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',  // 응답을 JSON 형식으로 받겠다는 의미
@@ -296,6 +391,7 @@ const Main = () => {
             panel.appendChild(storeElement);
         });
     };
+
     async function initRoulette() {
         try {
             // 사용자의 위치를 가져오기
@@ -460,34 +556,38 @@ const Main = () => {
             rRotate(); // 룰렛 애니메이션
 
             setTimeout(async () => {
-                // 8개의 가게 가져오기 (선택된 카테고리 및 위치 기반)
-                const selectedStores = await fetchStoresLocation(selectedCategory, currentPosition);
-                const winningStore = selectedStores[Math.floor(Math.random() * selectedStores.length)];
-
                 try {
-                    // 현재 시간대와 가장 가까운 예약 시간 가져오기
+                    // 8개의 가게 가져오기 (선택된 카테고리 및 위치 기반)
+                    const selectedStores = await fetchStoresLocation(selectedCategory, currentPosition);
+                    if (selectedStores.length === 0) {
+                        alert("가게 정보를 불러오지 못했습니다.");
+                        return;
+                    }
+                    const winningStore = selectedStores[Math.floor(Math.random() * selectedStores.length)];
+
+                    // 예약 가능한 시간 가져오기
                     const nextAvailableTime = await getNextAvailableTime(winningStore.storeNo, new Date().toISOString().split('T')[0]); // 오늘 날짜를 기준으로
 
                     // 예약을 진행
-                    const userNo = 123; // 실제로는 로그인한 사용자 ID를 사용해야 함
                     await makeReservation(userNo, winningStore.storeNo, nextAvailableTime);
 
                     alert(`당첨된 가게: ${winningStore.storeName}\n예약 시간: ${nextAvailableTime}`);
-
                 } catch (error) {
-                    alert("예약 처리 중 오류가 발생했습니다.");
+                    console.error(error);
+                    alert(error.message || "예약 처리 중 오류가 발생했습니다.");
                 }
 
                 rReset(target); // 룰렛 초기화
-            }, 3000); // 3초 후 예약 처리
+            }, 2000); // 2초 후 예약 처리
         }
     };
 
 
 
+
     const makeReservation = async (userNo, storeNo, resTime) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/reservations/make`, {
+            const response = await fetch(`${API_BASE_URL}/reservations`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -516,7 +616,7 @@ const Main = () => {
     // 예약 가능한 가장 가까운 시간 반환
     const getNextAvailableTime = async (storeNo, resDate) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/reservations/next-available-time`, {
+            const response = await fetch(`${API_BASE_URL}/reservations/next-available-time`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

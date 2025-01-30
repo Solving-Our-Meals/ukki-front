@@ -49,7 +49,14 @@ function BossLayout() {
     useEffect(() => {
         const fetchStoreInfo = async () => {
             try {
-                const userRes = await fetch('/user/info');
+                const userRes = await fetch(`${API_BASE_URL}/user/info`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
                 if (!userRes.ok) {
                     throw new Error('사용자 정보를 가져오지 못했습니다.');
                 }
@@ -108,7 +115,7 @@ function BossLayout() {
         <>
             <div className={!doInquiryModal ? styles.layoutStyle : styles.layoutModalStyle}>
                 <BossHeader className={styles.header} />
-                <Sidebar/>
+                <Sidebar />
 
                 {/* 에러 상태를 UI에 반영 */}
                 {error ? (
@@ -118,7 +125,7 @@ function BossLayout() {
                         <>
                             {/* 가게와 사용자 정보가 준비되면 Outlet 렌더링 */}
                             <Outlet context={{ storeNo: storeInfo?.storeNo, userNo: userData?.userNo }} />
-                            
+
                             {/* 사용자 목록 출력 */}
                             {/* <section>
                                 <h2>사용자 목록</h2>
@@ -136,7 +143,7 @@ function BossLayout() {
             </div>
 
             {doInquiryModal && <div className={styles.overlay}></div>}
-            <FloatingBar setDoInquiryModal={setDoInquiryModal}/>
+            <FloatingBar setDoInquiryModal={setDoInquiryModal} />
         </>
     );
 }
