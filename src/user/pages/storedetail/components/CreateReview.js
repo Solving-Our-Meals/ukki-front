@@ -16,7 +16,7 @@ const FileInfo = ({uploadedInfo}) => (
     </ul>
 );
 
-const CreateReview = ({reflashMethod}) => {
+const CreateReview = ({reflashMethod, deleteResNo}) => {
     const { setGlobalError } = useError();
     const navigate = useNavigate();
     const { storeNo } = useParams();
@@ -37,7 +37,10 @@ const CreateReview = ({reflashMethod}) => {
 
     const [doWriteReview, setDoWriteReview] = useState(false);
     const [isCompletedReview, setIsCompletedReview] = useState(false);
-
+    const [noReviewResNo, setNoReviewResNo] = useState([]);
+    const [canWriteReviewList, setCanWriteReviewList] = useState([]);
+    const [existsResList, setExistsResList] = useState(false);
+    const [reviewResNo ,setReviewResNo] = useState(null);
     const [review, setReview] = useState({
         reviewDate : today,
         reviewContent : "",
@@ -45,7 +48,7 @@ const CreateReview = ({reflashMethod}) => {
         reviewScope : "",
         storeNo : "",
         userNo : "",
-        resNo : "9999"
+        resNo : ""
     });
 
     const onChangeHandler = (e) => {
@@ -62,10 +65,34 @@ const CreateReview = ({reflashMethod}) => {
                 reviewImage : uploadedInfo.file
             }));
         }
-    }, [uploadedInfo])
+    }, [uploadedInfo]);
+
+    const writeReviewClick = (resNo) => {
+        setExistsResList(false);
+        setIsDisplay(prevState => !prevState);
+        console.log('resNo',resNo);
+        setReviewResNo(resNo);
+    }
 
     const createReviewHandler = () => {
-        setIsDisplay(prevState => !prevState);
+        setExistsResList(true);
+        noReviewResNo.concat(deleteResNo);
+        console.log(deleteResNo);
+        // setIsDisplay(prevState => !prevState);
+        console.log('noReviewResNo : ', noReviewResNo);
+        fetch(`${API_BASE_URL}/store/getReservationList?resNo=${noReviewResNo}`,{
+            method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('canWriteReview', data);
+            setCanWriteReviewList(data);
+        })
+        .catch(error => console.log(error));
     }
 
     const cancleHandler = () => {
@@ -124,19 +151,14 @@ const CreateReview = ({reflashMethod}) => {
             reviewScope: review.reviewScope || "",
             storeNo: review.storeNo || "",
             userNo: review.userNo || "",
-            resNo: review.resNo || "",
+            resNo: reviewResNo || "",
         }));
-
-        // 이미지가 있을 때만 formData에 추가
-        // if (review.reviewImage && Object.keys(review.reviewImage).length > 0) {
-        //     formData.append('reviewImage', review.reviewImage);
-        // }
 
         if(uploadedFile){
             formData.append("reviewImage", uploadedFile);
         }
 
-        fetch(`${API_BASE_URL}/store/${storeNo}/review`, {
+        fetch(`${API_BASE_URL}/store/${storeNo}/review?resNo=${reviewResNo}`, {
             method: 'POST',
             body: formData,
             Credential : "include"
@@ -154,6 +176,23 @@ const CreateReview = ({reflashMethod}) => {
                 }));
                 setUploadedInfo(null);
                 setImageUrl(null);
+
+                // setReviewResNo((prevReviewResNo) => {
+                //     if (Array.isArray(prevReviewResNo)) {
+                //         return prevReviewResNo.filter((resNo) => resNo !== reviewResNo);
+                //     } else {
+                //         return prevReviewResNo;
+                //     }
+                // });
+
+                setNoReviewResNo((prevNoReviewResNo) => {
+                    if (Array.isArray(prevNoReviewResNo)) {
+                        return prevNoReviewResNo.filter((resNo) => resNo !== reviewResNo);
+                    } else {
+                        return prevNoReviewResNo;
+                    }
+                    });
+
             } else {
                 // console.error("Failed to submit review", res.statusText);
                 const error = new Error(`HTTP error! status: ${response.status}`);
@@ -226,7 +265,7 @@ const CreateReview = ({reflashMethod}) => {
 
     const getOverlayClass = () => { 
         if (doWriteReview) return `${styles.overlay} ${styles.zIndex11} ${styles.show}`; 
-        if (isDisplay || isCompletedReview) return `${styles.overlay} ${styles.zIndex10} ${styles.show}`; 
+        if (isDisplay || isCompletedReview || existsResList) return `${styles.overlay} ${styles.zIndex10} ${styles.show}`; 
         return styles.overlay; 
     }
 
@@ -369,9 +408,14 @@ const CreateReview = ({reflashMethod}) => {
                                 })
                                 .then(data => {
                                     console.log('예약 번호 성공');
-                                    console.log('data1', data);
-                                    if(data === true){
+                                    console.log('data', data)
+                                    if(data.writeReview === true){
                                         setWriteReview(true);
+                                        setNoReviewResNo((prevNoReviewResNo) => [
+                                            ...prevNoReviewResNo,
+                                            data.resNo
+                                        ]);
+                                        console.log('noReviewResNo11 : ', noReviewResNo);
                                     } 
                                 })
                                 .catch(error => {
@@ -535,7 +579,6 @@ const CreateReview = ({reflashMethod}) => {
 //                                 } 
 //                             }
                         } 
-                        console.log("설마 여기야??")
                     } 
                 }
             )
@@ -554,8 +597,6 @@ const CreateReview = ({reflashMethod}) => {
             });
         }
     }, [userInfo, storeInfo.storeNo]);
-    
-    console.log('writeReview', writeReview);
 
     // 버튼 활성화 여부를 확인하는 함수 추가
     const isSubmitDisabled = !review.reviewContent.trim() || !review.reviewScope;
@@ -584,6 +625,23 @@ const CreateReview = ({reflashMethod}) => {
             >
                 리뷰 작성하기
             </button>
+            <div className={getOverlayClass()}></div>
+            <div id={styles.reservationListArea} style={{display : existsResList ? "" : "none"}}>
+                <div id={styles.strReservationList}>예약 내역</div>
+                <div id={styles.strResDate}>날짜</div>
+                <div id={styles.strResTime}>시간</div>
+                {canWriteReviewList.map((reservationData, index) => (
+                    <div
+                        key={index}
+                        id={styles.reservationDataArea}
+                        style={{cursor : "pointer"}}
+                        onClick={() => writeReviewClick(reservationData.resNo)}
+                    >
+                        <div id={styles.resDate}>{reservationData.resDate}</div> <div id={styles.resTime}>{reservationData.resTime}</div>
+                    </div>
+                ))}
+                <div id={styles.closeResList} onClick={() => setExistsResList(false)}>닫기</div>
+            </div>
             <div className={getOverlayClass()}></div>
             <div className={styles.createReview} style={{display : isDisplay ? "" : "none"}} >
                 <div id={styles.strReview}>리뷰하기</div>
