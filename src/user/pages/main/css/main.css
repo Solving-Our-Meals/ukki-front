@@ -1083,7 +1083,7 @@ div .hidden-input {
     position: absolute;
     width: 100vw;
     height: 30vw;
-    top: 110vw;
+    top: 130vw;
     left: 0;
     border-radius: 0;
     border: none;
@@ -1144,19 +1144,19 @@ div .hidden-input {
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #232323;
   }
   div .location p:nth-of-type(1) span {
-    left: 4.5vw;
-    top: 0vw;
+    left: 5.5vw;
+    top: -0.2vw;
     width: 18vw;
     line-height: 130%;
   }
   div .location p:nth-of-type(2) span {
     left: 0vw;
     top: 1.7vw;
-    width: 22vw;
+    width: 20vw;
     display: -webkit-box;
     /* Ensures the box model is correct for ellipsis */
     -webkit-box-orient: vertical;
@@ -1196,11 +1196,11 @@ div .hidden-input {
   }
   div .location label:nth-of-type(1) {
     position: absolute;
-    left: 67vw;
-    top: 47.8vw;
+    left: 67.5vw;
+    top: 47.5vw;
     font-family: "Pretendard Variable";
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #232323;
     width: 10vw;
     background-color: transparent;
@@ -1208,11 +1208,11 @@ div .hidden-input {
   }
   div .location label:nth-of-type(2) {
     position: absolute;
-    left: 67vw;
-    top: 51vw;
+    left: 67.5vw;
+    top: 50.8vw;
     font-family: "Pretendard Variable";
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #232323;
     width: 10vw;
     background-color: transparent;
@@ -1251,6 +1251,7 @@ div .hidden-input {
     top: 35vw;
     border: 2px solid #fff;
     box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+    opacity: 0.8;
   }
   div .location > div > div {
     width: 10vw;
