@@ -12,6 +12,7 @@ function Header() {
     const [activeMenu, setActiveMenu] = useState('/main'); // 현재 활성화된 메뉴 항목을 추적
     const [visibleMenuItems, setVisibleMenuItems] = useState([]);
     const navigate = useNavigate();
+    const [userName, setUserName] = useState('');
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -20,7 +21,6 @@ function Header() {
     useEffect(() => {
         const checkAuthStatus = async () => {
             try {
-                // 토큰 검증 로직
                 const response = await fetch(`${API_BASE_URL}/auth/check-auth`, {
                     method: 'GET',
                     headers: {
@@ -32,6 +32,7 @@ function Header() {
 
                 if (response.ok) {
                     setIsLoggedIn(true);
+                    fetchUserInfo();
                 } else {
                     setIsLoggedIn(false);
                 }
@@ -41,8 +42,31 @@ function Header() {
             }
         };
 
+        const fetchUserInfo = async () => {
+            try {
+                const userResponse = await fetch(`${API_BASE_URL}/user/info`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                });
+
+                if (userResponse.ok) {
+                    const userData = await userResponse.json();
+                    setUserName(userData.nickname);
+                } else {
+                    console.error('Failed to fetch user info');
+                }
+            } catch (error) {
+                console.error('Error fetching user info:', error);
+            }
+        };
+
         checkAuthStatus();
     }, []);
+
 
     // 로그아웃
     const handleLogout = async () => {
@@ -54,11 +78,11 @@ function Header() {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-                redirect: 'follow'
             });
 
             if (response.ok) {
                 setIsLoggedIn(false);
+                // 로그아웃 후 경로 이동
                 navigate('/main');
             } else {
                 console.error('Logout failed');
@@ -69,12 +93,13 @@ function Header() {
     };
 
 
+
     const handleMenuClick = (path) => {
         setActiveMenu(path); // 클릭한 메뉴 항목을 활성화
     };
 
     useEffect(() => {
-        // 각 메뉴 항목을 순차적으로 표시
+        // 로그인 상태에 따라 메뉴 항목 업데이트
         const menuItems = [
             '/', '/search', '/info', '/reservation',
             '/notice', '/user/mypage'
@@ -83,10 +108,9 @@ function Header() {
         menuItems.forEach((item, index) => {
             setTimeout(() => {
                 setVisibleMenuItems(prevItems => [...prevItems, item]);
-            }, index * 150); // 150ms 간격으로 순차적 표시
+            }, index * 150);
         });
 
-        // 로그인, 회원가입, 로그아웃 메뉴 항목은 0.7초 뒤에 표시
         setTimeout(() => {
             const authItems = isLoggedIn ? ['/logout'] : ['/auth/login', '/auth/signup'];
             authItems.forEach((item, index) => {
@@ -95,8 +119,18 @@ function Header() {
                 }, index * 150);
             });
         }, 700);
-
     }, [isLoggedIn]);
+
+    const greetingStyle = {
+        position: 'absolute',
+        top: '5px',
+        left: '80%',
+        transform: 'translateX(-50%)',
+        color: 'blue',
+        fontWeight: 'bold',
+        fontSize: '18px',
+    };
+
 
     return (
         <>
@@ -115,7 +149,14 @@ function Header() {
                             <NavLink to="/auth/signup" className={`menu-item auth ${activeMenu === '/auth/signup' ? 'active' : ''} ${visibleMenuItems.includes('/auth/signup') ? 'visible' : ''}`} onClick={() => handleMenuClick('/auth/signup')}>회원가입</NavLink>
                         </>
                     ) : (
-                        <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+                        <>
+                            <p className="user-greeting" style={greetingStyle}>안녕하세요, {userName}님!</p>
+                            <NavLink to="#" onClick={() => {
+                                handleLogout();
+                                handleMenuClick('/logout');
+                            }}
+                                     className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+                        </>
                     )}
                 </span>
                 <button className="menu-button" onClick={toggleMenu}>

@@ -48,6 +48,7 @@ function StoreDetail({reservationHandler}){
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
+                credentials : "include",
             })  //검색 페이지 만들어지면 pathvariable로 변경하기
             .then(response => {
                 if (!response.ok) {

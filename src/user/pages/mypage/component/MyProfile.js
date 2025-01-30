@@ -136,7 +136,7 @@ function MyProfile() {
 
         const formData = new FormData();
         formData.append('profileImage', imageFile);
-
+        const currentImage = profileImage;
         try {
             // 이미지 업로드 요청
             const response = await fetch(`${API_BASE_URL}/user/mypage/profile-image`, {
@@ -161,10 +161,12 @@ function MyProfile() {
             } else {
                 alert(result.message);
                 setIsUploading(false);  // 업로드 실패 시 로딩 상태 끄기
+                setProfileImage(profileImage);
             }
         } catch (error) {
             alert('이미지 업로드 중 오류가 발생했습니다.');
             setIsUploading(false);  // 업로드 실패 시 로딩 상태 끄기
+            setProfileImage(profileImage);
         }
     };
 

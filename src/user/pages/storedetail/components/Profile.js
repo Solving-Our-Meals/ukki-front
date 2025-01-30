@@ -16,6 +16,7 @@ function Profile({ storeNo }) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
+            credentials : "include",
         });
 
         if (!response.ok) {
@@ -37,6 +38,7 @@ function Profile({ storeNo }) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
+            credentials : "include",
         });
 
         if (!response.ok) {

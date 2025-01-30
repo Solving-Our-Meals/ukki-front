@@ -173,6 +173,7 @@ function Calendar() {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
+            credentials : "include",
             })
             .then(response => {
                 if (!response.ok) {
@@ -466,6 +467,7 @@ function Calendar() {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
+                    credentials : "include",
                 })
                 .then(response => {
                     if (!response.ok) {
