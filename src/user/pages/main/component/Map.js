@@ -17,6 +17,14 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
     const [polylines, setPolylines] = useState([]);  // 표시된 경로들
 
     useEffect(() => {
+    if (map && currentPosition) {
+        const newLatLng = new kakao.maps.LatLng(currentPosition.y, currentPosition.x);
+        map.setCenter(newLatLng); // 현재 위치로 맵을 이동
+    }
+}, [currentPosition, map]); // currentPosition이 변경될 때마다 실행
+
+
+    useEffect(() => {
         if (selectedCategory) {
             fetch(`${API_BASE_URL}/main/category?category=${selectedCategory}`)
                 .then((response) => response.json())
