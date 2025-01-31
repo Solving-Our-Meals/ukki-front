@@ -103,6 +103,7 @@ const Main = () => {
     }, []);
 
 
+
     const locationRef = useRef(null);
 
     useEffect(() => {
@@ -333,6 +334,8 @@ const Main = () => {
     //     };
 
     // };
+
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleReservationClick = () => {
         if (storeInfo && storeInfo.storeNo) {

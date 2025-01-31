@@ -5,6 +5,9 @@ import { API_BASE_URL } from '../../../../config/api.config';
 
 const { kakao } = window;
 
+const KAKAO_API_KEY = window._env_?.REACT_APP_KAKAOMAP_APP_KEY || process.env.REACT_APP_KAKAOMAP_APP_KEY;
+const KAKAO_REST_API_KEY = window._env_?.REACT_APP_KAKAOMAP_REST_API_KEY || process.env.REACT_APP_KAKAOMAP_REST_API_KEY;
+
 const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClick, toggleIsMarkerClicked }) => {
     const [map, setMap] = useState(null);
     const [stores, setStores] = useState([]);
@@ -80,7 +83,7 @@ const updateLocationAndRoute = async (newAddress) => {
 
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAOMAP_APP_KEY}&libraries=services`;
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&libraries=services`;
         script.async = true;
         script.onload = () => {
             const mapContainer = document.getElementById('map');
@@ -221,7 +224,7 @@ const updateLocationAndRoute = async (newAddress) => {
             const url = `https://apis-navi.kakaomobility.com/v1/waypoints/directions`;
         
             const headers = {
-                'Authorization': `KakaoAK ${process.env.REACT_APP_KAKAOMAP_REST_API_KEY}`,
+                'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,
                 'Content-Type': 'application/json',
             };
         
