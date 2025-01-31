@@ -30,14 +30,12 @@ import TotalInquiryPage from './store/pages/bossInquiry/pages/TotalInquiryPage';
 import SpecificInquiry from './store/pages/bossInquiry/pages/SpecificInquiry';
 import BossStoreInfoPage from './store/pages/storeInfo/page/BossStoreInfoPage';
 import { ErrorProvider } from './common/error/components/ErrorContext';
-import {UserRole} from './common/authContext/UserRole';
 
 function App() {
     return (
         <ErrorProvider>
             <BrowserRouter>
                 <AuthProvider>
-                    <UserRole>
                     <Routes>
                         {/* 로그인 인증이 필요 없는 라우트 넣기 */}
                         <Route path="auth/signup" element={<Signup />} />
@@ -82,7 +80,6 @@ function App() {
                         {/* 404 NOT FOUND ERROR */}
                         <Route path="/*" element={<Error404/>}/>
                     </Routes>
-                        </UserRole>
                 </AuthProvider>
             </BrowserRouter>
         </ErrorProvider>
