@@ -21,7 +21,8 @@ export async function UserListAPI(category, word) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials : "include",
         });
 
         if (!response.ok) {
@@ -54,8 +55,7 @@ function BossLayout() {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
-                    },
-                    credentials : "include"
+                    }, credentials: 'include'
                 });
 
                 if (!userRes.ok) {

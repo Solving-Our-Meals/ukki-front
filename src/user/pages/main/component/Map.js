@@ -276,16 +276,16 @@ const updateLocationAndRoute = async (newAddress) => {
     
     const displayRoute = (routePath) => {
         if (!routePath || routePath.length === 0) {
-            console.error('Invalid directions data: No route path found');
+            console.error('유효하지 않은 경로 데이터');
             return;
         }
-        
-        // 기존 경로 삭제 (새 경로 표시 전에)
+    
+        // 기존 경로 삭제
         if (window.currentPolyline) {
             window.currentPolyline.setMap(null);
         }
     
-        // 새로운 경로 표시
+        // 새 경로 표시
         const polyline = new kakao.maps.Polyline({
             path: routePath.map(point => new kakao.maps.LatLng(point[1], point[0])),
             strokeWeight: 5,
@@ -293,17 +293,15 @@ const updateLocationAndRoute = async (newAddress) => {
             strokeOpacity: 1,
             strokeStyle: 'solid'
         });
-        
+    
         polyline.setMap(map);
-        
-        // 경로를 전역 변수로 설정 (다음 경로 표시 시 삭제할 수 있도록)
         window.currentPolyline = polyline;
-        
-        // 경로의 범위에 맞춰 지도 bounds 설정
+    
         const bounds = new kakao.maps.LatLngBounds();
         routePath.forEach(point => bounds.extend(new kakao.maps.LatLng(point[1], point[0])));
         map.setBounds(bounds);
     };
+    
     
     
     function displayMarker(locPosition, message, mapInstance) {

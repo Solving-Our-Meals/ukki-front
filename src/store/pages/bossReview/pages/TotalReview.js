@@ -26,6 +26,7 @@ function TotalReview(){
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
+                    credentials:"include",
                 }).then(res => res.json()),
                 fetch(`${API_BASE_URL}/boss/mypage/reviewList?storeNo=${storeNo}`,{
                     method: 'GET',
@@ -33,6 +34,7 @@ function TotalReview(){
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
+                    credentials:"include",
                 }).then(res => res.json())
             ])
             .then(([recentReviewData, reviewListData]) => {
