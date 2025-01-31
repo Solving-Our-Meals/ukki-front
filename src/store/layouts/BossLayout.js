@@ -21,7 +21,8 @@ export async function UserListAPI(category, word) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials : "include",
         });
 
         if (!response.ok) {
@@ -54,7 +55,7 @@ function BossLayout() {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
-                    }
+                    }, credentials: 'include'
                 });
 
                 if (!userRes.ok) {
@@ -65,7 +66,13 @@ function BossLayout() {
                 console.log('User Data:', fetchedUserData);
 
                 // 가게 정보 가져오기
-                const storeRes = await fetch(`${API_BASE_URL}/boss/mypage/getStoreInfo?userNo=${fetchedUserData.userNo}`);
+                const storeRes = await fetch(`${API_BASE_URL}/boss/mypage/getStoreInfo?userNo=${fetchedUserData.userNo}`,{
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    credentials : "include"
+                });
                 if (!storeRes.ok) {
                     throw new Error('가게 정보를 가져오지 못했습니다.');
                 }

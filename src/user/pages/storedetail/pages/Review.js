@@ -34,7 +34,7 @@ function Review(){
     // Footer를 참고하기 위한 ref
     const footerRef = useRef(null);
 
-    const [deleteResNo, setDeleteResNo] = useState(null);
+    const [deleteResNo, setDeleteResNo] = useState([]);
 
     const addNewReview = (newReview) => {
         setReviews(prevReviews => [...prevReviews, newReview]);
@@ -126,11 +126,11 @@ function Review(){
             },
         })
         .then(response => {
-            if (!response.ok) {
-                const error = new Error(`HTTP error! status: ${response.status}`);
-                error.status = response.status;
-                throw error;
-            }
+            // if (!response.ok) {
+            //     const error = new Error(`HTTP error! status: ${response.status}`);
+            //     error.status = response.status;
+            //     throw error;
+            // }
             return response.json();
         })
         .then(data => {
@@ -141,16 +141,16 @@ function Review(){
         })
         .catch(error => {
             console.error(error);
-            setGlobalError(error.message, error.status);
+            // setGlobalError(error.message, error.status);
 
-            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-            if (error.status === 404) {
-                navigate('/404');
-            } else if (error.status === 403) {
-                navigate('/403');
-            } else {
-                navigate('/500');
-            }
+            // // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            // if (error.status === 404) {
+            //     navigate('/404');
+            // } else if (error.status === 403) {
+            //     navigate('/403');
+            // } else {
+            //     navigate('/500');
+            // }
         });
     }
 
@@ -163,11 +163,11 @@ function Review(){
             },
         })
         .then(response => {
-            if (!response.ok) {
-                const error = new Error(`HTTP error! status: ${response.status}`);
-                error.status = response.status;
-                throw error;
-            }
+            // if (!response.ok) {
+            //     const error = new Error(`HTTP error! status: ${response.status}`);
+            //     error.status = response.status;
+            //     throw error;
+            // }
             return response.json();
         })
         .then(data => {
@@ -178,16 +178,16 @@ function Review(){
         })
         .catch(error => {
             console.error(error);
-            setGlobalError(error.message, error.status);
+            // setGlobalError(error.message, error.status);
 
-            // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-            if (error.status === 404) {
-                navigate('/404');
-            } else if (error.status === 403) {
-                navigate('/403');
-            } else {
-                navigate('/500');
-            }
+            // // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+            // if (error.status === 404) {
+            //     navigate('/404');
+            // } else if (error.status === 403) {
+            //     navigate('/403');
+            // } else {
+            //     navigate('/500');
+            // }
         });
     }
 
@@ -201,11 +201,11 @@ function Review(){
             },
         })
         .then(response => {
-            if (!response.ok) {
-                const error = new Error(`HTTP error! status: ${response.status}`);
-                error.status = response.status;
-                throw error;
-            }
+            // if (!response.ok) {
+            //     const error = new Error(`HTTP error! status: ${response.status}`);
+            //     error.status = response.status;
+            //     throw error;
+            // }
             return response.json();
         })
         .then(data => {
@@ -216,16 +216,16 @@ function Review(){
         })
         .catch(error => {
             console.error(error);
-            setGlobalError(error.message, error.status);
+            // setGlobalError(error.message, error.status);
 
             // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-            if (error.status === 404) {
-                navigate('/404');
-            } else if (error.status === 403) {
-                navigate('/403');
-            } else {
-                navigate('/500');
-            }
+            // if (error.status === 404) {
+            //     navigate('/404');
+            // } else if (error.status === 403) {
+            //     navigate('/403');
+            // } else {
+            //     navigate('/500');
+            // }
         });
     }
 
@@ -250,7 +250,8 @@ function Review(){
                 setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
                 setCompleteOrFailDeleteMessage("해당 리뷰가 삭제되었습니다.");
-                deleteResNo.push(resNo);
+                setDeleteResNo(prevDeleteResNo => [...prevDeleteResNo, resNo]);
+                window.location.reload();
             } else {
                 setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
@@ -286,11 +287,11 @@ function Review(){
                 },
                 credentials : "include"
             }).then(response => {
-                if (!response.ok) {
-                    const error = new Error(`HTTP error! status: ${response.status}`);
-                    error.status = response.status;
-                    throw error;
-                }
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
                 return response.json();
             }),
             fetch(`${API_BASE_URL}/store/${storeNo}/review`,{
@@ -300,11 +301,11 @@ function Review(){
                     'Content-Type': 'application/json',
                 },
             }).then(response => {
-                if (!response.ok) {
-                    const error = new Error(`HTTP error! status: ${response.status}`);
-                    error.status = response.status;
-                    throw error;
-                }
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
                 return response.json();
             })
         ])
@@ -318,16 +319,16 @@ function Review(){
         })
         .catch(error => {
             console.error(error);
-            setGlobalError(error.message, error.status);
+            // setGlobalError(error.message, error.status);
 
             // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-            if (error.status === 404) {
-                navigate('/404');
-            } else if (error.status === 403) {
-                navigate('/403');
-            } else {
-                navigate('/500');
-            }
+            // if (error.status === 404) {
+            //     navigate('/404');
+            // } else if (error.status === 403) {
+            //     navigate('/403');
+            // } else {
+            //     navigate('/500');
+            // }
         });
     }
 

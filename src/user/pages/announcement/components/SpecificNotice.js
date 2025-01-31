@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../css/specificNotice.module.css';
 import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function SpecificNotice(){
 
@@ -15,7 +16,7 @@ function SpecificNotice(){
     });
 
     useEffect(() => {
-        fetch(`/notice/getSpecificNotice?noticeNo=${noticeNo}`)
+        fetch(`${API_BASE_URL}/notice/getSpecificNotice?noticeNo=${noticeNo}`)
         .then(res => res.json())
         .then(data => {
             console.log('공지사항 정보', data);
