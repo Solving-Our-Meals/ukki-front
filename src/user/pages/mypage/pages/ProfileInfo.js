@@ -17,7 +17,6 @@ function ProfileInfo({onUpdate}) {
         userPass: '',
         nickname: '',
         newPassword: '',
-        profileImage: null,
     });
     const [passwordError, setPasswordError] = useState('');
     const [nicknameError, setNicknameError] = useState('');
@@ -134,25 +133,26 @@ function ProfileInfo({onUpdate}) {
     };
 
     const handleUpdateSubmit = async () => {
-        const updateData = new FormData();
+        const updateData = {};
 
+        // 닉네임과 비밀번호가 변경되었을 때만 보내기
         if (formData.nickname && formData.nickname !== userInfo.nickname && nicknameSuccess) {
-            updateData.append('userName', formData.nickname);
+            updateData.userName = formData.nickname;
         }
 
         if (formData.newPassword && passwordSuccess) {
-            updateData.append('userPass', formData.newPassword);
+            updateData.userPass = formData.newPassword;
         }
 
         try {
             const updateResponse = await fetch(`${API_BASE_URL}/user/mypage/update`, {
                 method: 'PUT',
                 headers: {
-                    'Accept' : 'application/json',
-                    'Content-Type': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(updateData),
-                credentials: 'include',
+                credentials: 'include', // 쿠키 포함 여부
             });
 
             const result = await updateResponse.json();
@@ -160,8 +160,7 @@ function ProfileInfo({onUpdate}) {
                 setUpdateSuccess(true);
                 setUserInfo(result);
                 onUpdate();
-                setUserInfo();
-                setFormData({userPass:'', nickname:'', newPassword: ''})
+                setFormData({ userPass: '', nickname: '', newPassword: '' });
             } else {
                 setUpdateError(result.message);
             }
@@ -169,6 +168,7 @@ function ProfileInfo({onUpdate}) {
             setUpdateError('네트워크 오류가 발생했습니다.');
         }
     };
+
 
     const handlePasswordSubmit = async (event) => {
         event.preventDefault();
