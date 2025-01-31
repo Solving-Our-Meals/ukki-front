@@ -26,9 +26,7 @@ import './css/main.css';
 import Map from './component/Map.js';
 import Footer from './component/Footer.js';
 import { API_BASE_URL } from '../../../config/api.config.js';
-import axios from 'axios';
-import { useUser } from '../../../common/authContext/UserRole';
-
+import { useAuth } from '../../../common/authContext/AuthContext';
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
 const storeInfos = [
@@ -73,6 +71,25 @@ const Main = () => {
     const [clickedStoreId, setClickedStoreId] = useState(null); // 클릭된 가게의 ID 상태
     const [userNo, setUserNo] = useState(null); // 로그인된 사용자의 userNo를 저장할 상태
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const navigate = useNavigate();
+
+    const { isAuthenticated, user } = useAuth();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            return;
+        }
+
+        if (user?.userRole === 'STORE') {
+            navigate('/boss');
+            return;
+        }
+
+        if (user?.userRole === 'ADMIN') {
+            navigate('/admin');
+            return;
+        }
+    }, [isAuthenticated, user, navigate]);
 
 
     useEffect(() => {
@@ -85,22 +102,6 @@ const Main = () => {
 
 
     const locationRef = useRef(null);
-
-    const navigateRole = useNavigate(null);
-
-    const { userRole } = useUser();
-
-    useEffect(() => {
-        if (userRole) {
-            console.log(userRole);
-            if (userRole === 'ADMIN') {
-                navigateRole('/admin');
-            } else if (userRole === 'STORE') {
-                navigateRole('/boss/mypage');
-            }
-        }
-    }, [userRole, navigateRole]);
-
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -330,8 +331,6 @@ const Main = () => {
         };
 
     };
-
-    const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleReservationClick = () => {
         if (storeInfo && storeInfo.storeNo) {

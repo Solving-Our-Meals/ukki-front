@@ -16,27 +16,32 @@ function PrivateRoute({ element, ...rest }) {
     }, [isAuthenticated, navigate]);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            if (user?.userRole === 'ADMIN') {
-                if (!window.location.pathname.startsWith('/admin')) {
-                    navigate('/admin');
-                }
-            } else if (user?.userRole === 'STORE') {
+        const verifyAuth = async () => {
+            if (!isAuthenticated) {
+                navigate('/auth/login');  // 인증되지 않은 사용자는 로그인 페이지로 리디렉션
+                return;
+            }
+
+            if (user?.userRole === 'STORE') {
                 if (!window.location.pathname.startsWith('/boss')) {
-                    navigate('/boss');
+                    navigate('/boss/mypage');  // /boss 외 다른 페이지로 접근하려면 /main으로 리디렉션
                 }
-            } else if (user?.userRole === 'USER') {
-                if (!window.location.pathname.startsWith('/')) {
+            }
+
+            else if (user?.userRole === 'ADMIN') {
+                if (!window.location.pathname.startsWith('/admin')) {
+                    navigate('/admin');  // /admin 외 다른 페이지로 접근하려면 /admin으로 리디렉션
+                }
+            }
+
+            else if (user?.userRole === 'USER') {
+                if (window.location.pathname.startsWith('/boss') || window.location.pathname.startsWith('/admin')) {
                     navigate('/');
                 }
             }
-        } else {
-            if (!window.location.pathname.startsWith('/main') &&
-                !window.location.pathname.startsWith('/store') &&
-                !window.location.pathname.startsWith('/info')) {
-                navigate('/main');
-            }
-        }
+        };
+
+        verifyAuth();
     }, [isAuthenticated, user, navigate]);
 
     if (!isAuthenticated) {

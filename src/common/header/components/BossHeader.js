@@ -73,7 +73,7 @@ function BossHeader() {
         });
 
         setIsLoggedIn(false);
-        navigate('/main');
+        navigate('/auth/login');
         /*window.location.reload();*/
     };
 
