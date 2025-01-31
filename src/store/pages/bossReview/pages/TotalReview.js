@@ -104,7 +104,7 @@ function TotalReview(){
                     {renderStars(recentReview.reviewScope)}
                     <span id={styles.recentReviewContent} onClick={() => showSpecificReview(recentReview.revieNo)}>{recentReview.reviewContent}</span>
                 </div>
-                <span id={styles.reviewCount}>총 {totalReviewInfo.reviewCount}개의 리뷰가 있습니다.</span>
+                <span id={styles.reviewCount}>총 {totalReviewInfo.reviewCount === null ? 0 : totalReviewInfo.reviewCount}개의 리뷰가 있습니다.</span>
                 <button 
                     id={styles.prevBtn} 
                     onClick={handlePrevClick}

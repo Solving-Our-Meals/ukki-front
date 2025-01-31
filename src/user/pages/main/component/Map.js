@@ -5,6 +5,9 @@ import { API_BASE_URL } from '../../../../config/api.config';
 
 const { kakao } = window;
 
+const KAKAO_API_KEY = window._env_?.REACT_APP_KAKAOMAP_APP_KEY || process.env.REACT_APP_KAKAOMAP_APP_KEY;
+const KAKAO_REST_API_KEY = window._env_?.REACT_APP_KAKAOMAP_REST_API_KEY || process.env.REACT_APP_KAKAOMAP_REST_API_KEY;
+
 const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClick, toggleIsMarkerClicked }) => {
     const [map, setMap] = useState(null);
     const [stores, setStores] = useState([]);
@@ -15,15 +18,50 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
     const [clickedStoreId, setClickedStoreId] = useState(null);
     const [polylines, setPolylines] = useState([]);  // 표시된 경로들
+    const [storeAddress, setStoreAddress] = useState('');
+
 
     useEffect(() => {
-    if (map && currentPosition) {
-        const newLatLng = new kakao.maps.LatLng(currentPosition.y, currentPosition.x);
-        map.setCenter(newLatLng); // 현재 위치로 맵을 이동
+        if (map && currentPosition) {
+            const newLatLng = new kakao.maps.LatLng(currentPosition.y, currentPosition.x);
+            map.setCenter(newLatLng); // 지도 중심을 현재 위치로 이동
+        }
+    }, [currentPosition, map]); // currentPosition이 변경될 때마다 실행
+    
+
+
+const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+        // 사용자가 엔터를 눌렀을 때
+        updateLocationAndRoute(defaultValue); // 주소 업데이트하고 경로 새로 그리기
     }
-}, [currentPosition, map]); // currentPosition이 변경될 때마다 실행
+};
 
+const updateLocationAndRoute = async (newAddress) => {
+    // 새로운 주소를 좌표로 변환
+    const geocoder = new kakao.maps.services.Geocoder();
+    
+    geocoder.addressSearch(newAddress, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            // 주소를 위도/경도로 변환
+            const newLatLng = new kakao.maps.LatLng(result[0].y, result[0].x);
+            
+            // 지도 중심을 새 위치로 업데이트
+            if (map) {
+                map.setCenter(newLatLng);
+            }
 
+            // 현재 위치와 가게 위치 사이 경로를 요청
+            if (currentPosition) {
+                requestDirections(newLatLng);
+            }
+            // 입력한 주소를 state로 저장
+            setStoreAddress(newAddress);
+        } else {
+            alert("주소를 찾을 수 없습니다.");
+        }
+    });
+};
     useEffect(() => {
         if (selectedCategory) {
             fetch(`${API_BASE_URL}/main/category?category=${selectedCategory}`)
@@ -45,12 +83,12 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAOMAP_APP_KEY}&libraries=services`;
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&libraries=services`;
         script.async = true;
         script.onload = () => {
             const mapContainer = document.getElementById('map');
             const mapOption = {
-                center: new kakao.maps.LatLng(37.562997, 127.189575),
+                center: new kakao.maps.LatLng(37.563322, 127.192546),
                 level: 3
             };
 
@@ -62,39 +100,54 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
     useEffect(() => {
         if (map && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-
-                const locPosition = new kakao.maps.LatLng(lat, lon);
-                const message = '<div style="padding:3px; padding-left:40px; height:1.5vw; font-weight:700; color:#FF8AA3;">현재 위치</div>';
-
-                displayMarker(locPosition, message, map);
-                setCurrentPosition({ x: lon, y: lat }); // 사용자 현재 위치 설정
-
-                map.setCenter(locPosition);
-
-                const geocoder = new kakao.maps.services.Geocoder();
-                geocoder.coord2Address(lat, lon, (result, status) => {
-                    if (status === kakao.maps.services.Status.OK) {
-                        const address = result[0].road_address
-                            ? result[0].road_address.address_name
-                            : result[0].address.address_name;
-                        if (address !== defaultValue) {
-                            setAddress(address);
+            const geoWatcher = navigator.geolocation.watchPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+    
+                    const locPosition = new kakao.maps.LatLng(lat, lon);
+                    const message = '<div style="padding:3px; padding-left:40px; height:1.5vw; font-weight:700; color:#FF8AA3;">현재 위치</div>';
+    
+                    // 위치 마커 표시
+                    displayMarker(locPosition, message, map);
+                    setCurrentPosition({ x: lon, y: lat }); // 사용자 현재 위치 설정
+    
+                    // 지도 중심을 현재 위치로 설정
+                    map.setCenter(locPosition);
+    
+                    // 주소 변환
+                    const geocoder = new kakao.maps.services.Geocoder();
+                    geocoder.coord2Address(lat, lon, (result, status) => {
+                        if (status === kakao.maps.services.Status.OK) {
+                            const address = result[0].road_address
+                                ? result[0].road_address.address_name
+                                : result[0].address.address_name;
+                            if (address !== defaultValue) {
+                                setAddress(address);
+                                console.log("주소가 변경되었습니다: ", address);
+                            }
                         }
-                    }
-                });
-            });
-        } else {
-            const locPosition = new kakao.maps.LatLng(37.562997, 127.189575);
-            const message = '현재위치 추적 불가능';
-            if (map) {
-                displayMarker(locPosition, message, map);
-                map.setCenter(locPosition);
-            }
+                    });
+                },
+                (error) => {
+                    console.error("위치 정보 가져오기 실패: ", error);
+                },
+                {
+                    enableHighAccuracy: true, // 위치 정확도 높이기
+                    maximumAge: 0, // 오래된 위치 정보는 사용하지 않음
+                    timeout: 5000, // 타임아웃 시간
+                }
+            );
+    
+            // 컴포넌트가 언마운트 될 때 위치 추적을 중지
+            return () => {
+                navigator.geolocation.clearWatch(geoWatcher);
+            };
         }
     }, [map, defaultValue, setAddress]);
+    
+
+    
     useEffect(() => {
         // 카테고리가 변경될 때 경로 초기화
         if (window.currentPolyline) {
@@ -171,7 +224,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             const url = `https://apis-navi.kakaomobility.com/v1/waypoints/directions`;
         
             const headers = {
-                'Authorization': `KakaoAK ${process.env.REACT_APP_KAKAOMAP_REST_API_KEY}`,
+                'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,
                 'Content-Type': 'application/json',
             };
         
