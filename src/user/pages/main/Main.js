@@ -335,8 +335,6 @@ const Main = () => {
 
     // };
 
-    const navigate = useNavigate(); // useNavigate 훅 사용
-
     const handleReservationClick = () => {
         if (storeInfo && storeInfo.storeNo) {
             console.log("Selected StoreNo: ", storeInfo.storeNo);  // 디버깅용
