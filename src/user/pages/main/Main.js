@@ -77,7 +77,6 @@ const Main = () => {
 
     useEffect(() => {
         if (!isAuthenticated) {
-            navigate('/auth/login');
             return;
         }
 

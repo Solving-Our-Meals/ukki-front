@@ -30,7 +30,6 @@ import TotalInquiryPage from './store/pages/bossInquiry/pages/TotalInquiryPage';
 import SpecificInquiry from './store/pages/bossInquiry/pages/SpecificInquiry';
 import BossStoreInfoPage from './store/pages/storeInfo/page/BossStoreInfoPage';
 import { ErrorProvider } from './common/error/components/ErrorContext';
-// import {UserRole} from './common/authContext/UserRole';
 
 function App() {
     return (
