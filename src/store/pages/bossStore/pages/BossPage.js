@@ -300,7 +300,7 @@ function BossPage() {
                 <WeeklyReservationGraph data={weeklyReservationCount} />
 
                 <section className="today-reservation">
-                    <h2>오늘 예약 수</h2>
+                    <h2>오늘 남은 예약 수</h2>
                     <p>{todayReservationCount}건</p>
                 </section>
             </div>
