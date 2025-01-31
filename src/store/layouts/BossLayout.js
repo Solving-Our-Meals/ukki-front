@@ -55,8 +55,7 @@ function BossLayout() {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
-                    },
-                    credentials : "include"
+                    }, credentials: 'include'
                 });
 
                 if (!userRes.ok) {
