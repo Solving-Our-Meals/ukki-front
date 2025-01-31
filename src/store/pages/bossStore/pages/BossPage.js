@@ -21,8 +21,8 @@ function BossPage() {
     const [weeklyReservationCount, setWeeklyReservationCount] = useState([]);
     const [todayReservationCount, setTodayReservationCount] = useState(0);
     const [startDate, setStartDate] = useState(dayjs().format('YYYY-MM-DD'));
-    const [selectedTime, setSelectedTime] = useState('');
-    const [selectedDate, setSelectedDate] = useState(dayjs().format('YYYY-MM-DD'));
+    const [selectedTime, setSelectedTime] = useState(dayjs().format('HH:mm'));
+    const [selectedDate, setSelectedDate] = useState(startDate);
 
     const getClosest30MinTime = () => {
         const now = new Date();
@@ -31,26 +31,33 @@ function BossPage() {
         now.setMinutes(nearestHalfHour, 0, 0);  
         return now;
     };
-
+ 
+    
     const fetchAvailableSlots = async (date, time) => {
         try {
-            const formattedDate = dayjs(date).format('YYYY-MM-DD');
-            const formattedTime = dayjs(time, 'HH:mm').format('HH:mm');
+            // 날짜를 'YYYY-MM-DD' 형식으로 포맷 (시간 정보는 제외)
+            const formattedDate = dayjs(date).format('YYYY-MM-DD');  // YYYY-MM-DD 형식으로 변환
+            const formattedTime = dayjs(time, 'HH:mm').format('HH:mm');  // HH:mm 형식으로 변환
     
             const params = {
                 storeNo: storeNo,
-                reservationDate: formattedDate,
-                reservationTime: formattedTime
+                reservationDate: formattedDate,  // 서버가 기대하는 형식으로 날짜 전송
+                reservationTime: formattedTime   // 시간도 올바른 형식으로 전송
             };
     
             console.log('Fetching slots with params:', params);
     
-            const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservation-statu`, { params });
+            const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservation-status`, {
+                params: {
+                    storeNo,
+                    reservationDate: formattedDate,  // 시간 정보 없는 'YYYY-MM-DD' 형식
+                    reservationTime: formattedTime   // 시간도 올바른 형식
+                }
+            });
     
             const resPosNumber = Number(response.data.resPosNumber);
             const validResPosNumber = isNaN(resPosNumber) ? 5 : resPosNumber;
     
-       
             setResPosNumbers(prev => ({
                 ...prev,
                 [`${formattedDate} ${formattedTime}`]: validResPosNumber
@@ -59,6 +66,9 @@ function BossPage() {
             console.error('Error fetching available pos num:', error);
         }
     };
+    
+    
+    
 
     useEffect(() => {
         if (userNo === undefined || storeNo === undefined) return;
@@ -67,16 +77,32 @@ function BossPage() {
         if (savedResPosNumbers) {
             setResPosNumbers(savedResPosNumbers);
         }
+
+        const formattedDate = dayjs().format('YYYY-MM-DD');  // YYYY-MM-DD 형식으로 변환
+        const formattedTime = dayjs().format('HH:mm');  // HH:mm 형식으로 변환
+
+        const params = {
+            storeNo: storeNo,
+            reservationDate: formattedDate,  // 서버가 기대하는 형식으로 날짜 전송
+            reservationTime: formattedTime   // 시간도 올바른 형식으로 전송
+        };
     
         axios.get(`${API_BASE_URL}/boss/mypage/getStoreInfo?userNo=${userNo}`)
             .then(response => setStoreInfo(response.data))
             .catch(error => console.error("Error fetching store info:", error));
     
-        axios.get(`${API_BASE_URL}/boss/mypage/reservation-status?storeNo=${storeNo}`)
+            axios.get(`${API_BASE_URL}/boss/mypage/reservation-status`,  {
+                params: {
+                    storeNo,
+                    reservationDate: formattedDate,  // 시간 정보 없는 'YYYY-MM-DD' 형식
+                    reservationTime: formattedTime   // 시간도 올바른 형식
+                }
+            })
             .then(response => {
                 setReservations(response.data || []);
             })
             .catch(error => console.error("Error fetching reservations:", error));
+            
     
         axios.get(`${API_BASE_URL}/boss/mypage/weekly-reservation-count?storeNo=${storeNo}`)
             .then(response => setWeeklyReservationCount(response.data || []))
@@ -98,16 +124,21 @@ function BossPage() {
 
     const fetchReservations = async (date, time) => {
         try {
-            const formattedDate = dayjs(date).format('YYYY-MM-DD');  
-            const formattedTime = time ? dayjs(time, 'HH:mm').format('HH:mm') : "";  // time이 null일 경우 빈 문자열로 처리
-                
+            const formattedDate = dayjs(date).format('YYYY-MM-DD');  // YYYY-MM-DD 형식으로 변환
+            const formattedTime = dayjs(time, 'HH:mm').format('HH:mm');  // HH:mm 형식으로 변환
+    
+            const params = {
+                storeNo: storeNo,
+                reservationDate: formattedDate,  // 서버가 기대하는 형식으로 날짜 전송
+                reservationTime: formattedTime   // 시간도 올바른 형식으로 전송
+            };
             console.log('Fetching reservations with params:', { formattedDate, formattedTime });
     
             const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservations-list`, {
                 params: {
                     storeNo,
-                    date: formattedDate,  
-                    time: formattedTime  // time이 null일 경우 빈 문자열로 처리
+                    reservationDate: formattedDate,  
+                    reservationTime: formattedTime  // time이 null일 경우 빈 문자열로 처리
                 }
             });
             setReservations(response.data);
@@ -196,7 +227,7 @@ function BossPage() {
     const filteredReservations = reservations.filter((res) => {
         const reservationDate = res?.reservationDate;
         if (!reservationDate) return false;
-        const isSameDate = reservationDate.toISOString().split('T')[0] === startDate;
+        const isSameDate = dayjs(reservationDate).format('YYYY-MM-DD')?res.reservationDate === startDate : true;
         const isSameTime = selectedTime ? res.reservationTime === selectedTime : true;
         return isSameDate && isSameTime;
     });

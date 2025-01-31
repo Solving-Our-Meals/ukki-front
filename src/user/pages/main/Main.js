@@ -27,7 +27,6 @@ import Map from './component/Map.js';
 import Footer from './component/Footer.js';
 import { API_BASE_URL } from '../../../config/api.config.js';
 import axios from 'axios';
-import { useUser } from '../../../common/authContext/UserRole';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
@@ -80,26 +79,15 @@ const Main = () => {
         const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
         if (loggedInUser) {
             setUserNo(loggedInUser.userNo);
+            
         }
     }, []);
 
 
+
+
     const locationRef = useRef(null);
 
-    const navigateRole = useNavigate(null);
-
-    const { userRole } = useUser();
-
-    useEffect(() => {
-        if (userRole) {
-            console.log(userRole);
-            if (userRole === 'ADMIN') {
-                navigateRole('/admin');
-            } else if (userRole === 'STORE') {
-                navigateRole('/boss/mypage');
-            }
-        }
-    }, [userRole, navigateRole]);
 
 
     useEffect(() => {
@@ -321,24 +309,24 @@ const Main = () => {
     });
 
 
-    const StoreSelection = () => {
-        const [storeNo, setStoreNo] = useState(null);
+    // const StoreSelection = () => {
+    //     const [storeNo, setStoreNo] = useState(null);
 
 
-        const handleStoreSelect = (storeNo) => {
-            setStoreNo(storeNo);
-        };
+    //     const handleStoreSelect = (storeNo) => {
+    //         setStoreNo(storeNo);
+    //     };
 
-    };
+    // };
 
     const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleReservationClick = () => {
         if (storeInfo && storeInfo.storeNo) {
             console.log("Selected StoreNo: ", storeInfo.storeNo);  // 디버깅용
-            navigate(`/store/${storeInfo.storeNo}`);
+            navigate(`store/${storeInfo.storeNo}`);
         } else {
-            alert("가게를 선택해주세요.");
+            // alert("가게를 선택해주세요.");
         }
     };
 
@@ -353,74 +341,75 @@ const Main = () => {
     };
 
 
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            if (event.target.value !== defaultValue) {
-                setAddress(event.target.value);
-            }
-        }
-    };
+     const handleKeyPress = (event) => {
+         if (event.key === 'Enter') {
+             if (event.target.value !== defaultValue) {
+                 setAddress(event.target.value);
+                 console.log(event.target.value)
+             }
+         }
+     };
 
 
-    const getUserLocation = () => {
-        return new Promise((resolve, reject) => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(resolve, reject);
-            } else {
-                reject(new Error("Geolocation not available"));
-            }
-        });
-    };
+    // const getUserLocation = () => {
+    //     return new Promise((resolve, reject) => {
+    //         if (navigator.geolocation) {
+    //             navigator.geolocation.getCurrentPosition(resolve, reject);
+    //         } else {
+    //             reject(new Error("Geolocation not available"));
+    //         }
+    //     });
+    // };
 
-    const getClosestStores = async (lat, lon) => {
-        try {
-            const response = await fetch(`${API_BASE_URL}/stores?lat=${lat}&lon=${lon}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',  // 응답을 JSON 형식으로 받겠다는 의미
-                    'Content-Type': 'application/json',  // 요청 내용이 JSON 형식임을 지정
+    // const getClosestStores = async (lat, lon) => {
+    //     try {
+    //         const response = await fetch(`${API_BASE_URL}/stores?lat=${lat}&lon=${lon}`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Accept': 'application/json',  // 응답을 JSON 형식으로 받겠다는 의미
+    //                 'Content-Type': 'application/json',  // 요청 내용이 JSON 형식임을 지정
 
-                }
-            });
+    //             }
+    //         });
 
-            const data = await response.json();
-            return data;  // List of stores
-        } catch (error) {
-            console.error("Error fetching closest stores:", error);
-            return [];
-        }
-    };
+    //         const data = await response.json();
+    //         return data;  // List of stores
+    //     } catch (error) {
+    //         console.error("Error fetching closest stores:", error);
+    //         return [];
+    //     }
+    // };
 
 
-    const populateRoulette = (stores) => {
-        const panel = document.querySelector(".rouletter-wacu");
-        // Clear existing slots
-        panel.innerHTML = "";
-        // Add new store slots to the roulette panel
-        stores.forEach(store => {
-            const storeElement = document.createElement('div');
-            storeElement.className = "roulette-slot";
-            storeElement.textContent = store.storeName;  // Or any other property of the store
-            panel.appendChild(storeElement);
-        });
-    };
+    // const populateRoulette = (stores) => {
+    //     const panel = document.querySelector(".rouletter-wacu");
+    //     // Clear existing slots
+    //     panel.innerHTML = "";
+    //     // Add new store slots to the roulette panel
+    //     stores.forEach(store => {
+    //         const storeElement = document.createElement('div');
+    //         storeElement.className = "roulette-slot";
+    //         storeElement.textContent = store.storeName;  // Or any other property of the store
+    //         panel.appendChild(storeElement);
+    //     });
+    // };
 
-    async function initRoulette() {
-        try {
-            // 사용자의 위치를 가져오기
-            const position = await getUserLocation();
-            const userLat = position.coords.latitude;
-            const userLon = position.coords.longitude;
+    // async function initRoulette() {
+    //     try {
+    //         // 사용자의 위치를 가져오기
+    //         const position = await getUserLocation();
+    //         const userLat = position.coords.latitude;
+    //         const userLon = position.coords.longitude;
 
-            // 가장 가까운 8개 가게 가져오기
-            const closestStores = await getClosestStores(userLat, userLon);
+    //         // 가장 가까운 8개 가게 가져오기
+    //         const closestStores = await getClosestStores(userLat, userLon);
 
-            // 룰렛에 가게 추가하기
-            populateRoulette(closestStores);
-        } catch (error) {
-            console.error("위치 정보를 가져오는 중 오류 발생:", error);
-        }
-    }
+    //         // 룰렛에 가게 추가하기
+    //         populateRoulette(closestStores);
+    //     } catch (error) {
+    //         console.error("위치 정보를 가져오는 중 오류 발생:", error);
+    //     }
+    // }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -548,7 +537,7 @@ const Main = () => {
     const rLayerPopup = (num) => {
         switch (num) {
             default:
-                alert("예약이 완료 되었습니다");
+                // alert("예약이 완료 되었습니다");
         }
     };
 
@@ -573,7 +562,7 @@ const Main = () => {
                     // 8개의 가게 가져오기 (선택된 카테고리 및 위치 기반)
                     const selectedStores = await fetchStoresLocation(selectedCategory, currentPosition);
                     if (selectedStores.length === 0) {
-                        alert("가게 정보를 불러오지 못했습니다.");
+                        // alert("가게 정보를 불러오지 못했습니다.");
                         return;
                     }
                     const winningStore = selectedStores[Math.floor(Math.random() * selectedStores.length)];
@@ -584,14 +573,14 @@ const Main = () => {
                     // 예약을 진행
                     await makeReservation(userNo, winningStore.storeNo, nextAvailableTime);
 
-                    alert(`당첨된 가게: ${winningStore.storeName}\n예약 시간: ${nextAvailableTime}`);
+                    setTimeout( alert(`당첨된 가게: ${winningStore.storeName}\n예약 시간: ${nextAvailableTime}`),5000) 
                 } catch (error) {
                     console.error(error);
                     alert(error.message || "예약 처리 중 오류가 발생했습니다.");
                 }
 
                 rReset(target); // 룰렛 초기화
-            }, 2000); // 2초 후 예약 처리
+            }, 5500); // 2초 후 예약 처리
         }
     };
 
@@ -621,8 +610,8 @@ const Main = () => {
             const data = await response.json();
             alert("예약이 완료되었습니다. QR 코드: " + data.qr); // 예약 완료 후 QR 코드 반환
         } catch (error) {
-            console.error("예약 실패", error);
-            alert("예약을 완료할 수 없습니다.");
+            // console.error("예약 실패", error);
+            // alert("예약을 완료할 수 없습니다.");
         }
     };
 
@@ -645,8 +634,8 @@ const Main = () => {
             const data = await response.json();
             return data.resTime; // 가장 가까운 예약 시간 반환
         } catch (error) {
-            console.error("예약 시간 가져오기 실패", error);
-            throw new Error("예약 시간을 가져오는 중 문제가 발생했습니다.");
+        //     console.error("예약 시간 가져오기 실패", error);
+        //     throw new Error("예약 시간을 가져오는 중 문제가 발생했습니다.");
         }
     };
 
@@ -674,9 +663,9 @@ const Main = () => {
                     'Content-Type': 'application/json'
                 }
             });
-            if (!response.ok) {
-                throw new Error('가게 정보를 불러오는 데 실패했습니다.');
-            }
+            // if (!response.ok) {
+            //     throw new Error('가게 정보를 불러오는 데 실패했습니다.');
+            // }
 
             const data = await response.json();
 
