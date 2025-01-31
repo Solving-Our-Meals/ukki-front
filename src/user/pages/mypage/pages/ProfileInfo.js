@@ -151,7 +151,7 @@ function ProfileInfo({onUpdate}) {
                     'Accept' : 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: updateData,
+                body: JSON.stringify(updateData),
                 credentials: 'include',
             });
 
