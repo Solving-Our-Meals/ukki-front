@@ -52,24 +52,27 @@ function Menu() {
                     setGlobalError(error.message, error.status);
 
                     // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                    if (error.status === 404) {
-                        navigate('/404');
-                    } else if (error.status === 403) {
-                        navigate('/403');
-                    } else {
-                        navigate('/500');
-                    }
+                    // if (error.status === 404) {
+                    //     navigate('/404');
+                    // } else if (error.status === 403) {
+                    //     navigate('/403');
+                    // } else {
+                    //     navigate('/500');
+                    // }
                 });
         };
         fetchData();
     }, [storeNo, navigate, setGlobalError]);
 
     return (
-        <>
-            <div id={styles.menuStyle}>
-                <img src={menu} id={styles.menuImg} alt='메뉴판' />
-            </div>
-        </>
+        <div id={styles.menuStyle}>
+            <img
+                src={menu}
+                id={styles.menuImg}
+                alt="메뉴판"
+                style={{ display: menu ? '' : 'none' }} // menu가 없으면 display: none
+            />
+        </div>
     );
 }
 

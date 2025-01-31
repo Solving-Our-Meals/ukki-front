@@ -42,13 +42,13 @@ function Banner() {
                 console.error('데이터를 가져오지 못했습니다:', error);
 
                 // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                if (error.message.includes('404')) {
-                    navigate('/404');
-                } else if (error.message.includes('403')) {
-                    navigate('/403');
-                } else {
-                    navigate('/500');
-                }
+                // if (error.message.includes('404')) {
+                //     navigate('/404');
+                // } else if (error.message.includes('403')) {
+                //     navigate('/403');
+                // } else {
+                //     navigate('/500');
+                // }
             }
         };
 
