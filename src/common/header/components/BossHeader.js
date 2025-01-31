@@ -65,6 +65,10 @@ function BossHeader() {
     const handleLogout = async () => {
         await fetch(`${API_BASE_URL}/auth/logout`, {
             method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
             credentials: 'include',
         });
 
