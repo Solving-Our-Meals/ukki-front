@@ -51,15 +51,15 @@ function StoreDetail({reservationHandler}){
                 credentials : "include",
             })  //검색 페이지 만들어지면 pathvariable로 변경하기
             .then(response => {
-                if (!response.ok) {
-                    const error = new Error(`HTTP error! status: ${response.status}`);
-                    error.status = response.status;
-                    throw error;
-                }
-                // 비어 있는 응답 대비
-                if(response.status === 204) {
-                    return [];
-                }
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
+                // // 비어 있는 응답 대비
+                // if(response.status === 204) {
+                //     return [];
+                // }
                 return response.json();
             })
             .then(data => {
@@ -79,13 +79,13 @@ function StoreDetail({reservationHandler}){
                 setGlobalError(error.message, error.status);
 
                 // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                if (error.status === 404) {
-                    navigate('/404');
-                } else if (error.status === 403) {
-                    navigate('/403');
-                } else {
-                    navigate('/500');
-                }
+                // if (error.status === 404) {
+                //     navigate('/404');
+                // } else if (error.status === 403) {
+                //     navigate('/403');
+                // } else {
+                //     navigate('/500');
+                // }
                 setIsLoading(false); // 에러 발생 시에도 로딩 상태를 false로 설정정
             });
         }, [setGlobalError]
