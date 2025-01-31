@@ -98,9 +98,7 @@ function DoInquiry({closeModal}){
         { setCategory(categories.slice(4, 7))}; // 4번째 카테고리부터 7번째 카테고리까지 설정 
     }
 
-    function submit(e) {
-      e.preventDefault();
-      console.log(userNo);
+    function submit() {
       const inquiryDTO = {
         userNo : userNo,
         inquiryTitle : inquiryTitle,
@@ -125,10 +123,12 @@ function DoInquiry({closeModal}){
             setShowResultModal(true)
           }else{
             setResultMessage("문의에 실패했습니다.")
+            setShowResultModal(true)
           }
         })
       }else{
         setCheckContent(true);
+        setShowAgreementModal(false);
       }
     }
 
@@ -146,28 +146,50 @@ function DoInquiry({closeModal}){
         <div id='doInquiryModal' className={showResultModal? 'underModal':''}>
             <div id='doInquiryText'>문의하기</div>
             <div id='doInquiryTitleText'>문의 제목: </div>
-            <form>
-                <input id='inputDoTitle' type='text' value={inquiryTitle} onChange={handleTitleChange} className={checkContent && !isWrite[0] ? 'inquiryError' : ''} required/>
-                <select id='categorySelection' name='categoryNo' onChange={handleCategoryChange} className={checkContent && !isWrite[2] ? 'inquiryError' : ''} required>
-                    <option className='selectionOption' value="none" selected>문의 카테고리</option>
+            <div>
+                <input 
+                    id='inputDoTitle' 
+                    type='text' 
+                    value={inquiryTitle} 
+                    onChange={handleTitleChange} 
+                    className={checkContent && !isWrite[0] ? 'inquiryError' : ''} 
+                />
+                <select 
+                    id='categorySelection' 
+                    name='categoryNo' 
+                    onChange={handleCategoryChange} 
+                    className={checkContent && !isWrite[2] ? 'inquiryError' : ''}
+                >
+                    <option className='selectionOption' value="none">문의 카테고리</option>
                     {category.map((item)=>(
                         <option className='selectionOption' value={item.categoryNo}>{item.categoryName}</option>
                     ))}
                 </select>
-                <textarea id='inputDoContent'  value={inquiryContent} onChange={handleContentChange} className={checkContent && !isWrite[1] ? 'inquiryError' : ''} required/>
+                <textarea 
+                    id='inputDoContent'  
+                    value={inquiryContent} 
+                    onChange={handleContentChange} 
+                    className={checkContent && !isWrite[1] ? 'inquiryError' : ''} 
+                />
                 <input
-                        type="file"
-                        id="inquiryFile"
-                        ref={fileInputRef}
-                        onChange={handleFileChange}
-                        style={{ display: 'none' }}
-                    />
-                    <button type="button" id="inquiryDoFileBtn" onClick={handleFileButtonClick}>
-                        첨부파일
-                    </button>
+                    type="file"
+                    id="inquiryFile"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                />
+                <button type="button" id="inquiryDoFileBtn" onClick={handleFileButtonClick}>
+                    첨부파일
+                </button>
                 <button type='button' id='inquiryDoCancleBtn' onClick={handleCancle}>취소</button>
-                <button id='doInquiryBtn' onClick={()=>{setShowAgreementModal(true)}}>확인</button>
-            </form>
+                <button 
+                    type='button' 
+                    id='doInquiryBtn' 
+                    onClick={() => setShowAgreementModal(true)}
+                >
+                    확인
+                </button>
+            </div>
             {checkContent && !isWrite[0] && <div id='checkTitle'>내용을 확인해주세요</div>}
             {checkContent && !isWrite[1] && <div id='checkContent'>내용을 확인해주세요</div>}
             {checkContent && !isWrite[2] && <div id='checkCategory'>내용을 확인해주세요</div>}
