@@ -21,6 +21,7 @@ function BossSpecificNotice(){
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            credentials:"include",
         })
         .then(res => res.json())
         .then(data => {

@@ -34,7 +34,7 @@ function Review(){
     // Footer를 참고하기 위한 ref
     const footerRef = useRef(null);
 
-    const [deleteResNo, setDeleteResNo] = useState(null);
+    const [deleteResNo, setDeleteResNo] = useState([]);
 
     const addNewReview = (newReview) => {
         setReviews(prevReviews => [...prevReviews, newReview]);
@@ -250,7 +250,8 @@ function Review(){
                 setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
                 setCompleteOrFailDeleteMessage("해당 리뷰가 삭제되었습니다.");
-                deleteResNo.push(resNo);
+                setDeleteResNo(prevDeleteResNo => [...prevDeleteResNo, resNo]);
+                window.location.reload();
             } else {
                 setRealDeleteReview(false)
                 setIsCompleteDeleteReview(true);
