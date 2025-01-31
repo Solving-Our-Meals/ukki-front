@@ -780,3 +780,1512 @@
         }
     }
 }
+
+@media screen and (min-width : 769px) and (max-width : 1024px){
+    #inquiryArea{
+        position : absolute;
+        left : 160px;
+        top : 75px;
+        bottom : 0px;
+        width : 822px;
+        height : auto;
+        background-color: #FFFFFF;
+        border-radius: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+        border: 1px solid red;
+    
+        #strInquiry{
+            position: absolute;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 32px;
+            color: $textStrong;
+            left : 30px;
+            top : 30px;
+            width: max-content;
+            height: max-content;
+        }
+    
+        #updateBtn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 600;
+            background-color: #FFC6D2;
+            width : 120px;
+            height : 30px;
+            left :540px;
+            top : 30px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            padding-top: -10px;
+            cursor: pointer;
+        }
+    
+        #deleteBtn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 600;
+            background-color: $primary;
+            width : 120px;
+            height : 30px;
+            left : 680px;
+            top : 30px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            padding-top: -10px;
+            cursor: pointer;
+        }
+    
+        span{
+            position: absolute;
+            font-family: 'Pretendard-Regular';
+            color: $textStrong;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        // 제목
+        span:nth-of-type(1){
+            position: absolute;
+            left : 30px;
+            top : 90px;
+            font-size: 28px;
+            font-weight : 600;
+        }
+    
+        // notice.title
+        span:nth-of-type(2){
+            position: absolute;
+            left :100px;
+            top : 90px;
+            border: 1px solid red;
+            width : 500px;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 32px;
+            font-weight : 400;
+        }
+    
+         // 작성 날짜
+        span:nth-of-type(3){
+            position: absolute;
+            left : 1260px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+    
+        // inquiryInfo.date
+        span:nth-of-type(4){
+            position: absolute;
+            left : 1400px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 400;
+        }
+    
+        #inquiryContent{
+            position :absolute;
+            left : 40px;
+            top : 240px;
+            width : 1535px;
+            height : 240px;
+            background-color :#FFF9D1;
+            border: none;
+    
+            #file{
+                position: absolute;
+                width : 180px;
+                height : 50px;
+                border: none;
+                border-radius: 50px;
+                outline: none;
+                right : 30px;
+                top : 170px;
+                background-color: $secondary;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                padding: 10px 20px;
+                // display: block;
+                // white-space: nowrap;
+                // overflow: hidden;
+                // text-overflow: ellipsis;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+    
+            #inquiryContent{
+                position: absolute;
+                left : 10px;
+                top : 1px;
+                padding : 5px 10px;
+                width : 1515px;
+                height : 220px;
+                font-family: 'Pretendard-Regular';
+                color: $textStrong;
+                font-size: 30px;
+                font-weight : 400;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                line-height: 160%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                // border: 1px solid red;
+            }
+    
+            #goToReview{
+                position: absolute;
+                width : 180px;
+                height : 50px;
+                border: none;
+                border-radius: 50px;
+                outline: none;
+                right : 30px;
+                top : 170px;
+                background-color: $secondary;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    
+        #noAnswerArea{
+            // border: 1px solid blue;
+            position: absolute;
+            left : 40px;
+            top : 500px;
+            width : 1535px;
+            height : 300px;
+    
+            #noAnswerLogo{
+                position: absolute;
+                left : 10px;
+                top : 30px;
+                width : 270px;
+                height : 270px;
+                z-index: 5;
+            }
+    
+            #precessingMessage{
+                position: relative;
+                left : 10px;
+                top : 100px;
+                width : 1515px;
+                height : 180px;
+                font-family: 'Pretendard-Regular';
+                font-size: 33px;
+                font-weight: 600;
+                background-color: #FFF3A7;
+                border-radius : 25px;
+                padding-left : 190px;
+                padding-top : 10px;
+            }
+        }
+    
+        #answerArea{
+            // border: 1px solid blue;
+            position: absolute;
+            left : 40px;
+            top : 500px;
+            width : 1535px;
+            height : 300px;
+    
+            span{
+                position: absolute;
+                font-family: 'Pretendard-Regular';
+                color: $textStrong;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        
+            // 제목
+            span:nth-of-type(1){
+                position: absolute;
+                left : 10px;
+                top : 30px;
+                font-size: 30px;
+                font-weight : 600;
+            }
+        
+            // answertitle
+            span:nth-of-type(2){
+                position: absolute;
+                left :90px;
+                top : 30px;
+                font-size: 30px;
+                font-weight : 400;
+            }
+        
+             // 답변 날짜
+            span:nth-of-type(3){
+                position: absolute;
+                left : 1210px;
+                top : 30px;
+                font-size: 30px;
+                font-weight : 600;
+            }
+        
+            // answer.date
+            span:nth-of-type(4){
+                position: absolute;
+                left : 1350px;
+                top : 30px;
+                font-size: 30px;
+                font-weight : 400;
+            }
+        
+            #answerContent{
+                position :absolute;
+                left : 1px;
+                top : 80px;
+                width : 1535px;
+                height : 240px;
+                background-color :#FFF3A7;
+                border: none;
+        
+                #answerContent{
+                    position: absolute;
+                    left : 10px;
+                    top : 1px;
+                    padding : 5px 10px;
+                    width : 1515px;
+                    height : 220px;
+                    font-family: 'Pretendard-Regular';
+                    color: $textStrong;
+                    font-size: 30px;
+                    font-weight : 400;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    line-height: 160%;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    // border: 1px solid red;
+                }
+            }
+        }
+        .modalOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        #finalCheck {
+            width: 879px;
+            height: 316px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        
+            #reallyDeleteInquiry {
+                width: max-content;
+                margin-top: 5px;
+                height: 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 40px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #inquiry {
+                width: max-content;
+                margin-top: 40px;
+                height: 36px;
+                font-family: 'Pretendard-Regular';
+                font-size: 30px;
+                font-weight: 500;
+                color: $danger;
+            }
+        
+            #cancleDeleteInquiry {
+                margin-top: 40px;
+                margin-left: -220px;
+                width: 171px;
+                height: 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        
+            #confirmDeleteInquiry {
+                margin-top: -44px;
+                margin-left: 220px;
+                width: 171px;
+                height: 44px;
+                background-color: $primary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+        
+        #completeDeleteInquiry {
+            width: 879px;
+            height: 316px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        
+            #completedDeletteMessage {
+                width: max-content;
+                margin-top: 5px;
+                height: 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 40px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #completeBtn {
+                margin-top: 40px;
+                width: 171px;
+                height: 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+    }
+    // 문의 수정
+    #updateInquiry{
+        position : relative;
+        left : 260px;
+        top : 75px;
+        bottom : 0px;
+        width : 1622px;
+        height : 844px;
+        background-color: #FFFFFF;
+        border-radius: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+        // border: 1px solid red;
+    
+        #strUpdateInquiry{
+            position: absolute;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 50px;
+            color: $textStrong;
+            left : 50px;
+            top : 50px;
+            width: max-content;
+            height: max-content;
+        }
+    
+        #cancelBtn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 600;
+            background-color: #FFC6D2;
+            width : 180px;
+            height : 50px;
+            left : 1180px;
+            top : 50px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            padding-top: -10px;
+            cursor: pointer;
+        }
+    
+        #confirmBtn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 600;
+            background-color: $primary;
+            width : 180px;
+            height : 50px;
+            left : 1380px;
+            top : 50px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            padding-top: -10px;
+            cursor: pointer;
+        }
+    
+        .StringElement{
+            position: absolute;
+            font-family: 'Pretendard-Regular';
+            color: $textStrong;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        // 제목
+        #strTitle{
+            position: absolute;
+            left : 50px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+    
+        // notice.title
+        #inquiryTitle{
+            position: absolute;
+            left :130px;
+            top : 165px;
+            width : 500px;
+            height : 60px;
+            font-size: 30px;
+            font-weight : 400;
+            border-radius: 15px;
+            border: none;
+            background-color: #FFF3A7;
+            padding : 10px 15px;
+            outline: none;
+        }
+    
+         // 작성 날짜
+        #strDate{
+            position: absolute;
+            left : 1260px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+    
+        // inquiryInfo.date
+        #inquiryDate{
+            position: absolute;
+            left : 1400px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 400;
+        }
+    
+        #updateInquiryContent{
+            position :absolute;
+            left : 40px;
+            top : 240px;
+            width : 1535px;
+            height : 240px;
+            background-color :#FFF9D1;
+            border: none;
+    
+            #updateFile{
+                position: absolute;
+                width : 180px;
+                height : 50px;
+                border: none;
+                border-radius: 50px;
+                outline: none;
+                right : 30px;
+                top : 170px;
+                background-color: $secondary;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                padding: 10px 20px;
+                // display: block;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                cursor: pointer;
+    
+                #updateFileName {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }            
+            }
+    
+            textarea{
+                position: absolute;
+                left : 10px;
+                top : 1px;
+                padding : 5px 10px;
+                width : 1515px;
+                height : 235px;
+                font-family: 'Pretendard-Regular';
+                color: $textStrong;
+                font-size: 30px;
+                font-weight : 400;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                line-height: 160%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                resize: none;
+                outline: none;
+                // border: 1px solid red;
+            }
+        }
+    
+        #updateNoAnswerArea{
+            // border: 1px solid blue;
+            position: absolute;
+            left : 40px;
+            top : 500px;
+            width : 1535px;
+            height : 300px;
+    
+            #updateNoAnswerLogo{
+                position: absolute;
+                left : 10px;
+                top : 30px;
+                width : 270px;
+                height : 270px;
+                z-index: 5;
+            }
+    
+            #updateProcessingMessage{
+                position: relative;
+                left : 10px;
+                top : 100px;
+                width : 1515px;
+                height : 180px;
+                font-family: 'Pretendard-Regular';
+                font-size: 33px;
+                font-weight: 600;
+                background-color: #FFF3A7;
+                border-radius : 25px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-left : 190px;
+                padding-top : 10px;
+                // border: 1px solid green;
+            }
+        }
+    
+        .modalOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        #finalCheck {
+            width: 879px;
+            height: 316px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        
+            #reallyUpdateInquiry {
+                width: max-content;
+                margin-top: 5px;
+                height: 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 40px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #inquiry {
+                width: max-content;
+                margin-top: 40px;
+                height: 36px;
+                font-family: 'Pretendard-Regular';
+                font-size: 30px;
+                font-weight: 500;
+                color: $danger;
+            }
+        
+            #cancleUpdateInquiry {
+                margin-top: 40px;
+                margin-left: -220px;
+                width: 171px;
+                height: 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        
+            #confirmUpdateInquiry {
+                margin-top: -44px;
+                margin-left: 220px;
+                width: 171px;
+                height: 44px;
+                background-color: $primary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+        
+        #completeUpdateInquiry {
+            width: 879px;
+            height: 316px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        
+            #completedUpdateMessage {
+                width: max-content;
+                margin-top: 5px;
+                height: 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 40px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #completeBtn {
+                margin-top: 40px;
+                width: 171px;
+                height: 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+    }   
+}
+
+@media screen and (max-width : 768px){
+    #inquiryArea{
+        position : relative;
+        left : 260px;
+        top : 75px;
+        bottom : 0px;
+        width : 1622px;
+        height : 844px;
+        background-color: #FFFFFF;
+        border-radius: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+        // border: 1px solid red;
+    
+        #strInquiry{
+            position: absolute;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 50px;
+            color: $textStrong;
+            left : 50px;
+            top : 50px;
+            width: max-content;
+            height: max-content;
+        }
+    
+        #updateBtn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 600;
+            background-color: #FFC6D2;
+            width : 180px;
+            height : 50px;
+            left : 1180px;
+            top : 50px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            padding-top: -10px;
+            cursor: pointer;
+        }
+    
+        #deleteBtn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 600;
+            background-color: $primary;
+            width : 180px;
+            height : 50px;
+            left : 1380px;
+            top : 50px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            padding-top: -10px;
+            cursor: pointer;
+        }
+    
+    
+        span{
+            position: absolute;
+            font-family: 'Pretendard-Regular';
+            color: $textStrong;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        // 제목
+        span:nth-of-type(1){
+            position: absolute;
+            left : 50px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+    
+        // notice.title
+        span:nth-of-type(2){
+            position: absolute;
+            left :130px;
+            top : 180px;
+            // border: 1px solid red;
+            width : 800px;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 30px;
+            font-weight : 400;
+        }
+    
+         // 작성 날짜
+        span:nth-of-type(3){
+            position: absolute;
+            left : 1260px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+    
+        // inquiryInfo.date
+        span:nth-of-type(4){
+            position: absolute;
+            left : 1400px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 400;
+        }
+    
+        #inquiryContent{
+            position :absolute;
+            left : 40px;
+            top : 240px;
+            width : 1535px;
+            height : 240px;
+            background-color :#FFF9D1;
+            border: none;
+    
+            #file{
+                position: absolute;
+                width : 180px;
+                height : 50px;
+                border: none;
+                border-radius: 50px;
+                outline: none;
+                right : 30px;
+                top : 170px;
+                background-color: $secondary;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                padding: 10px 20px;
+                // display: block;
+                // white-space: nowrap;
+                // overflow: hidden;
+                // text-overflow: ellipsis;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+    
+            #inquiryContent{
+                position: absolute;
+                left : 10px;
+                top : 1px;
+                padding : 5px 10px;
+                width : 1515px;
+                height : 220px;
+                font-family: 'Pretendard-Regular';
+                color: $textStrong;
+                font-size: 30px;
+                font-weight : 400;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                line-height: 160%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                // border: 1px solid red;
+            }
+    
+            #goToReview{
+                position: absolute;
+                width : 180px;
+                height : 50px;
+                border: none;
+                border-radius: 50px;
+                outline: none;
+                right : 30px;
+                top : 170px;
+                background-color: $secondary;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    
+        #noAnswerArea{
+            // border: 1px solid blue;
+            position: absolute;
+            left : 40px;
+            top : 500px;
+            width : 1535px;
+            height : 300px;
+    
+            #noAnswerLogo{
+                position: absolute;
+                left : 10px;
+                top : 30px;
+                width : 270px;
+                height : 270px;
+                z-index: 5;
+            }
+    
+            #precessingMessage{
+                position: relative;
+                left : 10px;
+                top : 100px;
+                width : 1515px;
+                height : 180px;
+                font-family: 'Pretendard-Regular';
+                font-size: 33px;
+                font-weight: 600;
+                background-color: #FFF3A7;
+                border-radius : 25px;
+                padding-left : 190px;
+                padding-top : 10px;
+            }
+        }
+    
+        #answerArea{
+            // border: 1px solid blue;
+            position: absolute;
+            left : 40px;
+            top : 500px;
+            width : 1535px;
+            height : 300px;
+    
+            span{
+                position: absolute;
+                font-family: 'Pretendard-Regular';
+                color: $textStrong;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        
+            // 제목
+            span:nth-of-type(1){
+                position: absolute;
+                left : 10px;
+                top : 30px;
+                font-size: 30px;
+                font-weight : 600;
+            }
+        
+            // answertitle
+            span:nth-of-type(2){
+                position: absolute;
+                left :90px;
+                top : 30px;
+                font-size: 30px;
+                font-weight : 400;
+            }
+        
+             // 답변 날짜
+            span:nth-of-type(3){
+                position: absolute;
+                left : 1210px;
+                top : 30px;
+                font-size: 30px;
+                font-weight : 600;
+            }
+        
+            // answer.date
+            span:nth-of-type(4){
+                position: absolute;
+                left : 1350px;
+                top : 30px;
+                font-size: 30px;
+                font-weight : 400;
+            }
+        
+            #answerContent{
+                position :absolute;
+                left : 1px;
+                top : 80px;
+                width : 1535px;
+                height : 240px;
+                background-color :#FFF3A7;
+                border: none;
+        
+                #answerContent{
+                    position: absolute;
+                    left : 10px;
+                    top : 1px;
+                    padding : 5px 10px;
+                    width : 1515px;
+                    height : 220px;
+                    font-family: 'Pretendard-Regular';
+                    color: $textStrong;
+                    font-size: 30px;
+                    font-weight : 400;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    line-height: 160%;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    // border: 1px solid red;
+                }
+            }
+        }
+        .modalOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        #finalCheck {
+            width: 879px;
+            height: 316px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        
+            #reallyDeleteInquiry {
+                width: max-content;
+                margin-top: 5px;
+                height: 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 40px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #inquiry {
+                width: max-content;
+                margin-top: 40px;
+                height: 36px;
+                font-family: 'Pretendard-Regular';
+                font-size: 30px;
+                font-weight: 500;
+                color: $danger;
+            }
+        
+            #cancleDeleteInquiry {
+                margin-top: 40px;
+                margin-left: -220px;
+                width: 171px;
+                height: 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        
+            #confirmDeleteInquiry {
+                margin-top: -44px;
+                margin-left: 220px;
+                width: 171px;
+                height: 44px;
+                background-color: $primary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+        
+        #completeDeleteInquiry {
+            width: 879px;
+            height: 316px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        
+            #completedDeletteMessage {
+                width: max-content;
+                margin-top: 5px;
+                height: 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 40px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #completeBtn {
+                margin-top: 40px;
+                width: 171px;
+                height: 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+    }
+    // 문의 수정
+    #updateInquiry{
+        position : relative;
+        left : 260px;
+        top : 75px;
+        bottom : 0px;
+        width : 1622px;
+        height : 844px;
+        background-color: #FFFFFF;
+        border-radius: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+        // border: 1px solid red;
+    
+        #strUpdateInquiry{
+            position: absolute;
+            font-family: 'Bobaesum Jindo TTF';
+            font-size: 50px;
+            color: $textStrong;
+            left : 50px;
+            top : 50px;
+            width: max-content;
+            height: max-content;
+        }
+    
+        #cancelBtn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 600;
+            background-color: #FFC6D2;
+            width : 180px;
+            height : 50px;
+            left : 1180px;
+            top : 50px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            padding-top: -10px;
+            cursor: pointer;
+        }
+    
+        #confirmBtn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 25px;
+            font-weight: 600;
+            background-color: $primary;
+            width : 180px;
+            height : 50px;
+            left : 1380px;
+            top : 50px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            padding-top: -10px;
+            cursor: pointer;
+        }
+    
+        .StringElement{
+            position: absolute;
+            font-family: 'Pretendard-Regular';
+            color: $textStrong;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        // 제목
+        #strTitle{
+            position: absolute;
+            left : 50px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+    
+        // notice.title
+        #inquiryTitle{
+            position: absolute;
+            left :130px;
+            top : 165px;
+            width : 500px;
+            height : 60px;
+            font-size: 30px;
+            font-weight : 400;
+            border-radius: 15px;
+            border: none;
+            background-color: #FFF3A7;
+            padding : 10px 15px;
+            outline: none;
+        }
+    
+         // 작성 날짜
+        #strDate{
+            position: absolute;
+            left : 1260px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 600;
+        }
+    
+        // inquiryInfo.date
+        #inquiryDate{
+            position: absolute;
+            left : 1400px;
+            top : 180px;
+            font-size: 30px;
+            font-weight : 400;
+        }
+    
+        #updateInquiryContent{
+            position :absolute;
+            left : 40px;
+            top : 240px;
+            width : 1535px;
+            height : 240px;
+            background-color :#FFF9D1;
+            border: none;
+    
+            #updateFile{
+                position: absolute;
+                width : 180px;
+                height : 50px;
+                border: none;
+                border-radius: 50px;
+                outline: none;
+                right : 30px;
+                top : 170px;
+                background-color: $secondary;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                padding: 10px 20px;
+                // display: block;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                cursor: pointer;
+    
+                #updateFileName {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }            
+            }
+    
+            textarea{
+                position: absolute;
+                left : 10px;
+                top : 1px;
+                padding : 5px 10px;
+                width : 1515px;
+                height : 235px;
+                font-family: 'Pretendard-Regular';
+                color: $textStrong;
+                font-size: 30px;
+                font-weight : 400;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                line-height: 160%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                resize: none;
+                outline: none;
+                // border: 1px solid red;
+            }
+        }
+    
+        #updateNoAnswerArea{
+            // border: 1px solid blue;
+            position: absolute;
+            left : 40px;
+            top : 500px;
+            width : 1535px;
+            height : 300px;
+    
+            #updateNoAnswerLogo{
+                position: absolute;
+                left : 10px;
+                top : 30px;
+                width : 270px;
+                height : 270px;
+                z-index: 5;
+            }
+    
+            #updateProcessingMessage{
+                position: relative;
+                left : 10px;
+                top : 100px;
+                width : 1515px;
+                height : 180px;
+                font-family: 'Pretendard-Regular';
+                font-size: 33px;
+                font-weight: 600;
+                background-color: #FFF3A7;
+                border-radius : 25px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-left : 190px;
+                padding-top : 10px;
+                // border: 1px solid green;
+            }
+        }
+    
+        .modalOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        #finalCheck {
+            width: 879px;
+            height: 316px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        
+            #reallyUpdateInquiry {
+                width: max-content;
+                margin-top: 5px;
+                height: 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 40px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #inquiry {
+                width: max-content;
+                margin-top: 40px;
+                height: 36px;
+                font-family: 'Pretendard-Regular';
+                font-size: 30px;
+                font-weight: 500;
+                color: $danger;
+            }
+        
+            #cancleUpdateInquiry {
+                margin-top: 40px;
+                margin-left: -220px;
+                width: 171px;
+                height: 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        
+            #confirmUpdateInquiry {
+                margin-top: -44px;
+                margin-left: 220px;
+                width: 171px;
+                height: 44px;
+                background-color: $primary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+        
+        #completeUpdateInquiry {
+            width: 879px;
+            height: 316px;
+            border: 5px solid $primary;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        
+            #completedUpdateMessage {
+                width: max-content;
+                margin-top: 5px;
+                height: 44px;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 40px;
+                font-weight: 500;
+                color: $textStrong;
+            }
+        
+            #completeBtn {
+                margin-top: 40px;
+                width: 171px;
+                height: 44px;
+                background-color: $secondary;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Pretendard-Regular';
+                font-size: 25px;
+                font-weight: 500;
+                color: $textStrong;
+                cursor: pointer;
+            }
+        }
+    }
+}
