@@ -370,6 +370,7 @@ a:active {
   flex-direction: right;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 #background .noticeListArea .noticeContainer .notice #categoryName {
   position: relative;
@@ -653,6 +654,7 @@ a:active {
     flex-direction: right;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   #background .noticeListArea .noticeContainer .notice #categoryName {
     position: relative;
@@ -936,6 +938,7 @@ a:active {
     flex-direction: right;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   #background .noticeListArea .noticeContainer .notice #categoryName {
     position: relative;
@@ -1033,4 +1036,4 @@ a:active {
     visibility: hidden;
     cursor: default;
   }
-}
+}/*# sourceMappingURL=bossTotalNotice.module.css.map */

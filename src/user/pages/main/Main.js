@@ -27,7 +27,9 @@ import Map from './component/Map.js';
 import Footer from './component/Footer.js';
 import { API_BASE_URL } from '../../../config/api.config.js';
 import axios from 'axios';
+
 import { useAuth } from '../../../common/authContext/AuthContext';
+
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
 const storeInfos = [
@@ -335,6 +337,8 @@ const Main = () => {
 
     // };
 
+
+
     const handleReservationClick = () => {
         if (storeInfo && storeInfo.storeNo) {
             console.log("Selected StoreNo: ", storeInfo.storeNo);  // 디버깅용
@@ -355,14 +359,15 @@ const Main = () => {
     };
 
 
-     const handleKeyPress = (event) => {
-         if (event.key === 'Enter') {
-             if (event.target.value !== defaultValue) {
-                 setAddress(event.target.value);
-                 console.log(event.target.value)
-             }
-         }
-     };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            if (event.target.value !== defaultValue) {
+                setAddress(event.target.value);
+            }
+        }
+    };
+
 
 
     // const getUserLocation = () => {
@@ -587,10 +592,12 @@ const Main = () => {
                     // 예약을 진행
                     await makeReservation(userNo, winningStore.storeNo, nextAvailableTime);
 
-                    setTimeout( alert(`당첨된 가게: ${winningStore.storeName}\n예약 시간: ${nextAvailableTime}`),5000) 
+
+                    alert(`당첨된 가게: ${winningStore.storeName}`);
+
                 } catch (error) {
                     console.error(error);
-                    alert(error.message || "예약 처리 중 오류가 발생했습니다.");
+                    // alert(error.message || "예약 처리 중 오류가 발생했습니다.");
                 }
 
                 rReset(target); // 룰렛 초기화
@@ -648,8 +655,10 @@ const Main = () => {
             const data = await response.json();
             return data.resTime; // 가장 가까운 예약 시간 반환
         } catch (error) {
-        //     console.error("예약 시간 가져오기 실패", error);
-        //     throw new Error("예약 시간을 가져오는 중 문제가 발생했습니다.");
+
+            // console.error("예약 시간 가져오기 실패", error);
+            // throw new Error("예약 시간을 가져오는 중 문제가 발생했습니다.");
+
         }
     };
 

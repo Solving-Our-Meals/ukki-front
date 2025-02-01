@@ -156,7 +156,8 @@ function TotalInquiryPage(){
     };
 
     const navigateToSpecificInquiry = (inquiryNo, categoryNo) => {
-        navigate(`/boss/inquiry/${inquiryNo}?categoryNo=${ categoryNo }`);
+        console.log('recentInquiry', recentInquiry);
+        navigate(`/boss/inquiry/${inquiryNo}?categoryNo=${categoryNo}`);
     }
 
     // 추가 부분 - 최근 문의 내역 로직
@@ -194,11 +195,11 @@ function TotalInquiryPage(){
     return(
         <>
             <div id={styles.background}>
-                <div
-                    id={styles.recentInquiry}
-                    onClick={recentInquiry.length > 0 ? () => navigateToSpecificInquiry(recentInquiry.inquiryNo, recentInquiry.categoryNo) : null}
-                    style={{ pointerEvents: recentInquiry.length > 0 ? 'auto' : 'none' }} // 클릭 방지 추가
-                >
+            <div
+                id={styles.recentInquiry}
+                onClick={Object.keys(recentInquiry).length > 0 ? () => navigateToSpecificInquiry(recentInquiry.inquiryNo, recentInquiry.categoryNo) : null}
+                style={{ pointerEvents: Object.keys(recentInquiry).length > 0 ? 'auto' : 'none' }} // 클릭 방지 수정
+            >
                     <span>최근 문의</span>
                     <span id={styles.recentState}>{recentState}</span>
                     <span id={styles.recentCategory}>{recentCategoryName}</span>

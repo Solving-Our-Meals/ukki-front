@@ -76,15 +76,15 @@ function Calendar() {
                 credentials : "include"
             })
             .then(response => {
-                if (!response.ok) {
-                    const error = new Error(`HTTP error! status: ${response.status}`);
-                    error.status = response.status;
-                    throw error;
-                }
-                // 비어 있는 응답 대비
-                if(response.status === 204) {
-                    return [];
-                }
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
+                // // 비어 있는 응답 대비
+                // if(response.status === 204) {
+                //     return [];
+                // }
                 return response.json();
             })
             .then(data => {
@@ -97,17 +97,17 @@ function Calendar() {
             })
             .catch(error => {
                 console.error(error);
-                setGlobalError(error.message, error.status);
+                // setGlobalError(error.message, error.status);
                 setIsUser(false);
 
-                 // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                 if (error.status === 404) {
-                    navigate('/404');
-                } else if (error.status === 403) {
-                    navigate('/403');
-                } else {
-                    navigate('/500');
-                }
+                //  // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                //  if (error.status === 404) {
+                //     navigate('/404');
+                // } else if (error.status === 403) {
+                //     navigate('/403');
+                // } else {
+                //     navigate('/500');
+                // }
             });
         }, [setGlobalError]
     )
@@ -470,15 +470,15 @@ function Calendar() {
                     credentials : "include",
                 })
                 .then(response => {
-                    if (!response.ok) {
-                        const error = new Error(`HTTP error! status: ${response.status}`);
-                        error.status = response.status;
-                        throw error;
-                    }
-                    // 비어 있는 응답 대비
-                    if(response.status === 204) {
-                        return [];
-                    }
+                    // if (!response.ok) {
+                    //     const error = new Error(`HTTP error! status: ${response.status}`);
+                    //     error.status = response.status;
+                    //     throw error;
+                    // }
+                    // // 비어 있는 응답 대비
+                    // if(response.status === 204) {
+                    //     return [];
+                    // }
                     return response.json();
                 })
                 .then(data => {
@@ -511,18 +511,18 @@ function Calendar() {
             })
             .catch(error => {
                 console.error(error);
-                setGlobalError(error.message, error.status);
+                // setGlobalError(error.message, error.status);
 
-                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                if (error.status === 404) {
-                    navigate('/404');
-                } else if (error.status === 403) {
-                    navigate('/403');
-                } else {
-                    navigate('/500');
-                }
+                // // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                // if (error.status === 404) {
+                //     navigate('/404');
+                // } else if (error.status === 403) {
+                //     navigate('/403');
+                // } else {
+                //     navigate('/500');
+                // }
             });
-    }, [setGlobalError]);
+    }, []);
 
     const handlePrevMonth = () => {
         setCurrentDate(new Date(year, month - 1, 1));
@@ -852,15 +852,15 @@ function Calendar() {
                 }
             })
             .then(response => {
-                if (!response.ok) {
-                    const error = new Error(`HTTP error! status: ${response.status}`);
-                    error.status = response.status;
-                    throw error;
-                }
-                // 비어 있는 응답 대비
-                if(response.status === 204) {
-                    return [];
-                }
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
+                // // 비어 있는 응답 대비
+                // if(response.status === 204) {
+                //     return [];
+                // }
                 return response.json();
             })
             .then(data => {
@@ -898,13 +898,13 @@ function Calendar() {
                 setGlobalError(error.message, error.status);
 
                 // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                if (error.status === 404) {
-                    navigate('/404');
-                } else if (error.status === 403) {
-                    navigate('/403');
-                } else {
-                    navigate('/500');
-                }
+                // if (error.status === 404) {
+                //     navigate('/404');
+                // } else if (error.status === 403) {
+                //     navigate('/403');
+                // } else {
+                //     navigate('/500');
+                // }
             });
     }
 
@@ -977,6 +977,10 @@ function Calendar() {
 
         // 선택한 시간이 현재 시간보다 미래일 때만 예약 페이지로 넘어가기
         if(selectedTime > currentTime){
+
+            console.log('selectedTime', selectedTime)
+            console.log('afternoonArray[index]', afternoonArray[index])
+
             navigate('/reservation',{
                 state:{
                     date1 :`${selectedTotalDate.selectedYear}년 ${selectedTotalDate.selectedMonth.toString().padStart(2, '0')}월 ${selectedTotalDate.selectedDate.toString().padStart(2,'0')}일`,
@@ -1135,8 +1139,8 @@ function Calendar() {
 
                         // 클릭 이벤트 핸들러
                         const handleClick = () => {
-                            if (isNotPast && morningArray[index]) {
-                                selectedMorningTime(index);
+                            if (isNotPast && afternoonArray[index]) {
+                                selectedAfternoonTime(index);
                             }
                         }
 

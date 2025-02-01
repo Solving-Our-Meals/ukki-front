@@ -22,8 +22,7 @@ function DoInquiry({closeModal}){
     const [resultMessage, setResultMessage] = useState("");
     const [userNo, setUserNo] = useState(0);
     const fileInputRef = useRef(null);
-
-    const { isAuthenticated, user } = useAuth(); // user 정보를 가져옵니다.
+    const { isAuthenticated, user } = useAuth();
 
     useEffect(() => {
         const verifyAuth = async () => {
@@ -54,7 +53,7 @@ function DoInquiry({closeModal}){
     function handleTitleChange(e){
       setCheckContent(false);
       setInquiryTitle(e.target.value);
-       if(e.target.value==='' || e.target.value===null || e.target.value.length<5){
+       if(e.target.value==='' || e.target.value===null || e.target.value.length<1){
         isWrite[0] = false
         setIsWrite([...isWrite]);
        }else{
@@ -65,7 +64,7 @@ function DoInquiry({closeModal}){
       setCheckContent(false);
       setInquiryContent(e.target.value);
       console.log(isWrite)
-      if(e.target.value==='' || e.target.value===null || e.target.value.length<5){
+      if(e.target.value==='' || e.target.value===null || e.target.value.length<1){
         isWrite[1] = false
         setIsWrite([...isWrite]);
        }else{
@@ -86,7 +85,7 @@ function DoInquiry({closeModal}){
         setIsWrite([...isWrite]);
        }}
     
-    function handleFileChange(e){setInquiryFile(e.target.files[0]); console.log("file 사옹")}
+    function handleFileChange(e){setInquiryFile(e.target.files[0]);}
 
     async function fetchUserCategory(){
         const categories = await inquiryCategory(); if (categories && categories.length > 0)
@@ -113,6 +112,8 @@ function DoInquiry({closeModal}){
       
       let isPass = isWrite.every(Boolean);
       if(isPass){
+        setShowResultModal(true)
+        setResultMessage("문의 제출 중입니다.")
         fetch(`${API_BASE_URL}/inquiries/users`, {
           method: "POST",
           credentials: "include",
@@ -120,21 +121,27 @@ function DoInquiry({closeModal}){
         }).then(res => {
           if(res.ok) {
             setResultMessage("문의가 성공적으로 제출되었습니다.")
-            setShowResultModal(true)
           }else{
             setResultMessage("문의에 실패했습니다.")
-            setShowResultModal(true)
           }
         })
       }else{
+        setShowResultModal(true)
+        setResultMessage("내용을 확인해주세요.")
         setCheckContent(true);
         setShowAgreementModal(false);
       }
+
+
+
     }
 
     function handleCancle(){
       closeModal()
+      setShowResultModal(false)
+      setResultMessage("")
     }
+
 
     function handleFileButtonClick() {
       fileInputRef.current.click();
@@ -211,10 +218,15 @@ function DoInquiry({closeModal}){
                 <ResultSmallModal
                     message={resultMessage}
                     close={()=>{
+                        let isPass = isWrite.every(Boolean);
                         setShowResultModal(false)
-                        closeModal()
+                        setResultMessage("")
+                        if(isPass){
+                            closeModal()
+                        }
                     }}/>
             )}
+
         </>
     )
 }
