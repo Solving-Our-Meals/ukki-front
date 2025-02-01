@@ -14,6 +14,8 @@ function ReservationInfo(){
 
     const reservationInfo = { ...location.state };
 
+    console.log('reservationInfo', reservationInfo);
+
     useEffect(
         () => {
             fetch(`${API_BASE_URL}/user/info`,{
