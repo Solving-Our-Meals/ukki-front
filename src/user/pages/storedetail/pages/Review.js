@@ -356,8 +356,15 @@ function Review(){
     
     return(
         <div className={styles.reviewStyle}>
-            <div id={styles.strReview}>리뷰</div>
+            {/* <div id={styles.strReview}>리뷰</div>
             <div id={styles.strCountReview}>{`총 ${reviewContent.reviewCount}개의 리뷰가 있습니다.`}</div>
+            <select id={styles.reviewSort} value={sortOption} onChange={(e) => handleSort(e)}>
+                <option value="latest">최신순</option>
+                <option value="highRating">별점 높은 순</option>
+                <option value="lowRating">별점 낮은 순</option>
+            </select> */}
+            <div id={styles.strReview}>리뷰</div>
+            <div id={styles.strCountReview}>{`총 ${reviewContent?.reviewCount || 0}개의 리뷰가 있습니다.`}</div>
             <select id={styles.reviewSort} value={sortOption} onChange={(e) => handleSort(e)}>
                 <option value="latest">최신순</option>
                 <option value="highRating">별점 높은 순</option>
@@ -373,7 +380,7 @@ function Review(){
                                 display : isMoreReview || index <= 2 ? "" : "none" }}
                         >
                             <img 
-                                src={review.userProfile === null ? basicProfile : `/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
+                                src={review.userProfile === null ? basicProfile : `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
                                 id={styles.userProfile} 
                                 alt='프로필 이미지'
                                 />
@@ -397,7 +404,7 @@ function Review(){
                             </button>
                             <div>{review.reviewContent}</div>
                             <img 
-                                src={review.reviewImage === null ? basicReviewImg : `/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} 
+                                src={review.reviewImage === null ? basicReviewImg : `${API_BASE_URL}/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} 
                                 id={styles.reviewPhoto} 
                                 alt='리뷰 사진'
                             />

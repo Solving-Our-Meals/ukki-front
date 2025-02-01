@@ -23,6 +23,7 @@ function SpecificReviewModal({reviewNo, storeNo, isClickToSeeReview, setModalVis
         })
         .then(res => res.json())
         .then(data => {
+            console.log('storeNo', review.storeNo)
             setReview(data);
             console.log(data);
             setIsLoading(false);
@@ -62,7 +63,7 @@ function SpecificReviewModal({reviewNo, storeNo, isClickToSeeReview, setModalVis
             <div id={styles.totalArea} style={{display : closeModal ? "none" : ""}}>
                 <div className={styles.reviewContainer}>
                     <img 
-                        src={review.userProfile === null ? basicProfile : `${API_BASE_URL}/store/${storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
+                        src={review.userProfile === null ? basicProfile : `${API_BASE_URL}/store/${review.storeNo}/api/userProfile?userProfileName=${review.userProfile}`} 
                         id={styles.userProfile} 
                         alt='프로필 이미지'
                     />
@@ -73,7 +74,7 @@ function SpecificReviewModal({reviewNo, storeNo, isClickToSeeReview, setModalVis
                     <button type='button' id={styles.closeModal} onClick={() => handleCloseModal()}>확인</button>
                     <div id={styles.reviewDate}>{review.reviewDate}</div>
                     <div id={styles.reviewContent}>{review.reviewContent}</div>
-                    <img src={review.reviewImage === null ? basicReviewImg : `/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
+                    <img src={review.reviewImage === null ? basicReviewImg : `${API_BASE_URL}/store/${review.storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
                 </div> 
             </div>
         </>
