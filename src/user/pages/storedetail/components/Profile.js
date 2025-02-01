@@ -19,15 +19,15 @@ function Profile({ storeNo }) {
             credentials : "include",
         });
 
-        if (!response.ok) {
-            const error = new Error(`HTTP error! status: ${response.status}`);
-            error.status = response.status;
-            throw error;
-        }
-        // 비어 있는 응답 대비
-        if(response.status === 204) {
-            return [];
-        }
+        // if (!response.ok) {
+        //     const error = new Error(`HTTP error! status: ${response.status}`);
+        //     error.status = response.status;
+        //     throw error;
+        // }
+        // // 비어 있는 응답 대비
+        // if(response.status === 204) {
+        //     return [];
+        // }
         return await response.text();
     }
 
@@ -41,15 +41,15 @@ function Profile({ storeNo }) {
             credentials : "include",
         });
 
-        if (!response.ok) {
-            const error = new Error(`HTTP error! status: ${response.status}`);
-            error.status = response.status;
-            throw error;
-        }
-        // 비어 있는 응답 대비
-        if(response.status === 204) {
-            return [];
-        }    
+        // if (!response.ok) {
+        //     const error = new Error(`HTTP error! status: ${response.status}`);
+        //     error.status = response.status;
+        //     throw error;
+        // }
+        // // 비어 있는 응답 대비
+        // if(response.status === 204) {
+        //     return [];
+        // }    
         const data = await response.json();
         return data[0];
     }
@@ -72,13 +72,13 @@ function Profile({ storeNo }) {
                 console.error(error);
                 setGlobalError(error.message, error.status);
 
-                if (error.status === 404) {
-                    navigate('/404');
-                } else if (error.status === 403) {
-                    navigate('/403');
-                } else {
-                    navigate('/500');
-                }
+                // if (error.status === 404) {
+                //     navigate('/404');
+                // } else if (error.status === 403) {
+                //     navigate('/403');
+                // } else {
+                //     navigate('/500');
+                // }
             }
         };
 

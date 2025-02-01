@@ -26,6 +26,7 @@ function TotalReview(){
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
+                    credentials:"include",
                 }).then(res => res.json()),
                 fetch(`${API_BASE_URL}/boss/mypage/reviewList?storeNo=${storeNo}`,{
                     method: 'GET',
@@ -33,6 +34,7 @@ function TotalReview(){
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
+                    credentials:"include",
                 }).then(res => res.json())
             ])
             .then(([recentReviewData, reviewListData]) => {
@@ -104,7 +106,7 @@ function TotalReview(){
                     {renderStars(recentReview.reviewScope)}
                     <span id={styles.recentReviewContent} onClick={() => showSpecificReview(recentReview.revieNo)}>{recentReview.reviewContent}</span>
                 </div>
-                <span id={styles.reviewCount}>총 {totalReviewInfo.reviewCount}개의 리뷰가 있습니다.</span>
+                <span id={styles.reviewCount}>총 {totalReviewInfo.reviewCount === null ? 0 : totalReviewInfo.reviewCount}개의 리뷰가 있습니다.</span>
                 <button 
                     id={styles.prevBtn} 
                     onClick={handlePrevClick}

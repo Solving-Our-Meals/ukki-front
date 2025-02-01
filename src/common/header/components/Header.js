@@ -83,7 +83,7 @@ function Header() {
             if (response.ok) {
                 setIsLoggedIn(false);
                 // 로그아웃 후 경로 이동
-                navigate('/main');
+                navigate('/auth/login');
             } else {
                 console.error('Logout failed');
             }
