@@ -58,10 +58,11 @@ function ReservationTodayInfo(){
 
 
     function deleteConfirm(){
-        fetch(`/admin/reservations/info/today/${reservationNo}`, {
+        fetch(`${API_BASE_URL}/admin/reservations/info/end/${reservationNo}`, {
             method: 'DELETE',
         }).then((res) => {
             return res.json();
+
         }).then((data)=>{
                 setShowAgreementModal(false)
                 resultMessageHandler("삭제에 성공했습니다.");
