@@ -4,6 +4,7 @@ import styles from '../css/representativePhoto.module.css';
 import { API_BASE_URL } from '../../../../config/api.config';
 import { useError } from '../../../../common/error/components/ErrorContext';
 import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import basicRepPhoto from '../images/basicRepPhoto.png';
 
 function RepresentativePhoto(){
 
@@ -27,11 +28,11 @@ function RepresentativePhoto(){
                 credentials : "include",
             })
             .then(response => {
-                if (!response.ok) {
-                    const error = new Error(`HTTP error! status: ${response.status}`);
-                    error.status = response.status;
-                    throw error;
-                }
+                // if (!response.ok) {
+                //     const error = new Error(`HTTP error! status: ${response.status}`);
+                //     error.status = response.status;
+                //     throw error;
+                // }
                 return response.text();
             })
             .then(data => {
@@ -41,16 +42,16 @@ function RepresentativePhoto(){
             })
             .catch(error => {
                 console.error(error);
-                setGlobalError(error.message, error.status);
+                // setGlobalError(error.message, error.status);
 
-                // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                if (error.status === 404) {
-                    navigate('/404');
-                } else if (error.status === 403) {
-                    navigate('/403');
-                } else {
-                    navigate('/500');
-                }
+                // // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
+                // if (error.status === 404) {
+                //     navigate('/404');
+                // } else if (error.status === 403) {
+                //     navigate('/403');
+                // } else {
+                //     navigate('/500');
+                // }
                 setIsLoading(false);
             });
         }, [setGlobalError]);
@@ -66,7 +67,12 @@ function RepresentativePhoto(){
         }
 
     return(
-        <img id={styles.representativePhoto} src={photo} alt='대표 배너 사진'/>
+        <img
+            id={styles.representativePhoto}
+            src={photo ? photo : basicRepPhoto}
+            alt="대표 배너 사진"
+            onError={(e) => e.target.src = basicRepPhoto}  // 이미지 로드 실패 시 기본 이미지로 대체
+        />
     );
 }
 

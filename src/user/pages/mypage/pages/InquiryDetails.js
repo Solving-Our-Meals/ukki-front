@@ -209,35 +209,23 @@ function InquiryDetail({ userInfo }) {
         }
     };
 
-    const handleFileDownload = async (filePath) => {
+    const handleFileDownload = async (fileId) => {
         try {
-            // 파일 경로에서 파일 이름만 추출 (예: "2025-01-17.txt") - 이거 없으면 경로가 들어가서 오류남 - 이거 나중에 이름만들어가게해서 빼도되는데 걍 둠
-            const fileName = filePath.split('/').pop().split('\\').pop();
+            console.log("파일 다운로드 시작:", fileId);  // 확인용 로그
 
-            console.log("파일 다운로드 시작:", fileName);  // 확인용 로그
+            // Google Drive에서 파일 다운로드 링크 생성
+            const downloadUrl = `https://drive.google.com/uc?id=${fileId}&export=download`;
 
-            // 위에서 자른 파일이름만 전달하기
-            const response = await fetch(`${API_BASE_URL}/user/mypage/download/${fileName}`, {
-                method: 'GET',
-                headers: {
-                    'Accept' : 'application/octet-stream',
-                },
-                credentials: 'include', // 쿠키 포함
-            });
-
-            if (!response.ok) {
-                throw new Error('파일 다운로드 실패');
-            }
-
-            const blob = await response.blob();
+            // 다운로드 링크를 클릭하는 방식으로 파일 다운로드 처리
             const downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = "문의한 첨부파일"
+            downloadLink.href = downloadUrl;
+            downloadLink.download = "문의한 첨부파일";  // 다운로드할 파일 이름
             downloadLink.click();
         } catch (error) {
             console.error('파일 다운로드 오류:', error);
         }
     };
+
 
     const handleCancelEdit = () => {
         setIsConfirmingEdit(false);

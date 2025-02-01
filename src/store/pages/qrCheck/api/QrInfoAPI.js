@@ -1,6 +1,8 @@
+import { API_BASE_URL } from '../../../../config/api.config';
+
 export async function getQrInfo(qrName) {
     try {
-        const res = await fetch(`/qr/${qrName}`);
+        const res = await fetch(`${API_BASE_URL}/qr/${qrName}`);
 
         if (!res.ok) {
             throw new Error('응답 실패');

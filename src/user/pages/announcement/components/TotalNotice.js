@@ -5,6 +5,7 @@ import styles from '../css/totalNotice.module.css';
 import pin from '../images/Pin.png';
 import searchBtn from '../images/searchBtn.png';
 import loadingGif from '../../../../common/inquiry/img/loadingInquiryList.gif';
+import { API_BASE_URL } from '../../../../config/api.config';
 
 function TotalNotice(){
 
@@ -90,7 +91,7 @@ function TotalNotice(){
 
     const sendSearchWordHandler = (searchTerm = "") => {
         const term = typeof searchTerm === 'string' ? searchTerm : "";
-        const url = searchTerm.trim() === "" ? '/notice/user' : `/notice/user?searchWord=${searchTerm}`;
+        const url = searchTerm.trim() === "" ? `${API_BASE_URL}/notice/user` : `${API_BASE_URL}/notice/user?searchWord=${searchTerm}`;
 
         fetch(url)
         .then(res => res.json())
