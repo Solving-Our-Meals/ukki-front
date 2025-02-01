@@ -1752,6 +1752,7 @@ div {
             display: flex;
             justify-content: center;
             align-items: center;
+            // flex-direction: column;
             transition: left 0.7s ease;
     
             h3 {
@@ -1765,10 +1766,10 @@ div {
     
             p {
                 position: absolute;
-                left: 39vw;
+                left: 34vw;
                 top: 91.5vw;
                 font-family: 'Pretendard Variable';
-                font-size: 1.7vw;
+                font-size: 2.3vw;
                 text-align: center;
                 color: $textStrong;
             }
@@ -1829,7 +1830,9 @@ div {
                 object-fit: cover;
                 margin: 10px;
                 margin-top: 32vw;
+            //    transform: rotate(90deg);
                 transition: left 0.5s ease;
+                
     
                 &.selected-img {
                     opacity: 1;
