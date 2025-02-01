@@ -1750,14 +1750,16 @@ div {
 
         .category {
             display: flex;
+            flex-direction: column;  // 세로 정렬로 변경
             justify-content: center;
             align-items: center;
-            // flex-direction: column;
-            transition: left 0.7s ease;
+            transition: top 0.7s ease; // left -> top
+        
+        
     
             h3 {
                 position: absolute;
-                left: 35vw;
+                left: 32vw;
                 top: 86vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-size: 4vw;
@@ -1766,7 +1768,7 @@ div {
     
             p {
                 position: absolute;
-                left: 34vw;
+                left: 31vw;
                 top: 91.5vw;
                 font-family: 'Pretendard Variable';
                 font-size: 2.3vw;
@@ -1821,73 +1823,82 @@ div {
             }
     
             img {
-                width: 8vw;
-                border-radius: 20px;
+                width: 50vw;
+                border-radius: 15px;
                 z-index: 2;
                 opacity: 0.8;
                 transition: all 0.5s;
-                height: 27.5vw;
+                height: 8vw;
                 object-fit: cover;
                 margin: 10px;
-                margin-top: 32vw;
+                margin-top: 12vh;
             //    transform: rotate(90deg);
                 transition: left 0.5s ease;
                 
     
                 &.selected-img {
+                    width: 50vw;
                     opacity: 1;
                     // border: 3px solid $textCaption;
-                    width: 35vw;
+                    height: 35vw;
                 }
 
 
                 &:nth-of-type(2) {
-                    left: 49vw;
+                    top: 49vw;
+                    margin-top: 2vh;
 
                     &.selected-img {
+                        width: 50vw;
                         opacity: 1;
                         // border: 3px solid $textCaption;
-                        width: 35vw;
-                        left: 21vw;
+                         height: 35vw;
+                        top: 21vw;
                     }
                 }
 
                 &:nth-of-type(3) {
-                    left: 58vw;
+                    top: 58vw;
+                    margin-top: 2vh;
 
 
                     &.selected-img {
                         opacity: 1;
                         // border: 3px solid $textCaption;
-                        width: 35vw;
-                        left: 31vw;
+                         height: 35vw;
+                         top: 31vw;
+                         width: 50vw;
 
                         &:nth-of-type(2) {
-                            left: 15vw;
+                            top: 15vw;
                         }
 
                     }
                 }
 
                 &:nth-of-type(4) {
-                    left: 67vw;
+                    top: 67vw;
+                    margin-top: 2vh;
 
                     &.selected-img {
                         opacity: 1;
                         // border: 3px solid $textCaption;
-                        width: 35vw;
-                        left: 40vw;
+                         height: 35vw;
+                         top: 40vw;
+                         width: 50vw;
                     }
                 }
 
                 &:nth-of-type(5) {
-                    left: 76vw;
+                    top: 76vw;
+                    margin-top: 2vh;
 
                     &.selected-img {
                         opacity: 1;
                         // border: 3px solid $textCaption;
-                        width: 35vw;
-                        left: 50vw;
+                         height: 35vw;
+                         top: 50vw;
+                         width: 50vw;
                     }
                 }
 

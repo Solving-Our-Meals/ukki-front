@@ -258,7 +258,9 @@ function StoreInfoRegist() {
 
     const registConfirm = async () => {
         try {
+            setLoading(true);
             const formData = new FormData();
+
 
             formData.append('storeData', JSON.stringify(storeInfo));
             formData.append('userData', JSON.stringify(userInfo));
@@ -313,8 +315,11 @@ function StoreInfoRegist() {
             console.error('등록 처리 중 오류:', error);
             setResultMessage('등록 중 오류가 발생했습니다.');
             setShowResultModal(true);
+        } finally {
+            setLoading(false);
         }
     };
+
 
     const handleCancel = async () => {
         try {

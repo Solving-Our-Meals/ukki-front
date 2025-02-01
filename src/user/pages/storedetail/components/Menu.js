@@ -11,61 +11,57 @@ function Menu() {
     const { setGlobalError } = useError();
 
     const fetchStoreMenu = async (storeNo) => {
-        return fetch(`${API_BASE_URL}/store/${storeNo}/storeMenu`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'text/plain',   // 텍스트 형식으로 요청을 추가합니다.
-                'Content-Type': 'application/json'
-            },
-            credentials : "include"
-        })
-        .then(response => {
-            // if (!response.ok) {
-            //     const error = new Error(`HTTP error! status: ${response.status}`);
-            //     error.status = response.status;
-            //     throw error;
-            // }
-            // // 비어 있는 응답 대비
-            // if(response.status === 204) {
-            //     return "";
-            // }
-            return response.text();
-        })
-        .catch(error => {
-            console.error('fetchStoreMenu error:', error);
+        try {
+            const response = await fetch(`${API_BASE_URL}/store/${storeNo}/storeMenu`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'text/plain',
+                    'Content-Type': 'application/json',
+                },
+                credentials: "include"
+            });
+            
+            // 응답이 비어 있지 않으면 텍스트로 반환
+            if (response.ok) {
+                const text = await response.text();
+                return text.trim();  // 공백을 제거하여 반환
+            } else {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        } catch (error) {
+            // console.error('fetchStoreMenu error:', error);
             throw error;
-        });
+        }
     };
 
     useEffect(() => {
-        const fetchData = () => {
-            fetchStoreMenu(storeNo)
-                .then(menuData => {
-                    if (!menuData) {
-                        throw new Error('메뉴 데이터를 받아오지 못했습니다.');
-                    }
-                    const menuUrl = `${API_BASE_URL}/store/${storeNo}/api/menu?menuName=${menuData}`;
-                    setMenu(menuUrl);
-                })
-                .catch(error => {
-                    console.error(error);
-                    setGlobalError(error.message, error.status);
+        const fetchData = async () => {
+            try {
+                const menuData = await fetchStoreMenu(storeNo);
 
-                    // 네비게이션 처리: 에러 상태에 맞는 페이지로 리디렉션
-                    // if (error.status === 404) {
-                    //     navigate('/404');
-                    // } else if (error.status === 403) {
-                    //     navigate('/403');
-                    // } else {
-                    //     navigate('/500');
-                    // }
-                });
+                // menuData가 없으면 빈 문자열로 처리
+                if (!menuData || menuData === "") {
+                    setMenu('');  // menu가 비어 있으면 메뉴 이미지를 표시하지 않음
+                    throw new Error('메뉴 데이터를 받아오지 못했습니다.');
+                }
+
+                // 유효한 menuData가 있으면 menuUrl 설정
+                const menuUrl = `${API_BASE_URL}/store/${storeNo}/api/menu?menuName=${menuData}`;
+                setMenu(menuUrl);
+            } catch (error) {
+                // console.error(error);
+                setGlobalError(error.message, error.status);
+                // 에러 발생 시, 네비게이션 처리 또는 추가 로직 추가 가능
+                // navigate('/500');
+            }
         };
+
         fetchData();
     }, [storeNo, navigate, setGlobalError]);
 
     return (
         <div id={styles.menuStyle}>
+            {/* menu가 없으면 display: none 처리 */}
             <img
                 src={menu}
                 id={styles.menuImg}

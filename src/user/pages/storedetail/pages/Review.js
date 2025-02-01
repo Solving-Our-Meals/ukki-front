@@ -47,56 +47,51 @@ function Review(){
     useEffect(() => {
         // Promise.all을 사용하여 두 fetch를 동기화
         Promise.all([
-            fetch(`${API_BASE_URL}/user/info`,{
+            fetch(`${API_BASE_URL}/user/info`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                credentials : "include"
-            }).then(response => {
-                // if (!response.ok) {
-                //     const error = new Error(`HTTP error! status: ${response.status}`);
-                //     error.status = response.status;
-                //     throw error;
-                // }
+                credentials: "include"
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 return response.json();
-            }).catch(() => ({ nickname: "" })), // 로그인 안 되어 있으면 기본 값 반환
-            fetch(`${API_BASE_URL}/store/${storeNo}/review`,{
+            })
+            .catch(() => ({ nickname: "" })), // 로그인 안 되어 있으면 기본 값 반환
+            
+            fetch(`${API_BASE_URL}/store/${storeNo}/review`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-            }).then(response => {
-                // if (!response.ok) {
-                //     const error = new Error(`HTTP error! status: ${response.status}`);
-                //     error.status = response.status;
-                //     throw error;
-                // }
-                return response.json();
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                // 응답이 비어있을 경우 빈 객체 반환
+                return response.json().catch(() => ({})); // 응답 본문이 잘못된 경우 빈 객체 반환
             })
         ])
         .then(([userData, reviewData]) => {
             console.log('현재 유저!!!!!:', userData.nickname);  // 현재 유저 이름 확인
             console.log('리뷰 데이터:', reviewData);      // 리뷰 데이터 확인
-            
+    
             setCurrentUserName(userData.nickname);
             setReviewContent(reviewData);
-            setReviews(reviewData.reviewList);
+            setReviews(reviewData.reviewList || []); // 리뷰 데이터가 없을 경우 빈 배열로 설정
         })
         .catch(error => {
             console.error(error);
-            // setGlobalError(error.message, error.status);
-            // if (error.status === 404) {
-            //     navigate('/404');
-            // } else if (error.status === 403) {
-            //     navigate('/403');
-            // } else {
-            //     navigate('/500');
-            // }
+            // 에러 처리
         });
-    }, [setGlobalError]);
+    }, [setGlobalError, storeNo]);
+    
 
     const handleSort = (e) => {
         const option = e.target.value; 

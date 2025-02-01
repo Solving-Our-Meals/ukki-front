@@ -1573,13 +1573,14 @@ div .hidden-input {
   }
   div .category {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: left 0.7s ease;
+    transition: top 0.7s ease;
   }
   div .category h3 {
     position: absolute;
-    left: 35vw;
+    left: 32vw;
     top: 86vw;
     font-family: "Bobaesum Jindo TTF";
     font-size: 4vw;
@@ -1587,7 +1588,7 @@ div .hidden-input {
   }
   div .category p {
     position: absolute;
-    left: 34vw;
+    left: 31vw;
     top: 91.5vw;
     font-family: "Pretendard Variable";
     font-size: 2.3vw;
@@ -1632,55 +1633,64 @@ div .hidden-input {
     z-index: 5;
   }
   div .category img {
-    width: 8vw;
-    border-radius: 20px;
+    width: 50vw;
+    border-radius: 15px;
     z-index: 2;
     opacity: 0.8;
     transition: all 0.5s;
-    height: 27.5vw;
+    height: 8vw;
     object-fit: cover;
     margin: 10px;
-    margin-top: 32vw;
+    margin-top: 12vh;
     transition: left 0.5s ease;
   }
   div .category img.selected-img {
+    width: 50vw;
     opacity: 1;
-    width: 35vw;
+    height: 35vw;
   }
   div .category img:nth-of-type(2) {
-    left: 49vw;
+    top: 49vw;
+    margin-top: 2vh;
   }
   div .category img:nth-of-type(2).selected-img {
+    width: 50vw;
     opacity: 1;
-    width: 35vw;
-    left: 21vw;
+    height: 35vw;
+    top: 21vw;
   }
   div .category img:nth-of-type(3) {
-    left: 58vw;
+    top: 58vw;
+    margin-top: 2vh;
   }
   div .category img:nth-of-type(3).selected-img {
     opacity: 1;
-    width: 35vw;
-    left: 31vw;
+    height: 35vw;
+    top: 31vw;
+    width: 50vw;
   }
   div .category img:nth-of-type(3).selected-img:nth-of-type(2) {
-    left: 15vw;
+    top: 15vw;
   }
   div .category img:nth-of-type(4) {
-    left: 67vw;
+    top: 67vw;
+    margin-top: 2vh;
   }
   div .category img:nth-of-type(4).selected-img {
     opacity: 1;
-    width: 35vw;
-    left: 40vw;
+    height: 35vw;
+    top: 40vw;
+    width: 50vw;
   }
   div .category img:nth-of-type(5) {
-    left: 76vw;
+    top: 76vw;
+    margin-top: 2vh;
   }
   div .category img:nth-of-type(5).selected-img {
     opacity: 1;
-    width: 35vw;
-    left: 50vw;
+    height: 35vw;
+    top: 50vw;
+    width: 50vw;
   }
   div .category span {
     position: absolute;
@@ -2077,4 +2087,4 @@ div .hidden-input {
     z-index: -9;
     opacity: 0;
   }
-}
+}/*# sourceMappingURL=main.css.map */
