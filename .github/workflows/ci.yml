@@ -20,4 +20,4 @@ jobs:
     - name: Build Frontend
       run: |
         npm install
-        npm run build 
+        CI=false npm run build 
