@@ -21,47 +21,107 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
     const [storeAddress, setStoreAddress] = useState('');
 
 
+
     useEffect(() => {
         if (map && currentPosition) {
             const newLatLng = new kakao.maps.LatLng(currentPosition.y, currentPosition.x);
             map.setCenter(newLatLng); // 지도 중심을 현재 위치로 이동
-        }
-    }, [currentPosition, map]); // currentPosition이 변경될 때마다 실행
-    
 
-
-const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-        // 사용자가 엔터를 눌렀을 때
-        updateLocationAndRoute(defaultValue); // 주소 업데이트하고 경로 새로 그리기
-    }
-};
-
-const updateLocationAndRoute = async (newAddress) => {
-    // 새로운 주소를 좌표로 변환
-    const geocoder = new kakao.maps.services.Geocoder();
-    
-    geocoder.addressSearch(newAddress, function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            // 주소를 위도/경도로 변환
-            const newLatLng = new kakao.maps.LatLng(result[0].y, result[0].x);
-            
-            // 지도 중심을 새 위치로 업데이트
-            if (map) {
-                map.setCenter(newLatLng);
+            // 이전 위치 마커 제거
+            if (currentMarker.marker) {
+                currentMarker.marker.setMap(null); // 기존 마커 제거
+                currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
             }
 
-            // 현재 위치와 가게 위치 사이 경로를 요청
-            if (currentPosition) {
-                requestDirections(newLatLng);
+            // 기존 경로가 있으면 삭제
+            if (window.currentPolyline) {
+                window.currentPolyline.setMap(null);  // 경로 삭제
+                window.currentPolyline = null;        // 글로벌 변수 초기화
             }
-            // 입력한 주소를 state로 저장
-            setStoreAddress(newAddress);
-        } else {
-            alert("주소를 찾을 수 없습니다.");
+
+            // 새로운 위치 마커 표시
+            const message = '<div style="padding:3px; padding-left:40px; height:1.5vw; font-weight:700; color:#FF8AA3;">현재 위치</div>';
+            displayMarker(newLatLng, message, map);
         }
-    });
-};
+    }, [currentPosition, map]);
+
+    useEffect(() => {
+        if (map && address && address !== defaultValue) {
+            const places = new kakao.maps.services.Places();
+
+            places.keywordSearch(address, function (result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    const locPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
+                    const message = '<div style="padding:5px; padding-left:35px; height:1.5vw; font-weight:900; color:#FF8AA3;">현재 위치</div>';
+                    displayMarker(locPosition, message, map);
+                } else {
+                    alert('주소를 찾을 수 없습니다.');
+                }
+            });
+        }
+    }, [map, address, defaultValue]); // address가 변경될 때마다 호출
+
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            // 사용자가 엔터를 눌렀을 때
+            updateLocationAndRoute(defaultValue); // 주소 업데이트하고 경로 새로 그리기
+        }
+    };
+
+    const updateLocationAndRoute = async (newAddress) => {
+        // 새로운 주소를 좌표로 변환
+
+        if (currentMarker.marker) {
+            currentMarker.marker.setMap(null); // 기존 마커 제거
+            currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+        }
+
+        // 기존 경로가 있으면 삭제
+        if (window.currentPolyline) {
+            window.currentPolyline.setMap(null);  // 경로 삭제
+            window.currentPolyline = null;        // 글로벌 변수 초기화
+        }
+        const geocoder = new kakao.maps.services.Geocoder();
+
+        geocoder.addressSearch(newAddress, function (result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+                // 주소를 위도/경도로 변환
+
+
+                if (currentMarker.marker) {
+                    currentMarker.marker.setMap(null); // 기존 마커 제거
+                    currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+                }
+
+                // 기존 경로가 있으면 삭제
+                if (window.currentPolyline) {
+                    window.currentPolyline.setMap(null);  // 경로 삭제
+                    window.currentPolyline = null;        // 글로벌 변수 초기화
+                }
+                const newLatLng = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 지도 중심을 새 위치로 업데이트
+                if (map) {
+                    map.setCenter(newLatLng);
+                }
+
+                // 현재 위치와 가게 위치 사이 경로를 요청
+                if (currentPosition) {
+                    requestDirections(newLatLng); // 경로 요청
+                }
+                // 입력한 주소를 state로 저장
+                setStoreAddress(newAddress);
+
+                // 해당 위치에 마커 표시
+                const message = '<div style="padding:3px; padding-left:40px; height:1.5vw; font-weight:700; color:#FF8AA3;">입력한 주소</div>';
+                displayMarker(newLatLng, message, map);
+            } else {
+                alert("주소를 찾을 수 없습니다.");
+            }
+        });
+    };
+
     useEffect(() => {
         if (selectedCategory) {
             fetch(`${API_BASE_URL}/main/category?category=${selectedCategory}`)
@@ -104,17 +164,29 @@ const updateLocationAndRoute = async (newAddress) => {
                 (position) => {
                     const lat = position.coords.latitude;
                     const lon = position.coords.longitude;
-    
+
+
+                    if (currentMarker.marker) {
+                        currentMarker.marker.setMap(null); // 기존 마커 제거
+                        currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+                    }
+
+                    // 기존 경로가 있으면 삭제
+                    if (window.currentPolyline) {
+                        window.currentPolyline.setMap(null);  // 경로 삭제
+                        window.currentPolyline = null;        // 글로벌 변수 초기화
+                    }
+
                     const locPosition = new kakao.maps.LatLng(lat, lon);
                     const message = '<div style="padding:3px; padding-left:40px; height:1.5vw; font-weight:700; color:#FF8AA3;">현재 위치</div>';
-    
+
                     // 위치 마커 표시
                     displayMarker(locPosition, message, map);
                     setCurrentPosition({ x: lon, y: lat }); // 사용자 현재 위치 설정
-    
+
                     // 지도 중심을 현재 위치로 설정
                     map.setCenter(locPosition);
-    
+
                     // 주소 변환
                     const geocoder = new kakao.maps.services.Geocoder();
                     geocoder.coord2Address(lat, lon, (result, status) => {
@@ -138,16 +210,16 @@ const updateLocationAndRoute = async (newAddress) => {
                     timeout: 5000, // 타임아웃 시간
                 }
             );
-    
+
             // 컴포넌트가 언마운트 될 때 위치 추적을 중지
             return () => {
                 navigator.geolocation.clearWatch(geoWatcher);
             };
         }
     }, [map, defaultValue, setAddress]);
-    
 
-    
+
+
     useEffect(() => {
         // 카테고리가 변경될 때 경로 초기화
         if (window.currentPolyline) {
@@ -155,7 +227,7 @@ const updateLocationAndRoute = async (newAddress) => {
             window.currentPolyline = null;  // 글로벌 변수 초기화
         }
     }, [selectedCategory]);  // 카테고리 변경 시 실행
-    
+
     useEffect(() => {
         if (map && stores.length > 0) {
             const newMarkers = stores.map(store => {
@@ -202,7 +274,7 @@ const updateLocationAndRoute = async (newAddress) => {
                     }
 
                     // 가게 정보를 업데이트
-                    onMarkerClick(store.storeName, store.storeDes, store.storeMenu, store.storeProfile, store.storeAddress,store.storeNo);
+                    onMarkerClick(store.storeName, store.storeDes, store.storeMenu, store.storeProfile, store.storeAddress, store.storeNo);
                 });
 
                 marker.setMap(map);
@@ -220,28 +292,28 @@ const updateLocationAndRoute = async (newAddress) => {
     const requestDirections = async (store) => {
         try {
             if (!currentPosition) return;
-        
+
             const url = `https://apis-navi.kakaomobility.com/v1/waypoints/directions`;
-        
+
             const headers = {
                 'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,
                 'Content-Type': 'application/json',
             };
-        
+
             const body = JSON.stringify({
                 origin: currentPosition,
                 destination: { x: store.longitude, y: store.latitude },
                 waypoints: []
             });
-        
+
             const response = await fetch(url, { method: 'POST', headers, body });
-        
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-        
+
             const data = await response.json();
-        
+
             // 경로 데이터 처리
             if (data.routes && data.routes.length > 0 && data.routes[0].sections && data.routes[0].sections.length > 0) {
                 const roads = data.routes[0].sections[0].roads;
@@ -256,7 +328,7 @@ const updateLocationAndRoute = async (newAddress) => {
                         }
                         return null;
                     }).filter(Boolean));
-            
+
                     if (routePath && routePath.length > 0) {
                         // 경로를 삭제하고 새 경로 표시
                         displayRoute(routePath);
@@ -273,18 +345,18 @@ const updateLocationAndRoute = async (newAddress) => {
             console.error('Error fetching directions:', error);
         }
     };
-    
+
     const displayRoute = (routePath) => {
         if (!routePath || routePath.length === 0) {
             console.error('유효하지 않은 경로 데이터');
             return;
         }
-    
+
         // 기존 경로 삭제
         if (window.currentPolyline) {
             window.currentPolyline.setMap(null);
         }
-    
+
         // 새 경로 표시
         const polyline = new kakao.maps.Polyline({
             path: routePath.map(point => new kakao.maps.LatLng(point[1], point[0])),
@@ -293,23 +365,29 @@ const updateLocationAndRoute = async (newAddress) => {
             strokeOpacity: 1,
             strokeStyle: 'solid'
         });
-    
+
         polyline.setMap(map);
         window.currentPolyline = polyline;
-    
+
         const bounds = new kakao.maps.LatLngBounds();
         routePath.forEach(point => bounds.extend(new kakao.maps.LatLng(point[1], point[0])));
         map.setBounds(bounds);
     };
-    
-    
-    
+
+
+
     function displayMarker(locPosition, message, mapInstance) {
         if (!mapInstance) return;
 
         if (currentMarker.marker) {
-            currentMarker.marker.setMap(null);
-            currentMarker.infowindow.close();
+            currentMarker.marker.setMap(null); // 기존 마커 제거
+            currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+        }
+
+        // 기존 경로가 있으면 삭제
+        if (window.currentPolyline) {
+            window.currentPolyline.setMap(null);  // 경로 삭제
+            window.currentPolyline = null;        // 글로벌 변수 초기화
         }
 
         const marker = new kakao.maps.Marker({
@@ -326,6 +404,8 @@ const updateLocationAndRoute = async (newAddress) => {
 
         mapInstance.setCenter(locPosition);
         setCurrentMarker({ marker, infowindow });
+
+
     }
 
     return (

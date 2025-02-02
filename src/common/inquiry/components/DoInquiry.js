@@ -123,6 +123,7 @@ function DoInquiry({closeModal}){
             setResultMessage("문의가 성공적으로 제출되었습니다.")
           }else{
             setResultMessage("문의에 실패했습니다.")
+            setShowResultModal(true)
           }
         })
       }else{
