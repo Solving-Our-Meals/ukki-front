@@ -11,7 +11,6 @@ function ReservationDetail() {
     const [calendarVisible, setCalendarVisible] = useState(false); // 달력 보이기 상태 추가
     const [error, setError] = useState(null);
     const [qrImage, setQrImage] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchReservationDetail();
