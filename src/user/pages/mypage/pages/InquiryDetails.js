@@ -18,6 +18,7 @@ function InquiryDetail({ userInfo }) {
     const [editedText, setEditedText] = useState('');
     const [editedTitle, setEditedTitle] = useState('');
     const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const textareaRef = useRef(null);
 
@@ -159,6 +160,7 @@ function InquiryDetail({ userInfo }) {
     };
 
     const handleConfirmEdit = async () => {
+        setIsLoading(true);
         try {
             const updatedInquiry = {
                 title: editedTitle,
@@ -206,6 +208,8 @@ function InquiryDetail({ userInfo }) {
             console.error('수정 오류:', error.message);
             setIsEditError(true);
             setIsEditSuccess(false);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -242,6 +246,7 @@ function InquiryDetail({ userInfo }) {
     };
 
     const handleConfirmDelete = async () => {
+        setIsLoading(true);
         try {
             const response = await fetch(`${API_BASE_URL}/user/mypage/inquiry/${inquiryNo}`, {
                 method: 'DELETE',
@@ -263,6 +268,8 @@ function InquiryDetail({ userInfo }) {
         } catch (error) {
             console.log(error.message);
             setIsDeleteError(true);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -313,6 +320,7 @@ function InquiryDetail({ userInfo }) {
         );
     };
 
+
     const DeleteErrorModal = ({ onClose }) => {
         return (
             <div className={styles.modalOverlay}>
@@ -332,6 +340,16 @@ function InquiryDetail({ userInfo }) {
                 <img src={Loading} alt="로딩 중" />
             </div>
         );
+    }
+
+    if (isLoading) {
+        {
+            return (
+                <div className={styles.loadingContainer}>
+                    <img src={Loading} alt="로딩 중" />
+                </div>
+            );
+        }
     }
 
     if (!inquiry) {
