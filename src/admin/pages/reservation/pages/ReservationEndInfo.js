@@ -60,7 +60,7 @@ function ReservationEndInfo(){
 
 
     function deleteConfirm(){
-        fetch(`${API_BASE_URL}/admin/reservations/info/today/${reservationNo}`, {
+        fetch(`${API_BASE_URL}/admin/reservations/info/end/${reservationNo}`, {
             method: 'DELETE',
         }).then((res) => {
             return res.json();
