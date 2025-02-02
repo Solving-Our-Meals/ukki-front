@@ -178,52 +178,42 @@ a:active {
   left: 0px;
   right: 0px;
   width: 100%;
-  height: 130px;
+  height: 8vw;
   background-color: #FFFFFF;
   cursor: default;
   border-radius: 0;
 }
-
 .footerStyle #honbab_ukki {
   position: absolute;
-  left: 9%;
-  right: 84.32%;
-  top: 7px;
-  bottom: 36.28%;
-  width: 100px;
-  height: 75px;
+  left: 6vw;
+  top: 0px;
+  width: 6vw;
 }
-
 .footerStyle p {
   position: absolute;
   top: 10px;
-  bottom: 38.94%;
   color: #232323;
-  width: max-content;
+  width: inherit;
   font-family: "Pretendard-Regular";
   font-weight: 400;
-  font-size: 13px;
+  font-size: 1vw;
   line-height: 170%;
   cursor: pointer;
 }
-
 .footerStyle #first {
-  left: 30%;
+  left: 25vw;
 }
-
 .footerStyle #second {
-  left: 45%;
+  left: 40vw;
 }
-
 .footerStyle #third {
-  left: 60%;
+  left: 55vw;
 }
-
 .footerStyle .pinkArea {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 35px;
+  height: 2vw;
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
@@ -231,7 +221,6 @@ a:active {
   cursor: default;
   border-radius: 0;
 }
-
 .footerStyle .pinkArea P {
   position: absolute;
   top: 9px;
@@ -239,6 +228,132 @@ a:active {
   font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 0.8vw;
   cursor: default;
+  text-align: center;
+}
+
+@media (max-width: 1440px) and (min-width: 769px) {
+  .footerStyle {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 15vw;
+    background-color: #FFFFFF;
+    cursor: default;
+    border-radius: 0;
+  }
+  .footerStyle #honbab_ukki {
+    position: absolute;
+    left: 6vw;
+    top: 0px;
+    width: 8vw;
+  }
+  .footerStyle p {
+    position: absolute;
+    top: 0px;
+    color: #232323;
+    width: inherit;
+    font-family: "Pretendard-Regular";
+    font-weight: 400;
+    font-size: 1.4vw;
+    line-height: 170%;
+    cursor: pointer;
+  }
+  .footerStyle #first {
+    left: 20vw;
+  }
+  .footerStyle #second {
+    left: 30vw;
+  }
+  .footerStyle #third {
+    left: 45vw;
+  }
+  .footerStyle .pinkArea {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5vw;
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    border-radius: 0;
+  }
+  .footerStyle .pinkArea P {
+    position: absolute;
+    top: 1vw;
+    color: #999999;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5vw;
+    cursor: default;
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .footerStyle {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 30vw;
+    background-color: #FFFFFF;
+    cursor: default;
+  }
+  .footerStyle #honbab_ukki {
+    position: absolute;
+    left: 6vw;
+    top: -15vw;
+    width: 20vw;
+  }
+  .footerStyle p {
+    position: absolute;
+    top: 0px;
+    color: #232323;
+    width: inherit;
+    font-family: "Pretendard-Regular";
+    font-weight: 400;
+    font-size: 2.5vw;
+    line-height: 170%;
+    cursor: pointer;
+  }
+  .footerStyle #first {
+    top: -14vw;
+    left: 35vw;
+  }
+  .footerStyle #second {
+    top: -14vw;
+    left: 55vw;
+  }
+  .footerStyle #third {
+    top: 3vw;
+    left: 6vw;
+  }
+  .footerStyle .pinkArea {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10vw;
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    border-radius: 0;
+  }
+  .footerStyle .pinkArea P {
+    position: absolute;
+    top: 2vw;
+    color: #999999;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3vw;
+    cursor: default;
+    text-align: center;
+  }
 }/*# sourceMappingURL=footer.module.css.map */

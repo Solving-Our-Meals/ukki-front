@@ -19,33 +19,28 @@ class WeeklyReservationGraph extends PureComponent {
     super(props);
     this.state = {
       data: [],
+      storeNo: 123 // example store number
     };
   }
 
   // 컴포넌트가 마운트될 때 데이터 가져오기
   componentDidMount() {
-    const storeNo = 5; // 예시: storeNo는 실제로 전달되는 값으로 설정해야 합니다.
+    axios.get(`${API_BASE_URL}/boss/mypage/weekly-reservation-count?storeNo=${this.state.storeNo}`)
+      .then((response) => {
+        console.log('API 응답 데이터:', response.data);  // 확인
 
-
-    axios.get(`${API_BASE_URL}/boss/mypage/weekly-reservation-count?storeNo=${storeNo}`)
-    .then((response) => {
-        const thisWeek = response.data;
-        console.log(thisWeek); // 응답 데이터 확인
-      
-      
-        
         // 데이터를 차트에 맞게 형식화
         const formattedData = [
-          { name: '월', 예약수: thisWeek.mon },
-          { name: '화', 예약수: thisWeek.tue },
-          { name: '수', 예약수: thisWeek.wed },
-          { name: '목', 예약수: thisWeek.thu },
-          { name: '금', 예약수: thisWeek.fri },
-          { name: '토', 예약수: thisWeek.sat },
-          { name: '일', 예약수: thisWeek.sun },
+          { name: '월', 예약수: response.data.mon },
+          { name: '화', 예약수: response.data.tue },
+          { name: '수', 예약수: response.data.wed },
+          { name: '목', 예약수: response.data.thu },
+          { name: '금', 예약수: response.data.fri },
+          { name: '토', 예약수: response.data.sat },
+          { name: '일', 예약수: response.data.sun },
         ];
 
-        this.setState({ data: formattedData });
+        this.setState({ data: formattedData });  // formattedData로 state 업데이트
       })
       .catch((error) => {
         console.error('Error fetching data:', error);

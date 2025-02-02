@@ -191,168 +191,129 @@ a:active {
   height: auto;
 }
 
-#background {
+#strNotice {
   position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  width: 100%;
-  height: 100%;
-  background-color: #FFF3A7;
-  border-radius: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: default;
-}
-#background #noticeArea {
-  position: absolute;
-  margin-top: 75px;
-  width: 1805px;
-  height: 783px;
-  background-color: #FFFFFF;
-  border: none;
-  border-radius: 50px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#background #noticeArea .dots {
-  box-sizing: border-box;
-  position: absolute;
-  width: 27px;
-  height: 27px;
-  background: #B3E7FF;
-  border: 3px solid #BDBEBF;
-}
-#background #noticeArea #dot1 {
-  left: 50px;
-  top: 50px;
-}
-#background #noticeArea #dot2 {
-  right: 50px;
-  top: 50px;
-}
-#background #noticeArea #dot3 {
-  left: 50px;
-  bottom: 50px;
-}
-#background #noticeArea #dot4 {
-  right: 50px;
-  bottom: 50px;
-}
-#background #noticeArea #strNotice {
-  position: absolute;
-  width: max-content;
-  height: max-content;
-  left: 120px;
-  top: 40px;
+  width: 15vw;
+  left: 13vw;
+  top: 7.8vw;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
-  font-size: 50px;
+  font-size: 2.5vw;
   line-height: 55px;
   color: #FF8AA3;
 }
-#background #noticeArea #imgPin {
+
+#imgPin {
   position: absolute;
-  width: 40px;
-  height: 40x;
-  margin-top: -8px;
-  left: 310px;
-  top: 50px;
+  width: 2vw;
+  left: 10vw;
+  top: 8vw;
 }
-#background #noticeArea #inputSearch {
+
+#inputSearch {
   position: absolute;
-  right: 120px;
-  top: 40px;
-  width: 500px;
-  height: 64px;
-  border: 5px solid #FF8AA3;
+  width: 40vw;
+  height: 3vw;
+  left: 46vw;
+  top: 8vw;
   border-radius: 50px;
-  cursor: text;
-  outline: none;
-  padding-left: 50px;
-  font-family: "Pretendard-Regular";
-  font-size: 25px;
+  border: 0.15vw solid #d6d6d6;
+  background-color: white;
+  margin: 0;
+  z-index: 10;
   color: #232323;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 1.2vw;
+  box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+  padding: 0vw 2vw;
+  z-index: 1;
 }
-#background #noticeArea #searchBtn {
+#inputSearch::placeholder {
+  color: #888888;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 1.2vw;
+}
+
+#searchBtn {
   position: absolute;
-  right: 150px;
-  top: 50px;
-  width: 40px;
-  height: 40px;
+  left: 87vw;
+  top: 8vw;
+  width: 3vw;
   cursor: pointer;
 }
-#background #noticeArea .strArea {
+
+.strArea {
   position: absolute;
-  width: 1600px;
-  height: 80px;
-  top: 120px;
-  border-bottom: 4px solid #BDBEBF;
+  width: 80vw;
+  height: 4vw;
+  top: 12vw;
+  border-bottom: 3px solid #BDBEBF;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  left: 50%;
+  left: 50vw;
   transform: translateX(-50%);
   border-radius: 0;
 }
-#background #noticeArea .strArea #strCategory, #background #noticeArea .strArea #strTitle, #background #noticeArea .strArea #strDate {
+.strArea #strCategory,
+.strArea #strTitle,
+.strArea #strDate {
   position: relative;
 }
-#background #noticeArea .strArea #strCategory {
+.strArea #strCategory {
   position: absolute;
   width: max-content;
   height: max-content;
-  left: 60px;
+  left: 5vw;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 1.5vw;
   line-height: 130%;
   color: #232323;
 }
-#background #noticeArea .strArea #strTitle {
+.strArea #strTitle {
   position: absolute;
   width: max-content;
   height: max-content;
-  left: 490px;
+  left: 25vw;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 1.5vw;
   line-height: 130%;
   color: #232323;
 }
-#background #noticeArea .strArea #strDate {
+.strArea #strDate {
   position: absolute;
   width: max-content;
   height: max-content;
-  right: 170px;
+  left: 67vw;
   font-family: "Bobaesum Jindo TTF";
   font-style: normal;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 1.5vw;
   line-height: 130%;
   color: #232323;
 }
-#background #noticeArea .noticeContainer {
+
+.noticeContainer {
   position: absolute;
-  width: 1620px;
-  height: 430px;
-  top: 200px;
-  left: 50%;
+  width: 86vw;
+  height: 20vw;
+  top: 16vw;
+  left: 54vw;
   transform: translateX(-50%);
   cursor: pointer;
 }
-#background #noticeArea .noticeContainer .notice {
+.noticeContainer .notice {
   position: relative;
-  width: 1550px;
-  height: 80px;
-  left: 33px;
+  width: 80vw;
+  height: 4vw;
+  left: -1vw;
   border-bottom: 2px solid #D9D9D9;
   border-radius: 0;
   display: flex;
@@ -363,97 +324,574 @@ a:active {
   justify-content: center;
   align-items: center;
 }
-#background #noticeArea .noticeContainer .notice #categoryName {
-  position: relative;
-  left: -270px;
-  width: 97px;
-  height: 38px;
+.noticeContainer .notice #categoryName {
+  position: absolute;
+  left: 5.2vw;
+  width: 5vw;
+  height: 2vw;
   border-radius: 25px;
   font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 1.2vw;
   color: #232323;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#background #noticeArea .noticeContainer .notice #noticeTitle {
-  position: relative;
-  display: block;
+.noticeContainer .notice #noticeTitle {
+  position: absolute;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
-  width: 650px;
+  width: 40vw;
   height: max-content;
-  left: 40px;
+  left: 25vw;
   font-family: "Pretendard-Regular";
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
+  font-size: 1.2vw;
+  overflow: hidden;
+  color: #232323;
+  text-align: left;
+  line-height: 140%;
+}
+.noticeContainer .notice #noticeDate {
+  position: absolute;
+  width: 10vw;
+  left: 67vw;
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2vw;
   line-height: 30px;
   color: #232323;
   text-align: left;
 }
-#background #noticeArea .noticeContainer .notice #noticeDate {
-  position: relative;
-  width: 150px;
-  left: 260px;
-  font-family: "Pretendard-Regular";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 25px;
-  line-height: 30px;
-  color: #232323;
-  text-align: left;
-}
-#background #noticeArea .noticeContainer .noResultsMessage {
+.noticeContainer .noResultsMessage {
   position: absolute;
-  font-family: "Pretendard-Regular";
-  font-size: 25px;
-  width: 1550px;
-  height: 80px;
-  left: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 15vw;
+  font-family: "Bobaesum Jindo TTF";
+  font-size: 2.5vw;
+  color: #999999;
+  left: 20vw;
+  text-align: center;
 }
-#background #noticeArea hr {
+
+hr {
   position: absolute;
-  width: 1600px;
-  border: 2.9px solid #BDBEBF;
-  bottom: 90px;
+  width: 80vw;
+  border: 2px solid #BDBEBF;
+  top: 40vw;
+  left: 10vw;
 }
-#background #noticeArea .pagination {
+
+.pagination {
   display: flex;
   justify-content: center;
   gap: 40px;
   position: absolute;
-  bottom: 25px;
+  top: 45vw;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 0;
 }
-#background #noticeArea .pagination .paginationButton {
-  font-family: "Bobaesum Jindo TTF";
+.pagination .paginationButton {
+  font-family: "Pretendard-Regular";
   font-style: normal;
-  font-weight: 400;
-  font-size: 25px;
+  font-weight: 800;
+  font-size: 1.2vw;
   line-height: 28px;
   cursor: pointer;
   color: #232323;
   opacity: 50%;
 }
-#background #noticeArea .pagination .paginationButton.active {
+.pagination .paginationButton.active {
   color: #232323;
   opacity: 100%;
   font-weight: bold;
 }
-#background #noticeArea .pagination .arrow {
+.pagination .arrow {
   color: #FF8AA3;
   opacity: 100%;
 }
-#background #noticeArea .pagination .arrow.disabled {
+.pagination .arrow.disabled {
   visibility: hidden;
   cursor: default;
+}
+
+@media (max-width: 1440px) and (min-width: 769px) {
+  .loadingContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .loadingContainer img {
+    max-width: 150px;
+    height: auto;
+  }
+  #strNotice {
+    position: absolute;
+    width: 15vw;
+    left: 14vw;
+    top: 7.8vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.5vw;
+    line-height: 55px;
+    color: #FF8AA3;
+  }
+  #imgPin {
+    position: absolute;
+    width: 3vw;
+    left: 10vw;
+    top: 9vw;
+  }
+  #inputSearch {
+    position: absolute;
+    width: 44vw;
+    height: 4.5vw;
+    left: 40vw;
+    top: 8.5vw;
+    border-radius: 50px;
+    border: 0.15vw solid #d6d6d6;
+    background-color: white;
+    margin: 0;
+    z-index: 10;
+    color: #232323;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 2vw;
+    box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+    padding: 0vw 2vw;
+    z-index: 1;
+  }
+  #inputSearch::placeholder {
+    color: #888888;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 2vw;
+  }
+  #searchBtn {
+    position: absolute;
+    left: 86vw;
+    top: 8.5vw;
+    width: 4.5vw;
+    cursor: pointer;
+  }
+  .strArea {
+    position: absolute;
+    width: 80vw;
+    height: 4vw;
+    top: 17vw;
+    border-bottom: 3px solid #BDBEBF;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    left: 50vw;
+    transform: translateX(-50%);
+    border-radius: 0;
+  }
+  .strArea #strCategory,
+  .strArea #strTitle,
+  .strArea #strDate {
+    position: relative;
+  }
+  .strArea #strCategory {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 5vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vw;
+    line-height: 130%;
+    color: #232323;
+  }
+  .strArea #strTitle {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 25vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vw;
+    line-height: 130%;
+    color: #232323;
+  }
+  .strArea #strDate {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 67vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vw;
+    line-height: 130%;
+    color: #232323;
+  }
+  .noticeContainer {
+    position: absolute;
+    width: 86vw;
+    height: 20vw;
+    top: 21vw;
+    left: 54vw;
+    transform: translateX(-50%);
+    cursor: pointer;
+  }
+  .noticeContainer .notice {
+    position: relative;
+    width: 80vw;
+    height: 7vw;
+    left: -1vw;
+    border-bottom: 3px solid #D9D9D9;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: right;
+    justify-content: center;
+    align-items: center;
+  }
+  .noticeContainer .notice #categoryName {
+    position: absolute;
+    left: 5.3vw;
+    width: 8vw;
+    height: 3vw;
+    border-radius: 25px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2vw;
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .noticeContainer .notice #noticeTitle {
+    position: absolute;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 30vw;
+    height: max-content;
+    left: 25vw;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2vw;
+    overflow: hidden;
+    color: #232323;
+    text-align: left;
+    line-height: 140%;
+  }
+  .noticeContainer .notice #noticeDate {
+    position: absolute;
+    width: 15vw;
+    left: 67vw;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2vw;
+    line-height: 30px;
+    color: #232323;
+    text-align: left;
+  }
+  .noticeContainer .noResultsMessage {
+    position: absolute;
+    top: 15vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 2.5vw;
+    color: #999999;
+    left: 23vw;
+    text-align: center;
+  }
+  hr {
+    position: absolute;
+    width: 80vw;
+    border: 2px solid #BDBEBF;
+    top: 62vw;
+    left: 10vw;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 4vw;
+    position: absolute;
+    top: 65vw;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0;
+  }
+  .pagination .paginationButton {
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 2vw;
+    line-height: 28px;
+    cursor: pointer;
+    color: #232323;
+    opacity: 50%;
+  }
+  .pagination .paginationButton.active {
+    color: #232323;
+    opacity: 100%;
+    font-weight: bold;
+  }
+  .pagination .arrow {
+    color: #FF8AA3;
+    opacity: 100%;
+  }
+  .pagination .arrow.disabled {
+    visibility: hidden;
+    cursor: default;
+  }
+}
+@media (max-width: 768px) {
+  .loadingContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .loadingContainer img {
+    max-width: 150px;
+    height: auto;
+  }
+  #strNotice {
+    position: absolute;
+    width: 20vw;
+    left: 16vw;
+    top: 10vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 4.5vw;
+    line-height: 55px;
+    color: #FF8AA3;
+  }
+  #imgPin {
+    position: absolute;
+    width: 4vw;
+    left: 10vw;
+    top: 13vw;
+  }
+  #inputSearch {
+    position: absolute;
+    width: 73vw;
+    height: 6.5vw;
+    left: 9vw;
+    top: 20vw;
+    border-radius: 50px;
+    border: 0.2vw solid #d6d6d6;
+    background-color: white;
+    margin: 0;
+    z-index: 10;
+    color: #232323;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 3vw;
+    box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+    padding: 0vw 2vw;
+    z-index: 1;
+  }
+  #inputSearch::placeholder {
+    color: #888888;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 3vw;
+  }
+  #searchBtn {
+    position: absolute;
+    left: 85vw;
+    top: 20vw;
+    width: 6.5vw;
+    cursor: pointer;
+  }
+  .strArea {
+    position: absolute;
+    width: 80vw;
+    height: 8vw;
+    top: 30vw;
+    border-bottom: 3px solid #BDBEBF;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    left: 50vw;
+    transform: translateX(-50%);
+    border-radius: 0;
+  }
+  .strArea #strCategory,
+  .strArea #strTitle,
+  .strArea #strDate {
+    position: relative;
+  }
+  .strArea #strCategory {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 5vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3vw;
+    line-height: 180%;
+    color: #232323;
+  }
+  .strArea #strTitle {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 25vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3vw;
+    line-height: 180%;
+    color: #232323;
+  }
+  .strArea #strDate {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    left: 63vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3vw;
+    line-height: 180%;
+    color: #232323;
+  }
+  .noticeContainer {
+    position: absolute;
+    width: 86vw;
+    height: 20vw;
+    top: 39vw;
+    left: 54vw;
+    transform: translateX(-50%);
+    cursor: pointer;
+  }
+  .noticeContainer .notice {
+    position: relative;
+    width: 80vw;
+    height: 9vw;
+    left: -1vw;
+    border-bottom: 3px solid #D9D9D9;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: right;
+    justify-content: center;
+    align-items: center;
+  }
+  .noticeContainer .notice #categoryName {
+    position: absolute;
+    left: 5.3vw;
+    width: 10vw;
+    height: 4vw;
+    border-radius: 25px;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3vw;
+    color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .noticeContainer .notice #noticeTitle {
+    position: absolute;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 25vw;
+    height: max-content;
+    left: 25vw;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3vw;
+    overflow: hidden;
+    color: #232323;
+    text-align: left;
+    line-height: 140%;
+  }
+  .noticeContainer .notice #noticeDate {
+    position: absolute;
+    width: 20vw;
+    left: 63vw;
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3vw;
+    line-height: 30px;
+    color: #232323;
+    text-align: left;
+  }
+  .noticeContainer .noResultsMessage {
+    position: absolute;
+    top: 15vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 2.5vw;
+    color: #999999;
+    left: 23vw;
+    text-align: center;
+  }
+  hr {
+    position: absolute;
+    width: 80vw;
+    border: 2px solid #BDBEBF;
+    top: 92vw;
+    left: 10vw;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 4vw;
+    position: absolute;
+    top: 98vw;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0;
+  }
+  .pagination .paginationButton {
+    font-family: "Pretendard-Regular";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 3vw;
+    line-height: 28px;
+    cursor: pointer;
+    color: #232323;
+    opacity: 50%;
+  }
+  .pagination .paginationButton.active {
+    color: #232323;
+    opacity: 100%;
+    font-weight: bold;
+  }
+  .pagination .arrow {
+    color: #FF8AA3;
+    opacity: 100%;
+  }
+  .pagination .arrow.disabled {
+    visibility: hidden;
+    cursor: default;
+  }
 }/*# sourceMappingURL=totalNotice.module.css.map */
