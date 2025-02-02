@@ -113,7 +113,7 @@ function BossHeader() {
                     <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}>메인</NavLink>
                     <NavLink to="/search" className={`menu-item ${activeMenu === '/search' ? 'active' : ''} ${visibleMenuItems.includes('/search') ? 'visible' : ''}`} onClick={() => handleMenuClick('/search')}>검색</NavLink>
                     <NavLink to="/info" className={`menu-item ${activeMenu === '/info' ? 'active' : ''} ${visibleMenuItems.includes('/info') ? 'visible' : ''}`} onClick={() => handleMenuClick('/info')}>소개</NavLink>
-                    {/* <NavLink to="/reservation" className={`menu-item ${activeMenu === '/reservation' ? 'active' : ''} ${visibleMenuItems.includes('/reservation') ? 'visible' : ''}`} onClick={() => handleMenuClick('/reservation')}>예약</NavLink> */}
+                
                     <NavLink to="/boss/notice" className={`menu-item ${activeMenu === '/boss/notice' ? 'active' : ''} ${visibleMenuItems.includes('/boss/notice') ? 'visible' : ''}`} onClick={() => handleMenuClick('/boss/notice')}>공지사항</NavLink>
                     <NavLink to="/boss/mypage" className={`menu-item ${activeMenu === '/boss/mypage' ? 'active' : ''} ${visibleMenuItems.includes('/boss/mypage') ? 'visible' : ''}`} onClick={() => handleMenuClick('/boss/mypage')}>마이페이지</NavLink>
                     {!isLoggedIn ? (
