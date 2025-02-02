@@ -125,7 +125,7 @@ function SpecificReview({reviewNo, storeNo}){
                     </button>
                     <div>{review.reviewDate}</div>
                     <div>{review.reviewContent}</div>
-                    <img src={review.reviewImage === null ? basicReviewImg : `/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
+                    <img src={review.reviewImage === null ? basicReviewImg : `${API_BASE_URL}/store/${storeNo}/api/reviewImg?reviewImgName=${review.reviewImage}`} id={styles.reviewPhoto} alt='리뷰 사진'/>
                 </div> 
             </div>
             <div className={styles.overlay} style={{display : showReportModal || isReportComplete ? "" : "none"}}></div>
