@@ -112,9 +112,11 @@ function StoreInfo() {
 
     // 삭제 확인 모달 표시
     function deleteConfirm(){
+        setLoading(true);
         fetch(`${API_BASE_URL}/admin/stores/info/${storeNo}/delete`, {
             method: 'DELETE'
         })
+
         .then(res => res.json())
         .then(data => {
 
@@ -125,8 +127,11 @@ function StoreInfo() {
             console.log(error)
             setShowResultModal(true);
             setResultMessage('삭제에 실패했습니다.');
+        }).finally(() => {
+            setLoading(false);
         });
-        
+
+
     }
 
     if(loading){

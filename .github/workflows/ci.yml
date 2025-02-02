@@ -1,0 +1,24 @@
+name: Frontend CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # Frontend Build & Test
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+        
+    - name: Build Frontend
+      run: |
+        cd ukki-front
+        npm install
+        npm run build 

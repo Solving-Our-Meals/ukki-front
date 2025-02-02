@@ -1,0 +1,61 @@
+name: Deploy Frontend to ECR and EC2
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  ECR_REPOSITORY: ukki-front
+  ECR_REGISTRY: public.ecr.aws/j7n6r7d0
+  EC2_HOST: ${{ secrets.EC2_HOST }}
+  EC2_USERNAME: ubuntu
+  EC2_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # AWS 인증
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-2
+
+    - name: Create .env file
+      run: |
+        cd ukki-front
+        echo "REACT_APP_NATIVE_KEY=${{ secrets.REACT_APP_NATIVE_KEY }}" >> .env
+        echo "REACT_APP_REST_API_KEY=${{ secrets.REACT_APP_REST_API_KEY }}" >> .env
+        echo "REACT_APP_KAKAOMAP_APP_KEY=${{ secrets.REACT_APP_KAKAOMAP_APP_KEY }}" >> .env
+        echo "REACT_APP_ADMIN_KEY=${{ secrets.REACT_APP_ADMIN_KEY }}" >> .env
+
+  
+    # Frontend 이미지 빌드 및 푸시
+    - name: Build and Push Frontend Image
+      run: |
+        cd ukki-front
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }} .
+        docker tag $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }} $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_REGISTRY
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        
+    # EC2 배포
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.EC2_HOST }}
+        username: ${{ env.EC2_USERNAME }}
+        key: ${{ env.EC2_PRIVATE_KEY }}
+        script: |
+          cd /home/ubuntu/ukki-project
+          docker-compose stop frontend
+          docker-compose rm -f frontend
+          docker system prune -af
+          aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+          docker-compose pull frontend
+          docker-compose up -d frontend 
