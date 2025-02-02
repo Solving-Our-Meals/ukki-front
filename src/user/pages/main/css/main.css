@@ -276,6 +276,7 @@ div .category {
   justify-content: center;
   align-items: center;
   transition: left 0.7s ease;
+  flex-direction: row;
 }
 div .category h3 {
   position: absolute;
@@ -441,7 +442,7 @@ div .location p {
   position: absolute;
   font-family: "Pretendard Variable";
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #232323;
 }
 div .location h3 {
@@ -921,6 +922,7 @@ div .hidden-input {
     justify-content: center;
     align-items: center;
     transition: left 0.7s ease;
+    flex-direction: row;
   }
   div .category h3 {
     position: absolute;
@@ -1573,13 +1575,14 @@ div .hidden-input {
   }
   div .category {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: left 0.7s ease;
+    transition: top 0.7s ease;
   }
   div .category h3 {
     position: absolute;
-    left: 35vw;
+    left: 32vw;
     top: 86vw;
     font-family: "Bobaesum Jindo TTF";
     font-size: 4vw;
@@ -1587,100 +1590,106 @@ div .hidden-input {
   }
   div .category p {
     position: absolute;
-    left: 39vw;
+    left: 31vw;
     top: 91.5vw;
     font-family: "Pretendard Variable";
-    font-size: 1.7vw;
+    font-size: 2.3vw;
     text-align: center;
     color: #232323;
   }
   div .category div {
     position: absolute;
-    width: 7vw;
-    height: 3vw;
-    left: 20vw;
-    top: 110vw;
+    width: 10vw;
+    height: 5vw;
+    top: 113vw;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
-    transition: left 0.5s ease;
+    transition: top 0.5s ease;
     z-index: 3;
+    left: 43vw;
   }
   div .category div:nth-of-type(2) {
-    left: 50vw;
-    top: 110vw;
+    left: 43vw;
   }
   div .category div:nth-of-type(3) {
-    left: 68.5vw;
+    left: 43vw;
   }
   div .category div:nth-of-type(4) {
-    left: 40.5vw;
-    top: 110vw;
+    left: 43vw;
   }
   div .category div:nth-of-type(5) {
-    left: 59.5vw;
-    top: 110vw;
+    left: 43vw;
   }
   div .category div p {
     color: #232323;
     position: absolute;
-    left: 1.7vw;
-    top: 0.5vw;
+    left: 2.2vw;
+    top: 1vw;
     font-family: "Pretendard Variable";
-    font-weight: 500;
-    font-size: 2vw;
+    font-weight: 700;
+    font-size: 3vw;
     z-index: 5;
   }
   div .category img {
-    width: 8vw;
-    border-radius: 20px;
+    width: 50vw;
+    border-radius: 15px;
     z-index: 2;
     opacity: 0.8;
     transition: all 0.5s;
-    height: 27.5vw;
+    height: 9vw;
     object-fit: cover;
     margin: 10px;
-    margin-top: 32vw;
+    margin-top: 30vw;
     transition: left 0.5s ease;
   }
   div .category img.selected-img {
+    width: 50vw;
     opacity: 1;
-    width: 35vw;
+    height: 35vw;
   }
   div .category img:nth-of-type(2) {
-    left: 49vw;
+    top: 49vw;
+    margin-top: 3vw;
   }
   div .category img:nth-of-type(2).selected-img {
+    width: 50vw;
     opacity: 1;
-    width: 35vw;
-    left: 21vw;
+    height: 35vw;
+    top: 21vw;
   }
   div .category img:nth-of-type(3) {
-    left: 58vw;
+    top: 58vw;
+    margin-top: 3vw;
   }
   div .category img:nth-of-type(3).selected-img {
     opacity: 1;
-    width: 35vw;
-    left: 31vw;
+    height: 35vw;
+    top: 31vw;
+    width: 50vw;
   }
   div .category img:nth-of-type(3).selected-img:nth-of-type(2) {
-    left: 15vw;
+    top: 15vw;
   }
   div .category img:nth-of-type(4) {
-    left: 67vw;
+    top: 67vw;
+    margin-top: 3vw;
   }
   div .category img:nth-of-type(4).selected-img {
     opacity: 1;
-    width: 35vw;
-    left: 40vw;
+    height: 35vw;
+    top: 40vw;
+    width: 50vw;
   }
   div .category img:nth-of-type(5) {
-    left: 76vw;
+    top: 76vw;
+    margin-top: 3vw;
   }
   div .category img:nth-of-type(5).selected-img {
     opacity: 1;
-    width: 35vw;
-    left: 50vw;
+    height: 35vw;
+    top: 50vw;
+    width: 50vw;
   }
   div .category span {
     position: absolute;
@@ -1738,7 +1747,7 @@ div .hidden-input {
     position: absolute;
     width: 100vw;
     height: 30vw;
-    top: 130vw;
+    top: 190vw;
     left: 0;
     border-radius: 0;
     border: none;
@@ -1753,9 +1762,9 @@ div .hidden-input {
   div .location h3 {
     position: absolute;
     left: 13.5vw;
-    top: 9vw;
+    top: 7vw;
     font-family: "Bobaesum Jindo TTF";
-    font-size: 3vw;
+    font-size: 4vw;
     color: #232323;
     background: linear-gradient(to right, #FF8AA3 50%, #232323 50%);
     -webkit-background-clip: text;
@@ -1775,23 +1784,23 @@ div .hidden-input {
   }
   div .location > img:nth-of-type(1) {
     position: absolute;
-    left: 52vw;
-    width: 13vw;
-    height: 15vw;
-    top: 37.5vw;
+    left: 16vw;
+    width: 20vw;
+    height: 30vw;
+    top: 59.5vw;
     border: 2px solid #fff;
     border-radius: 10px;
     z-index: 10;
     object-fit: cover;
   }
   div .location p:nth-of-type(1) {
-    left: 66.5vw;
-    top: 37.5vw;
+    left: 40vw;
+    top: 60vw;
     z-index: 10;
   }
   div .location p:nth-of-type(2) {
-    left: 66.5vw;
-    top: 40vw;
+    left: 40vw;
+    top: 65vw;
     z-index: 10;
   }
   div .location span {
@@ -1810,76 +1819,78 @@ div .hidden-input {
   div .location p:nth-of-type(2) span {
     left: 0vw;
     top: 1.5rem;
-    width: 20vw;
+    width: 45vw;
     display: -webkit-box;
     /* Ensures the box model is correct for ellipsis */
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     /* Limit the lines to 3 */
     overflow: hidden;
     /* Hide any overflow */
     text-overflow: ellipsis;
     line-height: 140%;
     /* Adjust the line height as necessary */
-    max-height: 4.2em;
+    max-height: 2.8em;
     /* Ensures it cuts off after 3 lines */
   }
   div .location input {
     position: absolute;
-    width: 28vw;
-    height: 2.3vw;
+    width: 43vw;
+    height: 4vw;
     background: #FFFFFF;
     border-radius: 20px;
     border: none;
     outline: none;
     color: #999999;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: normal;
     z-index: 10;
     padding-left: 0.5rem;
   }
   div .location input:nth-of-type(1) {
-    left: 61vw;
-    top: 53.5vw;
+    left: 40vw;
+    top: 80vw;
     text-align: left;
   }
   div .location input:nth-of-type(2) {
-    left: 61vw;
-    top: 56.7vw;
+    left: 40vw;
+    top: 85vw;
     text-align: left;
   }
   div .location label:nth-of-type(1) {
     position: absolute;
-    left: 52vw;
-    top: 54vw;
+    left: 18vw;
+    top: 70vw;
     font-family: "Pretendard Variable";
     font-weight: 600;
     font-size: 1rem;
     color: #232323;
-    width: 10vw;
+    width: 15vw;
     background-color: transparent;
     text-align: left;
     z-index: 10;
+    display: none;
   }
   div .location label:nth-of-type(2) {
     position: absolute;
-    left: 52vw;
-    top: 57.2vw;
+    left: 18vw;
+    top: 76vw;
     font-family: "Pretendard Variable";
     font-weight: 600;
     font-size: 1rem;
     color: #232323;
-    width: 10vw;
+    width: 15vw;
     background-color: transparent;
     z-index: 10;
     text-align: left;
+    display: none;
   }
   div .location button {
     position: absolute;
-    width: 12vw;
-    height: 3vw;
-    left: 62vw;
-    top: 9vw;
+    width: 20vw;
+    height: 6vw;
+    left: 55vw;
+    top: 6vw;
     background: #FF8AA3;
     border-radius: 50px;
     border: none;
@@ -1888,24 +1899,24 @@ div .hidden-input {
     font-family: "Pretendard Variable";
     font-size: 1.2rem;
     z-index: 10;
-    left: 73vw;
+    left: 65vw;
     line-height: 1.2rem;
   }
   div .location img:nth-of-type(2) {
     position: absolute;
-    width: 7vw;
-    left: 83vw;
+    width: 15vw;
+    left: 80vw;
     top: 24vw;
     z-index: 100;
   }
   div .location > div {
-    width: 40vw;
-    height: 25vw;
+    width: 72vw;
+    height: 35vw;
     background-color: #f0f0f0;
     z-index: 9;
     position: relative;
-    left: 50vw;
-    top: 35vw;
+    left: 13vw;
+    top: 57vw;
     border: 2px solid #fff;
     box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
   }
@@ -1917,28 +1928,28 @@ div .hidden-input {
     position: absolute;
     font-size: 2rem !important;
     z-index: 10;
-    left: 36.5vw !important;
-    top: 1vw !important;
+    left: 68vw !important;
+    top: 0.5vw !important;
     color: #999999;
     user-select: none;
   }
   div .talk img:nth-of-type(1) {
     position: absolute;
-    width: 80vw;
-    top: 208vw;
-    left: 10vw;
+    width: 100vw;
+    top: 290vw;
+    left: 0vw;
   }
   div .talk img:nth-of-type(2) {
     position: absolute;
-    width: 75vw;
-    top: 200vw;
-    left: 10vw;
+    width: 105vw;
+    top: 290vw;
+    left: 0vw;
   }
   div .talk img:nth-of-type(3) {
     position: absolute;
-    width: 50vw;
-    top: 202vw;
-    left: 25vw;
+    width: 90vw;
+    top: 292vw;
+    left: 5vw;
   }
   div .talk img {
     opacity: 0;
@@ -1951,56 +1962,60 @@ div .hidden-input {
   }
   div .random h3 {
     position: absolute;
-    left: 15vw;
-    top: 235vw;
+    left: 32vw;
+    top: 330vw;
     font-family: "Bobaesum Jindo TTF";
     font-weight: 400;
-    font-size: 3vw;
+    font-size: 4vw;
     line-height: 128.63%;
     color: #232323;
+    text-align: center;
   }
   div .random h3 span {
     color: #FF8AA3;
   }
   div .random p:nth-of-type(1) {
     position: absolute;
-    left: 15vw;
-    top: 244vw;
+    left: 29vw;
+    top: 342vw;
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 3vw;
     color: #232323;
     margin-bottom: 30px;
   }
   div .random p:nth-of-type(2) {
     position: absolute;
-    left: 15vw;
-    top: 249vw;
+    left: 23vw;
+    top: 347vw;
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 2.5vw;
     line-height: 150%;
     color: #FF5D18;
+    text-align: center;
   }
   div .random > span {
     position: absolute;
-    left: 15vw;
-    top: 259vw;
+    left: 12vw;
+    top: 430vw;
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 2.8vw;
     line-height: 150%;
     color: #232323;
+    text-align: center;
+    width: 77%;
   }
   div .random button {
     position: absolute;
-    width: 20vw;
-    height: 4vw;
-    left: 22vw;
-    top: 276vw;
+    width: 30vw;
+    height: 6vw;
+    left: 34vw;
+    top: 420vw;
     background: #FEDA00;
     border-radius: 30px;
     color: #232323;
@@ -2012,30 +2027,30 @@ div .hidden-input {
   }
   div .random img:nth-of-type(1) {
     position: absolute;
-    width: 6vw;
-    left: 14.5vw;
-    top: 275vw;
+    width: 8vw;
+    left: 20vw;
+    top: 419vw;
     opacity: 0.6;
   }
   div .random img:nth-of-type(2) {
     position: absolute;
-    width: 6vw;
-    left: 43.5vw;
-    top: 275vw;
+    width: 8vw;
+    left: 70vw;
+    top: 419vw;
     opacity: 0.6;
   }
   div .roulette {
     position: relative;
-    width: 40vw;
-    height: 40vw;
+    width: 60vw;
+    height: 60vw;
   }
   div .roulette .rouletter-bg {
     position: absolute;
-    top: 126vw;
-    left: 75vw;
+    top: 203vw;
+    left: 50vw;
     transform: translate(-50%, -50%);
-    width: 30vw;
-    height: 30vw;
+    width: 50vw;
+    height: 50vw;
     border-radius: 350px;
     overflow: hidden;
     border: 8px solid #FF8AA3;
@@ -2051,26 +2066,26 @@ div .hidden-input {
   }
   div .roulette .rouletter-arrow {
     position: absolute;
-    top: 110vw;
-    left: 74vw;
+    top: 176vw;
+    left: 48vw;
     z-index: 9;
   }
   div .roulette .rouletter-arrow img {
-    width: 2vw;
+    width: 4vw;
   }
   div .roulette .rouletter-btn {
     position: absolute;
-    width: 4vw;
-    height: 4vw;
-    top: 124vw;
-    left: 73vw;
+    width: 8vw;
+    height: 8vw;
+    top: 199vw;
+    left: 46vw;
     border-radius: 50%;
     border: none;
     background-color: #FF8AA3;
     color: #fff;
     font-family: "Pretendard Variable";
     font-weight: 500;
-    font-size: 1vw;
+    font-size: 2.5vw;
   }
   div .hidden-input {
     display: none;

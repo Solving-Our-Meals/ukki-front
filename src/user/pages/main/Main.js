@@ -100,7 +100,6 @@ const Main = () => {
         const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
         if (loggedInUser) {
             setUserNo(loggedInUser.userNo);
-            
         }
     }, []);
 
@@ -131,134 +130,154 @@ const Main = () => {
         }
     };
 
-      
-        // 윈도우 크기 변경 시 상태 업데이트
-        useEffect(() => {
-          const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-          };
-      
-          // 이벤트 리스너 등록
-          window.addEventListener('resize', handleResize);
-      
-          // 컴포넌트 언마운트 시 이벤트 리스너 제거
-          return () => {
-            window.removeEventListener('resize', handleResize);
-          };
-        }, []);
 
+    // 윈도우 크기 변경 시 상태 업데이트
     useEffect(() => {
-        const fImg = document.querySelector('.category>div');
-        const SImg = document.querySelector('.category>div:nth-of-type(2)');
-        const TImg = document.querySelector('.category>div:nth-of-type(3)');
-        const FImg = document.querySelector('.category>div:nth-of-type(4)');
-        const LImg = document.querySelector('.category>div:nth-of-type(5)');
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
 
-        if (windowWidth >= 769 && windowWidth <= 1440) {
-            if (isFirstImgClicked) {
-                fImg.style.left = '28.5vw';
-                SImg.style.left = '49.9vw';
-                TImg.style.left = '59.5vw';
-                FImg.style.left = '68.9vw';
-                LImg.style.left = '78.2vw';
-            } else if (isSecondImgClicked) {
-                fImg.style.left = '13.8vw';
-                SImg.style.left = '37.5vw';
-                TImg.style.left = '59.5vw';
-                FImg.style.left = '68.9vw';
-                LImg.style.left = '78.2vw';
-    
-            } else if (isThreeImgClicked) {
-                fImg.style.left = '13.8vw';
-                SImg.style.left = '23vw';
-                TImg.style.left = '46.5vw';
-                FImg.style.left = '68.9vw';
-                LImg.style.left = '78.2vw';
-    
-            } else if (isFourImgClicked) {
-                fImg.style.left = '13.8vw';
-                SImg.style.left = '23vw';
-                TImg.style.left = '32.5vw';
-                FImg.style.left = '56.5vw';
-                LImg.style.left = '78.2vw';
+        // 이벤트 리스너 등록
+        window.addEventListener('resize', handleResize);
+
+        // 컴포넌트 언마운트 시 이벤트 리스너 제거
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    // 이미지를 클릭할 때마다 left, top 값 업데이트
+    useEffect(() => {
+        const updateImagePositions = () => {
+            const fImg = document.querySelector('.category > div:nth-of-type(1)');
+            const SImg = document.querySelector('.category > div:nth-of-type(2)');
+            const TImg = document.querySelector('.category > div:nth-of-type(3)');
+            const FImg = document.querySelector('.category > div:nth-of-type(4)');
+            const LImg = document.querySelector('.category > div:nth-of-type(5)');
+
+            const commonStyles = {
+                left: '43vw',
+                top: '110vw',
+            };
+
+            if (windowWidth >= 769 && windowWidth <= 1440) {
+                // 중간 크기 화면 설정
+                if (isFirstImgClicked) {
+                    Object.assign(fImg.style, { ...commonStyles, left: '28vw', top: '110vw' });
+                    Object.assign(SImg.style, { ...commonStyles, left: '49.9vw', top: '110vw' });
+                    Object.assign(TImg.style, { ...commonStyles, left: '59.5vw', top: '110vw' });
+                    Object.assign(FImg.style, { ...commonStyles, left: '68.9vw', top: '110vw' });
+                    Object.assign(LImg.style, { ...commonStyles, left: '78.2vw', top: '110vw' });
+                } else if (isSecondImgClicked) {
+                    Object.assign(fImg.style, { ...commonStyles, left: '13.8vw', top: '110vw' });
+                    Object.assign(SImg.style, { ...commonStyles, left: '37.5vw', top: '110vw' });
+                    Object.assign(TImg.style, { ...commonStyles, left: '59.5vw', top: '110vw' });
+                    Object.assign(FImg.style, { ...commonStyles, left: '68.9vw', top: '110vw' });
+                    Object.assign(LImg.style, { ...commonStyles, left: '78.2vw', top: '110vw' });
+                }
+                else if (isThreeImgClicked) {
+                    Object.assign(fImg.style, { ...commonStyles, left: '13.8vw', top: '110vw' });
+                    Object.assign(SImg.style, { ...commonStyles, left: '23vw', top: '110vw' });
+                    Object.assign(TImg.style, { ...commonStyles, left: '46.5vw', top: '110vw' });
+                    Object.assign(FImg.style, { ...commonStyles, left: '68.9vw', top: '110vw' });
+                    Object.assign(LImg.style, { ...commonStyles, left: '78.2vw', top: '110vw' });
+                }
+                else if (isFourImgClicked) {
+                    Object.assign(fImg.style, { ...commonStyles, left: '13.8vw', top: '110vw' });
+                    Object.assign(SImg.style, { ...commonStyles, left: '23vw', top: '110vw' });
+                    Object.assign(TImg.style, { ...commonStyles, left: '32.5vw', top: '110vw' });
+                    Object.assign(FImg.style, { ...commonStyles, left: '56.5vw', top: '110vw' });
+                    Object.assign(LImg.style, { ...commonStyles, left: '78.2vw', top: '110vw' });
+                }
+                else {
+                    Object.assign(fImg.style, { ...commonStyles, left: '13.8vw', top: '110vw' });
+                    Object.assign(SImg.style, { ...commonStyles, left: '23vw', top: '110vw' });
+                    Object.assign(TImg.style, { ...commonStyles, left: '32.5vw', top: '110vw' });
+                    Object.assign(FImg.style, { ...commonStyles, left: '42vw', top: '110vw' });
+                    Object.assign(LImg.style, { ...commonStyles, left: '65.5vw', top: '110vw' });
+                }
+
+            } else if (windowWidth <= 769) {
+                // 작은 화면 설정
+                if (isFirstImgClicked) {
+                    Object.assign(fImg.style, { left: '43vw', top: '110vw' });
+                    Object.assign(SImg.style, { left: '43vw', top: '137vw' });
+                    Object.assign(TImg.style, { left: '43vw', top: '151vw' });
+                    Object.assign(FImg.style, { left: '43vw', top: '164.5vw' });
+                    Object.assign(LImg.style, { left: '43vw', top: '178.5vw' });
+                }
+                else if (isSecondImgClicked) {
+                    Object.assign(fImg.style, { left: '43vw', top: '97vw' });
+                    Object.assign(SImg.style, { left: '43vw', top: '125vw' });
+                    Object.assign(TImg.style, { left: '43vw', top: '151vw' });
+                    Object.assign(FImg.style, { left: '43vw', top: '164.5vw' });
+                    Object.assign(LImg.style, { left: '43vw', top: '178.5vw' });
+                }
+                else if (isThreeImgClicked) {
+                    Object.assign(fImg.style, { left: '43vw', top: '97vw' });
+                    Object.assign(SImg.style, { left: '43vw', top: '112vw' });
+                    Object.assign(TImg.style, { left: '43vw', top: '140vw' });
+                    Object.assign(FImg.style, { left: '43vw', top: '164.5vw' });
+                    Object.assign(LImg.style, { left: '43vw', top: '178.5vw' });
+                }
+                else if (isFourImgClicked) {
+                    Object.assign(fImg.style, { left: '43vw', top: '97vw' });
+                    Object.assign(SImg.style, { left: '43vw', top: '112vw' });
+                    Object.assign(TImg.style, { left: '43vw', top: '125vw' });
+                    Object.assign(FImg.style, { left: '43vw', top: '153vw' });
+                    Object.assign(LImg.style, { left: '43vw', top: '178.5vw' });
+                }
+                else {
+                    Object.assign(fImg.style, { left: '43vw', top: '97vw' });
+                    Object.assign(SImg.style, { left: '43vw', top: '112vw' });
+                    Object.assign(TImg.style, { left: '43vw', top: '125vw' });
+                    Object.assign(FImg.style, { left: '43vw', top: '139vw' });
+                    Object.assign(LImg.style, { left: '43vw', top: '168vw' });
+                }
+
             } else {
-                fImg.style.left = '13.8vw';
-                SImg.style.left = '23vw';
-                TImg.style.left = '32.5vw';
-                FImg.style.left = '42vw';
-                LImg.style.left = '65.5vw';
-         }}
-         else if(windowWidth <= 769 ){
-            if (isFirstImgClicked) {
-                fImg.style.left = '28.5vw';
-                SImg.style.left = '51.5vw';
-                TImg.style.left = '60.5vw';
-                FImg.style.left = '69.5vw';
-                LImg.style.left = '78.5vw';
-            } else if (isSecondImgClicked) {
-                fImg.style.left = '15.5vw';
-                SImg.style.left = '37.5vw';
-                TImg.style.left = '60.5vw';
-                FImg.style.left = '69.5vw';
-                LImg.style.left = '78.5vw';
-    
-            } else if (isThreeImgClicked) {
-                fImg.style.left = '15.5vw';
-                SImg.style.left = '24.5vw';
-                TImg.style.left = '47.5vw';
-                FImg.style.left = '69.5vw';
-                LImg.style.left = '78.5vw';
-    
-            } else if (isFourImgClicked) {
-                fImg.style.left = '15.5vw';
-                SImg.style.left = '24.5vw';
-                TImg.style.left = '33.5vw';
-                FImg.style.left = '56.5vw';
-                LImg.style.left = '78.5vw';
-            } else {
-                fImg.style.left = '15.5vw';
-                SImg.style.left = '24.5vw';
-                TImg.style.left = '33.5vw';
-                FImg.style.left = '43vw';
-                LImg.style.left = '65.5vw';
+                // 기본 상태 (크기가 769보다 클 때)
+                if (isFirstImgClicked) {
+                    Object.assign(fImg.style, { left: '28.5vw', top: '86.5vw' });
+                    Object.assign(SImg.style, { left: '51.5vw', top: '86.5vw' });
+                    Object.assign(TImg.style, { left: '60.5vw', top: '86.5vw' });
+                    Object.assign(FImg.style, { left: '69.5vw', top: '86.5vw' });
+                    Object.assign(LImg.style, { left: '78.5vw', top: '86.5vw' });
+                }
+                else if (isSecondImgClicked) {
+                    Object.assign(fImg.style, { left: '15.5vw', top: '86.5vw' });
+                    Object.assign(SImg.style, { left: '37.5vw', top: '86.5vw' });
+                    Object.assign(TImg.style, { left: '60.5vw', top: '86.5vw' });
+                    Object.assign(FImg.style, { left: '69.5vw', top: '86.5vw' });
+                    Object.assign(LImg.style, { left: '78.5vw', top: '86.5vw' });
+                }
+                else if (isThreeImgClicked) {
+                    Object.assign(fImg.style, { left: '15.5vw', top: '86.5vw' });
+                    Object.assign(SImg.style, { left: '24.5vw', top: '86.5vw' });
+                    Object.assign(TImg.style, { left: '47.5vw', top: '86.5vw' });
+                    Object.assign(FImg.style, { left: '69.5vw', top: '86.5vw' });
+                    Object.assign(LImg.style, { left: '78.5vw', top: '86.5vw' });
+                }
+                else if (isFourImgClicked) {
+                    Object.assign(fImg.style, { left: '15.5vw', top: '86.5vw' });
+                    Object.assign(SImg.style, { left: '24.5vw', top: '86.5vw' });
+                    Object.assign(TImg.style, { left: '33.5vw', top: '86.5vw' });
+                    Object.assign(FImg.style, { left: '56.5vw', top: '86.5vw' });
+                    Object.assign(LImg.style, { left: '78.5vw', top: '86.5vw' });
+                }
+                else {
+                    Object.assign(fImg.style, { left: '15.5vw', top: '86.5vw' });
+                    Object.assign(SImg.style, { left: '24.5vw', top: '86.5vw' });
+                    Object.assign(TImg.style, { left: '33.5vw', top: '86.5vw' });
+                    Object.assign(FImg.style, { left: '43vw', top: '86.5vw' });
+                    Object.assign(LImg.style, { left: '65.5vw', top: '86.5vw' });
+                }
+
             }
-        } else{
-        if (isFirstImgClicked) {
-            fImg.style.left = '28.5vw';
-            SImg.style.left = '51.5vw';
-            TImg.style.left = '60.5vw';
-            FImg.style.left = '69.5vw';
-            LImg.style.left = '78.5vw';
-        } else if (isSecondImgClicked) {
-            fImg.style.left = '15.5vw';
-            SImg.style.left = '37.5vw';
-            TImg.style.left = '60.5vw';
-            FImg.style.left = '69.5vw';
-            LImg.style.left = '78.5vw';
+        };
 
-        } else if (isThreeImgClicked) {
-            fImg.style.left = '15.5vw';
-            SImg.style.left = '24.5vw';
-            TImg.style.left = '47.5vw';
-            FImg.style.left = '69.5vw';
-            LImg.style.left = '78.5vw';
-
-        } else if (isFourImgClicked) {
-            fImg.style.left = '15.5vw';
-            SImg.style.left = '24.5vw';
-            TImg.style.left = '33.5vw';
-            FImg.style.left = '56.5vw';
-            LImg.style.left = '78.5vw';
-        } else {
-            fImg.style.left = '15.5vw';
-            SImg.style.left = '24.5vw';
-            TImg.style.left = '33.5vw';
-            FImg.style.left = '43vw';
-            LImg.style.left = '65.5vw';
-        }}
-    }, [isFirstImgClicked, isSecondImgClicked, isThreeImgClicked, isFourImgClicked, isLastImgClicked]);
-
-
+        updateImagePositions();
+    }, [windowWidth, isFirstImgClicked, isSecondImgClicked, isThreeImgClicked, isFourImgClicked, isLastImgClicked]);
 
     const handleFirstImgClick = () => {
         setIsFirstImgClicked(true);
@@ -556,7 +575,7 @@ const Main = () => {
     const rLayerPopup = (num) => {
         switch (num) {
             default:
-                // alert("예약이 완료 되었습니다");
+            // alert("예약이 완료 되었습니다");
         }
     };
 
@@ -804,7 +823,8 @@ const Main = () => {
                             <p>가게 설명 : <span>{storeInfo.storeDes}</span></p>
                             <img src={storeInfo.storeProfile} alt="store" />
                             <img src={ukki} alt="ukki" />
-                            <input onKeyPress={handleKeyPress} defaultValue={defaultValue}></input>
+                            <input onKeyPress={handleKeyPress}
+                                defaultValue={defaultValue}  ></input>
                             <label>현재 위치 : </label>
                             <input defaultValue={storeInfo.storeAddress}></input>
                             <label>가게 위치 : </label>

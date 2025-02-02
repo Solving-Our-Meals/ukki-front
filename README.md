@@ -47,7 +47,7 @@
 <br>
 
 ## 4. Development Environment (개발 환경) 개발 언어 및 프레임워크
-아키텍쳐 형식 이미지 삽입 필수 !
+![호준 - 아키텍처 (1)](https://github.com/user-attachments/assets/04123cab-3aab-4fee-b0c5-02b66d05d1f6)
 
 >- #### Version Management
 >    ![git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
@@ -77,17 +77,18 @@
 >    ![SpringBoot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 >    ![SpringSecurity](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white)
 >    ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
->    ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 
 <hr>
 
 >- ##### DataBase
 >    ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+>    ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 
 <hr>
 
 >- ##### Server & Distribution
 >    ![DOCKER](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+>    ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
 <hr>
 

@@ -185,9 +185,9 @@ a:active {
   position: absolute;
   top: 30vw;
   font-family: "Bobaesum Jindo TTF";
-  font-size: 2rem;
+  font-size: 2.2vw;
   color: #999999;
-  left: 45vw;
+  left: 40vw;
 }
 #search .input div {
   position: relative;
@@ -201,14 +201,14 @@ a:active {
   left: 27vw;
   top: 8vw;
   border-radius: 50px;
-  border: 2px solid #d6d6d6;
+  border: 0.1vw solid #d6d6d6;
   background-color: white;
   margin: 0;
   z-index: 10;
   color: #232323;
   font-family: "Pretendard Variable";
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.2vw;
   box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
   padding: 0vw 2vw;
   z-index: 1;
@@ -217,7 +217,7 @@ a:active {
   color: #888888;
   font-family: "Pretendard Variable";
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.2vw;
 }
 #search .input div img {
   position: absolute;
@@ -231,7 +231,7 @@ a:active {
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.2vw;
   color: #232323;
   z-index: 2;
 }
@@ -259,7 +259,7 @@ a:active {
   background-color: #f0f0f0;
   border-radius: 50px;
   color: #999999;
-  font-size: 1.1rem;
+  font-size: 1.2vw;
   font-weight: 700;
   font-family: "Pretendard Variable";
   cursor: pointer;
@@ -297,7 +297,7 @@ a:active {
 }
 #search .input .dlsrl + div {
   position: absolute;
-  width: 55vw;
+  width: 57vw;
   height: 2px;
   background: #cecece;
   position: relative;
@@ -544,6 +544,21 @@ a:active {
 }
 
 @media (max-width: 1440px) and (min-width: 769px) {
+  #search {
+    height: 100%;
+  }
+  #search .storeList {
+    display: block;
+    /* 요소가 화면에 나타나도록 확인 */
+  }
+  #search .storeList .no {
+    position: absolute;
+    top: 30vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 2rem;
+    color: #999999;
+    left: 45vw;
+  }
   #search .input div {
     position: relative;
     width: 100vw;
@@ -552,75 +567,222 @@ a:active {
   #search .input div input {
     position: absolute;
     width: 50vw;
-    height: 4vw;
-    left: 22vw;
+    height: 3vw;
+    left: 27vw;
     top: 8vw;
     border-radius: 50px;
-    border: #FF8AA3 0.3vw solid;
-    background-color: #FFF3A7;
-    color: #FEBA00;
+    border: 2px solid #d6d6d6;
+    background-color: white;
+    margin: 0;
+    z-index: 10;
+    color: #232323;
     font-family: "Pretendard Variable";
     font-weight: 700;
-    font-size: 1.3vw;
-    margin: 0;
+    font-size: 1.2rem;
+    box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+    padding: 0vw 2vw;
+    z-index: 1;
+  }
+  #search .input div input::placeholder {
+    color: #888888;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 1.2rem;
   }
   #search .input div img {
     position: absolute;
-    width: 4vw;
+    width: 3vw;
     top: 8vw;
-    left: 73vw;
+    left: 78vw;
   }
   #search .input p {
     position: absolute;
-    left: 14vw;
+    left: 27vw;
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 700;
-    font-size: 1.5vw;
+    font-size: 1.4rem;
     color: #232323;
     z-index: 2;
   }
   #search .input p:nth-of-type(1) {
-    top: 14vw;
+    top: 13vw;
   }
   #search .input p:nth-of-type(2) {
-    top: 22vw;
-    left: 13vw;
+    position: fixed;
+    top: 10vw;
+    left: 6.8vw;
     font-family: "Bobaesum Jindo TTF";
     font-style: normal;
     font-weight: 400;
   }
   #search .input .boxs {
     position: absolute;
-    top: 16.5vw;
-    left: 13.5vw;
+    top: 15.5vw;
+    left: 26vw;
     display: flex;
-    gap: 4.5vw;
+    gap: 4vw;
+    user-select: none;
   }
   #search .input .boxs span {
     padding: 0.6vw 3vw;
-    background-color: #fff9d6;
+    background-color: #f0f0f0;
     border-radius: 50px;
-    color: #FEBA00;
-    font-size: 1.2vw;
+    color: #999999;
+    font-size: 1.1rem;
     font-weight: 700;
     font-family: "Pretendard Variable";
+    cursor: pointer;
+  }
+  #search .input .box {
+    position: fixed;
+    top: 12.5vw;
+    left: 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+    z-index: 9;
+    width: inherit;
+    justify-content: start;
+  }
+  #search .input .box span {
+    padding: 0.6vw 2vw;
+    border-radius: 50px;
+    color: #232323;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Pretendard Variable";
+    z-index: 9;
   }
   #search .input .dlsrl {
-    position: absolute;
-    width: 75vw;
-    height: 3.5vw;
-    left: 12vw;
-    top: 24vw;
-    background: #FFF9D3;
+    position: fixed;
+    width: 12vw;
+    height: 24vw;
+    left: 5.5vw;
+    top: 12vw;
+    background: rgba(255, 233, 138, 0.3960784314);
     border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    outline: #fff 5px solid;
+  }
+  #search .input .dlsrl + div {
+    position: absolute;
+    width: 55vw;
+    height: 2px;
+    background: #cecece;
+    position: relative;
+    top: 20vw;
+    left: 25vw;
+  }
+  #search .storeList div {
+    position: relative;
+    margin-bottom: 15vw;
+  }
+  #search .storeList div img {
+    width: 10vw;
+    height: 12vw;
+    z-index: 9;
+    position: absolute;
+    left: 27vw;
+    top: 23vw;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    border-radius: 30px;
+  }
+  #search .storeList div h3 {
+    position: absolute;
+    left: 40vw;
+    top: 24vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-size: 1.5rem;
+    color: #232323;
+  }
+  #search .storeList div p:nth-of-type(1) {
+    position: absolute;
+    left: 40vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #232323;
+    top: 26vw;
+  }
+  #search .storeList div p:nth-of-type(2) {
+    position: relative;
+    left: 40vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #232323;
+    top: 28vw;
+    width: 40vw;
+    height: 5vw;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 140%;
+    max-height: 1.4em;
+  }
+  #search .storeList div button {
+    position: relative;
+    left: 71.5vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #232323;
+    top: 22vw;
+    padding: 0.5vw 2.5vw;
+    background-color: #FF8AA3;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+  }
+  #search .storeList div span {
+    position: relative;
+    left: 31.5vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-size: 1rem;
+    color: #232323;
+    top: 29vw;
+  }
+  #search .storeList div hr {
+    position: relative;
+    width: 55vw;
+    height: 2px;
+    background: #cecece;
+    top: 34vw;
+    left: 3vw;
+    border: none;
+  }
+  #search .storeList div div {
+    position: relative;
+    left: 8.3vw;
+    top: 0.8vw;
+    margin-bottom: 0;
+  }
+  #search .storeList div div span {
+    width: inherit;
+    padding: 5px 10px;
+    background-color: #FFF3A7;
+    color: #232323;
+    border-radius: 50px;
+    margin-right: 15px;
+    font-family: "Pretendard Variable";
+    font-size: 1rem;
+    font-weight: 600;
   }
   #search .banner p {
     position: absolute;
     left: 13vw;
     top: 34.5vw;
     font-family: "Bobaesum Jindo TTF";
-    font-size: 1.5vw;
+    font-size: 1.3rem;
     color: #232323;
   }
   #search .banner span {
@@ -630,7 +792,7 @@ a:active {
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 700;
-    font-size: 1.2vw;
+    font-size: 1rem;
     color: #232323;
   }
   #search .banner img {
@@ -647,7 +809,7 @@ a:active {
     font-family: "Bobaesum Jindo TTF";
     font-style: normal;
     font-weight: 400;
-    font-size: 2vw;
+    font-size: 1.5rem;
     color: #232323;
   }
   #search .today span {
@@ -655,45 +817,45 @@ a:active {
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 500;
-    font-size: 1.2vw;
+    font-size: 1rem;
     color: #232323;
   }
   #search .today span:nth-of-type(1) {
-    left: 30vw;
-    top: 45.5vw;
+    left: 26vw;
+    top: 45.3vw;
   }
   #search .today span:nth-of-type(2) {
     left: 15vw;
     top: 67.5vw;
     font-weight: 800;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
   }
   #search .today span:nth-of-type(3) {
     left: 41.5vw;
     top: 67.5vw;
     font-weight: 800;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
   }
   #search .today span:nth-of-type(4) {
     left: 68vw;
     top: 67.5vw;
     font-weight: 800;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
   }
   #search .today p {
     position: absolute;
     font-family: "Pretendard Variable";
     font-weight: 600;
-    font-size: 1.1vw;
+    font-size: 0.9rem;
     color: #232323;
     top: 67.7vw;
-    left: 29vw;
+    left: 26.3vw;
   }
   #search .today p:nth-of-type(2) {
-    left: 55vw;
+    left: 52vw;
   }
   #search .today p:nth-of-type(3) {
-    left: 82vw;
+    left: 79.3vw;
   }
   #search .today img {
     position: absolute;
@@ -725,7 +887,7 @@ a:active {
     left: 21.4vw;
     top: 88vw;
     font-family: "Bobaesum Jindo TTF";
-    font-size: 2vw;
+    font-size: 2rem;
     color: #FF8AA3;
     z-index: 1;
   }
@@ -735,7 +897,7 @@ a:active {
     top: 92vw;
     font-family: "Pretendard Variable";
     font-weight: 700;
-    font-size: 1.4vw;
+    font-size: 1.4rem;
     color: #232323;
   }
   #search .rhkdrh span {
@@ -746,12 +908,27 @@ a:active {
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 500;
-    font-size: 1vw;
+    font-size: 1rem;
     line-height: 150%;
     color: #232323;
   }
 }
 @media (max-width: 768px) {
+  #search {
+    height: 100%;
+  }
+  #search .storeList {
+    display: block;
+    /* 요소가 화면에 나타나도록 확인 */
+  }
+  #search .storeList .no {
+    position: absolute;
+    top: 30vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-size: 2rem;
+    color: #999999;
+    left: 45vw;
+  }
   #search .input div {
     position: relative;
     width: 100vw;
@@ -760,75 +937,222 @@ a:active {
   #search .input div input {
     position: absolute;
     width: 50vw;
-    height: 4vw;
-    left: 22vw;
+    height: 3vw;
+    left: 27vw;
     top: 8vw;
     border-radius: 50px;
-    border: #FF8AA3 0.3vw solid;
-    background-color: #FFF3A7;
-    color: #FEBA00;
+    border: 2px solid #d6d6d6;
+    background-color: white;
+    margin: 0;
+    z-index: 10;
+    color: #232323;
     font-family: "Pretendard Variable";
     font-weight: 700;
-    font-size: 1.3vw;
-    margin: 0;
+    font-size: 1.2rem;
+    box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+    padding: 0vw 2vw;
+    z-index: 1;
+  }
+  #search .input div input::placeholder {
+    color: #888888;
+    font-family: "Pretendard Variable";
+    font-weight: 700;
+    font-size: 1.2rem;
   }
   #search .input div img {
     position: absolute;
-    width: 4vw;
+    width: 3vw;
     top: 8vw;
-    left: 73vw;
+    left: 78vw;
   }
   #search .input p {
     position: absolute;
-    left: 14vw;
+    left: 27vw;
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 700;
-    font-size: 1.5vw;
+    font-size: 1.4rem;
     color: #232323;
     z-index: 2;
   }
   #search .input p:nth-of-type(1) {
-    top: 14vw;
+    top: 13vw;
   }
   #search .input p:nth-of-type(2) {
-    top: 22vw;
-    left: 13vw;
+    position: fixed;
+    top: 10vw;
+    left: 6.8vw;
     font-family: "Bobaesum Jindo TTF";
     font-style: normal;
     font-weight: 400;
   }
   #search .input .boxs {
     position: absolute;
-    top: 16.5vw;
-    left: 13.5vw;
+    top: 15.5vw;
+    left: 26vw;
     display: flex;
-    gap: 4.5vw;
+    gap: 4vw;
+    user-select: none;
   }
   #search .input .boxs span {
     padding: 0.6vw 3vw;
-    background-color: #fff9d6;
+    background-color: #f0f0f0;
     border-radius: 50px;
-    color: #FEBA00;
-    font-size: 1.2vw;
+    color: #999999;
+    font-size: 1.1rem;
     font-weight: 700;
     font-family: "Pretendard Variable";
+    cursor: pointer;
+  }
+  #search .input .box {
+    position: fixed;
+    top: 12.5vw;
+    left: 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+    z-index: 9;
+    width: inherit;
+    justify-content: start;
+  }
+  #search .input .box span {
+    padding: 0.6vw 2vw;
+    border-radius: 50px;
+    color: #232323;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Pretendard Variable";
+    z-index: 9;
   }
   #search .input .dlsrl {
-    position: absolute;
-    width: 75vw;
-    height: 3.5vw;
-    left: 12vw;
-    top: 24vw;
-    background: #FFF9D3;
+    position: fixed;
+    width: 12vw;
+    height: 24vw;
+    left: 5.5vw;
+    top: 12vw;
+    background: rgba(255, 233, 138, 0.3960784314);
     border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    outline: #fff 5px solid;
+  }
+  #search .input .dlsrl + div {
+    position: absolute;
+    width: 55vw;
+    height: 2px;
+    background: #cecece;
+    position: relative;
+    top: 20vw;
+    left: 25vw;
+  }
+  #search .storeList div {
+    position: relative;
+    margin-bottom: 15vw;
+  }
+  #search .storeList div img {
+    width: 10vw;
+    height: 12vw;
+    z-index: 9;
+    position: absolute;
+    left: 27vw;
+    top: 23vw;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    border-radius: 30px;
+  }
+  #search .storeList div h3 {
+    position: absolute;
+    left: 40vw;
+    top: 24vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-size: 1.5rem;
+    color: #232323;
+  }
+  #search .storeList div p:nth-of-type(1) {
+    position: absolute;
+    left: 40vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #232323;
+    top: 26vw;
+  }
+  #search .storeList div p:nth-of-type(2) {
+    position: relative;
+    left: 40vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #232323;
+    top: 28vw;
+    width: 40vw;
+    height: 5vw;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 140%;
+    max-height: 1.4em;
+  }
+  #search .storeList div button {
+    position: relative;
+    left: 71.5vw;
+    font-family: "Pretendard Variable";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #232323;
+    top: 22vw;
+    padding: 0.5vw 2.5vw;
+    background-color: #FF8AA3;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+  }
+  #search .storeList div span {
+    position: relative;
+    left: 31.5vw;
+    font-family: "Bobaesum Jindo TTF";
+    font-style: normal;
+    font-size: 1rem;
+    color: #232323;
+    top: 29vw;
+  }
+  #search .storeList div hr {
+    position: relative;
+    width: 55vw;
+    height: 2px;
+    background: #cecece;
+    top: 34vw;
+    left: 3vw;
+    border: none;
+  }
+  #search .storeList div div {
+    position: relative;
+    left: 8.3vw;
+    top: 0.8vw;
+    margin-bottom: 0;
+  }
+  #search .storeList div div span {
+    width: inherit;
+    padding: 5px 10px;
+    background-color: #FFF3A7;
+    color: #232323;
+    border-radius: 50px;
+    margin-right: 15px;
+    font-family: "Pretendard Variable";
+    font-size: 1rem;
+    font-weight: 600;
   }
   #search .banner p {
     position: absolute;
     left: 13vw;
     top: 34.5vw;
     font-family: "Bobaesum Jindo TTF";
-    font-size: 1.5vw;
+    font-size: 1.3rem;
     color: #232323;
   }
   #search .banner span {
@@ -838,7 +1162,7 @@ a:active {
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 700;
-    font-size: 1.2vw;
+    font-size: 1rem;
     color: #232323;
   }
   #search .banner img {
@@ -855,7 +1179,7 @@ a:active {
     font-family: "Bobaesum Jindo TTF";
     font-style: normal;
     font-weight: 400;
-    font-size: 2vw;
+    font-size: 1.5rem;
     color: #232323;
   }
   #search .today span {
@@ -863,45 +1187,45 @@ a:active {
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 500;
-    font-size: 1.2vw;
+    font-size: 1rem;
     color: #232323;
   }
   #search .today span:nth-of-type(1) {
-    left: 30vw;
-    top: 45.5vw;
+    left: 26vw;
+    top: 45.3vw;
   }
   #search .today span:nth-of-type(2) {
     left: 15vw;
     top: 67.5vw;
     font-weight: 800;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
   }
   #search .today span:nth-of-type(3) {
     left: 41.5vw;
     top: 67.5vw;
     font-weight: 800;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
   }
   #search .today span:nth-of-type(4) {
     left: 68vw;
     top: 67.5vw;
     font-weight: 800;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
   }
   #search .today p {
     position: absolute;
     font-family: "Pretendard Variable";
     font-weight: 600;
-    font-size: 1.1vw;
+    font-size: 0.9rem;
     color: #232323;
     top: 67.7vw;
-    left: 29vw;
+    left: 26.3vw;
   }
   #search .today p:nth-of-type(2) {
-    left: 55vw;
+    left: 52vw;
   }
   #search .today p:nth-of-type(3) {
-    left: 82vw;
+    left: 79.3vw;
   }
   #search .today img {
     position: absolute;
@@ -933,7 +1257,7 @@ a:active {
     left: 21.4vw;
     top: 88vw;
     font-family: "Bobaesum Jindo TTF";
-    font-size: 2vw;
+    font-size: 2rem;
     color: #FF8AA3;
     z-index: 1;
   }
@@ -943,7 +1267,7 @@ a:active {
     top: 92vw;
     font-family: "Pretendard Variable";
     font-weight: 700;
-    font-size: 1.4vw;
+    font-size: 1.4rem;
     color: #232323;
   }
   #search .rhkdrh span {
@@ -954,7 +1278,7 @@ a:active {
     font-family: "Pretendard Variable";
     font-style: normal;
     font-weight: 500;
-    font-size: 1vw;
+    font-size: 1rem;
     line-height: 150%;
     color: #232323;
   }
