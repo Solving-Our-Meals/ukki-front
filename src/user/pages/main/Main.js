@@ -100,7 +100,6 @@ const Main = () => {
         const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
         if (loggedInUser) {
             setUserNo(loggedInUser.userNo);
-
         }
     }, []);
 
