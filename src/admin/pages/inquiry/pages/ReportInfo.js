@@ -148,9 +148,13 @@ function ReportInfo() {
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore} />}
             {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2} />}
 
-            <div className={styles.inquiryInfoText}>문의상세정보</div>
+            <div className={styles.inquiryInfoText}>문의상세정보
+            <div className={styles.inquiryToButton} onClick={() => navigate(`/admin/reviews/info/${inquiry.reviewNo}`)}>리뷰정보</div>
+            </div>
             <div className={styles.horizon1}></div>
             
+
+
             <div className={styles.inquiryArea}>
                 <p className={styles.Title}>
                     문의 제목 : <span className={styles.inquiryTitle}>{inquiry.reportTitle}</span>
@@ -199,10 +203,11 @@ function ReportInfo() {
                         ) : (
                             <div className={styles.answer}>
                                 <p className={styles.AnswerTitle}>답변 제목 : <span
-                                    className={styles.inquiryTitle}>답변 대기중</span></p>
+                                    className={styles.inquiryTitle} style={{color: '#999999'}}>답변 대기중</span></p>
                                 <div className={styles.Text}>
-                                    <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2}>
+                                    <p className={showMore2 ? styles.inquiryTextExpanded2 : styles.inquiryText2} style={{color: '#999999'}}>
                                         답변 대기중
+
                                     </p>
                                     {inquiry.answerContent.length > 322 && (
                                         <div className={styles.button2}

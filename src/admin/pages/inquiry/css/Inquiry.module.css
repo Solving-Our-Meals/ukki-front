@@ -519,3 +519,41 @@
 .background {
     opacity: 0.5;
 }
+
+.inquiryToButton {
+    position: absolute;
+    top: 5px;
+    left: 300px;
+
+    
+    width: 129px;
+    height: 41px;
+    
+    /* secondary2 */
+
+    background-color: transparent;
+    border: 1px solid #FF6B87;
+    border-radius: 50px;
+
+    font-family: 'Bobaesum Jindo TTF';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 36px;
+
+    /* system/danger */
+    color: #232323;
+
+    text-align: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    z-index: 51;
+}
+
+.inquiryToButton:hover {
+    background-color: #FFBDC9;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}

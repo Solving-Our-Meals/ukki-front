@@ -6,6 +6,7 @@ import { API_BASE_URL } from '../../../../config/api.config';
 import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 import LodingPage from '../../../components/LoadingPage';
+import { StoreNoAPI } from '../api/StoreNoAPI';
 
 function InquiryInfo() {
     const { inquiryNo } = useParams();
@@ -29,6 +30,13 @@ function InquiryInfo() {
     const [fileUrl, setFileUrl] = useState("");
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
+    const [isUserInquiry, setIsUserInquiry] = useState(false);
+    const [isStoreInquiry, setIsStoreInquiry] = useState(false);
+    const [storeNo, setStoreNo] = useState(0);
+
+
+
+
 
     useEffect(() => {
         const currentInquiry = async () => {
@@ -44,9 +52,18 @@ function InquiryInfo() {
                 // fetchFile(currentInquiry.file);
                 setFileUrl(currentInquiry.file);
             }
+            if(currentInquiry.categoryNo < 5){
+                setIsUserInquiry(true);
+            } else{
+                const currentStore = await StoreNoAPI(currentInquiry.userNo);
+                setIsStoreInquiry(true);
+                setStoreNo(currentStore.storeNo);
+            }
         }
         currentInquiry();
         setIsLoading(false);
+
+
     }, [inquiryNo, answerMode]);
 
     const handleShowMore = () => {
@@ -156,8 +173,18 @@ function InquiryInfo() {
             {showOverlay && <div className={styles.overlay} onClick={handleShowMore} />}
             {showOverlay2 && <div className={styles.overlay} onClick={handleShowMore2} />}
 
-            <div className={styles.inquiryInfoText}>문의상세정보</div>
+            <div className={styles.inquiryInfoText}>문의상세정보
+            {isUserInquiry && <button className={styles.inquiryToButton} onClick={()=>navigate(`/admin/users/info/${inquiry.userNo}`)}>회원정보</button>}
+            {isStoreInquiry && <button className={styles.inquiryToButton} onClick={()=>navigate(`/admin/stores/info/${storeNo}`)}>가게정보</button>}
+            </div>
+
+
+
             <div className={styles.horizon1}></div>
+
+
+
+
 
             <div className={styles.inquiryArea}>
                 <p className={styles.Title}>
