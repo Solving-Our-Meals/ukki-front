@@ -348,7 +348,7 @@ function Signup() {
                         </button>
                         <button className={styles.nextButton}
                                 disabled={loading || emailPending} // 이메일 전송 중이거나 로딩 중이면 버튼 비활성화
-                        >{loading || emailPending ? '처리중' : '다음'}</button>
+                        >{loading || emailPending ? '진행' : '다음'}</button>
                     </form>
                 )}
 
