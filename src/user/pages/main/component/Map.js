@@ -195,6 +195,16 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                                 ? result[0].road_address.address_name
                                 : result[0].address.address_name;
                             if (address !== defaultValue) {
+                                if (currentMarker.marker) {
+                        currentMarker.marker.setMap(null); // 기존 마커 제거
+                        currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+                    }
+
+                    // 기존 경로가 있으면 삭제
+                    if (window.currentPolyline) {
+                        window.currentPolyline.setMap(null);  // 경로 삭제
+                        window.currentPolyline = null;        // 글로벌 변수 초기화
+                    }
                                 setAddress(address);
                                 console.log("주소가 변경되었습니다: ", address);
                             }
@@ -270,6 +280,16 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
                     // 현재 위치가 있으면 경로를 요청하는 함수 호출
                     if (currentPosition) {
+                        if (currentMarker.marker) {
+                            currentMarker.marker.setMap(null); // 기존 마커 제거
+                            currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+                        }
+    
+                        // 기존 경로가 있으면 삭제
+                        if (window.currentPolyline) {
+                            window.currentPolyline.setMap(null);  // 경로 삭제
+                            window.currentPolyline = null;        // 글로벌 변수 초기화
+                        }
                         requestDirections(store);
                     }
 
@@ -325,11 +345,31 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                             if (!isNaN(lat) && !isNaN(lon)) {
                                 return [lon, lat];
                             }
+                            if (currentMarker.marker) {
+                                currentMarker.marker.setMap(null); // 기존 마커 제거
+                                currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+                            }
+        
+                            // 기존 경로가 있으면 삭제
+                            if (window.currentPolyline) {
+                                window.currentPolyline.setMap(null);  // 경로 삭제
+                                window.currentPolyline = null;        // 글로벌 변수 초기화
+                            }
                         }
                         return null;
                     }).filter(Boolean));
 
                     if (routePath && routePath.length > 0) {
+                        if (currentMarker.marker) {
+                            currentMarker.marker.setMap(null); // 기존 마커 제거
+                            currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+                        }
+    
+                        // 기존 경로가 있으면 삭제
+                        if (window.currentPolyline) {
+                            window.currentPolyline.setMap(null);  // 경로 삭제
+                            window.currentPolyline = null;        // 글로벌 변수 초기화
+                        }
                         // 경로를 삭제하고 새 경로 표시
                         displayRoute(routePath);
                     } else {
@@ -353,8 +393,15 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
         }
 
         // 기존 경로 삭제
+        if (currentMarker.marker) {
+            currentMarker.marker.setMap(null); // 기존 마커 제거
+            currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+        }
+
+        // 기존 경로가 있으면 삭제
         if (window.currentPolyline) {
-            window.currentPolyline.setMap(null);
+            window.currentPolyline.setMap(null);  // 경로 삭제
+            window.currentPolyline = null;        // 글로벌 변수 초기화
         }
 
         // 새 경로 표시
