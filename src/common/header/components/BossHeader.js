@@ -122,11 +122,19 @@ function BossHeader() {
                             <NavLink to="/auth/signup" className={`menu-item auth ${activeMenu === '/auth/signup' ? 'active' : ''} ${visibleMenuItems.includes('/auth/signup') ? 'visible' : ''}`} onClick={() => handleMenuClick('/auth/signup')}>회원가입</NavLink>
                         </>
                     ) : (
-                        <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+                        <button
+                            onClick={() => {
+                                handleLogout();
+                                handleMenuClick('/logout');
+                            }}
+                            className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}
+                        >
+                            로그아웃
+                        </button>
                     )}
                 </span>
                 <button className="menu-button" onClick={toggleMenu}>
-                    <img src={menuIcon} alt="Menu" />
+                    <img src={menuIcon} alt="Menu"/>
                 </button>
             </header>
         </>
