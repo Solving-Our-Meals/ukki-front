@@ -117,7 +117,7 @@ function ReservationEndInfo(){
         <div id={styles.reservationInfoText}>예약 상세정보</div>
         <div className={styles.horizon1}></div>
         <div id={styles.reservationInfoContentText}>예약정보</div>
-        <div id={styles.reservationInfoId}><p>예약회원 : </p></div><div className={`${styles.userId} ${resInfo.userId && resInfo.userId.length > 9 ? styles.longUserName : ''}`}> {resInfo.userId? resInfo.userId : "삭제된 회원"}</div> {resInfo.userId && <button id={styles.toUserInfo} onClick={()=>{navigate(`admin/users/info/${resInfo.userNo}`)}}>회원 정보</button>}
+        <div id={styles.reservationInfoId}><p>예약회원 : </p></div><div className={`${styles.userId} ${resInfo.userId && resInfo.userId.length > 9 ? styles.longUserName : ''}`}> {resInfo.userId? resInfo.userId : "삭제된 회원"}</div> {resInfo.userId && <button id={styles.toUserInfo} onClick={()=>{navigate(`/admin/users/info/${resInfo.userNo}`)}}>회원 정보</button>}
         <div id={styles.reservationInfoStoreName}><p>가게이름 : </p></div><div className={`${styles.storeName} ${resInfo.storeName && resInfo.storeName.length > 9 ? styles.longUserName : ''}`}>{resInfo.storeName? resInfo.storeName : "삭제된 가게"}</div> {resInfo.storeName && <button id={styles.toStoreInfo} onClick={()=>{navigate(`/admin/stores/info/${resInfo.storeNo}`)}}>가게 정보</button>}
         <button id={styles.reservationInfoDeleteBtn} onClick={handleDeleteRes}>삭제</button>
         <div id={styles.reservationInfoDate}><p>예약시간 : </p> {resInfo.resTime}</div>
