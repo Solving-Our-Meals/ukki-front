@@ -3,38 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 
 function PrivateRoute({ element, ...rest }) {
-    const { isAuthenticated, user } = useAuth(); // user 정보를 가져옵니다.
+    const { isAuthenticated, user } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const verifyAuth = async () => {
+        const verifyAuth = () => {
+            // 인증되지 않은 경우 로그인 페이지로 리디렉션
             if (!isAuthenticated) {
                 navigate('/auth/login');
-            }
-        };
-        verifyAuth();
-    }, [isAuthenticated, navigate]);
-
-    useEffect(() => {
-        const verifyAuth = async () => {
-            if (!isAuthenticated) {
-                navigate('/auth/login');  // 인증되지 않은 사용자는 로그인 페이지로 리디렉션
                 return;
             }
 
+            // 사용자 역할에 따른 경로 리디렉션
             if (user?.userRole === 'STORE') {
                 if (!window.location.pathname.startsWith('/boss')) {
-                    navigate('/boss/mypage');  // /boss 외 다른 페이지로 접근하려면 /main으로 리디렉션
+                    navigate('/boss/mypage');
                 }
-            }
-
-            else if (user?.userRole === 'ADMIN') {
+            } else if (user?.userRole === 'ADMIN') {
                 if (!window.location.pathname.startsWith('/admin')) {
-                    navigate('/admin');  // /admin 외 다른 페이지로 접근하려면 /admin으로 리디렉션
+                    navigate('/admin');
                 }
-            }
-
-            else if (user?.userRole === 'USER') {
+            } else if (user?.userRole === 'USER') {
                 if (window.location.pathname.startsWith('/boss') || window.location.pathname.startsWith('/admin')) {
                     navigate('/');
                 }
@@ -44,8 +33,9 @@ function PrivateRoute({ element, ...rest }) {
         verifyAuth();
     }, [isAuthenticated, user, navigate]);
 
+    // 인증되지 않은 사용자는 리디렉션되므로 null 반환
     if (!isAuthenticated) {
-        return null;
+        return null; // 로딩 화면을 대신 표시할 수 있습니다
     }
 
     return element;

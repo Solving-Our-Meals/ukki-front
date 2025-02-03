@@ -56,7 +56,8 @@ function App() {
                         <Route path="notice" element={<PrivateRoute element={<UserNotice/>}/>}/> 
                         <Route path="notice/:noticeNo" element={<PrivateRoute element={<UserSpecificNotice/>}/>}/> 
                     </Route>
-                    <Route path="/boss" element={<BossLayout />}>
+
+                        <Route path="/boss" element={<PrivateRoute element={<BossLayout />} />}>
                         <Route path="mypage" element={<PrivateRoute element={<BossPage/>}/>}/> 
                         <Route path="info" element={<PrivateRoute element={<BossStoreInfoPage/>}/>}/> 
                         <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
@@ -67,9 +68,8 @@ function App() {
                     </Route>
 
                         {/* QR 관련 및 관리자 관련 라우팅 */}
-                        <Route path="qr/*" element={<QrRoutes />} />
-                        {/* <Route path="admin/*" element={<PrivateRoute element={<AdminRoutes/>}/>} /> */}
-                        <Route path="admin/*" element={<AdminRoutes/>} />
+                        <Route path="qr/*" element={<PrivateRoute element={<QrRoutes />} />} />
+                        <Route path="admin/*" element={<PrivateRoute element={<AdminRoutes />} />} />
 
                         {/* 500 INTERNAL SERVER ERROR */}
                         <Route path='/500' element={<Error500/>}/>

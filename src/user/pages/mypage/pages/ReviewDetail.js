@@ -31,7 +31,7 @@ function ReviewDetail() {
         if (reviewDetail && reviewDetail.reviewPicture) {
             const fileId = reviewDetail.reviewPicture;
             if (fileId) {
-                fetchImageFromGoogleDrive(fileId);
+                fetchReviewImage(fileId);
             }
         }
     }, [reviewDetail]);
@@ -161,15 +161,24 @@ function ReviewDetail() {
                 <div className={styles.reviewText}>{reviewDetail.reviewText}</div>
 
                 {/* 리뷰 사진 표시 */}
-                {reviewDetail.reviewPicture && (
+                {reviewDetail.reviewPicture ? (
                     <div className={styles.reviewImageContainer}>
                         <img
-                            src={reviewImage || DefaultReview}
+                            src={reviewDetail.reviewPicture}
+                            alt="리뷰 이미지"
+                            className={styles.reviewImage}
+                        />
+                    </div>
+                ) : (
+                    <div className={styles.reviewImageContainer}>
+                        <img
+                            src={DefaultReview}
                             alt="리뷰 이미지"
                             className={styles.reviewImage}
                         />
                     </div>
                 )}
+
             </div>
         </>
     );
