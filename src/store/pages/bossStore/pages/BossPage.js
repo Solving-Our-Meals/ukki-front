@@ -18,15 +18,7 @@ function BossPage() {
     const [storeInfo, setStoreInfo] = useState(null);
     const [reservations, setReservations] = useState([]);
     const [resPosNumbers, setResPosNumbers] = useState({});
-    const [weeklyReservationCount, setWeeklyReservationCount] = useState({
-        mon: 0,
-        tue: 0,
-        wed: 0,
-        thu: 0,
-        fri: 0,
-        sat: 0,
-        sun: 0
-      });
+    const [weeklyReservationCount, setWeeklyReservationCount] = useState(null);
       
     const [todayReservationCount, setTodayReservationCount] = useState(0);
     const [startDate, setStartDate] = useState(dayjs().format('YYYY-MM-DD'));
@@ -44,7 +36,8 @@ function BossPage() {
     const fetchAvailableSlots = async (date, time) => {
         try {
             const formattedDate = dayjs(date).format('YYYY-MM-DD');
-            const formattedTime = dayjs(time, 'HH:mm').format('HH:mm');
+            const formattedTime = dayjs(date).format('HH:mm');
+            console.log(formattedTime);
 
             const params = {
                 storeNo: storeNo,
@@ -58,7 +51,6 @@ function BossPage() {
 
             const resPosNumber = Number(response.data.resPosNumber);
             const validResPosNumber = isNaN(resPosNumber) ? 5 : resPosNumber;
-
 
             setResPosNumbers(prev => ({
                 ...prev,
@@ -87,17 +79,18 @@ function BossPage() {
             })
             .catch(error => console.error("Error fetching reservations:", error));
 
-        axios.get(`${API_BASE_URL}/boss/mypage/weekly-reservation-count?storeNo=${storeNo}`)
-            .then(response => setWeeklyReservationCount(response.data || []))
-            .catch(error => console.error("Error fetching weekly reservation count:", error));
-
-        axios.get(`${API_BASE_URL}/boss/mypage/today-reservation-count?storeNo=${storeNo}`)
-            .then(response => setTodayReservationCount(response.data || 0))
-            .catch(error => console.error("Error fetching today reservation count:", error));
-
         const closestTime = getClosest30MinTime();
         setSelectedDate(startDate);
         setSelectedTime(dayjs(closestTime).format('HH:mm'));
+
+        axios.get(`${API_BASE_URL}/boss/mypage/weekly-reservation-count?storeNo=${storeNo}`)
+            .then((response) => {
+                console.log(response.data);
+                setWeeklyReservationCount(response.data)
+            })
+
+            .catch(error => console.error("Error fetching weekly reservation count:", error));
+
 
 
         fetchAvailableSlots(startDate, dayjs(closestTime).format('HH:mm'));
@@ -226,6 +219,10 @@ function BossPage() {
     });
 
 
+    if(!weeklyReservationCount){
+        return (<div>로딩중</div>)
+
+    }
 
 
     return (
@@ -295,7 +292,9 @@ function BossPage() {
                     </div>
                 </section>
 
+                <div className="weekly-Reservations">
                 <WeeklyReservationGraph data={weeklyReservationCount} />
+                </div>
 
                 <section className="today-reservation">
                     <h2>오늘 남은 예약 수</h2>
