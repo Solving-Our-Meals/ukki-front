@@ -18,163 +18,117 @@
     height: auto;
 }
 
-#background{
-    position : absolute;
-    left : 0px;
-    right : 0px;
-    top : 0px;
-    bottom : 0px;
-    width : 100%;
-    height : 100%;
-    background-color: $secondary2;
-    border-radius: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: default;
-
-    #noticeArea{
-        position: absolute;
-        margin-top: 75px;
-        width : 1805px;
-        height : 783px;
-        background-color: #FFFFFF;
-        border: none;
-        border-radius: 50px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .dots{
-            box-sizing: border-box;
+        #strNotice {
             position: absolute;
-            width: 27px;
-            height: 27px;
-            background: #B3E7FF;
-            border: 3px solid #BDBEBF;
-        }
-
-        #dot1{
-            left: 50px;
-            top: 50px;
-        }
-
-        #dot2{
-            right: 50px;
-            top: 50px;
-        }
-
-        #dot3{
-            left: 50px;
-            bottom: 50px;
-        }
-
-        #dot4{
-            right: 50px;
-            bottom: 50px;
-        }
-
-        #strNotice{
-            position: absolute;
-            width: max-content;
-            height: max-content;
-            left : 120px;
-            top : 40px;
+            width: 15vw;
+            left: 13vw;
+            top: 7.8vw;
             font-family: 'Bobaesum Jindo TTF';
             font-style: normal;
             font-weight: 400;
-            font-size: 50px;
+            font-size: 2.5vw;
             line-height: 55px;
             color: #FF8AA3;
         }
 
-        #imgPin{
+        #imgPin {
             position: absolute;
-            width: 40px;
-            height: 40x;
-            margin-top : -8px;
-            left: 310px;
-            top: 50px;
+            width: 2vw;
+            left: 10vw;
+            top: 8vw;
         }
 
-        #inputSearch{
+        #inputSearch {
             position: absolute;
-            right : 120px;
-            top : 40px;
-            width : 500px;
-            height : 64px;
-            border: 5px solid $primary;
+            width: 40vw;
+            height: 3vw;
+            left: 46vw;
+            top: 8vw;
             border-radius: 50px;
-            cursor: text;
-            outline: none;
-            padding-left: 50px;
-            font-family: 'Pretendard-Regular';
-            font-size: 25px;
+            border: 0.15vw solid #d6d6d6;
+            background-color: white;
+            margin: 0;
+            z-index: 10;
             color: $textStrong;
+            font-family: 'Pretendard Variable';
+            font-weight: 700;
+            font-size: 1.2vw;
+            box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+            padding: 0vw 2vw;
+            z-index: 1;
+
+            &::placeholder {
+                color: #888888;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 1.2vw;
+
+            }
         }
 
-        #searchBtn{
+        #searchBtn {
             position: absolute;
-            right : 150px;
-            top : 50px;
-            width : 40px;
-            height : 40px;
+            left: 87vw;
+            top: 8vw;
+            width: 3vw;
+        
             cursor: pointer;
         }
 
-        .strArea{
+        .strArea {
             position: absolute;
-            width: 1600px;
-            height: 80px;
-            top : 120px;
-            border-bottom: 4px solid #BDBEBF;
+            width: 80vw;
+            height: 4vw;
+            top: 12vw;
+            border-bottom: 3px solid #BDBEBF;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            left: 50%;
+            left: 50vw;
             transform: translateX(-50%);
             border-radius: 0;
 
-            #strCategory, #strTitle, #strDate {
+            #strCategory,
+            #strTitle,
+            #strDate {
                 position: relative;
             }
 
-            #strCategory{
+            #strCategory {
                 position: absolute;
                 width: max-content;
                 height: max-content;
-                left : 60px;
+                left: 5vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 40px;
+                font-size: 1.5vw;
                 line-height: 130%;
                 color: $textStrong;
             }
-    
-            #strTitle{
+
+            #strTitle {
                 position: absolute;
                 width: max-content;
                 height: max-content;
-                left : 490px;
+                left: 25vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 40px;
+                font-size: 1.5vw;
                 line-height: 130%;
                 color: $textStrong;
             }
-    
-            #strDate{
+
+            #strDate {
                 position: absolute;
                 width: max-content;
                 height: max-content;
-                right : 170px;
+                left: 67vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 40px;
+                font-size: 1.5vw;
                 line-height: 130%;
                 color: $textStrong;
             }
@@ -182,18 +136,18 @@
 
         .noticeContainer {
             position: absolute;
-            width: 1620px;
-            height: 430px;
-            top: 200px;
-            left: 50%;
+            width: 86vw;
+            height: 20vw;
+            top: 16vw;
+            left: 54vw;
             transform: translateX(-50%);
             cursor: pointer;
 
             .notice {
                 position: relative;
-                width: 1550px;
-                height: 80px;
-                left : 33px;
+                width: 80vw;
+                height: 4vw;
+                left: -1vw;
                 border-bottom: 2px solid #D9D9D9;
                 border-radius: 0;
                 display: flex;
@@ -205,71 +159,70 @@
                 align-items: center;
 
                 #categoryName {
-                    position: relative;
-                    left : -270px;
-                    width : 97px;
-                    height : 38px;
+                    position: absolute;
+                    left: 5.2vw;
+                    width: 5vw;
+                    height: 2vw;
                     border-radius: 25px;
                     font-family: 'Pretendard-Regular';
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 25px;
-                    color: $textStrong; 
+                    font-size: 1.2vw;
+                    color: $textStrong;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
 
                 #noticeTitle {
-                    position: relative;
-                    display: block;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    width: 650px;
-                    height : max-content;
-                    left : 40px;
+                    position: absolute;
+                    white-space: nowrap;            
+                    text-overflow: ellipsis;         
+                    width: 40vw;                     
+                    height: max-content;
+                    left: 25vw;
                     font-family: 'Pretendard-Regular';
                     font-style: normal;
                     font-weight: 400;
-                    font-size: 25px;
-                    line-height: 30px;
+                    font-size: 1.2vw;
+                    overflow: hidden;              
                     color: $textStrong;
                     text-align: left;
+                    line-height: 140%;              
                 }
+                
 
                 #noticeDate {
-                    position: relative;
-                    width : 150px;
-                    left : 260px;
+                    position: absolute;
+                    width: 10vw;
+                    left: 67vw;
                     font-family: 'Pretendard-Regular';
                     font-style: normal;
                     font-weight: 400;
-                    font-size: 25px;
+                    font-size:1.2vw;
                     line-height: 30px;
                     color: $textStrong;
                     text-align: left;
                 }
             }
 
-            .noResultsMessage{
+            .noResultsMessage {
                 position: absolute;
-                font-family: 'Pretendard-Regular';
-                font-size: 25px;
-                width: 1550px;
-                height: 80px;
-                left : 33px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                top: 15vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-size: 2.5vw;
+                color: $textCaption;
+                left: 20vw;
+                text-align: center;
             }
         }
 
-        hr{
+        hr {
             position: absolute;
-            width: 1600px;
-            border: 2.9px solid #BDBEBF;
-            bottom : 90px
+            width: 80vw;
+            border: 2px solid #BDBEBF;
+            top:40vw;
+            left: 10vw;
         }
 
         .pagination {
@@ -277,16 +230,16 @@
             justify-content: center;
             gap: 40px;
             position: absolute;
-            bottom: 25px;
+            top: 45vw;
             left: 50%;
             transform: translateX(-50%);
             padding: 10px 0;
 
             .paginationButton {
-                font-family: 'Bobaesum Jindo TTF';
+                font-family: 'Pretendard-Regular';
                 font-style: normal;
-                font-weight: 400;
-                font-size: 25px;
+                font-weight: 800;
+                font-size: 1.2vw;
                 line-height: 28px;
                 cursor: pointer;
                 color: $textStrong;
@@ -309,5 +262,536 @@
                 }
             }
         }
+    
+
+
+@media (max-width: 1440px) and (min-width: 769px) {
+    .loadingContainer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
     }
-}
+    
+    .loadingContainer img {
+        max-width: 150px;
+        height: auto;
+    }
+    
+            #strNotice {
+                position: absolute;
+                width: 15vw;
+                left: 14vw;
+                top: 7.8vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 3.5vw;
+                line-height: 55px;
+                color: #FF8AA3;
+            }
+    
+            #imgPin {
+                position: absolute;
+                width: 3vw;
+                left: 10vw;
+                top: 9vw;
+            }
+    
+            #inputSearch {
+                position: absolute;
+                width: 44vw;
+                height: 4.5vw;
+                left: 40vw;
+                top: 8.5vw;
+                border-radius: 50px;
+                border: 0.15vw solid #d6d6d6;
+                background-color: white;
+                margin: 0;
+                z-index: 10;
+                color: $textStrong;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 2vw;
+                box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+                padding: 0vw 2vw;
+                z-index: 1;
+    
+                &::placeholder {
+                    color: #888888;
+                    font-family: 'Pretendard Variable';
+                    font-weight: 700;
+                    font-size: 2vw;
+    
+                }
+            }
+    
+            #searchBtn {
+                position: absolute;
+                left: 86vw;
+                top: 8.5vw;
+                width: 4.5vw;
+            
+                cursor: pointer;
+            }
+    
+            .strArea {
+                position: absolute;
+                width: 80vw;
+                height: 4vw;
+                top: 17vw;
+                border-bottom: 3px solid #BDBEBF;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                left: 50vw;
+                transform: translateX(-50%);
+                border-radius: 0;
+    
+                #strCategory,
+                #strTitle,
+                #strDate {
+                    position: relative;
+                }
+    
+                #strCategory {
+                    position: absolute;
+                    width: max-content;
+                    height: max-content;
+                    left: 5vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 2.5vw;
+                    line-height: 130%;
+                    color: $textStrong;
+                }
+    
+                #strTitle {
+                    position: absolute;
+                    width: max-content;
+                    height: max-content;
+                    left: 25vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 2.5vw;
+                    line-height: 130%;
+                    color: $textStrong;
+                }
+    
+                #strDate {
+                    position: absolute;
+                    width: max-content;
+                    height: max-content;
+                    left: 67vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 2.5vw;
+                    line-height: 130%;
+                    color: $textStrong;
+                }
+            }
+    
+            .noticeContainer {
+                position: absolute;
+                width: 86vw;
+                height: 20vw;
+                top: 21vw;
+                left: 54vw;
+                transform: translateX(-50%);
+                cursor: pointer;
+    
+                .notice {
+                    position: relative;
+                    width: 80vw;
+                    height: 7vw;
+                    left: -1vw;
+                    border-bottom: 3px solid #D9D9D9;
+                    border-radius: 0;
+                    display: flex;
+                    align-items: center;
+                    padding: 0 20px;
+                    display: flex;
+                    flex-direction: right;
+                    justify-content: center;
+                    align-items: center;
+    
+                    #categoryName {
+                        position: absolute;
+                        left: 5.3vw;
+                        width: 8vw;
+                        height: 3vw;
+                        border-radius: 25px;
+                        font-family: 'Pretendard-Regular';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 2vw;
+                        color: $textStrong;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+    
+                    #noticeTitle {
+                        position: absolute;
+                        white-space: nowrap;            
+                        text-overflow: ellipsis;         
+                        width: 30vw;                     
+                        height: max-content;
+                        left: 25vw;
+                        font-family: 'Pretendard-Regular';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 2vw;
+                        overflow: hidden;              
+                        color: $textStrong;
+                        text-align: left;
+                        line-height: 140%;              
+                    }
+                    
+    
+                    #noticeDate {
+                        position: absolute;
+                        width: 15vw;
+                        left: 67vw;
+                        font-family: 'Pretendard-Regular';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size:2vw;
+                        line-height: 30px;
+                        color: $textStrong;
+                        text-align: left;
+                    }
+                }
+    
+                .noResultsMessage {
+                    position: absolute;
+                    top: 15vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-size: 2.5vw;
+                    color: $textCaption;
+                    left: 23vw;
+                    text-align: center;
+                }
+            }
+    
+            hr {
+                position: absolute;
+                width: 80vw;
+                border: 2px solid #BDBEBF;
+                top:62vw;
+                left: 10vw;
+            }
+    
+            .pagination {
+                display: flex;
+                justify-content: center;
+                gap: 4vw;
+                position: absolute;
+                top: 65vw;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 10px 0;
+    
+                .paginationButton {
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 2vw;
+                    line-height: 28px;
+                    cursor: pointer;
+                    color: $textStrong;
+                    opacity: 50%;
+    
+                    &.active {
+                        color: $textStrong;
+                        opacity: 100%;
+                        font-weight: bold;
+                    }
+                }
+    
+                .arrow {
+                    color: $primary;
+                    opacity: 100%;
+    
+                    &.disabled {
+                        visibility: hidden;
+                        cursor: default;
+                    }
+                }
+            }
+        }    
+
+@media (max-width: 768px) {
+    .loadingContainer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .loadingContainer img {
+        max-width: 150px;
+        height: auto;
+    }
+    
+            #strNotice {
+                position: absolute;
+                width: 20vw;
+                left: 16vw;
+                top: 10vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 4.5vw;
+                line-height: 55px;
+                color: #FF8AA3;
+            }
+    
+            #imgPin {
+                position: absolute;
+                width: 4vw;
+                left: 10vw;
+                top: 13vw;
+            }
+    
+            #inputSearch {
+                position: absolute;
+                width: 73vw;
+                height: 6.5vw;
+                left: 9vw;
+                top: 20vw;
+                border-radius: 50px;
+                border: 0.2vw solid #d6d6d6;
+                background-color: white;
+                margin: 0;
+                z-index: 10;
+                color: $textStrong;
+                font-family: 'Pretendard Variable';
+                font-weight: 700;
+                font-size: 3vw;
+                box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
+                padding: 0vw 2vw;
+                z-index: 1;
+    
+                &::placeholder {
+                    color: #888888;
+                    font-family: 'Pretendard Variable';
+                    font-weight: 700;
+                    font-size: 3vw;
+    
+                }
+            }
+    
+            #searchBtn {
+                position: absolute;
+                left: 85vw;
+                top: 20vw;
+                width: 6.5vw;
+            
+                cursor: pointer;
+            }
+    
+            .strArea {
+                position: absolute;
+                width: 80vw;
+                height:8vw;
+                top: 30vw;
+                border-bottom: 3px solid #BDBEBF;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                left: 50vw;
+                transform: translateX(-50%);
+                border-radius: 0;
+    
+                #strCategory,
+                #strTitle,
+                #strDate {
+                    position: relative;
+                }
+    
+                #strCategory {
+                    position: absolute;
+                    width: max-content;
+                    height: max-content;
+                    left: 5vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 3vw;
+                    line-height: 180%;
+                    color: $textStrong;
+                }
+    
+                #strTitle {
+                    position: absolute;
+                    width: max-content;
+                    height: max-content;
+                    left: 25vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 3vw;
+                    line-height: 180%;
+                    color: $textStrong;
+                }
+    
+                #strDate {
+                    position: absolute;
+                    width: max-content;
+                    height: max-content;
+                    left: 63vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 3vw;
+                    line-height: 180%;
+                    color: $textStrong;
+                }
+            }
+    
+            .noticeContainer {
+                position: absolute;
+                width: 86vw;
+                height: 20vw;
+                top: 39vw;
+                left: 54vw;
+                transform: translateX(-50%);
+                cursor: pointer;
+    
+                .notice {
+                    position: relative;
+                    width: 80vw;
+                    height: 9vw;
+                    left: -1vw;
+                    border-bottom: 3px solid #D9D9D9;
+                    border-radius: 0;
+                    display: flex;
+                    align-items: center;
+                    padding: 0 20px;
+                    display: flex;
+                    flex-direction: right;
+                    justify-content: center;
+                    align-items: center;
+    
+                    #categoryName {
+                        position: absolute;
+                        left: 5.3vw;
+                        width: 10vw;
+                        height: 4vw;
+                        border-radius: 25px;
+                        font-family: 'Pretendard-Regular';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 3vw;
+                        color: $textStrong;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+    
+                    #noticeTitle {
+                        position: absolute;
+                        white-space: nowrap;            
+                        text-overflow: ellipsis;         
+                        width: 25vw;                     
+                        height: max-content;
+                        left: 25vw;
+                        font-family: 'Pretendard-Regular';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size:3vw;
+                        overflow: hidden;              
+                        color: $textStrong;
+                        text-align: left;
+                        line-height: 140%;              
+                    }
+                    
+    
+                    #noticeDate {
+                        position: absolute;
+                        width: 20vw;
+                        left: 63vw;
+                        font-family: 'Pretendard-Regular';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size:3vw;
+                        line-height: 30px;
+                        color: $textStrong;
+                        text-align: left;
+                    }
+                }
+    
+                .noResultsMessage {
+                    position: absolute;
+                    top: 15vw;
+                    font-family: 'Bobaesum Jindo TTF';
+                    font-size: 2.5vw;
+                    color: $textCaption;
+                    left: 23vw;
+                    text-align: center;
+                }
+            }
+    
+            hr {
+                position: absolute;
+                width: 80vw;
+                border: 2px solid #BDBEBF;
+                top:92vw;
+                left: 10vw;
+            }
+    
+            .pagination {
+                display: flex;
+                justify-content: center;
+                gap: 4vw;
+                position: absolute;
+                top: 98vw;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 10px 0;
+    
+                .paginationButton {
+                    font-family: 'Pretendard-Regular';
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 3vw;
+                    line-height: 28px;
+                    cursor: pointer;
+                    color: $textStrong;
+                    opacity: 50%;
+    
+                    &.active {
+                        color: $textStrong;
+                        opacity: 100%;
+                        font-weight: bold;
+                    }
+                }
+    
+                .arrow {
+                    color: $primary;
+                    opacity: 100%;
+    
+                    &.disabled {
+                        visibility: hidden;
+                        cursor: default;
+                    }
+                }
+            }
+        }   
+    

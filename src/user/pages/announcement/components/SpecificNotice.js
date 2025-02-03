@@ -53,8 +53,6 @@ function SpecificNotice(){
 
     return(
         <>
-            <div id={styles.background}>
-                <div id={styles.noticeArea}>
                     <div className={styles.noticeInfo}>
                         <p id={styles.strNotice}>공지사항</p>
                         <span
@@ -69,8 +67,6 @@ function SpecificNotice(){
                             <span>{notice.content}</span>
                         </div> */}
                         <span id={styles.content}>{notice.content}</span>
-                    </div>
-                </div>
             </div>
         </>
     );

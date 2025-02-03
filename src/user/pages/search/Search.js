@@ -58,15 +58,16 @@ function Search() {
   };
 
   // 검색어 입력 시 자동완성 리스트 업데이트
+// 검색어 입력 시 자동완성 리스트 업데이트
 const updateSearch = (e) => {
   const value = e.target.value;
   setSearchTerm(value);
 
   if (value.trim()) {
-      // 부분 검색어로 실시간 검색 결과를 업데이트
-      searchStores(value);
+    // 입력한 부분으로 검색된 결과만 자동완성 업데이트
+    searchStores(value);
   } else {
-      setStoreList([]); // 검색어가 비어있으면 결과를 초기화
+    setStoreList([]); // 검색어가 비어있으면 결과를 초기화
   }
 };
 
@@ -74,25 +75,24 @@ const updateSearch = (e) => {
 const handleSearch = () => {
   const trimmedSearchTerm = searchTerm.trim();
 
-  // 검색어가 완전하게 입력된 경우에만 처리
+  // 엔터를 눌렀을 때만 검색어를 로컬스토리지에 저장하고 인기 검색어 갱신
   if (trimmedSearchTerm && !recentSearches.includes(trimmedSearchTerm)) {
-      // 최근 5개의 검색어만 저장
-      const updatedRecentSearches = [trimmedSearchTerm, ...recentSearches].slice(0, 5); 
-      setRecentSearches(updatedRecentSearches);
-      localStorage.setItem('recentSearches', JSON.stringify(updatedRecentSearches)); // 로컬 스토리지에 저장
+    // 최근 5개의 검색어만 저장
+    const updatedRecentSearches = [trimmedSearchTerm, ...recentSearches].slice(0, 5);
+    setRecentSearches(updatedRecentSearches);
+    localStorage.setItem('recentSearches', JSON.stringify(updatedRecentSearches)); // 로컬 스토리지에 저장
 
-      // 서버에 검색어 기록 (완전한 검색어만 기록)
-      axios.post(`${API_BASE_URL}/store/insertOrUpdateSearch`, { storeName: trimmedSearchTerm })
-          .then(() => {
-              // 인기 검색어 갱신 후 다시 가져오기
-              fetchPopularSearches();
-          })
-          .catch((error) => {
-              console.error('검색어 기록 오류:', error);
-          });
+    // 서버에 검색어 기록 (완전한 검색어만 기록)
+    axios.post(`${API_BASE_URL}/store/insertOrUpdateSearch`, { storeName: trimmedSearchTerm })
+      .then(() => {
+        // 인기 검색어 갱신 후 다시 가져오기
+        fetchPopularSearches();
+      })
+      .catch((error) => {
+        console.error('검색어 기록 오류:', error);
+      });
   }
 };
-
 
 // 실시간 인기 검색어 API 호출
 const fetchPopularSearches = () => {
@@ -102,10 +102,16 @@ const fetchPopularSearches = () => {
     .then((response) => {
       console.log('Popular Search Response:', response.data); // 응답 데이터 확인
       if (Array.isArray(response.data)) {
+        // 2자 이상인 검색어만 필터링 (부분 검색어 제외)
         const filteredSearches = response.data.filter((search) => {
-          return search.length >= 2;  // 2자 이상인 검색어만 필터링 (부분 검색어 제외)
+          return search.length >= 2;  // 2자 이상인 검색어만 필터링
         });
-        setPopularSearches(filteredSearches); // 필터링된 인기 검색어 상태 업데이트
+
+        // 검색량을 기준으로 내림차순 정렬 (가장 많이 검색된 검색어가 앞에 오도록)
+        const sortedSearches = filteredSearches.sort((a, b) => b[1] - a[1]); // 예: [검색어, 검색량] 형태일 때
+
+        // 상위 10개 검색어만 가져오기
+        setPopularSearches(sortedSearches.slice(0, 10)); // 상위 10개만 표시
       } else {
         console.error("Invalid data format for popular searches:", response.data);
       }
@@ -116,6 +122,9 @@ const fetchPopularSearches = () => {
       setIsLoading(false); // 로딩 종료
     });
 };
+
+
+
 
   useEffect(() => {
     fetchPopularSearches();  // 컴포넌트가 마운트될 때 인기 검색어 불러오기
@@ -230,7 +239,7 @@ const fetchPopularSearches = () => {
                     ))}
                   </div>
                 )}
-                F
+                
                 <hr />
               </div>
             ))

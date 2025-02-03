@@ -1,25 +1,24 @@
-@import '../../../../reset.scss';
+@import '../../../../common//header//css/reset.scss';
 
 .info {
     h1 {
         position: absolute;
-        width: 544px;
-        height: 61px;
-        left: 45%;
-        top: 21%;
+        width: 50vw;
+        left: 48vw;
+        top: 10vw;
         font-family: 'Bobaesum Jindo TTF';
         font-style: normal;
         font-weight: 400;
-        font-size: 2.5rem;
+        font-size: 2vw;
         color: $textStrong;
 
     }
 
     img:nth-of-type(1) {
         position: absolute;
-        width: 450px;
-        left: 20%;
-        top: 19%;
+        width: 25vw;
+        left: 20vw;
+        top: 10vw;
     }
 
     p {
@@ -27,39 +26,37 @@
         font-family: 'Pretendard Variable';
         font-style: normal;
         font-weight: 700;
-        font-size: 1rem;
+        font-size: 1vw;
         color: $textStrong;
     }
 
     p:nth-of-type(1) {
-        width: 394px;
-        left: 45.5%;
-        top: 27%;
+        left: 48vw;
+        top: 13vw;
     }
 
     h4 {
         position: absolute;
-        width: 253px;
-        left: 45.5%;
-        top: 33%;
+        left: 48vw;
+        top: 17vw;
         font-family: 'Bobaesum Jindo TTF';
         font-style: normal;
         font-weight: 400;
-        font-size: 1.2rem;
+        font-size: 1.3vw;
         color: $textStrong;
 
         &:nth-of-type(2) {
-            left: 51.5%;
+            left: 56vw;
             color: $primary;
         }
 
         &:nth-of-type(3) {
-            top: 36.5%;
+            top: 19.5vw;
         }
 
         &:nth-of-type(4) {
-            top: 36.5%;
-            left: 51.5%;
+            top: 19.5vw;
+            left: 56vw;
             color: $secondary;
         }
     }
@@ -69,25 +66,24 @@
         font-family: 'Pretendard Variable';
         font-style: normal;
         font-weight: 500;
-        font-size: 1rem;
+        font-size: 1vw;
         color: $textStrong;
-        line-height: 200%;
+        line-height: 180%;
 
     }
 
     span:nth-of-type(1) {
-        width: 963px;
-        left: 45.5%;
-        top: 42%;
+        left: 48vw;
+        top: 23.5vw;
+        width: 40vw;
 
     }
 
     div {
         position: absolute;
         width: 100%;
-        height: 320px;
-        left: 0%;
-        top: 70%;
+        height: 20vw;
+        top: 41vw;
         background: #FFF9D3;
     }
 
@@ -96,34 +92,32 @@
         font-family: 'Bobaesum Jindo TTF';
         font-style: normal;
         font-weight: 400;
-        font-size: 2rem;
+        font-size: 1.5vw;
         color: $textStrong;
     }
 
     h3:nth-of-type(1) {
-        width: 200px;
-        left: 21.5%;
-        top: 75%;
+        left: 21.5vw;
+        top: 45vw;
 
     }
 
     span:nth-of-type(2) {
-        width: 300px;
-        left: 21.5%;
-        top: 80%;
+        width: 17.5vw;
+        left: 21.5vw;
+        top: 47.5vw;
         line-height: 150%;
     }
 
     p:nth-of-type(2) {
-        width: 300px;
-        left: 22%;
-        top: 90%;
+        left: 21.5vw;
+        top: 53vw;
     }
 
     button {
         position: absolute;
-        width: 120px;
-        height: 35px;
+        width: 6.5vw;
+        height: 2vw;
         border-radius: 50px;
         outline: none;
         border: none;
@@ -131,561 +125,557 @@
         font-family: 'Pretendard Variable';
         font-style: normal;
         font-weight: 700;
-        font-size: 1rem;
+        font-size: 1vw;
 
     }
 
     button:nth-of-type(1) {
-        left: 21.5%;
-        top: 95%;
+        left: 21.5vw;
+        top: 56vw;
         background: $secondary;
     }
 
     button:nth-of-type(2) {
-        left: 28.5%;
-        top: 95%;
+        left: 30vw;
+        top: 56vw;
         background: #FEE283;
     }
 
     img:nth-of-type(2) {
         position: absolute;
-        width: 230px;
-        left: 45%;
-        top: 76%;
+        width: 10vw;
+        left: 50vw;
+        top: 46vw;
     }
 
     p:nth-of-type(3) {
-        width: 300px;
-        left: 49%;
-        top: 95%;
+        left: 52.7vw;
+        top: 56.5vw;
     }
 
     img:nth-of-type(3) {
         position: absolute;
-        width: 300px;
-        left: 62.5%;
-        top: 79%;
+        width: 15vw;
+        left: 65vw;
+        top: 47vw;
     }
 
     p:nth-of-type(4) {
         position: absolute;
-        width: 300px;
-        left: 68%;
-        top: 95%;
+        left: 69.5vw;
+        top: 56.5vw;
     }
 
     h3:nth-of-type(2) {
-        width: 540px;
-        left: 21%;
-        top: 110%;
+        left: 21.5vw;
+        top: 65vw;
     }
 
     img:nth-of-type(4) {
         position: absolute;
-        width: 1100px;
-        left: 21%;
-        top: 121%;
+        width: 60vw;
+        left: 21.5vw;
+        top: 70vw;
         z-index: -2;
     }
 
     img:nth-of-type(5) {
         position: absolute;
-        width: 500px;
-        left: 34%;
-        top: 125%;
+        width: 30vw;
+        left: 34vw;
+        top: 72vw;
         z-index: -1;
     }
 
     img:nth-of-type(6) {
         position: absolute;
-        width: 800px;
-        left: 28%;
-        top: 122%;
+        width: 50vw;
+        left: 28vw;
+        top: 70vw;
         z-index: 1;
     }
 
     span:nth-of-type(3) {
-        width: 1000px;
-        left: 26%;
-        top: 158%;
+        width: 60vw;
+        left: 21.5vw;
+        top: 90vw;
         text-align: center;
 
     }
 
     a {
         button:nth-of-type(1) {
-            width: 150px;
-            height: 45px;
-            left: 40%;
-            top: 180%;
+            width: 10vw;
+            height: 2.5vw;
+            left: 40vw;
+            top: 105vw;
             background: $primary;
+            font-size: 1.5vw;
         }
 
         &:nth-of-type(2) button {
-            width: 150px;
-            height: 45px;
-            left: 52%;
-            top: 180%;
+            width: 10vw;
+            height: 2.5vw;
+            left: 56vw;
+            top: 105vw;
             background: #FFD4DC;
         }
 
     }
 
-
+}
 
     @media (max-width: 768px) {
-        h1 {
-            position: absolute;
-            left: 45%;
-            top: 15vw;
-            font-family: 'Bobaesum Jindo TTF';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 3vw;
-            color: $textStrong;
-
-        }
-
-        img:nth-of-type(1) {
-            position: absolute;
-            width: 35%;
-            left: 10%;
-            top: 14vw;
-        }
-
-        p {
-            position: absolute;
-            font-family: 'Pretendard Variable';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 1.6vw;
-            color: $textStrong;
-        }
-
-        p:nth-of-type(1) {
-            left: 45.5%;
-            top: 20vw;
-        }
-
-        h4 {
-            position: absolute;
-            width: 253px;
-            left: 45.5%;
-            top: 23.5vw;
-            font-family: 'Bobaesum Jindo TTF';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 1.7vw;
-            color: $textStrong;
-
-            &:nth-of-type(2) {
-                left: 55.5%;
-                color: $primary;
+        .info {
+            h1 {
+                position: absolute;
+                width: 50vw;
+                left: 10vw;
+                top: 15vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 4vw;
+                color: $textStrong;
+        
             }
-
-            &:nth-of-type(3) {
-                top: 26vw;
+        
+            img:nth-of-type(1) {
+                position: absolute;
+                width: 44vw;
+                left: 8vw;
+                top: 21vw;
             }
-
-            &:nth-of-type(4) {
-                top: 26vw;
-                left: 55.5%;
-                color: $secondary;
+        
+            p {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 2.2vw;
+                color: $textStrong;
             }
-        }
-
-        span {
-            position: absolute;
-            font-family: 'Pretendard Variable';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 1.5vw;
-            color: $textStrong;
-            line-height: 170%;
-
-        }
-
-        span:nth-of-type(1) {
-            width: 963px;
-            left: 45.5%;
-            top: 30vw;
-
-        }
-
-        div {
-            position: absolute;
-            width: 100%;
-            height: 35vw;
-            left: 0%;
-            top: 50vw;
-            background: #FFF9D3;
-        }
-
-        h3 {
-            position: absolute;
-            font-family: 'Bobaesum Jindo TTF';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 3vw;
-            color: $textStrong;
-        }
-
-        h3:nth-of-type(1) {
-            width: 200px;
-            left: 13%;
-            top: 56vw;
-
-        }
-
-        span:nth-of-type(2) {
-            width: 27vw;
-            left: 13.5%;
-            top: 60.5vw;
-            line-height: 150%;
-        }
-
-        p:nth-of-type(2) {
-            width: 300px;
-            left: 13%;
-            top: 70vw;
-        }
-
-        button {
-            position: absolute;
-            width: 10vw;
-            height: 3vw;
-            border-radius: 50px;
-            outline: none;
-            border: none;
-            color: $textStrong;
-            font-family: 'Pretendard Variable';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 1.5vw;
-
-        }
-
-        button:nth-of-type(1) {
-            left: 13.5%;
-            top: 75vw;
-            background: $secondary;
-        }
-
-        button:nth-of-type(2) {
-            left: 27%;
-            top: 75vw;
-            background: #FEE283;
-        }
-
-        img:nth-of-type(2) {
-            position: absolute;
-            width: 20%;
-            left: 47%;
-            top: 58vw;
-        }
-
-        p:nth-of-type(3) {
-            width: 300px;
-            left: 53%;
-            top: 76vw;
-        }
-
-        img:nth-of-type(3) {
-            position: absolute;
-            width: 20%;
-            left: 72%;
-            top: 62vw;
-        }
-
-        p:nth-of-type(4) {
-            position: absolute;
-            width: 300px;
-            left: 77%;
-            top: 76vw;
-        }
-
-        h3:nth-of-type(2) {
-            left: 13%;
-            top: 92vw;
-        }
-
-        img:nth-of-type(4) {
-            position: absolute;
-            width: 70vw;
-            left: 13%;
-            top: 102vw;
-            z-index: -2;
-        }
-
-        img:nth-of-type(5) {
-            position: absolute;
-            width: 35vw;
-            left: 30%;
-            top: 104vw;
-            z-index: -1;
-        }
-
-        img:nth-of-type(6) {
-            position: absolute;
-            width: 60vw;
-            left: 19%;
-            top: 101vw;
-            z-index: 1;
-        }
-
-        span:nth-of-type(3) {
-            width: 60vw;
-            left: 17%;
-            top: 125vw;
-            text-align: center;
-
-        }
-
-        a {
+        
+            p:nth-of-type(1) {
+                left: 53vw;
+                top: 30vw;
+            }
+        
+            h4 {
+                position: absolute;
+                left: 53vw;
+                top: 21.2vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 2.8vw;
+                color: $textStrong;
+        
+                &:nth-of-type(2) {
+                    left: 69vw;
+                    color: $primary;
+                }
+        
+                &:nth-of-type(3) {
+                    top: 25vw;
+                }
+        
+                &:nth-of-type(4) {
+                    top: 25vw;
+                    left: 69vw;
+                    color: $secondary;
+                }
+            }
+        
+            span {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 2vw;
+                color: $textStrong;
+                line-height: 170%;
+        
+            }
+        
+            span:nth-of-type(1) {
+                left: 53vw;
+                top: 33vw;
+                width: 36.8vw;
+        
+            }
+        
+            div {
+                position: absolute;
+                width: 100%;
+                height: 37vw;
+                top: 70vw;
+                background: #FFF9D3;
+            }
+        
+            h3 {
+                position: absolute;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 3vw;
+                color: $textStrong;
+            }
+        
+            h3:nth-of-type(1) {
+                left: 11vw;
+                top: 75vw;
+        
+            }
+        
+            span:nth-of-type(2) {
+                width:35vw;
+                left: 11vw;
+                top:80vw;
+                line-height: 150%;
+            }
+        
+            p:nth-of-type(2) {
+                left: 11vw;
+                top: 92vw;
+                font-size: 2.2vw;
+            }
+        
+            button {
+                position: absolute;
+                width: 12vw;
+                height: 4vw;
+                border-radius: 50px;
+                outline: none;
+                border: none;
+                color: $textStrong;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 2.3vw;
+        
+            }
+        
             button:nth-of-type(1) {
-                width: 12vw;
-                height: 4vw;
-                left: 30%;
-                top: 145vw;
-                background: $primary;
+                left: 11vw;
+                top: 97vw;
+                background: $secondary;
             }
-
-            &:nth-of-type(2) button {
-                width: 12vw;
-                height: 4vw;
-                left: 50%;
-                top: 145vw;
-                background: #FFD4DC;
+        
+            button:nth-of-type(2) {
+                left: 31vw;
+                top: 97vw;
+                background: #FEE283;
+            }
+        
+            img:nth-of-type(2) {
+                position: absolute;
+                width: 14vw;
+                left: 53vw;
+                top: 80vw;
+            }
+        
+            p:nth-of-type(3) {
+                left: 55vw;
+                top: 95vw;
+            }
+        
+            img:nth-of-type(3) {
+                position: absolute;
+                width: 19vw;
+                left: 70vw;
+                top: 82vw;
+            }
+        
+            p:nth-of-type(4) {
+                position: absolute;
+                left: 73vw;
+                top: 95vw;
+            }
+        
+            h3:nth-of-type(2) {
+                left: 11vw;
+                top: 115vw;
+            }
+        
+            img:nth-of-type(4) {
+                position: absolute;
+                width: 85vw;
+                left: 6vw;
+                top: 120vw;
+                z-index: -2;
+            }
+        
+            img:nth-of-type(5) {
+                position: absolute;
+                width: 65vw;
+                left: 15vw;
+                top: 123vw;
+                z-index: -1;
+            }
+        
+            img:nth-of-type(6) {
+                position: absolute;
+                width: 80vw;
+                left: 10vw;
+                top: 126vw;
+                z-index: 1;
+            }
+        
+            span:nth-of-type(3) {
+                width: 75vw;
+                left: 11vw;
+                top: 154vw;
+                text-align: center;
+                font-size: 2.2vw;
+        
+            }
+        
+            a {
+                button:nth-of-type(1) {
+                    width: 19vw;
+                    height: 4.5vw;
+                    left: 25vw;
+                    top: 190vw;
+                    background: $primary;
+                    font-size: 3vw;
+                }
+        
+                &:nth-of-type(2) button {
+                    width: 19vw;
+                    height: 4.5vw;
+                    left: 50vw;
+                    top: 190vw;
+                    background: #FFD4DC;
+                }
+        
             }
         }
     }
 
-    // 반응형 
-    
     @media (max-width: 1440px) and (min-width: 769px) {
-        h1 {
-            position: absolute;
-            left: 45%;
-            top: 15vw;
-            font-family: 'Bobaesum Jindo TTF';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 3vw;
-            color: $textStrong;
-
-        }
-
-        img:nth-of-type(1) {
-            position: absolute;
-            width: 35%;
-            left: 10%;
-            top: 14vw;
-        }
-
-        p {
-            position: absolute;
-            font-family: 'Pretendard Variable';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 1.6vw;
-            color: $textStrong;
-        }
-
-        p:nth-of-type(1) {
-            left: 45.5%;
-            top: 20vw;
-        }
-
-        h4 {
-            position: absolute;
-            width: 253px;
-            left: 45.5%;
-            top: 23.5vw;
-            font-family: 'Bobaesum Jindo TTF';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 1.7vw;
-            color: $textStrong;
-
-            &:nth-of-type(2) {
-                left: 55.5%;
-                color: $primary;
+        .info {
+            h1 {
+                position: absolute;
+                width: 50vw;
+                left: 49vw;
+                top: 15vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 3vw;
+                color: $textStrong;
+        
             }
-
-            &:nth-of-type(3) {
-                top: 26vw;
+        
+            img:nth-of-type(1) {
+                position: absolute;
+                width: 35vw;
+                left: 12vw;
+                top: 15vw;
             }
-
-            &:nth-of-type(4) {
-                top: 26vw;
-                left: 55.5%;
-                color: $secondary;
+        
+            p {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 1.8vw;
+                color: $textStrong;
             }
-        }
-
-        span {
-            position: absolute;
-            font-family: 'Pretendard Variable';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 1.5vw;
-            color: $textStrong;
-            line-height: 170%;
-
-        }
-
-        span:nth-of-type(1) {
-            width: 963px;
-            left: 45.5%;
-            top: 30vw;
-
-        }
-
-        div {
-            position: absolute;
-            width: 100%;
-            height: 35vw;
-            left: 0%;
-            top: 50vw;
-            background: #FFF9D3;
-        }
-
-        h3 {
-            position: absolute;
-            font-family: 'Bobaesum Jindo TTF';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 3vw;
-            color: $textStrong;
-        }
-
-        h3:nth-of-type(1) {
-            width: 200px;
-            left: 13%;
-            top: 56vw;
-
-        }
-
-        span:nth-of-type(2) {
-            width: 27vw;
-            left: 13.5%;
-            top: 60.5vw;
-            line-height: 150%;
-        }
-
-        p:nth-of-type(2) {
-            width: 300px;
-            left: 13%;
-            top: 70vw;
-        }
-
-        button {
-            position: absolute;
-            width: 10vw;
-            height: 3vw;
-            border-radius: 50px;
-            outline: none;
-            border: none;
-            color: $textStrong;
-            font-family: 'Pretendard Variable';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 1.5vw;
-
-        }
-
-        button:nth-of-type(1) {
-            left: 13.5%;
-            top: 75vw;
-            background: $secondary;
-        }
-
-        button:nth-of-type(2) {
-            left: 27%;
-            top: 75vw;
-            background: #FEE283;
-        }
-
-        img:nth-of-type(2) {
-            position: absolute;
-            width: 20%;
-            left: 47%;
-            top: 58vw;
-        }
-
-        p:nth-of-type(3) {
-            width: 300px;
-            left: 53%;
-            top: 76vw;
-        }
-
-        img:nth-of-type(3) {
-            position: absolute;
-            width: 20%;
-            left: 72%;
-            top: 62vw;
-        }
-
-        p:nth-of-type(4) {
-            position: absolute;
-            width: 300px;
-            left: 77%;
-            top: 76vw;
-        }
-
-        h3:nth-of-type(2) {
-            left: 13%;
-            top: 92vw;
-        }
-
-        img:nth-of-type(4) {
-            position: absolute;
-            width: 70vw;
-            left: 13%;
-            top: 102vw;
-            z-index: -2;
-        }
-
-        img:nth-of-type(5) {
-            position: absolute;
-            width: 35vw;
-            left: 30%;
-            top: 104vw;
-            z-index: -1;
-        }
-
-        img:nth-of-type(6) {
-            position: absolute;
-            width: 60vw;
-            left: 19%;
-            top: 101vw;
-            z-index: 1;
-        }
-
-        span:nth-of-type(3) {
-            width: 60vw;
-            left: 17%;
-            top: 125vw;
-            text-align: center;
-
-        }
-
-        a {
+        
+            p:nth-of-type(1) {
+                left: 49vw;
+                top: 19vw;
+            }
+        
+            h4 {
+                position: absolute;
+                left: 49vw;
+                top: 23.5vw;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 2.2vw;
+                color: $textStrong;
+        
+                &:nth-of-type(2) {
+                    left: 62vw;
+                    color: $primary;
+                }
+        
+                &:nth-of-type(3) {
+                    top: 27.5vw;
+                }
+        
+                &:nth-of-type(4) {
+                    top: 27.5vw;
+                    left: 62vw;
+                    color: $secondary;
+                }
+            }
+        
+            span {
+                position: absolute;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1.5vw;
+                color: $textStrong;
+                line-height: 170%;
+        
+            }
+        
+            span:nth-of-type(1) {
+                left: 49vw;
+                top: 33vw;
+                width: 45vw;
+        
+            }
+        
+            div {
+                position: absolute;
+                width: 100%;
+                height: 30vw;
+                top: 55vw;
+                background: #FFF9D3;
+            }
+        
+            h3 {
+                position: absolute;
+                font-family: 'Bobaesum Jindo TTF';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 2.2vw;
+                color: $textStrong;
+            }
+        
+            h3:nth-of-type(1) {
+                left: 15vw;
+                top: 60vw;
+        
+            }
+        
+            span:nth-of-type(2) {
+                width:25vw;
+                left: 15vw;
+                top:63vw;
+                line-height: 150%;
+            }
+        
+            p:nth-of-type(2) {
+                left: 15vw;
+                top: 73.5vw;
+                font-size: 1.5vw;
+            }
+        
+            button {
+                position: absolute;
+                width: 10vw;
+                height: 3vw;
+                border-radius: 50px;
+                outline: none;
+                border: none;
+                color: $textStrong;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 1.7vw;
+        
+            }
+        
             button:nth-of-type(1) {
-                width: 12vw;
-                height: 4vw;
-                left: 30%;
-                top: 145vw;
-                background: $primary;
+                left: 15vw;
+                top: 77vw;
+                background: $secondary;
             }
-
-            &:nth-of-type(2) button {
-                width: 12vw;
-                height: 4vw;
-                left: 50%;
-                top: 145vw;
-                background: #FFD4DC;
+        
+            button:nth-of-type(2) {
+                left: 27vw;
+                top: 77vw;
+                background: #FEE283;
+            }
+        
+            img:nth-of-type(2) {
+                position: absolute;
+                width: 15vw;
+                left: 48vw;
+                top: 62vw;
+            }
+        
+            p:nth-of-type(3) {
+                left: 52vw;
+                top: 78vw;
+            }
+        
+            img:nth-of-type(3) {
+                position: absolute;
+                width: 20vw;
+                left: 68vw;
+                top: 63vw;
+            }
+        
+            p:nth-of-type(4) {
+                position: absolute;
+                left: 73vw;
+                top: 78vw;
+            }
+        
+            h3:nth-of-type(2) {
+                left: 15vw;
+                top: 90vw;
+            }
+        
+            img:nth-of-type(4) {
+                position: absolute;
+                width: 75vw;
+                left: 12vw;
+                top: 98vw;
+                z-index: -2;
+            }
+        
+            img:nth-of-type(5) {
+                position: absolute;
+                width: 45vw;
+                left: 28vw;
+                top: 100vw;
+                z-index: -1;
+            }
+        
+            img:nth-of-type(6) {
+                position: absolute;
+                width: 70vw;
+                left: 15vw;
+                top: 97vw;
+                z-index: 1;
+            }
+        
+            span:nth-of-type(3) {
+                width: 70vw;
+                left: 14vw;
+                top: 123vw;
+                text-align: center;
+        
+            }
+        
+            a {
+                button:nth-of-type(1) {
+                    width: 15vw;
+                    height: 3.5vw;
+                    left: 30vw;
+                    top: 145vw;
+                    background: $primary;
+                    font-size: 2vw;
+                }
+        
+                &:nth-of-type(2) button {
+                    width: 15vw;
+                    height: 3.5vw;
+                    left: 55vw;
+                    top: 145vw;
+                    background: #FFD4DC;
+                }
+        
             }
         }
     }
-}
