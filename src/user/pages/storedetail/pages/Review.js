@@ -414,7 +414,7 @@ function Review(){
                 <div 
                     id={styles.moreReview} 
                     style = {{ 
-                        display : reviews.length <= 4 && reviews.length >= 1 ? "none" : "", 
+                        display : reviews.length <= 3 && reviews.length >= 1 ? "none" : "", 
                         cursor :  reviews.length < 1 ? 'default' : "pointer"
                     }}
                     onClick={() => moreReviewHandler()}

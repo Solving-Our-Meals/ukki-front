@@ -107,6 +107,7 @@ function SpecificInquiry(){
     }
 
     const deleteInquiry = (inquiryNo, categoryNo, reviewNo) => {
+        setIsLoading(true);
         fetch(`${API_BASE_URL}/boss/mypage/deleteInquiry?inquiryNo=${inquiryNo}&categoryNo=${categoryNo}&reviewNo=${reviewNo}`, {
             method : 'DELETE',
             headers : {
@@ -127,7 +128,10 @@ function SpecificInquiry(){
             }
         })
         .then(data => console.log('문의 내역 삭제 성공', data))
-        .catch(error => console.log(error));
+        .catch(error => console.log(error))
+        .finally(() => {
+            setIsLoading(false);
+        });
     }
 
     const inputChangeHandler = (e) => {
@@ -161,6 +165,7 @@ function SpecificInquiry(){
     }
 
     const updateInquiryHandler = (inquiryNo, categoryNo, reviewNo) => {
+        setIsLoading(true);
 
         const formData = new FormData();
         formData.append("inquiryTitle", updateInquiryData.inquiryTitle);
@@ -206,6 +211,9 @@ function SpecificInquiry(){
             setRealUpdateInquiry(false);
             setIsCompleteUpdateInquiry(true);
             setCompleteOrFailUpdateMessage("문의 내용 수정 중 오류가 발생했습니다.");
+        })
+        .finally(() => {
+            setIsLoading(false);
         });
     }
 
@@ -214,7 +222,6 @@ function SpecificInquiry(){
         return(
             <div className={styles.loadingContainer}>
                 <img src={loadingGif} alt='로딩 중' className={styles.loadingImg} />
-                <p>Loading...</p>
             </div>
         )
     }
