@@ -36,7 +36,9 @@ function BossPage() {
     const fetchAvailableSlots = async (date, time) => {
         try {
             const formattedDate = dayjs(date).format('YYYY-MM-DD');
+
             const formattedTime = time && dayjs(time, 'HH:mm').isValid() ? dayjs(time, 'HH:mm').format('HH:mm') : "";  // time이 null일 경우 빈 문자열로 처리
+
             console.log(formattedTime);
     
             const params = {
