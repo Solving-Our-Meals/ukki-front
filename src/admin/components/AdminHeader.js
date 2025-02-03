@@ -31,7 +31,7 @@ function AdminHeader(){
             <NavLink to="/admin/">
                 <img id='adminHeaderLogo' src={adminHeaderLogo} alt='header-logo' />
             </NavLink>
-            <button id='adminHeaderLogout' onClick={handleLogout}>로그아웃</button>
+            <div id='adminHeaderLogout' onClick={handleLogout}>로그아웃</div>
         </div>
         </>
     )
