@@ -43,7 +43,7 @@ function App() {
                         <Route path="auth/find/:type" element={<Find />} />
                         <Route path="/" element={<UserLayout />}>
                             <Route path="/" element={<Main />} />
-                            <Route path="/main" element={<Main />} />
+                            <Route path="/main" element={<PrivateRoute element={<Main />} />} />
                             <Route path="info" element={<Info />} />
                         </Route>
 
