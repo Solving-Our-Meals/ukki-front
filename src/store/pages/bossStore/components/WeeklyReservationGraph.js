@@ -45,12 +45,13 @@ function WeeklyRes(data) {
         display: false
       },
     },
+    
     scales: {
       x: {
       },
       y: {
         min: 0,
-        max: Math.floor(51/50+1)*50,
+        max: 20,
         ticks:{
           maxTicksLimit: 6,
         }

@@ -378,14 +378,32 @@ const Main = () => {
     };
 
 
-
-    const handleKeyPress = (event) => {
+    const handleKeyPress = async (event) => {
         if (event.key === 'Enter') {
             if (event.target.value !== defaultValue) {
+                // 새로운 위치로 갱신
                 setAddress(event.target.value);
+    
+                // Geocode API를 사용하여 주소에서 위도/경도를 가져옴
+                try {
+                    const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${event.target.value}&key=YOUR_GOOGLE_API_KEY`);
+                    const location = response.data.results[0].geometry.location;
+    
+                    const newLongitude = location.lng;
+                    const newLatitude = location.lat;
+    
+                    // 위치 갱신
+                    const newPosition = { x: newLongitude, y: newLatitude };
+                    setCurrentPosition(newPosition);
+    
+                } catch (error) {
+                    console.error('Failed to get location from address:', error);
+                }
             }
         }
     };
+    
+
 
 
 
