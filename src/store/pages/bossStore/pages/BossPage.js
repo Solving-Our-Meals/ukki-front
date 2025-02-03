@@ -19,7 +19,7 @@ function BossPage() {
     const [reservations, setReservations] = useState([]);
     const [resPosNumbers, setResPosNumbers] = useState({});
     const [weeklyReservationCount, setWeeklyReservationCount] = useState(null);
-      
+
     const [todayReservationCount, setTodayReservationCount] = useState(0);
     const [startDate, setStartDate] = useState(dayjs().format('YYYY-MM-DD'));
     const [selectedTime, setSelectedTime] = useState('');
@@ -36,22 +36,22 @@ function BossPage() {
     const fetchAvailableSlots = async (date, time) => {
         try {
             const formattedDate = dayjs(date).format('YYYY-MM-DD');
-            const formattedTime = time ? dayjs(time, 'HH:mm').format('HH:mm') : "";  // time이 null일 경우 빈 문자열로 처리
+            const formattedTime = time && dayjs(time, 'HH:mm').isValid() ? dayjs(time, 'HH:mm').format('HH:mm') : "";  // time이 null일 경우 빈 문자열로 처리
             console.log(formattedTime);
-
+    
             const params = {
                 storeNo: storeNo,
                 reservationDate: formattedDate,
                 reservationTime: formattedTime
             };
-
+    
             console.log('Fetching slots with params:', params);
-
+    
             const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservation-status`, { params });
-
+    
             const resPosNumber = Number(response.data.resPosNumber);
             const validResPosNumber = isNaN(resPosNumber) ? 5 : resPosNumber;
-
+    
             setResPosNumbers(prev => ({
                 ...prev,
                 [`${formattedDate} ${formattedTime}`]: validResPosNumber
@@ -60,42 +60,40 @@ function BossPage() {
             console.error('Error fetching available pos num:', error);
         }
     };
+    
 
     useEffect(() => {
         if (userNo === undefined || storeNo === undefined) return;
-
+    
         const savedResPosNumbers = JSON.parse(localStorage.getItem('resPosNumbers'));
         if (savedResPosNumbers) {
             setResPosNumbers(savedResPosNumbers);
         }
-
+    
         axios.get(`${API_BASE_URL}/boss/mypage/getStoreInfo?userNo=${userNo}`)
             .then(response => setStoreInfo(response.data))
             .catch(error => console.error("Error fetching store info:", error));
-
+    
         axios.get(`${API_BASE_URL}/boss/mypage/reservation-status?storeNo=${storeNo}`)
             .then(response => {
                 setReservations(response.data || []);
             })
             .catch(error => console.error("Error fetching reservations:", error));
-
+    
         const closestTime = getClosest30MinTime();
         setSelectedDate(startDate);
         setSelectedTime(dayjs(closestTime).format('HH:mm'));
-
+    
         axios.get(`${API_BASE_URL}/boss/mypage/weekly-reservation-count?storeNo=${storeNo}`)
             .then((response) => {
                 console.log(response.data);
                 setWeeklyReservationCount(response.data)
             })
-
             .catch(error => console.error("Error fetching weekly reservation count:", error));
-
-
-
+    
         fetchAvailableSlots(startDate, dayjs(closestTime).format('HH:mm'));
-
     }, [userNo, storeNo, startDate]);
+    
 
 
     const fetchReservations = async (date, time) => {
@@ -145,9 +143,11 @@ function BossPage() {
     };
 
     const handleTimeChange = (newTime) => {
-        const formattedTime = dayjs(newTime, 'hh:mm a').format('HH:mm');
+        // "HH:mm" 포맷으로 변환하여 `selectedTime`에 저장
+        const formattedTime = dayjs(newTime, 'HH:mm').isValid() ? dayjs(newTime, 'HH:mm').format('HH:mm') : "";
         setSelectedTime(formattedTime);
     };
+
 
     const handleSlotsChange = async (amount) => {
         const currentPosNum = resPosNumbers[`${selectedDate} ${selectedTime}`] ?? 5;
@@ -219,7 +219,7 @@ function BossPage() {
     });
 
 
-    if(!weeklyReservationCount){
+    if (!weeklyReservationCount) {
         return (<div>로딩중</div>)
 
     }
@@ -293,7 +293,7 @@ function BossPage() {
                 </section>
 
                 <div className="weekly-Reservations">
-                <WeeklyReservationGraph data={weeklyReservationCount} />
+                    <WeeklyReservationGraph data={weeklyReservationCount} />
                 </div>
 
                 <section className="today-reservation">
