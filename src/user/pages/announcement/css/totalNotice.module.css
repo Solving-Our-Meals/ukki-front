@@ -417,6 +417,7 @@ hr {
 .pagination .arrow.disabled {
   visibility: hidden;
   cursor: default;
+
 }
 
 @media (max-width: 1440px) and (min-width: 769px) {
@@ -895,3 +896,4 @@ hr {
     cursor: default;
   }
 }/*# sourceMappingURL=totalNotice.module.css.map */
+
