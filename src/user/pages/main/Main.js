@@ -370,6 +370,8 @@ const Main = () => {
 
 
     const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo) => {
+        let storeProfileUrl = `${API_BASE_URL}/image?fileId=${storeProfile}`
+        console.log(storeProfileUrl)
         console.log("Selected Store No: ", storeNo);  // 디버깅용
         setStoreInfo({
             storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo
@@ -821,7 +823,7 @@ const Main = () => {
                         <>
                             <p>가게 이름 : <span>{storeInfo.storeName}</span></p>
                             <p>가게 설명 : <span>{storeInfo.storeDes}</span></p>
-                            <img src={storeInfo.storeProfile} alt="store" />
+                            <img src={`${API_BASE_URL}/image?fileId=${storeInfo.storeProfile}`} alt="store" />
                             <img src={ukki} alt="ukki" />
                             <input onKeyPress={handleKeyPress}
                                 defaultValue={defaultValue}  ></input>
