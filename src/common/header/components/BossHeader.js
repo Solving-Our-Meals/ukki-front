@@ -110,7 +110,8 @@ function BossHeader() {
             <header>
                 <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}><img src={headerLogo} alt='header-logo' /></NavLink>
                 <span className={`menu ${menuOpen ? 'open' : ''}`}>
-                    <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}>메인</NavLink>
+                <NavLink to="/" className={`menu-item ${activeMenu === '/' ? 'active' : ''} ${visibleMenuItems.includes('/') ? 'visible' : ''}`} onClick={() => handleMenuClick('/')}>메인</NavLink>
+
                     <NavLink to="/search" className={`menu-item ${activeMenu === '/search' ? 'active' : ''} ${visibleMenuItems.includes('/search') ? 'visible' : ''}`} onClick={() => handleMenuClick('/search')}>검색</NavLink>
                     <NavLink to="/info" className={`menu-item ${activeMenu === '/info' ? 'active' : ''} ${visibleMenuItems.includes('/info') ? 'visible' : ''}`} onClick={() => handleMenuClick('/info')}>소개</NavLink>
                 
@@ -122,11 +123,19 @@ function BossHeader() {
                             <NavLink to="/auth/signup" className={`menu-item auth ${activeMenu === '/auth/signup' ? 'active' : ''} ${visibleMenuItems.includes('/auth/signup') ? 'visible' : ''}`} onClick={() => handleMenuClick('/auth/signup')}>회원가입</NavLink>
                         </>
                     ) : (
-                        <NavLink to="#" onClick={() => { handleLogout(); handleMenuClick('/logout'); }} className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+                        <button
+                            onClick={() => {
+                                handleLogout();
+                                handleMenuClick('/logout');
+                            }}
+                            className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}
+                        >
+                            로그아웃
+                        </button>
                     )}
                 </span>
                 <button className="menu-button" onClick={toggleMenu}>
-                    <img src={menuIcon} alt="Menu" />
+                    <img src={menuIcon} alt="Menu"/>
                 </button>
             </header>
         </>

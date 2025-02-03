@@ -164,7 +164,7 @@ function ReviewDetail() {
                 {reviewDetail.reviewPicture ? (
                     <div className={styles.reviewImageContainer}>
                         <img
-                            src={reviewDetail.reviewPicture}
+                            src={reviewImage}
                             alt="리뷰 이미지"
                             className={styles.reviewImage}
                         />
