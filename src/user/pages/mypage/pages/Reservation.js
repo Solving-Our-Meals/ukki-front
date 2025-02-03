@@ -134,10 +134,8 @@ function Reservation({onDelete}) {
         sessionStorage.setItem('currentReservation', pageNumber);
     }
 
-    const getReservationStatus = (reservationTime) => {
-        const currentTime = new Date();
-        const reservationDate = new Date(reservationTime);
-        return currentTime < reservationDate ? "예약 중" : "예약 만료";
+    const getReservationStatus = (reservationType) => {
+        return reservationType === 0 ? "예약 중" : "예약 만료";
     };
 
     const pageNumbers = [];
@@ -282,15 +280,15 @@ function Reservation({onDelete}) {
                                 {reservation.date} {reservation.time}
                             </div>
                             <div className={styles.headerItem}>
-                                {getReservationStatus(`${reservation.date} ${reservation.time}`)}
+                                {getReservationStatus(reservation.reservationType)}
                             </div>
                             <div className={styles.headerItem}>
-                                {getReservationStatus(`${reservation.date} ${reservation.time}`) === '예약 만료' && reservation.replyNo === 0 && reservation.qrConfirm === false ? (
+                                {getReservationStatus(reservation.reservationType) === '예약 만료' && reservation.replyNo === 0 && reservation.qrConfirm === false ? (
                                     <div className={styles.reviewComplete2}>
                                         QR 미확인
                                     </div>
                                 ) : (
-                                    getReservationStatus(`${reservation.date} ${reservation.time}`) === '예약 만료' && reservation.replyNo === 0 ? (
+                                    getReservationStatus(reservation.reservationType) === '예약 만료' && reservation.replyNo === 0 ? (
                                         <button
                                             className={styles.reviewButton}
                                             onClick={(e) => {
@@ -301,7 +299,7 @@ function Reservation({onDelete}) {
                                             리뷰 작성하기
                                         </button>
                                     ) : (
-                                        getReservationStatus(`${reservation.date} ${reservation.time}`) !== '예약 만료' && reservation.replyNo === 0 ? (
+                                        getReservationStatus(reservation.reservationType) !== '예약 만료' && reservation.replyNo === 0 ? (
                                             <div className={styles.buttonGroup}>
                                                 <button
                                                     className={styles.qrButton}

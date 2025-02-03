@@ -31,7 +31,7 @@ function ReviewDetail() {
         if (reviewDetail && reviewDetail.reviewPicture) {
             const fileId = reviewDetail.reviewPicture;
             if (fileId) {
-                fetchImageFromGoogleDrive(fileId);
+                fetchReviewImage(fileId);
             }
         }
     }, [reviewDetail]);

@@ -30,6 +30,12 @@ function MyProfile() {
     }, []);
 
     useEffect(() => {
+        if (profileImage) {
+            setProfileImage(profileImage);
+        }
+    }, [profileImage]);
+
+    useEffect(() => {
         if (userInfo && userInfo.profileImage) {
             const fileId = userInfo.profileImage;
             if (fileId) {
@@ -132,13 +138,12 @@ function MyProfile() {
             return;
         }
 
-        setIsUploading(true);  // 업로드 중 상태로 변경
+        setIsUploading(true);
 
         const formData = new FormData();
         formData.append('profileImage', imageFile);
-        const currentImage = profileImage;
+
         try {
-            // 이미지 업로드 요청
             const response = await fetch(`${API_BASE_URL}/user/mypage/profile-image`, {
                 method: 'POST',
                 body: formData,
@@ -149,24 +154,25 @@ function MyProfile() {
             if (response.ok) {
                 alert(result.message);
 
-                // 새 이미지 URL 받아오기
-                const updatedImageUrl = result.imageUrl;
+                // 새로운 이미지 URL 생성 (로컬 메모리 URL)
+                const updatedImageUrl = result.imageUrl || profileImage;
 
-                // 이미지 URL을 새로 갱신하고 프로필 이미지를 업데이트
+                // 새로운 이미지 URL로 상태를 업데이트
                 setProfileImage(updatedImageUrl);
 
-                // 이미지 업로드 후 로딩 상태 끄기
                 setIsUploading(false);
                 setShowUploadButton(false);
             } else {
                 alert(result.message);
-                setIsUploading(false);  // 업로드 실패 시 로딩 상태 끄기
+                setIsUploading(false);
                 setProfileImage(profileImage);
             }
         } catch (error) {
             alert('이미지 업로드 중 오류가 발생했습니다.');
-            setIsUploading(false);  // 업로드 실패 시 로딩 상태 끄기
+            setIsUploading(false);
             setProfileImage(profileImage);
+        } finally {
+            setIsUploading(false);
         }
     };
 
