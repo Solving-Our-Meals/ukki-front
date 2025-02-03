@@ -309,6 +309,7 @@ function StoreInfoRegist() {
     // 수정 확인 함수 추가
     const registConfirm = async () => {
         try {
+            setLoading(true);
             const changedData = getChangedData();
             const imageData = getChangedImages();
             const formData = new FormData();
@@ -325,7 +326,9 @@ function StoreInfoRegist() {
                 if(isBannerStatusEmpty) {
                     setResultMessage('배너 이미지는 최소 1개 이상 있어야합니다.');
                     setShowResultModal(true);
+                    setLoading(false);
                     return;
+
                 };
                 formData.append('bannerStatus', JSON.stringify(
                     imageData.bannerStatus
@@ -368,8 +371,11 @@ function StoreInfoRegist() {
             setResultMessage('수정 중 오류가 발생했습니다.');
             console.log('error : '+error);
             setShowResultModal(true);
+        }finally{
+            setLoading(false);
         }
     };
+
 
     if(loading){
         return <LodingPage />;

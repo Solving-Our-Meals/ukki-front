@@ -79,7 +79,7 @@ header {
             width: 100%;
         }
 
-        a:nth-of-type(6) {
+        a:nth-of-type(5) {
             position: absolute;
             font-family: 'Pretendard Variable';
             font-style: normal;
@@ -90,7 +90,7 @@ header {
             right: 5vw;
         }
 
-        a:nth-of-type(7) {
+        a:nth-of-type(6) {
             position: absolute;
             font-family: 'Pretendard Variable';
             font-style: normal;
@@ -177,7 +177,7 @@ header {
                 }
 
 
-                &:nth-of-type(6) {
+                &:nth-of-type(5) {
                     width: 100px;
                     position: absolute;
                     top: 300px;
@@ -189,7 +189,7 @@ header {
                     left: 35px;
                 }
 
-                &:nth-of-type(7) {
+                &:nth-of-type(6) {
                     width: 100px;
                     position: absolute;
                     top: 300px;
@@ -230,11 +230,11 @@ header {
                 padding: 2px 12px;
             }
 
-            a:nth-of-type(6) {
+            a:nth-of-type(5) {
                 right: 4vw;
             }
 
-            a:nth-of-type(7) {
+            a:nth-of-type(6) {
                 right: 12vw;
             }
         }
