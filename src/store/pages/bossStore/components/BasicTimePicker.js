@@ -17,6 +17,7 @@ export default function BasicTimePicker({ value, onChange }) {
     return nextSlot;
   };
 
+  
   const nextTimeSlot = getNextTimeSlot();  // 현재 시간에 맞는 가장 가까운 30분 간격
 
   // 선택된 시간이 변경되면 호출되는 함수
