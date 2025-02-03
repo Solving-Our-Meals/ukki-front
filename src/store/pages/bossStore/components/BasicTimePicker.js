@@ -17,14 +17,16 @@ export default function BasicTimePicker({ value, onChange }) {
     return nextSlot;
   };
 
+  
   const nextTimeSlot = getNextTimeSlot();  // 현재 시간에 맞는 가장 가까운 30분 간격
 
   // 선택된 시간이 변경되면 호출되는 함수
-  const handleTimeChange = (newValue) => {
-    // 'HH:mm' 형식으로 변환하여 부모 컴포넌트로 전달
-    const formattedTime = newValue ? dayjs(newValue).format('HH:mm') : '';
-    onChange(formattedTime);  // 부모 컴포넌트의 onChange에 전달
-  };
+const handleTimeChange = (newTime) => {
+    // "HH:mm" 포맷으로 변환하여 `selectedTime`에 저장
+    const formattedTime = dayjs(newTime, 'HH:mm').isValid() ? dayjs(newTime, 'HH:mm').format('HH:mm') : "";
+    onChange(formattedTime);
+};
+
 
   // value가 문자열일 경우 Dayjs 객체로 변환
   const parsedValue = value ? dayjs(value, 'HH:mm') : nextTimeSlot;

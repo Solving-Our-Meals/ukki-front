@@ -43,7 +43,8 @@ function App() {
                         <Route path="auth/find/:type" element={<Find />} />
                         <Route path="/" element={<UserLayout />}>
                             <Route path="/" element={<Main />} />
-                            <Route path="/main" element={<PrivateRoute element={<Main />} />} />
+                            <Route path="/main" element={<Main />} />
+                            <Route path="boss" element={<Main />} />
                             <Route path="info" element={<Info />} />
                         </Route>
 
@@ -57,7 +58,7 @@ function App() {
                         <Route path="notice/:noticeNo" element={<PrivateRoute element={<UserSpecificNotice/>}/>}/> 
                     </Route>
 
-                        <Route path="/boss" element={<PrivateRoute element={<BossLayout />} />}>
+                    <Route path="/boss" element={<PrivateRoute element={<BossLayout />} />}>
                         <Route path="mypage" element={<PrivateRoute element={<BossPage/>}/>}/> 
                         <Route path="info" element={<PrivateRoute element={<BossStoreInfoPage/>}/>}/> 
                         <Route path="notice" element={<PrivateRoute element={<BossTotalNotice/>}/>}/> 
