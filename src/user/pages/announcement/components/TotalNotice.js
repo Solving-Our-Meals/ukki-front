@@ -113,12 +113,8 @@ function TotalNotice(){
 
     return(
         <>
-            <div id={styles.background}>
-                <div id={styles.noticeArea}>
-                    <div id={styles.dot1} className={styles.dots}></div>
-                    <div id={styles.dot2} className={styles.dots}></div>
-                    <div id={styles.dot3} className={styles.dots}></div>
-                    <div id={styles.dot4} className={styles.dots}></div>
+          
+                
                     <input 
                         id={styles.inputSearch} 
                         name='searchWord' 
@@ -201,8 +197,8 @@ function TotalNotice(){
                             ▶
                         </div>
                     </div>
-                </div>
-            </div>
+               
+            
         </>
     );
 }

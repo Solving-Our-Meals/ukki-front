@@ -7,14 +7,14 @@
         display: block;
 
         /* 요소가 화면에 나타나도록 확인 */
-        .no{
+        .no {
             position: absolute;
             top: 30vw;
             font-family: 'Bobaesum Jindo TTF';
             font-size: 2.2vw;
             color: $textCaption;
             left: 40vw;
-    
+
         }
     }
 
@@ -40,7 +40,7 @@
                 font-weight: 700;
                 font-size: 1.2vw;
                 box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
-                padding:0vw 2vw;
+                padding: 0vw 2vw;
                 z-index: 1;
 
                 &::placeholder {
@@ -114,7 +114,7 @@
             left: 5vw;
             display: flex;
             flex-direction: column;
-            gap: 0.3vw;
+            gap: 0.25vw;
             z-index: 9;
             width: inherit;
             justify-content: start;
@@ -123,7 +123,7 @@
                 padding: 0.6vw 2vw;
                 border-radius: 50px;
                 color: $textStrong;
-                font-size: 1rem;
+                font-size: 0.9vw;
                 font-weight: 700;
                 font-family: 'Pretendard Variable';
                 z-index: 9;
@@ -140,29 +140,30 @@
             background: #ffe98a65;
             border-radius: 15px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-            outline:$background 5px solid ;
-           
-        } 
+            outline: $background 5px solid;
 
-        .dlsrl+div{
-                position: absolute;
-                width: 57vw;
-                height: 2px;
-                background: #cecece;
-                position: relative;
-                top: 20vw;
-                left: 25vw;
-            }
+        }
+
+        .dlsrl+div {
+            position: absolute;
+            width: 57vw;
+            height: 2px;
+            background: #cecece;
+            position: relative;
+            top: 20vw;
+            left: 25vw;
+        }
 
     }
 
-    .storeList{
-        div{
+    .storeList {
+        div {
             position: relative;
             margin-bottom: 15vw;
-            img{
+
+            img {
                 width: 10vw;
-                height:12vw;
+                height: 12vw;
                 z-index: 9;
                 position: absolute;
                 left: 27vw;
@@ -173,97 +174,99 @@
                 border-radius: 30px;
             }
 
-            h3{
+            h3 {
                 position: absolute;
                 left: 40vw;
                 top: 24vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-style: normal;
-                font-size: 1.5rem;
+                font-size: 1.5vw;
                 color: $textStrong;
             }
 
-            p:nth-of-type(1){
+            p:nth-of-type(1) {
                 position: absolute;
                 left: 40vw;
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 1.2rem;
-                color: $textStrong;
+                font-size: 1vw;
+                color: $primary;
                 top: 26vw;
-           
-            } 
-            
-            p:nth-of-type(2){
+
+            }
+
+            p:nth-of-type(2) {
                 position: relative;
                 left: 40vw;
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 1rem;
+                font-size: 1vw;
                 color: $textStrong;
-                top: 28vw          ;
+                top: 28vw;
                 width: 40vw;
                 height: 5vw;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
-                // -webkit-line-clamp:1;
+                -webkit-line-clamp: 1;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 line-height: 140%;
                 max-height: calc(1 * 1.4em);
             }
 
-            button{
-            position: relative;
-            left: 71.5vw;
-            font-family: 'Pretendard Variable';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 1.2rem;
-            color: $textStrong;
-            top: 22vw;
-            padding: 0.5vw 2.5vw;
-            background-color: $primary;
-            border-radius: 50px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            border: none;
+            button {
+                position: relative;
+                left: 71.5vw;
+                font-family: 'Pretendard Variable';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 1vw;
+                color: $textStrong;
+                top: 22vw;
+                padding: 0.5vw 2.5vw;
+                background-color: $primary;
+                border-radius: 50px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                border: none;
             }
 
-            span{
+            span {
                 position: relative;
                 left: 31.5vw;
                 font-family: 'Bobaesum Jindo TTF';
                 font-style: normal;
-                font-size: 1rem;
+                font-size: 1vw;
                 color: $textStrong;
                 top: 29vw;
             }
 
-            hr{
+            hr {
                 position: relative;
-                width: 55vw;
+                width: 58vw;
                 height: 2px;
                 background: #cecece;
                 top: 34vw;
-                left: 3vw;
+                left: 4.5vw;
                 border: none;
             }
-            div{
+
+            div {
                 position: relative;
                 left: 8.3vw;
                 top: 0.8vw;
                 margin-bottom: 0;
-                span{
+
+                span {
                     width: inherit;
-                    padding: 5px 10px; 
+                    padding: 5px 10px;
                     background-color: $secondary2;
                     color: $textStrong;
                     border-radius: 50px;
                     margin-right: 15px;
                     font-family: 'Pretendard Variable';
-                    font-size: 1rem;
+                    font-size: 1vw;
                     font-weight: 600;
                 }
             }
@@ -437,167 +440,169 @@
 @media (max-width: 1440px) and (min-width: 769px) {
     #search {
         height: 100%;
-    
+
         .storeList {
             display: block;
-    
+
             /* 요소가 화면에 나타나도록 확인 */
-            .no{
+            .no {
                 position: absolute;
                 top: 30vw;
                 font-family: 'Bobaesum Jindo TTF';
-                font-size: 2rem;
+                font-size: 2.5vw;
                 color: $textCaption;
                 left: 45vw;
-        
+
             }
         }
-    
+
         .input {
             div {
                 position: relative;
                 width: 100vw;
                 top: 0vw;
-    
+
                 input {
                     position: absolute;
-                    width: 50vw;
-                    height: 3vw;
+                    width: 60vw;
+                    height: 4vw;
                     left: 27vw;
                     top: 8vw;
                     border-radius: 50px;
-                    border: 2px solid #d6d6d6;
+                    border: 0.15vw solid #d6d6d6;
                     background-color: white;
                     margin: 0;
                     z-index: 10;
                     color: $textStrong;
                     font-family: 'Pretendard Variable';
                     font-weight: 700;
-                    font-size: 1.2rem;
+                    font-size: 2vw;
                     box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
-                    padding:0vw 2vw;
+                    padding: 0vw 2vw;
                     z-index: 1;
-    
+
                     &::placeholder {
                         color: #888888;
                         font-family: 'Pretendard Variable';
                         font-weight: 700;
-                        font-size: 1.2rem;
-    
+                        font-size: 2vw;
+
                     }
                 }
-    
-    
-    
-    
+
+
+
+
                 img {
                     position: absolute;
-                    width: 3vw;
+                    width: 4vw;
                     top: 8vw;
-                    left: 78vw;
+                    left: 88vw;
                 }
             }
-    
+
             p {
                 position: absolute;
                 left: 27vw;
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 1.4rem;
+                font-size: 2vw;
                 color: $textStrong;
                 z-index: 2;
-    
+
                 &:nth-of-type(1) {
-                    top: 13vw;
+                    top: 15vw;
                 }
-    
+
                 &:nth-of-type(2) {
                     position: fixed;
                     top: 10vw;
-                    left: 6.8vw;
+                    left: 6vw;
                     font-family: 'Bobaesum Jindo TTF';
                     font-style: normal;
                     font-weight: 400;
                 }
             }
-    
+
             .boxs {
                 position: absolute;
-                top: 15.5vw;
+                top: 18.5vw;
                 left: 26vw;
                 display: flex;
                 gap: 4vw;
                 user-select: none;
-    
+
                 span {
-                    padding: 0.6vw 3vw;
+                    padding: 0.6vw 3.5vw;
                     background-color: #f0f0f0;
                     border-radius: 50px;
                     color: $textCaption;
-                    font-size: 1.1rem;
+                    font-size: 2vw;
                     font-weight: 700;
                     font-family: 'Pretendard Variable';
                     cursor: pointer;
                 }
             }
-    
+
             .box {
                 position: fixed;
                 // top: 17vw;
-                top: 12.5vw;
+                top: 15vw;
                 left: 5vw;
                 display: flex;
                 flex-direction: column;
-                gap: 0.3vw;
+                gap: 0.25vw;
                 z-index: 9;
                 width: inherit;
                 justify-content: start;
-    
+
                 span {
                     padding: 0.6vw 2vw;
                     border-radius: 50px;
                     color: $textStrong;
-                    font-size: 1rem;
+                    font-size: 2vw;
                     font-weight: 700;
                     font-family: 'Pretendard Variable';
                     z-index: 9;
                 }
             }
-    
+
             .dlsrl {
                 position: fixed;
-                width: 12vw;
-                height: 24vw;
-                left: 5.5vw;
+                width: 15vw;
+                height: 40vw;
+                left: 6vw;
                 // top: 15.5vw;
-                top: 12vw;
+                top: 14vw;
                 background: #ffe98a65;
                 border-radius: 15px;
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-                outline:$background 5px solid ;
-               
-            } 
-    
-            .dlsrl+div{
-                    position: absolute;
-                    width: 55vw;
-                    height: 2px;
-                    background: #cecece;
-                    position: relative;
-                    top: 20vw;
-                    left: 25vw;
-                }
-    
+                outline: $background 5px solid;
+
+            }
+
+            .dlsrl+div {
+                position: absolute;
+                width: 67vw;
+                height: 2.5px;
+                background: #cecece;
+                position: relative;
+                top: 23vw;
+                left: 25vw;
+            }
+
         }
-    
-        .storeList{
-            div{
+
+        .storeList {
+            div {
                 position: relative;
                 margin-bottom: 15vw;
-                img{
-                    width: 10vw;
-                    height:12vw;
+                top: 3vw;
+
+                img {
+                    width: 12vw;
+                    height: 15vw;
                     z-index: 9;
                     position: absolute;
                     left: 27vw;
@@ -605,106 +610,108 @@
                     border: 2px solid $background;
                     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
                     object-fit: cover;
-                    border-radius: 30px;
+                    border-radius: 15px;
                 }
-    
-                h3{
+
+                h3 {
                     position: absolute;
-                    left: 40vw;
-                    top: 24vw;
+                    left: 42vw;
+                    top: 23vw;
                     font-family: 'Bobaesum Jindo TTF';
                     font-style: normal;
-                    font-size: 1.5rem;
+                    font-size: 2.2vw;
                     color: $textStrong;
                 }
-    
-                p:nth-of-type(1){
+
+                p:nth-of-type(1) {
                     position: absolute;
-                    left: 40vw;
+                    left: 42vw;
+                    font-family: 'Pretendard Variable';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    color: $primary;
+                    top: 26vw;
+
+                }
+
+                p:nth-of-type(2) {
+                    position: relative;
+                    left: 42vw;
                     font-family: 'Pretendard Variable';
                     font-style: normal;
                     font-weight: 700;
                     font-size: 1.2rem;
                     color: $textStrong;
-                    top: 26vw;
-               
-                } 
-                
-                p:nth-of-type(2){
-                    position: relative;
-                    left: 40vw;
-                    font-family: 'Pretendard Variable';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 1rem;
-                    color: $textStrong;
-                    top: 28vw          ;
-                    width: 40vw;
+                    top: 28.5vw;
+                    width: 50vw;
                     height: 5vw;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
-                    // -webkit-line-clamp:1;
+                    -webkit-line-clamp: 1;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 140%;
                     max-height: calc(1 * 1.4em);
                 }
-    
-                button{
-                position: relative;
-                left: 71.5vw;
-                font-family: 'Pretendard Variable';
-                font-style: normal;
-                font-weight: 500;
-                font-size: 1.2rem;
-                color: $textStrong;
-                top: 22vw;
-                padding: 0.5vw 2.5vw;
-                background-color: $primary;
-                border-radius: 50px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-                border: none;
-                }
-    
-                span{
+
+                button {
                     position: relative;
-                    left: 31.5vw;
+                    left: 80vw;
+                    font-family: 'Pretendard Variable';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 2vw;
+                    color: $textStrong;
+                    top: 20vw;
+                    padding: 0.5vw 2.5vw;
+                    background-color: $primary;
+                    border-radius: 50px;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                    border: none;
+                }
+
+                span {
+                    position: relative;
+                    left: 30vw;
                     font-family: 'Bobaesum Jindo TTF';
                     font-style: normal;
-                    font-size: 1rem;
+                    font-size: 2vw;
                     color: $textStrong;
-                    top: 29vw;
+                    top: 30vw;
                 }
-    
-                hr{
+
+                hr {
                     position: relative;
-                    width: 55vw;
+                    width: 67.2vw;
                     height: 2px;
                     background: #cecece;
                     top: 34vw;
-                    left: 3vw;
+                    left: 9vw;
                     border: none;
                 }
-                div{
+
+                div {
                     position: relative;
-                    left: 8.3vw;
-                    top: 0.8vw;
+                    left: 12vw;
+                    top: 1vw;
                     margin-bottom: 0;
-                    span{
+
+                    span {
                         width: inherit;
-                        padding: 5px 10px; 
+                        padding: 0.4vw 1vw;
                         background-color: $secondary2;
                         color: $textStrong;
                         border-radius: 50px;
-                        margin-right: 15px;
+                        margin-right: 7px;
                         font-family: 'Pretendard Variable';
-                        font-size: 1rem;
+                        font-size: 1.2vw;
                         font-weight: 600;
                     }
                 }
             }
         }
-    
+
         .banner {
             p {
                 position: absolute;
@@ -714,7 +721,7 @@
                 font-size: 1.3rem;
                 color: $textStrong;
             }
-    
+
             span {
                 position: absolute;
                 left: 13vw;
@@ -725,7 +732,7 @@
                 font-size: 1rem;
                 color: $textStrong;
             }
-    
+
             img {
                 position: absolute;
                 z-index: -1;
@@ -734,7 +741,7 @@
                 height: 8vw;
             }
         }
-    
+
         .today {
             h3 {
                 position: absolute;
@@ -746,7 +753,7 @@
                 font-size: 1.5rem;
                 color: $textStrong;
             }
-    
+
             span {
                 position: absolute;
                 font-family: 'Pretendard Variable';
@@ -754,26 +761,26 @@
                 font-weight: 500;
                 font-size: 1rem;
                 color: $textStrong;
-    
+
                 &:nth-of-type(1) {
                     left: 26vw;
                     top: 45.3vw;
                 }
-    
+
                 &:nth-of-type(2) {
                     left: 15vw;
                     top: 67.5vw;
                     font-weight: 800;
                     font-size: 1.2rem;
                 }
-    
+
                 &:nth-of-type(3) {
                     left: 41.5vw;
                     top: 67.5vw;
                     font-weight: 800;
                     font-size: 1.2rem;
                 }
-    
+
                 &:nth-of-type(4) {
                     left: 68vw;
                     top: 67.5vw;
@@ -781,7 +788,7 @@
                     font-size: 1.2rem;
                 }
             }
-    
+
             p {
                 position: absolute;
                 font-family: 'Pretendard Variable';
@@ -790,34 +797,34 @@
                 color: $textStrong;
                 top: 67.7vw;
                 left: 26.3vw;
-    
+
                 &:nth-of-type(2) {
                     left: 52vw;
                 }
-    
+
                 &:nth-of-type(3) {
                     left: 79.3vw;
                 }
-    
+
             }
-    
+
             img {
                 position: absolute;
                 width: 24vw;
                 left: 13vw;
                 top: 48.5vw;
                 border-radius: 10%;
-    
+
                 &:nth-of-type(2) {
                     left: 39vw;
                 }
-    
+
                 &:nth-of-type(3) {
                     left: 65vw;
                 }
             }
         }
-    
+
         .rhkdrh {
             img:nth-of-type(1) {
                 position: absolute;
@@ -825,14 +832,14 @@
                 left: 13vw;
                 top: 76vw;
             }
-    
+
             img:nth-of-type(2) {
                 position: absolute;
                 left: 18vw;
                 top: 82vw;
                 width: 19vw;
             }
-    
+
             h3 {
                 position: absolute;
                 left: 21.4vw;
@@ -842,7 +849,7 @@
                 color: $primary;
                 z-index: 1;
             }
-    
+
             p {
                 position: absolute;
                 left: 21.5vw;
@@ -852,7 +859,7 @@
                 font-size: 1.4rem;
                 color: $textStrong;
             }
-    
+
             span {
                 position: absolute;
                 width: 24vw;
@@ -866,174 +873,189 @@
                 color: $textStrong;
             }
         }
-    
+
     }
 }
 
 @media (max-width: 768px) {
     #search {
         height: 100%;
-    
+        position: relative;
+        top: 2vw;
+
         .storeList {
             display: block;
-    
+
             /* 요소가 화면에 나타나도록 확인 */
-            .no{
+            .no {
                 position: absolute;
-                top: 30vw;
+                top: 75vw;
                 font-family: 'Bobaesum Jindo TTF';
-                font-size: 2rem;
+                font-size: 5vw;
                 color: $textCaption;
-                left: 45vw;
-        
+                left: 26vw;
+
             }
         }
-    
+
         .input {
             div {
                 position: relative;
                 width: 100vw;
                 top: 0vw;
-    
+
                 input {
                     position: absolute;
-                    width: 50vw;
-                    height: 3vw;
-                    left: 27vw;
+                    width: 76vw;
+                    height: 7vw;
+                    left: 7vw;
                     top: 8vw;
                     border-radius: 50px;
-                    border: 2px solid #d6d6d6;
+                    border: 0.4vw solid #d6d6d6;
                     background-color: white;
                     margin: 0;
                     z-index: 10;
                     color: $textStrong;
                     font-family: 'Pretendard Variable';
                     font-weight: 700;
-                    font-size: 1.2rem;
+                    font-size: 3vw;
                     box-shadow: 0px 1.5px 9.3px rgba(0, 0, 0, 0.15);
-                    padding:0vw 2vw;
+                    padding: 0vw 2vw;
                     z-index: 1;
-    
+
                     &::placeholder {
                         color: #888888;
                         font-family: 'Pretendard Variable';
                         font-weight: 700;
-                        font-size: 1.2rem;
-    
+                        font-size: 3vw;
+
                     }
                 }
-    
-    
-    
-    
+
+
+
+
                 img {
                     position: absolute;
-                    width: 3vw;
+                    width: 7vw;
                     top: 8vw;
-                    left: 78vw;
+                    left: 85vw;
                 }
             }
-    
+
             p {
                 position: absolute;
                 left: 27vw;
                 font-family: 'Pretendard Variable';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 1.4rem;
+                font-size: 3.5vw;
                 color: $textStrong;
                 z-index: 2;
-    
+
                 &:nth-of-type(1) {
-                    top: 13vw;
+                    top: 18vw;
+                    left: 7vw;
                 }
-    
+
                 &:nth-of-type(2) {
-                    position: fixed;
-                    top: 10vw;
-                    left: 6.8vw;
+                    position: relative;
+                    top: 37vw;
+                    left: 6vw;
                     font-family: 'Bobaesum Jindo TTF';
                     font-style: normal;
                     font-weight: 400;
                 }
             }
-    
+
             .boxs {
                 position: absolute;
-                top: 15.5vw;
-                left: 26vw;
+                top: 24vw;
+                left: 7vw;
                 display: flex;
                 gap: 4vw;
                 user-select: none;
-    
+
                 span {
-                    padding: 0.6vw 3vw;
+                    padding: 0.6vw 3.5vw;
                     background-color: #f0f0f0;
                     border-radius: 50px;
                     color: $textCaption;
-                    font-size: 1.1rem;
+                    font-size: 3.5vw;
                     font-weight: 700;
                     font-family: 'Pretendard Variable';
                     cursor: pointer;
                 }
             }
-    
+
             .box {
-                position: fixed;
+                position: relative;
                 // top: 17vw;
-                top: 12.5vw;
-                left: 5vw;
+                top: 43vw;
+                left: 11vw;
                 display: flex;
-                flex-direction: column;
-                gap: 0.3vw;
+                flex-direction: row;
+                gap: 1vw;
                 z-index: 9;
-                width: inherit;
+                width: 80vw;
                 justify-content: start;
-    
+                height: inherit;
+
+
                 span {
                     padding: 0.6vw 2vw;
                     border-radius: 50px;
                     color: $textStrong;
-                    font-size: 1rem;
+                    font-size: 3.5vw;
                     font-weight: 700;
                     font-family: 'Pretendard Variable';
                     z-index: 9;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 140%;
+                    max-height: calc(2 * 1.4em);
                 }
             }
-    
+
             .dlsrl {
-                position: fixed;
-                width: 12vw;
-                height: 24vw;
-                left: 5.5vw;
+                position: relative;
+                width: 85vw;
+                height: 20vw;
+                left: 6vw;
                 // top: 15.5vw;
-                top: 12vw;
+                top: 35vw;
                 background: #ffe98a65;
                 border-radius: 15px;
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-                outline:$background 5px solid ;
-               
-            } 
-    
-            .dlsrl+div{
-                    position: absolute;
-                    width: 55vw;
-                    height: 2px;
-                    background: #cecece;
-                    position: relative;
-                    top: 20vw;
-                    left: 25vw;
-                }
-    
-        }
-    
-        .storeList{
-            div{
+                outline: $background 5px solid;
+
+            }
+
+            .dlsrl+div {
+                position: absolute;
+                width: 85vw;
+                height: 2.5px;
+                background: #cecece;
                 position: relative;
-                margin-bottom: 15vw;
-                img{
-                    width: 10vw;
-                    height:12vw;
+                top: 2vw;
+                left: 6vw;
+            }
+
+        }
+
+        .storeList {
+            div {
+                position: relative;
+                margin-bottom: 20vw;
+                top: 18vw;
+                left: -20vw;
+
+                img {
+                    width: 15vw;
+                    height: 20vw;
                     z-index: 9;
                     position: absolute;
                     left: 27vw;
@@ -1041,106 +1063,108 @@
                     border: 2px solid $background;
                     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
                     object-fit: cover;
-                    border-radius: 30px;
+                    border-radius: 15px;
                 }
-    
-                h3{
+
+                h3 {
                     position: absolute;
-                    left: 40vw;
-                    top: 24vw;
+                    left: 44vw;
+                    top: 23vw;
                     font-family: 'Bobaesum Jindo TTF';
                     font-style: normal;
-                    font-size: 1.5rem;
+                    font-size: 4vw;
                     color: $textStrong;
                 }
-    
-                p:nth-of-type(1){
+
+                p:nth-of-type(1) {
                     position: absolute;
-                    left: 40vw;
+                    left: 44vw;
                     font-family: 'Pretendard Variable';
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 1.2rem;
-                    color: $textStrong;
-                    top: 26vw;
-               
-                } 
-                
-                p:nth-of-type(2){
+                    font-size: 1rem;
+                    color: $primary;
+                    top: 28vw;
+
+                }
+
+                p:nth-of-type(2) {
                     position: relative;
-                    left: 40vw;
+                    left: 44vw;
                     font-family: 'Pretendard Variable';
                     font-style: normal;
                     font-weight: 700;
                     font-size: 1rem;
                     color: $textStrong;
-                    top: 28vw          ;
-                    width: 40vw;
+                    top: 31vw;
+                    width: 65vw;
                     height: 5vw;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
-                    // -webkit-line-clamp:1;
+                    -webkit-line-clamp: 1;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 140%;
                     max-height: calc(1 * 1.4em);
                 }
-    
-                button{
-                position: relative;
-                left: 71.5vw;
-                font-family: 'Pretendard Variable';
-                font-style: normal;
-                font-weight: 500;
-                font-size: 1.2rem;
-                color: $textStrong;
-                top: 22vw;
-                padding: 0.5vw 2.5vw;
-                background-color: $primary;
-                border-radius: 50px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-                border: none;
-                }
-    
-                span{
+
+                button {
                     position: relative;
-                    left: 31.5vw;
+                    left: 95vw;
+                    font-family: 'Pretendard Variable';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    color: $textStrong;
+                    top: 17vw;
+                    padding: 0.5vw 2.5vw;
+                    background-color: $primary;
+                    border-radius: 50px;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                    border: none;
+                }
+
+                span {
+                    position: relative;
+                    left: 31vw;
                     font-family: 'Bobaesum Jindo TTF';
                     font-style: normal;
                     font-size: 1rem;
                     color: $textStrong;
-                    top: 29vw;
+                    top: 32vw;
                 }
-    
-                hr{
+
+                hr {
                     position: relative;
-                    width: 55vw;
-                    height: 2px;
+                    width: 85vw;
+                height: 2.5px;
                     background: #cecece;
-                    top: 34vw;
-                    left: 3vw;
+                    top: 36vw;
+                    left: 20vw;
                     border: none;
                 }
-                div{
+
+                div {
                     position: relative;
-                    left: 8.3vw;
-                    top: 0.8vw;
+                    left: 13vw;
+                    top: 1vw;
                     margin-bottom: 0;
-                    span{
+
+                    span {
                         width: inherit;
-                        padding: 5px 10px; 
+                        padding: 0.4vw 1vw;
                         background-color: $secondary2;
                         color: $textStrong;
                         border-radius: 50px;
-                        margin-right: 15px;
+                        margin-right: 7px;
                         font-family: 'Pretendard Variable';
-                        font-size: 1rem;
+                        font-size: 0.7rem;
                         font-weight: 600;
                     }
                 }
             }
         }
-    
+
         .banner {
             p {
                 position: absolute;
@@ -1150,7 +1174,7 @@
                 font-size: 1.3rem;
                 color: $textStrong;
             }
-    
+
             span {
                 position: absolute;
                 left: 13vw;
@@ -1161,7 +1185,7 @@
                 font-size: 1rem;
                 color: $textStrong;
             }
-    
+
             img {
                 position: absolute;
                 z-index: -1;
@@ -1170,7 +1194,7 @@
                 height: 8vw;
             }
         }
-    
+
         .today {
             h3 {
                 position: absolute;
@@ -1182,7 +1206,7 @@
                 font-size: 1.5rem;
                 color: $textStrong;
             }
-    
+
             span {
                 position: absolute;
                 font-family: 'Pretendard Variable';
@@ -1190,26 +1214,26 @@
                 font-weight: 500;
                 font-size: 1rem;
                 color: $textStrong;
-    
+
                 &:nth-of-type(1) {
                     left: 26vw;
                     top: 45.3vw;
                 }
-    
+
                 &:nth-of-type(2) {
                     left: 15vw;
                     top: 67.5vw;
                     font-weight: 800;
                     font-size: 1.2rem;
                 }
-    
+
                 &:nth-of-type(3) {
                     left: 41.5vw;
                     top: 67.5vw;
                     font-weight: 800;
                     font-size: 1.2rem;
                 }
-    
+
                 &:nth-of-type(4) {
                     left: 68vw;
                     top: 67.5vw;
@@ -1217,7 +1241,7 @@
                     font-size: 1.2rem;
                 }
             }
-    
+
             p {
                 position: absolute;
                 font-family: 'Pretendard Variable';
@@ -1226,34 +1250,34 @@
                 color: $textStrong;
                 top: 67.7vw;
                 left: 26.3vw;
-    
+
                 &:nth-of-type(2) {
                     left: 52vw;
                 }
-    
+
                 &:nth-of-type(3) {
                     left: 79.3vw;
                 }
-    
+
             }
-    
+
             img {
                 position: absolute;
                 width: 24vw;
                 left: 13vw;
                 top: 48.5vw;
                 border-radius: 10%;
-    
+
                 &:nth-of-type(2) {
                     left: 39vw;
                 }
-    
+
                 &:nth-of-type(3) {
                     left: 65vw;
                 }
             }
         }
-    
+
         .rhkdrh {
             img:nth-of-type(1) {
                 position: absolute;
@@ -1261,14 +1285,14 @@
                 left: 13vw;
                 top: 76vw;
             }
-    
+
             img:nth-of-type(2) {
                 position: absolute;
                 left: 18vw;
                 top: 82vw;
                 width: 19vw;
             }
-    
+
             h3 {
                 position: absolute;
                 left: 21.4vw;
@@ -1278,7 +1302,7 @@
                 color: $primary;
                 z-index: 1;
             }
-    
+
             p {
                 position: absolute;
                 left: 21.5vw;
@@ -1288,7 +1312,7 @@
                 font-size: 1.4rem;
                 color: $textStrong;
             }
-    
+
             span {
                 position: absolute;
                 width: 24vw;
@@ -1302,6 +1326,6 @@
                 color: $textStrong;
             }
         }
-    
+
     }
 }

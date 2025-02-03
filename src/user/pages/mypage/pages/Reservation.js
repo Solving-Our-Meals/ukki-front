@@ -191,6 +191,7 @@ function Reservation({onDelete}) {
 
     const handleConfirmCancel = () => {
         if (reservationToCancel) {
+            setLoading(true);
             fetch(`${API_BASE_URL}/user/mypage/reservation/${reservationToCancel.resNo}`, {
                 method: 'DELETE',
                 headers: {
@@ -219,6 +220,7 @@ function Reservation({onDelete}) {
                 })
                 .finally(() => {
                     setIsCancelModalOpen(false);
+                    setLoading(false);
                 });
         }
     };
