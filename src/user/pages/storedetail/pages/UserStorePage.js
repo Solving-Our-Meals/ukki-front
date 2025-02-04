@@ -25,7 +25,7 @@
 
 // export default UserStorePage;
 
-import React, { useRef } from 'react';
+import React, { useRef ,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import StoreDetail from './StoreDetail';
 import ReservationInfo from './ReservationInfo';
@@ -48,6 +48,10 @@ function UserStorePage() {
             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
     };
+        const StoreDetailPage = () => {
+            useEffect(() => {
+              window.scrollTo(0, 0);
+            }, []); }
 
     return (
         <>
