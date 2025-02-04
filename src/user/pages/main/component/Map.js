@@ -309,31 +309,34 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
         }
     }, [map, stores, currentPosition]);
 
+
     const requestDirections = async (store) => {
         try {
             if (!currentPosition) return;
-
+    
             const url = `https://apis-navi.kakaomobility.com/v1/waypoints/directions`;
-
+    
             const headers = {
                 'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,
                 'Content-Type': 'application/json',
             };
 
+            const credentials = "include";
+    
             const body = JSON.stringify({
                 origin: currentPosition,
                 destination: { x: store.longitude, y: store.latitude },
                 waypoints: []
             });
-
+    
             const response = await fetch(url, { method: 'POST', headers, body });
-
+    
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
+    
             const data = await response.json();
-
+    
             // 경로 데이터 처리
             if (data.routes && data.routes.length > 0 && data.routes[0].sections && data.routes[0].sections.length > 0) {
                 const roads = data.routes[0].sections[0].roads;
@@ -345,32 +348,12 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                             if (!isNaN(lat) && !isNaN(lon)) {
                                 return [lon, lat];
                             }
-                            if (currentMarker.marker) {
-                                currentMarker.marker.setMap(null); // 기존 마커 제거
-                                currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
-                            }
-        
-                            // 기존 경로가 있으면 삭제
-                            if (window.currentPolyline) {
-                                window.currentPolyline.setMap(null);  // 경로 삭제
-                                window.currentPolyline = null;        // 글로벌 변수 초기화
-                            }
                         }
                         return null;
                     }).filter(Boolean));
-
-                    if (routePath && routePath.length > 0) {
-                        if (currentMarker.marker) {
-                            currentMarker.marker.setMap(null); // 기존 마커 제거
-                            currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
-                        }
     
-                        // 기존 경로가 있으면 삭제
-                        if (window.currentPolyline) {
-                            window.currentPolyline.setMap(null);  // 경로 삭제
-                            window.currentPolyline = null;        // 글로벌 변수 초기화
-                        }
-                        // 경로를 삭제하고 새 경로 표시
+                    if (routePath && routePath.length > 0) {
+                        // 경로 표시
                         displayRoute(routePath);
                     } else {
                         console.error('Invalid directions data: No valid route path found in roads', data);
@@ -385,6 +368,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             console.error('Error fetching directions:', error);
         }
     };
+    
 
     const displayRoute = (routePath) => {
         if (!routePath || routePath.length === 0) {

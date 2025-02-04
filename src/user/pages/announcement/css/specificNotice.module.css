@@ -270,7 +270,6 @@ a:active {
   line-height: 160%;
   overflow-y: auto;
   overflow-x: hidden;
-
 }
 
 @media (max-width: 1440px) and (min-width: 769px) {
@@ -477,4 +476,3 @@ a:active {
     overflow-x: hidden;
   }
 }/*# sourceMappingURL=specificNotice.module.css.map */
-
