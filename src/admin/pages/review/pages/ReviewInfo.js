@@ -7,6 +7,7 @@ import AdminAgreementModal from "../../../components/AdminAgreementModal";
 import AdminResultModal from "../../../components/AdminResultModal";
 import { API_BASE_URL } from '../../../../config/api.config';
 import Review_default_img from '../css/images/Review_default_img.png'
+import Profile_default_img from '../../../components/css/images/PROFILE_BASIC.png'
 import LodingPage from "../../../components/LoadingPage";
 
 function ReviewInfo(){
@@ -111,7 +112,7 @@ function ReviewInfo(){
         <div className={styles.reviewArea}>
                         <div className={styles.review} >
                             <img 
-                                src={reviewInfo.userProfile === null ? Review_default_img: `${API_BASE_URL}/image?fileId=${reviewInfo.userProfile}`}
+                                src={reviewInfo.userProfile === null ? Profile_default_img: `${API_BASE_URL}/image?fileId=${reviewInfo.userProfile}`}
                                 id={styles.userProfile} 
                                 alt='프로필 이미지'
                                 />
