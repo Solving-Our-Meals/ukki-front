@@ -166,7 +166,7 @@
 .floatingBarStyle{
     .floatingMenu{
         position : fixed;
-        left : 94%;
+        left : 90vw;
         display : flex;
         justify-content: center;
         align-items: center;
@@ -218,11 +218,11 @@
     }
 
     // 반응형
-    @media(max-width : 1024px){
+    @media (max-width: 1440px) and (min-width: 769px) {
 
         .floatingMenu{
             position : fixed;
-            left : 90%;
+            left : 85vw;
             display : flex;
             justify-content: center;
             align-items: center;
@@ -276,13 +276,13 @@
     @media(max-width : 768px){
         .floatingMenu{
             position : fixed;
-            left : 87%;
+            left : 80vw;
             display : flex;
             justify-content: center;
             align-items: center;
             box-sizing : border-box;
-            width : 59px;
-            height : 59px;
+            width : 12vw;
+            height : 12vw;
             border-radius: 100px;
             background-color: #B3E7FF;
             border: 1.5px solid #FF8AA3;

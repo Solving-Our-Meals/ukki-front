@@ -360,13 +360,17 @@ const Main = () => {
 
 
     const handleReservationClick = () => {
-        if (storeInfo && storeInfo.storeNo) {
-            console.log("Selected StoreNo: ", storeInfo.storeNo);  // 디버깅용
-            navigate(`store/${storeInfo.storeNo}`);
+        if (storeInfo && storeInfo.storeName) {
+            console.log("Selected StoreNo: ", storeInfo.storeName);  // For debugging
+            setTimeout(() => {
+                navigate(`store/${storeInfo.storeName}`);
+                
+            }, 5500); // Wait 5500ms before navigating
         } else {
-            // alert("가게를 선택해주세요.");
+            // alert("가게를 선택해주세요.");  // Notify user to select a store if not selected
         }
     };
+    
 
 
 
@@ -626,14 +630,12 @@ const Main = () => {
                     }
                     const winningStore = selectedStores[Math.floor(Math.random() * selectedStores.length)];
 
-                    // 예약 가능한 시간 가져오기
-                    const nextAvailableTime = await getNextAvailableTime(winningStore.storeNo, new Date().toISOString().split('T')[0]); // 오늘 날짜를 기준으로
+                    const userConfirmed = window.confirm(`당첨된 가게: ${winningStore.storeName}입니다! 확인을 클릭하면 가게 상세페이지로 이동합니다.`);
 
-                    // 예약을 진행
-                    await makeReservation(userNo, winningStore.storeNo, nextAvailableTime);
-
-
-                    alert(`당첨된 가게: ${winningStore.storeName}`);
+                if (userConfirmed) {
+                    // Redirect to the store's detail page
+                    navigate(`/store/${winningStore.storeNo}`);
+                }
 
                 } catch (error) {
                     console.error(error);
@@ -851,11 +853,11 @@ const Main = () => {
                             <label>현재 위치 : </label>
                             <input value={storeInfo.storeAddress}></input>
                             <label>가게 위치 : </label>
-                            <button onClick={() => handleReservationClick()}>예약하기</button>
+                            <button onClick={() => handleRouletteClick()}>예약하기</button>
 
                             <div>
                                 <div>
-                                    <p onClick={() => setIsMarkerClicked(false)}>x</p>
+                                    <p onClick={() => handleRouletteClick(false)}>x</p>
                                 </div>
                             </div>
                         </>

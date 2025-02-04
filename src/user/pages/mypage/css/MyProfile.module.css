@@ -38,16 +38,20 @@
     transform: translateY(85px);
     width: 389px;
     border: 1px solid #BDBEBF;
+    margin-left: -160px;
+    margin-top: -550px;
 }
 .mypageHorizonLine2 {
     transform: translateY(170px);
     width: 389px;
-    border: 1px solid #BDBEBF;
+    border: 1px solid #BDBEBF;  
+    
 }
 .mypageHorizonLine3 {
     transform: translateY(170px);
     width: 389px;
     border: 1px solid #BDBEBF;
+  
 }
 
 .mypageTextBox {
