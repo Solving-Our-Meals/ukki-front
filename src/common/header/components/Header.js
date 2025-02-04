@@ -82,7 +82,6 @@ function Header() {
 
             if (response.ok) {
                 setIsLoggedIn(false);
-                // 로그아웃 후 경로 이동
                 navigate('/auth/login');
             } else {
                 console.error('Logout failed');
@@ -151,17 +150,11 @@ function Header() {
                     ) : (
                         <>
                             <p className="user-greeting" style={greetingStyle}>안녕하세요, {userName}님!</p>
-                            {/* 로그아웃 버튼 */}
-                            <button
-                                onClick={() => {
-                                    handleLogout();
-                                    handleMenuClick('/logout');
-                                }}
-                                className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}
-                            >
-                                로그아웃
-                            </button>
-
+                            <NavLink to="#" onClick={() => {
+                                handleLogout();
+                                handleMenuClick('/logout');
+                            }}
+                                     className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
                         </>
                     )}
                 </span>

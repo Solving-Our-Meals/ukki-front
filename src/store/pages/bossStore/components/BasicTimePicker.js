@@ -9,24 +9,22 @@ export default function BasicTimePicker({ value, onChange }) {
   const getNextTimeSlot = () => {
     const now = dayjs();
     const minutes = now.minute();
-
-    // 30분 간격으로 나눈 나머지를 계산하여, 그 다음 30분으로 설정
-    const nextSlotMinutes = minutes < 30 ? 30 : 60;
-    const nextSlot = now.minute(nextSlotMinutes).second(0);  // 분과 초를 0으로 설정
-
-    return nextSlot;
+    
+    // 30분 간격으로 맞추기
+    let nextSlotMinutes = minutes < 30 ? 30 : 0;
+    let nextHour = minutes < 30 ? now.hour() : now.hour() + 1;
+    
+    return now.hour(nextHour).minute(nextSlotMinutes).second(0);
   };
 
-  
   const nextTimeSlot = getNextTimeSlot();  // 현재 시간에 맞는 가장 가까운 30분 간격
 
   // 선택된 시간이 변경되면 호출되는 함수
-const handleTimeChange = (newTime) => {
-    // "HH:mm" 포맷으로 변환하여 `selectedTime`에 저장
-    const formattedTime = dayjs(newTime, 'HH:mm').isValid() ? dayjs(newTime, 'HH:mm').format('HH:mm') : "";
-    onChange(formattedTime);
-};
-
+  const handleTimeChange = (newTime) => {
+    if (newTime) {
+      onChange(dayjs(newTime).format('HH:mm'));  // 24시간제로 변환하여 전달
+    }
+  };
 
   // value가 문자열일 경우 Dayjs 객체로 변환
   const parsedValue = value ? dayjs(value, 'HH:mm') : nextTimeSlot;
@@ -34,11 +32,10 @@ const handleTimeChange = (newTime) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TimePicker
-        label="시간 선택"
         minutesStep={30}  // 30분 간격으로 설정
-        value={parsedValue}  // 문자열을 Dayjs 객체로 변환한 값 사용
+        value={nextTimeSlot}  // 문자열을 Dayjs 객체로 변환한 값 사용
         onChange={handleTimeChange}  // onChange에서 time을 'HH:mm' 형식으로 전달
-        renderInput={(params) => <input {...params} />}
+        ampm={false}  // 24시간제로 설정 (AM/PM 제거)
       />
     </LocalizationProvider>
   );

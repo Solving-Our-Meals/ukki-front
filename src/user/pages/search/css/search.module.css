@@ -372,6 +372,7 @@ a:active {
   border-radius: 50px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border: none;
+  z-index: 999;
 }
 #search .storeList div span {
   position: relative;
@@ -744,6 +745,7 @@ a:active {
     border-radius: 50px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border: none;
+    z-index: 999;
   }
   #search .storeList div span {
     position: relative;
@@ -1128,6 +1130,7 @@ a:active {
     border-radius: 50px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border: none;
+    z-index: 999;
   }
   #search .storeList div span {
     position: relative;
