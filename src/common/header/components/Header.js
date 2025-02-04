@@ -77,12 +77,13 @@ function Header() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
+                credentials: 'include', // 쿠키를 포함시키기
             });
+
+            console.log('Logout response:', response); // 응답 확인
 
             if (response.ok) {
                 setIsLoggedIn(false);
-                // 로그아웃 후 경로 이동
                 navigate('/auth/login');
             } else {
                 console.error('Logout failed');
@@ -91,6 +92,7 @@ function Header() {
             console.error('Error during logout:', error);
         }
     };
+
 
 
 
@@ -150,6 +152,7 @@ function Header() {
                         </>
                     ) : (
                         <>
+
                             <p className="user-greeting" >안녕하세요, <span>{userName}</span> 님!</p>
                             {/* 로그아웃 버튼 */}
                             <button

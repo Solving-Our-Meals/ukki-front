@@ -40,20 +40,20 @@ function BossPage() {
             const formattedTime = time && dayjs(time, 'HH:mm').isValid() ? dayjs(time, 'HH:mm').format('HH:mm') : "";  // time이 null일 경우 빈 문자열로 처리
 
             console.log(formattedTime);
-    
+
             const params = {
                 storeNo: storeNo,
                 reservationDate: formattedDate,
                 reservationTime: formattedTime
             };
-    
+
             console.log('Fetching slots with params:', params);
-    
+
             const response = await axios.get(`${API_BASE_URL}/boss/mypage/reservation-status`, { params });
-    
+
             const resPosNumber = Number(response.data.resPosNumber);
             const validResPosNumber = isNaN(resPosNumber) ? 5 : resPosNumber;
-    
+
             setResPosNumbers(prev => ({
                 ...prev,
                 [`${formattedDate} ${formattedTime}`]: validResPosNumber
@@ -62,40 +62,40 @@ function BossPage() {
             console.error('Error fetching available pos num:', error);
         }
     };
-    
+
 
     useEffect(() => {
         if (userNo === undefined || storeNo === undefined) return;
-    
+
         const savedResPosNumbers = JSON.parse(localStorage.getItem('resPosNumbers'));
         if (savedResPosNumbers) {
             setResPosNumbers(savedResPosNumbers);
         }
-    
+
         axios.get(`${API_BASE_URL}/boss/mypage/getStoreInfo?userNo=${userNo}`)
             .then(response => setStoreInfo(response.data))
             .catch(error => console.error("Error fetching store info:", error));
-    
+
         axios.get(`${API_BASE_URL}/boss/mypage/reservation-status?storeNo=${storeNo}`)
             .then(response => {
                 setReservations(response.data || []);
             })
             .catch(error => console.error("Error fetching reservations:", error));
-    
+
         const closestTime = getClosest30MinTime();
         setSelectedDate(startDate);
         setSelectedTime(dayjs(closestTime).format('HH:mm'));
-    
+
         axios.get(`${API_BASE_URL}/boss/mypage/weekly-reservation-count?storeNo=${storeNo}`)
             .then((response) => {
                 console.log(response.data);
                 setWeeklyReservationCount(response.data)
             })
             .catch(error => console.error("Error fetching weekly reservation count:", error));
-    
+
         fetchAvailableSlots(startDate, dayjs(closestTime).format('HH:mm'));
     }, [userNo, storeNo, startDate]);
-    
+
 
 
     const fetchReservations = async (date, time) => {
@@ -217,7 +217,7 @@ function BossPage() {
 
         console.log('Filtered Reservation:', res, 'isSameDate:', isSameDate, 'isSameTime:', isSameTime);
 
-        return isSameDate || isSameTime;
+        return isSameDate ;
     });
 
 
@@ -236,9 +236,25 @@ function BossPage() {
                         <p>{storeInfo.storeAddress}</p>
                     </div>
                 )}
+
+                <section className="reservation-status">
+                    <h2>예약 현황</h2>
+                    <p>총 예약인원: <span>{filteredReservations.length}</span>명</p>
+                    <ul>
+                        {filteredReservations.map((res, index) => {
+                            const formattedTime = dayjs(res.reservationTime, 'HH:mm:ss').format('hh:mm');
+                            return (
+                                <li key={index}>
+                                    {res.userName} - {formattedTime}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </section>
                 <section className="calendar-section">
                     <h2>날짜 선택</h2>
                     <DatePicker
+                        className="my-custom-datepicker"
                         selected={selectedDate ? dayjs(selectedDate).toDate() : null}
                         onChange={handleDateChange}
                         includeDateIntervals={[{ start: subDays(new Date(), 1), end: addDays(new Date(), 7) }]}
@@ -259,20 +275,7 @@ function BossPage() {
                     />
                 </section>
 
-                <section className="reservation-status">
-                    <h2>예약 현황</h2>
-                    <p>총 예약인원: {filteredReservations.length}명</p>
-                    <ul>
-                        {filteredReservations.map((res, index) => {
-                            const formattedTime = dayjs(res.reservationTime, 'HH:mm:ss').format('hh:mm');
-                            return (
-                                <li key={index}>
-                                    {res.userName} - {formattedTime}
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </section>
+
 
 
                 <section className="reservation-slots">
@@ -295,6 +298,7 @@ function BossPage() {
                 </section>
 
                 <div className="weekly-Reservations">
+                    <h2>이번주 예약 그래프</h2>
                     <WeeklyReservationGraph data={weeklyReservationCount} />
                 </div>
 

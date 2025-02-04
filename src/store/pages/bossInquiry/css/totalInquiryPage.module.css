@@ -433,6 +433,7 @@ a:active {
 }
 #background .inquiryListArea hr {
   position: relative;
+  left: 18px;
   top: 535.5px;
   width: 1545px;
   border: 2.9px solid #FF8AA3;
