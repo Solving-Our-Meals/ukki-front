@@ -122,6 +122,7 @@ function UserList(){
             value={searchWord} 
             onChange={searchChangeHandler}
             onKeyPress={handleKeyPress}
+            placeholder="검색어를 입력해주세요"
         ></input>
         <button type="button" onClick={searchClickHandler} className={styles.userListSearchBtn}/>
         <table className={styles.userList}>

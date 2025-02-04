@@ -164,6 +164,7 @@ function InquiryList() {
                         value={searchWord}
                         onChange={searchChangeHandler}
                         onKeyPress={handleKeyPress}
+                        placeholder="검색어를 입력해주세요"
                     />
                 )
             )}
@@ -190,6 +191,7 @@ function InquiryList() {
                         value={searchWord}
                         onChange={searchChangeHandler}
                         onKeyPress={handleKeyPress}
+                        placeholder="검색어를 입력해주세요"
                     />
                 )
             )}

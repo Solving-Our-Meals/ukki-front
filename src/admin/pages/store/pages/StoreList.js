@@ -113,6 +113,7 @@ function StoreList(){
             value={searchWord} 
             onChange={searchChangeHandler}
             onKeyPress={handleKeyPress}
+            placeholder="검색어를 입력해주세요"
         ></input>
         <button type="button" onClick={searchClickHandler} className={styles.storeListSearchBtn}/>
         <table className={styles.storeList}>

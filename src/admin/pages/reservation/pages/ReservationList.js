@@ -151,6 +151,7 @@ function ReservationList() {
                 value={searchWord}
                 onChange={searchChangeHandler}
                 onKeyPress={handleKeyPress}
+                placeholder="검색어를 입력해주세요"
             />
             }
             <button type="button" onClick={searchClickHandler} className={styles.reservationListSearchBtn}></button>
