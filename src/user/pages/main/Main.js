@@ -29,15 +29,16 @@ import { API_BASE_URL } from '../../../config/api.config.js';
 import axios from 'axios';
 
 import { useAuth } from '../../../common/authContext/AuthContext';
+import Profile from '../storedetail/components/Profile.js';
 
 
 const banners = [banner1, banner2, banner3, banner4, banner5];
 const storeInfos = [
-    { name: "해당 가게 이름1", time: "영업시간 10:00 - 22:00", desc: "가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명1" },
-    { name: "해당 가게 이름2", time: "가게의 영업 시간 및 날짜2", desc: "가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명2" },
-    { name: "해당 가게 이름3", time: "가게의 영업 시간 및 날짜3", desc: "가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명3" },
-    { name: "해당 가게 이름4", time: "가게의 영업 시간 및 날짜4", desc: "가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명4" },
-    { name: "해당 가게 이름5", time: "가게의 영업 시간 및 날짜5", desc: "가게 설명 가게 설명 가게 설명 가게 설명 가게 설명 가게 설명5" }
+    { name: "어서오소 덮밥", time: "영업시간 16:00 - 03:00", desc: "다양한 소고기 부위를 덮밥으로 즐길수있는 식당" },
+    { name: "샐러드의 반란", time: "영업시간 10:00 - 22:00 ",desc: "샐러드의 변신을 보여드립니다. 지금까지 샐러드가 다이어트나 가볍게 먹는다고 생각하셨다면 오산! 이제는 한끼 식사로 균형잡힌 영양을 제공합니다." },
+    { name: "불나방 떡볶이", time: "영업시간 10:00 - 21:00", desc: "매운 떡볶이를 찾아 떠돌아 다니는 사람들을 위한 진짜 매운 떡볶이집" },
+    { name: "여기다피자", time: "영업시간 07:00 - 21:00", desc: "마음에 드는 피자가 없으시다고요? 여기 여러분의 1번이 될 피자집이 있습니다!" },
+    { name: "전설의 짬뽕", time: "영업시간 11:00 - 23:00", desc: "짬뽕 전문점으로 중식이지만 짬뽕위주로 판매하고 있습니다. 평소 짬뽕을 싫어하시는 분도 취향에 맞게 고를수있는 메뉴가 다양해 즐길 수 있습니다." }
 ];
 
 const rolLength = 8; //룰렛 갯수
@@ -841,12 +842,14 @@ const Main = () => {
                         <>
                             <p>가게 이름 : <span>{storeInfo.storeName}</span></p>
                             <p>가게 설명 : <span>{storeInfo.storeDes}</span></p>
+
                             <img src={`${API_BASE_URL}/image?fileId=${storeInfo.storeProfile}`} alt="store" />
+
                             <img src={ukki} alt="ukki" />
                             <input onKeyPress={handleKeyPress}
                                 defaultValue={defaultValue}  ></input>
                             <label>현재 위치 : </label>
-                            <input defaultValue={storeInfo.storeAddress}></input>
+                            <input value={storeInfo.storeAddress}></input>
                             <label>가게 위치 : </label>
                             <button onClick={() => handleReservationClick()}>예약하기</button>
 

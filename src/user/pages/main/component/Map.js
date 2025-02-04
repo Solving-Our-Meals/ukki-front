@@ -347,17 +347,21 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
         }
     }, [map, stores, currentPosition]);
 
+
     const requestDirections = async (store) => {
         try {
             if (!currentPosition) return;
-
+    
             const url = `https://apis-navi.kakaomobility.com/v1/waypoints/directions`;
 
-            // 카카오 모빌리티 API 요청 헤더
             const headers = {
                 'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,  // KAKAO_REST_API_KEY가 제대로 설정되었는지 확인
                 'Content-Type': 'application/json',
             };
+
+
+            const credentials = "include";
+    
 
             // currentPosition이 {x, y} 형태인지 확인
             const origin = {
@@ -370,21 +374,24 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                 y: store.latitude     // 목적지 위도
             };
 
+
             const body = JSON.stringify({
                 origin,       // 출발지 좌표
                 destination,  // 목적지 좌표
                 waypoints: [] // 경유지가 있다면 이곳에 추가
             });
 
-            // 요청 보내기
-            const response = await fetch(url, { method: 'POST', headers, body });
 
+            // 요청 보내기
+
+            const response = await fetch(url, { method: 'POST', headers, body });
+    
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
+    
             const data = await response.json();
-
+    
             // 경로 데이터 처리
             if (data.routes && data.routes.length > 0 && data.routes[0].sections && data.routes[0].sections.length > 0) {
                 const roads = data.routes[0].sections[0].roads;
@@ -400,6 +407,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                         return null;
                     }).filter(Boolean));
 
+
                     if (routePath && routePath.length > 0) {
                         // 기존 경로가 있으면 삭제
                         if (window.currentPolyline) {
@@ -407,6 +415,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                             window.currentPolyline = null;        // 글로벌 변수 초기화
                         }
                         // 새 경로 표시
+
                         displayRoute(routePath);
                     } else {
                         console.error('Invalid directions data: No valid route path found in roads', data);
@@ -421,6 +430,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             console.error('Error fetching directions:', error);
         }
     };
+    
 
 
     const displayRoute = (routePath) => {

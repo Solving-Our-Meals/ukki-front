@@ -77,8 +77,10 @@ function Header() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
+                credentials: 'include', // 쿠키를 포함시키기
             });
+
+            console.log('Logout response:', response); // 응답 확인
 
             if (response.ok) {
                 setIsLoggedIn(false);
@@ -90,6 +92,7 @@ function Header() {
             console.error('Error during logout:', error);
         }
     };
+
 
 
 
