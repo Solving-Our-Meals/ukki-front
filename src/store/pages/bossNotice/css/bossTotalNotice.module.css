@@ -430,6 +430,7 @@ a:active {
 }
 #background .noticeListArea hr {
   position: relative;
+  left: 0px;
   top: 535.5px;
   width: 1545px;
   border: 2.9px solid #FF8AA3;
@@ -714,6 +715,7 @@ a:active {
   }
   #background .noticeListArea hr {
     position: relative;
+    left: 0px;
     top: 380px;
     width: 775px;
     border: 2.9px solid #FF8AA3;

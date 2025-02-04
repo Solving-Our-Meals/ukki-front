@@ -2,11 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Map.css';
 import loMarker from '../image/marker.png';
 import { API_BASE_URL } from '../../../../config/api.config';
+import { useMap } from 'react-leaflet';
+import L from 'leaflet';
 
 const { kakao } = window;
 
-const KAKAO_API_KEY = window._env_?.REACT_APP_KAKAOMAP_APP_KEY || process.env.REACT_APP_KAKAOMAP_APP_KEY;
-const KAKAO_REST_API_KEY = window._env_?.REACT_APP_KAKAOMAP_REST_API_KEY || process.env.REACT_APP_KAKAOMAP_REST_API_KEY;
+const KAKAO_API_KEY = process.env.REACT_APP_KAKAOMAP_APP_KEY;
+const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAOMAP_REST_API_KEY;
 
 const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClick, toggleIsMarkerClicked }) => {
     const [map, setMap] = useState(null);
@@ -19,6 +21,38 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
     const [clickedStoreId, setClickedStoreId] = useState(null);
     const [polylines, setPolylines] = useState([]);  // 표시된 경로들
     const [storeAddress, setStoreAddress] = useState('');
+
+    const mapRef = useRef(null);  // 지도 인스턴스를 저장
+    const markerRef = useRef(null);  // 현재 위치 마커를 저장
+
+    useEffect(() => {
+        if (!currentPosition) return;
+
+        const map = mapRef.current;
+        if (!map) return;
+
+        // 기존 마커를 제거하고 새 마커 추가
+        if (markerRef.current) {
+            map.removeLayer(markerRef.current);
+             markerRef.current = null;
+        }
+
+        const { x, y } = currentPosition;
+
+        // 새로운 마커 추가
+        const newMarker = L.marker([y, x]).addTo(map);
+        markerRef.current = newMarker;
+
+        // 마커 클릭 시 경로 요청을 할 수 있도록 하기
+        newMarker.on('click', () => {
+            requestDirections({ x, y });
+            toggleIsMarkerClicked(true);
+        });
+
+        map.setView([y, x], 13);  // 위치 업데이트 후 지도 중심 이동
+
+    }, [currentPosition]);  // currentPosition이 업데이트 될 때마다 실행
+
 
 
 
@@ -67,6 +101,10 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             // 사용자가 엔터를 눌렀을 때
             updateLocationAndRoute(defaultValue); // 주소 업데이트하고 경로 새로 그리기
         }
+    };
+
+    const handleLocationChange = (newLocation) => {
+        setCurrentPosition(newLocation);  // 새로운 위치 업데이트
     };
 
     const updateLocationAndRoute = async (newAddress) => {
@@ -196,15 +234,15 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                                 : result[0].address.address_name;
                             if (address !== defaultValue) {
                                 if (currentMarker.marker) {
-                        currentMarker.marker.setMap(null); // 기존 마커 제거
-                        currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
-                    }
+                                    currentMarker.marker.setMap(null); // 기존 마커 제거
+                                    currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
+                                }
 
-                    // 기존 경로가 있으면 삭제
-                    if (window.currentPolyline) {
-                        window.currentPolyline.setMap(null);  // 경로 삭제
-                        window.currentPolyline = null;        // 글로벌 변수 초기화
-                    }
+                                // 기존 경로가 있으면 삭제
+                                if (window.currentPolyline) {
+                                    window.currentPolyline.setMap(null);  // 경로 삭제
+                                    window.currentPolyline = null;        // 글로벌 변수 초기화
+                                }
                                 setAddress(address);
                                 console.log("주소가 변경되었습니다: ", address);
                             }
@@ -284,7 +322,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                             currentMarker.marker.setMap(null); // 기존 마커 제거
                             currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
                         }
-    
+
                         // 기존 경로가 있으면 삭제
                         if (window.currentPolyline) {
                             window.currentPolyline.setMap(null);  // 경로 삭제
@@ -315,17 +353,30 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
 
             const url = `https://apis-navi.kakaomobility.com/v1/waypoints/directions`;
 
+            // 카카오 모빌리티 API 요청 헤더
             const headers = {
-                'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,
+                'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,  // KAKAO_REST_API_KEY가 제대로 설정되었는지 확인
                 'Content-Type': 'application/json',
             };
 
+            // currentPosition이 {x, y} 형태인지 확인
+            const origin = {
+                x: currentPosition.x,  // 경도
+                y: currentPosition.y   // 위도
+            };
+
+            const destination = {
+                x: store.longitude,   // 목적지 경도
+                y: store.latitude     // 목적지 위도
+            };
+
             const body = JSON.stringify({
-                origin: currentPosition,
-                destination: { x: store.longitude, y: store.latitude },
-                waypoints: []
+                origin,       // 출발지 좌표
+                destination,  // 목적지 좌표
+                waypoints: [] // 경유지가 있다면 이곳에 추가
             });
 
+            // 요청 보내기
             const response = await fetch(url, { method: 'POST', headers, body });
 
             if (!response.ok) {
@@ -340,37 +391,22 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
                 if (roads && roads.length > 0) {
                     const routePath = roads.flatMap(road => road.vertexes.map((coord, index, arr) => {
                         if (index % 2 === 0 && arr[index + 1] !== undefined) {
-                            const lat = arr[index + 1];
-                            const lon = coord;
+                            const lat = arr[index + 1]; // 위도
+                            const lon = coord;          // 경도
                             if (!isNaN(lat) && !isNaN(lon)) {
                                 return [lon, lat];
-                            }
-                            if (currentMarker.marker) {
-                                currentMarker.marker.setMap(null); // 기존 마커 제거
-                                currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
-                            }
-        
-                            // 기존 경로가 있으면 삭제
-                            if (window.currentPolyline) {
-                                window.currentPolyline.setMap(null);  // 경로 삭제
-                                window.currentPolyline = null;        // 글로벌 변수 초기화
                             }
                         }
                         return null;
                     }).filter(Boolean));
 
                     if (routePath && routePath.length > 0) {
-                        if (currentMarker.marker) {
-                            currentMarker.marker.setMap(null); // 기존 마커 제거
-                            currentMarker.infowindow.close();  // 기존 인포윈도우 닫기
-                        }
-    
                         // 기존 경로가 있으면 삭제
                         if (window.currentPolyline) {
                             window.currentPolyline.setMap(null);  // 경로 삭제
                             window.currentPolyline = null;        // 글로벌 변수 초기화
                         }
-                        // 경로를 삭제하고 새 경로 표시
+                        // 새 경로 표시
                         displayRoute(routePath);
                     } else {
                         console.error('Invalid directions data: No valid route path found in roads', data);
@@ -385,6 +421,7 @@ const Map = ({ address, setAddress, defaultValue, selectedCategory, onMarkerClic
             console.error('Error fetching directions:', error);
         }
     };
+
 
     const displayRoute = (routePath) => {
         if (!routePath || routePath.length === 0) {

@@ -370,6 +370,8 @@ const Main = () => {
 
 
     const handleMarkerClick = (storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo) => {
+        let storeProfileUrl = `${API_BASE_URL}/image?fileId=${storeProfile}`
+        console.log(storeProfileUrl)
         console.log("Selected Store No: ", storeNo);  // 디버깅용
         setStoreInfo({
             storeName, storeDes, storeMenu, storeProfile, storeAddress, storeNo
@@ -378,14 +380,32 @@ const Main = () => {
     };
 
 
-
-    const handleKeyPress = (event) => {
+    const handleKeyPress = async (event) => {
         if (event.key === 'Enter') {
             if (event.target.value !== defaultValue) {
+                // 새로운 위치로 갱신
                 setAddress(event.target.value);
+    
+                // Geocode API를 사용하여 주소에서 위도/경도를 가져옴
+                try {
+                    const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${event.target.value}&key=YOUR_GOOGLE_API_KEY`);
+                    const location = response.data.results[0].geometry.location;
+    
+                    const newLongitude = location.lng;
+                    const newLatitude = location.lat;
+    
+                    // 위치 갱신
+                    const newPosition = { x: newLongitude, y: newLatitude };
+                    setCurrentPosition(newPosition);
+    
+                } catch (error) {
+                    console.error('Failed to get location from address:', error);
+                }
             }
         }
     };
+    
+
 
 
 
@@ -821,7 +841,7 @@ const Main = () => {
                         <>
                             <p>가게 이름 : <span>{storeInfo.storeName}</span></p>
                             <p>가게 설명 : <span>{storeInfo.storeDes}</span></p>
-                            <img src={storeInfo.storeProfile} alt="store" />
+                            <img src={`${API_BASE_URL}/image?fileId=${storeInfo.storeProfile}`} alt="store" />
                             <img src={ukki} alt="ukki" />
                             <input onKeyPress={handleKeyPress}
                                 defaultValue={defaultValue}  ></input>
