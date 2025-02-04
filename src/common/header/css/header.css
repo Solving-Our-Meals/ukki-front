@@ -296,7 +296,7 @@ header .menu-button img {
   header .menu-button img {
     position: absolute;
     top: 5px;
-    left: 80%;
+    left: -1vw;
     height: 30px;
     width: 30px;
     z-index: 100;
