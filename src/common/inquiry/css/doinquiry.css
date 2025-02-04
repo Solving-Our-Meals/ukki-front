@@ -42,7 +42,7 @@ cursor: default;
 #doInquiryTitleText{
 
 position: absolute;
-width: 127px;
+width: 200px;
 height: 36px;
 left: 62px;
 top: 127px;
@@ -50,7 +50,7 @@ top: 127px;
 font-family: 'Pretendard Variable';
 font-style: normal;
 font-weight: 700;
-font-size: 30px;
+font-size: 25px;
 line-height: 36px;
 color: #232323;
 
@@ -351,7 +351,7 @@ cursor: pointer;
   /* 문의 제목 : */
 
     position: absolute;
-    width: 51px;
+    width: 101px;
     height: 14px;
     left: 11px;
     top: 67px;
@@ -359,7 +359,7 @@ cursor: pointer;
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 14px;
 
     /* text/strong */
@@ -639,7 +639,7 @@ cursor: pointer;
     /* 문의 제목 : */
 
     position: absolute;
-    width: 102px;
+    width: 120px;
     height: 21px;
     left: 37px;
     top: 77px;
@@ -647,7 +647,7 @@ cursor: pointer;
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 24px;
 
     /* text/strong */

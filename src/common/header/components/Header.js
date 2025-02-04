@@ -152,12 +152,19 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <p className="user-greeting" style={greetingStyle}>안녕하세요, {userName}님!</p>
-                            <NavLink to="#" onClick={() => {
-                                handleLogout();
-                                handleMenuClick('/logout');
-                            }}
-                                     className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}>로그아웃</NavLink>
+
+                            <p className="user-greeting" >안녕하세요, <span>{userName}</span> 님!</p>
+                            {/* 로그아웃 버튼 */}
+                            <button
+                                onClick={() => {
+                                    handleLogout();
+                                    handleMenuClick('/logout');
+                                }}
+                                className={`menu-item auth userLogout ${visibleMenuItems.includes('/logout') ? 'visible' : ''}`}
+                            >
+                                로그아웃
+                            </button>
+
                         </>
                     )}
                 </span>
