@@ -32,7 +32,6 @@ header {
         position: relative;
         justify-content: center;
         top: 30%;
-        left: 13vw;
 
         .menu-item {
             position: relative;
@@ -101,18 +100,6 @@ header {
             background-color: $textStrong;
             right: 11vw;
         }
-        p.user-greeting {
-            font-size: 1.5vw;
-            font-family: 'Pretendard Variable';
-            font-weight: 500;
-            margin-right: 5vw;
-            color: $textStrong;
-            span{
-                color: $primary;
-                font-weight: 500;
-                font-family: 'Bobaesum Jindo TTF';
-            }
-        }
     }
 
     .menu-button {
@@ -128,12 +115,7 @@ header {
             width: 40px;
             z-index: 100;
         }
-
-
     }
-
-  
-
 
     @media (max-width: 768px) {
         flex-direction: column;
@@ -154,7 +136,7 @@ header {
             img {
                 position: absolute;
                 top: 5px;
-                left: -1vw;
+                left: 80%;
                 height: 30px;
                 width: 30px;
                 z-index: 100;
@@ -191,7 +173,7 @@ header {
                     color: $textStrong;
                     border: none;
                     font-weight: 700;
-
+ 
                 }
 
 
@@ -218,20 +200,6 @@ header {
                     left: 150px;
                 }
             }
-
-            p.user-greeting {
-                font-size: 2.5vw;
-                font-family: 'Pretendard Variable';
-                font-weight: 500;
-                
-                margin-right: 5vw;
-                color: $textStrong;
-                span{
-                    color: $primary;
-                    font-weight: 500;
-                    font-family: 'Bobaesum Jindo TTF';
-                }
-            }
         }
 
         .menu-button {
@@ -240,8 +208,6 @@ header {
         }
 
     }
-
-
 
     @media (max-width: 1440px) and (min-width: 769px) {
         height: 60px;
@@ -270,19 +236,6 @@ header {
 
             a:nth-of-type(7) {
                 right: 12vw;
-            }
-
-            p.user-greeting {
-                font-size: 1.5rem;
-                font-family: 'Pretendard Variable';
-                font-weight: 500;
-                margin-right: 5vw;
-                color: $textStrong;
-                span{
-                    color: $primary;
-                    font-weight: 500;
-                    font-family: 'Bobaesum Jindo TTF';
-                }
             }
         }
 
