@@ -203,7 +203,6 @@ header .menu {
   position: relative;
   justify-content: center;
   top: 30%;
-  left: 13vw;
 }
 header .menu .menu-item {
   position: relative;
@@ -265,18 +264,6 @@ header .menu a:nth-of-type(7) {
   background-color: #232323;
   right: 11vw;
 }
-header .menu p.user-greeting {
-  font-size: 1.5vw;
-  font-family: "Pretendard Variable";
-  font-weight: 500;
-  margin-right: 5vw;
-  color: #232323;
-}
-header .menu p.user-greeting span {
-  color: #FF8AA3;
-  font-weight: 500;
-  font-family: "Bobaesum Jindo TTF";
-}
 header .menu-button {
   position: absolute;
   right: 10%;
@@ -309,7 +296,7 @@ header .menu-button img {
   header .menu-button img {
     position: absolute;
     top: 5px;
-    left: -1vw;
+    left: 80%;
     height: 30px;
     width: 30px;
     z-index: 100;
@@ -362,18 +349,6 @@ header .menu-button img {
     background-color: #232323;
     left: 150px;
   }
-  header .menu p.user-greeting {
-    font-size: 2.5vw;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
-    margin-right: 5vw;
-    color: #232323;
-  }
-  header .menu p.user-greeting span {
-    color: #FF8AA3;
-    font-weight: 500;
-    font-family: "Bobaesum Jindo TTF";
-  }
   header .menu-button {
     display: block;
     position: absolute;
@@ -404,18 +379,6 @@ header .menu-button img {
   }
   header .menu a:nth-of-type(7) {
     right: 12vw;
-  }
-  header .menu p.user-greeting {
-    font-size: 1.5rem;
-    font-family: "Pretendard Variable";
-    font-weight: 500;
-    margin-right: 5vw;
-    color: #232323;
-  }
-  header .menu p.user-greeting span {
-    color: #FF8AA3;
-    font-weight: 500;
-    font-family: "Bobaesum Jindo TTF";
   }
   header .menu-button {
     display: none;
