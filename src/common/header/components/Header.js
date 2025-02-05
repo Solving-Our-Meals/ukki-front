@@ -77,13 +77,12 @@ function Header() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include', // 쿠키를 포함시키기
+                credentials: 'include',
             });
-
-            console.log('Logout response:', response); // 응답 확인
 
             if (response.ok) {
                 setIsLoggedIn(false);
+                // 로그아웃 후 경로 이동
                 navigate('/auth/login');
             } else {
                 console.error('Logout failed');
@@ -92,7 +91,6 @@ function Header() {
             console.error('Error during logout:', error);
         }
     };
-
 
 
 
@@ -128,9 +126,10 @@ function Header() {
         top: '5px',
         left: '80%',
         transform: 'translateX(-50%)',
-        color: 'blue',
+        color: '#FF8AA3',
         fontWeight: 'bold',
         fontSize: '18px',
+        fontFamily: "Bobaesum Jindo TTF",
     };
 
 
@@ -152,8 +151,7 @@ function Header() {
                         </>
                     ) : (
                         <>
-
-                            <p className="user-greeting" >안녕하세요, <span>{userName}</span> 님!</p>
+                            <p className="user-greeting" style={greetingStyle}>안녕하세요, {userName}님!</p>
                             {/* 로그아웃 버튼 */}
                             <button
                                 onClick={() => {
