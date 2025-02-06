@@ -152,7 +152,7 @@ function InquiryList() {
                 ) : isCategory ? (
                     <select className={styles.inquiryListStatusSelection} onChange={searchChangeHandler}>
                         <option className={styles.inquiryListOption} value="none" selected>카테고리</option>
-                        <option className={styles.inquiryListOption} value="리뷰신고">리뷰신고</option>
+                        <option className={styles.inquiryListOption} value="리뷰문의">리뷰문의</option>
                         <option className={styles.inquiryListOption} value="예약문의">예약문의</option>
                         <option className={styles.inquiryListOption} value="회원문의">회원문의</option>
                         <option className={styles.inquiryListOption} value="일반문의">일반문의</option>
@@ -179,7 +179,7 @@ function InquiryList() {
                 ) : isCategory ? (
                     <select className={styles.inquiryListStatusSelection} onChange={searchChangeHandler}>
                         <option className={styles.inquiryListOption} value="none" selected>카테고리</option>
-                        <option className={styles.inquiryListOption} value="리뷰문의">리뷰신고</option>
+                        <option className={styles.inquiryListOption} value="리뷰신고">리뷰신고</option>
                         <option className={styles.inquiryListOption} value="예약문의">예약문의</option>
                         <option className={styles.inquiryListOption} value="회원문의">회원문의</option>
                         <option className={styles.inquiryListOption} value="일반문의">일반문의</option>
