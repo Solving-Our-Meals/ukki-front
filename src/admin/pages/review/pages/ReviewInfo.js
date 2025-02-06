@@ -72,7 +72,8 @@ function ReviewInfo(){
             },
             credentials: "include",
             body: JSON.stringify({
-                reviewImg: reviewInfo.reviewImage
+                reviewImg: reviewInfo.reviewImage,
+                userNo: reviewInfo.userNo
             })
         }).then((res) => {
             return res.json();
