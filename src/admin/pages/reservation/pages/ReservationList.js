@@ -133,7 +133,7 @@ function ReservationList() {
             <select className={styles.reservationListSelection} onChange={categoryChangeHandler}>
                 <option className={styles.reservationListOption} value="none" selected>검색 기준</option>
                 <option className={styles.reservationListOption} value="RES_DATE">예약 날짜</option>
-                <option className={styles.reservationListOption} value="USER_NAME">사용자 이름</option>
+                <option className={styles.reservationListOption} value="USER_ID">사용자 이름</option>
                 <option className={styles.reservationListOption} value="STORE_NAME">가게 이름</option>
                 <option className={styles.reservationListOption} value="RES_DATE">예약 시간</option>
                 <option className={styles.reservationListOption} value="QR_CONFIRM">예약 상태</option>

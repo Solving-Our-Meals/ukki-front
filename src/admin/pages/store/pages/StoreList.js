@@ -102,7 +102,7 @@ function StoreList(){
         <div className={styles.totalStoreCount}>총 {graphData}개의 가게가 등록되어 있습니다.</div>
         <select className={styles.storeListSelection} onChange={categoryChangeHandler}>
             <option className={styles.storeListOption} value="none" selected>검색 기준</option>
-            <option className={styles.storeListOption} value="CATEGORY">카테고리</option>
+            <option className={styles.storeListOption} value="CATEGORY_NAME">카테고리</option>
             <option className={styles.storeListOption} value="STORE_NAME">가게이름</option>
             <option className={styles.storeListOption} value="STORE_ADDRESS">가게위치</option>
             <option className={styles.storeListOption} value="STORE_REGIST_DATE">가게등록일</option>

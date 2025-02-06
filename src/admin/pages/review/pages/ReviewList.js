@@ -130,7 +130,7 @@ function ReviewList() {
             <select className={styles.reviewListSelection} onChange={categoryChangeHandler}>
                 <option className={styles.reviewListOption} value="none" selected>검색 기준</option>
                 <option className={styles.reviewListOption} value="REVIEW_DATE">리뷰 날짜</option>
-                <option className={styles.reviewListOption} value="USER_NAME">사용자 이름</option>
+                <option className={styles.reviewListOption} value="USER_ID">사용자 이름</option>
                 <option className={styles.reviewListOption} value="STORE_NAME">가게 이름</option>
                 <option className={styles.reviewListOption} value="REVIEW_CONTENT">리뷰 내용</option>
                 <option className={styles.reviewListOption} value="REVIEW_SCOPE">리뷰 별점</option>
