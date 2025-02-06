@@ -45,10 +45,28 @@ function ReservationList() {
     }, []);
 
     useEffect(() => {
+        const category = searchParams.get("category");
+        const word = searchParams.get("word");
+        
+        if (category) {
+            setSearchCategory(category);
+            // QR_CONFIRM 카테고리일 경우 isStatus도 설정
+            if (category === "QR_CONFIRM") {
+                setIsStatus(true);
+                setSelectedStatus(word || "none");
+            } else {
+                setIsStatus(false);
+                setSearchWord(word || "");
+            }
+        }
+    }, [searchParams]);
+
+    useEffect(() => {
         fetchList(searchParams.get("category"), searchParams.get("word"));
         fetchTotalReservations();
         setIsLoading(false);
     }, [searchParams, fetchList]);
+
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -133,7 +151,7 @@ function ReservationList() {
             <select className={styles.reservationListSelection} onChange={categoryChangeHandler}>
                 <option className={styles.reservationListOption} value="none" selected>검색 기준</option>
                 <option className={styles.reservationListOption} value="RES_DATE">예약 날짜</option>
-                <option className={styles.reservationListOption} value="USER_NAME">사용자 이름</option>
+                <option className={styles.reservationListOption} value="USER_ID">사용자 이름</option>
                 <option className={styles.reservationListOption} value="STORE_NAME">가게 이름</option>
                 <option className={styles.reservationListOption} value="RES_DATE">예약 시간</option>
                 <option className={styles.reservationListOption} value="QR_CONFIRM">예약 상태</option>
