@@ -45,10 +45,28 @@ function ReservationList() {
     }, []);
 
     useEffect(() => {
+        const category = searchParams.get("category");
+        const word = searchParams.get("word");
+        
+        if (category) {
+            setSearchCategory(category);
+            // QR_CONFIRM 카테고리일 경우 isStatus도 설정
+            if (category === "QR_CONFIRM") {
+                setIsStatus(true);
+                setSelectedStatus(word || "none");
+            } else {
+                setIsStatus(false);
+                setSearchWord(word || "");
+            }
+        }
+    }, [searchParams]);
+
+    useEffect(() => {
         fetchList(searchParams.get("category"), searchParams.get("word"));
         fetchTotalReservations();
         setIsLoading(false);
     }, [searchParams, fetchList]);
+
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;

@@ -53,6 +53,23 @@ function ReviewList() {
     }, []);
 
     useEffect(() => {
+        const category = searchParams.get("category");
+        const word = searchParams.get("word");
+        
+        if (category) {
+            setSearchCategory(category);
+            // REVIEW_SCOPE 카테고리일 경우 isScope도 설정
+            if (category === "REVIEW_SCOPE") {
+                setIsScope(true);
+                setSelectedScope(word || "none");
+            } else {
+                setIsScope(false);
+                setSearchWord(word || "");
+            }
+        }
+    }, [searchParams]);
+
+    useEffect(() => {
         fetchList(searchParams.get("category"), searchParams.get("word"));
         fetchTotalReviews();
     }, [searchParams, fetchList]);
