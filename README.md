@@ -155,7 +155,7 @@
 <br>
 
 ## 8. Project Link (프로젝트 링크) - 수정 예정
-__프로젝트 도메인__
+https://ukki.site
 
 [목차로 이동](https://github.com/Solving-Our-Meals/ukki?tab=readme-ov-file#%EB%AA%A9%EC%B0%A8)
 
