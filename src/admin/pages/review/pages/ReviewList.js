@@ -135,16 +135,20 @@ function ReviewList() {
                 <option className={styles.reviewListOption} value="REVIEW_CONTENT">리뷰 내용</option>
                 <option className={styles.reviewListOption} value="REVIEW_SCOPE">리뷰 별점</option>
             </select>
-            {isScope ? <select className={styles.reviewListStatusSelection} onChange={searchChangeHandler}>
-                <option className={styles.reviewListOption} value="none" selected>리뷰 상태</option>
-                <option className={styles.reviewListOption} value="리뷰대기중">리뷰대기중</option>
-                <option className={styles.reviewListOption} value="리뷰확인">리뷰확인</option>
-                <option className={styles.reviewListOption} value="노쇼">노쇼</option>
-            </select>
+            {isScope ? (
+                <select className={styles.reviewListStatusSelection} onChange={searchChangeHandler}>
+                    <option className={styles.reviewListOption} value="none" selected>리뷰 별점</option>
+                    <option className={styles.reviewListOption} value="1">&#x2B50;</option>
+                    <option className={styles.reviewListOption} value="2">&#x2B50; &#x2B50;</option>
+                    <option className={styles.reviewListOption} value="3">&#x2B50; &#x2B50; &#x2B50;</option>
+                    <option className={styles.reviewListOption} value="4">&#x2B50; &#x2B50; &#x2B50; &#x2B50;</option>
+                    <option className={styles.reviewListOption} value="5">&#x2B50; &#x2B50; &#x2B50; &#x2B50; &#x2B50;</option>
+                </select>
+            )
             :
-            <input
-                type="text"
-                className={styles.reviewListSearchInput}
+                <input
+                    type="text"
+                    className={styles.reviewListSearchInput}
                 value={searchWord}
                 onChange={searchChangeHandler}
                 onKeyPress={handleKeyPress}

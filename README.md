@@ -155,7 +155,7 @@
 <br>
 
 ## 8. Project Link (프로젝트 링크) - 수정 예정
-__프로젝트 도메인__
+https://ukki.site
 
 [목차로 이동](https://github.com/Solving-Our-Meals/ukki?tab=readme-ov-file#%EB%AA%A9%EC%B0%A8)
 
@@ -163,9 +163,7 @@ __프로젝트 도메인__
 
 ## 9. Development Period (개발 기간)
 
-### 전체 개발 기간 : 24/11/20 ~
-
-
+### 전체 개발 기간 : 24/11/20 ~ 25/02/01
 >
 >- #### 주제 선정 및 조정 : 24/11/20 ~ 24/11/22
 >

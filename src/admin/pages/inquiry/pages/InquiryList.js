@@ -145,9 +145,9 @@ function InquiryList() {
                 isStatus ? (
                     <select className={styles.inquiryListStatusSelection} onChange={searchChangeHandler}>
                         <option className={styles.inquiryListOption} value="none" selected>문의 상태</option>
-                        <option className={styles.inquiryListOption} value="처리중">처리중</option>
-                        <option className={styles.inquiryListOption} value="처리완료">처리완료</option>
-                        <option className={styles.inquiryListOption} value="확인완료">확인완료</option>
+                        <option className={styles.inquiryListOption} value="PROCESSING">처리중</option>
+                        <option className={styles.inquiryListOption} value="COMPLETE">처리완료</option>
+                        <option className={styles.inquiryListOption} value="CHECK">확인완료</option>
                     </select>
                 ) : isCategory ? (
                     <select className={styles.inquiryListStatusSelection} onChange={searchChangeHandler}>
@@ -172,9 +172,9 @@ function InquiryList() {
                 isStatus ? (
                     <select className={styles.inquiryListStatusSelection} onChange={searchChangeHandler}>
                         <option className={styles.inquiryListOption} value="none" selected>문의 상태</option>
-                        <option className={styles.inquiryListOption} value="처리중">처리중</option>
-                        <option className={styles.inquiryListOption} value="처리완료">처리완료</option>
-                        <option className={styles.inquiryListOption} value="확인완료">확인완료</option>
+                        <option className={styles.inquiryListOption} value="PROCESSING">처리중</option>
+                        <option className={styles.inquiryListOption} value="COMPLETE">처리완료</option>
+                        <option className={styles.inquiryListOption} value="CHECK">확인완료</option>
                     </select>
                 ) : isCategory ? (
                     <select className={styles.inquiryListStatusSelection} onChange={searchChangeHandler}>
