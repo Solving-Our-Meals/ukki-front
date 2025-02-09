@@ -323,7 +323,3 @@ https://ukki.site
     * 관리자는 공지사항을 삭제할 수 있다.
 
 [목차로 이동](https://github.com/Solving-Our-Meals/ukki?tab=readme-ov-file#%EB%AA%A9%EC%B0%A8)
-
-<br>
-
-![image](https://github.com/user-attachments/assets/a1fcf295-b022-4e0b-8706-b7e9a6af8ce6)
